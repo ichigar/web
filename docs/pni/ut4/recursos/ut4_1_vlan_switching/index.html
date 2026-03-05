@@ -23,7 +23,7 @@
     
     
       
-        <title>VLAN - Web personal de ichigar</title>
+        <title>REDES VIRTUALES - VLAN - Web personal de ichigar</title>
       
     
     
@@ -75,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#vlan" class="md-skip">
+        <a href="#redes-virtuales-vlan" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              VLAN
+              REDES VIRTUALES - VLAN
             
           </span>
         </div>
@@ -1005,44 +1005,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#0-introduccion" class="md-nav__link">
+  <a href="#introduccion" class="md-nav__link">
     <span class="md-ellipsis">
-      0. Introducción
+      Introducción
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="0. Introducción">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#01-que-vamos-a-aprender-y-por-que-es-importa-en-redes-reales" class="md-nav__link">
-    <span class="md-ellipsis">
-      0.1 Qué vamos a aprender y por qué es importa en redes reales
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#02-objetivos-de-la-unidad" class="md-nav__link">
-    <span class="md-ellipsis">
-      0.2 Objetivos de la unidad
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#03-resumen" class="md-nav__link">
-    <span class="md-ellipsis">
-      0.3 Resumen
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1407,9 +1374,8 @@
 
 
 
-<h1 id="vlan">VLAN<a class="headerlink" href="#vlan" title="Permanent link">&para;</a></h1>
-<h2 id="0-introduccion">0. Introducción<a class="headerlink" href="#0-introduccion" title="Permanent link">&para;</a></h2>
-<h3 id="01-que-vamos-a-aprender-y-por-que-es-importa-en-redes-reales">0.1 Qué vamos a aprender y por qué es importa en redes reales<a class="headerlink" href="#01-que-vamos-a-aprender-y-por-que-es-importa-en-redes-reales" title="Permanent link">&para;</a></h3>
+<h1 id="redes-virtuales-vlan">REDES VIRTUALES - VLAN<a class="headerlink" href="#redes-virtuales-vlan" title="Permanent link">&para;</a></h1>
+<h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
 <p>Hasta ahora hemos trabajado el <strong>direccionamiento IPv4</strong>, <strong>subnetting/VLSM</strong> y <strong>enrutamiento estático</strong>. Con eso ya somos capaces de <strong>crear redes distintas</strong> e interconectarlas con un router.</p>
 <p>El siguiente paso natural es aprender a <strong>organizar una red local (LAN) de forma lógica</strong>, sin necesidad de tener un switch distinto para cada grupo de usuarios. Ahí entran las <strong>VLAN (Virtual LAN)</strong>.</p>
 <p>Con VLAN veremos cómo:</p>
@@ -1418,24 +1384,6 @@
 <li><strong>Reducir los broadcast</strong> y mejorar el rendimiento en redes medianas/grandes.</li>
 <li><strong>Separar departamentos o grupos</strong> (administración, aulas, profesorado, invitados…) aumentando el orden y la seguridad.</li>
 <li><strong>Preparar la red para enrutar entre VLAN</strong> (inter-VLAN routing).</li>
-</ul>
-<h3 id="02-objetivos-de-la-unidad">0.2 Objetivos de la unidad<a class="headerlink" href="#02-objetivos-de-la-unidad" title="Permanent link">&para;</a></h3>
-<p>Al terminar la unidad, deberíamos ser capaces de:</p>
-<ul>
-<li>Explicar con tus palabras qué es una VLAN y qué problema resuelve.</li>
-<li>Crear VLAN y <strong>asignar puertos</strong> a una VLAN (modo access).</li>
-<li>Configurar un enlace <strong>trunk</strong> entre switches para transportar varias VLAN.</li>
-<li>Diseñar un <strong>plan de direccionamiento</strong> para varias VLAN.</li>
-<li>Conocer la diferencia entre switches de <strong>capa 2</strong> y switches de <strong>capa3</strong></li>
-<li>Configurar <strong>inter-VLAN routing</strong> y comprobar conectividad.</li>
-<li>Hacer pruebas de conectividad.</li>
-<li>Detectar y corregir fallos de configuración.</li>
-</ul>
-<h3 id="03-resumen">0.3 Resumen<a class="headerlink" href="#03-resumen" title="Permanent link">&para;</a></h3>
-<p>Los conceptos principales sobre los que trabajaremos son:</p>
-<ul>
-<li>Dentro de una VLAN, los equipos se ven como si estuvieran en el <strong>mismo “switch lógico”</strong>.</li>
-<li>Entre VLAN, necesitas un <strong>router</strong> (o un switch capa 3) para que “hable” una red con otra.</li>
 </ul>
 <h2 id="1-repaso-de-conceptos">1. Repaso de conceptos<a class="headerlink" href="#1-repaso-de-conceptos" title="Permanent link">&para;</a></h2>
 <p>Antes de crear VLAN en un switch, necesitamos entender <strong>qué problema resuelven</strong> y qué conceptos de red necesitamos.</p>
