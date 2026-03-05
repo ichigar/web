@@ -1515,13 +1515,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#paso-6-antipatron-y-buenas-practicas-paso6py" class="md-nav__link">
+  <a href="#paso-6-malas-y-buenas-practicas-paso6py" class="md-nav__link">
     <span class="md-ellipsis">
-      Paso 6 — Antipatrón y buenas prácticas paso6.py
+      Paso 6 — Malas y buenas prácticas paso6.py
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Paso 6 — Antipatrón y buenas prácticas paso6.py">
+    <nav class="md-nav" aria-label="Paso 6 — Malas y buenas prácticas paso6.py">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2209,11 +2209,11 @@ Permite capturar excepciones y reaccionar de forma controlada sin que el program
 </ul>
 </details>
 <hr />
-<h2 id="paso-6-antipatron-y-buenas-practicas-paso6py">Paso 6 — Antipatrón y buenas prácticas  <code>paso6.py</code><a class="headerlink" href="#paso-6-antipatron-y-buenas-practicas-paso6py" title="Permanent link">&para;</a></h2>
+<h2 id="paso-6-malas-y-buenas-practicas-paso6py">Paso 6 — Malas y buenas prácticas  <code>paso6.py</code><a class="headerlink" href="#paso-6-malas-y-buenas-practicas-paso6py" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Conceptos</p>
 <p>Capturar <code>Exception</code> de forma genérica silencia <strong>todos</strong> los errores, incluidos bugs del programa:</p>
-<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Antipatrón — nunca hagas esto</span>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># mala práctica — nunca hagas esto</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="o">...</span>
 <a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
@@ -2222,7 +2222,7 @@ Permite capturar excepciones y reaccionar de forma controlada sin que el program
 <p>La excepción correcta es siempre la más específica posible. <code>raise</code> dentro de un <code>except</code> vuelve a lanzar la excepción capturada para que suba al nivel superior.</p>
 </div>
 <h3 id="objetivo_6"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_6" title="Permanent link">&para;</a></h3>
-<p>Identificar el antipatrón de captura genérica en código dado, entender por qué es peligroso y corregirlo con excepciones específicas.</p>
+<p>Identificar la mala práctica de captura genérica en código dado, entender por qué es peligroso y corregirlo con excepciones específicas.</p>
 <h3 id="tarea_6"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_6" title="Permanent link">&para;</a></h3>
 <p>Inserta en <code>paso6.py</code> el siguiente programa:</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1"> 1</a></span>
@@ -2240,7 +2240,7 @@ Permite capturar excepciones y reaccionar de forma controlada sin que el program
 </span><a id="__codelineno-18-4" name="__codelineno-18-4"></a>            <span class="n">lineas</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 <a id="__codelineno-18-5" name="__codelineno-18-5"></a>        <span class="k">return</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;: &quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lineas</span> <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
 <a id="__codelineno-18-6" name="__codelineno-18-6"></a>    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-<a id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="hll">        <span class="k">pass</span>   <span class="c1"># antipatrón: silencia cualquier error</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="hll">        <span class="k">pass</span>   <span class="c1"># mala práctica: silencia cualquier error</span>
 </span><a id="__codelineno-18-8" name="__codelineno-18-8"></a><span class="hll">
 </span><a id="__codelineno-18-9" name="__codelineno-18-9"></a><span class="n">notas</span> <span class="o">=</span> <span class="n">leer_notas</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">)</span>
 <a id="__codelineno-18-10" name="__codelineno-18-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Media: </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">notas</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">notas</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -2292,7 +2292,7 @@ Permite capturar excepciones y reaccionar de forma controlada sin que el program
 <details class="success">
 <summary>Respuestas</summary>
 <ul>
-<li><code>except Exception: pass</code> es el antipatrón de gestión de errores más peligroso: oculta bugs y hace que el programa devuelva resultados incorrectos en silencio.</li>
+<li><code>except Exception: pass</code> es la mala práctica de gestión de errores más peligroso: oculta bugs y hace que el programa devuelva resultados incorrectos en silencio.</li>
 <li>Las excepciones específicas documentan qué errores se esperan y permiten que el resto suba y se depure.</li>
 <li>Un <code>try / except</code> anidado permite gestionar errores de distinto origen (IO vs. formato) de forma independiente.</li>
 <li><code>raise</code> dentro de un <code>except</code> permite registrar o reaccionar al error y aun así propagarlo al nivel superior.</li>
@@ -2308,7 +2308,7 @@ Permite capturar excepciones y reaccionar de forma controlada sin que el program
 <li>[ ] He utilizado los bloques <code>else</code> y <code>finally</code> correctamente en el patrón completo.</li>
 <li>[ ] He comparado los estilos EAFP y LBYL usando <code>pathlib</code> y <code>try / except</code>.</li>
 <li>[ ] He gestionado <code>FileExistsError</code> al usar modo <code>"x"</code> y ofrecido alternativas al usuario.</li>
-<li>[ ] He identificado el antipatrón de captura genérica y lo he corregido con excepciones específicas.</li>
+<li>[ ] He identificado la mala práctica de captura genérica y lo he corregido con excepciones específicas.</li>
 </ul>
 <hr />
 <h2 id="actividades-de-ampliacion">Actividades de ampliación<a class="headerlink" href="#actividades-de-ampliacion" title="Permanent link">&para;</a></h2>
