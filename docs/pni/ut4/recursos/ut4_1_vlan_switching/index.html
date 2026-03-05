@@ -1858,14 +1858,14 @@ Eso significa que <strong>o pasa VLAN 10 o pasa VLAN 20</strong>, pero no las do
 </tr>
 <tr>
 <td>Crear VLANs y poner nombre</td>
-<td><code>Switch(config)# vlan 10</code><br><code>Switch(config-vlan)# name ADMIN</code><br><code>Switch(config-vlan)# exit</code><br><code>Switch(config)# vlan 20</code><br><code>Switch(config-vlan)# name AULAS</code><br><code>Switch(config-vlan)# exit</code></td>
+<td><code>Switch(config)# vlan 10</code><br><code>Switch(config-vlan)# name ADMIN</code><br><code>Switch(config-vlan)# exit</code></td>
 </tr>
 <tr>
 <td>Asignar un puerto a una VLAN (access)</td>
 <td><code>Switch(config)# interface fastEthernet 0/1</code><br><code>Switch(config-if)# switchport mode access</code><br><code>Switch(config-if)# switchport access vlan 10</code><br><code>Switch(config-if)# exit</code></td>
 </tr>
 <tr>
-<td>Asignar un rango de puertos a una VLAN (access)</td>
+<td>Asignar a un rango de puertos a una VLAN (access)</td>
 <td><code>Switch(config)# interface range fastEthernet 2/1 - fastEthernet 4/1</code><br><code>Switch(config-if-range)# switchport mode access</code><br><code>Switch(config-if-range)# switchport access vlan 10</code><br><code>Switch(config-if-range)# exit</code></td>
 </tr>
 <tr>
@@ -1914,11 +1914,11 @@ Eso significa que <strong>o pasa VLAN 10 o pasa VLAN 20</strong>, pero no las do
 </tr>
 <tr>
 <td>Encender interfaz física del router hacia el switch</td>
-<td><code>Router(config)# interface fa0/0</code><br><code>Router(config-if)# no shutdown</code><br><code>Router(config-if)# exit</code><br><code>Router(config)# interface g0/0</code><br><code>Router(config-if)# no shutdown</code><br><code>Router(config-if)# exit</code></td>
+<td><code>Router(config)# interface fa0/0</code><br><code>Router(config-if)# no shutdown</code><br><code>Router(config-if)# exit</code></td>
 </tr>
 <tr>
 <td>Crear subinterfaces (router-on-a-stick)</td>
-<td><code>Router(config)# interface fa0/0.10</code><br><code>Router(config-subif)# encapsulation dot1Q 10</code><br><code>Router(config-subif)# ip address 192.168.10.1 255.255.255.0</code><br><code>Router(config-subif)# exit</code><br><code>Router(config)# interface fa0/0.20</code><br><code>Router(config-subif)# encapsulation dot1Q 20</code><br><code>Router(config-subif)# ip address 192.168.20.1 255.255.255.0</code><br><code>Router(config-subif)# exit</code><br><code>Router(config)# interface g0/0.10</code><br><code>Router(config-subif)# encapsulation dot1Q 10</code><br><code>Router(config-subif)# ip address 192.168.10.1 255.255.255.0</code><br><code>Router(config-subif)# exit</code></td>
+<td><code>Router(config)# interface g0/0.10</code><br><code>Router(config-subif)# encapsulation dot1Q 10</code><br><code>Router(config-subif)# ip address 192.168.10.1 255.255.255.0</code><br><code>Router(config-subif)# exit</code></td>
 </tr>
 <tr>
 <td>Verificar interfaces del router</td>
@@ -1927,10 +1927,6 @@ Eso significa que <strong>o pasa VLAN 10 o pasa VLAN 20</strong>, pero no las do
 <tr>
 <td>Guardar configuración (router)</td>
 <td><code>Router# write memory</code><br><code>Router# copy running-config startup-config</code></td>
-</tr>
-<tr>
-<td>Probar conectividad (hosts)</td>
-<td><code>PC&gt; ping 192.168.10.1</code><br><code>PC&gt; ping 192.168.20.1</code><br><code>PC&gt; ping 192.168.20.Y</code></td>
 </tr>
 </tbody>
 </table>
