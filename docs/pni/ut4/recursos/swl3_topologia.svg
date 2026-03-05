@@ -1,0 +1,180 @@
+<svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg"
+     font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#334155"/>
+    </marker>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="460" fill="#F8FAFC" rx="12"/>
+
+  <text x="450" y="34" text-anchor="middle" font-size="16" font-weight="700"
+        fill="#1A1A2E" letter-spacing="0.2">Switch de capa 3 — SVIs y enrutamiento inter-VLAN</text>
+
+  <!-- VLAN 10 zona -->
+  <rect x="28" y="54" width="230" height="310" rx="10"
+        fill="#DDEEF9" fill-opacity="0.55" stroke="#1565C0" stroke-width="1.5"
+        stroke-dasharray="6,4"/>
+  <text x="143" y="74" text-anchor="middle" font-size="12" font-weight="700"
+        fill="#1565C0" letter-spacing="0.8">VLAN 10</text>
+  <text x="143" y="90" text-anchor="middle" font-size="11" fill="#64748B"
+        font-family="'Cascadia Code','Courier New',monospace">192.168.10.0/24</text>
+
+  <!-- PC-A -->
+  <g filter="url(#shadow)">
+    <rect x="48" y="110" width="130" height="72" rx="9"
+          fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+  </g>
+  <rect x="60" y="120" width="54" height="34" rx="3" fill="#DDEEF9" stroke="#1565C0" stroke-width="1"/>
+  <rect x="79" y="154" width="16" height="4" rx="2" fill="#93C5FD"/>
+  <rect x="72" y="158" width="30" height="3" rx="1.5" fill="#BFDBFE"/>
+  <text x="122" y="132" font-size="11" font-weight="700" fill="#1E3A5F">PC-A</text>
+  <text x="122" y="148" font-size="10" fill="#1E3A5F"
+        font-family="'Cascadia Code','Courier New',monospace">192.168.10.10</text>
+  <text x="122" y="162" font-size="9" fill="#64748B">gw .10.1</text>
+  <text x="113" y="178" text-anchor="middle" font-size="9" fill="#64748B">Fa0/1 — acceso</text>
+
+  <!-- PC-B -->
+  <g filter="url(#shadow)">
+    <rect x="48" y="230" width="130" height="72" rx="9"
+          fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+  </g>
+  <rect x="60" y="240" width="54" height="34" rx="3" fill="#DDEEF9" stroke="#1565C0" stroke-width="1"/>
+  <rect x="79" y="274" width="16" height="4" rx="2" fill="#93C5FD"/>
+  <rect x="72" y="278" width="30" height="3" rx="1.5" fill="#BFDBFE"/>
+  <text x="122" y="252" font-size="11" font-weight="700" fill="#1E3A5F">PC-B</text>
+  <text x="122" y="268" font-size="10" fill="#1E3A5F"
+        font-family="'Cascadia Code','Courier New',monospace">192.168.10.20</text>
+  <text x="122" y="282" font-size="9" fill="#64748B">gw .10.1</text>
+  <text x="113" y="298" text-anchor="middle" font-size="9" fill="#64748B">Fa0/2 — acceso</text>
+
+  <!-- VLAN 20 zona -->
+  <rect x="642" y="54" width="230" height="310" rx="10"
+        fill="#FEF3E2" fill-opacity="0.55" stroke="#E65100" stroke-width="1.5"
+        stroke-dasharray="6,4"/>
+  <text x="757" y="74" text-anchor="middle" font-size="12" font-weight="700"
+        fill="#E65100" letter-spacing="0.8">VLAN 20</text>
+  <text x="757" y="90" text-anchor="middle" font-size="11" fill="#64748B"
+        font-family="'Cascadia Code','Courier New',monospace">192.168.20.0/24</text>
+
+  <!-- PC-C -->
+  <g filter="url(#shadow)">
+    <rect x="722" y="110" width="130" height="72" rx="9"
+          fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+  </g>
+  <rect x="734" y="120" width="54" height="34" rx="3" fill="#DDEEF9" stroke="#1565C0" stroke-width="1"/>
+  <rect x="753" y="154" width="16" height="4" rx="2" fill="#93C5FD"/>
+  <rect x="746" y="158" width="30" height="3" rx="1.5" fill="#BFDBFE"/>
+  <text x="796" y="132" font-size="11" font-weight="700" fill="#1E3A5F">PC-C</text>
+  <text x="796" y="148" font-size="10" fill="#1E3A5F"
+        font-family="'Cascadia Code','Courier New',monospace">192.168.20.10</text>
+  <text x="796" y="162" font-size="9" fill="#64748B">gw .20.1</text>
+  <text x="787" y="178" text-anchor="middle" font-size="9" fill="#64748B">Fa0/11 — acceso</text>
+
+  <!-- PC-D -->
+  <g filter="url(#shadow)">
+    <rect x="722" y="230" width="130" height="72" rx="9"
+          fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+  </g>
+  <rect x="734" y="240" width="54" height="34" rx="3" fill="#DDEEF9" stroke="#1565C0" stroke-width="1"/>
+  <rect x="753" y="274" width="16" height="4" rx="2" fill="#93C5FD"/>
+  <rect x="746" y="278" width="30" height="3" rx="1.5" fill="#BFDBFE"/>
+  <text x="796" y="252" font-size="11" font-weight="700" fill="#1E3A5F">PC-D</text>
+  <text x="796" y="268" font-size="10" fill="#1E3A5F"
+        font-family="'Cascadia Code','Courier New',monospace">192.168.20.20</text>
+  <text x="796" y="282" font-size="9" fill="#64748B">gw .20.1</text>
+  <text x="787" y="298" text-anchor="middle" font-size="9" fill="#64748B">Fa0/12 — acceso</text>
+
+  <!-- SWITCH L3 centro -->
+  <g filter="url(#shadow)">
+    <rect x="310" y="148" width="280" height="172" rx="12"
+          fill="#EFF6FF" stroke="#1E40AF" stroke-width="2"/>
+  </g>
+  <!-- puertos frontales -->
+  <rect x="326" y="166" width="10" height="7" rx="1" fill="#DDEEF9" stroke="#1565C0" stroke-width="0.8"/>
+  <rect x="340" y="166" width="10" height="7" rx="1" fill="#DDEEF9" stroke="#1565C0" stroke-width="0.8"/>
+  <rect x="354" y="166" width="10" height="7" rx="1" fill="#DDEEF9" stroke="#1565C0" stroke-width="0.8"/>
+  <rect x="368" y="166" width="10" height="7" rx="1" fill="#DDEEF9" stroke="#1565C0" stroke-width="0.8"/>
+  <rect x="382" y="166" width="10" height="7" rx="1" fill="#DDEEF9" stroke="#1565C0" stroke-width="0.8"/>
+  <rect x="396" y="166" width="10" height="7" rx="1" fill="#DDEEF9" stroke="#1565C0" stroke-width="0.8"/>
+  <rect x="410" y="166" width="10" height="7" rx="1" fill="#DDEEF9" stroke="#1565C0" stroke-width="0.8"/>
+  <rect x="424" y="166" width="10" height="7" rx="1" fill="#FEF3E2" stroke="#E65100" stroke-width="0.8"/>
+  <rect x="438" y="166" width="10" height="7" rx="1" fill="#FEF3E2" stroke="#E65100" stroke-width="0.8"/>
+  <rect x="452" y="166" width="10" height="7" rx="1" fill="#FEF3E2" stroke="#E65100" stroke-width="0.8"/>
+  <rect x="466" y="166" width="10" height="7" rx="1" fill="#FEF3E2" stroke="#E65100" stroke-width="0.8"/>
+  <rect x="480" y="166" width="10" height="7" rx="1" fill="#FEF3E2" stroke="#E65100" stroke-width="0.8"/>
+  <rect x="494" y="166" width="10" height="7" rx="1" fill="#FEF3E2" stroke="#E65100" stroke-width="0.8"/>
+  <rect x="508" y="166" width="10" height="7" rx="1" fill="#F1F5F9" stroke="#475569" stroke-width="0.8"/>
+  <circle cx="568" cy="170" r="3" fill="#22C55E"/>
+  <circle cx="578" cy="170" r="3" fill="#22C55E" fill-opacity="0.5"/>
+  <circle cx="588" cy="170" r="3" fill="#F59E0B"/>
+
+  <text x="450" y="198" text-anchor="middle" font-size="14" font-weight="700" fill="#1E3A5F">SW_L3</text>
+  <text x="450" y="214" text-anchor="middle" font-size="10" fill="#64748B">Cisco Catalyst 3560 / 3650</text>
+
+  <!-- SVIs -->
+  <rect x="326" y="224" width="116" height="52" rx="6"
+        fill="#DDEEF9" stroke="#1565C0" stroke-width="1"/>
+  <text x="384" y="240" text-anchor="middle" font-size="9" font-weight="700" fill="#1565C0">SVI VLAN 10</text>
+  <text x="384" y="254" text-anchor="middle" font-size="9" fill="#1E3A5F"
+        font-family="'Cascadia Code','Courier New',monospace">192.168.10.1/24</text>
+  <text x="384" y="268" text-anchor="middle" font-size="8" fill="#64748B">gateway VLAN 10</text>
+
+  <rect x="458" y="224" width="116" height="52" rx="6"
+        fill="#FEF3E2" stroke="#E65100" stroke-width="1"/>
+  <text x="516" y="240" text-anchor="middle" font-size="9" font-weight="700" fill="#E65100">SVI VLAN 20</text>
+  <text x="516" y="254" text-anchor="middle" font-size="9" fill="#1E3A5F"
+        font-family="'Cascadia Code','Courier New',monospace">192.168.20.1/24</text>
+  <text x="516" y="268" text-anchor="middle" font-size="8" fill="#64748B">gateway VLAN 20</text>
+
+  <!-- ip routing label -->
+  <rect x="376" y="286" width="148" height="22" rx="5"
+        fill="#F1F5F9" stroke="#475569" stroke-width="1"/>
+  <text x="450" y="301" text-anchor="middle" font-size="9" font-weight="700"
+        fill="#475569" font-family="'Cascadia Code','Courier New',monospace">ip routing  ✔</text>
+
+  <!-- Cables PC→SW -->
+  <line x1="178" y1="146" x2="326" y2="200" stroke="#1565C0" stroke-width="1.5" stroke-opacity="0.6"/>
+  <line x1="178" y1="266" x2="326" y2="210" stroke="#1565C0" stroke-width="1.5" stroke-opacity="0.6"/>
+  <line x1="722" y1="146" x2="574" y2="200" stroke="#E65100" stroke-width="1.5" stroke-opacity="0.6"/>
+  <line x1="722" y1="266" x2="574" y2="210" stroke="#E65100" stroke-width="1.5" stroke-opacity="0.6"/>
+
+  <!-- Puerto enrutado hacia router externo -->
+	  <rect x="380" y="348" width="140" height="52" rx="8"
+	        fill="#F1F5F9" stroke="#475569" stroke-width="1.5"/>
+	  <text x="450" y="366" text-anchor="middle" font-size="9" font-weight="700" fill="#475569">Gi0/1 — puerto enrutado</text>
+	  <text x="450" y="380" text-anchor="middle" font-size="9" fill="#1E3A5F"
+	        font-family="'Cascadia Code','Courier New',monospace">10.0.0.1/30</text>
+	  <text x="450" y="394" text-anchor="middle" font-size="8" fill="#64748B">no switchport</text>
+
+  <!-- Línea SW→puerto enrutado -->
+	  <line x1="450" y1="320" x2="450" y2="348" stroke="#334155" stroke-width="2"
+	        marker-end="url(#arrow)"/>
+
+  <!-- Router externo -->
+  <g filter="url(#shadow)">
+	    <rect x="368" y="408" width="164" height="36" rx="8"
+	          fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+	  </g>
+	  <text x="450" y="426" text-anchor="middle" font-size="11" font-weight="700" fill="#1E3A5F">ROUTER / SW_L3 vecino</text>
+	  <text x="450" y="439" text-anchor="middle" font-size="9" fill="#64748B"
+	        font-family="'Cascadia Code','Courier New',monospace">10.0.0.2/30 — otras redes</text>
+
+  <!-- Leyenda -->
+	  <rect x="28" y="412" width="320" height="28" rx="6"
+	        fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+	  <rect x="44" y="422" width="12" height="10" rx="2" fill="#DDEEF9" stroke="#1565C0" stroke-width="1"/>
+	  <text x="62" y="431" font-size="10" fill="#1A1A2E">VLAN 10 — puertos acceso</text>
+	  <rect x="190" y="422" width="12" height="10" rx="2" fill="#FEF3E2" stroke="#E65100" stroke-width="1"/>
+	  <text x="208" y="431" font-size="10" fill="#1A1A2E">VLAN 20 — puertos acceso</text>
+
+	  <rect x="580" y="412" width="292" height="28" rx="6"
+	        fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+	  <rect x="596" y="422" width="12" height="10" rx="2" fill="#F1F5F9" stroke="#475569" stroke-width="1"/>
+	  <text x="614" y="431" font-size="10" fill="#1A1A2E">Puerto enrutado (no switchport)</text>
+	  <rect x="760" y="422" width="12" height="10" rx="2" fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+	  <text x="778" y="431" font-size="10" fill="#1A1A2E">Dispositivo L3</text>
+</svg>

@@ -1,0 +1,1746 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Novedades y artículos sobre X">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/blog/pni/ut4/recursos/ut4_2_switch_capa3/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>ENRUTAMIENTO ENTRE VLANs CON SWITCH DE CAPA 3 - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#enrutamiento-entre-vlans-con-switch-de-capa-3" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ENRUTAMIENTO ENTRE VLANs CON SWITCH DE CAPA 3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../rde/" class="md-tabs__link">
+          
+  
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../lnd/" class="md-tabs__link">
+          
+  
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../pd4/" class="md-tabs__link">
+          
+  
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../imw/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../soj/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pd4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-tres-formas-de-enrutar-entre-vlans" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Tres formas de enrutar entre VLANs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Tres formas de enrutar entre VLANs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#router-con-un-puerto-fisico-por-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Router con un puerto físico por VLAN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#router-con-subinterfaces-8021q-o-router-on-a-stick" class="md-nav__link">
+    <span class="md-ellipsis">
+      Router con subinterfaces 802.1Q o Router-on-a-stick
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switch-de-capa-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Switch de capa 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparativa
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-el-switch-de-capa-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. El switch de capa 3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configuracion-basica-svis-y-enrutamiento-inter-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Configuración básica: SVIs y enrutamiento inter-VLAN
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Configuración básica: SVIs y enrutamiento inter-VLAN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-crear-las-vlans" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1 — Crear las VLANs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-crear-las-svis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2 — Crear las SVIs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-activar-el-enrutamiento-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3 — Activar el enrutamiento IP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-configurar-los-puertos-de-acceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4 — Configurar los puertos de acceso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-los-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración de los hosts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostico-rapido-si-no-hay-conectividad-entre-vlans" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnóstico rápido (si no hay conectividad entre VLANs)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-conexion-con-otros-dispositivos-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Conexión con otros dispositivos de red
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Conexión con otros dispositivos de red">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#puerto-enrutado-con-no-switchport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Puerto enrutado con no switchport
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ruta-estatica-hacia-las-redes-del-vecino" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ruta estática hacia las redes del vecino
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ruta estática hacia las redes del vecino">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-dos-switches-l3-en-edificios-distintos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo: dos switches L3 en edificios distintos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-comparativa-router-on-a-stick-vs-switch-l3" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Comparativa: router-on-a-stick vs switch L3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cuadro-resumen-acciones-y-comandos" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Cuadro resumen — acciones y comandos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="enrutamiento-entre-vlans-con-switch-de-capa-3">ENRUTAMIENTO ENTRE VLANs CON SWITCH DE CAPA 3<a class="headerlink" href="#enrutamiento-entre-vlans-con-switch-de-capa-3" title="Permanent link">&para;</a></h1>
+<p>El enrutamiento entre VLANs es el mecanismo que permite que hosts de VLANs distintas se comuniquen entre sí. Ya conoces dos formas de conseguirlo: con un router físico y con router-on-a-stick (usa un único enlace con el switch con el puerto en modo trunk). En estos apuntes se introduce una tercera — el switch de capa 3 — que es la solución estándar en entornos empresariales.</p>
+<hr />
+<h2 id="1-tres-formas-de-enrutar-entre-vlans">1. Tres formas de enrutar entre VLANs<a class="headerlink" href="#1-tres-formas-de-enrutar-entre-vlans" title="Permanent link">&para;</a></h2>
+<p>Las tres aproximaciones resuelven el mismo problema pero con compromisos distintos en cuanto a rendimiento, coste y escalabilidad.</p>
+<p><img alt="Tres métodos de enrutamiento inter-VLAN" src="../swl3_comparativa.svg" /></p>
+<h3 id="router-con-un-puerto-fisico-por-vlan">Router con un puerto físico por VLAN<a class="headerlink" href="#router-con-un-puerto-fisico-por-vlan" title="Permanent link">&para;</a></h3>
+<p>Un puerto independiente del router se conecta directamente a cada VLAN. El router enruta el tráfico entre sus interfaces igual que lo haría entre redes distintas.</p>
+<p>Es la forma más intuitiva de entender el enrutamiento inter-VLAN porque hace visible que cada VLAN es, a todos los efectos, una red distinta. Sin embargo, consume un puerto del router y un puerto del switch por cada VLAN — algo que no escala más allá de dos o tres VLANs. Solo se usa en laboratorio para introducir el concepto.</p>
+<h3 id="router-con-subinterfaces-8021q-o-router-on-a-stick">Router con subinterfaces 802.1Q o Router-on-a-stick<a class="headerlink" href="#router-con-subinterfaces-8021q-o-router-on-a-stick" title="Permanent link">&para;</a></h3>
+<p>Un único enlace trunk (802.1Q) conecta el switch con el router. El router crea una subinterfaz por cada VLAN, cada una con su propia dirección IP que actúa como puerta de enlace.</p>
+<p>Resuelve el problema del consumo de puertos — un solo cable físico independientemente del número de VLANs. El problema es que <strong>todo el tráfico inter-VLAN debe atravesar ese enlace dos veces</strong>: sale del switch hacia el router y vuelve al switch. El router se convierte en cuello de botella cuando el volumen de tráfico entre VLANs es elevado. Es la solución habitual en PYME pequeña con presupuesto ajustado.</p>
+<h3 id="switch-de-capa-3">Switch de capa 3<a class="headerlink" href="#switch-de-capa-3" title="Permanent link">&para;</a></h3>
+<p>El propio switch integra capacidad de enrutamiento. Se crean interfaces virtuales — una por VLAN — directamente en el switch. El tráfico inter-VLAN <strong>se procesa internamente en el hardware del switch</strong>, sin salir nunca hacia un dispositivo externo.</p>
+<p>El resultado es un rendimiento muy superior al de router-on-a-stick y una topología más simple. Es la solución estándar en redes empresariales medianas y grandes.</p>
+<h3 id="comparativa">Comparativa<a class="headerlink" href="#comparativa" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: center;">Router por puerto</th>
+<th style="text-align: center;">Router-on-a-stick</th>
+<th style="text-align: center;">Switch L3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Puertos físicos necesarios</td>
+<td style="text-align: center;">1 por VLAN</td>
+<td style="text-align: center;">1 (trunk)</td>
+<td style="text-align: center;">0 extra</td>
+</tr>
+<tr>
+<td>Dónde se enruta</td>
+<td style="text-align: center;">Router externo</td>
+<td style="text-align: center;">Router externo</td>
+<td style="text-align: center;">Dentro del switch</td>
+</tr>
+<tr>
+<td>Cuello de botella</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Coste</td>
+<td style="text-align: center;">Bajo</td>
+<td style="text-align: center;">Bajo</td>
+<td style="text-align: center;">Mayor</td>
+</tr>
+<tr>
+<td>Escala</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Limitada</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr>
+<td>Entorno habitual</td>
+<td style="text-align: center;">Laboratorio</td>
+<td style="text-align: center;">PYME pequeña</td>
+<td style="text-align: center;">Empresa mediana/grande</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-el-switch-de-capa-3">2. El switch de capa 3<a class="headerlink" href="#2-el-switch-de-capa-3" title="Permanent link">&para;</a></h2>
+<p><strong>Un switch de capa 3</strong> es un switch que, además de conmutar tramas Ethernet (capa 2), puede enrutar paquetes IP entre redes distintas (capa 3). Integra las funciones de switch y router en un mismo dispositivo.</p>
+<p>La diferencia fundamental respecto a un switch de capa 2 es la capacidad de crear <strong>SVIs</strong> (<em>Switched Virtual Interfaces</em>) — interfaces lógicas asociadas a una VLAN — y asignarles una dirección IP. Cada SVI actúa como puerta de enlace de su VLAN.</p>
+<blockquote>
+<p>En muchos switches L3, el enrutamiento se realiza en <strong>hardware</strong> (ASIC), lo que permite alcanzar velocidades muy altas. En routers, el reenvío puede depender del modelo y de su arquitectura (software/hardware), pero en laboratorio es útil recordar que el switch L3 suele enrutar “a velocidad de conmutación”.</p>
+</blockquote>
+<p>En Packet Tracer los modelos disponibles son el <strong>Catalyst 3560</strong> y el <strong>Catalyst 3650</strong>. Ambos soportan SVIs y enrutamiento IP entre VLANs.</p>
+<hr />
+<h2 id="3-configuracion-basica-svis-y-enrutamiento-inter-vlan">3. Configuración básica: SVIs y enrutamiento inter-VLAN<a class="headerlink" href="#3-configuracion-basica-svis-y-enrutamiento-inter-vlan" title="Permanent link">&para;</a></h2>
+<p>Para los ejemplos de esta sección usaremos la siguiente topología:</p>
+<p><img alt="Switch de capa 3 — SVIs y enrutamiento inter-VLAN" src="../swl3_topologia.svg" /></p>
+<p>El switch L3 (<code>SW_L3</code>) tiene dos VLANs: la VLAN 10 (<code>192.168.10.0/24</code>) con PC-A y PC-B, y la VLAN 20 (<code>192.168.20.0/24</code>) con PC-C y PC-D. Los hosts de VLANs distintas deben poder comunicarse entre sí sin necesidad de un router externo.</p>
+<h3 id="paso-1-crear-las-vlans">Paso 1 — Crear las VLANs<a class="headerlink" href="#paso-1-crear-las-vlans" title="Permanent link">&para;</a></h3>
+<p>Las VLANs se crean igual que en un switch L2:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="hll">SW_L3(config)# vlan 10
+</span><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="hll">SW_L3(config-vlan)# name VLAN10
+</span><a id="__codelineno-0-3" name="__codelineno-0-3"></a>SW_L3(config-vlan)# exit
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="hll">SW_L3(config)# vlan 20
+</span><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="hll">SW_L3(config-vlan)# name VLAN20
+</span><a id="__codelineno-0-7" name="__codelineno-0-7"></a>SW_L3(config-vlan)# exit
+</code></pre></div></td></tr></table></div>
+<h3 id="paso-2-crear-las-svis">Paso 2 — Crear las SVIs<a class="headerlink" href="#paso-2-crear-las-svis" title="Permanent link">&para;</a></h3>
+<p><strong>Una SVI</strong> (<em>Switched Virtual Interface</em>) es una interfaz lógica asociada a una VLAN. Actúa como puerta de enlace de los hosts de esa VLAN — es la IP que configurarás como gateway en cada PC.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span>
+<span class="normal"><a href="#__codelineno-1-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="hll">SW_L3(config)# interface vlan 10
+</span><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="hll">SW_L3(config-if)# ip address 192.168.10.1 255.255.255.0
+</span><a id="__codelineno-1-3" name="__codelineno-1-3"></a>SW_L3(config-if)# no shutdown
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>SW_L3(config-if)# exit
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="hll">SW_L3(config)# interface vlan 20
+</span><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="hll">SW_L3(config-if)# ip address 192.168.20.1 255.255.255.0
+</span><a id="__codelineno-1-8" name="__codelineno-1-8"></a>SW_L3(config-if)# no shutdown
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>SW_L3(config-if)# exit
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>Una SVI solo está activa (<code>up/up</code>) si existe la VLAN correspondiente en la base de datos de VLANs <strong>y</strong> la VLAN está “presente” en el switch: al menos un puerto de acceso en esa VLAN está <code>connected</code> <strong>o</strong> existe un trunk activo que transporte esa VLAN. Si la SVI aparece como <code>down/down</code>, comprueba primero que la VLAN existe y que hay puertos/enlaces en estado <code>connected</code>.</p>
+</blockquote>
+<h3 id="paso-3-activar-el-enrutamiento-ip">Paso 3 — Activar el enrutamiento IP<a class="headerlink" href="#paso-3-activar-el-enrutamiento-ip" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="hll">SW_L3(config)# ip routing
+</span></code></pre></div></td></tr></table></div>
+<p>Este comando habilita la función de enrutamiento en el switch. Sin él, el switch no reenvía paquetes entre SVIs aunque estén correctamente configuradas.</p>
+<div class="admonition note">
+<p class="admonition-title">El comando <code>ip routing</code> es obligatorio</p>
+<p>Los switches de capa 3 tienen el enrutamiento IP <strong>desactivado por defecto</strong>. Sin <code>ip routing</code>, el switch actúa como un switch L2 normal aunque tenga SVIs configuradas. Es el error más frecuente al configurar un switch L3 por primera vez.</p>
+</div>
+<h3 id="paso-4-configurar-los-puertos-de-acceso">Paso 4 — Configurar los puertos de acceso<a class="headerlink" href="#paso-4-configurar-los-puertos-de-acceso" title="Permanent link">&para;</a></h3>
+<p>Los puertos hacia los hosts se configuran en modo acceso, igual que en un switch L2:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span>
+<span class="normal"><a href="#__codelineno-3-8">8</a></span>
+<span class="normal"><a href="#__codelineno-3-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>SW_L3(config)# interface range FastEthernet0/1 - 2
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="hll">SW_L3(config-if-range)# switchport mode access
+</span><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="hll">SW_L3(config-if-range)# switchport access vlan 10
+</span><a id="__codelineno-3-4" name="__codelineno-3-4"></a>SW_L3(config-if-range)# exit
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>SW_L3(config)# interface range FastEthernet0/11 - 12
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="hll">SW_L3(config-if-range)# switchport mode access
+</span><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="hll">SW_L3(config-if-range)# switchport access vlan 20
+</span><a id="__codelineno-3-9" name="__codelineno-3-9"></a>SW_L3(config-if-range)# exit
+</code></pre></div></td></tr></table></div>
+<h3 id="configuracion-de-los-hosts">Configuración de los hosts<a class="headerlink" href="#configuracion-de-los-hosts" title="Permanent link">&para;</a></h3>
+<p>Cada PC necesita una IP en su subred y como gateway la IP de la SVI correspondiente:</p>
+<table>
+<thead>
+<tr>
+<th>Host</th>
+<th>IP</th>
+<th>Máscara</th>
+<th>Gateway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PC-A</td>
+<td><code>192.168.10.10</code></td>
+<td><code>255.255.255.0</code></td>
+<td><code>192.168.10.1</code></td>
+</tr>
+<tr>
+<td>PC-B</td>
+<td><code>192.168.10.20</code></td>
+<td><code>255.255.255.0</code></td>
+<td><code>192.168.10.1</code></td>
+</tr>
+<tr>
+<td>PC-C</td>
+<td><code>192.168.20.10</code></td>
+<td><code>255.255.255.0</code></td>
+<td><code>192.168.20.1</code></td>
+</tr>
+<tr>
+<td>PC-D</td>
+<td><code>192.168.20.20</code></td>
+<td><code>255.255.255.0</code></td>
+<td><code>192.168.20.1</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="verificacion">Verificación<a class="headerlink" href="#verificacion" title="Permanent link">&para;</a></h3>
+<p>Comprueba que las SVIs están activas:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>SW_L3# show interfaces vlan 10
+</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Vlan10 is up, line protocol is up
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  Hardware is CPU Interface, address is 0001.c9e0.1234
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  Internet address is 192.168.10.1/24
+</code></pre></div>
+<p>Verifica que el switch tiene rutas hacia ambas VLANs:</p>
+<p><div class="language-text highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>SW_L3# show ip route
+</code></pre></div>
+Debería mostrar algo como</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>192.168.10.0/24 is directly connected, Vlan10
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>192.168.20.0/24 is directly connected, Vlan20
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Usa <code>show ip interface brief</code> para ver el estado de todas las SVIs de un vistazo</p>
+<p><div class="language-text highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>SW_L3# show ip interface brief
+</code></pre></div>
+Muestra en una sola tabla todas las interfaces — físicas y SVIs — con su IP y estado. Permite detectar rápidamente si alguna SVI está <code>down</code> sin tener que consultarlas una a una.</p>
+</div>
+<h3 id="diagnostico-rapido-si-no-hay-conectividad-entre-vlans">Diagnóstico rápido (si no hay conectividad entre VLANs)<a class="headerlink" href="#diagnostico-rapido-si-no-hay-conectividad-entre-vlans" title="Permanent link">&para;</a></h3>
+<p>Checklist típico en Packet Tracer:</p>
+<p>1) <strong>Gateway en los PCs</strong>: cada host debe tener como puerta de enlace la SVI de su VLAN (<code>192.168.10.1</code> o <code>192.168.20.1</code>).<br />
+2) <strong>VLANs creadas</strong>: VLAN 10 y VLAN 20 existen en el switch.<br />
+3) <strong>Puertos de acceso</strong>: los puertos hacia los PCs están en la VLAN correcta y en estado <code>connected</code>.<br />
+4) <strong>SVIs arriba</strong>: <code>Vlan10</code> y <code>Vlan20</code> están <code>up/up</code> y con la IP correcta.<br />
+5) <strong><code>ip routing</code> activado</strong>: si falta, el switch no enruta entre SVIs.</p>
+<p>Comandos útiles:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>SW_L3# show vlan brief
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>SW_L3# show interfaces status
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>SW_L3# show ip interface brief
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>SW_L3# show ip route
+</code></pre></div>
+<p>Pruebas rápidas:
+- Desde <code>SW_L3</code>, haz <code>ping 192.168.10.10</code> y <code>ping 192.168.20.10</code> para comprobar L2/L3 hacia cada VLAN.
+- Desde un PC, usa <code>ping</code> a su gateway y luego al host de la otra VLAN. Si el ping al gateway falla, el problema suele estar en VLAN/puerto; si el gateway responde pero no hay inter-VLAN, suele ser <code>ip routing</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Mala práctica: olvidar <code>ip routing</code></p>
+<p><div class="language-text highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>! Incorrecto: SVIs configuradas pero sin activar el enrutamiento
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>SW_L3(config)# interface vlan 10
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>SW_L3(config-if)# ip address 192.168.10.1 255.255.255.0
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>SW_L3(config-if)# no shutdown
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>SW_L3(config)# interface vlan 20
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>SW_L3(config-if)# ip address 192.168.20.1 255.255.255.0
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>SW_L3(config-if)# no shutdown
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>! ping entre VLANs falla — el switch actúa como L2
+</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>! Correcto
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>SW_L3(config)# ip routing
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>SW_L3(config)# interface vlan 10
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>SW_L3(config-if)# ip address 192.168.10.1 255.255.255.0
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>SW_L3(config-if)# no shutdown
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>SW_L3(config)# interface vlan 20
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>SW_L3(config-if)# ip address 192.168.20.1 255.255.255.0
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>SW_L3(config-if)# no shutdown
+</code></pre></div></p>
+</div>
+<hr />
+<h2 id="4-conexion-con-otros-dispositivos-de-red">4. Conexión con otros dispositivos de red<a class="headerlink" href="#4-conexion-con-otros-dispositivos-de-red" title="Permanent link">&para;</a></h2>
+<p>En una red real el switch L3 no está aislado — necesita comunicarse con otros dispositivos: otro switch L3, un router de distribución, o un firewall que da acceso a otras redes del campus o del edificio.</p>
+<p>La forma habitual de conectar dos dispositivos de capa 3 es mediante un <strong>puerto enrutado</strong> — un puerto del switch que actúa como interfaz de red normal, con su propia IP, sin pertenecer a ninguna VLAN.</p>
+<h3 id="puerto-enrutado-con-no-switchport">Puerto enrutado con <code>no switchport</code><a class="headerlink" href="#puerto-enrutado-con-no-switchport" title="Permanent link">&para;</a></h3>
+<p>Por defecto, todos los puertos de un switch L3 son puertos de capa 2 (switchport). El comando <strong><code>no switchport</code></strong> convierte un puerto en interfaz de capa 3, permitiéndole tener una dirección IP propia.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>SW_L3(config)# interface GigabitEthernet0/1
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="hll">SW_L3(config-if)# no switchport
+</span><a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="hll">SW_L3(config-if)# ip address 10.0.0.1 255.255.255.252
+</span><a id="__codelineno-12-4" name="__codelineno-12-4"></a>SW_L3(config-if)# no shutdown
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a>SW_L3(config-if)# exit
+</code></pre></div></td></tr></table></div>
+<p>Con <code>/30</code> (<code>255.255.255.252</code>) se usa una subred de solo dos hosts — la práctica habitual para enlaces punto a punto entre dispositivos de red, donde no se necesitan más de dos IPs.</p>
+<blockquote>
+<p>Una vez ejecutado <code>no switchport</code>, el puerto desaparece de la tabla de VLANs y ya no puede configurarse como acceso ni trunk. Para revertirlo usa <code>switchport</code> (sin <code>no</code>).</p>
+</blockquote>
+<h3 id="ruta-estatica-hacia-las-redes-del-vecino">Ruta estática hacia las redes del vecino<a class="headerlink" href="#ruta-estatica-hacia-las-redes-del-vecino" title="Permanent link">&para;</a></h3>
+<p>Tras conectar físicamente los dos dispositivos, el switch L3 conoce la red del enlace (<code>10.0.0.0/30</code>) pero no las redes que hay detrás del vecino. Hay que añadir una ruta estática:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="hll">SW_L3(config)# ip route 172.16.0.0 255.255.0.0 10.0.0.2
+</span></code></pre></div></td></tr></table></div>
+<p>Esta ruta indica que para llegar a <code>172.16.0.0/16</code> (las redes del dispositivo vecino) el siguiente salto es <code>10.0.0.2</code>.</p>
+<h4 id="ejemplo-dos-switches-l3-en-edificios-distintos">Ejemplo: dos switches L3 en edificios distintos<a class="headerlink" href="#ejemplo-dos-switches-l3-en-edificios-distintos" title="Permanent link">&para;</a></h4>
+<p>El edificio A tiene <code>SW_L3_A</code> con las VLANs 10 y 20. El edificio B tiene <code>SW_L3_B</code> con las VLANs 30 y 40. Se conectan por un enlace punto a punto:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span>
+<span class="normal"><a href="#__codelineno-14-5">5</a></span>
+<span class="normal"><a href="#__codelineno-14-6">6</a></span>
+<span class="normal"><a href="#__codelineno-14-7">7</a></span>
+<span class="normal"><a href="#__codelineno-14-8">8</a></span>
+<span class="normal"><a href="#__codelineno-14-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>! En SW_L3_A
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="hll">SW_L3_A(config)# interface GigabitEthernet0/1
+</span><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="hll">SW_L3_A(config-if)# no switchport
+</span><a id="__codelineno-14-4" name="__codelineno-14-4"></a>SW_L3_A(config-if)# ip address 10.0.0.1 255.255.255.252
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a>SW_L3_A(config-if)# no shutdown
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a>SW_L3_A(config-if)# exit
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a>
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="hll">SW_L3_A(config)# ip route 192.168.30.0 255.255.255.0 10.0.0.2
+</span><a id="__codelineno-14-9" name="__codelineno-14-9"></a>SW_L3_A(config)# ip route 192.168.40.0 255.255.255.0 10.0.0.2
+</code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span>
+<span class="normal"><a href="#__codelineno-15-7">7</a></span>
+<span class="normal"><a href="#__codelineno-15-8">8</a></span>
+<span class="normal"><a href="#__codelineno-15-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>! En SW_L3_B
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="hll">SW_L3_B(config)# interface GigabitEthernet0/1
+</span><a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="hll">SW_L3_B(config-if)# no switchport
+</span><a id="__codelineno-15-4" name="__codelineno-15-4"></a>SW_L3_B(config-if)# ip address 10.0.0.2 255.255.255.252
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a>SW_L3_B(config-if)# no shutdown
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a>SW_L3_B(config-if)# exit
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a>
+<a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="hll">SW_L3_B(config)# ip route 192.168.10.0 255.255.255.0 10.0.0.1
+</span><a id="__codelineno-15-9" name="__codelineno-15-9"></a>SW_L3_B(config)# ip route 192.168.20.0 255.255.255.0 10.0.0.1
+</code></pre></div></td></tr></table></div>
+<p>Los hosts de la VLAN 10 del edificio A pueden ahora comunicarse con los hosts de la VLAN 30 del edificio B, pasando por el enlace punto a punto entre los dos switches L3.</p>
+<div class="admonition warning">
+<p class="admonition-title">Mala práctica: configurar un puerto enrutado como trunk hacia otro switch L3</p>
+<p><div class="language-text highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>! Incorrecto: trunk entre dos switches L3 para un enlace punto a punto
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>SW_L3_A(config-if)# switchport mode trunk
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>! El trunk propaga VLANs innecesarias y complica la topología
+</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>! Correcto: puerto enrutado para enlace punto a punto entre dispositivos L3
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>SW_L3_A(config-if)# no switchport
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>SW_L3_A(config-if)# ip address 10.0.0.1 255.255.255.252
+</code></pre></div></p>
+</div>
+<hr />
+<h2 id="5-comparativa-router-on-a-stick-vs-switch-l3">5. Comparativa: router-on-a-stick vs switch L3<a class="headerlink" href="#5-comparativa-router-on-a-stick-vs-switch-l3" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th style="text-align: center;">Router-on-a-stick</th>
+<th style="text-align: center;">Switch L3 con SVIs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hardware adicional</td>
+<td style="text-align: center;">Router externo</td>
+<td style="text-align: center;">No (integrado)</td>
+</tr>
+<tr>
+<td>Dónde se enruta</td>
+<td style="text-align: center;">Router (software)</td>
+<td style="text-align: center;">Switch (hardware ASIC)</td>
+</tr>
+<tr>
+<td>Rendimiento inter-VLAN</td>
+<td style="text-align: center;">Limitado por el router</td>
+<td style="text-align: center;">Wire speed</td>
+</tr>
+<tr>
+<td>Cuello de botella</td>
+<td style="text-align: center;">Sí — enlace trunk</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Número de VLANs soportadas</td>
+<td style="text-align: center;">Limitado por subinterfaces</td>
+<td style="text-align: center;">Alto (depende del modelo)</td>
+</tr>
+<tr>
+<td>Complejidad de configuración</td>
+<td style="text-align: center;">Media</td>
+<td style="text-align: center;">Similar o menor</td>
+</tr>
+<tr>
+<td>Coste</td>
+<td style="text-align: center;">Menor</td>
+<td style="text-align: center;">Mayor</td>
+</tr>
+<tr>
+<td>Cuándo elegirlo</td>
+<td style="text-align: center;">PYME, poco tráfico inter-VLAN</td>
+<td style="text-align: center;">Empresa, tráfico inter-VLAN alto</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Mala práctica: usar router-on-a-stick cuando ya hay un switch L3</p>
+<p><div class="language-text highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>! Incorrecto: mantener el router externo para enrutar entre VLANs
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>! cuando el switch ya tiene capacidad L3
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>Router(config)# interface Fa0/0.10
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>Router(config-subif)# encapsulation dot1Q 10
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>Router(config-subif)# ip address 192.168.10.1 255.255.255.0
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>! El switch L3 actúa como L2 puro, desaprovechando su hardware
+</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>! Correcto: activar ip routing y usar SVIs en el switch L3
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>SW_L3(config)# ip routing
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>SW_L3(config)# interface vlan 10
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>SW_L3(config-if)# ip address 192.168.10.1 255.255.255.0
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>SW_L3(config-if)# no shutdown
+</code></pre></div></p>
+</div>
+<hr />
+<h2 id="6-cuadro-resumen-acciones-y-comandos">6. Cuadro resumen — acciones y comandos<a class="headerlink" href="#6-cuadro-resumen-acciones-y-comandos" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Acción</th>
+<th>Comandos (orden típico)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crear VLANs</td>
+<td><code>SW_L3(config)# vlan 10</code><br><code>SW_L3(config-vlan)# name VLAN10</code><br><code>SW_L3(config-vlan)# exit</code><br><code>SW_L3(config)# vlan 20</code><br><code>SW_L3(config-vlan)# name VLAN20</code><br><code>SW_L3(config-vlan)# exit</code></td>
+</tr>
+<tr>
+<td>Crear SVIs (gateways)</td>
+<td><code>SW_L3(config)# interface vlan 10</code><br><code>SW_L3(config-if)# ip address 192.168.10.1 255.255.255.0</code><br><code>SW_L3(config-if)# no shutdown</code><br><code>SW_L3(config-if)# exit</code><br><code>SW_L3(config)# interface vlan 20</code><br><code>SW_L3(config-if)# ip address 192.168.20.1 255.255.255.0</code><br><code>SW_L3(config-if)# no shutdown</code><br><code>SW_L3(config-if)# exit</code></td>
+</tr>
+<tr>
+<td>Activar enrutamiento en el switch L3</td>
+<td><code>SW_L3(config)# ip routing</code></td>
+</tr>
+<tr>
+<td>Configurar puertos de acceso para hosts</td>
+<td><code>SW_L3(config)# interface range FastEthernet0/1 - 2</code><br><code>SW_L3(config-if-range)# switchport mode access</code><br><code>SW_L3(config-if-range)# switchport access vlan 10</code><br><code>SW_L3(config-if-range)# exit</code><br><code>SW_L3(config)# interface range FastEthernet0/11 - 12</code><br><code>SW_L3(config-if-range)# switchport mode access</code><br><code>SW_L3(config-if-range)# switchport access vlan 20</code><br><code>SW_L3(config-if-range)# exit</code></td>
+</tr>
+<tr>
+<td>Ver estado de una SVI</td>
+<td><code>SW_L3# show interfaces vlan 10</code></td>
+</tr>
+<tr>
+<td>Ver todas las IPs/estados de interfaces y SVIs</td>
+<td><code>SW_L3# show ip interface brief</code></td>
+</tr>
+<tr>
+<td>Ver tabla de rutas</td>
+<td><code>SW_L3# show ip route</code></td>
+</tr>
+<tr>
+<td>Ver VLANs existentes</td>
+<td><code>SW_L3# show vlan brief</code></td>
+</tr>
+<tr>
+<td>Ver estado de puertos físicos</td>
+<td><code>SW_L3# show interfaces status</code></td>
+</tr>
+<tr>
+<td>Probar conectividad</td>
+<td><code>SW_L3# ping 192.168.10.10</code><br><code>SW_L3# ping 192.168.20.10</code></td>
+</tr>
+<tr>
+<td>Convertir un puerto enrutado (enlace L3)</td>
+<td><code>SW_L3(config)# interface GigabitEthernet0/1</code><br><code>SW_L3(config-if)# no switchport</code><br><code>SW_L3(config-if)# ip address 10.0.0.1 255.255.255.252</code><br><code>SW_L3(config-if)# ip address 10.0.0.2 255.255.255.252</code><br><code>SW_L3(config-if)# no shutdown</code><br><code>SW_L3(config-if)# exit</code></td>
+</tr>
+<tr>
+<td>Revertir un puerto enrutado a switchport</td>
+<td><code>SW_L3(config-if)# switchport</code></td>
+</tr>
+<tr>
+<td>Añadir rutas estáticas</td>
+<td><code>SW_L3(config)# ip route 172.16.0.0 255.255.0.0 10.0.0.2</code><br><code>SW_L3_A(config)# ip route 192.168.30.0 255.255.255.0 10.0.0.2</code><br><code>SW_L3_A(config)# ip route 192.168.40.0 255.255.255.0 10.0.0.2</code><br><code>SW_L3_B(config)# ip route 192.168.10.0 255.255.255.0 10.0.0.1</code><br><code>SW_L3_B(config)# ip route 192.168.20.0 255.255.255.0 10.0.0.1</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://ichigar.codeberg.page" target="_blank" rel="noopener" title="ichigar.codeberg.page" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

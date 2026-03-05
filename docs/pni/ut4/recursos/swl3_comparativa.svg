@@ -1,0 +1,204 @@
+<svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg"
+     font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#334155"/>
+    </marker>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="380" fill="#F8FAFC" rx="12"/>
+
+  <text x="450" y="34" text-anchor="middle" font-size="16" font-weight="700"
+        fill="#1A1A2E" letter-spacing="0.2">Tres métodos de enrutamiento inter-VLAN</text>
+
+  <!-- ══ MÉTODO 1: Router físico por puerto ══ -->
+  <rect x="28" y="52" width="258" height="280" rx="10"
+        fill="#F1F5F9" stroke="#475569" stroke-width="1.5"/>
+  <text x="157" y="72" text-anchor="middle" font-size="11" font-weight="700"
+        fill="#475569">1 — Router por puerto</text>
+
+  <!-- Switch L2 -->
+  <g filter="url(#shadow)">
+    <rect x="98" y="86" width="120" height="32" rx="6"
+          fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+  </g>
+  <text x="158" y="106" text-anchor="middle" font-size="10" font-weight="600" fill="#1E3A5F">SW L2</text>
+
+  <!-- Router -->
+  <g filter="url(#shadow)">
+    <rect x="68" y="174" width="180" height="40" rx="8"
+          fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+  </g>
+  <ellipse cx="158" cy="188" rx="28" ry="8" fill="#BFDBFE" stroke="#1E40AF" stroke-width="1"/>
+  <rect x="130" y="188" width="56" height="14" fill="#BFDBFE"/>
+  <ellipse cx="158" cy="202" rx="28" ry="8" fill="#DBEAFE" stroke="#1E40AF" stroke-width="1"/>
+  <text x="158" y="224" text-anchor="middle" font-size="10" font-weight="600" fill="#1E3A5F">ROUTER</text>
+
+  <!-- dos cables físicos distintos -->
+  <line x1="128" y1="118" x2="108" y2="174" stroke="#1565C0" stroke-width="2"/>
+  <line x1="188" y1="118" x2="208" y2="174" stroke="#E65100" stroke-width="2"/>
+  <rect x="46" y="138" width="52" height="16" rx="3" fill="white" fill-opacity="0.9"/>
+  <text x="72" y="149" text-anchor="middle" font-size="8" fill="#1565C0"
+        font-family="'Cascadia Code','Courier New',monospace">Fa0/0 V10</text>
+  <rect x="198" y="138" width="52" height="16" rx="3" fill="white" fill-opacity="0.9"/>
+  <text x="224" y="149" text-anchor="middle" font-size="8" fill="#E65100"
+        font-family="'Cascadia Code','Courier New',monospace">Fa0/1 V20</text>
+
+  <!-- hosts -->
+  <g filter="url(#shadow)">
+    <rect x="48" y="84" width="44" height="36" rx="5"
+          fill="#EFF6FF" stroke="#1565C0" stroke-width="1"/>
+  </g>
+  <text x="70" y="107" text-anchor="middle" font-size="8" font-weight="600" fill="#1E3A5F">PC V10</text>
+  <line x1="70" y1="120" x2="100" y2="100" stroke="#1565C0" stroke-width="1" stroke-opacity="0.5"/>
+
+  <g filter="url(#shadow)">
+    <rect x="224" y="84" width="44" height="36" rx="5"
+          fill="#EFF6FF" stroke="#E65100" stroke-width="1"/>
+  </g>
+  <text x="246" y="107" text-anchor="middle" font-size="8" font-weight="600" fill="#1E3A5F">PC V20</text>
+  <line x1="246" y1="120" x2="216" y2="100" stroke="#E65100" stroke-width="1" stroke-opacity="0.5"/>
+
+  <!-- etiqueta cuello botella -->
+  <rect x="58" y="248" width="200" height="72" rx="6"
+        fill="white" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="158" y="264" text-anchor="middle" font-size="9" font-weight="700" fill="#475569">Características</text>
+  <text x="68" y="280" font-size="9" fill="#64748B">+ Simple de entender</text>
+  <text x="68" y="294" font-size="9" fill="#E65100">— 1 puerto físico por VLAN</text>
+  <text x="68" y="308" font-size="9" fill="#E65100">— No escala</text>
+	  <text x="68" y="316" font-size="9" fill="#64748B">Uso: laboratorio introductorio</text>
+
+  <!-- ══ MÉTODO 2: Router-on-a-stick ══ -->
+  <rect x="321" y="52" width="258" height="280" rx="10"
+        fill="#F1F5F9" stroke="#475569" stroke-width="1.5"/>
+  <text x="450" y="72" text-anchor="middle" font-size="11" font-weight="700"
+        fill="#475569">2 — Router-on-a-stick</text>
+
+  <!-- Switch L2 -->
+  <g filter="url(#shadow)">
+    <rect x="391" y="86" width="120" height="32" rx="6"
+          fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+  </g>
+  <text x="451" y="106" text-anchor="middle" font-size="10" font-weight="600" fill="#1E3A5F">SW L2</text>
+
+  <!-- Router -->
+  <g filter="url(#shadow)">
+    <rect x="361" y="174" width="180" height="40" rx="8"
+          fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+  </g>
+  <ellipse cx="451" cy="188" rx="28" ry="8" fill="#BFDBFE" stroke="#1E40AF" stroke-width="1"/>
+  <rect x="423" y="188" width="56" height="14" fill="#BFDBFE"/>
+  <ellipse cx="451" cy="202" rx="28" ry="8" fill="#DBEAFE" stroke="#1E40AF" stroke-width="1"/>
+  <text x="451" y="224" text-anchor="middle" font-size="10" font-weight="600" fill="#1E3A5F">ROUTER</text>
+
+  <!-- un solo cable trunk -->
+  <line x1="451" y1="118" x2="451" y2="174" stroke="#334155" stroke-width="2.5"
+        marker-end="url(#arrow)"/>
+  <rect x="409" y="132" width="84" height="16" rx="3" fill="white" fill-opacity="0.9"/>
+  <text x="451" y="143" text-anchor="middle" font-size="8" font-weight="600" fill="#334155"
+        font-family="'Cascadia Code','Courier New',monospace">trunk 802.1Q</text>
+
+  <!-- subinterfaces label -->
+  <text x="541" y="184" font-size="8" fill="#1565C0"
+        font-family="'Cascadia Code','Courier New',monospace">Fa0/0.10</text>
+  <text x="541" y="196" font-size="8" fill="#E65100"
+        font-family="'Cascadia Code','Courier New',monospace">Fa0/0.20</text>
+
+  <!-- hosts -->
+  <g filter="url(#shadow)">
+    <rect x="341" y="84" width="44" height="36" rx="5"
+          fill="#EFF6FF" stroke="#1565C0" stroke-width="1"/>
+  </g>
+  <text x="363" y="107" text-anchor="middle" font-size="8" font-weight="600" fill="#1E3A5F">PC V10</text>
+  <line x1="363" y1="120" x2="393" y2="100" stroke="#1565C0" stroke-width="1" stroke-opacity="0.5"/>
+
+  <g filter="url(#shadow)">
+    <rect x="517" y="84" width="44" height="36" rx="5"
+          fill="#EFF6FF" stroke="#E65100" stroke-width="1"/>
+  </g>
+  <text x="539" y="107" text-anchor="middle" font-size="8" font-weight="600" fill="#1E3A5F">PC V20</text>
+  <line x1="539" y1="120" x2="509" y2="100" stroke="#E65100" stroke-width="1" stroke-opacity="0.5"/>
+
+  <!-- flecha ida y vuelta cuello botella -->
+  <path d="M 421 156 C 380 156 370 230 421 230" stroke="#E65100" stroke-width="1.5"
+        fill="none" stroke-dasharray="4,3"/>
+  <text x="335" y="196" font-size="8" fill="#E65100" font-weight="600">cuello</text>
+  <text x="335" y="207" font-size="8" fill="#E65100" font-weight="600">botella</text>
+
+  <rect x="351" y="248" width="200" height="72" rx="6"
+        fill="white" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="451" y="264" text-anchor="middle" font-size="9" font-weight="700" fill="#475569">Características</text>
+  <text x="361" y="280" font-size="9" fill="#64748B">+ Solo 1 enlace físico</text>
+  <text x="361" y="294" font-size="9" fill="#64748B">+ Económico en puertos</text>
+  <text x="361" y="308" font-size="9" fill="#E65100">— Router = cuello de botella</text>
+  <text x="361" y="316" font-size="9" fill="#64748B">Uso: PYME pequeña</text>
+
+  <!-- ══ MÉTODO 3: Switch L3 ══ -->
+  <rect x="614" y="52" width="258" height="280" rx="10"
+        fill="#DDEEF9" fill-opacity="0.4" stroke="#1565C0" stroke-width="2"/>
+  <text x="743" y="72" text-anchor="middle" font-size="11" font-weight="700"
+        fill="#1565C0">3 — Switch capa 3  ★</text>
+
+  <!-- Switch L3 -->
+  <g filter="url(#shadow)">
+    <rect x="649" y="100" width="188" height="100" rx="10"
+          fill="#EFF6FF" stroke="#1E40AF" stroke-width="2"/>
+  </g>
+  <!-- puertos -->
+  <rect x="662" y="114" width="9" height="6" rx="1" fill="#DDEEF9" stroke="#1565C0" stroke-width="0.8"/>
+  <rect x="675" y="114" width="9" height="6" rx="1" fill="#DDEEF9" stroke="#1565C0" stroke-width="0.8"/>
+  <rect x="688" y="114" width="9" height="6" rx="1" fill="#FEF3E2" stroke="#E65100" stroke-width="0.8"/>
+  <rect x="701" y="114" width="9" height="6" rx="1" fill="#FEF3E2" stroke="#E65100" stroke-width="0.8"/>
+  <rect x="714" y="114" width="9" height="6" rx="1" fill="#F1F5F9" stroke="#475569" stroke-width="0.8"/>
+  <circle cx="806" cy="117" r="2.5" fill="#22C55E"/>
+  <circle cx="816" cy="117" r="2.5" fill="#F59E0B"/>
+  <text x="743" y="142" text-anchor="middle" font-size="12" font-weight="700" fill="#1E3A5F">SW L3</text>
+  <!-- SVIs internas -->
+  <rect x="659" y="152" width="76" height="38" rx="4"
+        fill="#DDEEF9" stroke="#1565C0" stroke-width="1"/>
+  <text x="697" y="166" text-anchor="middle" font-size="8" font-weight="700" fill="#1565C0">SVI V10</text>
+  <text x="697" y="180" text-anchor="middle" font-size="8" fill="#1E3A5F"
+        font-family="'Cascadia Code','Courier New',monospace">.10.1/24</text>
+  <rect x="751" y="152" width="76" height="38" rx="4"
+        fill="#FEF3E2" stroke="#E65100" stroke-width="1"/>
+  <text x="789" y="166" text-anchor="middle" font-size="8" font-weight="700" fill="#E65100">SVI V20</text>
+  <text x="789" y="180" text-anchor="middle" font-size="8" fill="#1E3A5F"
+        font-family="'Cascadia Code','Courier New',monospace">.20.1/24</text>
+
+  <!-- flecha interna enrutamiento -->
+  <path d="M 735 162 C 735 148 751 148 751 162" stroke="#334155" stroke-width="1.5"
+        fill="none" marker-end="url(#arrow)"/>
+  <text x="743" y="145" text-anchor="middle" font-size="7" fill="#334155" font-weight="600">interno</text>
+
+  <!-- hosts -->
+  <g filter="url(#shadow)">
+    <rect x="634" y="84" width="44" height="30" rx="5"
+          fill="#EFF6FF" stroke="#1565C0" stroke-width="1"/>
+  </g>
+  <text x="656" y="103" text-anchor="middle" font-size="8" font-weight="600" fill="#1E3A5F">PC V10</text>
+  <line x1="656" y1="114" x2="668" y2="120" stroke="#1565C0" stroke-width="1" stroke-opacity="0.5"/>
+
+  <g filter="url(#shadow)">
+    <rect x="808" y="84" width="44" height="30" rx="5"
+          fill="#EFF6FF" stroke="#E65100" stroke-width="1"/>
+  </g>
+  <text x="830" y="103" text-anchor="middle" font-size="8" font-weight="600" fill="#1E3A5F">PC V20</text>
+  <line x1="830" y1="114" x2="818" y2="120" stroke="#E65100" stroke-width="1" stroke-opacity="0.5"/>
+
+  <rect x="644" y="248" width="200" height="72" rx="6"
+        fill="white" stroke="#1565C0" stroke-width="1"/>
+  <text x="744" y="264" text-anchor="middle" font-size="9" font-weight="700" fill="#1565C0">Características</text>
+  <text x="654" y="280" font-size="9" fill="#64748B">+ Enrutamiento en hardware</text>
+  <text x="654" y="294" font-size="9" fill="#64748B">+ Sin cuello de botella</text>
+  <text x="654" y="308" font-size="9" fill="#64748B">+ Topología más simple</text>
+  <text x="654" y="316" font-size="9" fill="#64748B">Uso: empresa mediana/grande</text>
+
+  <!-- Leyenda inferior -->
+  <rect x="28" y="346" width="844" height="26" rx="6"
+        fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="48" y="363" font-size="10" fill="#1A1A2E" font-weight="600">★ </text>
+  <text x="60" y="363" font-size="10" fill="#1A1A2E">El switch L3 elimina el cuello de botella procesando el enrutamiento internamente, sin necesidad de un router externo.</text>
+</svg>

@@ -10,29 +10,27 @@
       
       
       
-        <link rel="canonical" href="https://ichigar.codeberg.page/blog/">
+        <link rel="canonical" href="https://ichigar.codeberg.page/blog/src/tutoriales/ubuntu_router_nat/">
       
       
       
-        <link rel="next" href="blog/">
       
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../feed_rss_updated.xml">
       
-        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="feed_rss_created.xml">
-        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="feed_rss_updated.xml">
-      
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
     
     
       
-        <title>Web personal de ichigar</title>
+        <title>Configuración de Ubuntu como Router con NAT - Web personal de ichigar</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.e53b48f4.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e53b48f4.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -51,7 +49,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -77,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#documentacion-y-recursos" class="md-skip">
+        <a href="#configuracion-de-ubuntu-como-router-con-nat" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -91,7 +89,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabecera">
-    <a href="." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+    <a href="../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -111,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Configuración de Ubuntu como Router con NAT
             
           </span>
         </div>
@@ -210,11 +208,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -235,7 +231,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="blog/" class="md-tabs__link">
+        <a href="../../../blog/" class="md-tabs__link">
           
   
   
@@ -255,7 +251,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="rde/" class="md-tabs__link">
+        <a href="../../../rde/" class="md-tabs__link">
           
   
   
@@ -275,7 +271,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="lnd/" class="md-tabs__link">
+        <a href="../../../lnd/" class="md-tabs__link">
           
   
   
@@ -295,7 +291,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="pd4/" class="md-tabs__link">
+        <a href="../../../pd4/" class="md-tabs__link">
           
   
   
@@ -313,7 +309,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="misc/" class="md-tabs__link">
+      <a href="../../../misc/" class="md-tabs__link">
         
   
   
@@ -332,7 +328,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="feed_rss_created.xml" class="md-tabs__link">
+      <a href="../../../feed_rss_created.xml" class="md-tabs__link">
         
   
   
@@ -367,7 +363,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+    <a href="../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -382,32 +378,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Home
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -418,86 +392,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#acceso-a-apuntes-y-recursos-de-clase" class="md-nav__link">
-    <span class="md-ellipsis">
-      Acceso a apuntes y recúrsos de clase
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Acceso a apuntes y recúrsos de clase">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1o-smr" class="md-nav__link">
-    <span class="md-ellipsis">
-      1º SMR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2o-smr" class="md-nav__link">
-    <span class="md-ellipsis">
-      2º SMR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1a-asir" class="md-nav__link">
-    <span class="md-ellipsis">
-      1ª ASIR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ce-desarrollo-de-aplicaciones-en-lenguaje-python" class="md-nav__link">
-    <span class="md-ellipsis">
-      CE Desarrollo de aplicaciones en lenguaje Python
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#misc-tutoriales-y-recursos-varios" class="md-nav__link">
-    <span class="md-ellipsis">
-      MISC - Tutoriales y recursos vários
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -554,7 +448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/" class="md-nav__link">
+      <a href="../../../blog/" class="md-nav__link">
         
   
   
@@ -622,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/archive/2025/" class="md-nav__link">
+      <a href="../../../blog/archive/2025/" class="md-nav__link">
         
   
   
@@ -698,7 +592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/category/novedades/" class="md-nav__link">
+      <a href="../../../blog/category/novedades/" class="md-nav__link">
         
   
   
@@ -779,7 +673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="rde/" class="md-nav__link">
+      <a href="../../../rde/" class="md-nav__link">
         
   
   
@@ -802,7 +696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="src/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -875,7 +769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lnd/" class="md-nav__link">
+      <a href="../../../lnd/" class="md-nav__link">
         
   
   
@@ -898,7 +792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pni/" class="md-nav__link">
+      <a href="../../../pni/" class="md-nav__link">
         
   
   
@@ -921,7 +815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="imw/README.md" class="md-nav__link">
+      <a href="../../../imw/README.md" class="md-nav__link">
         
   
   
@@ -944,7 +838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="soj/README.md" class="md-nav__link">
+      <a href="../../../soj/README.md" class="md-nav__link">
         
   
   
@@ -1017,7 +911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pd4/" class="md-nav__link">
+      <a href="../../../pd4/" class="md-nav__link">
         
   
   
@@ -1047,7 +941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="misc/" class="md-nav__link">
+      <a href="../../../misc/" class="md-nav__link">
         
   
   
@@ -1069,7 +963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="feed_rss_created.xml" class="md-nav__link">
+      <a href="../../../feed_rss_created.xml" class="md-nav__link">
         
   
   
@@ -1111,60 +1005,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#acceso-a-apuntes-y-recursos-de-clase" class="md-nav__link">
+  <a href="#requisitos-previos" class="md-nav__link">
     <span class="md-ellipsis">
-      Acceso a apuntes y recúrsos de clase
+      Requisitos previos
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Acceso a apuntes y recúrsos de clase">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1o-smr" class="md-nav__link">
-    <span class="md-ellipsis">
-      1º SMR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2o-smr" class="md-nav__link">
-    <span class="md-ellipsis">
-      2º SMR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1a-asir" class="md-nav__link">
-    <span class="md-ellipsis">
-      1ª ASIR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ce-desarrollo-de-aplicaciones-en-lenguaje-python" class="md-nav__link">
-    <span class="md-ellipsis">
-      CE Desarrollo de aplicaciones en lenguaje Python
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#misc-tutoriales-y-recursos-varios" class="md-nav__link">
+  <a href="#1-habilitar-el-reenvio-de-paquetes-ip" class="md-nav__link">
     <span class="md-ellipsis">
-      MISC - Tutoriales y recursos vários
+      1. Habilitar el reenvío de paquetes IP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-configurar-nat-usando-iptables" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Configurar NAT usando iptables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-guardar-las-reglas-de-iptables" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Guardar las reglas de iptables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-verificar-la-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Verificar la conectividad
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-solucion-de-problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Solución de problemas
     </span>
   </a>
   
@@ -1186,29 +1074,101 @@
 
 
 
-<h1 id="documentacion-y-recursos">Documentación y recursos<a class="headerlink" href="#documentacion-y-recursos" title="Permanent link">&para;</a></h1>
-<h2 id="acceso-a-apuntes-y-recursos-de-clase">Acceso a apuntes y recúrsos de clase<a class="headerlink" href="#acceso-a-apuntes-y-recursos-de-clase" title="Permanent link">&para;</a></h2>
-<h3 id="1o-smr">1º SMR<a class="headerlink" href="#1o-smr" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="rde/">RDE - Redes de área local</a></li>
-</ul>
-<h3 id="2o-smr">2º SMR<a class="headerlink" href="#2o-smr" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="src/">SRC - Servicios en red</a></li>
-</ul>
-<h3 id="1a-asir">1ª ASIR<a class="headerlink" href="#1a-asir" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="lnd/">LND - Lenguaje de marcas y SGI</a></li>
-<li><a href="pni/">PNI - Lenguaje de marcas y SGI</a></li>
-</ul>
-<h3 id="ce-desarrollo-de-aplicaciones-en-lenguaje-python">CE Desarrollo de aplicaciones en lenguaje Python<a class="headerlink" href="#ce-desarrollo-de-aplicaciones-en-lenguaje-python" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="pd4/">PD4 - Programación Orientada a Objetos</a></li>
-</ul>
-<h2 id="misc-tutoriales-y-recursos-varios">MISC - Tutoriales y recursos vários<a class="headerlink" href="#misc-tutoriales-y-recursos-varios" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="misc/">MISC</a></li>
-</ul>
+<h1 id="configuracion-de-ubuntu-como-router-con-nat">Configuración de Ubuntu como Router con NAT<a class="headerlink" href="#configuracion-de-ubuntu-como-router-con-nat" title="Permanent link">&para;</a></h1>
+<p>Este tutorial describe cómo configurar un equipo Ubuntu con dos tarjetas de red (NICs) para que funcione como un router con NAT activado, permitiendo que los dispositivos en la red interna accedan a Internet a través de la interfaz externa.</p>
+<h2 id="requisitos-previos">Requisitos previos<a class="headerlink" href="#requisitos-previos" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Equipo Ubuntu</strong> con dos tarjetas de red:</li>
+<li><strong>NIC1</strong>: Conectada a la red externa (por ejemplo, a un módem o router que accede a Internet).</li>
+<li><strong>NIC2</strong>: Conectada a la red interna (para proporcionar conectividad a los dispositivos locales).</li>
+<li>
+<p>Tarjetas de red configuradas correctamente con netplan.</p>
+</li>
+<li>
+<p><strong>Privilegios de superusuario (root)</strong> o capacidad para ejecutar comandos con <code>sudo</code>.</p>
+</li>
+</ol>
+<h2 id="1-habilitar-el-reenvio-de-paquetes-ip">1. Habilitar el reenvío de paquetes IP<a class="headerlink" href="#1-habilitar-el-reenvio-de-paquetes-ip" title="Permanent link">&para;</a></h2>
+<p>Debes habilitar el reenvío de paquetes para que Ubuntu pueda actuar como router. Edita el archivo <code>sysctl.conf</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/sysctl.conf
+</code></pre></div>
+<p>Descomenta o añade la siguiente línea:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>net.ipv4.ip_forward<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<p>Aplica los cambios:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>sysctl<span class="w"> </span>-p
+</code></pre></div>
+<h2 id="2-configurar-nat-usando-iptables">2. Configurar NAT usando <code>iptables</code><a class="headerlink" href="#2-configurar-nat-usando-iptables" title="Permanent link">&para;</a></h2>
+<p>Configura <code>iptables</code> para realizar la traducción de direcciones de red (NAT) en la interfaz externa (<code>enp3s0</code>):</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-A<span class="w"> </span>POSTROUTING<span class="w"> </span>-o<span class="w"> </span>enp0s3<span class="w"> </span>-j<span class="w"> </span>MASQUERADE
+</code></pre></div>
+<p>Permitir el reenvío de tráfico desde la red interna hacia la externa:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>FORWARD<span class="w"> </span>-i<span class="w"> </span>enp0s8<span class="w"> </span>-o<span class="w"> </span>enp0s3<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>FORWARD<span class="w"> </span>-i<span class="w"> </span>enp0s8<span class="w"> </span>-o<span class="w"> </span>enp0s3<span class="w"> </span>-m<span class="w"> </span>state<span class="w"> </span>--state<span class="w"> </span>RELATED,ESTABLISHED<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+</code></pre></div>
+<h2 id="3-guardar-las-reglas-de-iptables">3. Guardar las reglas de <code>iptables</code><a class="headerlink" href="#3-guardar-las-reglas-de-iptables" title="Permanent link">&para;</a></h2>
+<p>Para que las reglas de <code>iptables</code> se apliquen tras reiniciar el sistema, instala el paquete <code>iptables-persistent</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>iptables-persistent
+</code></pre></div>
+<p>Durante la instalación, selecciona "Sí" para guardar las reglas actuales.</p>
+<p>Si ya tienes instalado el paquete, puedes guardar las reglas manualmente ejecutando:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>netfilter-persistent<span class="w"> </span>save
+</code></pre></div>
+<p>Si nos hemos equivocado o queremos modificar las reglas podemos hacerlo editando el fichero en el que se almacenan:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/iptables/rules.v4
+</code></pre></div>
+Para que se apliquen las reglas del fichero ejecutamos:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>iptables-restore<span class="w"> </span>&lt;<span class="w"> </span>/etc/iptables/rules.v4
+</code></pre></div>
+<h2 id="4-verificar-la-conectividad">4. Verificar la conectividad<a class="headerlink" href="#4-verificar-la-conectividad" title="Permanent link">&para;</a></h2>
+<p>Una vez completada la configuración, conecta dispositivos a la interfaz interna (<code>enp0s8</code>) y asegúrate de que pueden acceder a Internet:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$<span class="w"> </span>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">8</span>.8.8.8
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>PING<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span><span class="o">(</span><span class="m">8</span>.8.8.8<span class="o">)</span><span class="w"> </span><span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span><span class="w"> </span>bytes<span class="w"> </span>of<span class="w"> </span>data.
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">110</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">40</span>.7<span class="w"> </span>ms
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">110</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">40</span>.8<span class="w"> </span>ms
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">110</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">40</span>.0<span class="w"> </span>ms
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">110</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">40</span>.7<span class="w"> </span>ms
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>---<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span>ping<span class="w"> </span>statistics<span class="w"> </span>---
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>transmitted,<span class="w"> </span><span class="m">4</span><span class="w"> </span>received,<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>packet<span class="w"> </span>loss,<span class="w"> </span><span class="nb">time</span><span class="w"> </span>2997ms
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>rtt<span class="w"> </span>min/avg/max/mdev<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">40</span>.007/40.558/40.824/0.322<span class="w"> </span>ms
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>$<span class="w"> </span>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span>rediris.es
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>PING<span class="w"> </span>rediris.es<span class="w"> </span><span class="o">(</span><span class="m">130</span>.206.13.20<span class="o">)</span><span class="w"> </span><span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span><span class="w"> </span>bytes<span class="w"> </span>of<span class="w"> </span>data.
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span>www.rediris.es<span class="w"> </span><span class="o">(</span><span class="m">130</span>.206.13.20<span class="o">)</span>:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">51</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">37</span>.1<span class="w"> </span>ms
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span>www.rediris.es<span class="w"> </span><span class="o">(</span><span class="m">130</span>.206.13.20<span class="o">)</span>:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">51</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">37</span>.3<span class="w"> </span>ms
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span>www.rediris.es<span class="w"> </span><span class="o">(</span><span class="m">130</span>.206.13.20<span class="o">)</span>:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">51</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">38</span>.1<span class="w"> </span>ms
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span>www.rediris.es<span class="w"> </span><span class="o">(</span><span class="m">130</span>.206.13.20<span class="o">)</span>:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">51</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">37</span>.8<span class="w"> </span>ms
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>---<span class="w"> </span>rediris.es<span class="w"> </span>ping<span class="w"> </span>statistics<span class="w"> </span>---
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>transmitted,<span class="w"> </span><span class="m">4</span><span class="w"> </span>received,<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>packet<span class="w"> </span>loss,<span class="w"> </span><span class="nb">time</span><span class="w"> </span>2997ms
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>rtt<span class="w"> </span>min/avg/max/mdev<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">37</span>.141/37.586/38.093/0.381<span class="w"> </span>ms
+</code></pre></div>
+<h2 id="8-solucion-de-problemas">8. Solución de problemas<a class="headerlink" href="#8-solucion-de-problemas" title="Permanent link">&para;</a></h2>
+<p>Si los dispositivos internos no pueden acceder a Internet, verifica los siguientes aspectos:</p>
+<ol>
+<li>Asegúrate de que el reenvío de IP esté activado:
+   <div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>sysctl<span class="w"> </span>net.ipv4.ip_forward
+</code></pre></div>
+Deberías obtener:</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>net.ipv4.ip_forward = 1
+</code></pre></div>
+<ol>
+<li>
+<p>Revisa las reglas de <code>iptables</code>:
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-L<span class="w"> </span>-t<span class="w"> </span>nat
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-L<span class="w"> </span>-v
+</code></pre></div>
+Si queremos empezar desde cero y eliminar todas las reglas que hemos creado ejecutamos:
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-F<span class="w"> </span>-t<span class="w"> </span>nat
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-F
+</code></pre></div></p>
+</li>
+<li>
+<p>Verifica que las interfaces de red estén configuradas correctamente usando el comando <code>ip a</code>.</p>
+</li>
+</ol>
 
 
 
@@ -1273,10 +1233,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>

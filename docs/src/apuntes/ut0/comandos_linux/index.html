@@ -1,0 +1,1465 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Novedades y artículos sobre X">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/blog/src/apuntes/ut0/comandos_linux/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>COMANDOS LINUX PARA LA GESTIÓN DE ARCHIVOS Y DIRECTORIOS - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#comandos-linux-para-la-gestion-de-archivos-y-directorios" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              COMANDOS LINUX PARA LA GESTIÓN DE ARCHIVOS Y DIRECTORIOS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../rde/" class="md-tabs__link">
+          
+  
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../lnd/" class="md-tabs__link">
+          
+  
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../pd4/" class="md-tabs__link">
+          
+  
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pni/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../imw/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../soj/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pd4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#trucos-para-trabajar-con-archivos-en-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trucos para trabajar con archivos en Linux
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navegando-por-la-jerarquia-de-directorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Navegando por la jerarquía de directorios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Navegando por la jerarquía de directorios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pwd" class="md-nav__link">
+    <span class="md-ellipsis">
+      pwd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cd" class="md-nav__link">
+    <span class="md-ellipsis">
+      cd
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#listando-ficheros-y-directorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listando ficheros y directorios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Listando ficheros y directorios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ls" class="md-nav__link">
+    <span class="md-ellipsis">
+      ls
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creando-ficheros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creando ficheros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creando ficheros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#touch" class="md-nav__link">
+    <span class="md-ellipsis">
+      touch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copiando-ficheros-y-directorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copiando ficheros y directorios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Copiando ficheros y directorios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cp" class="md-nav__link">
+    <span class="md-ellipsis">
+      cp
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moviendo-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Moviendo objetos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Moviendo objetos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mv" class="md-nav__link">
+    <span class="md-ellipsis">
+      mv
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creando-y-borrando-directorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creando y borrando directorios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creando y borrando directorios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mkdir" class="md-nav__link">
+    <span class="md-ellipsis">
+      mkdir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rmdir" class="md-nav__link">
+    <span class="md-ellipsis">
+      rmdir
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eliminando-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eliminando objetos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Eliminando objetos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rm" class="md-nav__link">
+    <span class="md-ellipsis">
+      rm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="comandos-linux-para-la-gestion-de-archivos-y-directorios">COMANDOS LINUX PARA LA GESTIÓN DE ARCHIVOS Y DIRECTORIOS<a class="headerlink" href="#comandos-linux-para-la-gestion-de-archivos-y-directorios" title="Permanent link">&para;</a></h1>
+<p>Todo buen administrador de sistemas debería saber cómo crear, borrar, editar, asignar permisos, visualizar, copiar, mover y determinar el tipo de ficheros y programas.</p>
+<h2 id="trucos-para-trabajar-con-archivos-en-linux">Trucos para trabajar con archivos en Linux<a class="headerlink" href="#trucos-para-trabajar-con-archivos-en-linux" title="Permanent link">&para;</a></h2>
+<p>Como la mayoría de usuarios viene de usar normalmente Windows, es bueno recordar algunas características de Linux que nos pueden servir de ayuda:</p>
+<ul>
+<li><strong>Los ficheros ocultos no son realmente ocultos</strong>: simplemente empiezan por un punto ".", como los ficheros <code>.bashrc</code> y <code>.bash_profile</code>. No son visibles para los usuarios normales desde el explorador de archivos <code>nautilus</code> o con comandos y opciones convencionales.</li>
+<li><strong>Los nombres de ficheros pueden contener más de un punto</strong>: los ficheros <code>este.es.un.nombre.largo.de.fichero</code> y <code>esteesunnombrelargodefichero</code> son posibles en Linux.</li>
+<li><strong>Los espacios en los nombres de ficheros son bonitos, pero es difícil teclearlos</strong>: Usa un <code>_</code> o un punto <code>.</code> en lugar de espacios porque es mucho más fácil escribirlos en la línea de comandos que tener que poner <code>\</code> por cada espacio.</li>
+<li><strong>Los ficheros no están obligados a incluir una extensión</strong>, pero son útiles para comandos de ordenar, seleccionar y copiar/mover/borrar. Además, permiten identificar rápidamente el tipo de contenido.</li>
+</ul>
+<h2 id="navegando-por-la-jerarquia-de-directorios">Navegando por la jerarquía de directorios<a class="headerlink" href="#navegando-por-la-jerarquia-de-directorios" title="Permanent link">&para;</a></h2>
+<p>Antes de poder movernos por la jerarquía de directorios, deberíamos saber cuál es la carpeta actual. Para ello, tenemos el comando <code>pwd</code>.</p>
+<h3 id="pwd">pwd<a class="headerlink" href="#pwd" title="Permanent link">&para;</a></h3>
+<p><strong>Propósito</strong>: Mostrar la ruta del directorio de trabajo actual.</p>
+<p><strong>Sintaxis</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">pwd</span>
+</code></pre></div></p>
+<p><strong>Opciones</strong>: Ninguna</p>
+<p><strong>Descripción</strong>: El comando <code>pwd</code> imprime el directorio de trabajo (aquel en el que actualmente se está trabajando).</p>
+<p><strong>Nota</strong>: 
+Cada vez que abrimos un terminal se nos muestra el prompt del sistema:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>usuario@a1pc00:~/documentos/musica$
+</code></pre></div>
+<ul>
+<li>El nombre a la izquierda de la <code>@</code>, <code>usuario</code> en este caso, es el nombre del usuario.</li>
+<li>El nombre entre la <code>@</code> y los dos puntos <code>:</code> es el nombre del equipo.</li>
+<li>Luego aparece el directorio actual: <code>~/documentos/musica</code>, que equivale a <code>/home/usuario/documentos/musica</code>.</li>
+<li>Por último, el símbolo <code>$</code> indica que es un usuario restringido. Si fuese <code>root</code>, aparecería <code>#</code>.</li>
+</ul>
+<h3 id="cd">cd<a class="headerlink" href="#cd" title="Permanent link">&para;</a></h3>
+<p><strong>Propósito</strong>: El comando <code>cd</code> se usa para movernos por la jerarquía de directorios.</p>
+<p><strong>Sintaxis</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span><span class="o">[</span>directorio<span class="o">]</span>
+</code></pre></div></p>
+<p><code>directorio</code> es la ruta absoluta o relativa al directorio al que queremos acceder.</p>
+<p><strong>Nota</strong>: Los corchetes <code>[ ]</code> no se escriben, indican que el parámetro es opcional.</p>
+<p><strong>Opciones</strong>: Ninguna</p>
+<p><strong>Descripción</strong>: Si escribimos <code>cd</code> sin argumentos, se cambiará al directorio <code>home</code> del usuario. En otro caso, se moverá al directorio indicado.</p>
+<p><strong>Ejemplo</strong>:
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>usuario@a1pc00:~/Descargas$<span class="w"> </span><span class="nb">cd</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>usuario@a1pc00:~$<span class="w"> </span><span class="nb">pwd</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>/home/usuario
+</code></pre></div></p>
+<p>Veamos algunos ejemplos:
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>usuario@a1pc00:~$<span class="w"> </span>tree
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>.
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>├──<span class="w"> </span>Descargas
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>├──<span class="w"> </span>documentos
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>│<span class="w">   </span>├──<span class="w"> </span>apuntes
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>│<span class="w">   </span>├──<span class="w"> </span>examenes
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>│<span class="w">   </span>├──<span class="w"> </span>musica
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>│<span class="w">   </span>└──<span class="w"> </span>videos
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>└──<span class="w"> </span>temp
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>usuario@a1pc00:~$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>documentos/apuntes
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>usuario@a1pc00:~/documentos/apuntes$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>../musica
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>usuario@a1pc00:~/documentos/musica$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>../../temp
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>usuario@a1pc00:~/temp$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/home/usuario/Descargas/
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>usuario@a1pc00:~/Descargas$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>usuario@a1pc00:~$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>documentos/musica
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>usuario@a1pc00:~/documentos/musica$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>
+</code></pre></div></p>
+<ul>
+<li>Las rutas pueden ser absolutas y relativas.</li>
+<li><code>~</code> equivale a la ruta al directorio <code>home</code> del usuario.</li>
+<li><code>$HOME</code> es una variable que guarda la carpeta <code>home</code>.</li>
+</ul>
+<p><strong>Nota</strong>: 
+El comando <code>tree</code> muestra la jerarquía de directorios. Si no tiene parámetros, la muestra desde el directorio actual.</p>
+<p>Para instalar <code>tree</code> ejecutamos:
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>tree
+</code></pre></div></p>
+<h2 id="listando-ficheros-y-directorios">Listando ficheros y directorios<a class="headerlink" href="#listando-ficheros-y-directorios" title="Permanent link">&para;</a></h2>
+<h3 id="ls">ls<a class="headerlink" href="#ls" title="Permanent link">&para;</a></h3>
+<p><strong>Propósito</strong>: Listar directorios, archivos o ambos.</p>
+<p><strong>Sintaxis</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ls<span class="w"> </span><span class="o">[</span>Opciones<span class="o">]</span><span class="w"> </span><span class="o">[</span>nombre_directorio<span class="w"> </span>o<span class="w"> </span>archivo<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>Opciones</strong>: 
+- <code>-a</code> muestra todos los archivos, incluyendo ocultos.
+- <code>-c</code> ordena por fecha de creación.
+- <code>-d</code> muestra directorios como archivos.
+- <code>-i</code> muestra información de i-node.
+- <code>-l</code> lista en formato largo con detalles.
+- <code>-lh</code> lista en formato largo con tamaños legibles.</p>
+<p><strong>Descripción</strong>: El comando <code>ls</code> muestra el contenido de un directorio. Si se omite el nombre, muestra el contenido del directorio actual.</p>
+<p><strong>Ejemplo</strong>:
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>usuario@a1pc00:~/temp$<span class="w"> </span>ls
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="m">00063821</span>.pdf<span class="w"> </span>capturas<span class="w"> </span>CMS.jpg<span class="w"> </span>Deuda.pdf<span class="w"> </span>dist<span class="w"> </span>dokuwiki-logo.jpeg<span class="w"> </span>drupal.jpeg<span class="w"> </span>ejemplo01.html<span class="w"> </span>EL_CIELO_DESDE_LA_PALMA.pps<span class="w"> </span>esquema_web_dinamico.png
+</code></pre></div></p>
+<p>Listando en formato largo:
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>usuario@a1pc00:~$<span class="w"> </span>ls<span class="w"> </span>-lha<span class="w"> </span>temp/
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>total<span class="w"> </span>60M
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>drwxr-xr-x<span class="w">  </span><span class="m">7</span><span class="w"> </span>usuario<span class="w"> </span>usuario<span class="w"> </span><span class="m">4</span>,0K<span class="w"> </span><span class="m">2011</span>-10-26<span class="w"> </span><span class="m">23</span>:10<span class="w"> </span>.
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>usuario<span class="w"> </span>usuario<span class="w">  </span>11K<span class="w"> </span><span class="m">2011</span>-10-26<span class="w"> </span><span class="m">23</span>:01<span class="w"> </span><span class="m">00063821</span>.pdf
+</code></pre></div></p>
+<h2 id="creando-ficheros">Creando ficheros<a class="headerlink" href="#creando-ficheros" title="Permanent link">&para;</a></h2>
+<h3 id="touch">touch<a class="headerlink" href="#touch" title="Permanent link">&para;</a></h3>
+<p><strong>Propósito</strong>: Crea un fichero vacío o actualiza su fecha si existe.</p>
+<p><strong>Sintaxis</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>touch<span class="w"> </span><span class="o">[</span>archivo<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>Ejemplo</strong>:
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>usuario@a1pc00:~$<span class="w"> </span>touch<span class="w"> </span>documentos/apuntes/tema1.txt
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>usuario@a1pc00:~$<span class="w"> </span>ls<span class="w"> </span>-lh<span class="w"> </span>documentos/apuntes/
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>total<span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>usuario<span class="w"> </span>usuario<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">2011</span>-10-26<span class="w"> </span><span class="m">23</span>:23<span class="w"> </span>tema1.txt
+</code></pre></div></p>
+<p>Ejecutamos <code>touch</code> en un archivo existente:
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>usuario@a1pc00:~/prueba$<span class="w"> </span>touch<span class="w"> </span>examples.desktop
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>usuario@a1pc00:~$<span class="w"> </span>ls<span class="w"> </span>-la
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>usuario<span class="w"> </span>usuario<span class="w">  </span><span class="m">179</span><span class="w"> </span><span class="m">2011</span>-10-26<span class="w"> </span><span class="m">23</span>:15<span class="w"> </span>examples.desktop
+</code></pre></div></p>
+<h2 id="copiando-ficheros-y-directorios">Copiando ficheros y directorios<a class="headerlink" href="#copiando-ficheros-y-directorios" title="Permanent link">&para;</a></h2>
+<h3 id="cp">cp<a class="headerlink" href="#cp" title="Permanent link">&para;</a></h3>
+<p><strong>Propósito</strong>: Copiar archivos y directorios.</p>
+<p><strong>Sintaxis</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>cp<span class="w"> </span><span class="o">[</span>Opciones<span class="o">]</span><span class="w"> </span>archivo_fuente<span class="w"> </span>archivo_destino
+</code></pre></div></p>
+<p><strong>Opciones</strong>:
+- <code>-a</code> conserva todos los atributos.
+- <code>-r</code> copia archivos y subdirectorios.</p>
+<p><strong>Ejemplo</strong>:
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>usuario@a1pc00:~$<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>documentos<span class="w"> </span>prueba
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>usuario@a1pc00:~$<span class="w"> </span>tree<span class="w"> </span>prueba
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>prueba<span class="w"> </span>└──<span class="w"> </span>documentos<span class="w"> </span>├──<span class="w"> </span>apuntes<span class="w"> </span>└──<span class="w"> </span>tema1.txt
+</code></pre></div></p>
+<p><strong>Nota</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cp<span class="w"> </span>documentos/apuntes/tema1.txt<span class="w"> </span>.
+</code></pre></div>
+En lugar de la ruta absoluta, usamos <code>.</code> para indicar el directorio actual.</p>
+<h2 id="moviendo-objetos">Moviendo objetos<a class="headerlink" href="#moviendo-objetos" title="Permanent link">&para;</a></h2>
+<h3 id="mv">mv<a class="headerlink" href="#mv" title="Permanent link">&para;</a></h3>
+<p><strong>Propósito</strong>: Mueve o renombra archivos y directorios.</p>
+<p><strong>Sintaxis</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>mv<span class="w"> </span><span class="o">[</span>Opciones<span class="o">]</span><span class="w"> </span>fuente<span class="w"> </span>destino
+</code></pre></div></p>
+<p><strong>Ejemplo</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>usuario@a1pc00:~/documentos/apuntes$<span class="w"> </span>mv<span class="w"> </span>tema2.txt<span class="w"> </span>apuntes_tema2.txt
+</code></pre></div></p>
+<h2 id="creando-y-borrando-directorios">Creando y borrando directorios<a class="headerlink" href="#creando-y-borrando-directorios" title="Permanent link">&para;</a></h2>
+<h3 id="mkdir">mkdir<a class="headerlink" href="#mkdir" title="Permanent link">&para;</a></h3>
+<p><strong>Propósito</strong>: Crear directorios.</p>
+<p><strong>Sintaxis</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>mkdir<span class="w"> </span><span class="o">[</span>Opciones<span class="o">]</span><span class="w"> </span>directorio
+</code></pre></div></p>
+<p><strong>Ejemplo</strong>:
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>usuario@a1pc00:~/temp$<span class="w"> </span>mkdir<span class="w"> </span>dirx
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>usuario@a1pc00:~/temp$<span class="w"> </span>ls
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>dirx
+</code></pre></div></p>
+<p>Crear jerarquía de directorios:
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>usuario@a1pc00:~/temp$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>dir1/dir2/dir3
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>usuario@a1pc00:~/temp$<span class="w"> </span>tree
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>.
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>├──<span class="w"> </span>dir1
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>│<span class="w">   </span>└──<span class="w"> </span>dir2
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>│<span class="w">       </span>└──<span class="w"> </span>dir3
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>└──<span class="w"> </span>dirx
+</code></pre></div></p>
+<h3 id="rmdir">rmdir<a class="headerlink" href="#rmdir" title="Permanent link">&para;</a></h3>
+<p><strong>Propósito</strong>: Borrar directorios.</p>
+<p><strong>Sintaxis</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>rmdir<span class="w"> </span><span class="o">[</span>Opciones<span class="o">]</span><span class="w"> </span>directorio
+</code></pre></div></p>
+<p><strong>Ejemplo</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>usuario@a1pc00:~/temp$<span class="w"> </span>rmdir<span class="w"> </span>dirx
+</code></pre></div></p>
+<h2 id="eliminando-objetos">Eliminando objetos<a class="headerlink" href="#eliminando-objetos" title="Permanent link">&para;</a></h2>
+<h3 id="rm">rm<a class="headerlink" href="#rm" title="Permanent link">&para;</a></h3>
+<p><strong>Propósito</strong>: Elimina archivos y directorios.</p>
+<p><strong>Sintaxis</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>rm<span class="w"> </span><span class="o">[</span>Opciones<span class="o">]</span><span class="w"> </span>archivos
+</code></pre></div></p>
+<p><strong>Ejemplo</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>usuario@a1pc00:~$<span class="w"> </span>rm<span class="w"> </span>examples.desktop
+</code></pre></div></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://ichigar.codeberg.page" target="_blank" rel="noopener" title="ichigar.codeberg.page" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1996 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Novedades y artículos sobre X">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/blog/pni/ut1/recursos/protocolos_modelos/protocolos-modelos/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Protocolos y modelos - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#protocolos-y-modelos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Protocolos y modelos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../rde/" class="md-tabs__link">
+          
+  
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../lnd/" class="md-tabs__link">
+          
+  
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../pd4/" class="md-tabs__link">
+          
+  
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../imw/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../soj/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../pd4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-las-reglas" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Las reglas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Las reglas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#12-fundamentos-de-la-comunicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Fundamentos de la comunicación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-protocolos-de-comunicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Protocolos de comunicación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 Protocolos de comunicación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analogía
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-establecimiento-de-reglas" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Establecimiento de reglas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-requisitos-de-protocolo-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5 Requisitos de protocolo de red
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-codificacion-de-los-mensajes" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6 Codificación de los mensajes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.6 Codificación de los mensajes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogia_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analogía
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#red" class="md-nav__link">
+    <span class="md-ellipsis">
+      Red
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-formato-y-encapsulamiento-del-mensaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7 Formato y encapsulamiento del mensaje
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.7 Formato y encapsulamiento del mensaje">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogia_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analogía
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#red_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Red
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-tamano-del-mensaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.8 Tamaño del mensaje
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.8 Tamaño del mensaje">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogia_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analogía
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#red_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Red
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-sincronizacion-del-mensaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9 Sincronización del mensaje
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-opciones-de-entrega-del-mensaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.10 Opciones de entrega del mensaje
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.10 Opciones de entrega del mensaje">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogia_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analogía
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#red_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Red
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#111-una-nota-sobre-el-icono-de-nodo" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.11 Una nota sobre el icono de nodo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-protocolos" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Protocolos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Protocolos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-descripcion-general-del-protocolo-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Descripción general del protocolo de red
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-funciones-de-protocolo-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Funciones de protocolo de red
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-interaccion-de-protocolos" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Interacción de protocolos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-suites-de-protocolos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Suites de protocolos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Suites de protocolos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-conjuntos-de-protocolos-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Conjuntos de protocolos de red
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-evolucion-de-los-conjuntos-de-protocolos" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Evolución de los conjuntos de protocolos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ejemplo-de-protocolo-tcpip" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Ejemplo de protocolo TCP/IP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-conjunto-de-tcpip" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Conjunto de TCP/IP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Conjunto de TCP/IP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capa-de-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capa de aplicación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capa-de-transporte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capa de transporte
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capa-de-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capa de Internet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capa-de-acceso-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capa de Acceso de Red
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-proceso-de-comunicacion-tcpip" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Proceso de comunicación TCP/IP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-organizaciones-de-estandares" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Organizaciones de estándares
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Organizaciones de estándares">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-estandares-abiertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Estándares abiertos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-estandares-de-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Estándares de Internet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-organizaciones-de-estandares-para-comunicaciones-y-electronica" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Organizaciones de estándares para comunicaciones y electrónica
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-modelos-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Modelos de referencia
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Modelos de referencia">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-beneficios-del-uso-de-un-modelo-en-capas" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Beneficios del uso de un modelo en capas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-el-modelo-de-referencia-osi" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 El modelo de referencia OSI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-modelo-de-protocolo-tcpip" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Modelo de protocolo TCP/IP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-comparacion-del-modelo-osi-y-el-modelo-tcpip" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Comparación del modelo OSI y el modelo TCP/IP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-encapsulamiento-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Encapsulamiento de datos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Encapsulamiento de datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-segmentacion-del-mensaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Segmentación del mensaje
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-secuenciacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Secuenciación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-unidades-de-datos-de-protocolo" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Unidades de datos de protocolo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-proceso-de-encapsulamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 Proceso de encapsulamiento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-proceso-de-desencapsulamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5 Proceso de desencapsulamiento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="protocolos-y-modelos">Protocolos y modelos<a class="headerlink" href="#protocolos-y-modelos" title="Permanent link">&para;</a></h1>
+<h2 id="1-las-reglas">1 Las reglas<a class="headerlink" href="#1-las-reglas" title="Permanent link">&para;</a></h2>
+<h3 id="12-fundamentos-de-la-comunicacion">1.2 Fundamentos de la comunicación<a class="headerlink" href="#12-fundamentos-de-la-comunicacion" title="Permanent link">&para;</a></h3>
+<p>Las redes pueden variar en lo que respecta al tamaño, la forma y la función. Una red puede ser tan compleja como los dispositivos conectados a través de Internet, o tan simple como dos PC conectadas directamente entre sí mediante un único cable, o puede tener cualquier grado de complejidad intermedia.</p>
+<p>Sin embargo, realizar simplemente la conexión física por cable o inalámbrica entre los terminales no es suficiente para habilitar la comunicación. Para que se produzca la comunicación, los dispositivos deben saber “cómo” comunicarse.</p>
+<p>Las personas intercambian ideas mediante diversos métodos de comunicación. Sin embargo, todos los métodos de comunicación tienen tres elementos en común:</p>
+<ul>
+<li>Los orígenes de los mensajes - Los orígenes de los mensajes son las personas o los dispositivos electrónicos que deben enviar un mensaje a otras personas o dispositivos.</li>
+<li>Destino del mensaje(recibidor) - El destino recibe el mensaje y lo interpreta.</li>
+<li>Canal - está formado por los medios que proporcionan el camino por el que el mensaje viaja desde el origen hasta el destino.</li>
+</ul>
+<h3 id="13-protocolos-de-comunicacion">1.3 Protocolos de comunicación<a class="headerlink" href="#13-protocolos-de-comunicacion" title="Permanent link">&para;</a></h3>
+<p>El envío de este mensaje, ya sea mediante comunicación cara a cara o a través de una red, está regido por reglas llamadas “protocolos”. Estos protocolos son específicos del tipo de método de comunicación en cuestión.</p>
+<p>En nuestra comunicación personal diaria, las reglas que utilizamos para comunicarnos por un medio, como una llamada telefónica, no son necesariamente las mismas que los protocolos para utilizar otro medio, como enviar una carta.</p>
+<p>El proceso de enviar una carta es similar a la comunicación que ocurre en las redes informáticas.</p>
+<h4 id="analogia">Analogía<a class="headerlink" href="#analogia" title="Permanent link">&para;</a></h4>
+<p>Antes de comunicarse, deben acordar cómo hacerlo. Si en la comunicación se utiliza la voz, primero deben acordar el idioma. A continuación, cuando tienen un mensaje que compartir, deben poder dar formato a ese mensaje de una manera que sea comprensible.</p>
+<p><img alt="" src="../analogia_carta.gif" /></p>
+<p>Si alguien utiliza el idioma español, pero la estructura de las oraciones es deficiente, el mensaje se puede malinterpretar fácilmente. Cada una de estas tareas describe protocolos implementados para lograr la comunicación.</p>
+<p><img alt="" src="../analogia_red.gif" /></p>
+<p>Como se muestra, también es cierto para la comunicación por computadora. Piense cuántas reglas o protocolos diferentes rigen todos los métodos de comunicación que existen actualmente en el mundo.</p>
+<h3 id="14-establecimiento-de-reglas">1.4 Establecimiento de reglas<a class="headerlink" href="#14-establecimiento-de-reglas" title="Permanent link">&para;</a></h3>
+<p>Antes de comunicarse entre sí, las personas deben utilizar reglas o acuerdos establecidos que rijan la conversación. Considere este mensaje, por ejemplo:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>humans communication between govern rules. It is verydifficult tounderstand messages that are not correctly formatted and donot follow the established rules and protocols. A estrutura da gramatica, da lingua, da pontuacao e do sentence faz a configuracao humana compreensivel por muitos individuos diferentes.
+</code></pre></div>
+<p>Observe cómo es difícil leer el mensaje porque no está formateado correctamente. Debe escribirse usando reglas (es decir, protocolos) que son necesarias para una comunicación efectiva. El ejemplo muestra el mensaje que ahora está correctamente formateado para el lenguaje y la gramática.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Rules govern communication between humans. It is very difficult to understand messages that are not correctly formatted and do not follow the established rules and protocols. The structure of the grammar, the language, the punctuation and the sentence make the configuration humanly understandable for many different individuals.
+</code></pre></div>
+<p>Los protocolos deben tener en cuenta los siguientes requisitos para entregar correctamente un mensaje que sea comprendido por el receptor:</p>
+<ul>
+<li>Un emisor y un receptor identificados</li>
+<li>Idioma y gramática común</li>
+<li>Velocidad y momento de entrega</li>
+<li>Requisitos de confirmación o acuse de recibo</li>
+</ul>
+<h3 id="15-requisitos-de-protocolo-de-red">1.5 Requisitos de protocolo de red<a class="headerlink" href="#15-requisitos-de-protocolo-de-red" title="Permanent link">&para;</a></h3>
+<p>Los protocolos utilizados en las comunicaciones de red comparten muchos de estos fundamentos. Además de identificar el origen y el destino, los protocolos informáticos y de red definen los detalles sobre la forma en que los mensajes se transmiten a través de una red. Los protocolos informáticos comunes incluyen los siguientes requisitos:</p>
+<ul>
+<li>Codificación de los mensajes</li>
+<li>Formato y encapsulamiento del mensaje</li>
+<li>Tamaño del mensaje</li>
+<li>Sincronización del mensaje</li>
+<li>Opciones de entrega del mensaje</li>
+</ul>
+<h3 id="16-codificacion-de-los-mensajes">1.6 Codificación de los mensajes<a class="headerlink" href="#16-codificacion-de-los-mensajes" title="Permanent link">&para;</a></h3>
+<p>Uno de los primeros pasos para enviar un mensaje es codificarlo. La <strong>codificación</strong> es el proceso mediante el cual la información se convierte en otra forma aceptable para la transmisión. La <strong>decodificación</strong> revierte este proceso para interpretar la idea.</p>
+<h4 id="analogia_1">Analogía<a class="headerlink" href="#analogia_1" title="Permanent link">&para;</a></h4>
+<p>Imagine que una persona llama a un amigo para discutir los detalles de una hermosa puesta de sol.</p>
+<p>Para comunicar el mensaje, ella convierte los pensamientos a un lenguaje acordado. Luego, dice las palabras utilizando los sonidos y las inflexiones del lenguaje oral que transmiten el mensaje. La otra persona escucha la descripción y decodifica los sonidos para entender el mensaje que recibió.</p>
+<p><img alt="" src="../analogia_codificacion.gif" /></p>
+<h4 id="red">Red<a class="headerlink" href="#red" title="Permanent link">&para;</a></h4>
+<p>La codificación entre hosts debe tener el formato adecuado para el medio. El host emisor, primero convierte en bits los mensajes enviados a través de la red. Cada bit está codificado en un patrón de voltajes en cables de cobre, luz infrarroja en fibras ópticas o microondas para sistemas inalámbricos. El host de destino recibe y decodifica las señales para interpretar el mensaje.</p>
+<p><img alt="" src="../red_codificacion.gif" /></p>
+<h3 id="17-formato-y-encapsulamiento-del-mensaje">1.7 Formato y encapsulamiento del mensaje<a class="headerlink" href="#17-formato-y-encapsulamiento-del-mensaje" title="Permanent link">&para;</a></h3>
+<p>Cuando se envía un mensaje desde el origen hacia el destino, se debe utilizar un formato o estructura específicos. Los formatos de los mensajes dependen del tipo de mensaje y el canal que se utilice para entregar el mensaje.</p>
+<h4 id="analogia_2">Analogía<a class="headerlink" href="#analogia_2" title="Permanent link">&para;</a></h4>
+<p>Un ejemplo común de requerir el formato correcto en las comunicaciones humanas es cuando se envía una carta.</p>
+<p>El sobre tiene la dirección del emisor y la del receptor, cada una escrita en el lugar adecuado del sobre. Si la dirección de destino y el formato no son correctos, la carta no se entrega.</p>
+<p>El proceso que consiste en colocar un formato de mensaje (la carta) dentro de otro formato de mensaje (el sobre) se denomina encapsulamiento. La desencapsulación ocurre cuando el destinatario invierte el proceso y la carta se saca del sobre.</p>
+<p><img alt="" src="../analogia_carta_encapsulamiento.gif" /></p>
+<h4 id="red_1">Red<a class="headerlink" href="#red_1" title="Permanent link">&para;</a></h4>
+<p>Semejante a enviar una carta, un mensaje que se envía a través de una red de ordenadores sigue reglas de formato específicas para que pueda ser entregado y procesado.</p>
+<p>El Protocolo de Internet (IP) es un protocolo con una función similar a la del ejemplo sobre. </p>
+<p>En la figura, los campos del paquete de Protocolo de Internet versión 6 (IPv6) identifican el origen del paquete y su destino. </p>
+<p>IP es responsable de enviar un mensaje desde el origen del mensaje al destino a través de una o más redes.</p>
+<p><img alt="" src="../encapsulamiento_ip.png" /></p>
+<h3 id="18-tamano-del-mensaje">1.8 Tamaño del mensaje<a class="headerlink" href="#18-tamano-del-mensaje" title="Permanent link">&para;</a></h3>
+<p>Otra regla de comunicación es el <em>+tamaño del mensaje</em>*.</p>
+<h4 id="analogia_3">Analogía<a class="headerlink" href="#analogia_3" title="Permanent link">&para;</a></h4>
+<p>Cuando las personas se comunican, los mensajes que envían, normalmente, están divididos en fragmentos más pequeños u oraciones. El tamaño de estas oraciones se limita a lo que la persona que recibe el mensaje puede procesar cada vez, como se muestra en la figura. También hace que sea más fácil para el receptor leer y comprender.</p>
+<p><img alt="" src="../analogia_tamano_mensaje.gif" /></p>
+<h3 id="red_2">Red<a class="headerlink" href="#red_2" title="Permanent link">&para;</a></h3>
+<p>De manera similar, cuando se envía un mensaje largo de un host a otro a través de una red, es necesario separarlo en partes más pequeñas. Las reglas que controlan el <strong>tamaño</strong> de las partes, o tramas que se comunican a través de la red, son muy estrictas. También pueden ser diferentes, de acuerdo con el <strong>canal utilizado</strong>. Las tramas que son demasiado largas o demasiado cortas no se entregan.</p>
+<p>Las restricciones de tamaño de las tramas requieren que el <strong>host de origen divida un mensaje</strong> largo en fragmentos individuales que cumplan los requisitos de tamaño mínimo y máximo. El mensaje largo se enviará en tramas independientes, cada trama contendrá una parte del mensaje original. Cada trama también tendrá su propia información de direccionamiento. En el host receptor, las partes individuales del mensaje se vuelven a unir para reconstruir el mensaje original.</p>
+<p><img alt="" src="../red_dividir_mensaje.png" /></p>
+<h3 id="19-sincronizacion-del-mensaje">1.9 Sincronización del mensaje<a class="headerlink" href="#19-sincronizacion-del-mensaje" title="Permanent link">&para;</a></h3>
+<p>El tiempo de los mensajes también es muy importante en las comunicaciones de red. El tiempo de los mensajes incluye lo siguiente:</p>
+<ul>
+<li><strong>Control de flujo</strong> - Este es el proceso de gestión de la velocidad de transmisión de datos. La sincronización también afecta la cantidad de información que se puede enviar y la velocidad con la que puede entregarse. Por ejemplo, Si una persona habla demasiado rápido, la otra persona tendrá dificultades para escuchar y comprender el mensaje. En la comunicación de red, existen protocolos de red utilizados por los dispositivos de origen y destino para negociar y administrar el flujo de información.</li>
+<li><strong>Tiempo de espera de respuesta (Response Timeout)</strong> - Si una persona hace una pregunta y no escucha una respuesta antes de un tiempo aceptable, la persona supone que no habrá ninguna respuesta y reacciona en consecuencia. La persona puede repetir la pregunta o puede continuar la conversación. Los hosts de las redes tienen reglas que especifican cuánto tiempo deben esperar una respuesta y qué deben hacer si se agota el tiempo de espera para la respuesta.</li>
+<li><strong>El método de acceso</strong> - Determina en qué momento alguien puede enviar un mensaje. </li>
+</ul>
+<p>En la figura se puede ver a dos personas hablando al mismo tiempo, luego se produce una "colisión de información" y es necesario que las dos retrocedan y comiencen de nuevo. Del mismo modo, cuando un dispositivo desea transmitir en una LAN inalámbrica, es necesario que la tarjeta de interfaz de red (NIC) WLAN determine si el medio inalámbrico está disponible.</p>
+<p><img alt="" src="../colision.gif" /></p>
+<h3 id="110-opciones-de-entrega-del-mensaje">1.10 Opciones de entrega del mensaje<a class="headerlink" href="#110-opciones-de-entrega-del-mensaje" title="Permanent link">&para;</a></h3>
+<p>Un mensaje se puede entregar de diferentes maneras.</p>
+<h4 id="analogia_4">Analogía<a class="headerlink" href="#analogia_4" title="Permanent link">&para;</a></h4>
+<p>En algunos casos, una persona desea comunicar información a un solo individuo. Otras veces, esa persona puede necesitar enviar información a un grupo de personas simultáneamente o, incluso, a todas las personas de un área.</p>
+<p><img alt="" src="../unicast_multicast_broadcast.gif" /></p>
+<h4 id="red_3">Red<a class="headerlink" href="#red_3" title="Permanent link">&para;</a></h4>
+<p>Las comunicaciones de red tienen opciones de entrega similares para comunicarse. Como se muestra en la figura, hay tres tipos de comunicaciones de datos:</p>
+<ul>
+<li><strong>Unicast</strong> - La información se transmite a un único dispositivo final.</li>
+<li><strong>Multicast</strong> - La información se transmite a uno o varios dispositivos finales.</li>
+<li><strong>Broadcast o transmisión</strong> - La información se transmite a todos los dispositivos finales.</li>
+</ul>
+<p><img alt="" src="../red_unicast_multicast_broadcast.gif" /></p>
+<h3 id="111-una-nota-sobre-el-icono-de-nodo">1.11 Una nota sobre el icono de nodo<a class="headerlink" href="#111-una-nota-sobre-el-icono-de-nodo" title="Permanent link">&para;</a></h3>
+<p>Los documentos y topologías de red suelen representar dispositivos de red y finales mediante un icono de nodo. Los nodos se suelen representar como un círculo. La figura muestra una comparación de las tres opciones de entrega diferentes utilizando iconos de nodo en lugar de iconos de ordenador.</p>
+<p><img alt="" src="../nodos_cast.png" /></p>
+<h2 id="2-protocolos">2 Protocolos<a class="headerlink" href="#2-protocolos" title="Permanent link">&para;</a></h2>
+<h3 id="21-descripcion-general-del-protocolo-de-red">2.1 Descripción general del protocolo de red<a class="headerlink" href="#21-descripcion-general-del-protocolo-de-red" title="Permanent link">&para;</a></h3>
+<p>Ya sabemos que para que los dispositivos finales puedan comunicarse a través de una red, cada dispositivo debe cumplir el mismo conjunto de reglas. Estas reglas se denominan <strong>protocolos</strong> y tienen muchas funciones en una red. En este tema se ofrece una descripción general de los protocolos de red.</p>
+<p>Los protocolos de red definen un formato y un conjunto de reglas comunes para intercambiar mensajes entre dispositivos. Los protocolos son implementados por <strong>dispositivos finales</strong> y <strong>dispositivos intermedios</strong> en software, hardware o ambos. Cada protocolo de red tiene su propia función, formato y reglas para las comunicaciones.</p>
+<p>En la tabla se enumeran los distintos tipos de protocolos que se necesitan para habilitar las comunicaciones en una o más redes.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Tipo de protocolo</strong></th>
+<th><strong>Descripción</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Protocolos de comunicaciones de red</strong></td>
+<td>Los protocolos permiten que dos o más dispositivos se comuniquen a través de uno o más compatibles. La familia de tecnologías Ethernet implica una variedad de protocolos como IP, Protocolo de control de transmisión (TCP), HyperText Protocolo de transferencia (HTTP) y muchos más.</td>
+</tr>
+<tr>
+<td><strong>Protocolos de seguridad de red</strong></td>
+<td>Los protocolos protegen los datos para proporcionar autenticación, integridad de los datos y cifrado de datos. Ejemplos de protocolos seguros incluyen Secure Shell (SSH), Secure Sockets Layer (SSL) y Capa de transporte Security (TLS).</td>
+</tr>
+<tr>
+<td><strong>Protocolos de routing</strong></td>
+<td>Los protocolos permiten a los routers intercambiar información de ruta, comparar rutas y, a continuación, seleccionar la mejor ruta al destino en una red cableada o inalámbrica. Ejemplos de protocolos de enrutamiento incluyen Abrir ruta más corta primero (OSPF) y Protocolo de puerta de enlace de borde (BGP).</td>
+</tr>
+<tr>
+<td><strong>Protocolos de Detección de servicios</strong></td>
+<td>Los protocolos se utilizan para la detección automática de dispositivos o servicios. Entre los ejemplos de protocolos de descubrimiento de servicios se incluyen Dynamic Host Protocolo de configuración (DHCP), que descubre servicios para la dirección IP, y Sistema de nombres de dominio (DNS), que se utiliza para realizar traducción de nombre a dirección IP.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-funciones-de-protocolo-de-red">2.2 Funciones de protocolo de red<a class="headerlink" href="#22-funciones-de-protocolo-de-red" title="Permanent link">&para;</a></h3>
+<p>Los protocolos de comunicación de red son responsables de una variedad de funciones necesarias para las comunicaciones de red entre dispositivos finales. Por ejemplo, en la figura, ¿cómo envía el equipo un mensaje, a través de varios dispositivos de red, al servidor?</p>
+<p><img alt="" src="../envio_ipv4.png" /></p>
+<p>Los equipos y dispositivos de red utilizan protocolos acordados para comunicarse. La tabla enumera las funciones de estos protocolos.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Función</strong></th>
+<th><strong>Descripción</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Direccionamiento</strong></td>
+<td>Esto identifica al remitente y al destinatario previsto del mensaje utilizando un esquema de direccionamiento definido. Ejemplos de protocolos que proporcionan incluyen Ethernet, IPv4 e IPv6.</td>
+</tr>
+<tr>
+<td><strong>Confiabilidad</strong></td>
+<td>Esta función proporciona mecanismos de entrega garantizados en caso de que los mensajes se pierdan o se corrompan en tránsito. TCP proporciona entrega garantizada.</td>
+</tr>
+<tr>
+<td><strong>Control de flujo</strong></td>
+<td>Esta función asegura que los datos fluyan a una velocidad eficiente entre dos dispositivos de comunicación. TCP proporciona servicios de control de flujo.</td>
+</tr>
+<tr>
+<td><strong>Secuenciación</strong></td>
+<td>Esta función etiqueta de forma única cada segmento de datos transmitido. Utiliza la información de secuenciación para volver a ensamblar la información correctamente. Esto es útil si se pierden los segmentos de datos, se retrasan o se reciben fuera de orden. TCP proporciona serv</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-interaccion-de-protocolos">2.3 Interacción de protocolos<a class="headerlink" href="#23-interaccion-de-protocolos" title="Permanent link">&para;</a></h3>
+<p>Un mensaje enviado a través de una red informática normalmente requiere el uso de varios protocolos, cada uno con sus propias funciones y formato. La figura muestra algunos protocolos de red comunes que se utilizan cuando un dispositivo envía una solicitud a un servidor web para su página web.</p>
+<p><img alt="" src="../protocolo_envio_web.png" /></p>
+<h2 id="3-suites-de-protocolos">3 Suites de protocolos<a class="headerlink" href="#3-suites-de-protocolos" title="Permanent link">&para;</a></h2>
+<h3 id="1-conjuntos-de-protocolos-de-red">1 Conjuntos de protocolos de red<a class="headerlink" href="#1-conjuntos-de-protocolos-de-red" title="Permanent link">&para;</a></h3>
+<p>En muchos casos, los protocolos deben poder trabajar con otros protocolos para que su experiencia en línea le proporcione todo lo que necesita para las comunicaciones de red. Los conjuntos de protocolos están diseñados para funcionar entre sí sin problemas.</p>
+<p>Un <strong>grupo de protocolos interrelacionados</strong> que son necesarios para realizar una función de comunicación se denomina <strong>suite de protocolos</strong>.</p>
+<p>Una de las mejores formas para visualizar el modo en que los protocolos interactúan dentro de una suite es ver la interacción como una <strong>pila</strong>. Una pila de protocolos muestra la forma en que los protocolos individuales se implementan dentro de una suite. Los protocolos se muestran en <strong>capas</strong>, donde cada servicio de <strong>nivel superior</strong> depende de la funcionalidad definida por los protocolos que se muestran en los <strong>niveles inferiores</strong>. Las capas inferiores de la pila se encargan del movimiento de datos por la red y <strong>proporcionan servicios</strong> a las capas superiores, las cuales se enfocan en el <strong>contenido del mensaje</strong> que se va a enviar.</p>
+<p>Como se muestra en la figura, podemos utilizar capas para describir la actividad que tiene lugar en el ejemplo de comunicación cara a cara. En la capa inferior, la capa física, hay dos personas, cada una con una voz que puede pronunciar palabras en voz alta. En el medio está la capa de reglas que estipula los requisitos de comunicación incluyendo que se debe elegir un lenguaje común. En la parte superior está la capa de contenido y aquí es donde se habla realmente el contenido de la comunicación.</p>
+<p><img alt="" src="../suite_protocolos_conversacion.png" /></p>
+<h3 id="2-evolucion-de-los-conjuntos-de-protocolos">2 Evolución de los conjuntos de protocolos<a class="headerlink" href="#2-evolucion-de-los-conjuntos-de-protocolos" title="Permanent link">&para;</a></h3>
+<p>Una suite de protocolos es un grupo de protocolos que trabajan en forma conjunta para proporcionar servicios integrales de comunicación de red. Desde la década de 1970 ha habido varios conjuntos de protocolos diferentes, algunos desarrollados por una organización de estándares y otros desarrollados por varios proveedores.</p>
+<p>Durante la evolución de las comunicaciones de red e Internet hubo varios conjuntos de protocolos competidores, como se muestra en la figura.</p>
+<p><img alt="" src="../evolucion_suites_protocolos.png" /></p>
+<h3 id="3-ejemplo-de-protocolo-tcpip">3 Ejemplo de protocolo TCP/IP<a class="headerlink" href="#3-ejemplo-de-protocolo-tcpip" title="Permanent link">&para;</a></h3>
+<p>Los protocolos TCP/IP son específicos de las capas Aplicación, Transporte e Internet. No hay protocolos TCP/IP en la capa de acceso a la red. </p>
+<p>Los protocolos LAN de capa de acceso a la red más comunes son los protocolos Ethernet y WLAN (LAN inalámbrica). Los protocolos de la capa de acceso a la red son responsables de la entrega de los paquetes IP en los medios físicos.</p>
+<p>La figura muestra un ejemplo de los tres protocolos TCP/IP utilizados para enviar paquetes entre el navegador web de un host y el servidor web. HTTP, TCP e IP son los protocolos TCP/IP utilizados. En la capa de acceso a la red, Ethernet se utiliza en el ejemplo. Sin embargo, esto también podría ser un estándar inalámbrico como WLAN o servicio móvil.</p>
+<p><img alt="" src="../envio_tcpip.png" /></p>
+<h3 id="4-conjunto-de-tcpip">4 Conjunto de TCP/IP<a class="headerlink" href="#4-conjunto-de-tcpip" title="Permanent link">&para;</a></h3>
+<p>Hoy en día, el conjunto de protocolos TCP/IP incluye muchos protocolos y continúa evolucionando para admitir nuevos servicios. Algunos de los más populares se muestran en la figura.</p>
+<p><img alt="" src="../capas_tcpip.png" /></p>
+<h4 id="capa-de-aplicacion">Capa de aplicación<a class="headerlink" href="#capa-de-aplicacion" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Sistema de nombres</strong></li>
+<li><strong>DNS</strong> - Domain Name System. Traduce los nombres de dominio tales como cisco.com a direcciones IP</li>
+<li><strong>Configuración de host</strong></li>
+<li><strong>DHCPv4</strong> - Protocolo de configuración dinámica de host para IPv4. Un servidor DHCPv4 asigna dinámicamente información de direccionamiento IPv4 a clientes DHCPv4 al inicio y permite que las direcciones se reutilicen cuando ya no sean necesarias.</li>
+<li><strong>DHCPv6</strong> - Protocolo de configuración dinámica de host para IPv6. DHCPv6 es similar a DHCPv4. Un servidor DHCPv6 asigna dinámicamente información de direccionamiento IPv6 a clientes DHCPv6 al inicio.</li>
+<li><strong>SLAAC</strong> - Autoconfiguración sin estado. Método que permite a un dispositivo obtener su información de direccionamiento IPv6 sin utilizar un servidor DHCPv6.</li>
+<li><strong>Correo electrónico</strong></li>
+<li><strong>SMTP</strong> - Protocolo para Transferencia Simple de Correo. Les permite a los clientes enviar correo electrónico a un servidor de correo y les permite a los servidores enviar correo electrónico a otros servidores.</li>
+<li><strong>POP3</strong> -Protocolo de Oficinca de Correo versión  Permite a los clientes recuperar el correo electrónico de un servidor de correo y descargarlo en la aplicación de correo local del cliente.</li>
+<li><strong>IMAP</strong> - Protocolo de Acceso a Mensajes de Internet Permite que los clientes accedan a correos electrónicos almacenados en un servidor de correo.</li>
+<li><strong>Transferencia de Archivos</strong></li>
+<li><strong>FTP</strong> - Protocolo de Transferencia de Archivos. Establece las reglas que permiten a un usuario en un host acceder y transferir archivos hacia y desde otro host a través de una red. FTP Es un protocolo confiable de entrega de archivos, orientado a la conexión y con acuse de recibo.</li>
+<li><strong>SFTP</strong> - SSH Protocolo de Transferencia de Archivos Como una extensión al protocolo Shell seguro (SSH), el SFTP se puede utilizar para establecer una sesión segura de transferencia de archivos, en el que el archivo transferido está cifrado. SSH es un método para el inicio de sesión remoto seguro que se utiliza normalmente para acceder a la línea de comandos de un dispositivo.</li>
+<li><strong>TFTP</strong> - Protocolo de Transferencia de Archivos Trivial Un protocolo de transferencia de archivos simple y sin conexión con la entrega de archivos sin reconocimiento y el mejor esfuerzo posible. Utiliza menos sobrecarga que FTP.</li>
+<li><strong>Web y Servicio Web</strong></li>
+<li><strong>HTTP</strong> - Hypertext Transfer Protocol. Un Conjunto de reglas para intercambiar texto, imágenes gráficas, sonido, video y otros archivos multimedia en la World Wide Web.</li>
+<li><strong>HTTPS</strong> - HTTP seguro. Una forma segura de HTTP que cifra los datos que se intercambian a través de la World Wide Web.</li>
+<li><strong>REST</strong> - Transferencia de Estado Representacional. Servicio web que utiliza interfaces de programación de aplicaciones (API) y solicitudes HTTP para crear aplicaciones web.</li>
+</ul>
+<h4 id="capa-de-transporte">Capa de transporte<a class="headerlink" href="#capa-de-transporte" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Orientado a la conexión</strong></li>
+<li><strong>TCP</strong> - Protocolo de Control de Transmisión. Permite la comunicación confiable entre procesos que se ejecutan en hosts independientes y tiene transmisiones fiables y con acuse de recibo que confirman la entrega exitosa.</li>
+<li><strong>Sin conexión</strong></li>
+<li><strong>UDP</strong> - Protocolo de Datagramas de Usuario Habilita un proceso que se ejecuta en un host para enviar paquetes a un proceso que se ejecuta en otro host Sin embargo, UDP No confirma la transmisión correcta de datagramas</li>
+</ul>
+<h4 id="capa-de-internet">Capa de Internet<a class="headerlink" href="#capa-de-internet" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Protocolo de Internet</strong></li>
+<li><strong>IPv4</strong> - Protocolo de Internet versión 4. Recibe segmentos de mensajes de la capa de transporte, empaqueta mensajes en paquetes y dirige paquetes para entrega end-to-end a través de una red. IPv4 utiliza una dirección de 32 bits.</li>
+<li><strong>IPv6</strong> - IP versión 6. Similar a IPv4 pero usa una dirección de 128 bits.</li>
+<li><strong>NAT</strong> - Traducción de Direcciones de Red Traduce las direcciones IPv4 de una red privada en direcciones IPv4 públicas globalmente únicas.</li>
+<li><strong>Mensajería</strong></li>
+<li><strong>ICMPv4</strong> - Protocolo de Control de Mensajes de Internet Proporciona comentarios desde un host de destino a un host de origen con respecto a los errores en la entrega de paquetes</li>
+<li><strong>ICMPv6</strong> - ICMP para IPv6. Funcionalidad similar a ICMPv4 pero se utiliza para paquetes IPv6.
+    ICMPv6 ND - Protocolo de Descubrimiento de Vecinos versión 6 Incluye cuatro mensajes de protocolo que se utilizan para la resolución de direcciones y la detección de direcciones duplicadas.</li>
+<li><strong>Protocolos de Routing</strong></li>
+<li><strong>OSPF</strong> - Abrir el Camino más Corto Primero. Protocolo de enrutamiento de estado de vínculo que utiliza un diseño jerárquico basado en áreas. OSPF s un protocolo de routing interior de estándar abierto.</li>
+<li><strong>EIGRP</strong> - EIGRP Protocolo de Enrutamiento de Puerta de enlace Interior Mejorado. Es un protocolo de routing abierto desarrollado por Cisco, utiliza una métrica compuesta en función del ancho de banda, la demora, la carga y la confiabilidad.</li>
+<li><strong>BGP</strong> - Protocolo de Puerta de Enlace de Frontera Un protocolo de enrutamiento de puerta de enlace exterior estándar abierto utilizado entre los proveedores de servicios de Internet (ISP). BGP también se utiliza entre los ISP y sus clientes privados más grandes para intercambiar información de enrutamiento.</li>
+</ul>
+<h4 id="capa-de-acceso-de-red">Capa de Acceso de Red<a class="headerlink" href="#capa-de-acceso-de-red" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Resolución de dirección</strong></li>
+<li>
+<p><strong>ARP</strong> - Protocolo de Resolución de Direcciones Proporciona la asignación de direcciones dinámicas entre una dirección IP y una dirección de hardware.</p>
+<p><strong>Nota</strong>: Puede ver en otras documentos que ARP opera en la capa de Internet (OSI Capa 3). Sin embargo, en este curso declaramos que ARP opera en la capa de acceso a la red (OSI Capa 2) porque su objetivo principal es descubrir la dirección MAC del destino. y una dirección de capa 2 es una dirección MAC.
+- <strong>Protocolos de Enlace de Datos</strong>:
+  - <strong>Ethernet</strong> - define las reglas para conectar y señalizar estándares de la capa de acceso a la red.
+  - <strong>WLAN</strong> - Wireless Local Area Network. Define las reglas para la señalización inalámbrica a través de las frecuencias de radio de 2,4 GHz y 5 GHz.</p>
+</li>
+</ul>
+<h3 id="5-proceso-de-comunicacion-tcpip">5 Proceso de comunicación TCP/IP<a class="headerlink" href="#5-proceso-de-comunicacion-tcpip" title="Permanent link">&para;</a></h3>
+<p>Las imágenes muestran el proceso de comunicación completo mediante un ejemplo de servidor web que transmite datos a un cliente.</p>
+<p><img alt="" src="../transmision_web.gif" /></p>
+<p><img alt="" src="../recepcion_web.gif" /></p>
+<h2 id="4-organizaciones-de-estandares">4 Organizaciones de estándares<a class="headerlink" href="#4-organizaciones-de-estandares" title="Permanent link">&para;</a></h2>
+<h3 id="41-estandares-abiertos">4.1 Estándares abiertos<a class="headerlink" href="#41-estandares-abiertos" title="Permanent link">&para;</a></h3>
+<p>Al comprar neumáticos nuevos para un automóvil, hay muchos fabricantes que puede elegir. Cada uno de ellos tendrá al menos un tipo de neumático que se adapte a su coche. Esto se debe a que la industria automotriz utiliza estándares cuando se producen automóviles. Es lo mismo con los protocolos. Debido a que hay <strong>muchos fabricantes</strong> diferentes de componentes de red, todos deben usar los <strong>mismos estándares</strong>. En el establecimiento de redes, las normas son elaboradas por <strong>organizaciones internacionales de normalización</strong>.</p>
+<p>Los estándares abiertos fomentan la <strong>interoperabilidad</strong>, la <strong>competencia</strong> y la <strong>innovación</strong>. También garantizan que ningún producto de una sola empresa pueda <strong>monopolizar</strong> el mercado o tener una <strong>ventaja desleal</strong> sobre la competencia.</p>
+<p>La compra de un router inalámbrico para el hogar constituye un buen ejemplo de esto. Existen muchas opciones distintas disponibles de diversos proveedores, y todas ellas incorporan protocolos estándares, como IPv4, DHCP, 802.3 (Ethernet) y 802.11 (LAN inalámbrica). Estos estándares abiertos también permiten que un cliente con el sistema operativo OS X de Apple descargue una página web de un servidor web con el sistema operativo Linux. Esto se debe a que ambos sistemas operativos implementan los <strong>protocolos de estándar abierto</strong>, como los de la <strong>suite TCP/IP</strong>.</p>
+<p>Las <strong>organizaciones de estandarización</strong> generalmente son organizaciones sin fines de lucro y neutrales en lo que respecta a proveedores, que se establecen para desarrollar y promover el concepto de estándares abiertos. Las organizaciones de estandarización son importantes para mantener una Internet abierta con especificaciones y protocolos de libre acceso que pueda implementar cualquier proveedor.</p>
+<p>Las organizaciones de estandarización pueden elaborar un conjunto de reglas en forma totalmente independiente o, en otros casos, pueden seleccionar un protocolo exclusivo como base para el estándar. Si se utiliza un protocolo exclusivo, suele participar el proveedor que creó el protocolo.</p>
+<p>La figura muestra el logotipo de cada organización de normas.</p>
+<p><img alt="" src="../logo_estandares.png" /></p>
+<h3 id="42-estandares-de-internet">4.2 Estándares de Internet<a class="headerlink" href="#42-estandares-de-internet" title="Permanent link">&para;</a></h3>
+<p>Distintas organizaciones tienen diferentes responsabilidades para promover y elaborar estándares para el protocolo TCP/IP.</p>
+<p>La figura muestra las organizaciones de estándares involucradas con el desarrollo y soporte de Internet.</p>
+<p><img alt="" src="../estandares_internet.png" /></p>
+<p>La siguiente figura muestra las organizaciones de estándares involucradas en el desarrollo y soporte de TCP/IP e incluyen IANA e ICANN.</p>
+<p><img alt="" src="../jerarquia_ican.png" /></p>
+<h3 id="43-organizaciones-de-estandares-para-comunicaciones-y-electronica">4.3 Organizaciones de estándares para comunicaciones y electrónica<a class="headerlink" href="#43-organizaciones-de-estandares-para-comunicaciones-y-electronica" title="Permanent link">&para;</a></h3>
+<p>Otras organizaciones de estandarización tienen responsabilidades de promoción y creación de estándares de comunicación y electrónica que se utilizan en la entrega de paquetes IP como señales electrónicas en medios inalámbricos o por cable.</p>
+<p>Estas organizaciones estándar incluyen las siguientes:</p>
+<ul>
+<li><strong>Institute of Electrical and Electronics Engineers</strong> (IEEE, pronounced “I-triple-E”): organización de electrónica e ingeniería eléctrica dedicada a avanzar en innovación tecnológica y a elaborar estándares en una amplia gama de sectores, que incluyen energía, servicios de salud, telecomunicaciones y redes. Los estándares importantes de red IEEE incluyen <strong>802.3 Ethernet</strong> y <strong>802.11 WLAN</strong></li>
+<li><strong>Asociación de Industrias Electrónicas</strong> (EIA): es conocida principalmente por sus estándares relacionados con el cableado eléctrico, los conectores y los racks de 19 pulgadas que se utilizan para montar equipos de red.</li>
+<li><strong>Asociación de las Industrias de las Telecomunicaciones</strong> (TIA): es responsable de desarrollar estándares de comunicación en diversas áreas, entre las que se incluyen equipos de radio, torres de telefonía móvil, dispositivos de voz sobre IP (VoIP), comunicaciones satelitales y más. La figura muestra un ejemplo de un cable Ethernet certificado que fue desarrollado cooperativamente por la TIA y la EIA.</li>
+<li><strong>Sector de Normalización de las Telecomunicaciones de la Unión Internacional de Telecomunicaciones</strong> (UIT-T): es uno de los organismos de estandarización de comunicación más grandes y más antiguos. El UIT-T define estándares para la compresión de vídeos, televisión de protocolo de Internet (IPTV) y comunicaciones de banda ancha, como la línea de suscriptor digital (DSL).</li>
+</ul>
+<h2 id="5-modelos-de-referencia">5 Modelos de referencia<a class="headerlink" href="#5-modelos-de-referencia" title="Permanent link">&para;</a></h2>
+<h3 id="51-beneficios-del-uso-de-un-modelo-en-capas">5.1 Beneficios del uso de un modelo en capas<a class="headerlink" href="#51-beneficios-del-uso-de-un-modelo-en-capas" title="Permanent link">&para;</a></h3>
+<p>En realidad no se puede ver que los paquetes reales viajan a través de una red real. Una analogía es verlo como la forma en que se ven componentes de un coche que se ensamblan en una línea de ensamble. </p>
+<p>Por lo tanto, usar un modelo ayuda a interpretar la red de forma que podamos imaginar lo que está sucediendo. </p>
+<p>Conceptos complejos, como el funcionamiento de una red, pueden ser difíciles de explicar y comprender. Por esta razón, un <strong>modelo en capas</strong> se utiliza para <strong>modularizar</strong> las operaciones de una red en capas manejables.</p>
+<p>Los beneficios del uso de un modelo en capas para describir protocolos de red y operaciones incluyen:</p>
+<ul>
+<li>Ayuda en el <strong>diseño de protocolos</strong>, ya que los protocolos que operan en una capa específica tienen información definida según la cual actúan, y una interfaz definida para las capas superiores e inferiores.</li>
+<li><strong>Fomenta la competencia</strong>, ya que los productos de distintos proveedores pueden trabajar en conjunto.</li>
+<li><strong>Evita que los cambios</strong> en la tecnología o en las funcionalidades de una capa <strong>afecten a otras capas</strong> superiores e inferiores.</li>
+<li>Proporciona <strong>un lenguaje común</strong> para describir las funciones y capacidades de red.</li>
+</ul>
+<p>Como se muestra en la figura, hay dos modelos en capas que se utilizan para describir las operaciones de red:</p>
+<ul>
+<li>El modelo de referencia de interconexión de sistemas abiertos OSI.</li>
+<li>El Modelo de referencia TCP/IP</li>
+</ul>
+<p><img alt="" src="../modelos_osi_tcpip.png" /></p>
+<h3 id="52-el-modelo-de-referencia-osi">5.2 El modelo de referencia OSI<a class="headerlink" href="#52-el-modelo-de-referencia-osi" title="Permanent link">&para;</a></h3>
+<p>El modelo de referencia OSI proporciona una amplia lista de funciones y servicios que se pueden presentar en cada capa. este tipo de modelo es coherente con todos los tipos de servicios y protocolos de red al describir qué es lo que se debe hacer en una capa determinada, pero sin regir la forma en que se debe lograr.</p>
+<p>También describe la interacción de cada capa con las capas directamente por encima y por debajo de él. Los protocolos TCP/IP que se analizan en este curso se estructuran en torno a los modelos OSI y TCP/IP. La tabla muestra detalles sobre cada capa del modelo OSI. La funcionalidad de cada capa y la relación entre ellas será más evidente a medida que avance en el curso y que se brinden más detalles acerca de los protocolos.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Capa del modelo OSI</strong></th>
+<th><strong>Descripción</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>7 - Aplicación</strong></td>
+<td>La capa de aplicación contiene protocolos utilizados para comunicaciones proceso a proceso de comunicaciones.</td>
+</tr>
+<tr>
+<td><strong>6 - Presentación</strong></td>
+<td>La capa de presentación proporciona una representación común de los datos transferidos entre los servicios de capa de aplicación.</td>
+</tr>
+<tr>
+<td><strong>5 - Sesión</strong></td>
+<td>La capa de sesión proporciona servicios a la capa de presentación para organizar el diálogo y administrar el intercambio de datos.</td>
+</tr>
+<tr>
+<td><strong>4 - Transporte</strong></td>
+<td>La capa de transporte define servicios para segmentar, transferir y volver a montar los datos para las comunicaciones individuales entre los extremos.</td>
+</tr>
+<tr>
+<td><strong>3 - Red</strong></td>
+<td>La capa de red proporciona servicios para intercambiar las piezas individuales de datos a través de la red entre los dispositivos finales identificados.</td>
+</tr>
+<tr>
+<td><strong>2 - Enlace de datos</strong></td>
+<td>Los protocolos de la capa de enlace de datos describen métodos para intercambiar datos (tramas) entre dispositivos a través de un medio común.</td>
+</tr>
+<tr>
+<td><strong>1 - Física</strong></td>
+<td>Los protocolos de capa física describen los componentes mecánicos, eléctricos, funcionales y de procedimiento para activar, mantener y desactivar conexiones físicas para una transmisión de bits hacia y desde una red de dispositivos.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nota</strong>: mientras las capas del modelo TCP/IP se mencionan solo por el nombre, las siete capas del modelo OSI se mencionan con frecuencia por número y no por nombre. Por ejemplo, la capa física se conoce como Capa 1 del modelo OSI, la capa de enlace de datos es Layer2, y así sucesivamente.</p>
+<h3 id="53-modelo-de-protocolo-tcpip">5.3 Modelo de protocolo TCP/IP<a class="headerlink" href="#53-modelo-de-protocolo-tcpip" title="Permanent link">&para;</a></h3>
+<p>El modelo de protocolo TCP/IP para comunicaciones de internetwork se creó a principios de la década de los setenta y se conoce con el nombre de modelo de Internet. Este tipo de modelo coincide con precisión con la estructura de una suite de protocolos determinada. El modelo TCP/IP es un protocolo modelo porque describe las funciones que ocurren en cada capa de protocolos dentro de una suite de TCP/IP. TCP/IP también es un ejemplo de un modelo de referencia. La tabla muestra detalles sobre cada capa del modelo OSI.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Capa del modelo TCP/IP</strong></th>
+<th><strong>Descripción</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>4 - Aplicación</strong></td>
+<td>Representa datos para el usuario más el control de codificación y de diálogo.</td>
+</tr>
+<tr>
+<td><strong>3 - Transporte</strong></td>
+<td>Admite la comunicación entre distintos dispositivos a través de diversas redes.</td>
+</tr>
+<tr>
+<td><strong>2 - Internet</strong></td>
+<td>Determina el mejor camino a través de una red.</td>
+</tr>
+<tr>
+<td><strong>1 - Acceso a la red</strong></td>
+<td>Controla los dispositivos del hardware y los medios que forman la red.</td>
+</tr>
+</tbody>
+</table>
+<p>Las definiciones del estándar y los protocolos TCP/IP se explican en un foro público y se definen en un conjunto de documentos de petición de comentarios (RFC) disponibles al público. Un RFC es creado por ingenieros de redes y enviado a otros miembros de IETF para comentarios.</p>
+<h3 id="54-comparacion-del-modelo-osi-y-el-modelo-tcpip">5.4 Comparación del modelo OSI y el modelo TCP/IP<a class="headerlink" href="#54-comparacion-del-modelo-osi-y-el-modelo-tcpip" title="Permanent link">&para;</a></h3>
+<p>Los protocolos que forman la suite de protocolos TCP/IP pueden describirse en términos del modelo de referencia OSI. En el modelo OSI, la capa de acceso a la red y la capa de aplicación del modelo TCP/IP están subdivididas para describir funciones discretas que deben producirse en estas capas.</p>
+<p>En la capa de acceso a la red, la suite de protocolos TCP/IP no especifica cuáles protocolos utilizar cuando se transmite por un medio físico; solo describe la transferencia desde la capa de Internet a los protocolos de red física. Las capas OSI 1 y 2 tratan los procedimientos necesarios para acceder a los medios y las maneras físicas de enviar datos por la red.</p>
+<p><img alt="" src="../comparacion_osi-tcpip.png" /></p>
+<h2 id="6-encapsulamiento-de-datos">6 Encapsulamiento de datos<a class="headerlink" href="#6-encapsulamiento-de-datos" title="Permanent link">&para;</a></h2>
+<h3 id="61-segmentacion-del-mensaje">6.1 Segmentación del mensaje<a class="headerlink" href="#61-segmentacion-del-mensaje" title="Permanent link">&para;</a></h3>
+<p>Conocer el modelo de referencia OSI y el modelo de protocolo TCP/IP será útil cuando aprenda acerca de cómo se encapsulan los datos a medida que se mueven a través de una red. No es tan simple como una carta física que se envía a través del sistema de correo.</p>
+<p>En teoría, una comunicación simple, como un vídeo musical o un correo electrónico puede enviarse a través de la red desde un origen hacia un destino como una transmisión de bits masiva y continua. Sin embargo, esto crearía problemas para otros dispositivos que necesitan utilizar los mismos canales de comunicación o enlaces. Estas grandes transmisiones de datos originarán <strong>retrasos</strong> importantes. Además, si falla un enlace en la infraestructura de la red interconectada durante la transmisión, <strong>el mensaje completo se perdería</strong> y tendría que <strong>retransmitirse completamente</strong>.</p>
+<p>Un método mejor es <strong>dividir</strong> los datos en partes más <strong>pequeñas y manejables</strong> para enviarlas por la red. La <strong>segmentación</strong> es el proceso de dividir un flujo de datos en unidades más pequeñas para transmisiones a través de la red. </p>
+<p>La segmentación es necesaria porque las redes de datos utilizan el conjunto de protocolos TCP/IP para enviar datos en paquetes IP individuales. <strong>Cada paquete se envía por </strong>separado, similar al envío de una carta larga como una serie de postales individuales. Los paquetes que contienen segmentos para el mismo destino se pueden enviar a través de <strong>diferentes rutas</strong>.</p>
+<p>La segmentación de mensajes tiene dos beneficios principales.</p>
+<ul>
+<li><strong>Aumenta la velocidad</strong> - Debido a que un flujo de datos grande se segmenta en paquetes, se pueden enviar grandes cantidades de datos a través de la red sin atar un enlace de comunicaciones. Esto permite que muchas conversaciones diferentes se intercalen en la red en un mecanismo llamado <strong>multiplexación</strong>.</li>
+<li><strong>Aumenta la eficiencia</strong> - si un solo segmento no llega a su destino debido a una falla en la red o congestión de la red, <strong>solo ese segmento necesita ser retransmitido</strong> en lugar de volver a enviar toda la secuencia de datos.</li>
+</ul>
+<p>Veamos con animaciones la segmentación:</p>
+<p><img alt="" src="../segmentacion.gif" /></p>
+<p>Y la multiplexación</p>
+<p><img alt="" src="../multiplexacion.gif" /></p>
+<h3 id="62-secuenciacion">6.2 Secuenciación<a class="headerlink" href="#62-secuenciacion" title="Permanent link">&para;</a></h3>
+<p>La desventaja de utilizar segmentación y multiplexión para transmitir mensajes a través de la red es el <strong>nivel de complejidad que se agrega</strong> al proceso. Supongamos que tuviera que enviar una carta de 100 páginas, pero en cada sobre solo cabe una. Por lo tanto, se necesitarían 100 sobres y cada sobre tendría que dirigirse individualmente. Es posible que la carta de 100 páginas en 100 sobres diferentes llegue fuera de pedido. En consecuencia, la información contenida en el sobre tendría que incluir un número de secuencia para garantizar que el receptor pudiera volver a ensamblar las páginas en el orden adecuado.</p>
+<p>En las comunicaciones de red, cada segmento del mensaje debe seguir un proceso similar para asegurar que llegue al destino correcto y que puede volverse a ensamblar en el contenido del mensaje original, como se muestra en la figura 2. TCP es responsable de secuenciar los segmentos individuales.</p>
+<p><img alt="" src="../secuenciacion.png" /></p>
+<h3 id="63-unidades-de-datos-de-protocolo">6.3 Unidades de datos de protocolo<a class="headerlink" href="#63-unidades-de-datos-de-protocolo" title="Permanent link">&para;</a></h3>
+<p>Mientras los datos de la aplicación bajan a la pila del protocolo y se transmiten por los medios de la red, se agrega diversa información de protocolos en cada nivel. Esto comúnmente se conoce como proceso de <strong>encapsulamiento</strong>.</p>
+<p><strong>Nota</strong>: Aunque la PDU UDP se denomina datagrama, los paquetes IP a veces también se conocen como datagramas IP.</p>
+<p>La manera que adopta una porción de datos en cualquier capa se denomina <strong>unidad de datos del protocolo</strong> (PDU). </p>
+<p>Durante el encapsulamiento, cada capa encapsula las PDU que recibe de la capa inferior de acuerdo con el protocolo que se utiliza. En cada etapa del proceso, una PDU tiene un <strong>nombre distinto</strong> para reflejar sus funciones nuevas. Aunque no existe una convención universal de nombres para las PDU, en este curso se denominan de acuerdo con los protocolos de la suite TCP/IP. Las PDU de cada tipo de datos se muestran en la figura.</p>
+<p><img alt="" src="../pdu.png" /></p>
+<h3 id="64-proceso-de-encapsulamiento">6.4 Proceso de encapsulamiento<a class="headerlink" href="#64-proceso-de-encapsulamiento" title="Permanent link">&para;</a></h3>
+<p>Cuando se <strong>envían</strong> mensajes en una red, el proceso de encapsulamiento opera <strong>desde las capas superiores hacia las capas inferiores</strong>. En cada capa, la información de la capa superior se considera como <strong>datos en el protocolo encapsulado</strong>. Por ejemplo, el segmento TCP se considera como datos en el paquete IP.</p>
+<p><img alt="" src="../encapsulado.gif" /></p>
+<h3 id="65-proceso-de-desencapsulamiento">6.5 Proceso de desencapsulamiento<a class="headerlink" href="#65-proceso-de-desencapsulamiento" title="Permanent link">&para;</a></h3>
+<p>Este proceso se invierte en el host receptor, y se conoce como <strong>desencapsulamiento</strong>. El desencapsulamiento es el proceso que utilizan los dispositivos receptores para <strong>eliminar uno o más de los encabezados</strong> de protocolo. Los datos se desencapsulan mientras <strong>suben por la pila hacia la aplicación del usuario final</strong>.</p>
+<p><img alt="" src="../desencapsulado.gif" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://ichigar.codeberg.page" target="_blank" rel="noopener" title="ichigar.codeberg.page" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

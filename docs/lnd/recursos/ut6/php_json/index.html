@@ -1,0 +1,1788 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Novedades y artículos sobre X">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/blog/lnd/recursos/ut6/php_json/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Usando PHP para acceder a JSON - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#usando-php-para-acceder-a-json" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Usando PHP para acceder a JSON
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../rde/" class="md-tabs__link">
+          
+  
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../pd4/" class="md-tabs__link">
+          
+  
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pni/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../imw/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../soj/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pd4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Qué es PHP?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utilización
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utilización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mostrando-php-la-instruccion-echo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mostrando PHP. La instrucción echo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#php-es-dinamico" class="md-nav__link">
+    <span class="md-ellipsis">
+      PHP es dinámico
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#las-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Las variables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Las variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-cotidiano" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo cotidiano
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables-en-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      variables en PHP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-completo-con-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo completo con HTML
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#las-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Las funciones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Las funciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametros-de-las-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parametros de las funciones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utilizacion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utilización
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos-de-funciones-de-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos de funciones de PHP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strlen" class="md-nav__link">
+    <span class="md-ellipsis">
+      strlen()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strtoupper" class="md-nav__link">
+    <span class="md-ellipsis">
+      strtoupper()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rand" class="md-nav__link">
+    <span class="md-ellipsis">
+      rand()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concatenando-texto-en-php-con" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concatenando texto en PHP con .
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Concatenando texto en PHP con .">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usando-php-para-mostrar-json-simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando PHP para mostrar json simple
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mostrando-elementos-de-tipo-booleano" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mostrando elementos de tipo booleano
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mostrando-json-con-arrays-los-bucles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mostrando json con arrays. Los bucles.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mostrando json con arrays. Los bucles.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bucles-en-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bucles en PHP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mostrando-contenido-de-elemento-de-tipo-array-en-json-con-bucles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mostrando contenido de elemento de tipo array en JSON con bucles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mostrando-array-de-elementos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mostrando array de elementos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modificando-valor-de-elementos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificando valor de elementos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modificando-la-clave-de-elementos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificando la clave de elementos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="usando-php-para-acceder-a-json">Usando PHP para acceder a JSON<a class="headerlink" href="#usando-php-para-acceder-a-json" title="Permanent link">&para;</a></h1>
+<h2 id="que-es-php">¿Qué es PHP?<a class="headerlink" href="#que-es-php" title="Permanent link">&para;</a></h2>
+<p>PHP es un lenguaje de programación del lado del servidor que se usa principalmente para crear páginas web dinámicas.
+A diferencia del HTML, que solo muestra contenido, PHP piensa y decide qué mostrar antes de enviar el HTML al navegador.</p>
+<h2 id="utilizacion">Utilización<a class="headerlink" href="#utilizacion" title="Permanent link">&para;</a></h2>
+<h3 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h3>
+<p>Podemos mezclar código PHP con HTML para ello hemos de tener en cuenta que hemos de cambiar la extensión del archivo de <code>.html</code> a <code>.php</code> , y su código va entre estas etiquetas:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  <span class="c1">// Código PHP aquí</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cp">?&gt;</span>
+</code></pre></div>
+<h3 id="mostrando-php-la-instruccion-echo">Mostrando PHP. La instrucción <code>echo</code><a class="headerlink" href="#mostrando-php-la-instruccion-echo" title="Permanent link">&para;</a></h3>
+<p>Para mostrar información generada en PHP dentro del HTML utilizamos la instrucción (una construcción del lenguaje PHP) <code>echo</code>.</p>
+<p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="x">&lt;h1&gt;Saludando con PHP&lt;/h1&gt;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  <span class="k">echo</span> <span class="s2">&quot;¡Hola mundo!&quot;</span><span class="p">;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="cp">?&gt;</span>
+</code></pre></div>
+el resultado sería:</p>
+<p><img alt="" src="../img/saludo.png" /></p>
+<p>Existe una forma más abreviada de usar <code>echo</code>. En PHP podemos sustituir <code>&lt;? php echo</code> por <code>&lt;?=</code>.</p>
+<p>El ejemplo anterior de forma abreviada sería.:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="x">&lt;h1&gt;Saludando con PHP&lt;/h1&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="cp">&lt;?</span><span class="o">=</span> <span class="s2">&quot;¡Hola mundo!&quot;</span> <span class="cp">?&gt;</span>
+</code></pre></div>
+<h3 id="php-es-dinamico">PHP es dinámico<a class="headerlink" href="#php-es-dinamico" title="Permanent link">&para;</a></h3>
+<p>El resultado del PHP se genera en el momento de invocar la página en el navegador. El interprete de PHP en el servidor ejecuta el código, lo inserta en el HTML en el punto en que es invocado y lo envía al cliente que lo visualiza en el navegador:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="x">&lt;h1&gt;Bienvenido&lt;/h1&gt;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="x">&lt;p&gt;La fecha y hora actual son </span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nb">date</span><span class="p">(</span><span class="s2">&quot;d/m/Y h:i:s&quot;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+</code></pre></div>
+<p>Este ejemplo muestra la fecha y hora actual automáticamente. El navegador recibe solo HTML, pero PHP genera ese HTML de forma dinámica antes de enviarlo al navegador. El resultado sería:</p>
+<p><img alt="" src="../img/fecha_hora.png" /></p>
+<h2 id="las-variables">Las variables<a class="headerlink" href="#las-variables" title="Permanent link">&para;</a></h2>
+<p>Imagina que estás trabajando con una hoja de papel. En ella puedes <strong>anotar cosas</strong> para usarlas más tarde: un <strong>nombre</strong>, un <strong>número</strong>, una <strong>ciudad</strong>…</p>
+<p>En programación, eso mismo se hace con algo llamado <strong>variable</strong>.</p>
+<p><strong>Una variable es un lugar donde guardamos información temporalmente para poder usarla más adelante.</strong></p>
+<h3 id="ejemplo-cotidiano">Ejemplo cotidiano<a class="headerlink" href="#ejemplo-cotidiano" title="Permanent link">&para;</a></h3>
+<p>Piensa en una etiqueta que pones sobre un frasco:</p>
+<ul>
+<li>En la etiqueta escribes: <strong>"nombre"</strong></li>
+<li>Dentro del frasco pones un papel en el que está escrito: <strong>"Carlos"</strong></li>
+</ul>
+<p>Más tarde, cuando necesites el nombre, <strong>vas al frasco que dice "nombre"</strong> y sacas lo que hay dentro: <code>"Carlos"</code>.</p>
+<h3 id="variables-en-php">variables en PHP<a class="headerlink" href="#variables-en-php" title="Permanent link">&para;</a></h3>
+<p>El ejemplo anterior, en PHP lo hacemos de la siguiente forma:
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="s2">&quot;Carlos&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">echo</span> <span class="s2">&quot;Hola, </span><span class="si">$nombre</span><span class="s2">&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="cp">?&gt;</span>
+</code></pre></div></p>
+<ul>
+<li><code>$nombre</code> es la <strong>variable</strong>. El nombre de la cajita.</li>
+<li><code>"Carlos"</code> es el valor que guardamos.</li>
+<li>Al usar <code>echo "Hola, $nombre"</code>, PHP mostrará: <code>Hola, Carlos</code>: el contenido de la variable es sustituido al generar el HTML que se manda al cliente.</li>
+</ul>
+<p>A tener en cuenta:</p>
+<ul>
+<li><code>$</code> - Todas las variables empiezan con <code>$</code> en PHP.</li>
+<li><code>=</code> - Se usa para <strong>guardar un valor</strong> en la variable. </li>
+</ul>
+<h3 id="ejemplo-completo-con-html">Ejemplo completo con HTML<a class="headerlink" href="#ejemplo-completo-con-html" title="Permanent link">&para;</a></h3>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="x">&lt;!DOCTYPE html&gt;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="x">&lt;html&gt;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="x">&lt;body&gt;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="s2">&quot;Ana&quot;</span><span class="p">;</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nv">$edad</span> <span class="o">=</span> <span class="mi">28</span><span class="p">;</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nv">$ciudad</span> <span class="o">=</span> <span class="s2">&quot;Sevilla&quot;</span><span class="p">;</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="k">echo</span> <span class="s2">&quot;&lt;h1&gt;Perfil&lt;/h1&gt;&quot;</span><span class="p">;</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Nombre: </span><span class="si">$nombre</span><span class="s2">&lt;/p&gt;&quot;</span><span class="p">;</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Edad: </span><span class="si">$edad</span><span class="s2"> años&lt;/p&gt;&quot;</span><span class="p">;</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Ciudad: </span><span class="si">$ciudad</span><span class="s2">&lt;/p&gt;&quot;</span><span class="p">;</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="cp">?&gt;</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="x">&lt;/body&gt;</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="x">&lt;/html&gt;</span>
+</code></pre></div>
+<p>PHP guarda la información y la usa para <strong>rellenar la página automáticamente</strong>.</p>
+<p><img alt="" src="../img/perfil.png" /></p>
+<h2 id="las-funciones">Las funciones<a class="headerlink" href="#las-funciones" title="Permanent link">&para;</a></h2>
+<p>Una <strong>función</strong> es como una <strong>herramienta ya hecha</strong> que puedes usar para que el lenguaje de programación haga algo por ti. En lugar de escribir todas las instrucciones paso a paso, usas una palabra clave, y PHP ya sabe qué hacer.</p>
+<h3 id="parametros-de-las-funciones">Parametros de las funciones<a class="headerlink" href="#parametros-de-las-funciones" title="Permanent link">&para;</a></h3>
+<p>Un <strong>parámetro</strong> es la <strong>información que le das a la función</strong> para que pueda hacer su trabajo.</p>
+<blockquote>
+<p>Piensa en una función como una máquina de café, y el parámetro como el tipo de café que le pides:<br />
+<strong>cafe("cortado")</strong>, <strong>cafe("solo")</strong>, <strong>cafe("con leche")</strong>.</p>
+</blockquote>
+<h3 id="utilizacion_1">Utilización<a class="headerlink" href="#utilizacion_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Escribes el <strong>nombre de la función</strong>.</li>
+<li>Le pasas <strong>entre paréntesis</strong> el valor o valores que quieres que use.</li>
+<li>PHP hace el trabajo y te devuelve el resultado.</li>
+</ol>
+<h3 id="ejemplos-de-funciones-de-php">Ejemplos de funciones de PHP<a class="headerlink" href="#ejemplos-de-funciones-de-php" title="Permanent link">&para;</a></h3>
+<h3 id="strlen"><code>strlen()</code><a class="headerlink" href="#strlen" title="Permanent link">&para;</a></h3>
+<p>Te dice cuántas letras (caracteres) tiene un texto.</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="x">echo strlen(&quot;Hola&quot;); // Resultado: 4</span>
+</code></pre></div>
+<ul>
+<li><code>"Hola"</code> es el parámetro que le pasas a <code>strlen()</code>  </li>
+<li>PHP cuenta los caracteres y te devuelve el número.</li>
+</ul>
+<h3 id="strtoupper"><code>strtoupper()</code><a class="headerlink" href="#strtoupper" title="Permanent link">&para;</a></h3>
+<p>Convierte un texto en mayúsculas.</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="x">echo strtoupper(&quot;bienvenido&quot;); // Resultado: BIENVENIDO</span>
+</code></pre></div>
+<ul>
+<li><code>"bienvenido"</code> es el parámetro.  </li>
+<li>La función lo convierte todo a mayúsculas.</li>
+</ul>
+<h3 id="rand"><code>rand()</code><a class="headerlink" href="#rand" title="Permanent link">&para;</a></h3>
+<p>Genera un número aleatorio.</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="x">echo rand(1, 10); // Resultado: un número entre 1 y 10</span>
+</code></pre></div>
+<h2 id="concatenando-texto-en-php-con">Concatenando texto en PHP con <code>.</code><a class="headerlink" href="#concatenando-texto-en-php-con" title="Permanent link">&para;</a></h2>
+<p>En PHP, el operador <code>.</code> se utiliza para unir (concatenar) cadenas de texto. Las cadenas pueden ser texto entre comillas, el contenido de una variable o el resultado de ejecutar una función. En general cualquier expresión en PHP que al evaluarse produzca una cadena de caractéres.</p>
+<h3 id="ejemplos">Ejemplos<a class="headerlink" href="#ejemplos" title="Permanent link">&para;</a></h3>
+<p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="x">$nombre = &quot;Juan&quot;;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="x">$saludo = &quot;Hola, &quot; . $nombre;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="x">echo $saludo;</span>
+</code></pre></div>
+- Salida: <code>Hola, Juan</code></p>
+<p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="x">$dia = &quot;lunes&quot;;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="x">$mensaje = &quot;Hoy es &quot; . $dia . &quot;, ¡que tengas un buen día!&quot;;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="x">echo $mensaje;</span>
+</code></pre></div>
+- Salida: Hoy es lunes, ¡que tengas un buen día!</p>
+<p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="x">$frase = &quot;Tu número aleatorio es: &quot; . rand(1, 100);</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="x">echo $frase;</span>
+</code></pre></div>
+- Posible salida: Tu número aleatorio es: 47</p>
+<h2 id="usando-php-para-mostrar-json-simple">Usando PHP para mostrar json simple<a class="headerlink" href="#usando-php-para-mostrar-json-simple" title="Permanent link">&para;</a></h2>
+<p>Para acceder a los elementos de un texto JSON los pasos que damos son:
+1. Almacenar en una variable el contenido del documento JSON.
+2. Utilizando la función de PHP <code>json_decode()</code> decodificamos como un objeto de PHP el documento JSON.
+3. Utilizando el operador <code>-&gt;</code> de PHP accedemos a los elementos del objeto decodificado para mostrarlos.</p>
+<p><strong>Ejemplo</strong>:</p>
+<p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nv">$json</span> <span class="o">=</span> <span class="s1">&#39;{</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="s1">  &quot;nombre&quot;: &quot;Lecturas del Atlántico&quot;,</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="s1">  &quot;ciudad&quot;: &quot;Las Palmas&quot;,</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="s1">  &quot;telefono&quot;: &quot;928123456&quot;,</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="s1">  &quot;email&quot;: &quot;info@lecturasatlantico.com&quot;,</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="s1">  &quot;fundada&quot;: 1998</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="s1">}&#39;</span><span class="p">;</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="c1">// Decodificar como objeto</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="nv">$tienda</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$json</span><span class="p">);</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="cp">?&gt;</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="x">&lt;!DOCTYPE html&gt;</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="x">&lt;html&gt;</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="x">&lt;head&gt;</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="x">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="x">  &lt;title&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="cp">?&gt;</span><span class="x">&lt;/title&gt;</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="x">&lt;/head&gt;</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="x">&lt;body&gt;</span>
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="x">  &lt;!-- Mostrar el objeto JSON formateado --&gt;</span>
+<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="x">  &lt;h2&gt;Contenido del JSON:&lt;/h2&gt;</span>
+<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a><span class="x">  &lt;pre&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$json</span> <span class="cp">?&gt;</span><span class="x">&lt;/pre&gt;</span>
+<a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>
+<a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a><span class="x">  &lt;h1&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="cp">?&gt;</span><span class="x">&lt;/h1&gt;</span>
+<a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a><span class="x">  &lt;p&gt;&lt;strong&gt;Ciudad:&lt;/strong&gt; </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">ciudad</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a><span class="x">  &lt;p&gt;&lt;strong&gt;Teléfono:&lt;/strong&gt; </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">telefono</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a><span class="x">  &lt;p&gt;&lt;strong&gt;Email:&lt;/strong&gt; </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">email</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a><span class="x">  &lt;p&gt;&lt;strong&gt;Año de fundación:&lt;/strong&gt; </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">fundada</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a><span class="x">&lt;/body&gt;</span>
+<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a><span class="x">&lt;/html&gt;</span>
+</code></pre></div>
+Resultado:</p>
+<p><img alt="" src="../img/libreria.png" /></p>
+<h2 id="mostrando-elementos-de-tipo-booleano">Mostrando elementos de tipo booleano<a class="headerlink" href="#mostrando-elementos-de-tipo-booleano" title="Permanent link">&para;</a></h2>
+<p>Para mostrar elementos de JSON cuyo tipo es booleano, esto es que su valor es <code>true</code> o <code>false</code> la forma más corta de hacerlo es usando el operador <code>? :</code> de PHP de la siguiente forma:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$variable_json</span><span class="o">-&gt;</span><span class="na">elemento</span> <span class="o">?</span> <span class="s2">&quot;Texto para true&quot;</span> <span class="o">:</span> <span class="s2">&quot;Texto para false&quot;</span> <span class="cp">?&gt;</span>
+</code></pre></div>
+<p>Por ejemplo si la variable <strong>json</strong> del apartado anterior la modificamos para que tenga el elemento <code>venta_online</code> de tipo booleano:</p>
+<p><div class="language-json highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="p">{</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="nt">&quot;nombre&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lecturas del Atlántico&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="nt">&quot;ciudad&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Las Palmas&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span><span class="nt">&quot;telefono&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;928123456&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;info@lecturasatlantico.com&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">  </span><span class="nt">&quot;fundada&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1998</span><span class="p">,</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">  </span><span class="nt">&quot;venta_online&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="p">}</span>
+</code></pre></div>
+Para mostrar este nuevo elemento lo podríamos hacer con el código:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="x">&lt;p&gt;&lt;strong&gt;Vende online:&lt;/strong&gt; </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">venta_online</span> <span class="o">?</span> <span class="s2">&quot;Sí&quot;</span> <span class="o">:</span> <span class="s2">&quot;No&quot;</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+</code></pre></div>
+<p>Resultado:</p>
+<p><img alt="" src="../img/libreria_vende_online.png" /></p>
+<h2 id="mostrando-json-con-arrays-los-bucles">Mostrando json con arrays. Los bucles.<a class="headerlink" href="#mostrando-json-con-arrays-los-bucles" title="Permanent link">&para;</a></h2>
+<h3 id="bucles-en-php">Bucles en PHP<a class="headerlink" href="#bucles-en-php" title="Permanent link">&para;</a></h3>
+<p>Un bucle es una instrucción que repite algo varias veces. Por ejemplo: imagina que tienes una lista de frutas y quieres decir el nombre de cada una. En vez de escribirlo uno por uno, puedes decir: "Para cada fruta en la lista, muéstrala".</p>
+<p>Eso es lo que hacen los bucles en programación. Para los arrays en PHP la estructura de control <code>foreach</code> hace justo lo que acabamos de explicar. Recorre cada elemento de una lista y guarda su valor en una varible que podemos, por ejemplo, mostrar.</p>
+<p>Su sintaxis básica es:</p>
+<p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="cp">&lt;?php</span><span class="o">&gt;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nv">$frutas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Manzana&quot;</span><span class="p">,</span> <span class="s2">&quot;Banana&quot;</span><span class="p">,</span> <span class="s2">&quot;Naranja&quot;</span><span class="p">];</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$frutas</span> <span class="k">as</span> <span class="nv">$fruta</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="k">echo</span> <span class="nv">$fruta</span> <span class="o">.</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="p">}</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="o">&lt;?</span>
+</code></pre></div>
+Donde:
+- <code>$frutas</code> es el array.
+- <code>$fruta</code> toma el valor de cada elemento en cada paso del bucle.</p>
+<p><strong>Paso a paso</strong>:</p>
+<ol>
+<li>PHP mira la lista <code>$frutas</code> y ve que hay 3 cosas dentro.</li>
+<li>Empieza el bucle:</li>
+<li>Toma la primera fruta: "Manzana"</li>
+<li>La mete en la variable <code>$fruta</code></li>
+<li>Luego hace lo que está dentro del bloque <code>{ ... }</code>: en este caso, <code>echo $fruta</code>, que significa "muéstrala".</li>
+<li>Repite el <strong>paso 2</strong> con la siguiente fruta: "Banana"</li>
+<li>Y luego con "Naranja"</li>
+<li>Cuando ya no quedan más frutas, el bucle termina.</li>
+</ol>
+<h3 id="mostrando-contenido-de-elemento-de-tipo-array-en-json-con-bucles">Mostrando contenido de elemento de tipo array en JSON con bucles<a class="headerlink" href="#mostrando-contenido-de-elemento-de-tipo-array-en-json-con-bucles" title="Permanent link">&para;</a></h3>
+<p>Vamos a verlo ahora con una variable de tipo JSON que contiene un array:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nv">$json</span> <span class="o">=</span> <span class="s1">&#39;{</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="s1">  &quot;nombre&quot;: &quot;Lecturas del Atlántico&quot;,</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="s1">  &quot;ciudad&quot;: &quot;Las Palmas&quot;,</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="s1">  &quot;telefono&quot;: &quot;928123456&quot;,</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="s1">  &quot;email&quot;: &quot;info@lecturasatlantico.com&quot;,</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="s1">  &quot;fundada&quot;: 1998,</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="s1">  &quot;categorias&quot;: [&quot;Ficción&quot;, &quot;Tecnología&quot;, &quot;Cómics&quot;, &quot;Infantil&quot;]</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="s1">}&#39;</span><span class="p">;</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="c1">// Decodificar a objeto</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="nv">$tienda</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$json</span><span class="p">);</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="c1">// Modificar el email</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">email</span> <span class="o">=</span> <span class="s2">&quot;contacto@nuevodominio.com&quot;</span><span class="p">;</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="cp">?&gt;</span>
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="x">&lt;!DOCTYPE html&gt;</span>
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="x">&lt;html&gt;</span>
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="x">&lt;head&gt;</span>
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="x">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a><span class="x">  &lt;title&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="cp">?&gt;</span><span class="x">&lt;/title&gt;</span>
+<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a><span class="x">&lt;/head&gt;</span>
+<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a><span class="x">&lt;body&gt;</span>
+<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>
+<a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a><span class="x">  &lt;h1&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="cp">?&gt;</span><span class="x">&lt;/h1&gt;</span>
+<a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a><span class="x">  &lt;p&gt;&lt;strong&gt;Ciudad:&lt;/strong&gt; </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">ciudad</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a><span class="x">  &lt;p&gt;&lt;strong&gt;Teléfono:&lt;/strong&gt; </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">telefono</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a><span class="x">  &lt;p&gt;&lt;strong&gt;Email:&lt;/strong&gt; </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">email</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a><span class="x">  &lt;p&gt;&lt;strong&gt;Fundada en:&lt;/strong&gt; </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">fundada</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a>
+<a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a><span class="x">  &lt;h3&gt;Categorías:&lt;/h3&gt;</span>
+<a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a><span class="x">  &lt;ul&gt;</span>
+<a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a><span class="x">    </span><span class="cp">&lt;?php</span> 
+<a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a>    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">categorias</span> <span class="k">as</span> <span class="nv">$categoria</span><span class="p">){</span>
+<a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>      <span class="k">echo</span> <span class="s2">&quot;&lt;li&gt;</span><span class="si">$categoria</span><span class="s2">&lt;/li&gt;&quot;</span><span class="p">;</span>
+<a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a>    <span class="p">}</span><span class="cp">?&gt;</span>
+<a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a><span class="x">  &lt;/ul&gt;</span>
+<a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a>
+<a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a><span class="x">&lt;/body&gt;</span>
+<a id="__codelineno-17-41" name="__codelineno-17-41" href="#__codelineno-17-41"></a><span class="x">&lt;/html&gt;</span>
+</code></pre></div>
+<p>El resultado sería:</p>
+<p><img alt="" src="../img/libreria_categorias.png" /></p>
+<p>Si la parte en la que se muestra el array la queremos hacer usando la notación abreviada de PHP en la que no se usa <code>echo</code> deberíamos modificar dichas líneas para que queden:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="x">&lt;ul&gt;</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="x">    </span><span class="cp">&lt;?php</span> 
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">categorias</span> <span class="k">as</span> <span class="nv">$categoria</span><span class="p">){</span> <span class="cp">?&gt;</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="x">      &lt;li&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$categoria</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="x">    </span><span class="cp">&lt;?php</span> <span class="p">}</span> <span class="cp">?&gt;</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="x">  &lt;/ul&gt;</span>
+</code></pre></div>
+<h3 id="mostrando-array-de-elementos">Mostrando array de elementos<a class="headerlink" href="#mostrando-array-de-elementos" title="Permanent link">&para;</a></h3>
+<p>Si los elementos del array json no son elementos simples, sino que estos a su vez contienen subelementos, simplemente, en cada paso del bucle, accedemos a sus subelementos.</p>
+<p>Ejemplo:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="c1">// JSON como string</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nv">$json</span> <span class="o">=</span> <span class="s1">&#39;{</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="s1">  &quot;nombre&quot;: &quot;Lecturas del Atlántico&quot;,</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="s1">  &quot;ciudad&quot;: &quot;Las Palmas&quot;,</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="s1">  &quot;telefono&quot;: &quot;928123456&quot;,</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="s1">  &quot;email&quot;: &quot;info@lecturasatlantico.com&quot;,</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="s1">  &quot;fundada&quot;: 1998,</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="s1">  &quot;categorias&quot;: [</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="s1">    {</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="s1">      &quot;nombre&quot;: &quot;Ficción&quot;,</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="s1">      &quot;codigo&quot;: &quot;FIC&quot;,</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="s1">      &quot;activo&quot;: true</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="s1">    },</span>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="s1">    {</span>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="s1">      &quot;nombre&quot;: &quot;Tecnología&quot;,</span>
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="s1">      &quot;codigo&quot;: &quot;TEC&quot;,</span>
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="s1">      &quot;activo&quot;: true</span>
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="s1">    },</span>
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="s1">    {</span>
+<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="s1">      &quot;nombre&quot;: &quot;Cómics&quot;,</span>
+<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="s1">      &quot;codigo&quot;: &quot;COM&quot;,</span>
+<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="s1">      &quot;activo&quot;: false</span>
+<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="s1">    }</span>
+<a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a><span class="s1">  ]</span>
+<a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="s1">}&#39;</span><span class="p">;</span>
+<a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>
+<a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a><span class="c1">// Decodificar el JSON como objeto</span>
+<a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a><span class="nv">$tienda</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$json</span><span class="p">);</span>
+<a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a><span class="cp">?&gt;</span>
+<a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>
+<a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a><span class="x">&lt;!DOCTYPE html&gt;</span>
+<a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a><span class="x">&lt;html lang=&quot;es&quot;&gt;</span>
+<a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a><span class="x">&lt;head&gt;</span>
+<a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a><span class="x">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a><span class="x">  &lt;title&gt;Información de la Librería&lt;/title&gt;</span>
+<a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a><span class="x">&lt;/head&gt;</span>
+<a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a><span class="x">&lt;body&gt;</span>
+<a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a>
+<a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a><span class="x">&lt;h2&gt;Información General&lt;/h2&gt;</span>
+<a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a><span class="x">&lt;table border=&quot;1&quot;&gt;</span>
+<a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a><span class="x">  &lt;tr&gt;&lt;th&gt;Campo&lt;/th&gt;&lt;th&gt;Valor&lt;/th&gt;&lt;/tr&gt;</span>
+<a id="__codelineno-19-43" name="__codelineno-19-43" href="#__codelineno-19-43"></a><span class="x">  &lt;tr&gt;&lt;td&gt;Nombre&lt;/td&gt;&lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;&lt;/tr&gt;</span>
+<a id="__codelineno-19-44" name="__codelineno-19-44" href="#__codelineno-19-44"></a><span class="x">  &lt;tr&gt;&lt;td&gt;Ciudad&lt;/td&gt;&lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">ciudad</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;&lt;/tr&gt;</span>
+<a id="__codelineno-19-45" name="__codelineno-19-45" href="#__codelineno-19-45"></a><span class="x">  &lt;tr&gt;&lt;td&gt;Teléfono&lt;/td&gt;&lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">telefono</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;&lt;/tr&gt;</span>
+<a id="__codelineno-19-46" name="__codelineno-19-46" href="#__codelineno-19-46"></a><span class="x">  &lt;tr&gt;&lt;td&gt;Email&lt;/td&gt;&lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">email</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;&lt;/tr&gt;</span>
+<a id="__codelineno-19-47" name="__codelineno-19-47" href="#__codelineno-19-47"></a><span class="x">  &lt;tr&gt;&lt;td&gt;Fundada&lt;/td&gt;&lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">fundada</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;&lt;/tr&gt;</span>
+<a id="__codelineno-19-48" name="__codelineno-19-48" href="#__codelineno-19-48"></a><span class="x">&lt;/table&gt;</span>
+<a id="__codelineno-19-49" name="__codelineno-19-49" href="#__codelineno-19-49"></a>
+<a id="__codelineno-19-50" name="__codelineno-19-50" href="#__codelineno-19-50"></a><span class="x">&lt;h2&gt;Categorías&lt;/h2&gt;</span>
+<a id="__codelineno-19-51" name="__codelineno-19-51" href="#__codelineno-19-51"></a><span class="x">&lt;table border=&quot;1&quot;&gt;</span>
+<a id="__codelineno-19-52" name="__codelineno-19-52" href="#__codelineno-19-52"></a><span class="x">  &lt;tr&gt;</span>
+<a id="__codelineno-19-53" name="__codelineno-19-53" href="#__codelineno-19-53"></a><span class="x">    &lt;th&gt;Nombre&lt;/th&gt;</span>
+<a id="__codelineno-19-54" name="__codelineno-19-54" href="#__codelineno-19-54"></a><span class="x">    &lt;th&gt;Código&lt;/th&gt;</span>
+<a id="__codelineno-19-55" name="__codelineno-19-55" href="#__codelineno-19-55"></a><span class="x">    &lt;th&gt;¿Activa?&lt;/th&gt;</span>
+<a id="__codelineno-19-56" name="__codelineno-19-56" href="#__codelineno-19-56"></a><span class="x">  &lt;/tr&gt;</span>
+<a id="__codelineno-19-57" name="__codelineno-19-57" href="#__codelineno-19-57"></a><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">categorias</span> <span class="k">as</span> <span class="nv">$categoria</span><span class="p">){</span> <span class="cp">?&gt;</span>
+<a id="__codelineno-19-58" name="__codelineno-19-58" href="#__codelineno-19-58"></a><span class="x">    &lt;tr&gt;</span>
+<a id="__codelineno-19-59" name="__codelineno-19-59" href="#__codelineno-19-59"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$categoria</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+<a id="__codelineno-19-60" name="__codelineno-19-60" href="#__codelineno-19-60"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$categoria</span><span class="o">-&gt;</span><span class="na">codigo</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+<a id="__codelineno-19-61" name="__codelineno-19-61" href="#__codelineno-19-61"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$categoria</span><span class="o">-&gt;</span><span class="na">activo</span> <span class="o">?</span> <span class="s1">&#39;Sí&#39;</span> <span class="o">:</span> <span class="s1">&#39;No&#39;</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+<a id="__codelineno-19-62" name="__codelineno-19-62" href="#__codelineno-19-62"></a><span class="x">    &lt;/tr&gt;</span>
+<a id="__codelineno-19-63" name="__codelineno-19-63" href="#__codelineno-19-63"></a><span class="x">  </span><span class="cp">&lt;?php</span> <span class="p">}</span> <span class="cp">?&gt;</span>
+<a id="__codelineno-19-64" name="__codelineno-19-64" href="#__codelineno-19-64"></a><span class="x">&lt;/table&gt;</span>
+<a id="__codelineno-19-65" name="__codelineno-19-65" href="#__codelineno-19-65"></a>
+<a id="__codelineno-19-66" name="__codelineno-19-66" href="#__codelineno-19-66"></a><span class="x">&lt;/body&gt;</span>
+<a id="__codelineno-19-67" name="__codelineno-19-67" href="#__codelineno-19-67"></a><span class="x">&lt;/html&gt;</span>
+</code></pre></div>
+<p>Resultado:</p>
+<p><img alt="" src="../img/libreria_sub-categorias.png" /></p>
+<p>Fíjate que cada categoría tiene 3 sub-elementos y que accedemos a los mismo por el valor de su clave:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="x">$categoria-&gt;nombre</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="x">$categoria-&gt;codigo</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="x">$categoria-&gt;activo</span>
+</code></pre></div>
+<h2 id="modificando-valor-de-elementos">Modificando valor de elementos<a class="headerlink" href="#modificando-valor-de-elementos" title="Permanent link">&para;</a></h2>
+<p>Para modificar un documento JSON tenemos que seguir los siguientes pasos:
+1. Decodificar el texto JSON como objeto de PHP con <code>json_decode()</code>.
+2. Hacer las modificaciones, asignando nuevos valores a las variables del objeto que almacena el JSON decodificado.
+3. Volver a codificar el objeto como texto JSON con <code>json_encode()</code></p>
+<p><strong>Ejemplo:</strong></p>
+<p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nv">$json</span> <span class="o">=</span> <span class="s1">&#39;{</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="s1">  &quot;nombre&quot;: &quot;Lecturas del Atlántico&quot;,</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="s1">  &quot;ciudad&quot;: &quot;Las Palmas&quot;,</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="s1">  &quot;telefono&quot;: &quot;928123456&quot;,</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="s1">  &quot;email&quot;: &quot;info@lecturasatlantico.com&quot;,</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="s1">  &quot;fundada&quot;: 1998,</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="s1">  &quot;categorias&quot;: [&quot;Ficción&quot;, &quot;Tecnología&quot;, &quot;Cómics&quot;, &quot;Infantil&quot;]</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="s1">}&#39;</span><span class="p">;</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="c1">// Decodificar a objeto</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="nv">$tienda</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$json</span><span class="p">);</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="cp">?&gt;</span>
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="x">&lt;h2&gt;Contenido del JSON original:&lt;/h2&gt;</span>
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="x">&lt;pre&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$json</span> <span class="cp">?&gt;</span><span class="x">&lt;/pre&gt;</span>
+<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>
+<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="c1">// Hacemos modificaciones</span>
+<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">email</span> <span class="o">=</span> <span class="s2">&quot;contacto@nuevodominio.com&quot;</span><span class="p">;</span> <span class="c1">// Modificar el email</span>
+<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">categorias</span><span class="p">[]</span> <span class="o">=</span> <span class="s2">&quot;Juvenil&quot;</span><span class="p">;</span> <span class="c1">// Añadir un elemento al final</span>
+<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a><span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">categorias</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Arte&quot;</span><span class="p">;</span>   <span class="c1">// Modificando el segundo elemento del array</span>
+<a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>
+<a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a><span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$tienda</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span> <span class="o">|</span> <span class="nx">JSON_UNESCAPED_UNICODE</span><span class="p">);</span>
+<a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>
+<a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a><span class="cp">?&gt;</span>
+<a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a><span class="x">&lt;h2&gt;Contenido del JSON modificado:&lt;/h2&gt;</span>
+<a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a><span class="x">&lt;pre&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$json</span> <span class="cp">?&gt;</span><span class="x">&lt;/pre&gt;</span>
+</code></pre></div>
+El resultado sería:</p>
+<p><img alt="" src="../img/libreria_modificada.png" /></p>
+<p><strong>Nota 1:</strong> para acceder a los elementos se pone entre corchetes <code>[]</code> el número con la posición que ocupa en el array el elemento que quedemos modificar, teniendo en cuenta que el primer elemento ocupa la posición <strong>0</strong>, el segundo la posición <strong>1</strong> y así sucesivamente.</p>
+<p><strong>Nota 2:</strong> a la hora de codificar el el objeto <code>$tienda</code> se le han añadido a la función <code>json_encode()</code> los parámetros <code>JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE</code> esto se hace simplemente para que a la hora de mostrarse el texto JSON lo ponga en varias líneas y tabulado. Si no añadieramos los parámetros el texto seguiría siendo correcto, pero estaría todos el JSON en una sola línea.</p>
+<h2 id="modificando-la-clave-de-elementos">Modificando la clave de elementos<a class="headerlink" href="#modificando-la-clave-de-elementos" title="Permanent link">&para;</a></h2>
+<p>Si lo que queremos es modificar la clave de un determinado elemento, los pasos que tenemos que dar son:</p>
+<ol>
+<li>Decodificar el texto JSON como objeto de PHP con <code>json_decode()</code>.</li>
+<li>Guardar en la nueva clave el valor del elemento que tenía anteriormente la clave a modificar.</li>
+<li>Eliminar con la función <code>unset()</code> el elemeto al que le cambiamos la clave.</li>
+<li>Volver a codificar el objeto como texto JSON con <code>json_encode()</code></li>
+</ol>
+<p><strong>Ejemplo:</strong></p>
+<p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="nv">$json</span> <span class="o">=</span> <span class="s1">&#39;{</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="s1">  &quot;nombre&quot;: &quot;Lecturas del Atlántico&quot;,</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="s1">  &quot;ciudad&quot;: &quot;Las Palmas&quot;,</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="s1">  &quot;telefono&quot;: &quot;928123456&quot;,</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="s1">  &quot;email&quot;: &quot;info@lecturasatlantico.com&quot;,</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="s1">  &quot;fundada&quot;: 1998,</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="s1">  &quot;categorias&quot;: [&quot;Ficción&quot;, &quot;Tecnología&quot;, &quot;Cómics&quot;, &quot;Infantil&quot;]</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="s1">}&#39;</span><span class="p">;</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="c1">// Decodificar a objeto</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="nv">$tienda</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$json</span><span class="p">);</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="cp">?&gt;</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="x">&lt;h2&gt;Contenido del JSON original:&lt;/h2&gt;</span>
+<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="x">&lt;pre&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$json</span> <span class="cp">?&gt;</span><span class="x">&lt;/pre&gt;</span>
+<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>
+<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="c1">// Hacemos modificaciones</span>
+<a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">correo</span> <span class="o">=</span> <span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span>  <span class="c1">// Guardamos en nuevo elemento el valor del anterior</span>
+<a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="nb">unset</span><span class="p">(</span><span class="nv">$tienda</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">);</span>   <span class="c1">// Eliminamos el elemento email</span>
+<a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a>
+<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a><span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$tienda</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span> <span class="o">|</span> <span class="nx">JSON_UNESCAPED_UNICODE</span><span class="p">);</span>
+<a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a>
+<a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a><span class="cp">?&gt;</span>
+<a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a><span class="x">&lt;h2&gt;Contenido del JSON modificado:&lt;/h2&gt;</span>
+<a id="__codelineno-22-27" name="__codelineno-22-27" href="#__codelineno-22-27"></a><span class="x">&lt;pre&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$json</span> <span class="cp">?&gt;</span><span class="x">&lt;/pre&gt;</span>
+</code></pre></div>
+El resultado sería:</p>
+<p><img alt="" src="../img/libreria_clave_modificada.png" /></p>
+<p><strong>Nota:</strong> Fíjate que el elemento con clave <code>email</code> a desaparecido y que se ha añadido al final del docuemnto JSON un elemento nuevo con clave <code>correo</code> que contiene el valor anterior de <code>email</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://ichigar.codeberg.page" target="_blank" rel="noopener" title="ichigar.codeberg.page" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

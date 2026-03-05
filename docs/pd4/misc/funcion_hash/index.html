@@ -10,29 +10,27 @@
       
       
       
-        <link rel="canonical" href="https://ichigar.codeberg.page/blog/">
+        <link rel="canonical" href="https://ichigar.codeberg.page/blog/pd4/misc/funcion_hash/">
       
       
       
-        <link rel="next" href="blog/">
       
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../feed_rss_updated.xml">
       
-        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="feed_rss_created.xml">
-        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="feed_rss_updated.xml">
-      
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
     
     
       
-        <title>Web personal de ichigar</title>
+        <title>Funciones hash y gestión segura de contraseñas - Web personal de ichigar</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.e53b48f4.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e53b48f4.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -51,7 +49,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -77,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#documentacion-y-recursos" class="md-skip">
+        <a href="#funciones-hash-y-gestion-segura-de-contrasenas" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -91,7 +89,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabecera">
-    <a href="." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+    <a href="../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -111,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Funciones hash y gestión segura de contraseñas
             
           </span>
         </div>
@@ -210,11 +208,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -235,7 +231,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="blog/" class="md-tabs__link">
+        <a href="../../../blog/" class="md-tabs__link">
           
   
   
@@ -255,7 +251,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="rde/" class="md-tabs__link">
+        <a href="../../../rde/" class="md-tabs__link">
           
   
   
@@ -275,7 +271,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="lnd/" class="md-tabs__link">
+        <a href="../../../lnd/" class="md-tabs__link">
           
   
   
@@ -295,7 +291,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="pd4/" class="md-tabs__link">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -313,7 +309,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="misc/" class="md-tabs__link">
+      <a href="../../../misc/" class="md-tabs__link">
         
   
   
@@ -332,7 +328,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="feed_rss_created.xml" class="md-tabs__link">
+      <a href="../../../feed_rss_created.xml" class="md-tabs__link">
         
   
   
@@ -367,7 +363,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+    <a href="../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -382,32 +378,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Home
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -418,86 +392,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#acceso-a-apuntes-y-recursos-de-clase" class="md-nav__link">
-    <span class="md-ellipsis">
-      Acceso a apuntes y recúrsos de clase
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Acceso a apuntes y recúrsos de clase">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1o-smr" class="md-nav__link">
-    <span class="md-ellipsis">
-      1º SMR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2o-smr" class="md-nav__link">
-    <span class="md-ellipsis">
-      2º SMR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1a-asir" class="md-nav__link">
-    <span class="md-ellipsis">
-      1ª ASIR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ce-desarrollo-de-aplicaciones-en-lenguaje-python" class="md-nav__link">
-    <span class="md-ellipsis">
-      CE Desarrollo de aplicaciones en lenguaje Python
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#misc-tutoriales-y-recursos-varios" class="md-nav__link">
-    <span class="md-ellipsis">
-      MISC - Tutoriales y recursos vários
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -554,7 +448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/" class="md-nav__link">
+      <a href="../../../blog/" class="md-nav__link">
         
   
   
@@ -622,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/archive/2025/" class="md-nav__link">
+      <a href="../../../blog/archive/2025/" class="md-nav__link">
         
   
   
@@ -698,7 +592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/category/novedades/" class="md-nav__link">
+      <a href="../../../blog/category/novedades/" class="md-nav__link">
         
   
   
@@ -779,7 +673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="rde/" class="md-nav__link">
+      <a href="../../../rde/" class="md-nav__link">
         
   
   
@@ -802,7 +696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="src/" class="md-nav__link">
+      <a href="../../../src/" class="md-nav__link">
         
   
   
@@ -875,7 +769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lnd/" class="md-nav__link">
+      <a href="../../../lnd/" class="md-nav__link">
         
   
   
@@ -898,7 +792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pni/" class="md-nav__link">
+      <a href="../../../pni/" class="md-nav__link">
         
   
   
@@ -921,7 +815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="imw/README.md" class="md-nav__link">
+      <a href="../../../imw/README.md" class="md-nav__link">
         
   
   
@@ -944,7 +838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="soj/README.md" class="md-nav__link">
+      <a href="../../../soj/README.md" class="md-nav__link">
         
   
   
@@ -1017,7 +911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pd4/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -1047,7 +941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="misc/" class="md-nav__link">
+      <a href="../../../misc/" class="md-nav__link">
         
   
   
@@ -1069,7 +963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="feed_rss_created.xml" class="md-nav__link">
+      <a href="../../../feed_rss_created.xml" class="md-nav__link">
         
   
   
@@ -1111,60 +1005,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#acceso-a-apuntes-y-recursos-de-clase" class="md-nav__link">
+  <a href="#funcion-hash" class="md-nav__link">
     <span class="md-ellipsis">
-      Acceso a apuntes y recúrsos de clase
+      Función hash
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Acceso a apuntes y recúrsos de clase">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1o-smr" class="md-nav__link">
-    <span class="md-ellipsis">
-      1º SMR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2o-smr" class="md-nav__link">
-    <span class="md-ellipsis">
-      2º SMR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1a-asir" class="md-nav__link">
-    <span class="md-ellipsis">
-      1ª ASIR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ce-desarrollo-de-aplicaciones-en-lenguaje-python" class="md-nav__link">
-    <span class="md-ellipsis">
-      CE Desarrollo de aplicaciones en lenguaje Python
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#misc-tutoriales-y-recursos-varios" class="md-nav__link">
+  <a href="#propiedades-importantes-de-una-funcion-hash" class="md-nav__link">
     <span class="md-ellipsis">
-      MISC - Tutoriales y recursos vários
+      Propiedades importantes de una función hash
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gestion-de-contrasenas-en-aplicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gestión de contraseñas en aplicaciones
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilizacion-de-hashlib-para-gestionar-contrasenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utilización de hashlib para gestionar contraseñas
     </span>
   </a>
   
@@ -1186,29 +1056,65 @@
 
 
 
-<h1 id="documentacion-y-recursos">Documentación y recursos<a class="headerlink" href="#documentacion-y-recursos" title="Permanent link">&para;</a></h1>
-<h2 id="acceso-a-apuntes-y-recursos-de-clase">Acceso a apuntes y recúrsos de clase<a class="headerlink" href="#acceso-a-apuntes-y-recursos-de-clase" title="Permanent link">&para;</a></h2>
-<h3 id="1o-smr">1º SMR<a class="headerlink" href="#1o-smr" title="Permanent link">&para;</a></h3>
+<h1 id="funciones-hash-y-gestion-segura-de-contrasenas">Funciones hash y gestión segura de contraseñas<a class="headerlink" href="#funciones-hash-y-gestion-segura-de-contrasenas" title="Permanent link">&para;</a></h1>
+<h2 id="funcion-hash">Función hash<a class="headerlink" href="#funcion-hash" title="Permanent link">&para;</a></h2>
+<p>Una <strong>función hash</strong> es una función que transforma un dato de entrada (por ejemplo, una contraseña) en una <strong>cadena de longitud fija</strong>, llamada <em>hash</em>. Este proceso es <strong>unidireccional</strong>, lo que significa que no es posible recuperar el dato original a partir del hash.</p>
+<p>Ejemplo conceptual:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&quot;hola123&quot;  →  función hash  →  a94a8fe5ccb19ba61c4c0873d391e987
+</code></pre></div>
+<p>Aunque el texto de entrada cambie solo un carácter, el hash resultante será completamente distinto.</p>
+<h2 id="propiedades-importantes-de-una-funcion-hash">Propiedades importantes de una función hash<a class="headerlink" href="#propiedades-importantes-de-una-funcion-hash" title="Permanent link">&para;</a></h2>
+<p>Una función hash segura cumple las siguientes propiedades:</p>
 <ul>
-<li><a href="rde/">RDE - Redes de área local</a></li>
+<li><strong>Determinista</strong>: la misma entrada produce siempre el mismo hash.</li>
+<li><strong>Unidireccional</strong>: no se puede obtener el valor original a partir del hash.</li>
+<li><strong>Efecto avalancha</strong>: pequeños cambios en la entrada generan hashes totalmente diferentes.</li>
+<li><strong>Longitud fija</strong>: el tamaño del hash es siempre el mismo, independientemente de la entrada.</li>
 </ul>
-<h3 id="2o-smr">2º SMR<a class="headerlink" href="#2o-smr" title="Permanent link">&para;</a></h3>
+<h2 id="gestion-de-contrasenas-en-aplicaciones">Gestión de contraseñas en aplicaciones<a class="headerlink" href="#gestion-de-contrasenas-en-aplicaciones" title="Permanent link">&para;</a></h2>
+<p>Guardar contraseñas en texto plano (en memoria, archivos o bases de datos) es extremadamente inseguro. Si esos datos son accedidos por terceros, todas las contraseñas quedarían expuestas inmediatamente.</p>
+<p>Incluso guardarlas cifradas no es suficiente, ya que el <strong>cifrado es reversible</strong> si se obtiene la clave. En cambio, el <strong>hash no puede revertirse</strong>.</p>
+<p>La forma correcta de gestionar contraseñas es:</p>
+<ol>
+<li>No almacenar nunca la contraseña original.</li>
+<li>Calcular el hash de la contraseña.</li>
+<li>Guardar únicamente el hash.</li>
+<li>Para validar una contraseña introducida, se calcula su hash y se compara con el almacenado. Si coinciden, la contraseña es correcta.</li>
+</ol>
+<h2 id="utilizacion-de-hashlib-para-gestionar-contrasenas">Utilización de hashlib para gestionar contraseñas<a class="headerlink" href="#utilizacion-de-hashlib-para-gestionar-contrasenas" title="Permanent link">&para;</a></h2>
+<p>El módulo estándar <code>hashlib</code>, que viene incluido en Python permite trabajar con hashes. Veamos un programa sencillo para crear una contraseña y verificarla.</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Función que calcula el hash de una contraseña</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">generar_hash</span><span class="p">(</span><span class="n">contrasena</span><span class="p">):</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">contrasena</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Función para registrar un usuario (guardar solo el hash)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">registrar_usuario</span><span class="p">(</span><span class="n">contrasena</span><span class="p">):</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">hash_contrasena</span> <span class="o">=</span> <span class="n">generar_hash</span><span class="p">(</span><span class="n">contrasena</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">return</span> <span class="n">hash_contrasena</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># Función para verificar una contraseña introducida</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">def</span><span class="w"> </span><span class="nf">verificar_contrasena</span><span class="p">(</span><span class="n">contrasena_introducida</span><span class="p">,</span> <span class="n">hash_guardado</span><span class="p">):</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="k">return</span> <span class="n">generar_hash</span><span class="p">(</span><span class="n">contrasena_introducida</span><span class="p">)</span> <span class="o">==</span> <span class="n">hash_guardado</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="c1"># Registro del usuario</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">hash_guardado</span> <span class="o">=</span> <span class="n">registrar_usuario</span><span class="p">(</span><span class="s2">&quot;hola123&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="nb">print</span><span class="p">(</span><span class="n">hash_guardado</span><span class="p">)</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="c1"># Inicio de sesión</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="nb">print</span><span class="p">(</span><span class="n">verificar_contrasena</span><span class="p">(</span><span class="s2">&quot;hola123&quot;</span><span class="p">,</span> <span class="n">hash_guardado</span><span class="p">))</span>  <span class="c1"># True</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="nb">print</span><span class="p">(</span><span class="n">verificar_contrasena</span><span class="p">(</span><span class="s2">&quot;adios123&quot;</span><span class="p">,</span> <span class="n">hash_guardado</span><span class="p">))</span> <span class="c1"># False</span>
+</code></pre></div>
+<p>Con el programa anterior conseguimos:</p>
 <ul>
-<li><a href="src/">SRC - Servicios en red</a></li>
+<li><strong>Nunca se guarda la contraseña original</strong> (<code>"hola123"</code>).</li>
+<li>Solo se guarda su <strong>hash</strong> (<code>hash_guardado</code>).</li>
+<li>Para comprobar la contraseña, se calcula el hash de la entrada y se compara.</li>
+<li>En ningún momento se puede recuperar la contraseña original a partir del hash.</li>
 </ul>
-<h3 id="1a-asir">1ª ASIR<a class="headerlink" href="#1a-asir" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="lnd/">LND - Lenguaje de marcas y SGI</a></li>
-<li><a href="pni/">PNI - Lenguaje de marcas y SGI</a></li>
-</ul>
-<h3 id="ce-desarrollo-de-aplicaciones-en-lenguaje-python">CE Desarrollo de aplicaciones en lenguaje Python<a class="headerlink" href="#ce-desarrollo-de-aplicaciones-en-lenguaje-python" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="pd4/">PD4 - Programación Orientada a Objetos</a></li>
-</ul>
-<h2 id="misc-tutoriales-y-recursos-varios">MISC - Tutoriales y recursos vários<a class="headerlink" href="#misc-tutoriales-y-recursos-varios" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="misc/">MISC</a></li>
-</ul>
+<p>Este esquema es la base de cómo funcionan los sistemas reales de autenticación.</p>
 
 
 
@@ -1273,10 +1179,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>

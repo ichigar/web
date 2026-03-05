@@ -1,0 +1,1566 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Novedades y artículos sobre X">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/blog/pni/ut2/recursos/protocolo_stp/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>EL PROTOCOLO STP - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#el-protocolo-stp" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              EL PROTOCOLO STP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../rde/" class="md-tabs__link">
+          
+  
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../lnd/" class="md-tabs__link">
+          
+  
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../pd4/" class="md-tabs__link">
+          
+  
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../imw/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../soj/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pd4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introducción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-funcionamiento-de-stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Funcionamiento de STP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Funcionamiento de STP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-resultado-de-la-ejecucion-de-stp-convergencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Resultado de la ejecución de STP. Convergencia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-prioridad-de-cada-switch-y-eleccion-del-root-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Prioridad de cada switch y elección del Root Bridge
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Prioridad de cada switch y elección del Root Bridge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regla-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regla 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regla-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regla 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prioridad-por-defecto-y-prioridad-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prioridad por defecto y prioridad real.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-ejemplo-practico" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Ejemplo práctico
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-estados-de-los-puertos-en-stp" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Estados de los puertos en STP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-comportamiento-ante-fallos" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Comportamiento ante fallos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Comportamiento ante fallos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-situacion-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Situación inicial
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-falla-de-un-enlace" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Falla de un enlace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-recuperacion-automatica" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Recuperación automática
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-resumen-del-comportamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Resumen del comportamiento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-comandos-stp-en-cisco-packet-tracer" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Comandos STP en Cisco Packet Tracer
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="el-protocolo-stp">EL PROTOCOLO STP<a class="headerlink" href="#el-protocolo-stp" title="Permanent link">&para;</a></h1>
+<h2 id="1-introduccion">1. Introducción<a class="headerlink" href="#1-introduccion" title="Permanent link">&para;</a></h2>
+<p>El <strong>Spanning Tree Protocol (STP)</strong> es un protocolo de nivel 2 definido por IEEE 802.1D.</p>
+<p>Su función es permitir que una red Ethernet conmutada (con switches) que tiene enlaces redundantes, detecte la topología y bloquee dinámicamente ciertos puertos. Con esto consigue <strong>evitar bucles</strong></p>
+<p>En una red con enlaces redundantes hay múltiples caminos posibles y puden formarse bucles por los que las tramas Ethernet podrían circular infinitamente, causando congestión y dejando la red inoperativa.</p>
+<p><img alt="imagen bucle de red" src="../img/stp_intro.png" /></p>
+<p>STP analiza la topología de la red, identifica dichas rutas redundantes y <strong>bloquea temporalmente aquellos puertos que podrían generar un bucle</strong>, asegurando que exista siempre un único camino activo entre cada par de switches. </p>
+<p>Si un enlace principal falla, STP puede <strong>reactivar</strong> automáticamente un puerto bloqueado, garantizando que la red siga funcionando sin interrupciones.</p>
+<h2 id="2-funcionamiento-de-stp">2. Funcionamiento de STP<a class="headerlink" href="#2-funcionamiento-de-stp" title="Permanent link">&para;</a></h2>
+<p>Cómo acabamos de explicar, STP funciona analizando la topología de la red y decidiendo qué puertos deben estar activos y cuáles deben quedar bloqueados para evitar bucles.</p>
+<p>Para ello, Los switches que tienen STP activado intercambian mensajes BPDU (Bridge Protocol Data Units).</p>
+<p>Las <strong>BPDU</strong> son tramas especiales de <strong>capa 2</strong> que utilizan los switches para comunicarse entre sí y mantener funcionando el Spanning Tree Protocol (STP).</p>
+<h3 id="21-resultado-de-la-ejecucion-de-stp-convergencia">2.1 Resultado de la ejecución de STP. Convergencia<a class="headerlink" href="#21-resultado-de-la-ejecucion-de-stp-convergencia" title="Permanent link">&para;</a></h3>
+<p>La <strong>convergencia STP</strong> es el proceso mediante el cual los switches intercambian BPDUs (no vamos a entrar en los detalles de los mensajes intercambiados)</p>
+<p><img alt="diagrama intercambio BPDUs" src="../img/stp-bpdu-cisco-ccna.png" /></p>
+<p>El <strong>resultado final</strong> siempre presenta una estructura estable basada en estos elementos clave:</p>
+<p><strong>Hay un único switch raíz (Root Bridge)</strong></p>
+<p>STP elige un switch como referencia central. Será aquel cuyo valor de prioridad sea el menor. Todos los demás switches calculan sus caminos hacia él.</p>
+<p><strong>Hay un rol definido para cada puerto del switch</strong>. </p>
+<p>Tras calcular la topología, cada puerto adopta uno de estos roles:</p>
+<ul>
+<li><strong>Root Port (RP):</strong> es el puerto del switch que ofrece el mejor camino hacia el Root Bridge.</li>
+<li><strong>Designated Port (DP):</strong> es el puerto encargado de reenviar tráfico hacia un segmento de red. </li>
+<li><strong>Alternate/Backup Port:</strong> son puertos que quedan como <strong>respaldo</strong> porque podrían causar un bucle. Permanecen en estado <strong>Blocking</strong> hasta que sean necesarios.</li>
+</ul>
+<p><strong>Hay un estado final asignado a cada puerto</strong>. Dependiendo del rol, los puertos terminan en:</p>
+<ul>
+<li><strong>Forwarding:</strong> si el puerto participa activamente en el envío y recepción de tráfico.</li>
+<li><strong>Blocking:</strong> si el puerto es redundante y debe mantenerse inactivo para evitar bucles. No reenvía tráfico; solo escucha. </li>
+</ul>
+<p>!!! Nota Un puerto en estado Blocking no reenvía tráfico de datos ni aprende MAC, pero siempre escucha y procesa BPDUs. Esa es la única forma de que STP pueda detectar fallos y reconvergir la topología</p>
+<p><strong>Una topología en forma de árbol</strong></p>
+<p>STP elimina cualquier bucle creando una estructura jerárquica en la que cada switch tiene un camino único hacia el Root Bridge.</p>
+<p><img alt="topología final" src="../img/lan-with-spanning-tree-example.gif" /></p>
+<p><strong>Red estable</strong></p>
+<p>Cuando la red ya está totalmente estable (todos los puertos en Forwarding/Blocking y la convergencia terminó) el Root Bridge sigue enviando <strong>BPDUs cada 2 segundos</strong> (Hello Timer) porque es la única forma de que el resto de switches sepan que el Root Bridge sigue vivo. Si el Root deja de enviar BPDUs, todos los switches asumen que ha fallado y empiezan una nueva elección del Root </p>
+<h3 id="22-prioridad-de-cada-switch-y-eleccion-del-root-bridge">2.2 Prioridad de cada switch y elección del Root Bridge<a class="headerlink" href="#22-prioridad-de-cada-switch-y-eleccion-del-root-bridge" title="Permanent link">&para;</a></h3>
+<p>STP sigue un orden estricto para elegir al root.</p>
+<h4 id="regla-1">Regla 1<a class="headerlink" href="#regla-1" title="Permanent link">&para;</a></h4>
+<p>El switch con la MENOR prioridad STP es el Root Bridge.</p>
+<p>Ejemplo:</p>
+<ul>
+<li><strong>SW1</strong> → prioridad 4096</li>
+<li><strong>SW2</strong> → prioridad 32768</li>
+<li><strong>SW3</strong> → prioridad 12288</li>
+</ul>
+<p>El root será <strong>SW1</strong> (4096) → menor prioridad</p>
+<p>Si hay empate se aplica la</p>
+<h4 id="regla-2">Regla 2<a class="headerlink" href="#regla-2" title="Permanent link">&para;</a></h4>
+<p>Si dos o más switches tienen exactamente la misma prioridad, se confierte en Root el switch que tenga la menor MAC address.</p>
+<p>Ejemplo:</p>
+<ul>
+<li><strong>SW1</strong> → prioridad 32768, MAC 00:10:FF:AA:00:01</li>
+<li><strong>SW2</strong> → prioridad 32768, MAC 00:0A:BB:20:00:02</li>
+<li><strong>SW3</strong> → prioridad 32768, MAC 00:50:CC:30:00:03</li>
+</ul>
+<p>Root = S2, porque tiene la MAC más baja.</p>
+<p>Ese conjunto (prioridad + MAC) se llama <strong>Bridge ID</strong> del switch.</p>
+<h4 id="prioridad-por-defecto-y-prioridad-real">Prioridad por defecto y prioridad real.<a class="headerlink" href="#prioridad-por-defecto-y-prioridad-real" title="Permanent link">&para;</a></h4>
+<p>En switches Cisco (y en la mayoría de fabricantes), la prioridad por defecto es: <strong>32768</strong></p>
+<p>Además, Cisco le añade el <strong>Extended System ID</strong>, que es el número de VLAN, así:</p>
+<p><strong>Prioridad real</strong> = 32768 + VLAN_ID</p>
+<p><strong>Ejemplo</strong></p>
+<ul>
+<li>Para VLAN 1 → prioridad = 32768 + 1 = 32769</li>
+<li>Para VLAN 10 → prioridad = 32768 + 10 = 32778</li>
+</ul>
+<h3 id="23-ejemplo-practico">2.3 Ejemplo práctico<a class="headerlink" href="#23-ejemplo-practico" title="Permanent link">&para;</a></h3>
+<p>Imagina tres switches <strong>SW1</strong>, <strong>SW2</strong> y <strong>SW3</strong> conectados formando un triángulo (cada uno conectado a los otros dos):</p>
+<p><img alt="STP protocol inicio" src="../img/stp-protocol-inicio.png" /></p>
+<p>Si los switches no tienen activado y configurado <strong>STP</strong> forman un bucle que hace que la red se vuelve muy lenta o totalmente inutilizable.</p>
+<p>Cuando termina de ejecutarse <strong>STP</strong> acabamos con una configuración similar a la siguiente:</p>
+<p><img alt="switches roles estados" src="../img/stp-blocking.png" /></p>
+<p><strong>SW1</strong> se convierte en switch raíz (Root Bridge). Los puertos del root bridge son siempre <strong>puertos designados</strong> y siempre están en estado de <strong>forwarding</strong> o reenvío</p>
+<table>
+<thead>
+<tr>
+<th>Puerto</th>
+<th>Rol</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hacia SW2</td>
+<td><strong>Designated Port</strong></td>
+<td>Forwarding</td>
+</tr>
+<tr>
+<td>Hacia SW3</td>
+<td><strong>Designated Port</strong></td>
+<td>Forwarding</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SW2</strong></p>
+<table>
+<thead>
+<tr>
+<th>Puerto</th>
+<th>Rol</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hacia SW1</td>
+<td><strong>Root Port</strong></td>
+<td>Forwarding</td>
+</tr>
+<tr>
+<td>Hacia SW3</td>
+<td><strong>Designated Port</strong></td>
+<td>Forwarding</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SW3</strong></p>
+<table>
+<thead>
+<tr>
+<th>Puerto</th>
+<th>Rol</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hacia SW1</td>
+<td><strong>Root Port</strong></td>
+<td>Forwarding</td>
+</tr>
+<tr>
+<td>Hacia SW3</td>
+<td><strong>Alternate Port</strong></td>
+<td>Blocked</td>
+</tr>
+</tbody>
+</table>
+<p>Al final solo hay <strong>un único camino activo</strong> entre cada par de switches. La topología lógica de los switches es en <strong>arbol</strong></p>
+<h2 id="3-estados-de-los-puertos-en-stp">3. Estados de los puertos en STP<a class="headerlink" href="#3-estados-de-los-puertos-en-stp" title="Permanent link">&para;</a></h2>
+<p>Aparte de los estados finales de STP existen otros estados en los que puede estar un puerto:</p>
+<table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Qué hace el puerto</th>
+<th>Explicación fácil</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Blocking</td>
+<td>No reenvía tráfico; solo escucha.</td>
+<td>"Semáforo en rojo" para evitar bucles.</td>
+</tr>
+<tr>
+<td>Listening</td>
+<td>Analiza si debe usarse.</td>
+<td>El switch "piensa" qué hacer.</td>
+</tr>
+<tr>
+<td>Learning</td>
+<td>Aprende direcciones MAC.</td>
+<td>"Preparándose para abrir el paso".</td>
+</tr>
+<tr>
+<td>Forwarding</td>
+<td>Reenvía y recibe tráfico.</td>
+<td>"Semáforo en verde": funcionando.</td>
+</tr>
+<tr>
+<td>Disabled</td>
+<td>No participa en STP.</td>
+<td>Apagado o deshabilitado.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Los puertos pasan por etapas de seguridad antes de activarse: primero bloquean, después escuchan, luego aprenden y finalmente permiten/bloquean tráfico.</p>
+</blockquote>
+<h2 id="4-comportamiento-ante-fallos">4. Comportamiento ante fallos<a class="headerlink" href="#4-comportamiento-ante-fallos" title="Permanent link">&para;</a></h2>
+<h3 id="41-situacion-inicial">4.1 Situación inicial<a class="headerlink" href="#41-situacion-inicial" title="Permanent link">&para;</a></h3>
+<p>La red tiene enlaces redundantes y STP bloquea uno de ellos para evitar bucles.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>        +-----------+
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>        |   SW1     | ← Root Bridge
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        +-----------+
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>         |D(FWD)   \D(FWD)
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>         |          \
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>         |           |  
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>         |R(FWD)      \R(FWD)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>   +-----------+    +-----------+
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>   |   SW2     |    |   SW3     |
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>   +-----------+    +-----------+
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        |D(FWD)         |A(BLOCKED)
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        |               |
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        +---------------+
+</code></pre></div>
+<h3 id="42-falla-de-un-enlace">4.2 Falla de un enlace<a class="headerlink" href="#42-falla-de-un-enlace" title="Permanent link">&para;</a></h3>
+<p>Si se rompe el enlace entre SW1 y SW2, STP detecta la pérdida de BPDUs y recalcula.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>        +-----------+
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>        |   SW1     | ← Root Bridge
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        +-----------+
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>         x         \D(FWD)
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>         x          \
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>         x           |  
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>         x            \R(FWD)
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>   +-----------+    +-----------+
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>   |   SW2     |    |   SW3     |
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>   +-----------+    +-----------+
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        |D(FWD)         |A(BLOCKED)
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        |               |
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        +---------------+
+</code></pre></div>
+<h3 id="43-recuperacion-automatica">4.3 Recuperación automática<a class="headerlink" href="#43-recuperacion-automatica" title="Permanent link">&para;</a></h3>
+<ol>
+<li>SW2 detecta que perdió su enlace al Root Bridge.</li>
+<li>STP recalcula la topología.</li>
+<li>El puerto que estaba bloqueado entre SW3 y SW2 pasa a rol <strong>Designated</strong> con estado <strong>Forwarding</strong>.</li>
+<li>Se restablece la conectividad entre SW2 y SW1 a través de un nuevo camino (SW2 → SW3 → SW1).</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>        +-----------+
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>        |   SW1     | ← Root Bridge
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        +-----------+
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>                    \D(FWD)
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>                     \
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>                      \R(FWD)
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>               +-----------+
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>               |   SW3     |
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>               +-----------+
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>                    |D(FWD)
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>                    |
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>                    |R(FWD)
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>               +-----------+
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>               |   SW2     |
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>               +-----------+
+</code></pre></div>
+<h3 id="54-resumen-del-comportamiento">5.4 Resumen del comportamiento<a class="headerlink" href="#54-resumen-del-comportamiento" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Etapa</th>
+<th>Evento</th>
+<th>Estado de puertos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inicial</td>
+<td>Red estable</td>
+<td>Un puerto bloqueado</td>
+</tr>
+<tr>
+<td>Falla</td>
+<td>Se pierde un enlace</td>
+<td>STP recalcula</td>
+</tr>
+<tr>
+<td>Recuperación</td>
+<td>Puerto se activa</td>
+<td>Nueva ruta sin bucles</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-comandos-stp-en-cisco-packet-tracer">5. Comandos STP en Cisco Packet Tracer<a class="headerlink" href="#5-comandos-stp-en-cisco-packet-tracer" title="Permanent link">&para;</a></h2>
+<p><strong>Ver estado del protocolo STP</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>&gt; enable
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a># show spanning-tree
+</code></pre></div>
+<p>Muestra: Root Bridge, costos, roles y estados.</p>
+<p><strong>Salida ejemplo (root bridge)</strong></p>
+<p><img alt="salida show spannig-tree root" src="../img/show_spanning-tree.png" /></p>
+<ul>
+<li>La línea <strong>This bridge is the root</strong> confirma que SW1 es el Root Bridge. Además, el Root ID y el Bridge ID son iguales → es el mismo switch.</li>
+<li>Todos los puertos tienen el rol <strong>Designated</strong> (Desg) y están en estado <strong>Forwarding</strong> (FWD).</li>
+<li>No hay ningún Root Port, porque dicho rol solo aparece en switches que no son root</li>
+</ul>
+<p><strong>Salida ejemplo (switch no root)</strong></p>
+<p><img alt="salida show spannig-tree non root" src="../img/show_spanning-tree_non-root.png" /></p>
+<p>Roles y estados:</p>
+<ul>
+<li>El <strong>Bridge ID</strong> es el identificador del switch, que en este caso <strong>no coincide</strong> con el <strong>Root ID</strong>, este switch no es root.</li>
+<li>Hay un puerto con rol Root estado Forwarding que es por el que este switch accede al switch raíz (directa o indirectamente)</li>
+<li>El puerto con rol <strong>Designated</strong> y estado <strong>Forwarding</strong> le conecta a un dispositivo por el que puede reenviar tráfico</li>
+<li>El puerto con rol <strong>Alternate</strong> y estado <strong>Blocking</strong> le conecta a un switch y el tráfico está bloqueado para evitar bucles.</li>
+</ul>
+<p><strong>Activar STP</strong></p>
+<p>Cuando activamos STP debemos especificar la VLAN en la que se activa.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>&gt;enable
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a># configure terminal
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>(config)# spanning-tree vlan &lt;n&gt;
+</code></pre></div>
+<blockquote>
+<p>Todavía no hemos visto las <strong>VLAN</strong>. Lo único que tenemos que saber de las mismas es que todos los puertos pueden estar asociada a una o varias VLAN. La <strong>VLAN por defecto</strong> que tienen configurada todos los puertos de los switches es la <strong>1</strong></p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>&gt;enable
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a># configure terminal
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>(config)# spanning-tree vlan 10
+</code></pre></div>
+<p>Activar en todas las VLAN:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>&gt;enable
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a># configure terminal
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>(config)# spanning-tree vlan 1-4094
+</code></pre></div>
+<p><strong>Desactivar STP</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>&gt;enable
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a># configure terminal
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>(config)# no spanning-tree vlan 1
+</code></pre></div>
+<p><strong>Ver estado de una interfaz</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>&gt;enable
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>#show spanning-tree interface fa0/1
+</code></pre></div>
+<p><strong>Forzar que un switch se convierta en Root Bridge</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>&gt;enable
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a># configure terminal
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>(config)# spanning-tree vlan 1 root primary
+</code></pre></div>
+<p>Este comando lo que hace es asignar al switch, de forma automática, una <strong>prioridad</strong> menor que la del resto de switches para que se convierta en <strong>Root Bridge</strong>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://ichigar.codeberg.page" target="_blank" rel="noopener" title="ichigar.codeberg.page" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

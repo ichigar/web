@@ -1,0 +1,1695 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Novedades y artículos sobre X">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/blog/pni/ut3/recursos/pni-ut3-vlsm/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>VLSM (Variable Length Subnet Mask) - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vlsm-variable-length-subnet-mask" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              VLSM (Variable Length Subnet Mask)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../rde/" class="md-tabs__link">
+          
+  
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../lnd/" class="md-tabs__link">
+          
+  
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../pd4/" class="md-tabs__link">
+          
+  
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../imw/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../soj/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pd4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#repaso-sobre-subnetting-flsm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repaso sobre subnetting (FLSM)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Repaso sobre subnetting (FLSM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-repaso-resuelto-flsm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo de repaso resuelto (FLSM)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-vlsm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué es VLSM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-usarlo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Por qué usarlo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aspectos-a-tener-en-cuenra-al-disenar-subredes-con-vlsm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aspectos a tener en cuenra al diseñar subredes con VLSM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pasos-para-hacer-vlsm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pasos para hacer VLSM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabla-de-tamanos-habituales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabla de tamaños habituales
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-detallado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo detallado
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errores-tipicos-y-como-evitarlos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Errores típicos y cómo evitarlos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="vlsm-variable-length-subnet-mask">VLSM (Variable Length Subnet Mask)<a class="headerlink" href="#vlsm-variable-length-subnet-mask" title="Permanent link">&para;</a></h1>
+<p><img alt="" src="../img/vlsm.png" /></p>
+<h2 id="repaso-sobre-subnetting-flsm">Repaso sobre subnetting (FLSM)<a class="headerlink" href="#repaso-sobre-subnetting-flsm" title="Permanent link">&para;</a></h2>
+<p>Antes de entrar en VLSM, recordemos lo esencial de subnetting (Fixed Length subnet mask). </p>
+<p>Subnetting permite dividir una red grande en subredes más pequeñas <strong>tomando bits del campo de hosts</strong> para crear máscaras de subred variables. </p>
+<blockquote>
+<p>Recuerda que la primera y última IP no se pueden asignar a hosts, sino que su uso estaba reservado para direccionar la red y para broadcast.</p>
+</blockquote>
+<h3 id="ejemplo-de-repaso-resuelto-flsm">Ejemplo de repaso resuelto (FLSM)<a class="headerlink" href="#ejemplo-de-repaso-resuelto-flsm" title="Permanent link">&para;</a></h3>
+<p><strong>Partimos de una red base:</strong> Por ejemplo: <code>192.168.1.0/24</code><br />
+<strong>Objetivo:</strong> la queremos subdividir en un número de subredes iguales. Por ejemplo 4.</p>
+<p>1) Necesitas 4 subredes → 2 bits prestados (2^2 = 4).<br />
+2) Obtenemos la nueva máscara: `/24 + 2 = <strong>/26</strong> (255.255.255.192).<br />
+3) Calculamos el tamaño del bloque: 2⁽³²⁻²⁶⁾ = 2⁶ = 64 IPs por subred (62 hosts utilizables).
+4) Enumeramos las subredes resultantes
+Subredes resultantes (saltos de 64):</p>
+<table>
+<thead>
+<tr>
+<th>Subred</th>
+<th>D subred</th>
+<th>D hosts</th>
+<th>D broadcast</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>192.168.1.0/26</code></td>
+<td><code>192.168.1.0</code></td>
+<td><code>192.168.1.1</code> - <code>192.168.1.62</code></td>
+<td><code>192.168.1.63</code></td>
+</tr>
+<tr>
+<td><code>192.168.1.64/26</code></td>
+<td><code>192.168.1.64</code></td>
+<td><code>192.168.1.65</code> - <code>192.168.1.126</code></td>
+<td><code>192.168.1.127</code></td>
+</tr>
+<tr>
+<td><code>192.168.1.128/26</code></td>
+<td><code>192.168.1.128</code></td>
+<td><code>192.168.1.129</code> - <code>192.168.1.190</code></td>
+<td><code>192.168.1.191</code></td>
+</tr>
+<tr>
+<td><code>192.168.1.192/26</code></td>
+<td><code>192.168.1.192</code></td>
+<td><code>192.168.1.193</code> - <code>192.168.1.254</code></td>
+<td><code>192.168.1.255</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="que-es-vlsm">Qué es VLSM<a class="headerlink" href="#que-es-vlsm" title="Permanent link">&para;</a></h2>
+<p>VLSM (Variable Length Subnet Mask) es una extensión de la técnica de subnetting que permite dividir una red IP en subredes de <strong>tamaños variables</strong>, usando máscaras de subred de longitudes diferentes. </p>
+<p>A diferencia del subnetting fijo (FLSM, Fixed Length Subnet Mask), donde todas las subredes tienen el mismo tamaño, VLSM ajusta el tamaño de cada subred según las necesidades reales de hosts, optimizando el uso de direcciones IP. </p>
+<p>Esto es especialmente útil en redes locales (LAN) para evitar desperdiciar IPs en segmentos pequeños, como enlaces punto a punto.</p>
+<blockquote>
+<p><strong>Metafora:</strong> Imagina una red como un pastel: con FLSM, cortas todas las porciones iguales, aunque algunos solo necesiten un trocito. Con VLSM, cortas porciones a medida, ahorrando más pastel para otros.</p>
+</blockquote>
+<h2 id="por-que-usarlo">Por qué usarlo<a class="headerlink" href="#por-que-usarlo" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Eficiencia en el espacio de direcciones:</strong> Maximiza el uso de IPs disponibles, especialmente en redes IPv4 donde las direcciones son limitadas.</li>
+<li><strong>Reducción de desperdicio:</strong> En subredes pequeñas (ej. un enlace entre routers con solo 2 hosts), no malgastas 254 IPs como en una `/24.</li>
+<li><strong>Flexibilidad:</strong> Permite crecer la red sin reasignar todo el esquema de IPs.</li>
+</ul>
+<h2 id="aspectos-a-tener-en-cuenra-al-disenar-subredes-con-vlsm">Aspectos a tener en cuenra al diseñar subredes con VLSM<a class="headerlink" href="#aspectos-a-tener-en-cuenra-al-disenar-subredes-con-vlsm" title="Permanent link">&para;</a></h2>
+<p>Si partimos de una red que queremos subdividir usando VLSM.</p>
+<ul>
+<li><strong>Asignación por tamaño:</strong> Siempre empieza asignando las subredes más grandes primero para evitar fragmentación y solapamientos.</li>
+<li><strong>Límites de bloques:</strong> Cada subred debe alinearse en límites binarios (potencias de 2), es decir, su dirección inicial debe ser múltiplo del tamaño del bloque.</li>
+<li><strong>Cálculo de tamaños:</strong> El tamaño de la subred (incluyendo red y broadcast) es una potencia de 2 (ej. 4, 8, 16...). Para n bits de hosts: hosts utilizables = 2^n - 2.</li>
+<li><strong>Máscaras CIDR:</strong> La máscara <code>/x</code> indica bits de red; bits de hosts = <code>32 - x</code> (para IPv4).</li>
+<li><strong>No superposición:</strong> Las subredes deben ser contiguas pero no solaparse; encajan como piezas de un puzzle dentro de la red base.</li>
+</ul>
+<h2 id="pasos-para-hacer-vlsm">Pasos para hacer VLSM<a class="headerlink" href="#pasos-para-hacer-vlsm" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Lista y ordena las necesidades:</strong> Enumera los requisitos de hosts por subred (ej. departamento A: 100 hosts, enlace B: 2 hosts). Ordénalos de mayor a menor para asignar primero los bloques grandes.</li>
+<li><strong>Calcula el tamaño mínimo de cada subred:</strong> Para cada una, encuentra la potencia de 2 más pequeña que cubra hosts + 2 (red y broadcast). Ej: <code>100 hosts → 128 (2⁷)</code>, ya que <code>2⁷ - 2 = 126 ≥ 100</code>.</li>
+<li><strong>Determina la máscara CIDR de cada subred:</strong>  Máscara = <code>/(32 - bits de hosts)</code>. Ej: tamaño <code>128 → bits hosts=7 →</code>/25`.</li>
+<li><strong>Asigna bloques en la red base:</strong> Empieza desde la dirección inicial de la red (ej. <code>192.168.10.0</code>). Asigna el bloque más grande, luego el siguiente disponible (fin del anterior +1, alineado al límite).</li>
+<li><strong>Verifica y documenta:</strong> Comprueba que no haya solapamientos, que quepan en la red base, y que sobre espacio para futuro. Usa una tabla para registrar subred, máscara, rango, hosts utilizables.</li>
+</ol>
+<h2 id="tabla-de-tamanos-habituales">Tabla de tamaños habituales<a class="headerlink" href="#tabla-de-tamanos-habituales" title="Permanent link">&para;</a></h2>
+<p>Usa esta tabla para reference rápida. Recuerda: IPs totales = 2^(32 - CIDR), hosts utilizables = IPs totales - 2.</p>
+<table>
+<thead>
+<tr>
+<th>CIDR</th>
+<th>IPs totales</th>
+<th>Hosts utilizables</th>
+<th>Uso típico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/30</td>
+<td>4</td>
+<td>2</td>
+<td>Enlaces punto a punto (ej. routers)</td>
+</tr>
+<tr>
+<td>/29</td>
+<td>8</td>
+<td>6</td>
+<td>Pequeños grupos (ej. servidores)</td>
+</tr>
+<tr>
+<td>/28</td>
+<td>16</td>
+<td>14</td>
+<td>Oficinas pequeñas</td>
+</tr>
+<tr>
+<td>/27</td>
+<td>32</td>
+<td>30</td>
+<td>Departamentos medianos</td>
+</tr>
+<tr>
+<td>/26</td>
+<td>64</td>
+<td>62</td>
+<td>Áreas con más dispositivos</td>
+</tr>
+<tr>
+<td>/25</td>
+<td>128</td>
+<td>126</td>
+<td>Grandes segmentos</td>
+</tr>
+<tr>
+<td>/24</td>
+<td>256</td>
+<td>254</td>
+<td>Redes enteras o VLANs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ejemplo-detallado">Ejemplo detallado<a class="headerlink" href="#ejemplo-detallado" title="Permanent link">&para;</a></h2>
+<p><strong>Red base:</strong> <code>192.168.10.0/24</code> (256 IPs totales).</p>
+<p><strong>Necesidades (ordenadas de mayor a menor):</strong> 
+- <code>Subred A: 100 hosts</code>
+- <code>Subred B: 50 hosts</code>
+- <code>Subred C: 20 hosts</code>
+- <code>Subred D: 2 hosts</code></p>
+<p><strong>Cálculos y asignaciones:</strong>
+Para resolverlo paso a paso lo hacemos de la siguiente forma. Empezamos obteniendo la máscara de subred y la dirección de la red:</p>
+<blockquote>
+<p>Cómo usaremos <strong>102 IPs</strong> (100 para equipos + dirección de red + dirección de broadcast) necesitamos <strong>7 bits</strong> (2⁷ = 128) para direccionarlas. </p>
+<p>La <strong>máscara</strong> de la subred será de 32 - 7 = 25 bits → <strong><code>/25</code></strong>. </p>
+<p>La dirección de la red será la primera disponible en la red base cambiando la máscara para poder subdividirla (<strong>192.168.10.0/25</strong>)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Subred</th>
+<th>IPs Necesarias</th>
+<th>P. CIDR</th>
+<th>D subred</th>
+<th>Rango IPs usables</th>
+<th>D broadcast</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td><strong>≥102 IPs → 128 (2^7)</strong></td>
+<td><strong><code>/25</code></strong></td>
+<td><strong><code>192.168.10.0</code></strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>B</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>C</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>D</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>A continuación calculamos la dirección de la red siguiente sumando a la actual tantos unos en binario como bits se usan para la parte de host de la red actual. </p>
+<blockquote>
+<p>Como la red actual es <strong><code>/25</code> → 7bits hosts</strong> , la subred siguiente empezara sumando a la red actual (192.168.10.0) en binario 7 unos en binario <strong><code>111 1111</code></strong> (128). Obtenemos <strong><code>192.168.10.128</code></strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Subred</th>
+<th>IPs Necesarias</th>
+<th>P. CIDR</th>
+<th>D subred</th>
+<th>Rango IPs usables</th>
+<th>D broadcast</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>≥102 IPs → 128 (2⁷)</td>
+<td><code>/25</code></td>
+<td><code>192.168.10.0</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>B</td>
+<td></td>
+<td></td>
+<td><strong><code>192.168.10.128</code></strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>C</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>D</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>La dirección de broadcast será la IP anterior a la de la red siguiente y el rango de IPs usables las que están entre la de red y la de broadcast:</p>
+<blockquote>
+<p>En este como la dirección de la red siguiente es <strong>192.168.10.128</strong>, la dirección de broadcast será la anterior <strong>192.168.10.127</strong> y el rango de IPs usables sera de la <strong>.1</strong> a la <strong>.126</strong> </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Subred</th>
+<th>IPs Necesarias</th>
+<th>P. CIDR</th>
+<th>D subred</th>
+<th>Rango IPs usables</th>
+<th>D broadcast</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>≥102 IPs → 128 (2⁷)</td>
+<td><code>/25</code></td>
+<td><code>192.168.10.0</code></td>
+<td><strong><code>192.168.10.1</code> - <code>192.168.10.126</code></strong></td>
+<td><strong><code>192.168.10.127</code></strong></td>
+</tr>
+<tr>
+<td>B</td>
+<td></td>
+<td></td>
+<td><code>192.168.10.128</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>C</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>D</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>La siguiente red se calcula de forma análoga:</p>
+<blockquote>
+<p>Necesitamos 50 + 2IPs. <strong>≥52 IPs → 64 (2^6)</strong>. Máscara de 32 - 6 = <strong>/26</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Subred</th>
+<th>IPs Necesarias</th>
+<th>P. CIDR</th>
+<th>D subred</th>
+<th>Rango IPs usables</th>
+<th>D broadcast</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>≥102 IPs → 128 (2^7)</td>
+<td><code>/25</code></td>
+<td><code>192.168.10.0</code></td>
+<td><code>192.168.10.1</code> - <code>192.168.10.126</code></td>
+<td><code>192.168.10.127</code></td>
+</tr>
+<tr>
+<td>B</td>
+<td><strong>≥52 IPs → 64 (2^6)</strong></td>
+<td><strong><code>/26</code></strong></td>
+<td><code>192.168.10.128</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>C</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>D</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Como la red actual es <strong>/26 → 6bits hosts</strong> , la subred siguiente empezara sumando a la red actual (192.168.10.128) en binario 6 unos en binario <strong>11 1111</strong> (64). Obtenemos <strong>192.168.10.192</strong> </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Subred</th>
+<th>IPs Necesarias</th>
+<th>P. CIDR</th>
+<th>D subred</th>
+<th>Rango IPs usables</th>
+<th>D broadcast</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>≥102 IPs → 128 (2^7)</td>
+<td><code>/25</code></td>
+<td><code>192.168.10.0</code></td>
+<td><code>192.168.10.1</code> - <code>192.168.10.126</code></td>
+<td><code>192.168.10.127</code></td>
+</tr>
+<tr>
+<td>B</td>
+<td>≥52 IPs → 64 (2^6)</td>
+<td><code>/26</code></td>
+<td><code>192.168.10.128</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>C</td>
+<td></td>
+<td></td>
+<td><strong><code>192.168.10.192</code></strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>D</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>En este como la dirección de la red siguiente es <strong>192.168.10.192</strong>, la dirección de broadcast será la anterior <strong>192.168.10.191</strong> y el rango de IPs usables sera de la <strong>.129</strong> a la <strong>.190</strong> </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Subred</th>
+<th>IPs Necesarias</th>
+<th>P. CIDR</th>
+<th>D subred</th>
+<th>Rango IPs usables</th>
+<th>D broadcast</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>≥102 IPs → 128 (2^7)</td>
+<td><code>/25</code></td>
+<td><code>192.168.10.0</code></td>
+<td><code>192.168.10.1</code> - <code>192.168.10.126</code></td>
+<td><code>192.168.10.127</code></td>
+</tr>
+<tr>
+<td>B</td>
+<td>≥52 IPs → 64 (2^6)</td>
+<td><code>/26</code></td>
+<td><code>192.168.10.128</code></td>
+<td><strong><code>192.168.10.129</code> - <code>192.168.10.190</code></strong></td>
+<td><strong><code>192.168.10.191</code></strong></td>
+</tr>
+<tr>
+<td>C</td>
+<td></td>
+<td></td>
+<td><code>192.168.10.192</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>D</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Siguiendo los mismos pasos obtenemos las subredes <strong>C</strong> y <strong>D</strong></p>
+<table>
+<thead>
+<tr>
+<th>Subred</th>
+<th>IPs Necesarias</th>
+<th>P. CIDR</th>
+<th>D subred</th>
+<th>Rango IPs usables</th>
+<th>D broadcast</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>≥102 IPs → 128 (2^7)</td>
+<td><code>/25</code></td>
+<td><strong><code>192.168.10.0/25</code></strong></td>
+<td><code>192.168.10.1</code> - <code>192.168.10.126</code></td>
+<td><code>192.168.10.127</code></td>
+</tr>
+<tr>
+<td>B</td>
+<td>≥52 IPs → 64 (2^6)</td>
+<td><code>/26</code></td>
+<td><strong><code>192.168.10.128/26</code></strong></td>
+<td><code>192.168.10.129</code> - <code>192.168.10.190</code></td>
+<td><code>192.168.10.191</code></td>
+</tr>
+<tr>
+<td>C</td>
+<td>≥22 IPs → 32 (2^5)</td>
+<td><code>/27</code></td>
+<td><strong><code>192.168.10.192/27</code></strong></td>
+<td><code>192.168.10.193</code> - <code>192.168.10.222</code></td>
+<td><code>192.168.10.223</code></td>
+</tr>
+<tr>
+<td>D</td>
+<td>≥4 IPs → 4 (2^2)</td>
+<td><code>/30</code></td>
+<td><strong><code>192.168.10.224/30</code></strong></td>
+<td><code>192.168.10.225</code> - <code>192.168.10.226</code></td>
+<td><code>192.168.10.227</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>IPs sobrantes:</strong> De <code>.228 a .255</code> (26 IPs ≥ 2⁴) podría usarse para una red <code>/28</code> o más pequeñas).</p>
+<p><strong>Ejemplo de asignación de hosts (hipotético):</strong></p>
+<ul>
+<li>Subred A: Asigna .1 a .100 a dispositivos (sobrando de la .101 a la .126 para crecimiento).</li>
+<li>Subred B: .129 a .178. (sobrando de la .179 a la .190 para crecimiento).</li>
+<li>Subred C: .193 a .212. (sobrando de la .213 a la .222 para crecimiento).</li>
+<li>Subred D: .225 y .226 (ej. para routers).</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Red base: 192.168.10.0/24 (0-255)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>|----------------128 IPs (/25)----------------|-----64 (/26)-----|---32 (/27)---|--4 (/30)--| Sobrante |
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>|0.........................................127|128............191|192........223|224.....227|228-255
+</code></pre></div>
+<h2 id="errores-tipicos-y-como-evitarlos">Errores típicos y cómo evitarlos<a class="headerlink" href="#errores-tipicos-y-como-evitarlos" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>No ordenar por tamaño:</strong> Causa que bloques pequeños queden "atrapados" entre grandes, provocando solapamientos o desperdicio. <em>Solución:</em> Siempre ordena descendente.</li>
+<li><strong>Máscaras no potencias de 2:</strong> Intentar tamaños como 10 IPs (no es 2^n). <em>Solución:</em> Redondea al superior (16).</li>
+<li><strong>Olvidar red/broadcast:</strong> Asignar direcciones de red o de broadcast a hosts. <em>Solución:</em> Recuerda: hosts = 2^n - 2.</li>
+<li><strong>No alinear bloques:</strong> Empezar una subred en dirección no múltiplo (ej. .130 para `/26). <em>Solución:</em> Calcula múltiplos (ej. para 64: 0,64,128,192).</li>
+<li><strong>Sobrepasar la base:</strong> Asignar más de lo disponible. <em>Solución:</em> Suma tamaños antes.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://ichigar.codeberg.page" target="_blank" rel="noopener" title="ichigar.codeberg.page" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

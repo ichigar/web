@@ -10,29 +10,27 @@
       
       
       
-        <link rel="canonical" href="https://ichigar.codeberg.page/blog/">
+        <link rel="canonical" href="https://ichigar.codeberg.page/blog/src/apuntes/ut0/configuracion_red_netplan/">
       
       
       
-        <link rel="next" href="blog/">
       
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
       
-        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="feed_rss_created.xml">
-        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="feed_rss_updated.xml">
-      
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
     
     
       
-        <title>Web personal de ichigar</title>
+        <title>Configuracion red netplan - Web personal de ichigar</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.e53b48f4.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -51,7 +49,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -77,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#documentacion-y-recursos" class="md-skip">
+        <a href="#configuracion-de-red-con-netplan" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -91,7 +89,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabecera">
-    <a href="." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -111,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Configuracion red netplan
             
           </span>
         </div>
@@ -210,11 +208,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
         
   
   
@@ -235,7 +231,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="blog/" class="md-tabs__link">
+        <a href="../../../../blog/" class="md-tabs__link">
           
   
   
@@ -255,7 +251,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="rde/" class="md-tabs__link">
+        <a href="../../../../rde/" class="md-tabs__link">
           
   
   
@@ -275,7 +271,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="lnd/" class="md-tabs__link">
+        <a href="../../../../lnd/" class="md-tabs__link">
           
   
   
@@ -295,7 +291,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="pd4/" class="md-tabs__link">
+        <a href="../../../../pd4/" class="md-tabs__link">
           
   
   
@@ -313,7 +309,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="misc/" class="md-tabs__link">
+      <a href="../../../../misc/" class="md-tabs__link">
         
   
   
@@ -332,7 +328,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="feed_rss_created.xml" class="md-tabs__link">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
         
   
   
@@ -367,7 +363,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -382,32 +378,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Home
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
         
   
   
@@ -418,86 +392,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#acceso-a-apuntes-y-recursos-de-clase" class="md-nav__link">
-    <span class="md-ellipsis">
-      Acceso a apuntes y recúrsos de clase
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Acceso a apuntes y recúrsos de clase">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1o-smr" class="md-nav__link">
-    <span class="md-ellipsis">
-      1º SMR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2o-smr" class="md-nav__link">
-    <span class="md-ellipsis">
-      2º SMR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1a-asir" class="md-nav__link">
-    <span class="md-ellipsis">
-      1ª ASIR
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ce-desarrollo-de-aplicaciones-en-lenguaje-python" class="md-nav__link">
-    <span class="md-ellipsis">
-      CE Desarrollo de aplicaciones en lenguaje Python
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#misc-tutoriales-y-recursos-varios" class="md-nav__link">
-    <span class="md-ellipsis">
-      MISC - Tutoriales y recursos vários
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -554,7 +448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/" class="md-nav__link">
+      <a href="../../../../blog/" class="md-nav__link">
         
   
   
@@ -622,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/archive/2025/" class="md-nav__link">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
         
   
   
@@ -698,7 +592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/category/novedades/" class="md-nav__link">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
         
   
   
@@ -779,7 +673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="rde/" class="md-nav__link">
+      <a href="../../../../rde/" class="md-nav__link">
         
   
   
@@ -802,7 +696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="src/" class="md-nav__link">
+      <a href="../../../" class="md-nav__link">
         
   
   
@@ -875,7 +769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lnd/" class="md-nav__link">
+      <a href="../../../../lnd/" class="md-nav__link">
         
   
   
@@ -898,7 +792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pni/" class="md-nav__link">
+      <a href="../../../../pni/" class="md-nav__link">
         
   
   
@@ -921,7 +815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="imw/README.md" class="md-nav__link">
+      <a href="../../../../imw/README.md" class="md-nav__link">
         
   
   
@@ -944,7 +838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="soj/README.md" class="md-nav__link">
+      <a href="../../../../soj/README.md" class="md-nav__link">
         
   
   
@@ -1017,7 +911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pd4/" class="md-nav__link">
+      <a href="../../../../pd4/" class="md-nav__link">
         
   
   
@@ -1047,7 +941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="misc/" class="md-nav__link">
+      <a href="../../../../misc/" class="md-nav__link">
         
   
   
@@ -1069,7 +963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="feed_rss_created.xml" class="md-nav__link">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
         
   
   
@@ -1101,8 +995,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1111,46 +1003,83 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#acceso-a-apuntes-y-recursos-de-clase" class="md-nav__link">
+  <a href="#configuracion-de-red-con-netplan" class="md-nav__link">
     <span class="md-ellipsis">
-      Acceso a apuntes y recúrsos de clase
+      Configuración de red con NETPLAN
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Acceso a apuntes y recúrsos de clase">
+    <nav class="md-nav" aria-label="Configuración de red con NETPLAN">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1o-smr" class="md-nav__link">
+  <a href="#configuracion-de-la-red-con-netplan-en-ubuntu-server" class="md-nav__link">
     <span class="md-ellipsis">
-      1º SMR
+      Configuración de la Red con Netplan en Ubuntu Server
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración de la Red con Netplan en Ubuntu Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ubicacion-de-los-archivos-de-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Ubicación de los Archivos de Configuración
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2o-smr" class="md-nav__link">
+  <a href="#2-editar-el-archivo-de-configuracion" class="md-nav__link">
     <span class="md-ellipsis">
-      2º SMR
+      2. Editar el Archivo de Configuración
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1a-asir" class="md-nav__link">
+  <a href="#3-estructura-del-archivo-yaml" class="md-nav__link">
     <span class="md-ellipsis">
-      1ª ASIR
+      3. Estructura del Archivo YAML
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#ce-desarrollo-de-aplicaciones-en-lenguaje-python" class="md-nav__link">
+  <a href="#4-ejemplo-de-configuracion-dhcp" class="md-nav__link">
     <span class="md-ellipsis">
-      CE Desarrollo de aplicaciones en lenguaje Python
+      4. Ejemplo de Configuración DHCP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-aplicar-la-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Aplicar la Configuración
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-verificar-la-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Verificar la Configuración
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-depuracion-de-problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Depuración de Problemas
     </span>
   </a>
   
@@ -1160,13 +1089,18 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#misc-tutoriales-y-recursos-varios" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#notas-adicionales" class="md-nav__link">
     <span class="md-ellipsis">
-      MISC - Tutoriales y recursos vários
+      Notas Adicionales
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1186,28 +1120,75 @@
 
 
 
-<h1 id="documentacion-y-recursos">Documentación y recursos<a class="headerlink" href="#documentacion-y-recursos" title="Permanent link">&para;</a></h1>
-<h2 id="acceso-a-apuntes-y-recursos-de-clase">Acceso a apuntes y recúrsos de clase<a class="headerlink" href="#acceso-a-apuntes-y-recursos-de-clase" title="Permanent link">&para;</a></h2>
-<h3 id="1o-smr">1º SMR<a class="headerlink" href="#1o-smr" title="Permanent link">&para;</a></h3>
+  <h1>Configuracion red netplan</h1>
+
+<h2 id="configuracion-de-red-con-netplan">Configuración de red con NETPLAN<a class="headerlink" href="#configuracion-de-red-con-netplan" title="Permanent link">&para;</a></h2>
+<h3 id="configuracion-de-la-red-con-netplan-en-ubuntu-server">Configuración de la Red con Netplan en Ubuntu Server<a class="headerlink" href="#configuracion-de-la-red-con-netplan-en-ubuntu-server" title="Permanent link">&para;</a></h3>
+<p>Netplan es la herramienta de configuración de red utilizada en las versiones más recientes de Ubuntu Server (17.10 y posteriores). A continuación se describen los pasos básicos para configurar la red.</p>
+<h4 id="1-ubicacion-de-los-archivos-de-configuracion">1. <strong>Ubicación de los Archivos de Configuración</strong><a class="headerlink" href="#1-ubicacion-de-los-archivos-de-configuracion" title="Permanent link">&para;</a></h4>
+<p>Los archivos de configuración de Netplan se encuentran en el directorio:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/etc/netplan/
+</code></pre></div>
+<p>Los archivos suelen tener una extensión <code>.yaml</code>. Puedes listar los archivos en este directorio con:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ls<span class="w"> </span>/etc/netplan/
+</code></pre></div>
+<h4 id="2-editar-el-archivo-de-configuracion">2. <strong>Editar el Archivo de Configuración</strong><a class="headerlink" href="#2-editar-el-archivo-de-configuracion" title="Permanent link">&para;</a></h4>
+<p>Abre el archivo de configuración con un editor de texto:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/netplan/50-cloud-init.yaml
+</code></pre></div>
+<h4 id="3-estructura-del-archivo-yaml">3. <strong>Estructura del Archivo YAML</strong><a class="headerlink" href="#3-estructura-del-archivo-yaml" title="Permanent link">&para;</a></h4>
+<p>La configuración de Netplan se define en formato YAML. A continuación se muestra un ejemplo básico de configuración para una interfaz de red estática:</p>
+<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">network</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">ens33</span><span class="p">:</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="nt">addresses</span><span class="p">:</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.100/24</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">      </span><span class="nt">gateway4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.1</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">      </span><span class="nt">nameservers</span><span class="p">:</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.8.8.8</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.8.4.4</span>
+</code></pre></div>
 <ul>
-<li><a href="rde/">RDE - Redes de área local</a></li>
+<li><strong>version</strong>: Debe ser <code>2</code>.</li>
+<li><strong>ethernets</strong>: Define las interfaces Ethernet.</li>
+<li><strong>ens33</strong>: Es el nombre de la interfaz (puede variar, usa <code>ip a</code> para verificar el nombre).</li>
+<li><strong>dhcp4</strong>: Establece si se debe usar DHCP (sí/no).</li>
+<li><strong>addresses</strong>: Lista de direcciones IP estáticas.</li>
+<li><strong>gateway4</strong>: Dirección IP del gateway.</li>
+<li><strong>nameservers</strong>: Lista de servidores DNS.</li>
 </ul>
-<h3 id="2o-smr">2º SMR<a class="headerlink" href="#2o-smr" title="Permanent link">&para;</a></h3>
+<h4 id="4-ejemplo-de-configuracion-dhcp">4. <strong>Ejemplo de Configuración DHCP</strong><a class="headerlink" href="#4-ejemplo-de-configuracion-dhcp" title="Permanent link">&para;</a></h4>
+<p>Si deseas configurar la interfaz para que obtenga su dirección IP automáticamente mediante DHCP, el archivo se vería así:</p>
+<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">network</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">ens33</span><span class="p">:</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+</code></pre></div>
+<h4 id="5-aplicar-la-configuracion">5. <strong>Aplicar la Configuración</strong><a class="headerlink" href="#5-aplicar-la-configuracion" title="Permanent link">&para;</a></h4>
+<p>Después de realizar los cambios, guarda el archivo y aplica la configuración con el siguiente comando:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>apply
+</code></pre></div>
+<h4 id="6-verificar-la-configuracion">6. <strong>Verificar la Configuración</strong><a class="headerlink" href="#6-verificar-la-configuracion" title="Permanent link">&para;</a></h4>
+<p>Para verificar que la configuración se ha aplicado correctamente, puedes usar:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ip<span class="w"> </span>a
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ip<span class="w"> </span>route
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>resolvectl<span class="w"> </span>status
+</code></pre></div>
+<p>Esto mostrará las direcciones IP asignadas a las interfaces de red, la puerta de enlace y los servidores de DNS.</p>
+<h4 id="7-depuracion-de-problemas">7. <strong>Depuración de Problemas</strong><a class="headerlink" href="#7-depuracion-de-problemas" title="Permanent link">&para;</a></h4>
+<p>Si encuentras problemas, puedes usar el siguiente comando para obtener más información sobre la configuración de Netplan:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>try
+</code></pre></div>
+<p>Este comando te permite probar la configuración antes de aplicarla permanentemente. Si hay un error, te dará la opción de revertir los cambios.</p>
+<h3 id="notas-adicionales">Notas Adicionales<a class="headerlink" href="#notas-adicionales" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="src/">SRC - Servicios en red</a></li>
-</ul>
-<h3 id="1a-asir">1ª ASIR<a class="headerlink" href="#1a-asir" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="lnd/">LND - Lenguaje de marcas y SGI</a></li>
-<li><a href="pni/">PNI - Lenguaje de marcas y SGI</a></li>
-</ul>
-<h3 id="ce-desarrollo-de-aplicaciones-en-lenguaje-python">CE Desarrollo de aplicaciones en lenguaje Python<a class="headerlink" href="#ce-desarrollo-de-aplicaciones-en-lenguaje-python" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="pd4/">PD4 - Programación Orientada a Objetos</a></li>
-</ul>
-<h2 id="misc-tutoriales-y-recursos-varios">MISC - Tutoriales y recursos vários<a class="headerlink" href="#misc-tutoriales-y-recursos-varios" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="misc/">MISC</a></li>
+<li>Asegúrate de que la indentación en el archivo YAML sea correcta, ya que es sensible a espacios.</li>
+<li>Puedes tener múltiples archivos de configuración en <code>/etc/netplan/</code>, y Netplan los combinará.</li>
+<li>Para configuraciones más avanzadas, como VLANs o puentes, consulta la <a href="https://netplan.io/">documentación oficial de Netplan</a>.</li>
 </ul>
 
 
@@ -1273,10 +1254,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        fieldset {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        legend {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #333;
+            padding: 0 10px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        
+        input[type="file"] {
+            padding: 5px;
+        }
+        
+        input[type="range"] {
+            width: calc(100% - 20px);
+            margin: 10px 0;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+        
+        button[type="reset"] {
+            background-color: #6c757d;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+        }
+        
+        button:active {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    
+
+<form action="https://01jcpa1h01amkacfx0gd8pr7e110-f8e1350c2f356a608664.requestinspector.com" method="post" enctype="multipart/form-data">
+<!--   
+    <fieldset>
+        <legend>Información Básica</legend>
+        <label for="nombreEquipo">Nombre del equipo:</label>
+        <input type="text" id="nombreEquipo" name="nombreEquipo" required maxlength="100" placeholder="Nombre del equipo de gaming">
+        <br><br>
+
+        <label for="fechaRegistro">Fecha de registro:</label>
+        <input type="date" id="fechaRegistro" name="fechaRegistro" required>
+        <br><br>
+
+        <label for="categoria">Categoría:</label>
+        <select id="categoria" name="categoria" required>
+            <option value="">Seleccione</option>
+            <option value="FPS">FPS</option>
+            <option value="MOBA">MOBA</option>
+            <option value="RPG">RPG</option>
+            <option value="Estrategia">Estrategia</option>
+        </select>
+        <br><br>
+
+        <label for="emailContacto">Correo electrónico de contacto:</label>
+        <input type="email" id="emailContacto" name="emailContacto" required placeholder="ejemplo@correo.com">
+        <br><br>
+
+        <label for="website">Sitio web del equipo:</label>
+        <input type="url" id="website" name="website" placeholder="https://www.sitiodelteam.com">
+    </fieldset>
+
+    <fieldset>
+        <legend>Integrantes</legend>
+        <label for="numJugadores">Número de jugadores:</label>
+        <input type="number" id="numJugadores" name="numJugadores" min="1" max="10" step="1" required>
+        <br><br>
+
+        <label for="capitan">¿Es capitán del equipo?</label>
+        <input type="checkbox" id="capitan" name="capitan">
+    </fieldset>
+
+
+    <fieldset>
+        <legend>Preferencias de Hardware</legend>
+        <label for="procesador">Procesador preferido:</label>
+        <input type="text" id="procesador" name="procesador" placeholder="Modelo del procesador">
+        <br><br>
+
+        <label for="teclado">Tipo de teclado:</label>
+        <input type="radio" id="mecanico" name="teclado" value="Mecánico">
+        <label for="mecanico">Mecánico</label>
+        <input type="radio" id="membrana" name="teclado" value="Membrana">
+        <label for="membrana">Membrana</label>
+        <br><br>
+
+        <label for="presupuesto">Presupuesto:</label>
+        <input type="range" id="presupuesto" name="presupuesto" min="500" max="5000" step="100">
+        <output id="presupuestoOutput">2750</output>
+    </fieldset>
+-->
+    <fieldset>
+        <legend>Comentarios Adicionales</legend>
+        <label for="comentarios">Comentarios:</label><br>
+        <textarea id="comentarios" name="comentarios" rows="4" cols="50" placeholder="Escribe tus comentarios aquí..."></textarea>
+        <label for="fileUpload">Sube un archivo:</label>
+        <input type="file" id="fileUpload" name="fileUpload">
+    </fieldset>
+
+    <br>
+    <button type="submit">Registrar equipo</button>
+    <button type="reset">Restablecer formulario</button>
+</form>
+</body>
+</html>

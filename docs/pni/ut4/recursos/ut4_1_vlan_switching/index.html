@@ -1,0 +1,2008 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Novedades y artículos sobre X">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/blog/pni/ut4/recursos/ut4_1_vlan_switching/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>VLAN - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vlan" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              VLAN
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../rde/" class="md-tabs__link">
+          
+  
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../lnd/" class="md-tabs__link">
+          
+  
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../pd4/" class="md-tabs__link">
+          
+  
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../imw/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../soj/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pd4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      0. Introducción
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0. Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-que-vamos-a-aprender-y-por-que-es-importa-en-redes-reales" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.1 Qué vamos a aprender y por qué es importa en redes reales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-objetivos-de-la-unidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.2 Objetivos de la unidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.3 Resumen
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-repaso-de-conceptos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Repaso de conceptos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Repaso de conceptos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-dominios-de-difusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Dominios de difusión
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-lan-plana-sin-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 LAN “plana” (sin VLAN)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-problemas-que-resuelve-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Problemas que resuelve VLAN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-conceptos-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Conceptos VLAN
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Conceptos VLAN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-definicion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Definición
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-vlan-id-identificador-de-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 VLAN ID (identificador de VLAN)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-vlan-por-puerto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 VLAN por puerto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-funcionamiento-de-vlan-en-un-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Funcionamiento de VLAN en un switch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Funcionamiento de VLAN en un switch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-la-tabla-mac-y-el-aprendizaje-del-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 La tabla MAC y el aprendizaje del switch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-vlan-por-defecto-vlan-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 VLAN por defecto. VLAN 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-tipos-de-puertos-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Tipos de puertos VLAN
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Tipos de puertos VLAN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#puerto-de-acceso-access-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      Puerto de acceso (Access Port)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#puerto-trunk-trunk-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      Puerto trunk (Trunk Port)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-configuracion-basica-de-vlan-switches-cisco" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Configuración básica de VLAN switches Cisco
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Configuración básica de VLAN switches Cisco">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-topologia-de-ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Topología de ejemplo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-pasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Pasos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 Pasos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-crear-las-vlan-en-el-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1: crear las VLAN en el switch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-asignar-puertos-a-una-vlan-modo-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2: asignar puertos a una VLAN (modo access)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-verificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3: verificación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-pruebas-de-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4: pruebas de conectividad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-comunicacion-entre-switches-trunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Comunicación entre switches: Trunking
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Comunicación entre switches: Trunking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-etiquetado-8021q" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Etiquetado 802.1Q
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-vlan-permitidas-en-el-trunk-permit-restrict" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 VLAN permitidas en el trunk (permit / restrict)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-vlan-nativa-y-etiquetado" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 VLAN nativa y etiquetado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-configuracion-del-enlace-trunk-entre-switches" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Configuración del enlace trunk entre switches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-pruebas-de-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 Pruebas de conectividad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-interconectando-vlans-con-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Interconectando vlans con router
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Interconectando vlans con router">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-puerto-del-switch-que-conecta-al-router-en-modo-trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Puerto del switch que conecta al router en modo trunk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-creamos-subinterfaces-en-el-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Creamos subinterfaces en el router
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-configuramos-puerta-de-enlace-en-los-pcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 configuramos puerta de enlace en los PCs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-probar-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 Probar conectividad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7cuadro-resumen-acciones-y-comandos" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.Cuadro resumen — acciones y comandos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="vlan">VLAN<a class="headerlink" href="#vlan" title="Permanent link">&para;</a></h1>
+<h2 id="0-introduccion">0. Introducción<a class="headerlink" href="#0-introduccion" title="Permanent link">&para;</a></h2>
+<h3 id="01-que-vamos-a-aprender-y-por-que-es-importa-en-redes-reales">0.1 Qué vamos a aprender y por qué es importa en redes reales<a class="headerlink" href="#01-que-vamos-a-aprender-y-por-que-es-importa-en-redes-reales" title="Permanent link">&para;</a></h3>
+<p>Hasta ahora hemos trabajado el <strong>direccionamiento IPv4</strong>, <strong>subnetting/VLSM</strong> y <strong>enrutamiento estático</strong>. Con eso ya somos capaces de <strong>crear redes distintas</strong> e interconectarlas con un router.</p>
+<p>El siguiente paso natural es aprender a <strong>organizar una red local (LAN) de forma lógica</strong>, sin necesidad de tener un switch distinto para cada grupo de usuarios. Ahí entran las <strong>VLAN (Virtual LAN)</strong>.</p>
+<p>Con VLAN veremos cómo:</p>
+<ul>
+<li><strong>Dividir una LAN en varias redes lógicas</strong> (separadas) usando switches.</li>
+<li><strong>Reducir los broadcast</strong> y mejorar el rendimiento en redes medianas/grandes.</li>
+<li><strong>Separar departamentos o grupos</strong> (administración, aulas, profesorado, invitados…) aumentando el orden y la seguridad.</li>
+<li><strong>Preparar la red para enrutar entre VLAN</strong> (inter-VLAN routing).</li>
+</ul>
+<h3 id="02-objetivos-de-la-unidad">0.2 Objetivos de la unidad<a class="headerlink" href="#02-objetivos-de-la-unidad" title="Permanent link">&para;</a></h3>
+<p>Al terminar la unidad, deberíamos ser capaces de:</p>
+<ul>
+<li>Explicar con tus palabras qué es una VLAN y qué problema resuelve.</li>
+<li>Crear VLAN y <strong>asignar puertos</strong> a una VLAN (modo access).</li>
+<li>Configurar un enlace <strong>trunk</strong> entre switches para transportar varias VLAN.</li>
+<li>Diseñar un <strong>plan de direccionamiento</strong> para varias VLAN.</li>
+<li>Conocer la diferencia entre switches de <strong>capa 2</strong> y switches de <strong>capa3</strong></li>
+<li>Configurar <strong>inter-VLAN routing</strong> y comprobar conectividad.</li>
+<li>Hacer pruebas de conectividad.</li>
+<li>Detectar y corregir fallos de configuración.</li>
+</ul>
+<h3 id="03-resumen">0.3 Resumen<a class="headerlink" href="#03-resumen" title="Permanent link">&para;</a></h3>
+<p>Los conceptos principales sobre los que trabajaremos son:</p>
+<ul>
+<li>Dentro de una VLAN, los equipos se ven como si estuvieran en el <strong>mismo “switch lógico”</strong>.</li>
+<li>Entre VLAN, necesitas un <strong>router</strong> (o un switch capa 3) para que “hable” una red con otra.</li>
+</ul>
+<h2 id="1-repaso-de-conceptos">1. Repaso de conceptos<a class="headerlink" href="#1-repaso-de-conceptos" title="Permanent link">&para;</a></h2>
+<p>Antes de crear VLAN en un switch, necesitamos entender <strong>qué problema resuelven</strong> y qué conceptos de red necesitamos.</p>
+<h3 id="11-dominios-de-difusion">1.1 Dominios de difusión<a class="headerlink" href="#11-dominios-de-difusion" title="Permanent link">&para;</a></h3>
+<p><strong>Dominio de difusión (broadcast domain)</strong>
+Recuerda que un dominio de difusión es el conjunto de equipos que <strong>reciben una trama de broadcast</strong> (destino MAC <code>FF:FF:FF:FF:FF:FF</code>).</p>
+<p>Cómo hemos visto que se generan los broadcast en la red, por ejemplo:</p>
+<ul>
+<li>Cuando un equipo debe averiguar la dirección MAC de un aquipo con el que se quiere comunicar lanza un ARP Request (“¿quién tiene la IP X? respóndeme”).</li>
+<li>Cuando hacemos ping a la dirección de broadcast de la red.</li>
+<li>En general suelen generar broadcast los procolos de red que deben descubrir servicios o que se anuncian dentro de la red</li>
+</ul>
+<p>Hasta ahora hemos visto que en una red sin VLAN, <strong>un switch crea un único dominio de difusión</strong> y que los routers son frontera de los dominios de difusión al no propagarlos.</p>
+<p>Con las VLAN  vermos que cada VLAN, <strong>es un dominio de difusión independiente</strong> por lo que dentro del mismo switch puede haber varios dominios de difusión.</p>
+<p><img alt="" src="../img/broadcast_domain_with_without_vlan.png" /></p>
+<h3 id="12-lan-plana-sin-vlan">1.2 LAN “plana” (sin VLAN)<a class="headerlink" href="#12-lan-plana-sin-vlan" title="Permanent link">&para;</a></h3>
+<p>Imagina una centro educativo o una pequeña empresa con un solo switch y equipos que son utilizados por personal de diferentes departamentos:</p>
+<ul>
+<li>Administración</li>
+<li>Profesorado</li>
+<li>Aulas</li>
+<li>Invitados</li>
+</ul>
+<p>Si <strong>no hay VLAN</strong>, todo está en la misma red local (LAN plana). Eso implica:</p>
+<ol>
+<li>
+<p><strong>Todos comparten el mismo dominio de difusión</strong>
+   Cuando un equipo lanza un broadcast (por ejemplo ARP), el switch lo reenvía a <strong>todos los puertos</strong> (excepto al de entrada).</p>
+</li>
+<li>
+<p>Cuando la red crece van a haber <strong>más broadcast en la red, lo que implica menos eficiencia</strong>. En redes pequeñas no se nota mucho, pero con más equipos:</p>
+<ul>
+<li>Aumenta el tráfico “no útil” (broadcast/multicast).</li>
+<li>Algunos equipos procesan tramas que no les aportan nada.</li>
+</ul>
+</li>
+<li>
+<p><strong>Menos control y peor organización</strong>. Al estar todos los equipos juntos:</p>
+<ul>
+<li>Es más fácil que equipos de invitados puedan acceder a recursos internos.</li>
+<li>Es más difícil aplicar políticas por grupos.</li>
+</ul>
+</li>
+</ol>
+<h3 id="13-problemas-que-resuelve-vlan">1.3 Problemas que resuelve VLAN<a class="headerlink" href="#13-problemas-que-resuelve-vlan" title="Permanent link">&para;</a></h3>
+<p><strong>VLAN permite crear varias “LAN lógicas” dentro del mismo switch</strong>.</p>
+<p>Con VLAN conseguimos:</p>
+<ul>
+<li><strong>Segmentación por grupos</strong>: cada departamento/aula está en su VLAN.</li>
+<li><strong>Separación de broadcasts</strong>: el broadcast de la VLAN de un grupo no llega a la VLAN de otro grupo. Por defecto, no hay comunicación entro los equipos de diferentes VLAN aunque estén conectados al mismo switch.</li>
+<li><strong>Orden</strong>: la red se entiende mejor y se documenta mejor.</li>
+<li><strong>Base para seguridad</strong>: para que dos VLAN se comuniquen, tendrás que pasar por Capa 3 (router o switch L3), donde se pueden crear reglas para controlar la comunicación.</li>
+</ul>
+<h2 id="2-conceptos-vlan">2. Conceptos VLAN<a class="headerlink" href="#2-conceptos-vlan" title="Permanent link">&para;</a></h2>
+<h3 id="21-definicion">2.1 Definición<a class="headerlink" href="#21-definicion" title="Permanent link">&para;</a></h3>
+<p>Una <strong>VLAN (Virtual LAN)</strong> es una forma de <strong>dividir un switch (Capa 2)</strong> en <strong>varias redes lógicas independientes</strong>.</p>
+<ul>
+<li>Cada VLAN se comporta como si fuera un “switch lógico” separado.</li>
+<li>Los equipos en <strong>distintas VLAN</strong> quedan <strong>aislados a nivel de Capa 2</strong>.</li>
+<li>El <strong>broadcast</strong> de una VLAN <strong>no llega</strong> a las demás.</li>
+</ul>
+<h3 id="22-vlan-id-identificador-de-vlan">2.2 VLAN ID (identificador de VLAN)<a class="headerlink" href="#22-vlan-id-identificador-de-vlan" title="Permanent link">&para;</a></h3>
+<p>Cada VLAN se identifica con un número llamado <strong>VLAN ID</strong>.</p>
+<ul>
+<li>Se suele usar un número (por ejemplo <strong>10, 20, 30</strong>) para que sea fácil de recordar.</li>
+<li>
+<p>Se puede asociar al <strong>ID</strong> de la VLAN un <strong>nombre</strong> descriptivo:</p>
+</li>
+<li>
+<p>VLAN 10 → “ADMIN”</p>
+</li>
+<li>VLAN 20 → “AULAS”</li>
+<li>VLAN 30 → “INVITADOS”</li>
+</ul>
+<h3 id="23-vlan-por-puerto">2.3 VLAN por puerto<a class="headerlink" href="#23-vlan-por-puerto" title="Permanent link">&para;</a></h3>
+<p>Hay diferentes formas de crear VLANs, la forma más común de crear VLAN es <strong>asignar un puerto del switch a una VLAN</strong>.</p>
+<ul>
+<li>Un <strong>PC conectado a un puerto</strong> pertenece a la VLAN configurada en ese puerto.</li>
+<li>Si cambias el puerto del switch de VLAN, el PC “cambia de red lógica” sin cambiar el cableado.</li>
+<li>Para que dos equipos conectados en un mismo switch a la misma VLAN se puedan comunicar entre si deben además pertenecer a la <strong>misma red IP</strong>.</li>
+</ul>
+<p>Ejemplo:</p>
+<ul>
+<li>Fa0/1 y Fa0/2 → VLAN 10 (Servidores) → LAN 192.168.10.0/24</li>
+<li>Fa0/3 y Fa0/4 → VLAN 20 (Aulas) → LAN 192.168.20.0/24</li>
+</ul>
+<h2 id="3-funcionamiento-de-vlan-en-un-switch">3. Funcionamiento de VLAN en un switch<a class="headerlink" href="#3-funcionamiento-de-vlan-en-un-switch" title="Permanent link">&para;</a></h2>
+<p>En este apartado vamos a entender <strong>qué hace realmente el switch</strong> cuando trabajamos con VLAN. </p>
+<h3 id="31-la-tabla-mac-y-el-aprendizaje-del-switch">3.1 La tabla MAC y el aprendizaje del switch<a class="headerlink" href="#31-la-tabla-mac-y-el-aprendizaje-del-switch" title="Permanent link">&para;</a></h3>
+<p>Recordemos que un switch trabaja en <strong>Capa 2</strong> (Ethernet). Su función principal es reenviar tramas según la <strong>MAC destino</strong>.</p>
+<p>Para decidir por que puerto debe enviar una trama consulta su <strong>tabla de direccioonamiento MAC</strong>. Y es tabla se llena automáticamente:</p>
+<ul>
+<li>Cuando el switch recibe una trama, mira la <strong>MAC origen</strong>.</li>
+<li>Guarda una asociación: <strong>MAC origen → puerto por el que entró</strong>.</li>
+</ul>
+<p>En Packet Tracer al mostrar la tabla podemos obtener algo como:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Switch# show mac-address-table
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>          Mac Address Table
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>-------------------------------------------
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Vlan    Mac Address       Type        Ports
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>----    -----------       --------    -----
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  1     00D0.BA12.3401    DYNAMIC     Fa0/1
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  1     00D0.BA12.3402    DYNAMIC     Fa0/2
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  1     00D0.BA12.3403    DYNAMIC     Fa0/3
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  1     00D0.BA12.3404    DYNAMIC     Fa0/4
+</code></pre></div>
+<p>Cuando introducimos VLAN, el switch <strong>divide su funcionamiento en varios dominios independientes</strong>. Pasa de tener <strong>una sola LAN</strong> a tener varios switches lógicos o virtuales, uno por VLAN.</p>
+<p>Una vez creadas las VLANs y asignadas a los puertos ahorá la tabla tendría el siguiente aspecto:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Switch# show mac-address-table
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>          Mac Address Table
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>-------------------------------------------
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Vlan    Mac Address       Type        Ports
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>----    -----------       --------    -----
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a> 10     00D0.BA12.3401    DYNAMIC     Fa0/1
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a> 10     00D0.BA12.3402    DYNAMIC     Fa0/2
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a> 20     00D0.BA12.3403    DYNAMIC     Fa0/3
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a> 20     00D0.BA12.3404    DYNAMIC     Fa0/4
+</code></pre></div>
+<p>La <strong>Consecuencia directa</strong> de asignar VLAN a los puertos es que una trama de broadcast desde un puerto de la VLAN 10 <strong>solo se reenvía</strong> a los puertos que pertenecen a VLAN 10. Los puertos de VLAN 20 <strong>no la reciben</strong>. Y viceversa al mandar una trama de broadcast desde un puerto de la VLAN 20.</p>
+<h3 id="32-vlan-por-defecto-vlan-1">3.2 VLAN por defecto. VLAN 1<a class="headerlink" href="#32-vlan-por-defecto-vlan-1" title="Permanent link">&para;</a></h3>
+<p>En los switches Cisco, por defecto, todos los puertos están en <strong>VLAN 1</strong> ya que la  VLAN 1 existe siempre. Esto es un conveni que utilizan CISCO y otros fabricantes. También hay fabricantes enlos que los puertos no tienen una VLAN explícita hasta que no se le asigna.</p>
+<p>Por ello, en diseños reales se suele se evita usar la VLAN 1 si estamos aplicando VLAN de forma explícita. De esa forma, cuando vemos que un puerto tiene asignada una VLAN distinta de 1 sabemos a ciencia cierta que ese switch está segmentado.</p>
+<h3 id="33-tipos-de-puertos-vlan">3.3 Tipos de puertos VLAN<a class="headerlink" href="#33-tipos-de-puertos-vlan" title="Permanent link">&para;</a></h3>
+<p>Dependiendo del tipo de dispositivo que hay al otro extremo del puerto de un switch tenemos puertos de diferente tipo en cuanto a VLAN y, que a su vez se configuran de distinta forma.</p>
+<p>La idea básica es que hay puertos cuyo tráfico contiene en la trama Ethernet etiquetas (tags) de VLAN y puertos que no. Más adelante veremos en que consiste el etiquetado VLAN. </p>
+<h4 id="puerto-de-acceso-access-port">Puerto de acceso (Access Port)<a class="headerlink" href="#puerto-de-acceso-access-port" title="Permanent link">&para;</a></h4>
+<p>Un <strong>puerto de acceso</strong> es un puerto del switch configurado para pertenecer a <strong>una sola VLAN</strong>.</p>
+<ul>
+<li>Se suelen usar cuando dicho puerto va a conectar dispositivos finales como  un <strong>PC</strong>, impresora, cámara IP, servidor, etc.</li>
+<li>Las tramas Ethernet que salen por uno de estos puertos van <strong>sin etiqueta VLAN</strong> (sin “tag”), porque los equipos normales no trabajan con VLAN.</li>
+<li>Todo lo que entra por ese puerto (tramas <strong>sin etiquetar</strong>) el switch lo <strong>asocia</strong> a la VLAN configurada en el puerto.</li>
+</ul>
+<h4 id="puerto-trunk-trunk-port">Puerto trunk (Trunk Port)<a class="headerlink" href="#puerto-trunk-trunk-port" title="Permanent link">&para;</a></h4>
+<p>Un <strong>puerto trunk</strong> es un puerto del switch configurado para transportar <strong>varias VLAN a la vez</strong> por el mismo enlace.</p>
+<p>Se usa principalmente para:</p>
+<ul>
+<li><strong>Conectar switch con switch</strong> (y que viajen varias VLAN entre ellos).</li>
+<li>Conectar <strong>switch con router</strong>.</li>
+<li>Conectar switch con algunos dispositivos que gestionan VLAN (APs, algunos servidores, etc.).</li>
+</ul>
+<p>En un puerto trunk, las tramas Ethernet suelen ir <strong>etiquetadas</strong>, indicando a qué VLAN pertenecen. Esto permite que por un único cable se puedan transportar “muchas redes lógicas”.</p>
+<p><img alt="" src="../img/access_trunk_ports.png" /></p>
+<h2 id="4-configuracion-basica-de-vlan-switches-cisco">4. Configuración básica de VLAN switches Cisco<a class="headerlink" href="#4-configuracion-basica-de-vlan-switches-cisco" title="Permanent link">&para;</a></h2>
+<p>Vamos a aprender a:</p>
+<ul>
+<li>Crear VLAN (ID y nombre).</li>
+<li>Poner puertos en modo <strong>access</strong> y asignarlos a una VLAN.</li>
+<li>Verificar con comandos <code>show</code> que el switch tiene la configuración correcta.</li>
+<li>Detectar fallos típicos (puerto en VLAN incorrecta, VLAN no creada, IP mal puesta…).</li>
+</ul>
+<h3 id="41-topologia-de-ejemplo">4.1 Topología de ejemplo<a class="headerlink" href="#41-topologia-de-ejemplo" title="Permanent link">&para;</a></h3>
+<ul>
+<li>1 switch</li>
+<li>
+<p>4 PCs conectados a:</p>
+</li>
+<li>
+<p>PC1 → Fa0/1</p>
+</li>
+<li>PC2 → Fa0/2</li>
+<li>PC3 → Fa0/3</li>
+<li>PC4 → Fa0/4</li>
+</ul>
+<p><strong>Diseño:</strong></p>
+<ul>
+<li>VLAN 10: PC1 y PC2</li>
+<li>VLAN 20: PC3 y PC4</li>
+</ul>
+<p><strong>Direccionamiento:</strong></p>
+<p>Dado que cada VLAN define una red virtual diferente deberían tener direcciones de red diferentes. Vamos a asignar:</p>
+<ul>
+<li>
+<p>VLAN 10 → la red 192.168.10.0/24</p>
+<ul>
+<li>PC1: 192.168.10.11/24</li>
+<li>PC2: 192.168.10.12/24</li>
+<li>
+<p>VLAN 20 → la red 192.168.20.0/24</p>
+</li>
+<li>
+<p>PC3: 192.168.20.13/24</p>
+</li>
+<li>PC4: 192.168.20.14/24</li>
+</ul>
+</li>
+</ul>
+<h3 id="42-pasos">4.2 Pasos<a class="headerlink" href="#42-pasos" title="Permanent link">&para;</a></h3>
+<h4 id="paso-1-crear-las-vlan-en-el-switch">Paso 1: crear las VLAN en el switch<a class="headerlink" href="#paso-1-crear-las-vlan-en-el-switch" title="Permanent link">&para;</a></h4>
+<p>Entramos al switch y crea VLAN 10 y 20 (y ponles nombre):</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&gt;enable
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>#configure terminal
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Switch(config)#vlan 10
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Switch(config-vlan)# name SERVIDORES
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Switch(config-vlan)#exit
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>Switch(config)#vlan 20
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>Switch(config-vlan)# name AULAS
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>Switch(config-vlan)#exit
+</code></pre></div>
+<blockquote>
+<p>El <strong>nombre</strong> no afecta al funcionamiento, pero ayuda a distinguirlas.</p>
+</blockquote>
+<h4 id="paso-2-asignar-puertos-a-una-vlan-modo-access">Paso 2: asignar puertos a una VLAN (modo access)<a class="headerlink" href="#paso-2-asignar-puertos-a-una-vlan-modo-access" title="Permanent link">&para;</a></h4>
+<p><strong>Asignar Fa0/1 y Fa0/2 a VLAN 10</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Switch&gt;enable
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Switch#configure terminal
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Switch(config)#configure terminal
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Switch(config)#interface fastEthernet 0/1
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Switch(config-if)#switchport mode access
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Switch(config-if)#switchport access vlan 10
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>Switch(config-if)#exit
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>Switch(config)#interface fastEthernet 1/1
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>Switch(config-if)#switchport mode access
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>Switch(config-if)#switchport access vlan 10
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>Switch(config-if)#exit
+</code></pre></div>
+<p><strong>Asignar Fa0/3 y Fa0/4 a VLAN 20</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Switch(config)#interface fastEthernet 2/1
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Switch(config-if)#switchport mode access
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Switch(config-if)#switchport access vlan 20
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Switch(config-if)#exit
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Switch(config)#interface fastEthernet 3/1
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>Switch(config-if)#switchport mode access
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>Switch(config-if)#switchport access vlan 20
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>Switch(config-if)#exit
+</code></pre></div>
+<h4 id="paso-3-verificacion">Paso 3: verificación<a class="headerlink" href="#paso-3-verificacion" title="Permanent link">&para;</a></h4>
+<p><strong>Ver las VLAN y sus puertos</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Switch#show vlan brief
+</code></pre></div>
+<p><strong>Salida esperada (simulada):</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>VLAN Name                             Status    Ports
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>---- -------------------------------- --------- -------------------------------
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>1    default                          active    Fa5/1, Fa6/1, Fa7/1, ...
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>10   SERVIDORES                       active    Fa0/1, Fa2/1
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>20   AULAS                            active    Fa3/1, Fa4/1
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>...
+</code></pre></div>
+<p>Interpretación:</p>
+<ul>
+<li>Los puertos que no se han configurado seguirán en VLAN 1 (por defecto).</li>
+<li>Los puertos que configurados deben aparecer en la VLAN correcta.</li>
+</ul>
+<p><strong>Verificar un puerto concreto</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Switch#show interfaces fastEthernet 0/1 switchport
+</code></pre></div>
+<p>Cosas que te interesan:</p>
+<ul>
+<li><strong>Administrative Mode:</strong> static access</li>
+<li><strong>Access Mode VLAN:</strong> 10 (SERVIDORES)</li>
+</ul>
+<p><strong>Verificar aprendizaje MAC por VLAN</strong></p>
+<p>Una vez haya tráfico (ping/arp), el switch aprende MACs.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Switch#show mac-address-table
+</code></pre></div>
+<p><strong>Salida esperada:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Vlan    Mac Address       Type        Ports
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>----    -----------       --------    -----
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a> 10     00D0.BA12.3401    DYNAMIC     Fa0/1
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a> 10     00D0.BA12.3402    DYNAMIC     Fa1/1
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a> 20     00D0.BA12.3403    DYNAMIC     Fa2/1
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a> 20     00D0.BA12.3404    DYNAMIC     Fa3/1
+</code></pre></div>
+<blockquote>
+<p>Si no aparece nada, es porque no ha habido tráfico todavía. Genera tráfico y vuelve a consultar.</p>
+</blockquote>
+<h4 id="paso-4-pruebas-de-conectividad">Paso 4: pruebas de conectividad<a class="headerlink" href="#paso-4-pruebas-de-conectividad" title="Permanent link">&para;</a></h4>
+<ul>
+<li>PC1 ↔ PC2: ping OK (misma VLAN y misma subred)</li>
+<li>PC3 ↔ PC4: ping OK (misma VLAN y misma subred)</li>
+<li>PC1 ↔ PC3: ping falla (VLAN distinta + subred distinta + no hay router)</li>
+</ul>
+<p>Por tanto, <strong>la segmentación funciona</strong>.</p>
+<h2 id="5-comunicacion-entre-switches-trunking">5. Comunicación entre switches: Trunking<a class="headerlink" href="#5-comunicacion-entre-switches-trunking" title="Permanent link">&para;</a></h2>
+<p>Hasta ahora hemos creado VLAN en <strong>un solo switch</strong>. Pero en una red real casi siempre hay <strong>varios switches</strong>.</p>
+<p>El problema es que, si tienes VLAN 10 y VLAN 20 en Switch1 y también en Switch2, necesitas que esas VLAN “viajen” entre switches para que:</p>
+<ul>
+<li>Un PC en VLAN 10 en Switch1 pueda comunicarse con otro PC en VLAN 10 en Switch2.</li>
+<li>Lo mismo para VLAN 20, VLAN 30, etc.</li>
+</ul>
+<p>Ahí es donde entra el <strong>trunk</strong>.</p>
+<p><img alt="" src="../img/comunicacion_entre_switches_vlan.png" /></p>
+<p>En la imagen anterior tenemos dos switches unidos por un cable:</p>
+<ul>
+<li>
+<p>En Switch1:</p>
+</li>
+<li>
+<p>PC1 (VLAN 10)</p>
+</li>
+<li>IP Phone (VLAN 20)</li>
+<li>
+<p>En Switch2:</p>
+</li>
+<li>
+<p>PC2 (VLAN 10)</p>
+</li>
+<li>Printer (VLAN 20)</li>
+</ul>
+<p>Si el enlace entre switches fuera “normal” (access), solo podría pertenecer a <strong>una VLAN</strong>.
+Eso significa que <strong>o pasa VLAN 10 o pasa VLAN 20</strong>, pero no las dos.</p>
+<p>Para solucionarlos convertir ese enlace entre switches en un <strong>trunk</strong>, que permite transportar <strong>múltiples VLAN por el mismo cable</strong>.</p>
+<h3 id="51-etiquetado-8021q">5.1 Etiquetado 802.1Q<a class="headerlink" href="#51-etiquetado-8021q" title="Permanent link">&para;</a></h3>
+<p>El estándar <strong>IEEE 802.1Q (dot1q)</strong> especifica com etiquetar tramas Ethernet cuando se usa VLAN. Al estar incluida la especificación en un estándar switches de diferentes fabricantes pueden coexistir en la misma red físca y comunicarse entre ellos sin problema.</p>
+<p>En un enlace trunk, el switch necesita saber a qué VLAN pertenece cada trama que cruza el enlace. Para eso el estándar <strong>IEEE 802.1Q (dot1q)</strong> como etiquetarla. </p>
+<p>Cuando una trama ha entrado por un <strong>puerto en modod access</strong> con una VLAN determinada y necesita viajar a otro switch:</p>
+<ul>
+<li>El switch <strong>añade una etiqueta (tag)</strong> a la trama Ethernet con el <strong>VLAN ID</strong> del puerto access.</li>
+<li>El switch del otro lado lee esa etiqueta y coloca la trama en la VLAN correcta.</li>
+</ul>
+<p>Por tanto:</p>
+<ul>
+<li>En los <strong>puertos access</strong>, las tramas normalmente van <strong>sin etiqueta</strong> hacia el PC.</li>
+<li>En los <strong>puertos trunk</strong>, las tramas van <strong>etiquetadas</strong></li>
+</ul>
+<h3 id="52-vlan-permitidas-en-el-trunk-permit-restrict">5.2 VLAN permitidas en el trunk (permit / restrict)<a class="headerlink" href="#52-vlan-permitidas-en-el-trunk-permit-restrict" title="Permanent link">&para;</a></h3>
+<p>Un trunk puede configurarse para:</p>
+<ul>
+<li><strong>permitir todas las VLAN</strong> (por defecto en muchos escenarios)</li>
+<li>o <strong>permitir solo algunas</strong> (mejor práctica)</li>
+</ul>
+<h3 id="53-vlan-nativa-y-etiquetado">5.3 VLAN nativa y etiquetado<a class="headerlink" href="#53-vlan-nativa-y-etiquetado" title="Permanent link">&para;</a></h3>
+<p>En 802.1Q existe el concepto de <strong>VLAN nativa</strong>, es la VLAN que se envía <strong>sin etiqueta</strong> en el trunk. En los dispositivos Cisco, por defecto suele ser <strong>VLAN 1</strong>.
+* Buena práctica: <strong>no usar VLAN 1 para usuarios</strong> y, si se cambia, hacerlo con cuidado.</p>
+<h3 id="54-configuracion-del-enlace-trunk-entre-switches">5.4 Configuración del enlace trunk entre switches<a class="headerlink" href="#54-configuracion-del-enlace-trunk-entre-switches" title="Permanent link">&para;</a></h3>
+<p>En <strong>SW1</strong> y <strong>SW2</strong> ejecutamos:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Switch#configure terminal
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Switch(config)#interface fa0/24
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Switch(config-if)#switchport mode trunk
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Switch(config-if)#switchport trunk allowed vlan 10,20  # Opcional
+</code></pre></div>
+<p>Con esto el enlace Fa0/24 ↔ Fa0/24 entre SW1 y SW2 transporta VLAN 10 y 20.</p>
+<p><strong>Verificación</strong></p>
+<p>En cada switch:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Switch#show interfaces trunk
+</code></pre></div>
+<p><strong>Salida esperada:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Port      Mode   Encapsulation  Status    Native vlan
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Fa0/24    on     802.1q         trunking  1
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>Port      Vlans allowed on trunk
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>Fa0/24    10,20
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>Port      Vlans allowed and active in management domain
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>Fa0/24    10,20
+</code></pre></div>
+<p>Expliación:</p>
+<ul>
+<li>El puerto <strong>Fa0/24</strong> es trunk operativo con encapsulación 802.1Q activada.</li>
+<li>Su VLAN nativa es la 1. Eso significa que, en ese trunk, el tráfico de la VLAN nativa puede ir sin etiqueta (untagged).</li>
+<li>El trunk solo deja pasar VLAN 10 y 20.</li>
+<li>Y además confirma que 10 y 20 existen/están activas en el switch.</li>
+</ul>
+<h3 id="55-pruebas-de-conectividad">5.5 Pruebas de conectividad<a class="headerlink" href="#55-pruebas-de-conectividad" title="Permanent link">&para;</a></h3>
+<p>Si hacemos las siguientes pruebas:</p>
+<ul>
+<li>PC1 (VLAN 10) → PC2 (VLAN 10): ok</li>
+<li>IP Phone (VLAN 20) → Printer (VLAN 20): ok</li>
+<li>PC1 (VLAN 10) → Printer (VLAN 20): x (no hay routing inter-VLAN)</li>
+</ul>
+<h2 id="6-interconectando-vlans-con-router">6. Interconectando vlans con router<a class="headerlink" href="#6-interconectando-vlans-con-router" title="Permanent link">&para;</a></h2>
+<p>Para interconectar VLANs debemos añadir un router a la topología y dar los pasos necesarios para que los equipos de una VLAN accedan a la otra.</p>
+<p>Conectamos el router a un puerto del switch. Vamos a suponer que lo hemos conectado al puerto <strong>Fa0/20</strong>. Y que el switch tiene definidas las VLAN 10 (192.168.10.0/24) y la VLAN 20 (192.168.20.0/24)</p>
+<h3 id="61-puerto-del-switch-que-conecta-al-router-en-modo-trunk">6.1 Puerto del switch que conecta al router en modo trunk<a class="headerlink" href="#61-puerto-del-switch-que-conecta-al-router-en-modo-trunk" title="Permanent link">&para;</a></h3>
+<p>Cómo el puerto va a transportar tramas de más de una VLAN lo configuramos en modo trunk. En el <strong>cli</strong> del switch ejecutamos:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Switch#configure terminal
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>Switch(config)#interface fa0/20
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>Switch(config-if)#switchport mode trunk
+</code></pre></div>
+<h3 id="62-creamos-subinterfaces-en-el-router">6.2 Creamos subinterfaces en el router<a class="headerlink" href="#62-creamos-subinterfaces-en-el-router" title="Permanent link">&para;</a></h3>
+<p>Suponiendo que en el router usa la interfaz <strong>Fa0/1</strong> hacia el switch, accedemos al <strong>cli</strong> del router y ejecutamos lo siguiente para encender la interfaz que por defecto está apagada (también lo podemos hacer desde la interfaz gráfica de packet tracer):</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Router&gt;enable
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Router#configure terminal
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>Router(config)#interface fa0/0
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Router(config-if)#no shutdown
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>Router(config-if)#exit
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>Router(config)#
+</code></pre></div>
+<p>Creamos 2 subinterfaces, una por cada VLAN y activamos en las mismas la encapsulación 802.1q para que el router pueda procesar las tramas Ethernet 802.1q que contienen en los puertos en modo trunk las etiquetas que identifican la VLAN y le asignamos a cada subinterfaz una IP de la VLAN correspondiente.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Router(config)#interface fa0/0.10
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>Router(config-subif)#encapsulation dot1Q 10
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>Router(config-subif)#ip address 192.168.10.1 255.255.255.0
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>Router(config)#exit
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>Router(config)#interface fa0/0.20
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>Router(config)#encapsulation dot1Q 20
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>Router(config)#ip address 192.168.20.1 255.255.255.0
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>Router(config)#exit
+</code></pre></div>
+<p>Verificamos ejecutando:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Router(config)#exit
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>Router#show ip interface brief
+</code></pre></div>
+<h3 id="63-configuramos-puerta-de-enlace-en-los-pcs">6.3 configuramos puerta de enlace en los PCs<a class="headerlink" href="#63-configuramos-puerta-de-enlace-en-los-pcs" title="Permanent link">&para;</a></h3>
+<p>A los PCs en VLAN 10:
+- IP: 192.168.10.X
+- Mask: 255.255.255.0
+- Gateway: 192.168.10.1</p>
+<p>PCs en VLAN 20:
+- IP: 192.168.20.X
+- Mask: 255.255.255.0
+- Gateway: 192.168.20.1</p>
+<h3 id="64-probar-conectividad">6.4 Probar conectividad<a class="headerlink" href="#64-probar-conectividad" title="Permanent link">&para;</a></h3>
+<p>Desde un PC VLAN10:
+- ping 192.168.10.1 (gateway)
+- ping 192.168.20.1 (gateway VLAN20)
+- ping 192.168.20.Y (PC en VLAN20)</p>
+<h2 id="7cuadro-resumen-acciones-y-comandos">7.Cuadro resumen — acciones y comandos<a class="headerlink" href="#7cuadro-resumen-acciones-y-comandos" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Acción</th>
+<th>Comandos (orden típico)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entrar a modo privilegiado y configuración global</td>
+<td><code>Switch&gt; enable</code><br><code>Switch# configure terminal</code></td>
+</tr>
+<tr>
+<td>Crear VLANs y poner nombre</td>
+<td><code>Switch(config)# vlan 10</code><br><code>Switch(config-vlan)# name ADMIN</code><br><code>Switch(config-vlan)# exit</code><br><code>Switch(config)# vlan 20</code><br><code>Switch(config-vlan)# name AULAS</code><br><code>Switch(config-vlan)# exit</code></td>
+</tr>
+<tr>
+<td>Asignar un puerto a una VLAN (access)</td>
+<td><code>Switch(config)# interface fastEthernet 0/1</code><br><code>Switch(config-if)# switchport mode access</code><br><code>Switch(config-if)# switchport access vlan 10</code><br><code>Switch(config-if)# exit</code></td>
+</tr>
+<tr>
+<td>Asignar un rango de puertos a una VLAN (access)</td>
+<td><code>Switch(config)# interface range fastEthernet 2/1 - fastEthernet 4/1</code><br><code>Switch(config-if-range)# switchport mode access</code><br><code>Switch(config-if-range)# switchport access vlan 10</code><br><code>Switch(config-if-range)# exit</code></td>
+</tr>
+<tr>
+<td>Ver VLANs y puertos (verificación)</td>
+<td><code>Switch# show vlan brief</code></td>
+</tr>
+<tr>
+<td>Ver configuración de un puerto (modo/VLAN)</td>
+<td><code>Switch# show interfaces fastEthernet 0/1 switchport</code></td>
+</tr>
+<tr>
+<td>Ver tabla MAC (por VLAN)</td>
+<td><code>Switch# show mac-address-table</code></td>
+</tr>
+<tr>
+<td>Configurar trunk</td>
+<td><code>Switch(config)# interface fastEthernet 0/24</code><br><code>Switch(config-if)# switchport mode trunk</code><br><code>Switch(config-if)# exit</code></td>
+</tr>
+<tr>
+<td>Permitir VLANs en trunk (filtrar)</td>
+<td><code>Switch(config-if)# switchport trunk allowed vlan 10,20</code></td>
+</tr>
+<tr>
+<td>Volver a permitir todas las VLANs (quitar filtro)</td>
+<td><code>Switch(config-if)# no switchport trunk allowed vlan</code></td>
+</tr>
+<tr>
+<td>Verificar trunks</td>
+<td><code>Switch# show interfaces trunk</code></td>
+</tr>
+<tr>
+<td>Quitar un puerto de una VLAN (volver a VLAN 1)</td>
+<td><code>Switch(config)# interface fastEthernet 0/1</code><br><code>Switch(config-if)# switchport mode access</code><br><code>Switch(config-if)# switchport access vlan 1</code><br><code>Switch(config-if)# exit</code></td>
+</tr>
+<tr>
+<td>Borrar una VLAN</td>
+<td><code>Switch(config)# no vlan 20</code></td>
+</tr>
+<tr>
+<td>Guardar configuración (switch)</td>
+<td><code>Switch# copy running-config startup-config</code></td>
+</tr>
+<tr>
+<td>Poner el puerto hacia el router en trunk</td>
+<td><code>Switch(config)# interface fa0/20</code><br><code>Switch(config-if)# switchport mode trunk</code></td>
+</tr>
+<tr>
+<td>Encender interfaz física del router hacia el switch</td>
+<td><code>Router(config)# interface fa0/0</code><br><code>Router(config-if)# no shutdown</code><br><code>Router(config-if)# exit</code><br><code>Router(config)# interface g0/0</code><br><code>Router(config-if)# no shutdown</code><br><code>Router(config-if)# exit</code></td>
+</tr>
+<tr>
+<td>Crear subinterfaces (router-on-a-stick)</td>
+<td><code>Router(config)# interface fa0/0.10</code><br><code>Router(config-subif)# encapsulation dot1Q 10</code><br><code>Router(config-subif)# ip address 192.168.10.1 255.255.255.0</code><br><code>Router(config-subif)# exit</code><br><code>Router(config)# interface fa0/0.20</code><br><code>Router(config-subif)# encapsulation dot1Q 20</code><br><code>Router(config-subif)# ip address 192.168.20.1 255.255.255.0</code><br><code>Router(config-subif)# exit</code><br><code>Router(config)# interface g0/0.10</code><br><code>Router(config-subif)# encapsulation dot1Q 10</code><br><code>Router(config-subif)# ip address 192.168.10.1 255.255.255.0</code><br><code>Router(config-subif)# exit</code></td>
+</tr>
+<tr>
+<td>Verificar interfaces del router</td>
+<td><code>Router# show ip interface brief</code><br><code>Router# show running-config \| section interface g0/0</code></td>
+</tr>
+<tr>
+<td>Guardar configuración (router)</td>
+<td><code>Router# write memory</code><br><code>Router# copy running-config startup-config</code></td>
+</tr>
+<tr>
+<td>Probar conectividad (hosts)</td>
+<td><code>PC&gt; ping 192.168.10.1</code><br><code>PC&gt; ping 192.168.20.1</code><br><code>PC&gt; ping 192.168.20.Y</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://ichigar.codeberg.page" target="_blank" rel="noopener" title="ichigar.codeberg.page" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
