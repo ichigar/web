@@ -1388,11 +1388,14 @@
 <blockquote>
 <p>Este enfoque LBYL mejora los mensajes al usuario, pero no elimina la necesidad de <code>try/except</code>: el estado del fichero puede cambiar entre la verificación y la apertura.</p>
 </blockquote>
-<p>??? tip Un fichero se considera “normal” cuando es un archivo regular del sistema de ficheros:
-    - contiene datos (texto/binario)
-    - se puede abrir con open()
-    - no es un directorio,
-    - no es un dispositivo, socket, tubería, etc.</p>
+<details class="tip">
+<summary>Aclaración</summary>
+<p>Un fichero se considera “normal” cuando es un archivo regular del sistema de ficheros:
+- contiene datos (texto/binario)
+- se puede abrir con open()
+- no es un directorio,
+- no es un dispositivo, socket, tubería, etc.</p>
+</details>
 
 
 
