@@ -1,0 +1,2761 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Novedades y artículos sobre X">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/blog/pd4/ut2/labs/poo_ut2_a2_lab_rutas_y_errores/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Lab guiado: Rutas y manejo de errores en ficheros - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-guiado-rutas-y-manejo-de-errores-en-ficheros" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab guiado: Rutas y manejo de errores en ficheros
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../rde/" class="md-tabs__link">
+          
+  
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../lnd/" class="md-tabs__link">
+          
+  
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pni/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../imw/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../soj/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#como-trabajar-en-parejas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cómo trabajar en parejas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cómo trabajar en parejas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rotación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrega
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-1-crear-la-estructura-del-proyecto-01_estructurapy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1 — Crear la estructura del proyecto 01_estructura.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 1 — Crear la estructura del proyecto 01_estructura.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pregunta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-2-explorar-propiedades-de-una-ruta-02_rutaspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2 — Explorar propiedades de una ruta 02_rutas.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 2 — Explorar propiedades de una ruta 02_rutas.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pregunta_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-3-capturar-filenotfounderror-03_lecturapy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3 — Capturar FileNotFoundError 03_lectura.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 3 — Capturar FileNotFoundError 03_lectura.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pregunta_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-4-capturar-multiples-excepciones-04_excepcionespy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4 — Capturar múltiples excepciones 04_excepciones.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 4 — Capturar múltiples excepciones 04_excepciones.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pregunta_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-5-patron-completo-try-except-else-finally-05_patron_completopy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 5 — Patrón completo try / except / else / finally 05_patron_completo.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 5 — Patrón completo try / except / else / finally 05_patron_completo.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pregunta_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-6-listar-y-procesar-varios-ficheros-06_listarpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 6 — Listar y procesar varios ficheros 06_listar.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 6 — Listar y procesar varios ficheros 06_listar.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pregunta_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todo_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-7-exportar-resumen-a-fichero-07_exportarpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 7 — Exportar resumen a fichero 07_exportar.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 7 — Exportar resumen a fichero 07_exportar.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pregunta_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todo_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checklist-de-entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checklist de entrega
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actividades-de-ampliacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actividades de ampliación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actividades de ampliación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-leer-con-csvreader-requiere-paso-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      A — Leer con csv.reader (requiere paso 7)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-buscar-alumno-por-nombre-requiere-paso-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      B — Buscar alumno por nombre (requiere paso 6)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-comparativa-pathlib-vs-ospath-requiere-paso-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      C — Comparativa pathlib vs os.path (requiere paso 2)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-historial-de-exportaciones-requiere-paso-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      D — Historial de exportaciones (requiere paso 7)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-reto-final-gestor-interactivo-de-notas" class="md-nav__link">
+    <span class="md-ellipsis">
+      E — Reto final: gestor interactivo de notas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lab-guiado-rutas-y-manejo-de-errores-en-ficheros">Lab guiado: Rutas y manejo de errores en ficheros<a class="headerlink" href="#lab-guiado-rutas-y-manejo-de-errores-en-ficheros" title="Permanent link">&para;</a></h1>
+<ul>
+<li><strong>Unidad:</strong> UT2 — Trabajo con ficheros</li>
+<li><strong>Agrupamiento:</strong> Parejas (conductor / navegante)</li>
+<li><strong>Recursos:</strong><ul>
+<li><a href="../../recursos/poo_ut2_3_errores/">Gestión de errores en ficheros</a></li>
+<li><a href="../../recursos/poo_ut2_4_rutas/">Trabajo con rutas: pathlib y os.path</a></li>
+</ul>
+</li>
+<li><strong>Ficheros de trabajo:</strong> <code>01_estructura.py</code>, <code>02_rutas.py</code>, <code>03_lectura.py</code>, <code>04_excepciones.py</code>, <code>05_patron_completo.py</code>, <code>06_listar.py</code>, <code>07_exportar.py</code></li>
+</ul>
+<hr />
+<h2 id="como-trabajar-en-parejas">Cómo trabajar en parejas<a class="headerlink" href="#como-trabajar-en-parejas" title="Permanent link">&para;</a></h2>
+<p>Este lab se realiza en <strong>parejas conductor/navegante</strong>. Leed las instrucciones antes de empezar.</p>
+<h3 id="roles">Roles<a class="headerlink" href="#roles" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Rol</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Conductor</strong></td>
+<td>Escribe el código/configuración y ejecuta los pasos. Solo el conductor toca el teclado.</td>
+</tr>
+<tr>
+<td><strong>Navegante</strong></td>
+<td>Lee el enunciado en voz alta, propone soluciones, detecta errores y formula las preguntas.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rotacion">Rotación<a class="headerlink" href="#rotacion" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cambiad de rol <strong>al final de cada paso</strong>.</li>
+<li>Al rotar, el navegante ocupa el teclado y el conductor se convierte en navegante.</li>
+<li>Ambos debéis poder explicar cualquier parte del trabajo al terminar el lab.</li>
+</ul>
+<h3 id="entrega">Entrega<a class="headerlink" href="#entrega" title="Permanent link">&para;</a></h3>
+<p>Carpeta <strong>comprimida en formato zip</strong> que contenga todos los ficheros <code>.py</code> y las subcarpetas <code>datos/</code>, <code>exportaciones/</code> y <code>logs/</code> generadas durante el lab.</p>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">Antes de empezar: repasemos los conceptos</p>
+<p><strong><code>pathlib.Path</code></strong>
+Clase de Python que representa una ruta del sistema de ficheros como un objeto con atributos (<code>name</code>, <code>stem</code>, <code>suffix</code>, <code>parent</code>) y métodos propios (<code>exists()</code>, <code>mkdir()</code>, <code>glob()</code>…).</p>
+<p><strong>Operador <code>/</code> en <code>pathlib</code></strong>
+Combina objetos <code>Path</code> para construir rutas de forma portable entre sistemas operativos — no uses concatenación de strings para rutas.</p>
+<p><strong><code>Path(__file__).parent</code></strong>
+Patrón habitual para obtener la carpeta donde está el script en ejecución. Permite construir rutas relativas que funcionan sin importar desde qué directorio se lanza el programa.</p>
+<p><strong><code>try / except</code></strong>
+Bloque que captura excepciones y permite reaccionar de forma controlada. Úsalo siempre que hagas I/O: el disco puede fallar, el fichero puede no existir, los permisos pueden ser insuficientes.</p>
+<p><strong><code>FileNotFoundError</code> y <code>PermissionError</code></strong>
+Las dos excepciones más habituales al trabajar con ficheros. Capturarlas por separado permite dar mensajes útiles al usuario y tomar decisiones diferentes en cada caso.</p>
+<p><strong><code>else</code> y <code>finally</code> en <code>try / except</code></strong>
+<code>else</code> se ejecuta solo si <strong>no</strong> hubo excepción — úsalo para la lógica de éxito. <code>finally</code> se ejecuta <strong>siempre</strong> — úsalo para limpieza, logs o contadores.</p>
+</div>
+<hr />
+<h2 id="paso-1-crear-la-estructura-del-proyecto-01_estructurapy">Paso 1 — Crear la estructura del proyecto  <code>01_estructura.py</code><a class="headerlink" href="#paso-1-crear-la-estructura-del-proyecto-01_estructurapy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p><code>Path(__file__).parent</code> devuelve la carpeta del script en ejecución.
+<code>mkdir(parents=True, exist_ok=True)</code> crea el directorio y todos los intermedios sin lanzar error si ya existe.
+Para <strong>escribir en un fichero</strong> con <code>open()</code>, usa el modo <code>"w"</code> (crea o sobreescribe):</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;línea 1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;línea 2</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h3 id="objetivo"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h3>
+<p>Crear con Python la estructura de carpetas del proyecto y generar los ficheros de datos de ejemplo que usaremos en el resto del lab.</p>
+<h3 id="tarea"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea" title="Permanent link">&para;</a></h3>
+<p>Copia este código en <code>01_estructura.py</code> y ejecútalo:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="hll"><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+</span><a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="c1"># Crear carpeta de datos</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="hll"><span class="n">carpeta_datos</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span>
+</span><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="hll"><span class="n">carpeta_datos</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><a id="__codelineno-1-8" name="__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="c1"># Crear fichero de notas del grupo 1A</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="hll"><span class="n">notas_1a</span> <span class="o">=</span> <span class="n">carpeta_datos</span> <span class="o">/</span> <span class="s2">&quot;notas_1a.txt&quot;</span>
+</span><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="hll"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">notas_1a</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><a id="__codelineno-1-12" name="__codelineno-1-12"></a>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Ana García,8.5</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Carlos López,7.0</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;María Rodríguez,9.2</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Pedro Martínez,6.8</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creado: </span><span class="si">{</span><span class="n">notas_1a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¿Es fichero? </span><span class="si">{</span><span class="n">notas_1a</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="pregunta"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta:<a class="headerlink" href="#pregunta" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>¿Qué error lanzaría <code>mkdir()</code> si no pasáramos <code>exist_ok=True</code> y la carpeta ya existiera?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Lanzaría <code>FileExistsError</code>. El parámetro <code>exist_ok=True</code> silencia ese error concreto — muy útil en scripts que se ejecutan varias veces.</p>
+</details>
+<p>Ejecuta el script: <code>python 01_estructura.py</code>. Comprueba que se ha creado la carpeta <code>datos/</code> y el fichero <code>notas_1a.txt</code>.</p>
+<h4 id="todo"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 2.03v2.02c4.39.54 7.5 4.53 6.96 8.92-.46 3.64-3.32 6.53-6.96 6.96v2c5.5-.55 9.5-5.43 8.95-10.93-.45-4.75-4.22-8.5-8.95-8.97m-2 .03c-1.95.19-3.81.94-5.33 2.2L7.1 5.74c1.12-.9 2.47-1.48 3.9-1.68zM4.26 5.67A9.9 9.9 0 0 0 2.05 11h2c.19-1.42.75-2.77 1.64-3.9zM2.06 13c.2 1.96.97 3.81 2.21 5.33l1.42-1.43A8 8 0 0 1 4.06 13zm5.04 5.37-1.43 1.37A10 10 0 0 0 11 22v-2a8 8 0 0 1-3.9-1.63M12.5 7v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg></span> TODO<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h4>
+<p>Completa <code>01_estructura.py</code> añadiendo lo que falta:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="n">datos</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="n">datos</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="n">notas_1a</span> <span class="o">=</span> <span class="n">datos</span> <span class="o">/</span> <span class="s2">&quot;notas_1a.txt&quot;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="n">notas_1a</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>    <span class="s2">&quot;Ana García,8.5</span><span class="se">\n</span><span class="s2">Carlos López,7.0</span><span class="se">\n</span><span class="s2">María Rodríguez,9.2</span><span class="se">\n</span><span class="s2">Pedro Martínez,6.8</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>    <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="p">)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creado: </span><span class="si">{</span><span class="n">notas_1a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="c1"># TODO: crea la carpeta &#39;exportaciones&#39; dentro de BASE</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="c1"># TODO: crea la carpeta &#39;logs&#39; dentro de BASE</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="n">notas_1b</span> <span class="o">=</span> <span class="n">datos</span> <span class="o">/</span> <span class="s2">&quot;notas_1b.txt&quot;</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">notas_1b</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a>    <span class="c1"># TODO: escribe las cuatro líneas del grupo 1B (mismo formato: &quot;Nombre,Nota\n&quot;)</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a>    <span class="c1"># Laura Sánchez,8.0 / Juan Pérez,5.5 / Isabel Torres,7.8 / Roberto Díaz,9.5</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a>    <span class="k">pass</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="c1"># TODO: comprueba con is_file() que notas_1b existe y muestra el resultado</span>
+</code></pre></div></td></tr></table></div>
+<details class="tip">
+<summary>Pista</summary>
+<p>Para crear <code>exportaciones/</code> y <code>logs/</code> usa el mismo patrón: <code>(BASE / "carpeta_datos").mkdir(exist_ok=True)</code>.
+Para escribir <code>notas_1b.txt</code> abre el fichero con <code>open(..., "w")</code> igual que en el ejemplo.</p>
+</details>
+<h4 id="comprobacion"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion" title="Permanent link">&para;</a></h4>
+<p>Salida esperada:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Creado: .../datos/notas_1a.txt
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Creado: .../datos/notas_1b.txt
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>¿Es fichero? True
+</code></pre></div>
+<p>Y en el sistema de ficheros deben existir las carpetas <code>datos/</code>, <code>exportaciones/</code> y <code>logs/</code>.</p>
+<h3 id="reflexion"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li><code>Path(__file__).parent</code> nos da la carpeta del script, no la de trabajo — el código es portable.</li>
+<li>El operador <code>/</code> construye rutas sin concatenar strings, lo que funciona igual en Linux y Windows.</li>
+<li><code>mkdir(exist_ok=True)</code> hace el script idempotente: puedes ejecutarlo varias veces sin errores.</li>
+<li>Cómo hemos visto anteriormente <code>open(ruta, "w")</code> crea o sobreescribe un fichero; <code>f.write()</code> escribe cada línea. El bloque <code>with</code> cierra el fichero automáticamente.</li>
+</ul>
+</details>
+<hr />
+<h2 id="paso-2-explorar-propiedades-de-una-ruta-02_rutaspy">Paso 2 — Explorar propiedades de una ruta  <code>02_rutas.py</code><a class="headerlink" href="#paso-2-explorar-propiedades-de-una-ruta-02_rutaspy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p>Los objetos <code>Path</code> exponen atributos de solo lectura: <code>name</code> (nombre con extensión), <code>stem</code> (sin extensión), <code>suffix</code> (extensión con punto), <code>parent</code> (directorio padre).
+<code>exists()</code>, <code>is_file()</code> e <code>is_dir()</code> comprueban el tipo de elemento al que apunta la ruta.</p>
+</div>
+<h3 id="objetivo_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_1" title="Permanent link">&para;</a></h3>
+<p>Obtener información sobre rutas usando los atributos de <code>Path</code>, sin manipular strings manualmente.</p>
+<h3 id="tarea_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_1" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span>
+<span class="normal"><a href="#__codelineno-4-8">8</a></span>
+<span class="normal"><a href="#__codelineno-4-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="hll"><span class="n">ruta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;datos/alumnos/notas_1a.txt&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-4-4" name="__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="hll"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nombre completo:  </span><span class="si">{</span><span class="n">ruta</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>     <span class="c1"># notas_1a.txt</span>
+</span><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="hll"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sin extensión:    </span><span class="si">{</span><span class="n">ruta</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>     <span class="c1"># notas_1a</span>
+</span><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="hll"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extensión:        </span><span class="si">{</span><span class="n">ruta</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># .txt</span>
+</span><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="hll"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Directorio padre: </span><span class="si">{</span><span class="n">ruta</span><span class="o">.</span><span class="n">parent</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># datos/alumnos</span>
+</span><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="hll"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¿Existe?          </span><span class="si">{</span><span class="n">ruta</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># False (no la hemos creado)</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="pregunta_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta:<a class="headerlink" href="#pregunta_1" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>¿Por qué <code>ruta.exists()</code> devuelve <code>False</code> en el ejemplo anterior si <code>datos/notas_1a.txt</code> sí existe?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Porque la ruta que hemos le pasamos <code>datos/alumnos/notas_1a.txt</code> no existe en el disco duro. La que creamos fue <code>datos/notas_1a.txt</code></p>
+</details>
+<p>Ejecuta el script: <code>python 02_rutas.py</code>.</p>
+<h4 id="todo_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 2.03v2.02c4.39.54 7.5 4.53 6.96 8.92-.46 3.64-3.32 6.53-6.96 6.96v2c5.5-.55 9.5-5.43 8.95-10.93-.45-4.75-4.22-8.5-8.95-8.97m-2 .03c-1.95.19-3.81.94-5.33 2.2L7.1 5.74c1.12-.9 2.47-1.48 3.9-1.68zM4.26 5.67A9.9 9.9 0 0 0 2.05 11h2c.19-1.42.75-2.77 1.64-3.9zM2.06 13c.2 1.96.97 3.81 2.21 5.33l1.42-1.43A8 8 0 0 1 4.06 13zm5.04 5.37-1.43 1.37A10 10 0 0 0 11 22v-2a8 8 0 0 1-3.9-1.63M12.5 7v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg></span> TODO<a class="headerlink" href="#todo_1" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># Construye la ruta al fichero notas_1a.txt que creaste en el paso anterior</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="n">ruta</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span> <span class="o">/</span> <span class="s2">&quot;notas_1a.txt&quot;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="c1"># TODO: muestra name, stem, suffix y parent de la ruta</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="c1"># TODO: comprueba y muestra si la ruta existe, si es fichero y si es directorio</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1"># TODO: comprueba si el directorio padre de la ruta existe con is_dir()</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="c1"># TODO: comprueba y muestra si la ruta es absoluta. Investiga cómo se hace</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="c1"># TODO: Muestra la ruta es absoluta. Investiga cómo se hace</span>
+</code></pre></div></td></tr></table></div>
+<details class="tip">
+<summary>Pista</summary>
+<p><code>ruta.parent</code> devuelve otro objeto <code>Path</code>. Puedes encadenar: <code>ruta.parent.parent</code> para subir dos niveles, o <code>ruta.parent.name</code> para obtener solo el nombre del directorio padre.</p>
+</details>
+<h4 id="comprobacion_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion_1" title="Permanent link">&para;</a></h4>
+<p>Salida esperada:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Nombre completo:         notas_1a.txt
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Sin extensión:           notas_1a
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Extensión:               .txt
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Directorio padre:        .../datos
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Nombre directorio padre: datos
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>¿Existe?                 True
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>¿Es fichero?             True
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>¿Es directorio?          False
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>¿Padre existe?           True
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>¿Ruta absoluta?          False
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>Ruta absoluta             C:\Users\User\pd4\ut2-a2\lab\datos\notas_1a.txt
+</code></pre></div>
+<blockquote>
+<p>La ruta absoluta dependerá del caso particular en el que estés ejecutando el script.</p>
+</blockquote>
+<h3 id="reflexion_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_1" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li>Los atributos de <code>Path</code> son de solo lectura y no acceden al disco — son operaciones sobre la cadena de la ruta.</li>
+<li><code>exists()</code>, <code>is_file()</code> e <code>is_dir()</code> sí acceden al disco para comprobar el estado real.</li>
+<li>Usar <code>Path(__file__).parent</code> en lugar de <code>"."</code> o rutas escritas directamente en el código hace el programa portable (ejecutable en otros equipos y sistemas operativos).</li>
+</ul>
+</details>
+<hr />
+<h2 id="paso-3-capturar-filenotfounderror-03_lecturapy">Paso 3 — Capturar <code>FileNotFoundError</code>  <code>03_lectura.py</code><a class="headerlink" href="#paso-3-capturar-filenotfounderror-03_lecturapy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p><code>try / except</code> permite reaccionar ante errores sin detener el programa.
+<code>FileNotFoundError</code> se lanza al abrir en modo <code>"r"</code> un fichero que no existe.
+La cláusula <code>as e</code> asigna la excepción a una variable para acceder al mensaje original del SO.</p>
+</div>
+<h3 id="objetivo_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_2" title="Permanent link">&para;</a></h3>
+<p>Leer un fichero de texto capturando el error de forma controlada si el fichero no existe.</p>
+<h3 id="tarea_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_2" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="hll"><span class="k">try</span><span class="p">:</span>
+</span><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="hll">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span> <span class="o">/</span> <span class="s2">&quot;notas_inexistente.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><a id="__codelineno-7-7" name="__codelineno-7-7"></a>        <span class="n">contenido</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">contenido</span><span class="p">)</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="hll"><span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Salida esperada:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Error: [Errno 2] No such file or directory: &#39;.../datos/notas_inexistente.txt&#39;
+</code></pre></div>
+<h4 id="pregunta_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta:<a class="headerlink" href="#pregunta_2" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>¿Qué problema tiene capturar <code>Exception</code> en lugar de <code>FileNotFoundError</code>?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p><code>Exception</code> captura cualquier error, incluidos bugs del programa (como un <code>NameError</code> o un <code>TypeError</code>). Esto silencia errores que deberían verse, haciendo imposible la depuración. Captura siempre el tipo más específico posible.</p>
+</details>
+<p>Ejecuta el script: <code>python 03_lectura.py</code>. Verifica que el mensaje de error aparece sin que el programa se detenga abruptamente.</p>
+<h4 id="todo_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 2.03v2.02c4.39.54 7.5 4.53 6.96 8.92-.46 3.64-3.32 6.53-6.96 6.96v2c5.5-.55 9.5-5.43 8.95-10.93-.45-4.75-4.22-8.5-8.95-8.97m-2 .03c-1.95.19-3.81.94-5.33 2.2L7.1 5.74c1.12-.9 2.47-1.48 3.9-1.68zM4.26 5.67A9.9 9.9 0 0 0 2.05 11h2c.19-1.42.75-2.77 1.64-3.9zM2.06 13c.2 1.96.97 3.81 2.21 5.33l1.42-1.43A8 8 0 0 1 4.06 13zm5.04 5.37-1.43 1.37A10 10 0 0 0 11 22v-2a8 8 0 0 1-3.9-1.63M12.5 7v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg></span> TODO<a class="headerlink" href="#todo_2" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="n">ruta</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span> <span class="o">/</span> <span class="s2">&quot;notas_1a.txt&quot;</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>    <span class="c1"># TODO: abre el fichero en modo lectura y guarda las líneas en una variable</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>    <span class="k">pass</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a>    <span class="c1"># TODO: muestra un mensaje claro indicando que el fichero no existe</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a>    <span class="k">pass</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a>    <span class="c1"># TODO: si la lectura tuvo éxito, muestra cuántas líneas contiene el fichero</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a>    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+<details class="tip">
+<summary>Pista</summary>
+<p>Si quieres mostrar solo el nombre del fichero en el mensaje de error, usa <code>ruta.name</code> en lugar de mostrar la excepción completa con <code>e</code>.</p>
+</details>
+<h4 id="comprobacion_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion_2" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Fichero leído: 4 líneas.
+</code></pre></div>
+<p>Si cambias la ruta a un fichero que no existe:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Error: el fichero &#39;notas_2a.txt&#39; no existe.
+</code></pre></div>
+<h3 id="reflexion_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_2" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li><code>try / except</code> es el mecanismo estándar de Python para gestionar errores de I/O.</li>
+<li>Capturar <code>FileNotFoundError</code> específicamente es mejor que <code>Exception</code> — solo interceptamos el caso que esperamos.</li>
+<li>El bloque <code>else</code> (que añadiste en el TODO) se ejecuta solo si no hubo excepción — es el sitio correcto para la lógica de éxito.</li>
+</ul>
+</details>
+<hr />
+<h2 id="paso-4-capturar-multiples-excepciones-04_excepcionespy">Paso 4 — Capturar múltiples excepciones  <code>04_excepciones.py</code><a class="headerlink" href="#paso-4-capturar-multiples-excepciones-04_excepcionespy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p>Varios bloques <code>except</code> permiten reaccionar de forma distinta ante cada tipo de error.
+Una tupla <code>except (ErrorA, ErrorB) as e</code> agrupa errores con la misma reacción.
+<code>OSError</code> es la clase base de <code>FileNotFoundError</code>, <code>PermissionError</code> e <code>IsADirectoryError</code>.</p>
+</div>
+<h3 id="objetivo_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_3" title="Permanent link">&para;</a></h3>
+<p>Distinguir entre tipos de error de I/O y mostrar mensajes útiles y específicos para cada caso.</p>
+<h3 id="tarea_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_3" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span>
+<span class="normal"><a href="#__codelineno-12-16">16</a></span>
+<span class="normal"><a href="#__codelineno-12-17">17</a></span>
+<span class="normal"><a href="#__codelineno-12-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="hll"><span class="k">def</span><span class="w"> </span><span class="nf">leer_fichero</span><span class="p">(</span><span class="n">ruta</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+</span><a id="__codelineno-12-6" name="__codelineno-12-6"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a>            <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="hll">    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+</span><a id="__codelineno-12-10" name="__codelineno-12-10"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">ruta</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; no existe.&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a>        <span class="k">return</span> <span class="kc">None</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="hll">    <span class="k">except</span> <span class="ne">PermissionError</span><span class="p">:</span>
+</span><a id="__codelineno-12-13" name="__codelineno-12-13"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sin permisos para leer &#39;</span><span class="si">{</span><span class="n">ruta</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a>        <span class="k">return</span> <span class="kc">None</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15"></a>
+<a id="__codelineno-12-16" name="__codelineno-12-16"></a><span class="n">contenido</span> <span class="o">=</span> <span class="n">leer_fichero</span><span class="p">(</span><span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span> <span class="o">/</span> <span class="s2">&quot;notas_1a.txt&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17"></a><span class="k">if</span> <span class="n">contenido</span><span class="p">:</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Leído: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">contenido</span><span class="p">)</span><span class="si">}</span><span class="s2"> caracteres.&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<details class="tip">
+<summary>Pista</summary>
+<p>Para capturar cualquier error de fichero sin distinguir el tipo, usa <code>OSError as e</code> — es la clase base de <code>FileNotFoundError</code>, <code>PermissionError</code> e <code>IsADirectoryError</code>. <code>str(e)</code> incluye el código de error del SO y la ruta.</p>
+</details>
+<h4 id="pregunta_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta:<a class="headerlink" href="#pregunta_3" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>¿Cuándo usarías <code>except (FileNotFoundError, PermissionError) as e</code> en lugar de dos bloques <code>except</code> separados?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Cuando quieres la misma reacción ante ambos errores — por ejemplo, mostrar el mensaje original del sistema con <code>str(e)</code> sin distinción. Si la reacción es diferente (crear el fichero si no existe, mostrar un mensaje al usuario indicando que no tiene permisos si no hay permisos), necesitas bloques separados.</p>
+</details>
+<p>Ejecuta: <code>python 04_excepciones.py</code>.</p>
+<h4 id="todo_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 2.03v2.02c4.39.54 7.5 4.53 6.96 8.92-.46 3.64-3.32 6.53-6.96 6.96v2c5.5-.55 9.5-5.43 8.95-10.93-.45-4.75-4.22-8.5-8.95-8.97m-2 .03c-1.95.19-3.81.94-5.33 2.2L7.1 5.74c1.12-.9 2.47-1.48 3.9-1.68zM4.26 5.67A9.9 9.9 0 0 0 2.05 11h2c.19-1.42.75-2.77 1.64-3.9zM2.06 13c.2 1.96.97 3.81 2.21 5.33l1.42-1.43A8 8 0 0 1 4.06 13zm5.04 5.37-1.43 1.37A10 10 0 0 0 11 22v-2a8 8 0 0 1-3.9-1.63M12.5 7v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg></span> TODO<a class="headerlink" href="#todo_3" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span>
+<span class="normal"><a href="#__codelineno-13-13">13</a></span>
+<span class="normal"><a href="#__codelineno-13-14">14</a></span>
+<span class="normal"><a href="#__codelineno-13-15">15</a></span>
+<span class="normal"><a href="#__codelineno-13-16">16</a></span>
+<span class="normal"><a href="#__codelineno-13-17">17</a></span>
+<span class="normal"><a href="#__codelineno-13-18">18</a></span>
+<span class="normal"><a href="#__codelineno-13-19">19</a></span>
+<span class="normal"><a href="#__codelineno-13-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">leer_fichero</span><span class="p">(</span><span class="n">ruta</span><span class="p">):</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a>            <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a>    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">ruta</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; no existe.&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11"></a>        <span class="k">return</span> <span class="kc">None</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12"></a>    <span class="k">except</span> <span class="ne">PermissionError</span><span class="p">:</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sin permisos para leer &#39;</span><span class="si">{</span><span class="n">ruta</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14"></a>        <span class="k">return</span> <span class="kc">None</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15"></a>
+<a id="__codelineno-13-16" name="__codelineno-13-16"></a><span class="c1"># TODO: llama a leer_fichero() con notas_1a.txt y muestra los caracteres leídos</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17"></a><span class="c1"># TODO: llama a leer_fichero() con un fichero que no existe y verifica el mensaje</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18"></a><span class="c1"># TODO: añade un tercer except que capture OSError para cualquier otro error de I/O</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19"></a><span class="c1">#       y muestre el mensaje original del SO usando &#39;as e&#39;</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20"></a><span class="c1"># TODO: llama a leer_fichero(BASE / &quot;datos&quot;) La carpeta existe pero el fichero no se puede abrir al ser una carpeta.</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="comprobacion_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion_3" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Leído: 52 caracteres.
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>&#39;notas_2a.txt&#39; no existe.
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>Sin permisos para leer &#39;datos&#39;
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Error de I/O al leer &#39;datos&#39;: [Errno 21] Is a directory: &#39;.../datos&#39;
+</code></pre></div>
+<blockquote>
+<p>En Windows <code>leer_fichero(BASE / "datos")</code> debería lanzar dos excepciones (Sin permisos y Error de IO). En Linux/MAC solo una (Error de IO)</p>
+</blockquote>
+<h3 id="reflexion_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_3" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li>Varios bloques <code>except</code> permiten reaccionar de forma diferente a cada tipo de error.</li>
+<li><code>OSError</code> como clase base captura cualquier error de I/O cuando no necesitamos distinguir el tipo exacto.</li>
+<li>Envolver la lógica de I/O en una función devuelve <code>None</code> en caso de error, el código que llama decide qué hacer con eso.</li>
+</ul>
+</details>
+<hr />
+<h2 id="paso-5-patron-completo-try-except-else-finally-05_patron_completopy">Paso 5 — Patrón completo <code>try / except / else / finally</code>  <code>05_patron_completo.py</code><a class="headerlink" href="#paso-5-patron-completo-try-except-else-finally-05_patron_completopy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p><code>else</code> se ejecuta solo si <strong>no</strong> hubo excepción — separa la lógica de éxito de la de error.
+<code>finally</code> se ejecuta <strong>siempre</strong> — ideal para contadores, logs o cualquier limpieza garantizada.</p>
+<p>Para <strong>escribir en un fichero</strong> con <code>open()</code>, el segundo argumento indica el modo:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Modo &quot;w&quot; — crea o sobreescribe el fichero completo</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;contenido inicial</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1"># Modo &quot;a&quot; — añade al final sin borrar lo que ya hay</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;nueva línea</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h3 id="objetivo_4"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_4" title="Permanent link">&para;</a></h3>
+<p>Aplicar el patrón completo de cuatro bloques para leer y procesar notas de forma robusta, registrando cada intento en un fichero de log.</p>
+<h3 id="tarea_4"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_4" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span>
+<span class="normal"><a href="#__codelineno-16-11">11</a></span>
+<span class="normal"><a href="#__codelineno-16-12">12</a></span>
+<span class="normal"><a href="#__codelineno-16-13">13</a></span>
+<span class="normal"><a href="#__codelineno-16-14">14</a></span>
+<span class="normal"><a href="#__codelineno-16-15">15</a></span>
+<span class="normal"><a href="#__codelineno-16-16">16</a></span>
+<span class="normal"><a href="#__codelineno-16-17">17</a></span>
+<span class="normal"><a href="#__codelineno-16-18">18</a></span>
+<span class="normal"><a href="#__codelineno-16-19">19</a></span>
+<span class="normal"><a href="#__codelineno-16-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="n">ruta</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span> <span class="o">/</span> <span class="s2">&quot;notas_1a.txt&quot;</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="n">log</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;logs&quot;</span> <span class="o">/</span> <span class="s2">&quot;carga.log&quot;</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="n">intentos</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7"></a>
+<a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="hll"><span class="k">try</span><span class="p">:</span>
+</span><a id="__codelineno-16-9" name="__codelineno-16-9"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10"></a>        <span class="n">lineas</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11"></a><span class="hll"><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+</span><a id="__codelineno-16-12" name="__codelineno-16-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El fichero no existe. Iniciando con lista vacía.&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13"></a>    <span class="n">lineas</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14"></a><span class="hll"><span class="k">else</span><span class="p">:</span>
+</span><a id="__codelineno-16-15" name="__codelineno-16-15"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fichero cargado: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">lineas</span><span class="p">)</span><span class="si">}</span><span class="s2"> registros.&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16"></a><span class="hll"><span class="k">finally</span><span class="p">:</span>
+</span><a id="__codelineno-16-17" name="__codelineno-16-17"></a><span class="hll">    <span class="n">intentos</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><a id="__codelineno-16-18" name="__codelineno-16-18"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19"></a>        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Intento #</span><span class="si">{</span><span class="n">intentos</span><span class="si">}</span><span class="s2"> completado.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Intento de carga #</span><span class="si">{</span><span class="n">intentos</span><span class="si">}</span><span class="s2"> completado.&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="pregunta_4"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta:<a class="headerlink" href="#pregunta_4" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>¿Qué diferencia hay entre poner código en <code>else</code> y ponerlo al final del bloque <code>try</code>?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p><code>else</code> se ejecuta únicamente cuando el bloque <code>try</code> termina sin ninguna excepción.
+Por eso se usa para el flujo de éxito (por ejemplo, procesar datos ya leídos).</p>
+<p>Si ese código se pone al final de <code>try</code>, queda dentro de la zona de riesgo:
+cualquier excepción en líneas anteriores o en ese propio código corta la ejecución y puede dejar trabajo a medias.
+Separarlo en <code>else</code> hace más claro qué parte es “intento” y qué parte es “éxito confirmado”.</p>
+</details>
+<p>Ejecuta: <code>python 05_patron_completo.py</code>.</p>
+<h4 id="todo_4"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 2.03v2.02c4.39.54 7.5 4.53 6.96 8.92-.46 3.64-3.32 6.53-6.96 6.96v2c5.5-.55 9.5-5.43 8.95-10.93-.45-4.75-4.22-8.5-8.95-8.97m-2 .03c-1.95.19-3.81.94-5.33 2.2L7.1 5.74c1.12-.9 2.47-1.48 3.9-1.68zM4.26 5.67A9.9 9.9 0 0 0 2.05 11h2c.19-1.42.75-2.77 1.64-3.9zM2.06 13c.2 1.96.97 3.81 2.21 5.33l1.42-1.43A8 8 0 0 1 4.06 13zm5.04 5.37-1.43 1.37A10 10 0 0 0 11 22v-2a8 8 0 0 1-3.9-1.63M12.5 7v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg></span> TODO<a class="headerlink" href="#todo_4" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-17-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-17-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-17-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-17-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-17-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-17-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-17-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-17-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-17-10">10</a></span>
+<span class="normal"><a href="#__codelineno-17-11">11</a></span>
+<span class="normal"><a href="#__codelineno-17-12">12</a></span>
+<span class="normal"><a href="#__codelineno-17-13">13</a></span>
+<span class="normal"><a href="#__codelineno-17-14">14</a></span>
+<span class="normal"><a href="#__codelineno-17-15">15</a></span>
+<span class="normal"><a href="#__codelineno-17-16">16</a></span>
+<span class="normal"><a href="#__codelineno-17-17">17</a></span>
+<span class="normal"><a href="#__codelineno-17-18">18</a></span>
+<span class="normal"><a href="#__codelineno-17-19">19</a></span>
+<span class="normal"><a href="#__codelineno-17-20">20</a></span>
+<span class="normal"><a href="#__codelineno-17-21">21</a></span>
+<span class="normal"><a href="#__codelineno-17-22">22</a></span>
+<span class="normal"><a href="#__codelineno-17-23">23</a></span>
+<span class="normal"><a href="#__codelineno-17-24">24</a></span>
+<span class="normal"><a href="#__codelineno-17-25">25</a></span>
+<span class="normal"><a href="#__codelineno-17-26">26</a></span>
+<span class="normal"><a href="#__codelineno-17-27">27</a></span>
+<span class="normal"><a href="#__codelineno-17-28">28</a></span>
+<span class="normal"><a href="#__codelineno-17-29">29</a></span>
+<span class="normal"><a href="#__codelineno-17-30">30</a></span>
+<span class="normal"><a href="#__codelineno-17-31">31</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="n">ruta</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span> <span class="o">/</span> <span class="s2">&quot;notas_1a.txt&quot;</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="n">log</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;logs&quot;</span> <span class="o">/</span> <span class="s2">&quot;carga.log&quot;</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="n">intentos</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="n">resultado</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8"></a>
+<a id="__codelineno-17-9" name="__codelineno-17-9"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11"></a>        <span class="n">lineas</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12"></a><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El fichero no existe. Iniciando con lista vacía.&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14"></a>    <span class="n">lineas</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15"></a>    <span class="n">resultado</span> <span class="o">=</span> <span class="s2">&quot;ERROR: fichero no encontrado&quot;</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-17-17" name="__codelineno-17-17"></a>    <span class="n">notas</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-17-18" name="__codelineno-17-18"></a>    <span class="k">for</span> <span class="n">linea</span> <span class="ow">in</span> <span class="n">lineas</span><span class="p">:</span>
+<a id="__codelineno-17-19" name="__codelineno-17-19"></a>        <span class="c1"># TODO: extrae la nota de cada línea (formato &quot;Nombre,Nota&quot;)</span>
+<a id="__codelineno-17-20" name="__codelineno-17-20"></a>        <span class="c1"># y añádela a la lista &#39;notas&#39; como float</span>
+<a id="__codelineno-17-21" name="__codelineno-17-21"></a>        <span class="k">pass</span>
+<a id="__codelineno-17-22" name="__codelineno-17-22"></a>    <span class="c1"># TODO: calcula la media y muéstrala con dos decimales</span>
+<a id="__codelineno-17-23" name="__codelineno-17-23"></a>    <span class="c1"># TODO: asigna a &#39;resultado&#39; algo como &quot;OK: 4 registros, media 7.88&quot;</span>
+<a id="__codelineno-17-24" name="__codelineno-17-24"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fichero cargado: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">lineas</span><span class="p">)</span><span class="si">}</span><span class="s2"> registros.&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-25" name="__codelineno-17-25"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-17-26" name="__codelineno-17-26"></a>    <span class="n">intentos</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-17-27" name="__codelineno-17-27"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-17-28" name="__codelineno-17-28"></a>        <span class="c1"># TODO: escribe una línea con el número de intento y el valor de &#39;resultado&#39;</span>
+<a id="__codelineno-17-29" name="__codelineno-17-29"></a>        <span class="c1"># Formato: &quot;Intento #1 — OK: 4 registros, media 7.88\n&quot;</span>
+<a id="__codelineno-17-30" name="__codelineno-17-30"></a>        <span class="k">pass</span>
+<a id="__codelineno-17-31" name="__codelineno-17-31"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Intento de carga #</span><span class="si">{</span><span class="n">intentos</span><span class="si">}</span><span class="s2"> completado.&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<details class="tip">
+<summary>Pista</summary>
+<p>Cada línea de <code>notas_1a.txt</code> tiene el formato <code>Nombre,Nota</code>. Para extraer la nota: <code>_, nota_str = linea.strip().split(",")</code> y luego <code>float(nota_str)</code>.</p>
+</details>
+<h4 id="comprobacion_4"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion_4" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Fichero cargado: 4 registros.
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>Nota media del grupo: 7.88
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>Intento de carga #1 completado.
+</code></pre></div>
+<p>El fichero <code>logs/carga.log</code> debe contener:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Intento #1 — OK: 4 registros, media 7.88
+</code></pre></div>
+<h3 id="reflexion_4"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_4" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li><code>try / except / else / finally</code> cubre los cuatro casos: intento, error, éxito y limpieza.</li>
+<li><code>else</code> hace el código más legible al separar el camino feliz del camino de error.</li>
+<li><code>finally</code> con escritura en log garantiza trazabilidad aunque el programa falle.</li>
+</ul>
+</details>
+<hr />
+<h2 id="paso-6-listar-y-procesar-varios-ficheros-06_listarpy">Paso 6 — Listar y procesar varios ficheros  <code>06_listar.py</code><a class="headerlink" href="#paso-6-listar-y-procesar-varios-ficheros-06_listarpy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p><code>carpeta.glob("*.txt")</code> devuelve un iterador de objetos <code>Path</code> filtrados por patrón.
+<code>sorted()</code> garantiza orden alfabético — <code>glob()</code> no garantiza ningún orden.
+Envuelve la lectura de cada fichero en su propio <code>try / except</code> para que un fichero corrupto no detenga el resto.</p>
+</div>
+<h3 id="objetivo_5"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_5" title="Permanent link">&para;</a></h3>
+<p>Procesar todos los ficheros <code>.txt</code> de la carpeta <code>datos/</code> de forma robusta, calculando la nota media de cada grupo.</p>
+<h3 id="tarea_5"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_5" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span>
+<span class="normal"><a href="#__codelineno-20-3">3</a></span>
+<span class="normal"><a href="#__codelineno-20-4">4</a></span>
+<span class="normal"><a href="#__codelineno-20-5">5</a></span>
+<span class="normal"><a href="#__codelineno-20-6">6</a></span>
+<span class="normal"><a href="#__codelineno-20-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="n">carpeta</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5"></a>
+<a id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="hll"><span class="k">for</span> <span class="n">fichero</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">carpeta</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.txt&quot;</span><span class="p">)):</span>
+</span><a id="__codelineno-20-7" name="__codelineno-20-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">fichero</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="pregunta_5"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta:<a class="headerlink" href="#pregunta_5" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>Investiga qué permite <code>iterdir()</code> y contesta. ¿Qué ventaja tiene <code>glob("*.txt")</code> frente a <code>iterdir()</code> con un <code>if</code> para filtrar?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p><code>glob()</code> expresa la intención directamente en el patrón — el código es más conciso y legible. Con <code>iterdir()</code> necesitarías algo como <code>if f.suffix == ".txt" and f.is_file()</code>, que es más "largo" y por tanto más propenso a que cometamos errores.</p>
+</details>
+<p>Ejecuta: <code>python 06_listar.py</code>. Verifica que aparecen los dos ficheros.</p>
+<h4 id="todo_5"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 2.03v2.02c4.39.54 7.5 4.53 6.96 8.92-.46 3.64-3.32 6.53-6.96 6.96v2c5.5-.55 9.5-5.43 8.95-10.93-.45-4.75-4.22-8.5-8.95-8.97m-2 .03c-1.95.19-3.81.94-5.33 2.2L7.1 5.74c1.12-.9 2.47-1.48 3.9-1.68zM4.26 5.67A9.9 9.9 0 0 0 2.05 11h2c.19-1.42.75-2.77 1.64-3.9zM2.06 13c.2 1.96.97 3.81 2.21 5.33l1.42-1.43A8 8 0 0 1 4.06 13zm5.04 5.37-1.43 1.37A10 10 0 0 0 11 22v-2a8 8 0 0 1-3.9-1.63M12.5 7v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg></span> TODO<a class="headerlink" href="#todo_5" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-21-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-21-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-21-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-21-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-21-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-21-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-21-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-21-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-21-10">10</a></span>
+<span class="normal"><a href="#__codelineno-21-11">11</a></span>
+<span class="normal"><a href="#__codelineno-21-12">12</a></span>
+<span class="normal"><a href="#__codelineno-21-13">13</a></span>
+<span class="normal"><a href="#__codelineno-21-14">14</a></span>
+<span class="normal"><a href="#__codelineno-21-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="n">carpeta</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5"></a>
+<a id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="k">for</span> <span class="n">fichero</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">carpeta</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.txt&quot;</span><span class="p">)):</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7"></a>    <span class="c1"># TODO: lee el contenido del fichero con try/except OSError</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8"></a>    <span class="c1">#       si falla, muestra el error y continúa con el siguiente (usa &#39;continue&#39;)</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10"></a>        <span class="k">pass</span> <span class="c1"># Completar</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11"></a>    <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12"></a>        <span class="k">pass</span> <span class="c1"># Completar</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13"></a>
+<a id="__codelineno-21-14" name="__codelineno-21-14"></a>    <span class="c1"># TODO: parsea las líneas (formato &quot;Nombre,Nota&quot;) y calcula la media</span>
+<a id="__codelineno-21-15" name="__codelineno-21-15"></a>    <span class="c1"># TODO: muestra &quot;Grupo {fichero.stem}: media {media:.2f}&quot;</span>
+</code></pre></div></td></tr></table></div>
+<details class="tip">
+<summary>Pista</summary>
+<p>Dentro del bucle, usa <code>fichero.read_text(encoding="utf-8")</code> para leer cada fichero. Envuelve esa llamada en <code>try / except OSError</code> para capturar cualquier error de lectura y continuar con el siguiente fichero usando <code>continue</code>.</p>
+</details>
+<h4 id="comprobacion_5"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion_5" title="Permanent link">&para;</a></h4>
+<p>Salida esperada si no hay errores:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Grupo notas_1a: media 7.88
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Grupo notas_1b: media 7.70
+</code></pre></div>
+<p>Salida esperada si dentro de la carpeta hay un archivo sin permiso de lectura:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Error leyendo notas_2a.txt: [Errno 13] Permission denied: &#39;.../datos/notas_2a.txt&#39;
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>Grupo notas_1a: media 7.88
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>Grupo notas_1b: media 7.70
+</code></pre></div>
+<p>Salida esperada si un fichero no tiene ninguna nota válida:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>  Aviso: línea ignorada en notas_1a.txt: &#39;Ana-8.5&#39;
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>  Aviso: línea ignorada en notas_1a.txt: &#39;&#39;
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>Grupo notas_1a: sin datos válidos.
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>Grupo notas_1b: media 7.70
+</code></pre></div>
+<h3 id="reflexion_5"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_5" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li><code>glob()</code> combina listado y filtrado en una sola llamada — más expresivo que <code>iterdir()</code> + <code>if</code>.</li>
+<li><code>sorted()</code> asegura que el orden de procesamiento es siempre el mismo — importante para reproducibilidad.</li>
+<li><code>continue</code> dentro del <code>except</code> salta al siguiente fichero sin detener el bucle completo.</li>
+</ul>
+</details>
+<hr />
+<h2 id="paso-7-exportar-resumen-a-fichero-07_exportarpy">Paso 7 — Exportar resumen a fichero  <code>07_exportar.py</code><a class="headerlink" href="#paso-7-exportar-resumen-a-fichero-07_exportarpy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p><code>write_text()</code> sobreescribe el fichero completo — conveniente cuando el contenido se genera de una sola vez.
+<code>Path.mkdir(exist_ok=True)</code> garantiza que la carpeta de destino exista antes de escribir.
+Integra todos los patrones aprendidos: rutas relativas, <code>glob()</code>, <code>try/except</code> por fichero y escritura final.</p>
+</div>
+<h3 id="objetivo_6"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_6" title="Permanent link">&para;</a></h3>
+<p>Generar un fichero de resumen en <code>exportaciones/resumen.txt</code> con las medias de todos los grupos, integrando todo lo aprendido en el lab.</p>
+<h3 id="tarea_6"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_6" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-25-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-25-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-25-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-25-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-25-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-25-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-25-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-25-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-25-10">10</a></span>
+<span class="normal"><a href="#__codelineno-25-11">11</a></span>
+<span class="normal"><a href="#__codelineno-25-12">12</a></span>
+<span class="normal"><a href="#__codelineno-25-13">13</a></span>
+<span class="normal"><a href="#__codelineno-25-14">14</a></span>
+<span class="normal"><a href="#__codelineno-25-15">15</a></span>
+<span class="normal"><a href="#__codelineno-25-16">16</a></span>
+<span class="normal"><a href="#__codelineno-25-17">17</a></span>
+<span class="normal"><a href="#__codelineno-25-18">18</a></span>
+<span class="normal"><a href="#__codelineno-25-19">19</a></span>
+<span class="normal"><a href="#__codelineno-25-20">20</a></span>
+<span class="normal"><a href="#__codelineno-25-21">21</a></span>
+<span class="normal"><a href="#__codelineno-25-22">22</a></span>
+<span class="normal"><a href="#__codelineno-25-23">23</a></span>
+<span class="normal"><a href="#__codelineno-25-24">24</a></span>
+<span class="normal"><a href="#__codelineno-25-25">25</a></span>
+<span class="normal"><a href="#__codelineno-25-26">26</a></span>
+<span class="normal"><a href="#__codelineno-25-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a>
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="n">carpeta_datos</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="n">carpeta_export</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;exportaciones&quot;</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="hll"><span class="n">carpeta_export</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><a id="__codelineno-25-8" name="__codelineno-25-8"></a>
+<a id="__codelineno-25-9" name="__codelineno-25-9"></a><span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10"></a>
+<a id="__codelineno-25-11" name="__codelineno-25-11"></a><span class="hll"><span class="k">for</span> <span class="n">fichero</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">carpeta_datos</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.txt&quot;</span><span class="p">)):</span>
+</span><a id="__codelineno-25-12" name="__codelineno-25-12"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-25-13" name="__codelineno-25-13"></a>        <span class="n">contenido</span> <span class="o">=</span> <span class="n">fichero</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-14" name="__codelineno-25-14"></a><span class="hll">    <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><a id="__codelineno-25-15" name="__codelineno-25-15"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error leyendo </span><span class="si">{</span><span class="n">fichero</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-16" name="__codelineno-25-16"></a>        <span class="k">continue</span>
+<a id="__codelineno-25-17" name="__codelineno-25-17"></a>
+<a id="__codelineno-25-18" name="__codelineno-25-18"></a>    <span class="n">notas</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">linea</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">linea</span> <span class="ow">in</span> <span class="n">contenido</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()]</span>
+<a id="__codelineno-25-19" name="__codelineno-25-19"></a>    <span class="n">media</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">notas</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">notas</span><span class="p">)</span>
+<a id="__codelineno-25-20" name="__codelineno-25-20"></a>    <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fichero</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">media</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-21" name="__codelineno-25-21"></a>
+<a id="__codelineno-25-22" name="__codelineno-25-22"></a><span class="n">resumen</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Resumen de notas — </span><span class="si">{</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<a id="__codelineno-25-23" name="__codelineno-25-23"></a>
+<a id="__codelineno-25-24" name="__codelineno-25-24"></a><span class="n">salida</span> <span class="o">=</span> <span class="n">carpeta_export</span> <span class="o">/</span> <span class="s2">&quot;resumen.txt&quot;</span>
+<a id="__codelineno-25-25" name="__codelineno-25-25"></a><span class="hll"><span class="n">salida</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">resumen</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-25-26" name="__codelineno-25-26"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Resumen exportado a: </span><span class="si">{</span><span class="n">salida</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-27" name="__codelineno-25-27"></a><span class="nb">print</span><span class="p">(</span><span class="n">resumen</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="pregunta_6"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta:<a class="headerlink" href="#pregunta_6" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>¿Por qué usamos <code>read_text()</code> en este script en lugar de <code>open()</code> con <code>with</code>?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Porque leemos todo el contenido de una sola vez y no necesitamos acceso línea a línea ni escritura incremental. <code>read_text()</code> es más conciso en ese caso. Si tuviéramos que procesar ficheros muy grandes línea a línea, <code>open()</code> con <code>with</code> sería la opción correcta para no cargar todo en memoria.</p>
+</details>
+<p>Ejecuta: <code>python 07_exportar.py</code>. Abre <code>exportaciones/resumen.txt</code> y verifica el contenido.</p>
+<h4 id="todo_6"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 2.03v2.02c4.39.54 7.5 4.53 6.96 8.92-.46 3.64-3.32 6.53-6.96 6.96v2c5.5-.55 9.5-5.43 8.95-10.93-.45-4.75-4.22-8.5-8.95-8.97m-2 .03c-1.95.19-3.81.94-5.33 2.2L7.1 5.74c1.12-.9 2.47-1.48 3.9-1.68zM4.26 5.67A9.9 9.9 0 0 0 2.05 11h2c.19-1.42.75-2.77 1.64-3.9zM2.06 13c.2 1.96.97 3.81 2.21 5.33l1.42-1.43A8 8 0 0 1 4.06 13zm5.04 5.37-1.43 1.37A10 10 0 0 0 11 22v-2a8 8 0 0 1-3.9-1.63M12.5 7v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg></span> TODO<a class="headerlink" href="#todo_6" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-26-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-26-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-26-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-26-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-26-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-26-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-26-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-26-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-26-10">10</a></span>
+<span class="normal"><a href="#__codelineno-26-11">11</a></span>
+<span class="normal"><a href="#__codelineno-26-12">12</a></span>
+<span class="normal"><a href="#__codelineno-26-13">13</a></span>
+<span class="normal"><a href="#__codelineno-26-14">14</a></span>
+<span class="normal"><a href="#__codelineno-26-15">15</a></span>
+<span class="normal"><a href="#__codelineno-26-16">16</a></span>
+<span class="normal"><a href="#__codelineno-26-17">17</a></span>
+<span class="normal"><a href="#__codelineno-26-18">18</a></span>
+<span class="normal"><a href="#__codelineno-26-19">19</a></span>
+<span class="normal"><a href="#__codelineno-26-20">20</a></span>
+<span class="normal"><a href="#__codelineno-26-21">21</a></span>
+<span class="normal"><a href="#__codelineno-26-22">22</a></span>
+<span class="normal"><a href="#__codelineno-26-23">23</a></span>
+<span class="normal"><a href="#__codelineno-26-24">24</a></span>
+<span class="normal"><a href="#__codelineno-26-25">25</a></span>
+<span class="normal"><a href="#__codelineno-26-26">26</a></span>
+<span class="normal"><a href="#__codelineno-26-27">27</a></span>
+<span class="normal"><a href="#__codelineno-26-28">28</a></span>
+<span class="normal"><a href="#__codelineno-26-29">29</a></span>
+<span class="normal"><a href="#__codelineno-26-30">30</a></span>
+<span class="normal"><a href="#__codelineno-26-31">31</a></span>
+<span class="normal"><a href="#__codelineno-26-32">32</a></span>
+<span class="normal"><a href="#__codelineno-26-33">33</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a>
+<a id="__codelineno-26-4" name="__codelineno-26-4"></a><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5"></a><span class="n">carpeta_datos</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6"></a><span class="n">carpeta_export</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;exportaciones&quot;</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7"></a><span class="n">carpeta_export</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8"></a>
+<a id="__codelineno-26-9" name="__codelineno-26-9"></a><span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-26-10" name="__codelineno-26-10"></a>
+<a id="__codelineno-26-11" name="__codelineno-26-11"></a><span class="k">for</span> <span class="n">fichero</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">carpeta_datos</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.txt&quot;</span><span class="p">)):</span>
+<a id="__codelineno-26-12" name="__codelineno-26-12"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-26-13" name="__codelineno-26-13"></a>        <span class="n">contenido</span> <span class="o">=</span> <span class="n">fichero</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<a id="__codelineno-26-14" name="__codelineno-26-14"></a>    <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-26-15" name="__codelineno-26-15"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error leyendo </span><span class="si">{</span><span class="n">fichero</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-26-16" name="__codelineno-26-16"></a>        <span class="k">continue</span>
+<a id="__codelineno-26-17" name="__codelineno-26-17"></a>
+<a id="__codelineno-26-18" name="__codelineno-26-18"></a>    <span class="n">notas</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-26-19" name="__codelineno-26-19"></a>    <span class="k">for</span> <span class="n">linea</span> <span class="ow">in</span> <span class="n">contenido</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+<a id="__codelineno-26-20" name="__codelineno-26-20"></a>        <span class="c1"># TODO: añade try/except ValueError para saltar líneas con formato incorrecto</span>
+<a id="__codelineno-26-21" name="__codelineno-26-21"></a>        <span class="c1">#       y mostrar un aviso indicando qué línea falló</span>
+<a id="__codelineno-26-22" name="__codelineno-26-22"></a>        <span class="n">_</span><span class="p">,</span> <span class="n">nota_str</span> <span class="o">=</span> <span class="n">linea</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<a id="__codelineno-26-23" name="__codelineno-26-23"></a>        <span class="n">notas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">nota_str</span><span class="p">))</span>
+<a id="__codelineno-26-24" name="__codelineno-26-24"></a>
+<a id="__codelineno-26-25" name="__codelineno-26-25"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">notas</span><span class="p">:</span>
+<a id="__codelineno-26-26" name="__codelineno-26-26"></a>        <span class="k">continue</span>
+<a id="__codelineno-26-27" name="__codelineno-26-27"></a>
+<a id="__codelineno-26-28" name="__codelineno-26-28"></a>    <span class="n">media</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">notas</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">notas</span><span class="p">)</span>
+<a id="__codelineno-26-29" name="__codelineno-26-29"></a>    <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fichero</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">media</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-26-30" name="__codelineno-26-30"></a>
+<a id="__codelineno-26-31" name="__codelineno-26-31"></a><span class="c1"># TODO: construye el string &#39;resumen&#39; con la fecha de hoy y los resultados</span>
+<a id="__codelineno-26-32" name="__codelineno-26-32"></a><span class="c1"># TODO: escribe el resumen en exportaciones/resumen.txt con write_text()</span>
+<a id="__codelineno-26-33" name="__codelineno-26-33"></a><span class="c1"># TODO: muestra por pantalla la ruta del fichero exportado y su contenido</span>
+</code></pre></div></td></tr></table></div>
+<details class="tip">
+<summary>Pista</summary>
+<p>Si una línea está vacía o no tiene coma, <code>split(",")</code> devolverá una lista con menos de dos elementos y lanzará <code>ValueError</code> al desempaquetar. Captura ese error dentro del bucle de líneas con <code>try / except ValueError</code> y usa <code>continue</code> para saltarla.</p>
+</details>
+<h4 id="comprobacion_6"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion_6" title="Permanent link">&para;</a></h4>
+<p>Salida esperada si no hay errores</p>
+<p><div class="language-text highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>Resumen exportado a: resumen.txt
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>Resumen de notas — 2026-03-05
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>notas_1a: 7.88
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>notas_1b: 7.70
+</code></pre></div>
+Puedes añadir una sección así, justo después de <strong>Comprobación</strong>:</p>
+<p>Salida esperada si le quitamos permisos de lectura a <code>notas_1b.txt</code>.</p>
+<p><div class="language-text highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>Error leyendo notas_1b.txt: [Errno 13] Permission denied: &#39;/.../datos/notas_1b.txt&#39;
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>Resumen exportado a: resumen.txt
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>Resumen de notas — 2026-03-06
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>notas_1a: 7.88
+</code></pre></div>
+Salida esperada con línea errónea en notas_1a.tx: <code>Ana 8.5</code> (sin coma).</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>Aviso: línea ignorada en notas_1a.txt: &#39;Ana 8.5&#39;
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>Resumen exportado a: resumen.txt
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>Resumen de notas — 2026-03-06
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>notas_1a: 7.60
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>notas_1b: 7.70
+</code></pre></div>
+<p>Salida esperada si todas las líneas fallan en un fichero, ese grupo no aparece en el resumen final.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>Aviso: línea ignorada en notas_1b.txt: &#39;---&#39;
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>Aviso: línea ignorada en notas_1b.txt: &#39;&#39;
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>Resumen exportado a: resumen.txt
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>Resumen de notas — 2026-03-06
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>notas_1a: 7.88
+</code></pre></div>
+<h3 id="reflexion_6"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_6" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li><code>Path.mkdir(exist_ok=True)</code> garantiza que la carpeta de destino exista antes de escribir — siempre hazlo.</li>
+<li><code>try / except</code> por fichero dentro del bucle aísla los fallos: un fichero corrupto no detiene el proceso.</li>
+<li><code>continue</code> en el <code>except</code> es el patrón habitual para procesar colecciones con tolerancia a fallos.</li>
+<li><code>write_text()</code> es suficiente cuando el contenido se genera completo en memoria. Para ficheros grandes, usa <code>open()</code>.</li>
+</ul>
+</details>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Kata 1 — Rutas más expresivas</p>
+<p>En <code>07_exportar.py</code>, el nombre del grupo en el resumen viene de <code>fichero.stem</code>. Modifica el script para que el nombre sea la parte después del último guion bajo: <code>notas_1a</code> → <code>1A</code>. Usa los métodos de string de Python.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Kata 2 — Log acumulativo</p>
+<p>En <code>05_patron_completo.py</code> usaste <code>write_text()</code> para el log, lo que sobreescribe en cada ejecución. Cámbialo para que añada líneas al log sin borrar las anteriores. Pista: abre con <code>open(log, "a")</code>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Kata 3 — Validación estricta (avanzado)</p>
+<p>En <code>07_exportar.py</code>, si una nota está fuera del rango <code>[0, 10]</code>, considera la línea inválida y omítela del cálculo. Añade al resumen final cuántas líneas inválidas se encontraron en cada fichero.</p>
+</div>
+<hr />
+<h2 id="checklist-de-entrega">Checklist de entrega<a class="headerlink" href="#checklist-de-entrega" title="Permanent link">&para;</a></h2>
+<ul>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He creado la estructura de directorios del proyecto usando <code>pathlib</code> y <code>Path(__file__).parent</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He inspeccionado rutas con <code>name</code>, <code>stem</code>, <code>suffix</code>, <code>parent</code>, <code>exists()</code> e <code>is_file()</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He capturado <code>FileNotFoundError</code> y <code>PermissionError</code> con bloques <code>except</code> separados.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He aplicado el patrón completo <code>try / except / else / finally</code> con lógica de log.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He procesado varios ficheros con <code>glob()</code> capturando errores por fichero con <code>continue</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He exportado un resumen usando <code>write_text()</code> y he validado el fichero resultante.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He evitado concatenar rutas con strings usando el operador <code>/</code> de <code>pathlib</code>.</li>
+</ul>
+<hr />
+<h2 id="actividades-de-ampliacion">Actividades de ampliación<a class="headerlink" href="#actividades-de-ampliacion" title="Permanent link">&para;</a></h2>
+<h3 id="a-leer-con-csvreader-requiere-paso-7">A — Leer con <code>csv.reader</code> <em>(requiere paso 7)</em><a class="headerlink" href="#a-leer-con-csvreader-requiere-paso-7" title="Permanent link">&para;</a></h3>
+<p>El módulo <code>csv</code> de la librería estándar maneja correctamente nombres con comas, espacios y comillas.</p>
+<p>Fichero: <code>ampliacion_a.py</code></p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="n">ruta</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span> <span class="o">/</span> <span class="s2">&quot;notas_1a.txt&quot;</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>    <span class="n">lector</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>    <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">lector</span><span class="p">:</span>
+<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a>        <span class="c1"># tu código aquí — fila es una lista: [&#39;Ana García&#39;, &#39;8.5&#39;]</span>
+<a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a>        <span class="k">pass</span>
+</code></pre></div>
+<blockquote>
+<p>¿Qué ocurre si el nombre de un alumno contiene una coma? ¿Cómo lo manejaría <code>csv.reader</code> frente a un <code>split(",")</code>?</p>
+</blockquote>
+<hr />
+<h3 id="b-buscar-alumno-por-nombre-requiere-paso-6">B — Buscar alumno por nombre <em>(requiere paso 6)</em><a class="headerlink" href="#b-buscar-alumno-por-nombre-requiere-paso-6" title="Permanent link">&para;</a></h3>
+<p>Implementa una función <code>buscar_alumno(nombre)</code> que busque un alumno en todos los ficheros de <code>datos/</code> y devuelva una lista de tuplas <code>(grupo, nota)</code>.</p>
+<p>Fichero: <code>ampliacion_b.py</code></p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">buscar_alumno</span><span class="p">(</span><span class="n">nombre</span><span class="p">):</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>    <span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>    <span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>    <span class="k">for</span> <span class="n">fichero</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">((</span><span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.txt&quot;</span><span class="p">)):</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>        <span class="c1"># tu código aquí</span>
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>        <span class="k">pass</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>    <span class="k">return</span> <span class="n">resultados</span>
+<a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a>
+<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">buscar_alumno</span><span class="p">(</span><span class="s2">&quot;Ana García&quot;</span><span class="p">))</span>
+<a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="c1"># Salida esperada: [(&#39;notas_1a&#39;, 8.5)]</span>
+</code></pre></div>
+<hr />
+<h3 id="c-comparativa-pathlib-vs-ospath-requiere-paso-2">C — Comparativa <code>pathlib</code> vs <code>os.path</code> <em>(requiere paso 2)</em><a class="headerlink" href="#c-comparativa-pathlib-vs-ospath-requiere-paso-2" title="Permanent link">&para;</a></h3>
+<p>Reescribe <code>02_rutas.py</code> usando exclusivamente <code>os.path</code> en lugar de <code>pathlib</code>. Crea una tabla comparativa en un comentario al final del fichero con las equivalencias que hayas encontrado.</p>
+<p>Fichero: <code>ampliacion_c.py</code></p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="n">ruta</span> <span class="o">=</span> <span class="s2">&quot;datos/alumnos/notas_1a.txt&quot;</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="c1"># tu código aquí — replica lo que hace 02_rutas.py pero con os.path</span>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="c1"># os.path.basename(), os.path.splitext(), os.path.dirname(), os.path.exists()...</span>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="c1"># TABLA COMPARATIVA:</span>
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="c1"># | Operación        | pathlib          | os.path                    |</span>
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="c1"># |------------------|------------------|----------------------------|</span>
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="c1"># | Nombre fichero   | ruta.name        | os.path.basename(ruta)     |</span>
+<a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a><span class="c1"># | ...              | ...              | ...                        |</span>
+</code></pre></div>
+<hr />
+<h3 id="d-historial-de-exportaciones-requiere-paso-7">D — Historial de exportaciones <em>(requiere paso 7)</em><a class="headerlink" href="#d-historial-de-exportaciones-requiere-paso-7" title="Permanent link">&para;</a></h3>
+<p>Modifica <code>07_exportar.py</code> para que el fichero de salida incluya un timestamp en el nombre: <code>resumen_20260305_143022.txt</code>. Así cada exportación genera un fichero nuevo sin sobreescribir el anterior.</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="c1"># tu código aquí</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">_%H%M%S&quot;</span><span class="p">)</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="n">nombre_salida</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;resumen_</span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="s2">.txt&quot;</span>
+</code></pre></div>
+<blockquote>
+<p>¿Cómo limpiarías exportaciones antiguas para no acumular ficheros indefinidamente?</p>
+</blockquote>
+<hr />
+<h3 id="e-reto-final-gestor-interactivo-de-notas">E — Reto final: gestor interactivo de notas<a class="headerlink" href="#e-reto-final-gestor-interactivo-de-notas" title="Permanent link">&para;</a></h3>
+<p>Crea un programa <code>gestor.py</code> que presente un menú de texto en bucle con las siguientes opciones:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>1. Listar grupos disponibles
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>2. Ver notas de un grupo
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>3. Añadir nota a un grupo
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>4. Exportar resumen general
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>5. Salir
+</code></pre></div>
+<p>Requisitos:
+- Usa <code>pathlib</code> para todas las rutas.
+- Captura errores de I/O en cada operación con mensajes claros.
+- La opción 3 debe añadir la línea al fichero sin borrar las existentes.
+- La opción 4 genera <code>exportaciones/resumen_YYYYMMDD_HHMMSS.txt</code>.
+- No uses ninguna librería externa — solo la librería estándar de Python.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://ichigar.codeberg.page" target="_blank" rel="noopener" title="ichigar.codeberg.page" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

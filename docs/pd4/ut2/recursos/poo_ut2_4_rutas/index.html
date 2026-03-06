@@ -1023,19 +1023,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#path-vs-path__file__parent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path(".") vs Path(__file__).parent
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#operaciones-esenciales-con-pathlib" class="md-nav__link">
+  <a href="#operaciones-basicas-con-pathlib" class="md-nav__link">
     <span class="md-ellipsis">
-      Operaciones esenciales con pathlib
+      Operaciones básicas con pathlib
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Operaciones esenciales con pathlib">
+    <nav class="md-nav" aria-label="Operaciones básicas con pathlib">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1075,9 +1084,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#leer-y-escribir-directamente-con-pathlib" class="md-nav__link">
+  <a href="#leer-y-escribir-directamente-en-ficheros-con-pathlib" class="md-nav__link">
     <span class="md-ellipsis">
-      Leer y escribir directamente con pathlib
+      Leer y escribir directamente en ficheros con pathlib
     </span>
   </a>
   
@@ -1128,9 +1137,9 @@
 <li><strong><code>pathlib</code></strong> (Python 3.4+): orientado a objetos, moderno y recomendado</li>
 <li><strong><code>os.path</code></strong>: módulo clásico, basado en cadenas de texto</li>
 </ul>
-<p>En esta sección aprenderemos ambos, con énfasis en <code>pathlib</code> por ser la opción actual.</p>
+<p>Se verá con más detalle <code>pathlib</code> por ser la opción actualmente recomendada.</p>
 <h2 id="el-modulo-pathlib">El módulo <code>pathlib</code><a class="headerlink" href="#el-modulo-pathlib" title="Permanent link">&para;</a></h2>
-<p><code>pathlib</code> representa las rutas como objetos de la clase <code>Path</code>. Esto permite encadenar operaciones de forma intuitiva y escribir código <strong>portable</strong> entre sistemas operativos sin preocuparse por los separadores.</p>
+<p><code>pathlib</code> representa las rutas como <strong>objetos</strong> de la clase <code>Path</code>. Esto permite encadenar operaciones de forma intuitiva y escribir código <strong>portable</strong> entre sistemas operativos sin preocuparse por los separadores de ruta.</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
 <span class="normal"><a href="#__codelineno-0-2">2</a></span>
 <span class="normal"><a href="#__codelineno-0-3">3</a></span>
@@ -1141,143 +1150,198 @@
 </span><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>       <span class="c1"># datos/alumnos/notas.txt (Linux/macOS)</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5"></a>                  <span class="c1"># datos\alumnos\notas.txt (Windows)</span>
 </code></pre></div></td></tr></table></div>
-<p>El operador <code>/</code> entre objetos <code>Path</code> construye rutas de forma portable.</p>
+<p>El operador <code>/</code> entre objetos <code>Path</code> construye rutas de forma portable. En Windows de forma automática es cambiado por <code>\</code></p>
 <h3 id="ruta-relativa-al-propio-script">Ruta relativa al propio script<a class="headerlink" href="#ruta-relativa-al-propio-script" title="Permanent link">&para;</a></h3>
-<p>Un patrón muy habitual es construir rutas relativas al fichero <code>.py</code> que se está ejecutando, independientemente del directorio desde el que se lance el programa:</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<p>Un patrón muy habitual es construir rutas relativas al fichero <code>.py</code> que se está ejecutando, <strong>independientemente del directorio desde el que se lance</strong> el programa:</p>
+<p><div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
 <span class="normal"><a href="#__codelineno-1-2">2</a></span>
 <span class="normal"><a href="#__codelineno-1-3">3</a></span>
 <span class="normal"><a href="#__codelineno-1-4">4</a></span>
 <span class="normal"><a href="#__codelineno-1-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="hll"><span class="c1"># __file__ es la ruta al fichero .py actual</span>
-</span><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="hll"><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
-</span><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="n">ruta_datos</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span> <span class="o">/</span> <span class="s2">&quot;notas.txt&quot;</span>
-</code></pre></div></td></tr></table></div>
-<p>Así el programa funciona correctamente sin importar desde qué directorio se ejecute.</p>
-<h2 id="operaciones-esenciales-con-pathlib">Operaciones esenciales con <code>pathlib</code><a class="headerlink" href="#operaciones-esenciales-con-pathlib" title="Permanent link">&para;</a></h2>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="c1"># __file__ es la ruta al fichero .py actual</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="hll"><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+</span><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="hll"><span class="n">ruta_datos</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span> <span class="o">/</span> <span class="s2">&quot;notas.txt&quot;</span>
+</span></code></pre></div></td></tr></table></div>
+- <code>Path(__file__)</code> es un objeto que apunta a la ruta del fichero que se está ejecutando, por ejemplo <code>/ruta/proyecto/app/main.py</code>. Al hacer <code>Path(__file__).parent</code> obtenemos un objeto de tipo <code>PATH</code> que apuntará a la carpeta del ejecutable <code>/ruta/proyecto/app</code>. 
+- <code>BASE</code> se define como constante porque su valor se calcula una vez y no debería cambiar durante la ejecución</p>
+<h3 id="path-vs-path__file__parent"><code>Path(".")</code> vs <code>Path(__file__).parent</code><a class="headerlink" href="#path-vs-path__file__parent" title="Permanent link">&para;</a></h3>
+<p>Ambas formas son válidas, pero sirven para propósitos distintos. </p>
+<p>Vamos a verlo con un ejemplo, supongamos que tenemos un script en <code>C:\Users\Ana\proyecto\scripts\demo.py</code> y lo ejecutas desde <code>C:\Users\Ana</code>:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>Path(".")</code></th>
+<th><code>Path(__file__).parent</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Apunta a</strong></td>
+<td><code>C:\Users\Ana</code> (directorio actual)</td>
+<td><code>C:\Users\Ana\proyecto\scripts</code> (carpeta del script)</td>
+</tr>
+<tr>
+<td><strong>Cambia según</strong></td>
+<td>Desde dónde se lanza el programa</td>
+<td>Nunca — siempre es la carpeta del <code>.py</code></td>
+</tr>
+<tr>
+<td><strong>Úsar para</strong></td>
+<td>Ficheros del usuario en su directorio de trabajo</td>
+<td>Recursos del propio programa (datos, config, plantillas)</td>
+</tr>
+</tbody>
+</table>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Para listar ficheros donde el usuario está trabajando</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.csv&quot;</span><span class="p">):</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># Para cargar datos que vienen con el proyecto</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">BASE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">config</span> <span class="o">=</span> <span class="n">BASE</span> <span class="o">/</span> <span class="s2">&quot;config&quot;</span> <span class="o">/</span> <span class="s2">&quot;ajustes.json&quot;</span>
+</code></pre></div>
+<h2 id="operaciones-basicas-con-pathlib">Operaciones básicas con <code>pathlib</code><a class="headerlink" href="#operaciones-basicas-con-pathlib" title="Permanent link">&para;</a></h2>
 <h3 id="comprobar-existencia">Comprobar existencia<a class="headerlink" href="#comprobar-existencia" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
-<span class="normal"><a href="#__codelineno-2-2">2</a></span>
-<span class="normal"><a href="#__codelineno-2-3">3</a></span>
-<span class="normal"><a href="#__codelineno-2-4">4</a></span>
-<span class="normal"><a href="#__codelineno-2-5">5</a></span>
-<span class="normal"><a href="#__codelineno-2-6">6</a></span>
-<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="hll"><span class="n">ruta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;datos/notas.txt&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="hll">
-</span><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="hll"><span class="n">ruta</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>    <span class="c1"># True si existe (fichero o directorio)</span>
-</span><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="n">ruta</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>   <span class="c1"># True solo si es un fichero</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="n">ruta</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span>    <span class="c1"># True solo si es un directorio</span>
-</code></pre></div></td></tr></table></div>
-<h3 id="obtener-partes-de-la-ruta">Obtener partes de la ruta<a class="headerlink" href="#obtener-partes-de-la-ruta" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
 <span class="normal"><a href="#__codelineno-3-2">2</a></span>
 <span class="normal"><a href="#__codelineno-3-3">3</a></span>
 <span class="normal"><a href="#__codelineno-3-4">4</a></span>
 <span class="normal"><a href="#__codelineno-3-5">5</a></span>
 <span class="normal"><a href="#__codelineno-3-6">6</a></span>
-<span class="normal"><a href="#__codelineno-3-7">7</a></span>
-<span class="normal"><a href="#__codelineno-3-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="hll"><span class="n">ruta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;datos/alumnos/notas.txt&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="hll">
-</span><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="hll"><span class="n">ruta</span><span class="o">.</span><span class="n">name</span>        <span class="c1"># &#39;notas.txt&#39;          — nombre con extensión</span>
-</span><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="hll"><span class="n">ruta</span><span class="o">.</span><span class="n">stem</span>        <span class="c1"># &#39;notas&#39;              — nombre sin extensión</span>
-</span><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="n">ruta</span><span class="o">.</span><span class="n">suffix</span>      <span class="c1"># &#39;.txt&#39;              — extensión</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="n">ruta</span><span class="o">.</span><span class="n">parent</span>      <span class="c1"># Path(&#39;datos/alumnos&#39;) — directorio padre</span>
-</code></pre></div></td></tr></table></div>
-<h3 id="crear-directorios">Crear directorios<a class="headerlink" href="#crear-directorios" title="Permanent link">&para;</a></h3>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="hll"><span class="n">ruta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;datos/notas.txt&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-3-4" name="__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="hll"><span class="n">ruta</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>    <span class="c1"># True si existe (fichero o directorio)</span>
+</span><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="hll"><span class="n">ruta</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>   <span class="c1"># True solo si es un fichero</span>
+</span><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="hll"><span class="n">ruta</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span>    <span class="c1"># True solo si es un directorio</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="obtener-partes-de-la-ruta">Obtener partes de la ruta<a class="headerlink" href="#obtener-partes-de-la-ruta" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
 <span class="normal"><a href="#__codelineno-4-2">2</a></span>
 <span class="normal"><a href="#__codelineno-4-3">3</a></span>
 <span class="normal"><a href="#__codelineno-4-4">4</a></span>
-<span class="normal"><a href="#__codelineno-4-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span>
+<span class="normal"><a href="#__codelineno-4-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="hll"><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;datos/exportaciones&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="c1"># parents=True: crea los directorios intermedios si no existen</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="c1"># exist_ok=True: no lanza error si el directorio ya existe</span>
-</code></pre></div></td></tr></table></div>
-<h3 id="listar-ficheros-de-un-directorio">Listar ficheros de un directorio<a class="headerlink" href="#listar-ficheros-de-un-directorio" title="Permanent link">&para;</a></h3>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="hll"><span class="n">ruta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;datos/alumnos/notas.txt&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-4-4" name="__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="hll"><span class="n">ruta</span><span class="o">.</span><span class="n">name</span>        <span class="c1"># &#39;notas.txt&#39;          — nombre con extensión</span>
+</span><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="hll"><span class="n">ruta</span><span class="o">.</span><span class="n">stem</span>        <span class="c1"># &#39;notas&#39;              — nombre sin extensión</span>
+</span><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="hll"><span class="n">ruta</span><span class="o">.</span><span class="n">suffix</span>      <span class="c1"># &#39;.txt&#39;              — extensión</span>
+</span><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="hll"><span class="n">ruta</span><span class="o">.</span><span class="n">parent</span>      <span class="c1"># Path(&#39;datos/alumnos&#39;) — directorio padre</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="crear-directorios">Crear directorios<a class="headerlink" href="#crear-directorios" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
 <span class="normal"><a href="#__codelineno-5-2">2</a></span>
 <span class="normal"><a href="#__codelineno-5-3">3</a></span>
 <span class="normal"><a href="#__codelineno-5-4">4</a></span>
 <span class="normal"><a href="#__codelineno-5-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2"></a>
-<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="hll"><span class="n">carpeta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;datos&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="hll"><span class="k">for</span> <span class="n">fichero</span> <span class="ow">in</span> <span class="n">carpeta</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
-</span><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="n">fichero</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-</span></code></pre></div></td></tr></table></div>
-<p>Para filtrar por extensión, se usa <code>glob()</code>:</p>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="hll"><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;datos/exportaciones&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># parents=True: crea los directorios intermedios si no existen</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="c1"># exist_ok=True: no lanza error si el directorio ya existe</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="listar-ficheros-de-un-directorio">Listar ficheros de un directorio<a class="headerlink" href="#listar-ficheros-de-un-directorio" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
 <span class="normal"><a href="#__codelineno-6-2">2</a></span>
 <span class="normal"><a href="#__codelineno-6-3">3</a></span>
 <span class="normal"><a href="#__codelineno-6-4">4</a></span>
-<span class="normal"><a href="#__codelineno-6-5">5</a></span>
-<span class="normal"><a href="#__codelineno-6-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2"></a>
 <a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="hll"><span class="n">carpeta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;datos&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="hll"><span class="n">ficheros_txt</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">carpeta</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.txt&quot;</span><span class="p">))</span>
-</span><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">ficheros_txt</span><span class="p">:</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-<h3 id="leer-y-escribir-directamente-con-pathlib">Leer y escribir directamente con <code>pathlib</code><a class="headerlink" href="#leer-y-escribir-directamente-con-pathlib" title="Permanent link">&para;</a></h3>
-<p><code>Path</code> tiene métodos para leer y escribir sin necesidad de <code>open()</code>:</p>
+</span><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="hll"><span class="k">for</span> <span class="n">fichero</span> <span class="ow">in</span> <span class="n">carpeta</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+</span><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="n">fichero</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Para filtrar aplicando patrones comodín, se usa <code>glob()</code>. El método glob devuelve un iterador (objeto que te da elementos <strong>uno a uno</strong>) con los archivos que cumplen con el patrón.</p>
+<p>Por ejemplo si queremos filtrar por extensión:</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
 <span class="normal"><a href="#__codelineno-7-2">2</a></span>
 <span class="normal"><a href="#__codelineno-7-3">3</a></span>
 <span class="normal"><a href="#__codelineno-7-4">4</a></span>
 <span class="normal"><a href="#__codelineno-7-5">5</a></span>
-<span class="normal"><a href="#__codelineno-7-6">6</a></span>
-<span class="normal"><a href="#__codelineno-7-7">7</a></span>
-<span class="normal"><a href="#__codelineno-7-8">8</a></span>
-<span class="normal"><a href="#__codelineno-7-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="hll"><span class="n">ruta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;datos/notas.txt&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-7-4" name="__codelineno-7-4"></a>
-<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="c1"># Lectura directa</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="n">contenido</span> <span class="o">=</span> <span class="n">ruta</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="hll">
-</span><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="c1"># Escritura directa (equivalente a modo &quot;w&quot;)</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="n">ruta</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;Ana García: 8.5</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="hll"><span class="n">carpeta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;datos&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="hll"><span class="n">ficheros_txt</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">carpeta</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.txt&quot;</span><span class="p">))</span>
+</span><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">ficheros_txt</span><span class="p">:</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
+<ul>
+<li>Convertimos en lista el iterador para poder recorrerlo con <code>for/in</code></li>
+</ul>
+<p>De forma resumida. Patrones que podemos aplicar:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">base</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;proyecto&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">base</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.txt&quot;</span><span class="p">)</span>           <span class="c1"># *  -&gt; cualquier secuencia: todos los .txt en esa carpeta</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">base</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;foto?.jpg&quot;</span><span class="p">)</span>       <span class="c1"># ?  -&gt; un carácter: foto1.jpg, fotoA.jpg</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">base</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;archivo[12].csv&quot;</span><span class="p">)</span> <span class="c1"># [abc] -&gt; un carácter del conjunto: archivo1.csv, archivo2.csv</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">base</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;tema[1-5].md&quot;</span><span class="p">)</span>    <span class="c1"># [a-z] -&gt; un carácter en rango: tema1.md ... tema5.md</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">base</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;[!._]*&quot;</span><span class="p">)</span>          <span class="c1"># [!abc] -&gt; un carácter fuera del conjunto: no empieza por . ni _</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">base</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;**/*.py&quot;</span><span class="p">)</span>         <span class="c1"># ** -&gt; búsqueda recursiva: todos los .py en carpeta actual y subcarpetas</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">base</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*.py&quot;</span><span class="p">)</span>           <span class="c1"># recursiva también (equivalente práctico a **/*.py)</span>
+</code></pre></div>
 <blockquote>
-<p><code>read_text()</code> y <code>write_text()</code> son convenientes para operaciones simples. Para lecturas línea a línea o escrituras incrementales, sigue usando <code>open()</code> con <code>with</code>.</p>
+<p><code>glob</code> viene de <strong>global</strong> (en Unix), y se refiere a la expansión de patrones con comodines para encontrar archivos/rutas.  </p>
 </blockquote>
-<h2 id="el-modulo-ospath">El módulo <code>os.path</code><a class="headerlink" href="#el-modulo-ospath" title="Permanent link">&para;</a></h2>
-<p>El módulo clásico <code>os.path</code> trabaja con rutas como cadenas de texto. Aunque <code>pathlib</code> es preferible en código nuevo, es importante conocerlo porque aparece en mucho código existente.</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-8-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="hll"><span class="n">ruta</span> <span class="o">=</span> <span class="s2">&quot;datos/alumnos/notas.txt&quot;</span>
-</span><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="hll">
-</span><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="hll"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>          <span class="c1"># True si existe</span>
-</span><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="hll"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>          <span class="c1"># True si es fichero</span>
-</span><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="hll"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>           <span class="c1"># True si es directorio</span>
-</span><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>        <span class="c1"># &#39;notas.txt&#39;</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>         <span class="c1"># &#39;datos/alumnos&#39;</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>        <span class="c1"># (&#39;datos/alumnos/notas&#39;, &#39;.txt&#39;)</span>
-</code></pre></div></td></tr></table></div>
-<p>Para construir rutas portables con <code>os.path</code>:</p>
+<h3 id="leer-y-escribir-directamente-en-ficheros-con-pathlib">Leer y escribir directamente en ficheros con <code>pathlib</code><a class="headerlink" href="#leer-y-escribir-directamente-en-ficheros-con-pathlib" title="Permanent link">&para;</a></h3>
+<p><code>Path</code> tiene métodos para leer y escribir sin necesidad de <code>open()</code>:</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
 <span class="normal"><a href="#__codelineno-9-2">2</a></span>
 <span class="normal"><a href="#__codelineno-9-3">3</a></span>
 <span class="normal"><a href="#__codelineno-9-4">4</a></span>
-<span class="normal"><a href="#__codelineno-9-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span>
+<span class="normal"><a href="#__codelineno-9-8">8</a></span>
+<span class="normal"><a href="#__codelineno-9-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2"></a>
-<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="hll"><span class="n">ruta</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;datos&quot;</span><span class="p">,</span> <span class="s2">&quot;alumnos&quot;</span><span class="p">,</span> <span class="s2">&quot;notas.txt&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="c1"># En Linux/macOS: &#39;datos/alumnos/notas.txt&#39;</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="c1"># En Windows:    &#39;datos\alumnos\notas.txt&#39;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="hll"><span class="n">ruta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;datos/notas.txt&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-9-4" name="__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="c1"># Lectura directa</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="hll"><span class="n">contenido</span> <span class="o">=</span> <span class="n">ruta</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-9-7" name="__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="c1"># Escritura directa (equivalente a modo &quot;w&quot;)</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="hll"><span class="n">ruta</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;Ana García: 8.5</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p>Investiga: Por qué <code>read_text()</code> y <code>write_text()</code> son convenientes para operaciones simples como lecturas línea a línea o escrituras incrementales y deberíamos seguir usando <code>open()</code> con <code>with</code>.</p>
+</blockquote>
+<h2 id="el-modulo-ospath">El módulo <code>os.path</code><a class="headerlink" href="#el-modulo-ospath" title="Permanent link">&para;</a></h2>
+<p>El módulo clásico <code>os.path</code> trabaja con rutas como cadenas de texto. Aunque <code>pathlib</code> es preferible en código nuevo, es importante conocerlo porque aparece en mucho código existente (legacy).</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="n">ruta</span> <span class="o">=</span> <span class="s2">&quot;datos/alumnos/notas.txt&quot;</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="hll"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>          <span class="c1"># True si existe</span>
+</span><a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="hll"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>          <span class="c1"># True si es fichero</span>
+</span><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="hll"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>           <span class="c1"># True si es directorio</span>
+</span><a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="hll"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>        <span class="c1"># &#39;notas.txt&#39;</span>
+</span><a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="hll"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>         <span class="c1"># &#39;datos/alumnos&#39;</span>
+</span><a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="hll"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>        <span class="c1"># (&#39;datos/alumnos/notas&#39;, &#39;.txt&#39;)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Para construir rutas portables con <code>os.path</code>:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="hll"><span class="n">ruta</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;datos&quot;</span><span class="p">,</span> <span class="s2">&quot;alumnos&quot;</span><span class="p">,</span> <span class="s2">&quot;notas.txt&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="c1"># En Linux/macOS: &#39;datos/alumnos/notas.txt&#39;</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="c1"># En Windows:    &#39;datos\alumnos\notas.txt&#39;</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="comparativa-pathlib-vs-ospath">Comparativa <code>pathlib</code> vs <code>os.path</code><a class="headerlink" href="#comparativa-pathlib-vs-ospath" title="Permanent link">&para;</a></h2>
 <table>
@@ -1328,16 +1392,16 @@
 </table>
 <div class="admonition warning">
 <p class="admonition-title">Antipatrón: concatenar rutas con strings</p>
-<p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Incorrecto: no es portable, falla en Windows</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">ruta</span> <span class="o">=</span> <span class="s2">&quot;datos/&quot;</span> <span class="o">+</span> <span class="s2">&quot;alumnos/&quot;</span> <span class="o">+</span> <span class="s2">&quot;notas.txt&quot;</span>
+<p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Incorrecto: no es portable, falla en Windows</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">ruta</span> <span class="o">=</span> <span class="s2">&quot;datos/&quot;</span> <span class="o">+</span> <span class="s2">&quot;alumnos/&quot;</span> <span class="o">+</span> <span class="s2">&quot;notas.txt&quot;</span>
 </code></pre></div>
-<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Correcto con pathlib</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">ruta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;datos&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;alumnos&quot;</span> <span class="o">/</span> <span class="s2">&quot;notas.txt&quot;</span>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Correcto con pathlib</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">ruta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;datos&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;alumnos&quot;</span> <span class="o">/</span> <span class="s2">&quot;notas.txt&quot;</span>
 </code></pre></div>
-<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Correcto con os.path (si se usa la librería clásica)</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">ruta</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;datos&quot;</span><span class="p">,</span> <span class="s2">&quot;alumnos&quot;</span><span class="p">,</span> <span class="s2">&quot;notas.txt&quot;</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Correcto con os.path (si se usa la librería clásica)</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">ruta</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;datos&quot;</span><span class="p">,</span> <span class="s2">&quot;alumnos&quot;</span><span class="p">,</span> <span class="s2">&quot;notas.txt&quot;</span><span class="p">)</span>
 </code></pre></div></p>
 </div>
 <div class="admonition tip">
