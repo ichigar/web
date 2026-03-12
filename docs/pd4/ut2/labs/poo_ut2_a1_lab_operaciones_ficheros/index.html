@@ -1952,6 +1952,44 @@ Obligatorio para que las tildes y la ñ funcionen en cualquier equipo. Si lo omi
 </span><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="hll">
 </span><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fichero creado.&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
+<p>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.16.0/ace.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+<link title="light" rel="alternate stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/tomorrow.min.css" disabled="disabled">
+<link title="dark" rel="alternate stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/tomorrow-night-blue.min.css" disabled="disabled">
+
+<div class="pyodide">
+<div class="pyodide-editor-bar">
+<span class="pyodide-bar-item">Editor (session: notas-txt)</span><span id="exec-1--run" title="Run: press Ctrl-Enter" class="pyodide-bar-item pyodide-clickable"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5.14v14l11-7-11-7Z"></path></svg></span> Run</span>
+</div>
+<div><pre id="exec-1--editor" class="pyodide-editor">with open("notas.txt", "w", encoding="utf-8") as f:
+    f.write("Ana García: 8.5\n")
+    f.write("Carlos López: 6.0\n")
+    f.write("María Fernández: 9.2\n")
+    f.write("Pedro Martín: 4.5\n")
+
+print("Fichero creado.")</pre></div>
+<div class="pyodide-editor-bar">
+<span class="pyodide-bar-item">Output</span><span id="exec-1--clear" class="pyodide-bar-item pyodide-clickable"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.14 3c-.51 0-1.02.2-1.41.59L2.59 14.73c-.78.77-.78 2.04 0 2.83L5.03 20h7.66l8.72-8.73c.79-.77.79-2.04 0-2.83l-4.85-4.85c-.39-.39-.91-.59-1.42-.59M17 18l-2 2h7v-2"></path></svg></span> Clear</span>
+</div>
+<pre><code id="exec-1--output" class="pyodide-output"></code></pre>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    setupPyodide(
+        'exec-1--',
+        install=[],
+        themeLight='tomorrow',
+        themeDark='tomorrow_night',
+        session='notas-txt',
+        minLines=7,
+        maxLines=7,
+    );
+});
+</script>
+</p>
 <details class="tip">
 <summary>Pista</summary>
 <p>Cada llamada a <code>write()</code> escribe exactamente la cadena que le pasas. Si no añades <code>\n</code>, las líneas quedan pegadas en una sola.</p>
@@ -2025,6 +2063,44 @@ Obligatorio para que las tildes y la ñ funcionen en cualquier equipo. Si lo omi
 <a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">contenido</span><span class="p">))</span>
 <a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Caracteres totales: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">contenido</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
+<p>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.16.0/ace.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+<link title="light" rel="alternate stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/tomorrow.min.css" disabled="disabled">
+<link title="dark" rel="alternate stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/tomorrow-night-blue.min.css" disabled="disabled">
+
+<div class="pyodide">
+<div class="pyodide-editor-bar">
+<span class="pyodide-bar-item">Editor (session: notas-txt)</span><span id="exec-2--run" title="Run: press Ctrl-Enter" class="pyodide-bar-item pyodide-clickable"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5.14v14l11-7-11-7Z"></path></svg></span> Run</span>
+</div>
+<div><pre id="exec-2--editor" class="pyodide-editor">with open("notas.txt", "r", encoding="utf-8") as f:
+    contenido = f.read()
+
+print(contenido)
+print("---")
+print(type(contenido))
+print(f"Caracteres totales: {len(contenido)}")</pre></div>
+<div class="pyodide-editor-bar">
+<span class="pyodide-bar-item">Output</span><span id="exec-2--clear" class="pyodide-bar-item pyodide-clickable"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.14 3c-.51 0-1.02.2-1.41.59L2.59 14.73c-.78.77-.78 2.04 0 2.83L5.03 20h7.66l8.72-8.73c.79-.77.79-2.04 0-2.83l-4.85-4.85c-.39-.39-.91-.59-1.42-.59M17 18l-2 2h7v-2"></path></svg></span> Clear</span>
+</div>
+<pre><code id="exec-2--output" class="pyodide-output"></code></pre>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    setupPyodide(
+        'exec-2--',
+        install=[],
+        themeLight='tomorrow',
+        themeDark='tomorrow_night',
+        session='notas-txt',
+        minLines=7,
+        maxLines=7,
+    );
+});
+</script>
+</p>
 <details class="tip">
 <summary>Pista</summary>
 <p><code>type()</code> te dice qué tipo de dato ha devuelto <code>read()</code>. <code>len()</code> cuenta los caracteres, <strong>incluidos</strong> los <code>\n</code>.</p>
@@ -2167,6 +2243,43 @@ Inserta en <code>paso2_b.py</code> el siguiente programa:</p>
 <a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Segunda línea:   </span><span class="si">{</span><span class="n">lineas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Última línea:    </span><span class="si">{</span><span class="n">lineas</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
+<p>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.16.0/ace.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+<link title="light" rel="alternate stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/tomorrow.min.css" disabled="disabled">
+<link title="dark" rel="alternate stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/tomorrow-night-blue.min.css" disabled="disabled">
+
+<div class="pyodide">
+<div class="pyodide-editor-bar">
+<span class="pyodide-bar-item">Editor (session: notas-txt)</span><span id="exec-3--run" title="Run: press Ctrl-Enter" class="pyodide-bar-item pyodide-clickable"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5.14v14l11-7-11-7Z"></path></svg></span> Run</span>
+</div>
+<div><pre id="exec-3--editor" class="pyodide-editor">with open("notas.txt", "r", encoding="utf-8") as f:
+    lineas = f.readlines()
+
+print(f"Total de líneas: {len(lineas)}")
+print(f"Segunda línea:   {lineas[1].strip()}")
+print(f"Última línea:    {lineas[-1].strip()}")</pre></div>
+<div class="pyodide-editor-bar">
+<span class="pyodide-bar-item">Output</span><span id="exec-3--clear" class="pyodide-bar-item pyodide-clickable"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.14 3c-.51 0-1.02.2-1.41.59L2.59 14.73c-.78.77-.78 2.04 0 2.83L5.03 20h7.66l8.72-8.73c.79-.77.79-2.04 0-2.83l-4.85-4.85c-.39-.39-.91-.59-1.42-.59M17 18l-2 2h7v-2"></path></svg></span> Clear</span>
+</div>
+<pre><code id="exec-3--output" class="pyodide-output"></code></pre>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    setupPyodide(
+        'exec-3--',
+        install=[],
+        themeLight='tomorrow',
+        themeDark='tomorrow_night',
+        session='notas-txt',
+        minLines=6,
+        maxLines=6,
+    );
+});
+</script>
+</p>
 <details class="tip">
 <summary>Pista</summary>
 <p><code>.strip()</code> elimina espacios y saltos de línea al principio y al final de la cadena.</p>

@@ -1496,60 +1496,6 @@ Para comprobarlo:
 </span><a id="__codelineno-12-22" name="__codelineno-12-22"></a><span class="nb">print</span><span class="p">(</span><span class="n">ana</span><span class="o">.</span><span class="n">nota</span><span class="p">)</span>      <span class="c1"># 9</span>
 <a id="__codelineno-12-23" name="__codelineno-12-23"></a><span class="hll"><span class="n">ana</span><span class="o">.</span><span class="n">nota</span> <span class="o">=</span> <span class="mi">15</span>        <span class="c1"># Error: la nota debe estar entre 0 y 10</span>
 </span></code></pre></div></td></tr></table></div>
-<p>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.16.0/ace.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
-<link title="light" rel="alternate stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/tomorrow.min.css" disabled="disabled">
-<link title="dark" rel="alternate stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/tomorrow-night-blue.min.css" disabled="disabled">
-
-<div class="pyodide">
-<div class="pyodide-editor-bar">
-<span class="pyodide-bar-item">Editor (session: default)</span><span id="exec-1--run" title="Run: press Ctrl-Enter" class="pyodide-bar-item pyodide-clickable"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5.14v14l11-7-11-7Z"></path></svg></span> Run</span>
-</div>
-<div><pre id="exec-1--editor" class="pyodide-editor">class Alumno:
-    def __init__(self, nombre, nota):
-        self.nombre = nombre
-        self._nota = nota
-
-    @property
-    def nota(self):
-        # Getter: devuelve el valor de __nota
-        return self._nota
-
-    @nota.setter
-    def nota(self, valor):
-        # Setter: controla qué valores son válidos y la almacena o muestra error
-        if 0 <= valor <= 10:
-            self._nota = valor
-        else:
-            print("Error: la nota debe estar entre 0 y 10")
-
-ana = Alumno("Ana", 8)
-print(ana.nota)      # Se llama al getter → 8
-ana.nota = 9         # Se llama al setter → cambia el valor
-print(ana.nota)      # 9
-ana.nota = 15        # Error: la nota debe estar entre 0 y 10</pre></div>
-<div class="pyodide-editor-bar">
-<span class="pyodide-bar-item">Output</span><span id="exec-1--clear" class="pyodide-bar-item pyodide-clickable"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.14 3c-.51 0-1.02.2-1.41.59L2.59 14.73c-.78.77-.78 2.04 0 2.83L5.03 20h7.66l8.72-8.73c.79-.77.79-2.04 0-2.83l-4.85-4.85c-.39-.39-.91-.59-1.42-.59M17 18l-2 2h7v-2"></path></svg></span> Clear</span>
-</div>
-<pre><code id="exec-1--output" class="pyodide-output"></code></pre>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', (event) => {
-    setupPyodide(
-        'exec-1--',
-        install=[],
-        themeLight='tomorrow',
-        themeDark='tomorrow_night',
-        session='default',
-        minLines=23,
-        maxLines=23,
-    );
-});
-</script>
-</p>
 <h4 id="getter-con-property">getter con <code>@property</code>:<a class="headerlink" href="#getter-con-property" title="Permanent link">&para;</a></h4>
 <p>En el ejemplo anterior el decorador <code>@property</code> hace de <strong>getter</strong> del atributo. Lo que conseguimos es convertir el método <code>nota()</code> en un <strong>getter</strong>, es decir, en el código que se ejecuta cuando se lee un atributo:</p>
 <div class="language-python highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">ana</span><span class="o">.</span><span class="n">nota</span><span class="p">)</span>
