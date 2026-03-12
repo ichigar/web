@@ -1042,6 +1042,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#fileexistserror" class="md-nav__link">
+    <span class="md-ellipsis">
+      FileExistsError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#oserror-e-ioerror" class="md-nav__link">
     <span class="md-ellipsis">
       OSError e IOError
@@ -1078,6 +1087,15 @@
   <a href="#acceder-al-mensaje-del-error-con-as" class="md-nav__link">
     <span class="md-ellipsis">
       Acceder al mensaje del error con as
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-orden-de-las-excepciones-importa" class="md-nav__link">
+    <span class="md-ellipsis">
+      El orden de las excepciones importa
     </span>
   </a>
   
@@ -1167,48 +1185,107 @@
 <p>Se lanza cuando se intenta abrir una ruta que corresponde a un directorio, no a un fichero:</p>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>IsADirectoryError: [Errno 21] Is a directory: &#39;datos/&#39;
 </code></pre></div>
+<h3 id="fileexistserror"><code>FileExistsError</code><a class="headerlink" href="#fileexistserror" title="Permanent link">&para;</a></h3>
+<p>Se lanza cuando se intenta crear un fichero en modo exclusivo (<code>"x"</code>) y este ya existe:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1"># Si backup.txt ya existe, Python lanza FileExistsError</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="hll"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;backup.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;datos iniciales&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>FileExistsError: [Errno 17] File exists: &#39;backup.txt&#39;
+</code></pre></div>
+<p>El modo <code>"x"</code> (<em>exclusive creation</em>) está diseñado precisamente para evitar sobreescrituras accidentales: falla si el fichero ya existe.</p>
 <h3 id="oserror-e-ioerror"><code>OSError</code> e <code>IOError</code><a class="headerlink" href="#oserror-e-ioerror" title="Permanent link">&para;</a></h3>
 <p>Son la clase base de la mayoría de errores relacionados con ficheros. <code>IOError</code> es un alias de <code>OSError</code> en Python 3. Si quieres capturar cualquier error de I/O sin especificarlo, puedes usar <code>OSError</code>.</p>
 <h2 id="manejo-con-try-except">Manejo con <code>try / except</code><a class="headerlink" href="#manejo-con-try-except" title="Permanent link">&para;</a></h2>
 <p>El bloque <code>try / except</code> permite capturar excepciones y reaccionar de forma controlada:</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
-<span class="normal"><a href="#__codelineno-4-2">2</a></span>
-<span class="normal"><a href="#__codelineno-4-3">3</a></span>
-<span class="normal"><a href="#__codelineno-4-4">4</a></span>
-<span class="normal"><a href="#__codelineno-4-5">5</a></span>
-<span class="normal"><a href="#__codelineno-4-6">6</a></span>
-<span class="normal"><a href="#__codelineno-4-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="hll"><span class="k">try</span><span class="p">:</span>
-</span><a id="__codelineno-4-2" name="__codelineno-4-2"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="hll"><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-</span><a id="__codelineno-4-5" name="__codelineno-4-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: el fichero &#39;notas.txt&#39; no existe.&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="hll"><span class="k">except</span> <span class="ne">PermissionError</span><span class="p">:</span>
-</span><a id="__codelineno-4-7" name="__codelineno-4-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: no tienes permisos para leer este fichero.&quot;</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-<h3 id="capturar-multiples-excepciones-en-un-mismo-bloque">Capturar múltiples excepciones en un mismo bloque<a class="headerlink" href="#capturar-multiples-excepciones-en-un-mismo-bloque" title="Permanent link">&para;</a></h3>
-<p>Si queremos manejar varios tipos de error de la misma manera, podemos agruparlos en una tupla:</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
-<span class="normal"><a href="#__codelineno-5-2">2</a></span>
-<span class="normal"><a href="#__codelineno-5-3">3</a></span>
-<span class="normal"><a href="#__codelineno-5-4">4</a></span>
-<span class="normal"><a href="#__codelineno-5-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="hll"><span class="k">except</span> <span class="p">(</span><span class="ne">FileNotFoundError</span><span class="p">,</span> <span class="ne">PermissionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><a id="__codelineno-5-5" name="__codelineno-5-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No se pudo abrir el fichero: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-<h3 id="acceder-al-mensaje-del-error-con-as">Acceder al mensaje del error con <code>as</code><a class="headerlink" href="#acceder-al-mensaje-del-error-con-as" title="Permanent link">&para;</a></h3>
-<p>La cláusula <code>as e</code> asigna la excepción a una variable, lo que permite mostrar el mensaje de error original:</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
 <span class="normal"><a href="#__codelineno-6-2">2</a></span>
 <span class="normal"><a href="#__codelineno-6-3">3</a></span>
 <span class="normal"><a href="#__codelineno-6-4">4</a></span>
-<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;configuracion.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="hll"><span class="k">try</span><span class="p">:</span>
+</span><a id="__codelineno-6-2" name="__codelineno-6-2"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="hll"><span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al acceder al fichero: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="hll"><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+</span><a id="__codelineno-6-5" name="__codelineno-6-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: el fichero &#39;notas.txt&#39; no existe.&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="hll"><span class="k">except</span> <span class="ne">PermissionError</span><span class="p">:</span>
+</span><a id="__codelineno-6-7" name="__codelineno-6-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: no tienes permisos para leer este fichero.&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="capturar-multiples-excepciones-en-un-mismo-bloque">Capturar múltiples excepciones en un mismo bloque<a class="headerlink" href="#capturar-multiples-excepciones-en-un-mismo-bloque" title="Permanent link">&para;</a></h3>
+<p>Si queremos manejar varios tipos de error de la misma manera, podemos agruparlos en una tupla:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="hll"><span class="k">except</span> <span class="p">(</span><span class="ne">FileNotFoundError</span><span class="p">,</span> <span class="ne">PermissionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><a id="__codelineno-7-5" name="__codelineno-7-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No se pudo abrir el fichero: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="acceder-al-mensaje-del-error-con-as">Acceder al mensaje del error con <code>as</code><a class="headerlink" href="#acceder-al-mensaje-del-error-con-as" title="Permanent link">&para;</a></h3>
+<p>La cláusula <code>as e</code> asigna la excepción a una variable, lo que permite mostrar el mensaje de error original:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;configuracion.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="hll"><span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al acceder al fichero: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
+<h3 id="el-orden-de-las-excepciones-importa">El orden de las excepciones importa<a class="headerlink" href="#el-orden-de-las-excepciones-importa" title="Permanent link">&para;</a></h3>
+<p>Cuando se encadenan varios <code>except</code>, Python los evalúa <strong>de arriba a abajo</strong> y ejecuta el primero que coincida. Por eso hay que colocar siempre <strong>las excepciones más específicas antes que las más generales</strong>.</p>
+<p>Si pones <code>OSError</code> primero, nunca llegarás a <code>FileNotFoundError</code> aunque sea la excepción que realmente se lanzó, porque <code>FileNotFoundError</code> es una subclase de <code>OSError</code> y queda "absorbida" por el bloque más general:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span>
+<span class="normal"><a href="#__codelineno-9-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="c1"># Incorrecto: FileNotFoundError nunca se captura por separado</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="hll">        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error genérico de E/S.&quot;</span><span class="p">)</span>   <span class="c1"># captura todo, incluyendo FileNotFoundError</span>
+</span><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>             <span class="c1"># este bloque es inalcanzable</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El fichero no existe.&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1"># Correcto: primero el más específico, luego el más general</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="hll">        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El fichero no existe.&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="k">except</span> <span class="ne">PermissionError</span><span class="p">:</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sin permisos de lectura.&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Otro error de E/S: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>La jerarquía de herencia de las excepciones de ficheros en Python es:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>OSError
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>├── FileNotFoundError
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>├── PermissionError
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>├── FileExistsError
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>├── IsADirectoryError
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>└── ... (otras subclases)
+</code></pre></div>
+<p>Como regla general: <strong>de más específico a más general</strong>, igual que en una cadena <code>if / elif</code>.</p>
 <h2 id="el-bloque-finally">El bloque <code>finally</code><a class="headerlink" href="#el-bloque-finally" title="Permanent link">&para;</a></h2>
 <p>El bloque <code>finally</code> se ejecuta <strong>siempre</strong>, haya error o no. Se usa para limpiar recursos o ejecutar código que debe ocurrir en cualquier caso.</p>
 <p>Cuando usamos <code>with</code>, el cierre del fichero ya está garantizado. El bloque <code>finally</code> es útil para "limpia" o realizar tareas que se ejecutan tanto si se completó la operación con éxito como si se lanzó alguna excepción. Por ejemplo:</p>
@@ -1216,75 +1293,75 @@
 <li>Actualizar un contador.</li>
 <li>Escribir un log de la operación</li>
 </ul>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-7-10">10</a></span>
-<span class="normal"><a href="#__codelineno-7-11">11</a></span>
-<span class="normal"><a href="#__codelineno-7-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="n">intentos</span> <span class="o">=</span> <span class="mi">0</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6"></a>        <span class="n">mensaje_log</span> <span class="o">=</span> <span class="s2">&quot;Fichero leído correctamente.&quot;</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8"></a>    <span class="n">mensaje_log</span> <span class="o">=</span> <span class="s2">&quot;Error: fichero no encontrado.&quot;</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="hll"><span class="k">finally</span><span class="p">:</span>
-</span><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="hll">    <span class="n">intentos</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Intentos realizados: </span><span class="si">{</span><span class="n">intentos</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-7-12" name="__codelineno-7-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Log: &quot;</span> <span class="p">{</span><span class="n">mensaje_log</span><span class="p">})</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="n">intentos</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a>        <span class="n">mensaje_log</span> <span class="o">=</span> <span class="s2">&quot;Fichero leído correctamente.&quot;</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a>    <span class="n">mensaje_log</span> <span class="o">=</span> <span class="s2">&quot;Error: fichero no encontrado.&quot;</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="hll"><span class="k">finally</span><span class="p">:</span>
+</span><a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="hll">    <span class="n">intentos</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Intentos realizados: </span><span class="si">{</span><span class="n">intentos</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-12-12" name="__codelineno-12-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Log: &quot;</span> <span class="p">{</span><span class="n">mensaje_log</span><span class="p">})</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="patron-completo-try-except-else-finally">Patrón completo: <code>try / except / else / finally</code><a class="headerlink" href="#patron-completo-try-except-else-finally" title="Permanent link">&para;</a></h2>
 <p>Python permite usar <code>else</code> para ejecutar código solo cuando <strong>no</strong> se produce ninguna excepción:</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-8-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="hll"><span class="k">try</span><span class="p">:</span>
-</span><a id="__codelineno-8-2" name="__codelineno-8-2"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="hll"><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-</span><a id="__codelineno-8-5" name="__codelineno-8-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El fichero no existe. Se iniciará con datos vacíos.&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6"></a>    <span class="n">datos</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="hll"><span class="k">else</span><span class="p">:</span>
-</span><a id="__codelineno-8-8" name="__codelineno-8-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fichero cargado: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span><span class="si">}</span><span class="s2"> caracteres.&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="hll"><span class="k">finally</span><span class="p">:</span>
-</span><a id="__codelineno-8-10" name="__codelineno-8-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proceso de carga completado.&quot;</span><span class="p">)</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="hll"><span class="k">try</span><span class="p">:</span>
+</span><a id="__codelineno-13-2" name="__codelineno-13-2"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="hll"><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+</span><a id="__codelineno-13-5" name="__codelineno-13-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El fichero no existe. Se iniciará con datos vacíos.&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a>    <span class="n">datos</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="hll"><span class="k">else</span><span class="p">:</span>
+</span><a id="__codelineno-13-8" name="__codelineno-13-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fichero cargado: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span><span class="si">}</span><span class="s2"> caracteres.&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="hll"><span class="k">finally</span><span class="p">:</span>
+</span><a id="__codelineno-13-10" name="__codelineno-13-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proceso de carga completado.&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="verificar-antes-de-abrir">Verificar antes de abrir<a class="headerlink" href="#verificar-antes-de-abrir" title="Permanent link">&para;</a></h2>
 <p>En ocasiones es más claro comprobar si el fichero existe antes de intentar abrirlo, usando <code>pathlib</code>. </p>
 <p>A esta manera de gestionar los errores se le llama LBYL (Look Before You Leap).</p>
 <p>Ejemplo:</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-9-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2"></a>
-<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="hll"><span class="n">ruta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-9-4" name="__codelineno-9-4"></a>
-<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="hll"><span class="k">if</span> <span class="n">ruta</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-</span><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="hll">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-</span><a id="__codelineno-9-7" name="__codelineno-9-7"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El fichero no existe todavía.&quot;</span><span class="p">)</span>
-<a id="__codelineno-9-10" name="__codelineno-9-10"></a>    <span class="n">datos</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="hll"><span class="n">ruta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-14-4" name="__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="hll"><span class="k">if</span> <span class="n">ruta</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+</span><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="hll">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><a id="__codelineno-14-7" name="__codelineno-14-7"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El fichero no existe todavía.&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10"></a>    <span class="n">datos</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
 <blockquote>
 <p>Aunque la verificación previa es válida, en Python se prefiere el estilo <strong>EAFP</strong> (<em>Easier to Ask Forgiveness than Permission</em>): intentar la operación y capturar el error si ocurre, en lugar de comprobar condiciones antes de actuar. </p>
@@ -1292,23 +1369,23 @@
 <p>Ambos estilos son correctos; úsalos según lo que haga el código más legible.</p>
 <div class="admonition warning">
 <p class="admonition-title">Mala práctica: capturar <code>Exception</code> de forma genérica</p>
-<p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Incorrecto: captura cualquier error, incluyendo bugs del programa</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="k">pass</span>   <span class="c1"># Silencia todos los errores, imposible depurar</span>
+<p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Incorrecto: captura cualquier error, incluyendo bugs del programa</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="k">pass</span>   <span class="c1"># Silencia todos los errores, imposible depurar</span>
 </code></pre></div>
-<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Correcto: captura solo los errores esperados y reacciona de forma útil</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El fichero de notas no existe. Creando uno nuevo.&quot;</span><span class="p">)</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="n">datos</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">except</span> <span class="ne">PermissionError</span><span class="p">:</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sin permisos de lectura. Comprueba la configuración.&quot;</span><span class="p">)</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>    <span class="k">raise</span>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Correcto: captura solo los errores esperados y reacciona de forma útil</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El fichero de notas no existe. Creando uno nuevo.&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>    <span class="n">datos</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="k">except</span> <span class="ne">PermissionError</span><span class="p">:</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sin permisos de lectura. Comprueba la configuración.&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>    <span class="k">raise</span>
 </code></pre></div></p>
 </div>
 <h3 id="tipos-de-verificaciones">Tipos de verificaciones<a class="headerlink" href="#tipos-de-verificaciones" title="Permanent link">&para;</a></h3>
@@ -1351,50 +1428,52 @@
 </tbody>
 </table>
 <p>Ejemplo:</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-12-10">10</a></span>
-<span class="normal"><a href="#__codelineno-12-11">11</a></span>
-<span class="normal"><a href="#__codelineno-12-12">12</a></span>
-<span class="normal"><a href="#__codelineno-12-13">13</a></span>
-<span class="normal"><a href="#__codelineno-12-14">14</a></span>
-<span class="normal"><a href="#__codelineno-12-15">15</a></span>
-<span class="normal"><a href="#__codelineno-12-16">16</a></span>
-<span class="normal"><a href="#__codelineno-12-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2"></a>
-<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="n">ruta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="hll"><span class="k">if</span> <span class="n">ruta</span><span class="o">.</span><span class="n">is_absolute</span><span class="p">():</span>
-</span><a id="__codelineno-12-5" name="__codelineno-12-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La ruta es absoluta.&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La ruta es relativa.&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8"></a>
-<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="hll"><span class="k">if</span> <span class="ow">not</span> <span class="n">ruta</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-</span><a id="__codelineno-12-10" name="__codelineno-12-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La ruta no existe.&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="hll"><span class="k">elif</span> <span class="ow">not</span> <span class="n">ruta</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
-</span><a id="__codelineno-12-12" name="__codelineno-12-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La ruta existe, pero no es un fichero.&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="hll"><span class="k">elif</span> <span class="n">ruta</span><span class="o">.</span><span class="n">suffix</span> <span class="o">!=</span> <span class="s2">&quot;.txt&quot;</span><span class="p">:</span>
-</span><a id="__codelineno-12-14" name="__codelineno-12-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Formato no válido: se esperaba un .txt.&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-15" name="__codelineno-12-15"></a><span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-12-16" name="__codelineno-12-16"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<a id="__codelineno-12-17" name="__codelineno-12-17"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-17-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-17-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-17-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-17-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-17-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-17-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-17-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-17-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-17-10">10</a></span>
+<span class="normal"><a href="#__codelineno-17-11">11</a></span>
+<span class="normal"><a href="#__codelineno-17-12">12</a></span>
+<span class="normal"><a href="#__codelineno-17-13">13</a></span>
+<span class="normal"><a href="#__codelineno-17-14">14</a></span>
+<span class="normal"><a href="#__codelineno-17-15">15</a></span>
+<span class="normal"><a href="#__codelineno-17-16">16</a></span>
+<span class="normal"><a href="#__codelineno-17-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="n">ruta</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;notas.txt&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="hll"><span class="k">if</span> <span class="n">ruta</span><span class="o">.</span><span class="n">is_absolute</span><span class="p">():</span>
+</span><a id="__codelineno-17-5" name="__codelineno-17-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La ruta es absoluta.&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La ruta es relativa.&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8"></a>
+<a id="__codelineno-17-9" name="__codelineno-17-9"></a><span class="hll"><span class="k">if</span> <span class="ow">not</span> <span class="n">ruta</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+</span><a id="__codelineno-17-10" name="__codelineno-17-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La ruta no existe.&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11"></a><span class="hll"><span class="k">elif</span> <span class="ow">not</span> <span class="n">ruta</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+</span><a id="__codelineno-17-12" name="__codelineno-17-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La ruta existe, pero no es un fichero.&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13"></a><span class="hll"><span class="k">elif</span> <span class="n">ruta</span><span class="o">.</span><span class="n">suffix</span> <span class="o">!=</span> <span class="s2">&quot;.txt&quot;</span><span class="p">:</span>
+</span><a id="__codelineno-17-14" name="__codelineno-17-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Formato no válido: se esperaba un .txt.&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-17-17" name="__codelineno-17-17"></a>        <span class="n">datos</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 <blockquote>
 <p>Este enfoque LBYL mejora los mensajes al usuario, pero no elimina la necesidad de <code>try/except</code>: el estado del fichero puede cambiar entre la verificación y la apertura.</p>
 </blockquote>
 <details class="tip">
 <summary>Aclaración</summary>
-<p>Un fichero se considera “normal” cuando es un archivo regular del sistema de ficheros:
-- contiene datos (texto/binario)
-- se puede abrir con open()
-- no es un directorio,
-- no es un dispositivo, socket, tubería, etc.</p>
+<p>Un fichero se considera “normal” cuando es un archivo regular del sistema de ficheros:</p>
+<ul>
+<li>contiene datos (texto/binario)</li>
+<li>se puede abrir con open()</li>
+<li>no es un directorio,</li>
+<li>no es un dispositivo, socket, tubería, etc.</li>
+</ul>
 </details>
 
 
