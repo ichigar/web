@@ -1508,55 +1508,6 @@ También podemos acceder poniendo directamente el <strong>nombre de la clase</st
 <a id="__codelineno-16-17" name="__codelineno-16-17"></a>
 <a id="__codelineno-16-18" name="__codelineno-16-18"></a><span class="hll"><span class="nb">print</span><span class="p">(</span><span class="n">coche_rojo</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
-<p>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.16.0/ace.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
-<link title="light" rel="alternate stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/tomorrow.min.css" disabled="disabled">
-<link title="dark" rel="alternate stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/tomorrow-night-blue.min.css" disabled="disabled">
-
-<div class="pyodide">
-<div class="pyodide-editor-bar">
-<span class="pyodide-bar-item">Editor (session: default)</span><span id="exec-1--run" title="Run: press Ctrl-Enter" class="pyodide-bar-item pyodide-clickable"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5.14v14l11-7-11-7Z"></path></svg></span> Run</span>
-</div>
-<div><pre id="exec-1--editor" class="pyodide-editor">class Coche:
-    ruedas = 4
-
-    def __init__(self, color, velocidad):
-        self.color = color
-        self.velocidad = velocidad
-
-    # métodos de instancia
-    def __str__(self):
-        return f"El coche tiene color {self.color} y una velocidad de {self.velocidad} Kmh"
-
-    def acelera(self, incremento):
-        self.velocidad += incremento
-        return f"Nueva velocidad: {self.velocidad} Kmh"
-
-coche_rojo = Coche("rojo", 80)
-
-print(coche_rojo)</pre></div>
-<div class="pyodide-editor-bar">
-<span class="pyodide-bar-item">Output</span><span id="exec-1--clear" class="pyodide-bar-item pyodide-clickable"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.14 3c-.51 0-1.02.2-1.41.59L2.59 14.73c-.78.77-.78 2.04 0 2.83L5.03 20h7.66l8.72-8.73c.79-.77.79-2.04 0-2.83l-4.85-4.85c-.39-.39-.91-.59-1.42-.59M17 18l-2 2h7v-2"></path></svg></span> Clear</span>
-</div>
-<pre><code id="exec-1--output" class="pyodide-output"></code></pre>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', (event) => {
-    setupPyodide(
-        'exec-1--',
-        install=[],
-        themeLight='tomorrow',
-        themeDark='tomorrow_night',
-        session='default',
-        minLines=18,
-        maxLines=18,
-    );
-});
-</script>
-</p>
 <p>Al ejecutar obtenemos:</p>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>El coche tiene color rojo y una velocidad de 80 Kmh
 </code></pre></div>
