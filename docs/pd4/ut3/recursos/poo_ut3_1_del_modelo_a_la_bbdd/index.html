@@ -1093,13 +1093,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-sql-basico-definir-y-poblar-tablas" class="md-nav__link">
+  <a href="#3-sql-basico-definir-y-agregar-datos-iniciales-a-tablas" class="md-nav__link">
     <span class="md-ellipsis">
-      3. SQL básico: definir y poblar tablas
+      3. SQL básico: definir y agregar datos iniciales a tablas
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. SQL básico: definir y poblar tablas">
+    <nav class="md-nav" aria-label="3. SQL básico: definir y agregar datos iniciales a tablas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1136,6 +1136,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="INSERT INTO — añadir filas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-inyeccion-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo de inyección SQL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1169,20 +1184,38 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="fetchall() y fetchone()">
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sql-basico-modificar-y-eliminar-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. SQL básico: modificar y eliminar datos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. SQL básico: modificar y eliminar datos">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#comparativa-de-metodos-de-lectura" class="md-nav__link">
+  <a href="#update-modificar-filas-existentes" class="md-nav__link">
     <span class="md-ellipsis">
-      Comparativa de métodos de lectura
+      UPDATE — modificar filas existentes
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#delete-from-eliminar-filas" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE FROM — eliminar filas
+    </span>
+  </a>
   
 </li>
         
@@ -1192,19 +1225,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-claves-primarias-y-foraneas" class="md-nav__link">
+  <a href="#6-claves-primarias-valores-nulos-y-claves-foraneas" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Claves primarias y foráneas
+      6. Claves primarias, valores nulos y claves foráneas
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5. Claves primarias y foráneas">
+    <nav class="md-nav" aria-label="6. Claves primarias, valores nulos y claves foráneas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#primary-key-identificador-unico" class="md-nav__link">
     <span class="md-ellipsis">
       PRIMARY KEY — identificador único
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-sql-y-valores-nulos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python, SQL y valores nulos.
     </span>
   </a>
   
@@ -1249,13 +1291,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-mapeo-de-objetos-python-a-tablas-sql" class="md-nav__link">
+  <a href="#7-mapeo-de-objetos-python-a-tablas-sql" class="md-nav__link">
     <span class="md-ellipsis">
-      6. Mapeo de objetos Python a tablas SQL
+      7. Mapeo de objetos Python a tablas SQL
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="6. Mapeo de objetos Python a tablas SQL">
+    <nav class="md-nav" aria-label="7. Mapeo de objetos Python a tablas SQL">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1268,13 +1310,13 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#herencia-con-dos-tablas-item-e-itemcondescuento" class="md-nav__link">
+  <a href="#clases-con-herencia-a-dos-tablas" class="md-nav__link">
     <span class="md-ellipsis">
-      Herencia con dos tablas: Item e ItemConDescuento
+      Clases con herencia a dos tablas
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Herencia con dos tablas: Item e ItemConDescuento">
+    <nav class="md-nav" aria-label="Clases con herencia a dos tablas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1321,9 +1363,26 @@
 <hr />
 <h2 id="1-bases-de-datos-relacionales">1. Bases de datos relacionales<a class="headerlink" href="#1-bases-de-datos-relacionales" title="Permanent link">&para;</a></h2>
 <h3 id="que-es-una-base-de-datos-relacional">¿Qué es una base de datos relacional?<a class="headerlink" href="#que-es-una-base-de-datos-relacional" title="Permanent link">&para;</a></h3>
-<p>Una <strong>base de datos relacional</strong> organiza la información en <strong>tablas</strong> — estructuras con filas y columnas. Cada tabla representa un tipo de dato concreto (productos, clientes, pedidos). Cada fila es un registro individual y cada columna es un atributo de ese registro.</p>
-<p>La analogía más directa es una hoja de cálculo: las columnas son los campos y cada fila es un elemento de ese tipo. A diferencia de una hoja de cálculo, una base de datos relacional impone tipos, restricciones e integridad de forma automática.</p>
-<p>Para los ejemplos de estos apuntes usaremos la base de datos de la expendedora, con el siguiente contenido:</p>
+<p>Una <strong>base de datos relacional</strong> organiza la información en <strong>tablas</strong> — estructuras con filas y columnas. Cada <strong>tabla</strong> representa un <strong>tipo de dato</strong> concreto (productos, clientes, pedidos). Cada <strong>fila</strong> es un <strong>registro individual</strong> y cada <strong>columna</strong> es un <strong>atributo</strong> de ese registro.</p>
+<div class="admonition tip">
+<p class="admonition-title">Por qué se les llama bases de datos relacionales</p>
+<p>Se les llama relacionales porque organizan la información en <strong>relaciones</strong>, que es el término matemático/formal para lo que en la práctica vemos como <strong>tablas</strong>. Además, esas tablas <strong>se relacionan entre sí</strong> mediante claves, como una <strong>clave primaria</strong> y una <strong>clave foránea</strong>.</p>
+</div>
+<p>La analogía más directa es una hoja de cálculo: las columnas son los campos y cada fila es un elemento de ese tipo. </p>
+<p>A diferencia de las hojas de cálculo, las bases de datos relacionales tienen una serie de propiedades o características:</p>
+<ul>
+<li><strong>Tipos</strong>: definen qué clase de dato puede guardarse.</li>
+<li><strong>Restricciones</strong>: ponen reglas sobre esos datos.</li>
+<li><strong>Integridad</strong>: garantiza que los datos se mantengan correctos, válidos y coherentes entre sí. Los datos <strong>no se contradicen entre sí</strong> y mantienen coherencia dentro de la base de datos</li>
+</ul>
+<p>Por ejemplo: En una <strong>hoja de cálculo</strong>, en la columna “edad” alguien podría escribir <code>25</code>, <code>veinticinco</code> o incluso dejar <code>-3</code>, y el archivo lo permite.</p>
+<p>En una <strong>base de datos relacional</strong>, puedes definir que:</p>
+<ul>
+<li><strong>“edad” solo sea un número entero</strong> → <strong>tipo</strong></li>
+<li><strong>no pueda ser negativa</strong> → <strong>restricción</strong></li>
+<li><strong>que un pedido no pueda existir si no está asociado a un cliente real</strong> → <strong>integridad</strong> (más concretamente, <strong>integridad referencial</strong>)</li>
+</ul>
+<p>Para los ejemplos de estos apuntes usaremos la base de datos de la máquina expendedora, con el siguiente contenido:</p>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>── tabla: productos ───────────────────────────
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>codigo | nombre   | precio | cantidad
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>-------+----------+--------+---------
@@ -1376,7 +1435,7 @@
 </tbody>
 </table>
 <blockquote>
-<p>El diccionario vive en memoria y desaparece al cerrar el programa. La base de datos persiste en un fichero <code>.db</code> en disco y sobrevive entre ejecuciones.</p>
+<p>El diccionario vive en memoria y desaparece al cerrar el programa. La base de datos <strong>persiste</strong> en un fichero <code>.db</code> en disco y sobrevive entre ejecuciones.</p>
 </blockquote>
 <h3 id="sqlite-el-motor-embebido-de-python">SQLite — el motor embebido de Python<a class="headerlink" href="#sqlite-el-motor-embebido-de-python" title="Permanent link">&para;</a></h3>
 <p><strong>SQLite</strong> es un motor de base de datos que almacena toda la información en <strong>un único fichero</strong> <code>.db</code>. No necesita un servidor separado ni instalación adicional: el módulo <code>sqlite3</code> viene incluido en la biblioteca estándar de Python.</p>
@@ -1406,7 +1465,7 @@
 </tr>
 <tr>
 <td>Casos de uso</td>
-<td>Desarrollo, apps de escritorio</td>
+<td>Desarrollo, apps de escritorio, prototipos, pocos usuarios</td>
 <td>Producción, múltiples usuarios</td>
 </tr>
 </tbody>
@@ -1418,7 +1477,7 @@
 <hr />
 <h2 id="2-el-modulo-sqlite3">2. El módulo <code>sqlite3</code><a class="headerlink" href="#2-el-modulo-sqlite3" title="Permanent link">&para;</a></h2>
 <h3 id="flujo-de-trabajo-conectar-ejecutar-confirmar-cerrar">Flujo de trabajo: conectar, ejecutar, confirmar, cerrar<a class="headerlink" href="#flujo-de-trabajo-conectar-ejecutar-confirmar-cerrar" title="Permanent link">&para;</a></h3>
-<p>Toda operación con SQLite sigue el mismo ciclo de cuatro pasos. Aprende este patrón de memoria — siempre es el mismo:</p>
+<p>Toda operación con SQLite sigue el mismo ciclo de cinco pasos. Aprende este patrón de memoria — siempre es el mismo:</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
 <span class="normal"><a href="#__codelineno-2-2">2</a></span>
 <span class="normal"><a href="#__codelineno-2-3">3</a></span>
@@ -1429,7 +1488,7 @@
 <span class="normal"><a href="#__codelineno-2-8">8</a></span>
 <span class="normal"><a href="#__codelineno-2-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="hll"><span class="n">conn</span>   <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>  <span class="c1">## 1. Conectar (crea el fichero si no existe)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="hll"><span class="n">conn</span>   <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>   <span class="c1">## 1. Conectar (crea el fichero si no existe)</span>
 </span><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="hll"><span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>                       <span class="c1">## 2. Crear el cursor</span>
 </span><a id="__codelineno-2-5" name="__codelineno-2-5"></a>
 <a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM productos&quot;</span><span class="p">)</span>    <span class="c1">## 3. Ejecutar SQL</span>
@@ -1439,16 +1498,16 @@
 </span></code></pre></div></td></tr></table></div>
 <h3 id="la-conexion-y-el-cursor">La conexión y el cursor<a class="headerlink" href="#la-conexion-y-el-cursor" title="Permanent link">&para;</a></h3>
 <p><code>sqlite3.connect()</code> <strong>abre o crea</strong> el fichero de base de datos y devuelve un objeto <code>Connection</code>. Si el fichero <code>expendedora.db</code> no existe, SQLite lo crea vacío en ese momento.</p>
-<p>El <strong>cursor</strong> es el objeto que envía sentencias SQL a la base de datos y recoge los resultados. Créalo siempre con <code>conn.cursor()</code> antes de ejecutar cualquier sentencia.</p>
+<p>El <strong>cursor</strong> es el objeto que se usa para envía sentencias SQL a la base de datos y recoge los resultados. Lo creamos siempre con <code>conn.cursor()</code> antes de ejecutar cualquier sentencia. Se llama así porque significa algo parecido a un apuntador que nos permite movernos por los resultados de una consulta fila a fila.</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
-<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="hll"><span class="n">conn</span>   <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>  <span class="c1">## abre o crea el fichero .db</span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="hll"><span class="n">conn</span>   <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>   <span class="c1">## abre o crea el fichero .db</span>
 </span><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="hll"><span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>                       <span class="c1">## objeto para ejecutar SQL</span>
 </span></code></pre></div></td></tr></table></div>
 <blockquote>
 <p>Si ejecutas <code>sqlite3.connect("expendedora.db")</code> y el fichero no existe, SQLite crea automáticamente un fichero vacío con ese nombre. Si ya existe, lo abre sin borrarlo.</p>
 </blockquote>
 <h3 id="transacciones-y-commit">Transacciones y <code>commit()</code><a class="headerlink" href="#transacciones-y-commit" title="Permanent link">&para;</a></h3>
-<p>SQLite trabaja con <strong>transacciones</strong>: los cambios producidos por <code>INSERT</code>, <code>UPDATE</code> o <code>DELETE</code> no se escriben en el fichero hasta que llamas explícitamente a <code>conn.commit()</code>. Puedes agrupar varias operaciones en una sola transacción y confirmarlas todas de golpe.</p>
+<p>SQLite trabaja con <strong>transacciones</strong>: los cambios producidos por <code>INSERT</code>, <code>UPDATE</code> o <code>DELETE</code> <strong>no se escriben</strong> en el fichero hasta que llamas explícitamente a <code>conn.commit()</code>. Puedes agrupar varias operaciones en una sola transacción y confirmarlas todas de golpe.</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
 <span class="normal"><a href="#__codelineno-4-2">2</a></span>
 <span class="normal"><a href="#__codelineno-4-3">3</a></span>
@@ -1470,7 +1529,7 @@
 </code></pre></div></p>
 </div>
 <hr />
-<h2 id="3-sql-basico-definir-y-poblar-tablas">3. SQL básico: definir y poblar tablas<a class="headerlink" href="#3-sql-basico-definir-y-poblar-tablas" title="Permanent link">&para;</a></h2>
+<h2 id="3-sql-basico-definir-y-agregar-datos-iniciales-a-tablas">3. SQL básico: definir y agregar datos iniciales a tablas<a class="headerlink" href="#3-sql-basico-definir-y-agregar-datos-iniciales-a-tablas" title="Permanent link">&para;</a></h2>
 <h3 id="create-table-definir-la-estructura"><code>CREATE TABLE</code> — definir la estructura<a class="headerlink" href="#create-table-definir-la-estructura" title="Permanent link">&para;</a></h3>
 <p><strong><code>CREATE TABLE</code></strong> es la sentencia SQL que crea una nueva tabla en la base de datos. Se especifica el nombre de cada columna, su tipo de dato y sus restricciones.</p>
 <div class="language-sql highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">nombre_tabla</span><span class="w"> </span><span class="p">(</span>
@@ -1479,7 +1538,8 @@
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="p">...</span>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">)</span>
 </code></pre></div>
-<p>La cláusula <code>IF NOT EXISTS</code> evita un error si la tabla ya existe — imprescindible cuando el script se puede ejecutar varias veces. En Python, la sentencia SQL se pasa como cadena de texto a <code>cursor.execute()</code>:</p>
+<p>La cláusula <code>IF NOT EXISTS</code> evita un error si la tabla ya existe — imprescindible cuando el script se puede ejecutar varias veces. </p>
+<p>En Python, la sentencia SQL se pasa como cadena de texto a <code>cursor.execute()</code>:</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
 <span class="normal"><a href="#__codelineno-8-2">2</a></span>
 <span class="normal"><a href="#__codelineno-8-3">3</a></span>
@@ -1550,10 +1610,11 @@
 <a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <blockquote>
-<p>Si intentas insertar dos productos con el mismo <code>codigo</code>, SQLite lanza <code>sqlite3.IntegrityError</code> porque viola la restricción <code>PRIMARY KEY</code>.</p>
+<p>Si intentas insertar dos productos con el mismo <code>codigo</code>, SQLite lanza una excepción <code>sqlite3.IntegrityError</code> porque viola la restricción <code>PRIMARY KEY</code> (lo veremos en detalle en la parte 2).</p>
+<p>Si no usamos la cláusula <code>IF NOT EXISTS</code> al crear la tabla y esta ya existe, SQLite lanza una excepción <code>sqlite3.OperationalError</code> (lo veremos en detalle en la parte 2).</p>
 </blockquote>
 <h3 id="insert-into-anadir-filas"><code>INSERT INTO</code> — añadir filas<a class="headerlink" href="#insert-into-anadir-filas" title="Permanent link">&para;</a></h3>
-<p><strong><code>INSERT INTO</code></strong> añade una nueva fila a una tabla existente. Los valores deben respetar el orden y tipo de las columnas definidas en <code>CREATE TABLE</code>.</p>
+<p><strong><code>INSERT INTO</code></strong> añade una nueva fila a una tabla existente. Los valores deben <strong>respetar el orden y tipo</strong> de las columnas definidas en <code>CREATE TABLE</code>.</p>
 <div class="language-sql highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">nombre_tabla</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="n">valor1</span><span class="p">,</span><span class="w"> </span><span class="n">valor2</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span>
 </code></pre></div>
 <p>En Python, cada <code>INSERT</code> es una llamada a <code>cursor.execute()</code>:</p>
@@ -1565,7 +1626,7 @@
 </span><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;D1&#39;, &#39;Refresco&#39;, 2.50, 5)&quot;</span><span class="p">)</span>
 </span><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-<p>Cuando los valores vienen de variables Python, usa <strong>parámetros <code>?</code></strong> en lugar de construir la cadena con f-strings o concatenación:</p>
+<p>Cuando los valores <strong>vienen de variables</strong> Python, usa <strong>parámetros <code>?</code></strong> en lugar de construir la cadena con f-strings o concatenación:</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
 <span class="normal"><a href="#__codelineno-12-2">2</a></span>
 <span class="normal"><a href="#__codelineno-12-3">3</a></span>
@@ -1589,68 +1650,148 @@
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (?, ?, ?, ?)&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">))</span>
 </code></pre></div></p>
 </div>
+<h4 id="ejemplo-de-inyeccion-sql">Ejemplo de inyección SQL<a class="headerlink" href="#ejemplo-de-inyeccion-sql" title="Permanent link">&para;</a></h4>
+<p>En la siguiente consulta los datos del usuario se meten directamente dentro del SQL:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">codigo</span> <span class="o">=</span> <span class="s2">&quot;A1&quot;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">nombre</span> <span class="o">=</span> <span class="s2">&quot;Agua&#39;); DROP TABLE productos; --&quot;</span>   <span class="c1"># Datos introducidos por usuario en formulario web.</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">precio</span> <span class="o">=</span> <span class="mf">1.20</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">cantidad</span> <span class="o">=</span> <span class="mi">10</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;</span><span class="si">{</span><span class="n">codigo</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&#39;, </span><span class="si">{</span><span class="n">precio</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">cantidad</span><span class="si">}</span><span class="s2">)&quot;</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</code></pre></div>
+<p>La sentencia SQL quedaría de la forma:</p>
+<div class="language-sql highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">productos</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;A1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Agua&#39;</span><span class="p">);</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">productos</span><span class="p">;</span><span class="w"> </span><span class="c1">--&#39;, 1.2, 10)</span>
+</code></pre></div>
+<p>Problema:
+- se cierra antes la cadena de <code>nombre</code>
+- aparece una nueva orden SQL: <code>DROP TABLE productos</code>
+- <code>--</code> comenta el resto</p>
+<p>Esa es la idea de una inyección SQL: convertir un dato en código SQL, en este ejemplo para borrar una tabla.</p>
+<p><strong>Versión segura</strong><br />
+Con <code>?</code>, el contenido de <code>nombre</code> se trata solo como dato:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="s2">&quot;INSERT INTO productos VALUES (?, ?, ?, ?)&quot;</span><span class="p">,</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">)</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="p">)</span>
+</code></pre></div>
+<p>Aunque <code>nombre</code> valga:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="s2">&quot;Agua&#39;); DROP TABLE productos; --&quot;</span>
+</code></pre></div>
+<p>SQLite lo guarda como texto dentro del campo, no lo ejecuta. La consulta que se ejecuta sería:</p>
+<div class="language-sql highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">productos</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="s1">&#39;A1&#39;</span><span class="p">,</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span><span class="s1">&#39;Agua&#39;&#39;); DROP TABLE productos; --&#39;</span><span class="p">,</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="mi">1</span><span class="p">.</span><span class="mi">20</span><span class="p">,</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="mi">10</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>En SQL dos comillas simples seguidas <code>''</code> significan “una comilla simple dentro del texto”</p>
+</blockquote>
 <hr />
 <h2 id="4-sql-basico-consultar-datos">4. SQL básico: consultar datos<a class="headerlink" href="#4-sql-basico-consultar-datos" title="Permanent link">&para;</a></h2>
 <h3 id="select-leer-filas"><code>SELECT</code> — leer filas<a class="headerlink" href="#select-leer-filas" title="Permanent link">&para;</a></h3>
 <p><strong><code>SELECT</code></strong> es la sentencia SQL para leer datos de una tabla. <code>SELECT * FROM tabla</code> devuelve todas las columnas de todas las filas. Puedes filtrar con <code>WHERE</code> para obtener solo las filas que cumplan una condición.</p>
-<div class="language-sql highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nombre_tabla</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nombre_tabla</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nombre_tabla</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">columna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valor</span>
+<div class="language-sql highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nombre_tabla</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nombre_tabla</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nombre_tabla</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">columna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valor</span>
 </code></pre></div>
 <p>En Python, tras el <code>execute()</code> hay que recoger los resultados con <code>fetchall()</code> o <code>fetchone()</code>:</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
-<span class="normal"><a href="#__codelineno-16-2">2</a></span>
-<span class="normal"><a href="#__codelineno-16-3">3</a></span>
-<span class="normal"><a href="#__codelineno-16-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM productos&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="hll"><span class="n">filas</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>              <span class="c1">## lista de tuplas</span>
-</span><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">filas</span><span class="p">:</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">)</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span>
+<span class="normal"><a href="#__codelineno-21-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM productos&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="hll"><span class="n">filas</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>              <span class="c1">## lista de tuplas</span>
+</span><a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">filas</span><span class="p">:</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>(&#39;A1&#39;, &#39;Agua&#39;, 1.0, 10)
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>(&#39;A2&#39;, &#39;Papas&#39;, 1.5, 8)
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>(&#39;D1&#39;, &#39;Refresco&#39;, 2.5, 5)
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>(&#39;A1&#39;, &#39;Agua&#39;, 1.0, 10)
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>(&#39;A2&#39;, &#39;Papas&#39;, 1.5, 8)
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>(&#39;D1&#39;, &#39;Refresco&#39;, 2.5, 5)
 </code></pre></div>
 <h3 id="fetchall-y-fetchone"><code>fetchall()</code> y <code>fetchone()</code><a class="headerlink" href="#fetchall-y-fetchone" title="Permanent link">&para;</a></h3>
 <p>Cada fila que devuelve SQLite llega a Python como una <strong>tupla</strong>. Los elementos mantienen el mismo orden que las columnas definidas en <code>CREATE TABLE</code>, y puedes acceder a ellos por índice.</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
-<span class="normal"><a href="#__codelineno-18-2">2</a></span>
-<span class="normal"><a href="#__codelineno-18-3">3</a></span>
-<span class="normal"><a href="#__codelineno-18-4">4</a></span>
-<span class="normal"><a href="#__codelineno-18-5">5</a></span>
-<span class="normal"><a href="#__codelineno-18-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM productos WHERE codigo = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">,))</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="hll"><span class="n">fila</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>   <span class="c1">## devuelve la primera fila como tupla, o None si no hay resultado</span>
-</span><a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>             <span class="c1">## &#39;A1&#39;   — codigo</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>             <span class="c1">## &#39;Agua&#39; — nombre</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>             <span class="c1">## 1.0    — precio</span>
-<a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>             <span class="c1">## 10     — cantidad</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span>
+<span class="normal"><a href="#__codelineno-23-4">4</a></span>
+<span class="normal"><a href="#__codelineno-23-5">5</a></span>
+<span class="normal"><a href="#__codelineno-23-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM productos WHERE codigo = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">,))</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="hll"><span class="n">fila</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>   <span class="c1">## devuelve la primera fila como tupla, o None si no hay resultado</span>
+</span><a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>             <span class="c1">## &#39;A1&#39;   — codigo</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>             <span class="c1">## &#39;Agua&#39; — nombre</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>             <span class="c1">## 1.0    — precio</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>             <span class="c1">## 10     — cantidad</span>
 </code></pre></div></td></tr></table></div>
 <blockquote>
 <p><code>fetchone()</code> avanza el cursor una posición. Si llamas a <code>fetchone()</code> varias veces seguidas sobre el mismo <code>execute()</code>, obtienes la primera, segunda y tercera fila respectivamente.</p>
 </blockquote>
-<h4 id="comparativa-de-metodos-de-lectura">Comparativa de métodos de lectura<a class="headerlink" href="#comparativa-de-metodos-de-lectura" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Método</th>
-<th>Devuelve</th>
-<th>Cuándo usarlo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>fetchall()</code></td>
-<td>Lista de tuplas (todas las filas)</td>
-<td>Cuando necesitas iterar sobre todos los resultados</td>
-</tr>
-<tr>
-<td><code>fetchone()</code></td>
-<td>Una tupla o <code>None</code></td>
-<td>Cuando esperas exactamente un resultado o quieres leer fila a fila</td>
-</tr>
-</tbody>
-</table>
 <hr />
-<h2 id="5-claves-primarias-y-foraneas">5. Claves primarias y foráneas<a class="headerlink" href="#5-claves-primarias-y-foraneas" title="Permanent link">&para;</a></h2>
+<h2 id="5-sql-basico-modificar-y-eliminar-datos">5. SQL básico: modificar y eliminar datos<a class="headerlink" href="#5-sql-basico-modificar-y-eliminar-datos" title="Permanent link">&para;</a></h2>
+<h3 id="update-modificar-filas-existentes"><code>UPDATE</code> — modificar filas existentes<a class="headerlink" href="#update-modificar-filas-existentes" title="Permanent link">&para;</a></h3>
+<p><strong><code>UPDATE</code></strong> modifica una o varias filas ya existentes. Combina <code>SET</code> para indicar qué campos cambian y <code>WHERE</code> para seleccionar qué filas afectar.</p>
+<div class="language-sql highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">tabla</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">columna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nuevo_valor</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">columna_pk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valor</span>
+</code></pre></div>
+<p>En Python con parámetros <code>?</code>:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span>
+<span class="normal"><a href="#__codelineno-25-4">4</a></span>
+<span class="normal"><a href="#__codelineno-25-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+</span><a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="hll">    <span class="s2">&quot;UPDATE productos SET cantidad = ? WHERE codigo = ?&quot;</span><span class="p">,</span>
+</span><a id="__codelineno-25-3" name="__codelineno-25-3"></a>    <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="s2">&quot;A1&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="p">)</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>Puedes actualizar varios campos a la vez separándolos con coma en el <code>SET</code>:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span>
+<span class="normal"><a href="#__codelineno-26-4">4</a></span>
+<span class="normal"><a href="#__codelineno-26-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a>    <span class="s2">&quot;UPDATE productos SET precio = ?, cantidad = ? WHERE codigo = ?&quot;</span><span class="p">,</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a>    <span class="p">(</span><span class="mf">1.20</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="s2">&quot;A1&quot;</span><span class="p">)</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4"></a><span class="p">)</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition warning">
+<p class="admonition-title">Mala práctica: UPDATE sin WHERE</p>
+<p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1">## Incorrecto: actualiza la cantidad en TODOS los productos</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;UPDATE productos SET cantidad = 0&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1">## Correcto: solo el producto con código A1</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;UPDATE productos SET cantidad = ? WHERE codigo = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;A1&quot;</span><span class="p">))</span>
+</code></pre></div></p>
+</div>
+<h3 id="delete-from-eliminar-filas"><code>DELETE FROM</code> — eliminar filas<a class="headerlink" href="#delete-from-eliminar-filas" title="Permanent link">&para;</a></h3>
+<p><strong><code>DELETE FROM</code></strong> elimina filas de una tabla. El filtro <code>WHERE</code> es fundamental: sin él se eliminan <strong>todas</strong> las filas de la tabla.</p>
+<div class="language-sql highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">tabla</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">columna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valor</span>
+</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM productos WHERE codigo = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">,))</span>
+</span><a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>Con claves foráneas activas, hay que <strong>eliminar primero la tabla hija</strong> antes que la tabla padre; de lo contrario SQLite lanza <code>IntegrityError</code>:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span>
+<span class="normal"><a href="#__codelineno-31-2">2</a></span>
+<span class="normal"><a href="#__codelineno-31-3">3</a></span>
+<span class="normal"><a href="#__codelineno-31-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA foreign_keys = ON&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM descuentos WHERE codigo = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;D1&quot;</span><span class="p">,))</span>  <span class="c1">## hijo primero</span>
+</span><a id="__codelineno-31-3" name="__codelineno-31-3"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM productos WHERE codigo = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;D1&quot;</span><span class="p">,))</span>   <span class="c1">## padre después</span>
+</span><a id="__codelineno-31-4" name="__codelineno-31-4"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition warning">
+<p class="admonition-title">Mala práctica: DELETE sin WHERE</p>
+<p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1">## Incorrecto: elimina TODOS los productos de la tabla</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM productos&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="c1">## Correcto: solo el producto indicado</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM productos WHERE codigo = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;D1&quot;</span><span class="p">,))</span>
+</code></pre></div></p>
+</div>
+<hr />
+<h2 id="6-claves-primarias-valores-nulos-y-claves-foraneas">6. Claves primarias, valores nulos y claves foráneas<a class="headerlink" href="#6-claves-primarias-valores-nulos-y-claves-foraneas" title="Permanent link">&para;</a></h2>
 <h3 id="primary-key-identificador-unico"><code>PRIMARY KEY</code> — identificador único<a class="headerlink" href="#primary-key-identificador-unico" title="Permanent link">&para;</a></h3>
 <p>La <strong>clave primaria</strong> (<em>primary key</em>) es la columna que identifica de forma única e irrepetible cada fila de una tabla. Sus reglas son tres:</p>
 <ul>
@@ -1659,83 +1800,114 @@
 <li>Cada tabla tiene exactamente una clave primaria.</li>
 </ul>
 <p>En la tabla <code>productos</code>, <code>codigo</code> es la clave primaria: no pueden existir dos productos con el mismo código. Es el equivalente directo a usar <code>codigo</code> como clave de un diccionario Python, donde la clave tampoco puede repetirse.</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
-<span class="normal"><a href="#__codelineno-19-2">2</a></span>
-<span class="normal"><a href="#__codelineno-19-3">3</a></span>
-<span class="normal"><a href="#__codelineno-19-4">4</a></span>
-<span class="normal"><a href="#__codelineno-19-5">5</a></span>
-<span class="normal"><a href="#__codelineno-19-6">6</a></span>
-<span class="normal"><a href="#__codelineno-19-7">7</a></span>
-<span class="normal"><a href="#__codelineno-19-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="s2">    CREATE TABLE IF NOT EXISTS productos (</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="hll"><span class="s2">        codigo   TEXT    PRIMARY KEY,  ## identifica cada producto de forma única</span>
-</span><a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="s2">        nombre   TEXT    NOT NULL,</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="s2">        precio   REAL    NOT NULL,</span>
-<a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="s2">        cantidad INTEGER NOT NULL</span>
-<a id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="s2">    )</span>
-<a id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1">1</a></span>
+<span class="normal"><a href="#__codelineno-34-2">2</a></span>
+<span class="normal"><a href="#__codelineno-34-3">3</a></span>
+<span class="normal"><a href="#__codelineno-34-4">4</a></span>
+<span class="normal"><a href="#__codelineno-34-5">5</a></span>
+<span class="normal"><a href="#__codelineno-34-6">6</a></span>
+<span class="normal"><a href="#__codelineno-34-7">7</a></span>
+<span class="normal"><a href="#__codelineno-34-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="s2">    CREATE TABLE IF NOT EXISTS productos (</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3"></a><span class="hll"><span class="s2">        codigo   TEXT    PRIMARY KEY,  ## identifica cada producto de forma única</span>
+</span><a id="__codelineno-34-4" name="__codelineno-34-4"></a><span class="s2">        nombre   TEXT    NOT NULL,</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5"></a><span class="s2">        precio   REAL    NOT NULL,</span>
+<a id="__codelineno-34-6" name="__codelineno-34-6"></a><span class="s2">        cantidad INTEGER NOT NULL</span>
+<a id="__codelineno-34-7" name="__codelineno-34-7"></a><span class="s2">    )</span>
+<a id="__codelineno-34-8" name="__codelineno-34-8"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
+<h3 id="python-sql-y-valores-nulos">Python, SQL y valores nulos.<a class="headerlink" href="#python-sql-y-valores-nulos" title="Permanent link">&para;</a></h3>
+<p><code>NULL</code> se usa en SQL para que indicar que un dato no tiene valor. </p>
+<p>No significa: 
+- ni <code>0</code>
+- ni cadena vacía <code>''</code>
+- ni <code>False</code>. </p>
+<p>Significa: <strong>valor desconocido, ausente o no aplicable.</strong></p>
+<p>Si al crear una tabla especificamos en la definición de un campor <code>NOT NULL</code> significa que esa columna no puede quedarse sin valor. Es decir, al insertar o actualizar una fila, ese campo debe tener algún dato; no se permite <code>NULL</code>.</p>
+<p>Cuando en Python “dejas en blanco” un campo en un <code>INSERT</code> o cualquier otra operación que modifique un campo con la restricción <code>NOT NULL</code>, pueden pasar dos cosas distintas:</p>
+<ul>
+<li>Si usas <code>""</code>, se guarda una cadena vacía.</li>
+<li>Si usas <code>None</code>, se guarda <code>NULL</code> en la base de datos.</li>
+</ul>
+<p>Ejemplo:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>    <span class="s2">&quot;INSERT INTO productos (codigo, nombre) VALUES (?, ?)&quot;</span><span class="p">,</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>    <span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="p">)</span>
+</code></pre></div>
+<p>Aquí <code>nombre</code> vale <code>""</code>: no es <code>NULL</code>, sino texto vacío. Por eso, aunque la columna tenga <code>NOT NULL</code>, no se lanza una excepción. </p>
+<div class="admonition tip">
+<p class="admonition-title">SQLITE y valores numéricos en blanco</p>
+<p>Sqlite es bastante flexible y tampoco lanzará excepción si insertamos <code>""</code> en un campo numérico. Por eso, en Python conviene validar antes los datos y no enviar <code>""</code> a columnas numéricas.</p>
+</div>
+<p>En cambio:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>    <span class="s2">&quot;INSERT INTO productos (codigo, nombre) VALUES (?, ?)&quot;</span><span class="p">,</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>    <span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="p">)</span>
+</code></pre></div>
+<p>Aquí <code>None</code> se convierte en <code>NULL</code>. Si <code>nombre</code> tiene la restricción <code>NOT NULL</code>, la base de datos rechazará la inserción y lanzará una excepción <code>sqlite3.IntegrityError</code> al estarse incumpliendo una restricción de integridad de la tabla (lo veremos en detalle en la parte 2).</p>
 <h3 id="foreign-key-relaciones-entre-tablas"><code>FOREIGN KEY</code> — relaciones entre tablas<a class="headerlink" href="#foreign-key-relaciones-entre-tablas" title="Permanent link">&para;</a></h3>
-<p>Una <strong>clave foránea</strong> (<em>foreign key</em>) es una columna que referencia la <code>PRIMARY KEY</code> de otra tabla, estableciendo una relación entre ambas. Garantiza la <strong>integridad referencial</strong>: no puede existir una fila que apunte a un registro inexistente en la otra tabla.</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
-<span class="normal"><a href="#__codelineno-20-2">2</a></span>
-<span class="normal"><a href="#__codelineno-20-3">3</a></span>
-<span class="normal"><a href="#__codelineno-20-4">4</a></span>
-<span class="normal"><a href="#__codelineno-20-5">5</a></span>
-<span class="normal"><a href="#__codelineno-20-6">6</a></span>
-<span class="normal"><a href="#__codelineno-20-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="s2">    CREATE TABLE IF NOT EXISTS descuentos (</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="hll"><span class="s2">        codigo     TEXT PRIMARY KEY,</span>
-</span><a id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="hll"><span class="s2">        porcentaje REAL NOT NULL,</span>
-</span><a id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="hll"><span class="s2">        FOREIGN KEY (codigo) REFERENCES productos(codigo)</span>
-</span><a id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="s2">    )</span>
-<a id="__codelineno-20-7" name="__codelineno-20-7"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<p>Una <strong>clave foránea</strong> (<em>foreign key</em>) es una <strong>columna que referencia</strong> la <code>PRIMARY KEY</code> de otra tabla, estableciendo una relación entre ambas. Garantiza la <strong>integridad referencial</strong>: no puede existir una fila que apunte a un registro inexistente en la otra tabla.</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1">1</a></span>
+<span class="normal"><a href="#__codelineno-37-2">2</a></span>
+<span class="normal"><a href="#__codelineno-37-3">3</a></span>
+<span class="normal"><a href="#__codelineno-37-4">4</a></span>
+<span class="normal"><a href="#__codelineno-37-5">5</a></span>
+<span class="normal"><a href="#__codelineno-37-6">6</a></span>
+<span class="normal"><a href="#__codelineno-37-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2"></a><span class="s2">    CREATE TABLE IF NOT EXISTS descuentos (</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3"></a><span class="hll"><span class="s2">        codigo     TEXT PRIMARY KEY,</span>
+</span><a id="__codelineno-37-4" name="__codelineno-37-4"></a><span class="hll"><span class="s2">        porcentaje REAL NOT NULL,</span>
+</span><a id="__codelineno-37-5" name="__codelineno-37-5"></a><span class="hll"><span class="s2">        FOREIGN KEY (codigo) REFERENCES productos(codigo)</span>
+</span><a id="__codelineno-37-6" name="__codelineno-37-6"></a><span class="s2">    )</span>
+<a id="__codelineno-37-7" name="__codelineno-37-7"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-<p>La línea <code>FOREIGN KEY (codigo) REFERENCES productos(codigo)</code> establece la regla: el valor de <code>descuentos.codigo</code> debe existir previamente en <code>productos.codigo</code>. Si intentas insertar un descuento para un código que no está en <code>productos</code>, la base de datos rechaza la operación lanzando <code>sqlite3.IntegrityError</code>.</p>
+<p>La línea <code>FOREIGN KEY (codigo) REFERENCES productos(codigo)</code> establece la regla: el valor de <code>descuentos.codigo</code> debe existir previamente en <code>productos.codigo</code>. Si intentas insertar un descuento para un código que no está en <code>productos</code>, la base de datos rechaza la operación lanzando <code>sqlite3.IntegrityError</code> (lo veremos en detalle en la parte 2).</p>
 <h3 id="pragma-foreign_keys-activar-la-comprobacion"><code>PRAGMA foreign_keys</code> — activar la comprobación<a class="headerlink" href="#pragma-foreign_keys-activar-la-comprobacion" title="Permanent link">&para;</a></h3>
-<p>SQLite tiene las claves foráneas <strong>desactivadas por defecto</strong>. Actívalas explícitamente al inicio de cada conexión, justo después de crear el cursor:</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
-<span class="normal"><a href="#__codelineno-21-2">2</a></span>
-<span class="normal"><a href="#__codelineno-21-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="n">conn</span>   <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA foreign_keys = ON&quot;</span><span class="p">)</span>  <span class="c1">## activa la comprobación de FK</span>
+<p>SQLite tiene las claves foráneas <strong>desactivadas por defecto</strong>. Debemos activarlas explícitamente al inicio de cada conexión, justo después de crear el cursor:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1">1</a></span>
+<span class="normal"><a href="#__codelineno-38-2">2</a></span>
+<span class="normal"><a href="#__codelineno-38-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="n">conn</span>   <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2"></a><span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA foreign_keys = ON&quot;</span><span class="p">)</span>  <span class="c1">## activa la comprobación de FK</span>
 </span></code></pre></div></td></tr></table></div>
 <blockquote>
 <p>Sin <code>PRAGMA foreign_keys = ON</code>, SQLite acepta sin error inserciones que violan las claves foráneas. La integridad referencial queda sin protección y puedes crear filas huérfanas sin darte cuenta.</p>
 </blockquote>
 <h4 id="ejemplo-orden-de-insercion-con-claves-foraneas">Ejemplo: orden de inserción con claves foráneas<a class="headerlink" href="#ejemplo-orden-de-insercion-con-claves-foraneas" title="Permanent link">&para;</a></h4>
-<p>El orden de los <code>INSERT</code> importa: primero debes insertar en la tabla referenciada (<code>productos</code>) y solo después en la tabla que contiene la clave foránea (<code>descuentos</code>).</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
-<span class="normal"><a href="#__codelineno-22-2">2</a></span>
-<span class="normal"><a href="#__codelineno-22-3">3</a></span>
-<span class="normal"><a href="#__codelineno-22-4">4</a></span>
-<span class="normal"><a href="#__codelineno-22-5">5</a></span>
-<span class="normal"><a href="#__codelineno-22-6">6</a></span>
-<span class="normal"><a href="#__codelineno-22-7">7</a></span>
-<span class="normal"><a href="#__codelineno-22-8">8</a></span>
-<span class="normal"><a href="#__codelineno-22-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA foreign_keys = ON&quot;</span><span class="p">)</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2"></a>
-<a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="hll"><span class="c1">## Primero el producto base — tabla referenciada</span>
-</span><a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;D1&#39;, &#39;Refresco&#39;, 2.50, 5)&quot;</span><span class="p">)</span>
-<a id="__codelineno-22-5" name="__codelineno-22-5"></a>
-<a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="hll"><span class="c1">## Después el descuento — tabla con FK, D1 ya existe en productos</span>
-</span><a id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO descuentos VALUES (&#39;D1&#39;, 20)&quot;</span><span class="p">)</span>
-<a id="__codelineno-22-8" name="__codelineno-22-8"></a>
-<a id="__codelineno-22-9" name="__codelineno-22-9"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<p>El orden de los <code>INSERT</code> importa: primero debes insertar en la <strong>tabla referenciada</strong> (<code>productos</code>) y solo después en la <strong>tabla que contiene la clave foránea</strong> (<code>descuentos</code>).</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1">1</a></span>
+<span class="normal"><a href="#__codelineno-39-2">2</a></span>
+<span class="normal"><a href="#__codelineno-39-3">3</a></span>
+<span class="normal"><a href="#__codelineno-39-4">4</a></span>
+<span class="normal"><a href="#__codelineno-39-5">5</a></span>
+<span class="normal"><a href="#__codelineno-39-6">6</a></span>
+<span class="normal"><a href="#__codelineno-39-7">7</a></span>
+<span class="normal"><a href="#__codelineno-39-8">8</a></span>
+<span class="normal"><a href="#__codelineno-39-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA foreign_keys = ON&quot;</span><span class="p">)</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2"></a>
+<a id="__codelineno-39-3" name="__codelineno-39-3"></a><span class="hll"><span class="c1">## Primero el producto base — tabla referenciada</span>
+</span><a id="__codelineno-39-4" name="__codelineno-39-4"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;D1&#39;, &#39;Refresco&#39;, 2.50, 5)&quot;</span><span class="p">)</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5"></a>
+<a id="__codelineno-39-6" name="__codelineno-39-6"></a><span class="hll"><span class="c1">## Después el descuento — tabla con FK, D1 ya existe en productos</span>
+</span><a id="__codelineno-39-7" name="__codelineno-39-7"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO descuentos VALUES (&#39;D1&#39;, 20)&quot;</span><span class="p">)</span>
+<a id="__codelineno-39-8" name="__codelineno-39-8"></a>
+<a id="__codelineno-39-9" name="__codelineno-39-9"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition warning">
 <p class="admonition-title">Mala práctica: insertar el hijo antes que el padre</p>
-<p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1">## Incorrecto: D1 no existe todavía en productos → IntegrityError</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO descuentos VALUES (&#39;D1&#39;, 20)&quot;</span><span class="p">)</span>
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;D1&#39;, &#39;Refresco&#39;, 2.50, 5)&quot;</span><span class="p">)</span>
+<p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c1">## Incorrecto: D1 no existe todavía en productos → IntegrityError</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO descuentos VALUES (&#39;D1&#39;, 20)&quot;</span><span class="p">)</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;D1&#39;, &#39;Refresco&#39;, 2.50, 5)&quot;</span><span class="p">)</span>
 </code></pre></div>
-<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1">## Correcto: primero el padre (productos), luego el hijo (descuentos)</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;D1&#39;, &#39;Refresco&#39;, 2.50, 5)&quot;</span><span class="p">)</span>
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO descuentos VALUES (&#39;D1&#39;, 20)&quot;</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="c1">## Correcto: primero el padre (productos), luego el hijo (descuentos)</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;D1&#39;, &#39;Refresco&#39;, 2.50, 5)&quot;</span><span class="p">)</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO descuentos VALUES (&#39;D1&#39;, 20)&quot;</span><span class="p">)</span>
 </code></pre></div></p>
 </div>
 <hr />
-<h2 id="6-mapeo-de-objetos-python-a-tablas-sql">6. Mapeo de objetos Python a tablas SQL<a class="headerlink" href="#6-mapeo-de-objetos-python-a-tablas-sql" title="Permanent link">&para;</a></h2>
+<h2 id="7-mapeo-de-objetos-python-a-tablas-sql">7. Mapeo de objetos Python a tablas SQL<a class="headerlink" href="#7-mapeo-de-objetos-python-a-tablas-sql" title="Permanent link">&para;</a></h2>
 <h3 id="de-clase-a-tabla">De clase a tabla<a class="headerlink" href="#de-clase-a-tabla" title="Permanent link">&para;</a></h3>
 <p>Cada clase Python puede mapearse directamente a una tabla SQL. Los atributos se convierten en columnas y cada instancia se convierte en una fila.</p>
 <table>
@@ -1773,65 +1945,63 @@
 </tbody>
 </table>
 <p>La estructura de la clase determina la estructura de la tabla. Una vez creada la tabla, cada <code>Item</code> que creas en Python tiene su reflejo exacto como fila en <code>productos</code>.</p>
-<h3 id="herencia-con-dos-tablas-item-e-itemcondescuento">Herencia con dos tablas: <code>Item</code> e <code>ItemConDescuento</code><a class="headerlink" href="#herencia-con-dos-tablas-item-e-itemcondescuento" title="Permanent link">&para;</a></h3>
+<h3 id="clases-con-herencia-a-dos-tablas">Clases con herencia a dos tablas<a class="headerlink" href="#clases-con-herencia-a-dos-tablas" title="Permanent link">&para;</a></h3>
 <p>Supón que tienes dos clases: <code>Item</code> con cuatro atributos (<code>codigo</code>, <code>nombre</code>, <code>precio</code>, <code>cantidad</code>) e <code>ItemConDescuento</code> que hereda de <code>Item</code> y añade <code>porcentaje_descuento</code>. Para representar esta herencia en SQL usamos <strong>dos tablas relacionadas</strong>:</p>
 <ul>
 <li><code>productos</code> — almacena los atributos comunes a todos los items.</li>
 <li><code>descuentos</code> — almacena solo el <code>porcentaje</code> de los items con descuento, vinculada a <code>productos</code> mediante una clave foránea.</li>
 </ul>
 <p>Un <code>ItemConDescuento</code> necesita <strong>dos <code>INSERT</code></strong>: uno en <code>productos</code> y otro en <code>descuentos</code>.</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
-<span class="normal"><a href="#__codelineno-25-2">2</a></span>
-<span class="normal"><a href="#__codelineno-25-3">3</a></span>
-<span class="normal"><a href="#__codelineno-25-4">4</a></span>
-<span class="normal"><a href="#__codelineno-25-5">5</a></span>
-<span class="normal"><a href="#__codelineno-25-6">6</a></span>
-<span class="normal"><a href="#__codelineno-25-7">7</a></span>
-<span class="normal"><a href="#__codelineno-25-8">8</a></span>
-<span class="normal"><a href="#__codelineno-25-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="c1">## Item normal → 1 INSERT en productos</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;A1&#39;, &#39;Agua&#39;, 1.00, 10)&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;A2&#39;, &#39;Papas&#39;, 1.50, 8)&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-25-4" name="__codelineno-25-4"></a>
-<a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="c1">## ItemConDescuento → 1 INSERT en productos + 1 INSERT en descuentos</span>
-<a id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;D1&#39;, &#39;Refresco&#39;, 2.50, 5)&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO descuentos VALUES (&#39;D1&#39;, 20)&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-25-8" name="__codelineno-25-8"></a>
-<a id="__codelineno-25-9" name="__codelineno-25-9"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-42-1">1</a></span>
+<span class="normal"><a href="#__codelineno-42-2">2</a></span>
+<span class="normal"><a href="#__codelineno-42-3">3</a></span>
+<span class="normal"><a href="#__codelineno-42-4">4</a></span>
+<span class="normal"><a href="#__codelineno-42-5">5</a></span>
+<span class="normal"><a href="#__codelineno-42-6">6</a></span>
+<span class="normal"><a href="#__codelineno-42-7">7</a></span>
+<span class="normal"><a href="#__codelineno-42-8">8</a></span>
+<span class="normal"><a href="#__codelineno-42-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1"></a><span class="c1">## Item normal → 1 INSERT en productos</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;A1&#39;, &#39;Agua&#39;, 1.00, 10)&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-42-3" name="__codelineno-42-3"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;A2&#39;, &#39;Papas&#39;, 1.50, 8)&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-42-4" name="__codelineno-42-4"></a>
+<a id="__codelineno-42-5" name="__codelineno-42-5"></a><span class="c1">## ItemConDescuento → 1 INSERT en productos + 1 INSERT en descuentos</span>
+<a id="__codelineno-42-6" name="__codelineno-42-6"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;D1&#39;, &#39;Refresco&#39;, 2.50, 5)&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-42-7" name="__codelineno-42-7"></a><span class="hll"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO descuentos VALUES (&#39;D1&#39;, 20)&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-42-8" name="__codelineno-42-8"></a>
+<a id="__codelineno-42-9" name="__codelineno-42-9"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 <blockquote>
 <p>La tabla <code>descuentos</code> solo tiene filas para los productos que tienen descuento. Un <code>Item</code> normal no aparece en <code>descuentos</code>. Esto permite distinguir en la BD qué productos tienen descuento y cuáles no.</p>
 </blockquote>
 <h4 id="ejemplo-reconstruir-objetos-python-desde-la-base-de-datos">Ejemplo: reconstruir objetos Python desde la base de datos<a class="headerlink" href="#ejemplo-reconstruir-objetos-python-desde-la-base-de-datos" title="Permanent link">&para;</a></h4>
 <p>Para recuperar los datos y reconstruir los objetos <code>Item</code> e <code>ItemConDescuento</code>, combina un <code>SELECT</code> sobre <code>productos</code> con una consulta adicional a <code>descuentos</code> para cada fila:</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-26-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-26-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-26-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-26-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-26-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-26-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-26-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-26-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-26-10">10</a></span>
-<span class="normal"><a href="#__codelineno-26-11">11</a></span>
-<span class="normal"><a href="#__codelineno-26-12">12</a></span>
-<span class="normal"><a href="#__codelineno-26-13">13</a></span>
-<span class="normal"><a href="#__codelineno-26-14">14</a></span>
-<span class="normal"><a href="#__codelineno-26-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">item</span><span class="w"> </span><span class="kn">import</span> <span class="n">Item</span><span class="p">,</span> <span class="n">ItemConDescuento</span>  <span class="c1">## importa las clases del módulo donde las tengas definidas</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2"></a>
-<a id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM productos&quot;</span><span class="p">)</span>
-<a id="__codelineno-26-4" name="__codelineno-26-4"></a><span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
-<a id="__codelineno-26-5" name="__codelineno-26-5"></a><span class="hll">    <span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span> <span class="o">=</span> <span class="n">fila</span>       <span class="c1">## desempaquetar la tupla</span>
-</span><a id="__codelineno-26-6" name="__codelineno-26-6"></a><span class="hll">
-</span><a id="__codelineno-26-7" name="__codelineno-26-7"></a><span class="hll">    <span class="n">cursor2</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-</span><a id="__codelineno-26-8" name="__codelineno-26-8"></a><span class="hll">    <span class="n">cursor2</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT porcentaje FROM descuentos WHERE codigo = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">codigo</span><span class="p">,))</span>
-</span><a id="__codelineno-26-9" name="__codelineno-26-9"></a><span class="hll">    <span class="n">descuento</span> <span class="o">=</span> <span class="n">cursor2</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
-</span><a id="__codelineno-26-10" name="__codelineno-26-10"></a><span class="hll">
-</span><a id="__codelineno-26-11" name="__codelineno-26-11"></a>    <span class="k">if</span> <span class="n">descuento</span><span class="p">:</span>                                 <span class="c1">## tiene entrada en descuentos</span>
-<a id="__codelineno-26-12" name="__codelineno-26-12"></a>        <span class="n">item</span> <span class="o">=</span> <span class="n">ItemConDescuento</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">,</span> <span class="n">descuento</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<a id="__codelineno-26-13" name="__codelineno-26-13"></a>    <span class="k">else</span><span class="p">:</span>                                         <span class="c1">## item normal</span>
-<a id="__codelineno-26-14" name="__codelineno-26-14"></a>        <span class="n">item</span> <span class="o">=</span> <span class="n">Item</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">)</span>
-<a id="__codelineno-26-15" name="__codelineno-26-15"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-43-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-43-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-43-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-43-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-43-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-43-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-43-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-43-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-43-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-43-10">10</a></span>
+<span class="normal"><a href="#__codelineno-43-11">11</a></span>
+<span class="normal"><a href="#__codelineno-43-12">12</a></span>
+<span class="normal"><a href="#__codelineno-43-13">13</a></span>
+<span class="normal"><a href="#__codelineno-43-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">item</span><span class="w"> </span><span class="kn">import</span> <span class="n">Item</span><span class="p">,</span> <span class="n">ItemConDescuento</span>  <span class="c1">## importa las clases del módulo donde las tengas definidas</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2"></a>
+<a id="__codelineno-43-3" name="__codelineno-43-3"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM productos&quot;</span><span class="p">)</span>
+<a id="__codelineno-43-4" name="__codelineno-43-4"></a><span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
+<a id="__codelineno-43-5" name="__codelineno-43-5"></a><span class="hll">    <span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span> <span class="o">=</span> <span class="n">fila</span>       <span class="c1">## desempaquetar la tupla</span>
+</span><a id="__codelineno-43-6" name="__codelineno-43-6"></a><span class="hll">
+</span><a id="__codelineno-43-7" name="__codelineno-43-7"></a><span class="hll">    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT porcentaje FROM descuentos WHERE codigo = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">codigo</span><span class="p">,))</span>  <span class="c1">## reutilizamos el mismo cursor — fetchall() ya cargó todos los productos en memoria</span>
+</span><a id="__codelineno-43-8" name="__codelineno-43-8"></a><span class="hll">    <span class="n">descuento</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+</span><a id="__codelineno-43-9" name="__codelineno-43-9"></a><span class="hll">
+</span><a id="__codelineno-43-10" name="__codelineno-43-10"></a><span class="hll">    <span class="k">if</span> <span class="n">descuento</span><span class="p">:</span>                                 <span class="c1">## tiene entrada en descuentos</span>
+</span><a id="__codelineno-43-11" name="__codelineno-43-11"></a>        <span class="n">item</span> <span class="o">=</span> <span class="n">ItemConDescuento</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">,</span> <span class="n">descuento</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<a id="__codelineno-43-12" name="__codelineno-43-12"></a>    <span class="k">else</span><span class="p">:</span>                                         <span class="c1">## item normal</span>
+<a id="__codelineno-43-13" name="__codelineno-43-13"></a>        <span class="n">item</span> <span class="o">=</span> <span class="n">Item</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">)</span>
+<a id="__codelineno-43-14" name="__codelineno-43-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 
 

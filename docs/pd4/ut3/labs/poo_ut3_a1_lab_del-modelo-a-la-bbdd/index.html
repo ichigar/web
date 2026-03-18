@@ -1500,13 +1500,14 @@
 
 <h1 id="lab-guiado-del-modelo-de-objetos-a-la-base-de-datos">Lab guiado: Del modelo de objetos a la base de datos<a class="headerlink" href="#lab-guiado-del-modelo-de-objetos-a-la-base-de-datos" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Unidad:</strong> UT4 — Persistencia con bases de datos</li>
+<li><strong>Unidad:</strong> UT3 — Persistencia con bases de datos</li>
 <li><strong>Agrupamiento:</strong> Parejas (conductor/navegante)</li>
 <li><strong>Recursos:</strong><ul>
 <li><a href="https://docs.python.org/3/library/sqlite3.html">Documentación oficial sqlite3</a></li>
 <li><a href="https://www.w3schools.com/sql/">SQL en 10 minutos (resumen)</a></li>
 </ul>
 </li>
+<li><strong>Carpeta comprimida del proyecto expendedora:</strong> <a href="../assets/expendedora.zip">expendedora.zip</a></li>
 <li><strong>Ficheros de trabajo:</strong> <code>crear_bd.py</code>, <code>expendedora.db</code></li>
 </ul>
 <hr />
@@ -1558,20 +1559,22 @@
 <p>La aplicación Máquina Expendedora usa arquitectura por capas con un <strong>patrón repositorio</strong> para la persistencia. Actualmente guarda los datos en memoria (un diccionario). Nuestro objetivo en estos labs es sustituir esa persistencia por una base de datos SQLite.</p>
 </div>
 <h3 id="objetivo"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h3>
-<p>Descomprimir el proyecto y verificar que funciona correctamente antes de empezar a modificarlo.</p>
+<p>Descomprimir el proyecto - <a href="../assets/expendedora.zip">descarga aquí</a> -  y verificar que funciona correctamente antes de empezar a modificarlo.</p>
 <h3 id="tarea"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Descomprime el ZIP del proyecto en tu carpeta de trabajo.</li>
-<li>Abre la carpeta <code>expendedora/</code> en VS Code.</li>
+<li>Abre en VS Code <strong>la carpeta que contiene el directorio <code>expendedora/</code></strong> (no abras <code>expendedora/</code> directamente). El terminal integrado debe abrirse en ese directorio padre. Todos los comandos del lab se ejecutan desde ahí.</li>
 <li>Ejecuta los tests para verificar que todo funciona:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/<span class="w"> </span>-v
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>-m<span class="w"> </span>unittest
 </code></pre></div>
 <h4 id="comprobacion"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion" title="Permanent link">&para;</a></h4>
 <p>Deberías ver algo similar a:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>tests/test_item.py ... PASSED (25 tests)
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>tests/test_maquina.py ... PASSED (22 tests)
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>========================= 47 passed =========================
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>..................................................
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>----------------------------------------------------------------------
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Ran 48 tests in 0.Xs
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>OK
 </code></pre></div>
 <p>Todos los tests deben pasar. Si alguno falla, revisa la instalación antes de continuar.</p>
 <hr />
@@ -1853,6 +1856,37 @@
 <li><strong>Líneas 21-27</strong>: crea la tabla <code>descuentos</code>. La línea <code>FOREIGN KEY (codigo) REFERENCES productos(codigo)</code> establece la relación: el <code>codigo</code> de <code>descuentos</code> debe existir en <code>productos</code>.</li>
 <li><strong>Línea 29</strong>: <code>commit()</code> guarda los cambios en el fichero. Sin commit, los cambios se pierden.</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Python, SQL y valores nulos</p>
+<p><code>NOT NULL</code> en SQL significa que esa columna <strong>siempre debe tener un valor</strong>. Es importante saber cómo se traduce desde Python:</p>
+<table>
+<thead>
+<tr>
+<th>Python</th>
+<th>SQL</th>
+<th>¿Cumple <code>NOT NULL</code>?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>""</code></td>
+<td>texto vacío <code>''</code></td>
+<td>✅ Sí — no es <code>NULL</code>, es texto vacío</td>
+</tr>
+<tr>
+<td><code>None</code></td>
+<td><code>NULL</code></td>
+<td>❌ No — SQLite lo rechaza con error</td>
+</tr>
+<tr>
+<td><code>0</code> / <code>False</code></td>
+<td><code>0</code></td>
+<td>✅ Sí — tiene valor</td>
+</tr>
+</tbody>
+</table>
+<p>Regla práctica: <strong>antes de insertar datos que vienen de variables Python, verifica que ningún campo obligatorio sea <code>None</code></strong>. En labs posteriores veremos cómo gestionar estos errores automáticamente.</p>
+</div>
 <p>Ejecuta el script:</p>
 <div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python<span class="w"> </span>crear_bd.py
 </code></pre></div>
@@ -2118,63 +2152,61 @@
 <span class="normal"><a href="#__codelineno-12-52">52</a></span>
 <span class="normal"><a href="#__codelineno-12-53">53</a></span>
 <span class="normal"><a href="#__codelineno-12-54">54</a></span>
-<span class="normal"><a href="#__codelineno-12-55">55</a></span>
-<span class="normal"><a href="#__codelineno-12-56">56</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="sd">&quot;&quot;&quot;Script para crear la base de datos de la expendedora con datos iniciales.&quot;&quot;&quot;</span>
+<span class="normal"><a href="#__codelineno-12-55">55</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="sd">&quot;&quot;&quot;Script para crear la base de datos de la expendedora con datos iniciales.&quot;&quot;&quot;</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2"></a>
-<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <a id="__codelineno-12-5" name="__codelineno-12-5"></a>
 <a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="c1"># Eliminar la base de datos si ya existe (para recrearla limpia)</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="n">bd</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="k">if</span> <span class="n">bd</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-<a id="__codelineno-12-9" name="__codelineno-12-9"></a>    <span class="n">bd</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10"></a>
-<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA foreign_keys = ON&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-14" name="__codelineno-12-14"></a>
-<a id="__codelineno-12-15" name="__codelineno-12-15"></a><span class="c1"># Crear tablas</span>
-<a id="__codelineno-12-16" name="__codelineno-12-16"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<a id="__codelineno-12-17" name="__codelineno-12-17"></a><span class="s2">    CREATE TABLE IF NOT EXISTS productos (</span>
-<a id="__codelineno-12-18" name="__codelineno-12-18"></a><span class="s2">        codigo TEXT PRIMARY KEY,</span>
-<a id="__codelineno-12-19" name="__codelineno-12-19"></a><span class="s2">        nombre TEXT NOT NULL,</span>
-<a id="__codelineno-12-20" name="__codelineno-12-20"></a><span class="s2">        precio REAL NOT NULL,</span>
-<a id="__codelineno-12-21" name="__codelineno-12-21"></a><span class="s2">        cantidad INTEGER NOT NULL</span>
-<a id="__codelineno-12-22" name="__codelineno-12-22"></a><span class="s2">    )</span>
-<a id="__codelineno-12-23" name="__codelineno-12-23"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-24" name="__codelineno-12-24"></a>
-<a id="__codelineno-12-25" name="__codelineno-12-25"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<a id="__codelineno-12-26" name="__codelineno-12-26"></a><span class="s2">    CREATE TABLE IF NOT EXISTS descuentos (</span>
-<a id="__codelineno-12-27" name="__codelineno-12-27"></a><span class="s2">        codigo TEXT PRIMARY KEY,</span>
-<a id="__codelineno-12-28" name="__codelineno-12-28"></a><span class="s2">        porcentaje REAL NOT NULL,</span>
-<a id="__codelineno-12-29" name="__codelineno-12-29"></a><span class="s2">        FOREIGN KEY (codigo) REFERENCES productos(codigo)</span>
-<a id="__codelineno-12-30" name="__codelineno-12-30"></a><span class="s2">    )</span>
-<a id="__codelineno-12-31" name="__codelineno-12-31"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-32" name="__codelineno-12-32"></a>
-<a id="__codelineno-12-33" name="__codelineno-12-33"></a><span class="c1"># Insertar productos</span>
-<a id="__codelineno-12-34" name="__codelineno-12-34"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;A1&#39;, &#39;Agua&#39;, 1.00, 10)&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-35" name="__codelineno-12-35"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;A2&#39;, &#39;Papas&#39;, 1.50, 8)&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-36" name="__codelineno-12-36"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;D1&#39;, &#39;Refresco&#39;, 2.50, 5)&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-37" name="__codelineno-12-37"></a>
-<a id="__codelineno-12-38" name="__codelineno-12-38"></a><span class="c1"># Insertar descuento</span>
-<a id="__codelineno-12-39" name="__codelineno-12-39"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO descuentos VALUES (&#39;D1&#39;, 20)&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-40" name="__codelineno-12-40"></a>
-<a id="__codelineno-12-41" name="__codelineno-12-41"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-<a id="__codelineno-12-42" name="__codelineno-12-42"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Base de datos creada con datos iniciales.&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-43" name="__codelineno-12-43"></a>
-<a id="__codelineno-12-44" name="__codelineno-12-44"></a><span class="c1"># Verificar: mostrar contenido de ambas tablas</span>
-<a id="__codelineno-12-45" name="__codelineno-12-45"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Productos ---&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-46" name="__codelineno-12-46"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM productos&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-47" name="__codelineno-12-47"></a><span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
-<a id="__codelineno-12-48" name="__codelineno-12-48"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">)</span>
-<a id="__codelineno-12-49" name="__codelineno-12-49"></a>
-<a id="__codelineno-12-50" name="__codelineno-12-50"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Descuentos ---&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-51" name="__codelineno-12-51"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM descuentos&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-52" name="__codelineno-12-52"></a><span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
-<a id="__codelineno-12-53" name="__codelineno-12-53"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">)</span>
-<a id="__codelineno-12-54" name="__codelineno-12-54"></a>
-<a id="__codelineno-12-55" name="__codelineno-12-55"></a><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<a id="__codelineno-12-56" name="__codelineno-12-56"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Base de datos guardada en expendedora.db&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">):</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a>    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA foreign_keys = ON&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="c1"># Crear tablas</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16"></a><span class="s2">    CREATE TABLE IF NOT EXISTS productos (</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17"></a><span class="s2">        codigo TEXT PRIMARY KEY,</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18"></a><span class="s2">        nombre TEXT NOT NULL,</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19"></a><span class="s2">        precio REAL NOT NULL,</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20"></a><span class="s2">        cantidad INTEGER NOT NULL</span>
+<a id="__codelineno-12-21" name="__codelineno-12-21"></a><span class="s2">    )</span>
+<a id="__codelineno-12-22" name="__codelineno-12-22"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-23" name="__codelineno-12-23"></a>
+<a id="__codelineno-12-24" name="__codelineno-12-24"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-12-25" name="__codelineno-12-25"></a><span class="s2">    CREATE TABLE IF NOT EXISTS descuentos (</span>
+<a id="__codelineno-12-26" name="__codelineno-12-26"></a><span class="s2">        codigo TEXT PRIMARY KEY,</span>
+<a id="__codelineno-12-27" name="__codelineno-12-27"></a><span class="s2">        porcentaje REAL NOT NULL,</span>
+<a id="__codelineno-12-28" name="__codelineno-12-28"></a><span class="s2">        FOREIGN KEY (codigo) REFERENCES productos(codigo)</span>
+<a id="__codelineno-12-29" name="__codelineno-12-29"></a><span class="s2">    )</span>
+<a id="__codelineno-12-30" name="__codelineno-12-30"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-31" name="__codelineno-12-31"></a>
+<a id="__codelineno-12-32" name="__codelineno-12-32"></a><span class="c1"># Insertar productos</span>
+<a id="__codelineno-12-33" name="__codelineno-12-33"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;A1&#39;, &#39;Agua&#39;, 1.00, 10)&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-34" name="__codelineno-12-34"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;A2&#39;, &#39;Papas&#39;, 1.50, 8)&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-35" name="__codelineno-12-35"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;D1&#39;, &#39;Refresco&#39;, 2.50, 5)&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-36" name="__codelineno-12-36"></a>
+<a id="__codelineno-12-37" name="__codelineno-12-37"></a><span class="c1"># Insertar descuento</span>
+<a id="__codelineno-12-38" name="__codelineno-12-38"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO descuentos VALUES (&#39;D1&#39;, 20)&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-39" name="__codelineno-12-39"></a>
+<a id="__codelineno-12-40" name="__codelineno-12-40"></a><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<a id="__codelineno-12-41" name="__codelineno-12-41"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Base de datos creada con datos iniciales.&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-42" name="__codelineno-12-42"></a>
+<a id="__codelineno-12-43" name="__codelineno-12-43"></a><span class="c1"># Verificar: mostrar contenido de ambas tablas</span>
+<a id="__codelineno-12-44" name="__codelineno-12-44"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Productos ---&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-45" name="__codelineno-12-45"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM productos&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-46" name="__codelineno-12-46"></a><span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
+<a id="__codelineno-12-47" name="__codelineno-12-47"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">)</span>
+<a id="__codelineno-12-48" name="__codelineno-12-48"></a>
+<a id="__codelineno-12-49" name="__codelineno-12-49"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Descuentos ---&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-50" name="__codelineno-12-50"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM descuentos&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-51" name="__codelineno-12-51"></a><span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
+<a id="__codelineno-12-52" name="__codelineno-12-52"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">)</span>
+<a id="__codelineno-12-53" name="__codelineno-12-53"></a>
+<a id="__codelineno-12-54" name="__codelineno-12-54"></a><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<a id="__codelineno-12-55" name="__codelineno-12-55"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Base de datos guardada en expendedora.db&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <p>Ejecuta:</p>
 <div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>python<span class="w"> </span>crear_bd.py
@@ -2200,9 +2232,9 @@
 <li>Ejecuta <code>python crear_bd.py</code> — debe mostrar la salida esperada.</li>
 <li>Comprueba que el fichero <code>expendedora.db</code> se ha creado.</li>
 <li>Ejecuta el script <strong>otra vez</strong> — debe funcionar igual (el script elimina y recrea la BD).</li>
-<li>Verifica que los tests del proyecto <strong>siguen pasando</strong> (no hemos tocado el código de la app):</li>
+<li>Verifica que los tests del proyecto <strong>siguen pasando</strong> (no hemos tocado el código de la app; ejecuta desde la carpeta padre de <code>expendedora/</code>):</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/<span class="w"> </span>-v
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>python<span class="w"> </span>-m<span class="w"> </span>unittest
 </code></pre></div>
 <hr />
 <h2 id="kata-de-refactor">Kata de refactor<a class="headerlink" href="#kata-de-refactor" title="Permanent link">&para;</a></h2>
@@ -2303,7 +2335,7 @@
 <p>¿Por qué usamos <code>?</code> en lugar de escribir los valores directamente en la cadena SQL?</p>
 </blockquote>
 <h3 id="d-reto-final">D. Reto final<a class="headerlink" href="#d-reto-final" title="Permanent link">&para;</a></h3>
-<p>Sin plantilla ni pistas: crea un script <code>ampliacion_d.py</code> que lea los datos del fichero <code>expendedora.db</code>, cree objetos <code>Item</code> e <code>ItemConDescuento</code> a partir de las filas, y muestre cada producto usando el método <code>mostrar_producto()</code>. Necesitarás importar las clases desde <code>expendedora.domain.item</code>.</p>
+<p>Sin plantilla ni pistas: crea un script <code>ampliacion_d.py</code> que lea los datos del fichero <code>expendedora.db</code>, cree objetos <code>Item</code> e <code>ItemConDescuento</code> a partir de las filas, y muestre cada producto en formato legible. Necesitarás importar las clases desde <code>expendedora.domain.item</code>. Pista: <code>mostrar_producto()</code> devuelve una tupla <code>(codigo, nombre, precio_base, precio_final, cantidad, porcentaje_descuento)</code> — puedes desempaquetarla para formatear la salida.</p>
 
 
 
