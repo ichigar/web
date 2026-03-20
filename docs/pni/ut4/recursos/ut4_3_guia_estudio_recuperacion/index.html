@@ -1028,36 +1028,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#como-leer-los-criterios-de-asignacion" class="md-nav__link">
+  <a href="#11-como-leer-los-criterios-de-asignacion" class="md-nav__link">
     <span class="md-ellipsis">
-      Cómo leer los criterios de asignación
+      1.1 Cómo leer los criterios de asignación
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#interfaces-que-se-suelen-olvidar" class="md-nav__link">
+  <a href="#12-interfaces-que-se-suelen-olvidar" class="md-nav__link">
     <span class="md-ellipsis">
-      Interfaces que se suelen olvidar
+      1.2 Interfaces que se suelen olvidar
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#como-calcular-la-ultima-ip-disponible" class="md-nav__link">
+  <a href="#13-como-calcular-la-ultima-ip-disponible" class="md-nav__link">
     <span class="md-ellipsis">
-      Cómo calcular la última IP disponible
+      1.3 Cómo calcular la última IP disponible
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#como-generar-la-captura-del-diagrama" class="md-nav__link">
+  <a href="#14-como-generar-la-captura-del-diagrama" class="md-nav__link">
     <span class="md-ellipsis">
-      Cómo generar la captura del diagrama
+      1.4 Cómo generar la captura del diagrama
     </span>
   </a>
   
@@ -1510,15 +1510,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#orden-de-configuracion-recomendado" class="md-nav__link">
-    <span class="md-ellipsis">
-      Orden de configuración recomendado
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1544,12 +1535,22 @@
 <hr />
 <h2 id="como-usar-esta-guia">Cómo usar esta guía<a class="headerlink" href="#como-usar-esta-guia" title="Permanent link">&para;</a></h2>
 <p>Esta guía está pensada para los alumnos que necesitan preparar el examen de recuperación de la prueba práctica UT4-AE1. Cubre todos los apartados de la prueba con explicaciones, comandos y los errores más frecuentes detectados en las correcciones.</p>
+<p><strong>Contenido de cada sección:</strong></p>
+<ul>
+<li><strong>Sección 1 — Diagrama de direccionamiento:</strong> cómo calcular las IPs de todas las interfaces, qué se suele olvidar (subinterfaces del router) y cómo evitar el error más frecuente con prefijos /16.</li>
+<li><strong>Sección 2 — Conceptos previos:</strong> teoría esencial sobre switch L2 vs L3, VLANs, trunks, SVIs, router-on-a-stick y enrutamiento estático. Incluye el catálogo completo de comandos <code>show</code> que pueden pedirse.</li>
+<li><strong>Sección 3 — Resolución guiada:</strong> recorrido paso a paso por cada apartado (0a–8f) con explicación, ejemplo de comandos, errores frecuentes y preguntas de reflexión con respuesta oculta.</li>
+<li><strong>Sección 4 — Tabla de errores frecuentes:</strong> resumen de los errores más comunes detectados en las correcciones, con su causa y cómo evitarlos.</li>
+<li><strong>Sección 5 — Checklist de autoevaluación:</strong> lista de verificación para repasar antes de entregar, organizada por bloques temáticos.</li>
+<li><strong>Sección 6 — Anexo de configuración:</strong> todos los comandos a ejecutar en cada dispositivo (PCs, SW_1, SW_2, SW_3, SWL3_1, R_1) con los valores del examen original como referencia.</li>
+</ul>
 <p><strong>Método de estudio recomendado:</strong></p>
 <ol>
-<li>Lee la explicación conceptual de cada apartado.</li>
-<li>Reproduce la configuración en Packet Tracer desde cero.</li>
-<li>Verifica el resultado con el comando <code>show</code> correspondiente.</li>
-<li>Responde mentalmente la pregunta de reflexión antes de pasar al siguiente paso.</li>
+<li>Lee la explicación conceptual de cada apartado (Sección 2).</li>
+<li>Consulta el ejemplo de comandos en la resolución guiada (Sección 3).</li>
+<li>Reproduce la configuración completa en Packet Tracer desde cero usando el anexo (Sección 6).</li>
+<li>Verifica cada paso con el comando <code>show</code> correspondiente.</li>
+<li>Responde mentalmente las preguntas de reflexión antes de pasar al siguiente paso.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">La recuperación será similar, pero distinta</p>
@@ -1558,7 +1559,7 @@
 <hr />
 <h2 id="1-el-diagrama-de-direccionamiento-como-calcularlo-y-que-no-olvidar">1. El diagrama de direccionamiento: cómo calcularlo y qué no olvidar<a class="headerlink" href="#1-el-diagrama-de-direccionamiento-como-calcularlo-y-que-no-olvidar" title="Permanent link">&para;</a></h2>
 <p>Antes de configurar ningún dispositivo en Packet Tracer debes tener claras las IPs de <strong>todas</strong> las interfaces que llevan dirección IP. Es lo que pide el paso 0b y es la base de todo lo que viene después.</p>
-<h3 id="como-leer-los-criterios-de-asignacion">Cómo leer los criterios de asignación<a class="headerlink" href="#como-leer-los-criterios-de-asignacion" title="Permanent link">&para;</a></h3>
+<h3 id="11-como-leer-los-criterios-de-asignacion">1.1 Cómo leer los criterios de asignación<a class="headerlink" href="#11-como-leer-los-criterios-de-asignacion" title="Permanent link">&para;</a></h3>
 <p>Lee siempre el enunciado antes de calcular. Los criterios habituales son:</p>
 <table>
 <thead>
@@ -1591,7 +1592,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="interfaces-que-se-suelen-olvidar">Interfaces que se suelen olvidar<a class="headerlink" href="#interfaces-que-se-suelen-olvidar" title="Permanent link">&para;</a></h3>
+<h3 id="12-interfaces-que-se-suelen-olvidar">1.2 Interfaces que se suelen olvidar<a class="headerlink" href="#12-interfaces-que-se-suelen-olvidar" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Olvido más frecuente: las subinterfaces del router-on-a-stick</p>
 <p>Las subinterfaces del router (Gig0/1.100, Gig0/1.200…) deben aparecer en el diagrama con sus IPs. Es el error más habitual en el paso 0b: se dibuja la IP del enlace /30 y las SVIs del L3, pero se olvidan las subinterfaces del router.</p>
@@ -1599,10 +1600,10 @@
 <ul>
 <li>SWL3_1 Gig0/2 y R_1 Gig0/0 (enlace /30)</li>
 <li><strong>R_1 Gig0/1.100 y Gig0/1.200</strong> (subinterfaces RoaS) ← las que más se olvidan</li>
-<li>SWL3_1 Vlan30 y Vlan40 (SVIs del switch L3 se ponen encima del mismo)</li>
+<li>SWL3_1 Vlan30 y Vlan40 (SVIs del switch L3)</li>
 </ul>
 </div>
-<h3 id="como-calcular-la-ultima-ip-disponible">Cómo calcular la última IP disponible<a class="headerlink" href="#como-calcular-la-ultima-ip-disponible" title="Permanent link">&para;</a></h3>
+<h3 id="13-como-calcular-la-ultima-ip-disponible">1.3 Cómo calcular la última IP disponible<a class="headerlink" href="#13-como-calcular-la-ultima-ip-disponible" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Error más frecuente: confundir la última IP del prefijo</p>
 <p>Para una red <strong>/16</strong> como 10.100.0.0/16:</p>
@@ -1638,12 +1639,16 @@
 </tbody>
 </table>
 </div>
-<h3 id="como-generar-la-captura-del-diagrama">Cómo generar la captura del diagrama<a class="headerlink" href="#como-generar-la-captura-del-diagrama" title="Permanent link">&para;</a></h3>
+<h3 id="14-como-generar-la-captura-del-diagrama">1.4 Cómo generar la captura del diagrama<a class="headerlink" href="#14-como-generar-la-captura-del-diagrama" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Abre la vista <strong>Logical</strong> en Packet Tracer.</li>
 <li>Etiqueta cada interfaz con su IP directamente sobre el canvas (notas de texto o etiquetas del dispositivo).</li>
 <li>Haz la captura cuando <strong>todas</strong> las interfaces con IP estén visibles y etiquetadas.</li>
 </ol>
+<div class="admonition tip">
+<p class="admonition-title">Verificación rápida</p>
+<p>Ejecuta <code>show ip interface brief</code> en SWL3_1 y en R_1. Las IPs deben coincidir exactamente con las del diagrama. Si hay discrepancia, corrígela antes de continuar con el resto de pasos.</p>
+</div>
 <hr />
 <h2 id="2-conceptos-previos-imprescindibles">2. Conceptos previos imprescindibles<a class="headerlink" href="#2-conceptos-previos-imprescindibles" title="Permanent link">&para;</a></h2>
 <h3 id="21-switch-de-capa-2-vs-switch-de-capa-3">2.1 Switch de capa 2 vs switch de capa 3<a class="headerlink" href="#21-switch-de-capa-2-vs-switch-de-capa-3" title="Permanent link">&para;</a></h3>
@@ -1786,6 +1791,10 @@
 <p class="admonition-title">Reflexión</p>
 <p>¿Por qué el estado de una SVI puede aparecer como up/down aunque la hayas configurado correctamente? ¿Qué significa que el protocolo esté down?</p>
 </div>
+<details class="success">
+<summary>Respuesta</summary>
+<p><strong>Status up / Protocol down</strong>: la interfaz lógica existe y no está en <code>shutdown</code> (capa 1 activa), pero no hay ningún puerto físico activo asignado a esa VLAN en el switch (protocolo de capa 2 caído). Para que suba a <strong>up/up</strong> debe existir al menos un puerto access de esa VLAN con un dispositivo conectado y activo. En Packet Tracer: asegúrate de que el PC está conectado al puerto correcto y que la interfaz del PC está up.</p>
+</details>
 <hr />
 <h3 id="25-router-on-a-stick">2.5 Router-on-a-stick<a class="headerlink" href="#25-router-on-a-stick" title="Permanent link">&para;</a></h3>
 <p>El router-on-a-stick permite enrutar entre VLANs usando <strong>subinterfaces</strong> en una única interfaz física. Cada subinterfaz se asocia a una VLAN mediante <code>encapsulation dot1Q</code>.</p>
@@ -2020,7 +2029,7 @@
 <p class="admonition-title">Concepto</p>
 <p>En una topología mixta con VLANs y enrutamiento, las interfaces con IP son:
 - <strong>IPs de PCs:</strong> red + número de equipo como host (ej. PCC_2 → 10.100.0.2)
-- <strong>SVIs del switch L3:</strong> última IP disponible del prefijo de cada VLAN
+- <strong>SVIs del switch L3:</strong> última IP disponible del prefijo de cada VLAN. Poner en la captura junto al mismo.
 - <strong>Subinterfaces del router (RoaS):</strong> última IP disponible del prefijo de cada VLAN
 - <strong>Enlace punto a punto:</strong> IPs consecutivas del bloque /30</p>
 </div>
@@ -2055,6 +2064,70 @@
 <p class="admonition-title">Concepto</p>
 <p>La puerta de enlace de un PC debe ser la IP de la SVI o subinterfaz que actúa como gateway de esa VLAN. Si el gateway está mal, el PC no podrá comunicarse con otras redes aunque su IP sea correcta.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Configura todos los PCs</p>
+<p>El examen pide captura de un solo PC, pero <strong>todos los PCs deben estar configurados</strong> para que los pings de pasos posteriores funcionen. Configura cada uno en <strong>Desktop → IP Configuration</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>PC</th>
+<th>IP</th>
+<th>Máscara</th>
+<th>Gateway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PCA_1</td>
+<td>192.168.30.1</td>
+<td>255.255.255.0</td>
+<td>192.168.30.254</td>
+</tr>
+<tr>
+<td>PCA_2</td>
+<td>192.168.30.2</td>
+<td>255.255.255.0</td>
+<td>192.168.30.254</td>
+</tr>
+<tr>
+<td>PCB_1</td>
+<td>192.168.40.1</td>
+<td>255.255.255.0</td>
+<td>192.168.40.254</td>
+</tr>
+<tr>
+<td>PRB_2</td>
+<td>192.168.40.2</td>
+<td>255.255.255.0</td>
+<td>192.168.40.254</td>
+</tr>
+<tr>
+<td>PCC_1</td>
+<td>10.100.0.1</td>
+<td>255.255.0.0</td>
+<td>10.100.255.254</td>
+</tr>
+<tr>
+<td>PCC_2</td>
+<td>10.100.0.2</td>
+<td>255.255.0.0</td>
+<td>10.100.255.254</td>
+</tr>
+<tr>
+<td>PCD_1</td>
+<td>10.200.0.1</td>
+<td>255.255.0.0</td>
+<td>10.200.255.254</td>
+</tr>
+<tr>
+<td>PCD_2</td>
+<td>10.200.0.2</td>
+<td>255.255.0.0</td>
+<td>10.200.255.254</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p><strong>Ejemplo (prueba original, PCC_2 en VLAN 100 /16):</strong></p>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>IPv4 Address  : 10.100.0.2
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Subnet Mask   : 255.255.0.0
@@ -2062,7 +2135,7 @@
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Error frecuente</p>
-<p>Poner como gateway la primera IP de la red (10.100.0.254 en lugar de 10.100.255.254) o una IP de otra red. El ping al gateway fallará y, por tanto, todos los pings a redes remotas también.</p>
+<p>Poner como gateway IP que no es la última de la red (10.100.0.254 en lugar de 10.100.255.254 ya que la máscara es /16) o una IP de otra red.</p>
 </div>
 <div class="admonition success">
 <p class="admonition-title">Verificación</p>
@@ -2088,6 +2161,17 @@
 - Tiene dispositivos de esa VLAN conectados directamente, o
 - Necesita transportarla por un trunk hacia otro switch.</p>
 <p><strong>No</strong> se crean VLANs de redes remotas que no pasan por ese switch.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Configuración en todos los switches</p>
+<p>El examen pide captura en un switch, pero las VLANs y los puertos access deben configurarse en <strong>todos los switches que las necesitan</strong>:</p>
+<ul>
+<li><strong>SW_2</strong>: VLANs 100 y 200 → Fa0/1 (VLAN 100), Fa0/10 (VLAN 200)</li>
+<li><strong>SW_3</strong>: VLANs 100 y 200 → Fa0/1 (VLAN 100), Fa0/10 (VLAN 200)</li>
+<li><strong>SW_1</strong>: VLANs 30 y 40 → Fa0/1 y Fa0/2 (VLAN 30), Fa0/10 y Fa0/11 (VLAN 40)</li>
+<li><strong>SWL3_1</strong>: VLANs 30 y 40 sin puertos access (los PCs de esas VLANs están en SW_1; las VLANs se crean aquí para que las SVIs del paso 4a puedan levantarse)</li>
+</ul>
+<p>El ejemplo de comandos que sigue corresponde al switch de acceso principal. Repite el proceso con los valores correspondientes en el resto.</p>
 </div>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>! En el switch L2 de acceso
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>vlan 100
@@ -2151,6 +2235,16 @@
 <div class="admonition note">
 <p class="admonition-title">Concepto</p>
 <p>Los trunks van en los <strong>uplinks</strong>: las interfaces que conectan con el router (RoaS) y con otros switches. En ningún caso van en puertos que conectan a PCs.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Trunks en todos los switches</p>
+<p>El examen muestra SW_2, pero los trunks deben configurarse en <strong>todos los uplinks de la topología</strong>. Además de los dos trunks de SW_2, necesitas:</p>
+<ul>
+<li><strong>SW_3</strong> Gig0/1 → trunk hacia SW_2</li>
+<li><strong>SW_1</strong> Gig0/1 → trunk hacia SWL3_1</li>
+<li><strong>SWL3_1</strong> Gig0/1 → trunk hacia SW_1</li>
+</ul>
+<p>En cada caso el comando es el mismo: <code>switchport mode trunk</code> en la interfaz de uplink.</p>
 </div>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>! En SW_2
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>interface GigabitEthernet0/1
@@ -2324,11 +2418,20 @@ Con <code>show interfaces trunk</code> verás exactamente qué interfaces están
 <p class="admonition-title">Concepto</p>
 <p>Por defecto, todas las interfaces de un switch son puertos de capa 2 (switchport). Para conectar el switch L3 directamente con el router mediante una IP punto a punto, hay que convertir esa interfaz a modo routed con <code>no switchport</code>.</p>
 </div>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>! En SWL3_1
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>interface GigabitEthernet0/2
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a> no switchport
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a> ip address 10.0.0.1 255.255.255.252
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a> no shutdown
+<div class="admonition note">
+<p class="admonition-title">El otro extremo del enlace también necesita configuración</p>
+<p>El enlace /30 tiene dos extremos. El examen pide captura en SWL3_1, pero <strong>R_1 Gig0/0 también debe configurarse</strong> para que el enlace quede operativo (normalmente se hace junto con el resto de R_1 en el paso 6a, pero puede hacerse ya):</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>! En R_1
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>interface GigabitEthernet0/0
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a> ip address 10.0.0.2 255.255.255.252
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a> no shutdown
+</code></pre></div>
+</div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>! En SWL3_1
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>interface GigabitEthernet0/2
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a> no switchport
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a> ip address 10.0.0.1 255.255.255.252
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a> no shutdown
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Error frecuente</p>
@@ -2353,12 +2456,12 @@ Con <code>show interfaces trunk</code> verás exactamente qué interfaces están
 <p class="admonition-title">Concepto</p>
 <p>El comando <code>show interfaces &lt;interfaz&gt; switchport</code> muestra si una interfaz tiene el modo switchport habilitado o no. En un puerto routed (después de <code>no switchport</code>), la salida indica <code>Switchport: Disabled</code>.</p>
 </div>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>show interfaces GigabitEthernet0/2 switchport
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>show interfaces GigabitEthernet0/2 switchport
 </code></pre></div>
 <p><strong>Salida esperada:</strong>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Name: Gig0/2
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Switchport: Disabled
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>...
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Name: Gig0/2
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>Switchport: Disabled
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>...
 </code></pre></div></p>
 <div class="admonition warning">
 <p class="admonition-title">Error frecuente</p>
@@ -2383,17 +2486,17 @@ Con <code>show interfaces trunk</code> verás exactamente qué interfaces están
 <p class="admonition-title">Concepto</p>
 <p>En el router-on-a-stick, cada subinterfaz se asocia a una VLAN mediante <code>encapsulation dot1Q &lt;id_vlan&gt;</code>. Este comando debe ejecutarse <strong>antes</strong> de asignar la IP. La interfaz física no necesita IP pero sí debe estar en <code>no shutdown</code>.</p>
 </div>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>! En R_1
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>interface GigabitEthernet0/1
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a> no shutdown          ! La física debe estar activa
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>interface GigabitEthernet0/1.100
-<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a> encapsulation dot1Q 100
-<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a> ip address 10.100.255.254 255.255.0.0
-<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
-<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>interface GigabitEthernet0/1.200
-<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a> encapsulation dot1Q 200
-<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a> ip address 10.200.255.254 255.255.0.0
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>! En R_1
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>interface GigabitEthernet0/1
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a> no shutdown          ! La física debe estar activa
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>interface GigabitEthernet0/1.100
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a> encapsulation dot1Q 100
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a> ip address 10.100.255.254 255.255.0.0
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>interface GigabitEthernet0/1.200
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a> encapsulation dot1Q 200
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a> ip address 10.200.255.254 255.255.0.0
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Error frecuente</p>
@@ -2405,8 +2508,8 @@ Con <code>show interfaces trunk</code> verás exactamente qué interfaces están
 </div>
 <div class="admonition success">
 <p class="admonition-title">Verificación</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>show ip interface brief
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>! Gig0/1.100 y Gig0/1.200 deben aparecer up/up con sus IPs
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>show ip interface brief
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>! Gig0/1.100 y Gig0/1.200 deben aparecer up/up con sus IPs
 </code></pre></div>
 </div>
 <div class="admonition question">
@@ -2421,11 +2524,11 @@ Con <code>show interfaces trunk</code> verás exactamente qué interfaces están
 <h3 id="paso-6b-show-ip-interface-brief-en-r_1">Paso 6b — show ip interface brief en R_1<a class="headerlink" href="#paso-6b-show-ip-interface-brief-en-r_1" title="Permanent link">&para;</a></h3>
 <p><strong>Qué se pide:</strong> captura del <code>show ip interface brief</code> en R_1 mostrando las subinterfaces activas.</p>
 <p><strong>Salida esperada (ejemplo):</strong></p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Interface              IP-Address       OK? Method Status                Protocol
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>GigabitEthernet0/0     10.0.0.2         YES manual up                    up
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>GigabitEthernet0/1     unassigned       YES unset  up                    up
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>GigabitEthernet0/1.100 10.100.255.254   YES manual up                    up
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>GigabitEthernet0/1.200 10.200.255.254   YES manual up                    up
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Interface              IP-Address       OK? Method Status                Protocol
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>GigabitEthernet0/0     10.0.0.2         YES manual up                    up
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>GigabitEthernet0/1     unassigned       YES unset  up                    up
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>GigabitEthernet0/1.100 10.100.255.254   YES manual up                    up
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>GigabitEthernet0/1.200 10.200.255.254   YES manual up                    up
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Error frecuente</p>
@@ -2445,7 +2548,7 @@ Con <code>show interfaces trunk</code> verás exactamente qué interfaces están
 <hr />
 <h3 id="paso-6c-ping-inter-vlan-a-traves-de-r_1">Paso 6c — Ping inter-VLAN a través de R_1<a class="headerlink" href="#paso-6c-ping-inter-vlan-a-traves-de-r_1" title="Permanent link">&para;</a></h3>
 <p><strong>Qué se pide:</strong> captura de un ping entre PCs de las VLANs gestionadas por el router (VLANs 100 y 200).</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Ejemplo: PCC_2 (10.100.0.2) → ping → PCD_2 (10.200.0.2)
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>Ejemplo: PCC_2 (10.100.0.2) → ping → PCD_2 (10.200.0.2)
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Concepto</p>
@@ -2458,7 +2561,7 @@ Con <code>show interfaces trunk</code> verás exactamente qué interfaces están
 <details class="success">
 <summary>Respuesta</summary>
 <ol>
-<li>VLANs 100 y 200 creadas en SW_2/SW_3/SW_4 con puertos access asignados correctamente.</li>
+<li>VLANs 100 y 200 creadas en SW_2 y SW_3 con puertos access asignados correctamente.</li>
 <li>Trunk activo en Gig0/1 de SW_2 (uplink hacia R_1).</li>
 <li>Subinterfaces del router con <code>encapsulation dot1Q</code> correcto e IPs correctas (x.x.255.254/16).</li>
 <li>Interfaz física Gig0/1 del router en <code>no shutdown</code>.</li>
@@ -2472,13 +2575,21 @@ Con <code>show interfaces trunk</code> verás exactamente qué interfaces están
 <p class="admonition-title">Concepto</p>
 <p>R_1 necesita rutas estáticas para llegar a las redes de las VLANs 30 y 40, que están detrás de SWL3_1. El next-hop es la IP de SWL3_1 en el enlace punto a punto (la IP del lado de SWL3_1 en el /30).</p>
 </div>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>! En R_1
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>ip route 192.168.30.0 255.255.255.0 10.0.0.1
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>ip route 192.168.40.0 255.255.255.0 10.0.0.1
+<div class="admonition note">
+<p class="admonition-title">Rutas estáticas también en SWL3_1</p>
+<p>El enrutamiento es bidireccional: si R_1 no sabe llegar a las redes de SWL3_1, y SWL3_1 no sabe llegar a las redes de R_1, los pings del bloque 8 fallarán en ambos sentidos. <strong>Configura también las rutas en SWL3_1</strong> (se verificarán en el paso 7b):</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>! En SWL3_1
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>ip route 10.100.0.0 255.255.0.0 10.0.0.2
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>ip route 10.200.0.0 255.255.0.0 10.0.0.2
+</code></pre></div>
+</div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>! En R_1
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>ip route 192.168.30.0 255.255.255.0 10.0.0.1
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>ip route 192.168.40.0 255.255.255.0 10.0.0.1
 </code></pre></div>
 <p><strong>Verificación en show ip route:</strong>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>S    192.168.30.0/24 [1/0] via 10.0.0.1
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>S    192.168.40.0/24 [1/0] via 10.0.0.1
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>S    192.168.30.0/24 [1/0] via 10.0.0.1
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>S    192.168.40.0/24 [1/0] via 10.0.0.1
 </code></pre></div></p>
 <div class="admonition warning">
 <p class="admonition-title">Error frecuente</p>
@@ -2506,11 +2617,11 @@ Con <code>show interfaces trunk</code> verás exactamente qué interfaces están
 <h3 id="paso-7b-show-ip-route-en-swl3_1">Paso 7b — show ip route en SWL3_1<a class="headerlink" href="#paso-7b-show-ip-route-en-swl3_1" title="Permanent link">&para;</a></h3>
 <p><strong>Qué se pide:</strong> captura del <code>show ip route</code> en SWL3_1 mostrando la tabla de enrutamiento completa.</p>
 <p><strong>Tabla esperada (ejemplo):</strong></p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>C    10.0.0.0/30         via GigabitEthernet0/2
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>S    10.100.0.0/16       [1/0] via 10.0.0.2
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>S    10.200.0.0/16       [1/0] via 10.0.0.2
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>C    192.168.30.0/24     via Vlan30
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>C    192.168.40.0/24     via Vlan40
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>C    10.0.0.0/30         via GigabitEthernet0/2
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>S    10.100.0.0/16       [1/0] via 10.0.0.2
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>S    10.200.0.0/16       [1/0] via 10.0.0.2
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>C    192.168.30.0/24     via Vlan30
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>C    192.168.40.0/24     via Vlan40
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Concepto</p>
@@ -2996,78 +3107,44 @@ Con <code>show interfaces trunk</code> verás exactamente qué interfaces están
 </table>
 <hr />
 <h3 id="sw_1-switch-de-acceso-vlans-30-y-40">SW_1 — Switch de acceso (VLANs 30 y 40)<a class="headerlink" href="#sw_1-switch-de-acceso-vlans-30-y-40" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>enable
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>configure terminal
-<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
-<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>! Crear VLANs
-<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>vlan 30
-<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a> name VLAN_30
-<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>vlan 40
-<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a> name VLAN_40
-<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>exit
-<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>
-<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>! Puertos de acceso hacia los PCs
-<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>interface FastEthernet0/1
-<a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a> switchport mode access
-<a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a> switchport access vlan 30
-<a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a>interface FastEthernet0/2
-<a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a> switchport mode access
-<a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a> switchport access vlan 30
-<a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a>interface FastEthernet0/10
-<a id="__codelineno-27-19" name="__codelineno-27-19" href="#__codelineno-27-19"></a> switchport mode access
-<a id="__codelineno-27-20" name="__codelineno-27-20" href="#__codelineno-27-20"></a> switchport access vlan 40
-<a id="__codelineno-27-21" name="__codelineno-27-21" href="#__codelineno-27-21"></a>interface FastEthernet0/11
-<a id="__codelineno-27-22" name="__codelineno-27-22" href="#__codelineno-27-22"></a> switchport mode access
-<a id="__codelineno-27-23" name="__codelineno-27-23" href="#__codelineno-27-23"></a> switchport access vlan 40
-<a id="__codelineno-27-24" name="__codelineno-27-24" href="#__codelineno-27-24"></a>
-<a id="__codelineno-27-25" name="__codelineno-27-25" href="#__codelineno-27-25"></a>! Uplink hacia el switch L3
-<a id="__codelineno-27-26" name="__codelineno-27-26" href="#__codelineno-27-26"></a>interface GigabitEthernet0/1
-<a id="__codelineno-27-27" name="__codelineno-27-27" href="#__codelineno-27-27"></a> switchport mode trunk
-<a id="__codelineno-27-28" name="__codelineno-27-28" href="#__codelineno-27-28"></a>
-<a id="__codelineno-27-29" name="__codelineno-27-29" href="#__codelineno-27-29"></a>end
-</code></pre></div>
-<div class="admonition success">
-<p class="admonition-title">Verificación SW_1</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>show vlan brief          ! VLANs 30 y 40 activas con Fa0/1, Fa0/2, Fa0/10, Fa0/11
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>show interfaces trunk    ! Gig0/1 en modo trunk transportando VLANs 30 y 40
-</code></pre></div>
-</div>
-<hr />
-<h3 id="sw_2-switch-de-distribucion-vlans-100-y-200">SW_2 — Switch de distribución (VLANs 100 y 200)<a class="headerlink" href="#sw_2-switch-de-distribucion-vlans-100-y-200" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>enable
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>configure terminal
 <a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
 <a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>! Crear VLANs
-<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>vlan 100
-<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a> name VLAN_100
-<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>vlan 200
-<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a> name VLAN_200
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>vlan 30
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a> name VLAN_30
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>vlan 40
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a> name VLAN_40
 <a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>exit
 <a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a>
 <a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a>! Puertos de acceso hacia los PCs
 <a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a>interface FastEthernet0/1
 <a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a> switchport mode access
-<a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a> switchport access vlan 100
-<a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a>interface FastEthernet0/10
+<a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a> switchport access vlan 30
+<a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a>interface FastEthernet0/2
 <a id="__codelineno-29-16" name="__codelineno-29-16" href="#__codelineno-29-16"></a> switchport mode access
-<a id="__codelineno-29-17" name="__codelineno-29-17" href="#__codelineno-29-17"></a> switchport access vlan 200
-<a id="__codelineno-29-18" name="__codelineno-29-18" href="#__codelineno-29-18"></a>
-<a id="__codelineno-29-19" name="__codelineno-29-19" href="#__codelineno-29-19"></a>! Uplinks en modo trunk
-<a id="__codelineno-29-20" name="__codelineno-29-20" href="#__codelineno-29-20"></a>interface GigabitEthernet0/1
-<a id="__codelineno-29-21" name="__codelineno-29-21" href="#__codelineno-29-21"></a> switchport mode trunk       ! hacia R_1 (router-on-a-stick)
-<a id="__codelineno-29-22" name="__codelineno-29-22" href="#__codelineno-29-22"></a>interface GigabitEthernet0/2
-<a id="__codelineno-29-23" name="__codelineno-29-23" href="#__codelineno-29-23"></a> switchport mode trunk       ! hacia SW_3
+<a id="__codelineno-29-17" name="__codelineno-29-17" href="#__codelineno-29-17"></a> switchport access vlan 30
+<a id="__codelineno-29-18" name="__codelineno-29-18" href="#__codelineno-29-18"></a>interface FastEthernet0/10
+<a id="__codelineno-29-19" name="__codelineno-29-19" href="#__codelineno-29-19"></a> switchport mode access
+<a id="__codelineno-29-20" name="__codelineno-29-20" href="#__codelineno-29-20"></a> switchport access vlan 40
+<a id="__codelineno-29-21" name="__codelineno-29-21" href="#__codelineno-29-21"></a>interface FastEthernet0/11
+<a id="__codelineno-29-22" name="__codelineno-29-22" href="#__codelineno-29-22"></a> switchport mode access
+<a id="__codelineno-29-23" name="__codelineno-29-23" href="#__codelineno-29-23"></a> switchport access vlan 40
 <a id="__codelineno-29-24" name="__codelineno-29-24" href="#__codelineno-29-24"></a>
-<a id="__codelineno-29-25" name="__codelineno-29-25" href="#__codelineno-29-25"></a>end
+<a id="__codelineno-29-25" name="__codelineno-29-25" href="#__codelineno-29-25"></a>! Uplink hacia el switch L3
+<a id="__codelineno-29-26" name="__codelineno-29-26" href="#__codelineno-29-26"></a>interface GigabitEthernet0/1
+<a id="__codelineno-29-27" name="__codelineno-29-27" href="#__codelineno-29-27"></a> switchport mode trunk
+<a id="__codelineno-29-28" name="__codelineno-29-28" href="#__codelineno-29-28"></a>
+<a id="__codelineno-29-29" name="__codelineno-29-29" href="#__codelineno-29-29"></a>end
 </code></pre></div>
 <div class="admonition success">
-<p class="admonition-title">Verificación SW_2</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>show vlan brief          ! VLAN 100 con Fa0/1 y VLAN 200 con Fa0/10
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>show interfaces trunk    ! Gig0/1 y Gig0/2 en modo trunk con VLANs 100 y 200
+<p class="admonition-title">Verificación SW_1</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>show vlan brief          ! VLANs 30 y 40 activas con Fa0/1, Fa0/2, Fa0/10, Fa0/11
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>show interfaces trunk    ! Gig0/1 en modo trunk transportando VLANs 30 y 40
 </code></pre></div>
 </div>
 <hr />
-<h3 id="sw_3-switch-de-acceso-remoto-vlans-100-y-200">SW_3 — Switch de acceso remoto (VLANs 100 y 200)<a class="headerlink" href="#sw_3-switch-de-acceso-remoto-vlans-100-y-200" title="Permanent link">&para;</a></h3>
+<h3 id="sw_2-switch-de-distribucion-vlans-100-y-200">SW_2 — Switch de distribución (VLANs 100 y 200)<a class="headerlink" href="#sw_2-switch-de-distribucion-vlans-100-y-200" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>enable
 <a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>configure terminal
 <a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
@@ -3086,116 +3163,136 @@ Con <code>show interfaces trunk</code> verás exactamente qué interfaces están
 <a id="__codelineno-31-16" name="__codelineno-31-16" href="#__codelineno-31-16"></a> switchport mode access
 <a id="__codelineno-31-17" name="__codelineno-31-17" href="#__codelineno-31-17"></a> switchport access vlan 200
 <a id="__codelineno-31-18" name="__codelineno-31-18" href="#__codelineno-31-18"></a>
-<a id="__codelineno-31-19" name="__codelineno-31-19" href="#__codelineno-31-19"></a>! Uplink hacia SW_2
+<a id="__codelineno-31-19" name="__codelineno-31-19" href="#__codelineno-31-19"></a>! Uplinks en modo trunk
 <a id="__codelineno-31-20" name="__codelineno-31-20" href="#__codelineno-31-20"></a>interface GigabitEthernet0/1
-<a id="__codelineno-31-21" name="__codelineno-31-21" href="#__codelineno-31-21"></a> switchport mode trunk
-<a id="__codelineno-31-22" name="__codelineno-31-22" href="#__codelineno-31-22"></a>
-<a id="__codelineno-31-23" name="__codelineno-31-23" href="#__codelineno-31-23"></a>end
+<a id="__codelineno-31-21" name="__codelineno-31-21" href="#__codelineno-31-21"></a> switchport mode trunk       ! hacia R_1 (router-on-a-stick)
+<a id="__codelineno-31-22" name="__codelineno-31-22" href="#__codelineno-31-22"></a>interface GigabitEthernet0/2
+<a id="__codelineno-31-23" name="__codelineno-31-23" href="#__codelineno-31-23"></a> switchport mode trunk       ! hacia SW_3
+<a id="__codelineno-31-24" name="__codelineno-31-24" href="#__codelineno-31-24"></a>
+<a id="__codelineno-31-25" name="__codelineno-31-25" href="#__codelineno-31-25"></a>end
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Verificación SW_2</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>show vlan brief          ! VLAN 100 con Fa0/1 y VLAN 200 con Fa0/10
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>show interfaces trunk    ! Gig0/1 y Gig0/2 en modo trunk con VLANs 100 y 200
+</code></pre></div>
+</div>
+<hr />
+<h3 id="sw_3-switch-de-acceso-remoto-vlans-100-y-200">SW_3 — Switch de acceso remoto (VLANs 100 y 200)<a class="headerlink" href="#sw_3-switch-de-acceso-remoto-vlans-100-y-200" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>enable
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>configure terminal
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>! Crear VLANs
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>vlan 100
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a> name VLAN_100
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>vlan 200
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a> name VLAN_200
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a>exit
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a>
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a>! Puertos de acceso hacia los PCs
+<a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a>interface FastEthernet0/1
+<a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a> switchport mode access
+<a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a> switchport access vlan 100
+<a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a>interface FastEthernet0/10
+<a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a> switchport mode access
+<a id="__codelineno-33-17" name="__codelineno-33-17" href="#__codelineno-33-17"></a> switchport access vlan 200
+<a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a>
+<a id="__codelineno-33-19" name="__codelineno-33-19" href="#__codelineno-33-19"></a>! Uplink hacia SW_2
+<a id="__codelineno-33-20" name="__codelineno-33-20" href="#__codelineno-33-20"></a>interface GigabitEthernet0/1
+<a id="__codelineno-33-21" name="__codelineno-33-21" href="#__codelineno-33-21"></a> switchport mode trunk
+<a id="__codelineno-33-22" name="__codelineno-33-22" href="#__codelineno-33-22"></a>
+<a id="__codelineno-33-23" name="__codelineno-33-23" href="#__codelineno-33-23"></a>end
 </code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">Verificación SW_3</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>show vlan brief          ! VLAN 100 con Fa0/1 y VLAN 200 con Fa0/10
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>show interfaces trunk    ! Gig0/1 en modo trunk con VLANs 100 y 200
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>show vlan brief          ! VLAN 100 con Fa0/1 y VLAN 200 con Fa0/10
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>show interfaces trunk    ! Gig0/1 en modo trunk con VLANs 100 y 200
 </code></pre></div>
 </div>
 <hr />
 <h3 id="swl3_1-switch-de-capa-3">SWL3_1 — Switch de capa 3<a class="headerlink" href="#swl3_1-switch-de-capa-3" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>enable
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>configure terminal
-<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
-<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>! Activar enrutamiento (OBLIGATORIO antes de cualquier SVI)
-<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>ip routing
-<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>
-<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>! Crear VLANs
-<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>vlan 30
-<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a> name VLAN_30
-<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a>vlan 40
-<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a> name VLAN_40
-<a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a>exit
-<a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a>
-<a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a>! Trunk hacia SW_1
-<a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a>interface GigabitEthernet0/1
-<a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a> switchport mode trunk
-<a id="__codelineno-33-17" name="__codelineno-33-17" href="#__codelineno-33-17"></a>
-<a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a>! Enlace punto a punto hacia R_1 (puerto routed, sin switchport)
-<a id="__codelineno-33-19" name="__codelineno-33-19" href="#__codelineno-33-19"></a>interface GigabitEthernet0/2
-<a id="__codelineno-33-20" name="__codelineno-33-20" href="#__codelineno-33-20"></a> no switchport
-<a id="__codelineno-33-21" name="__codelineno-33-21" href="#__codelineno-33-21"></a> ip address 10.0.0.1 255.255.255.252
-<a id="__codelineno-33-22" name="__codelineno-33-22" href="#__codelineno-33-22"></a> no shutdown
-<a id="__codelineno-33-23" name="__codelineno-33-23" href="#__codelineno-33-23"></a>
-<a id="__codelineno-33-24" name="__codelineno-33-24" href="#__codelineno-33-24"></a>! SVIs: una por VLAN, actúan como gateway de sus PCs
-<a id="__codelineno-33-25" name="__codelineno-33-25" href="#__codelineno-33-25"></a>interface vlan 30
-<a id="__codelineno-33-26" name="__codelineno-33-26" href="#__codelineno-33-26"></a> ip address 192.168.30.254 255.255.255.0
-<a id="__codelineno-33-27" name="__codelineno-33-27" href="#__codelineno-33-27"></a> no shutdown
-<a id="__codelineno-33-28" name="__codelineno-33-28" href="#__codelineno-33-28"></a>interface vlan 40
-<a id="__codelineno-33-29" name="__codelineno-33-29" href="#__codelineno-33-29"></a> ip address 192.168.40.254 255.255.255.0
-<a id="__codelineno-33-30" name="__codelineno-33-30" href="#__codelineno-33-30"></a> no shutdown
-<a id="__codelineno-33-31" name="__codelineno-33-31" href="#__codelineno-33-31"></a>
-<a id="__codelineno-33-32" name="__codelineno-33-32" href="#__codelineno-33-32"></a>! Rutas estáticas hacia las redes que gestiona R_1
-<a id="__codelineno-33-33" name="__codelineno-33-33" href="#__codelineno-33-33"></a>ip route 10.100.0.0 255.255.0.0 10.0.0.2
-<a id="__codelineno-33-34" name="__codelineno-33-34" href="#__codelineno-33-34"></a>ip route 10.200.0.0 255.255.0.0 10.0.0.2
-<a id="__codelineno-33-35" name="__codelineno-33-35" href="#__codelineno-33-35"></a>
-<a id="__codelineno-33-36" name="__codelineno-33-36" href="#__codelineno-33-36"></a>end
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>enable
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>configure terminal
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>! Activar enrutamiento (OBLIGATORIO antes de cualquier SVI)
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>ip routing
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a>! Crear VLANs
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>vlan 30
+<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a> name VLAN_30
+<a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a>vlan 40
+<a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a> name VLAN_40
+<a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a>exit
+<a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a>
+<a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a>! Trunk hacia SW_1
+<a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a>interface GigabitEthernet0/1
+<a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a> switchport mode trunk
+<a id="__codelineno-35-17" name="__codelineno-35-17" href="#__codelineno-35-17"></a>
+<a id="__codelineno-35-18" name="__codelineno-35-18" href="#__codelineno-35-18"></a>! Enlace punto a punto hacia R_1 (puerto routed, sin switchport)
+<a id="__codelineno-35-19" name="__codelineno-35-19" href="#__codelineno-35-19"></a>interface GigabitEthernet0/2
+<a id="__codelineno-35-20" name="__codelineno-35-20" href="#__codelineno-35-20"></a> no switchport
+<a id="__codelineno-35-21" name="__codelineno-35-21" href="#__codelineno-35-21"></a> ip address 10.0.0.1 255.255.255.252
+<a id="__codelineno-35-22" name="__codelineno-35-22" href="#__codelineno-35-22"></a> no shutdown
+<a id="__codelineno-35-23" name="__codelineno-35-23" href="#__codelineno-35-23"></a>
+<a id="__codelineno-35-24" name="__codelineno-35-24" href="#__codelineno-35-24"></a>! SVIs: una por VLAN, actúan como gateway de sus PCs
+<a id="__codelineno-35-25" name="__codelineno-35-25" href="#__codelineno-35-25"></a>interface vlan 30
+<a id="__codelineno-35-26" name="__codelineno-35-26" href="#__codelineno-35-26"></a> ip address 192.168.30.254 255.255.255.0
+<a id="__codelineno-35-27" name="__codelineno-35-27" href="#__codelineno-35-27"></a> no shutdown
+<a id="__codelineno-35-28" name="__codelineno-35-28" href="#__codelineno-35-28"></a>interface vlan 40
+<a id="__codelineno-35-29" name="__codelineno-35-29" href="#__codelineno-35-29"></a> ip address 192.168.40.254 255.255.255.0
+<a id="__codelineno-35-30" name="__codelineno-35-30" href="#__codelineno-35-30"></a> no shutdown
+<a id="__codelineno-35-31" name="__codelineno-35-31" href="#__codelineno-35-31"></a>
+<a id="__codelineno-35-32" name="__codelineno-35-32" href="#__codelineno-35-32"></a>! Rutas estáticas hacia las redes que gestiona R_1
+<a id="__codelineno-35-33" name="__codelineno-35-33" href="#__codelineno-35-33"></a>ip route 10.100.0.0 255.255.0.0 10.0.0.2
+<a id="__codelineno-35-34" name="__codelineno-35-34" href="#__codelineno-35-34"></a>ip route 10.200.0.0 255.255.0.0 10.0.0.2
+<a id="__codelineno-35-35" name="__codelineno-35-35" href="#__codelineno-35-35"></a>
+<a id="__codelineno-35-36" name="__codelineno-35-36" href="#__codelineno-35-36"></a>end
 </code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">Verificación SWL3_1</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>show ip interface brief            ! Vlan30, Vlan40 y Gig0/2 up/up con sus IPs
-<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>show interfaces GigabitEthernet0/2 switchport   ! Switchport: Disabled
-<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>show interfaces trunk              ! Gig0/1 en modo trunk con VLANs 30 y 40
-<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>show ip route                      ! C: 10.0.0.0, 192.168.30.0, 192.168.40.0 — S: 10.100.0.0, 10.200.0.0
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>show ip interface brief            ! Vlan30, Vlan40 y Gig0/2 up/up con sus IPs
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>show interfaces GigabitEthernet0/2 switchport   ! Switchport: Disabled
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>show interfaces trunk              ! Gig0/1 en modo trunk con VLANs 30 y 40
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>show ip route                      ! C: 10.0.0.0, 192.168.30.0, 192.168.40.0 — S: 10.100.0.0, 10.200.0.0
 </code></pre></div>
 </div>
 <hr />
 <h3 id="r_1-router-router-on-a-stick-rutas-estaticas">R_1 — Router (router-on-a-stick + rutas estáticas)<a class="headerlink" href="#r_1-router-router-on-a-stick-rutas-estaticas" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>enable
-<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>configure terminal
-<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
-<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>! Enlace punto a punto hacia SWL3_1
-<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>interface GigabitEthernet0/0
-<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a> ip address 10.0.0.2 255.255.255.252
-<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a> no shutdown
-<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>
-<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a>! Interfaz física del router-on-a-stick (sin IP; solo debe estar activa)
-<a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a>interface GigabitEthernet0/1
-<a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a> no shutdown
-<a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a>
-<a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a>! Subinterfaz para VLAN 100
-<a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a>interface GigabitEthernet0/1.100
-<a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a> encapsulation dot1Q 100
-<a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a> ip address 10.100.255.254 255.255.0.0
-<a id="__codelineno-35-17" name="__codelineno-35-17" href="#__codelineno-35-17"></a>
-<a id="__codelineno-35-18" name="__codelineno-35-18" href="#__codelineno-35-18"></a>! Subinterfaz para VLAN 200
-<a id="__codelineno-35-19" name="__codelineno-35-19" href="#__codelineno-35-19"></a>interface GigabitEthernet0/1.200
-<a id="__codelineno-35-20" name="__codelineno-35-20" href="#__codelineno-35-20"></a> encapsulation dot1Q 200
-<a id="__codelineno-35-21" name="__codelineno-35-21" href="#__codelineno-35-21"></a> ip address 10.200.255.254 255.255.0.0
-<a id="__codelineno-35-22" name="__codelineno-35-22" href="#__codelineno-35-22"></a>
-<a id="__codelineno-35-23" name="__codelineno-35-23" href="#__codelineno-35-23"></a>! Rutas estáticas hacia las redes que gestiona SWL3_1
-<a id="__codelineno-35-24" name="__codelineno-35-24" href="#__codelineno-35-24"></a>ip route 192.168.30.0 255.255.255.0 10.0.0.1
-<a id="__codelineno-35-25" name="__codelineno-35-25" href="#__codelineno-35-25"></a>ip route 192.168.40.0 255.255.255.0 10.0.0.1
-<a id="__codelineno-35-26" name="__codelineno-35-26" href="#__codelineno-35-26"></a>
-<a id="__codelineno-35-27" name="__codelineno-35-27" href="#__codelineno-35-27"></a>end
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>enable
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>configure terminal
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>! Enlace punto a punto hacia SWL3_1
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>interface GigabitEthernet0/0
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a> ip address 10.0.0.2 255.255.255.252
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a> no shutdown
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>
+<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>! Interfaz física del router-on-a-stick (sin IP; solo debe estar activa)
+<a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a>interface GigabitEthernet0/1
+<a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a> no shutdown
+<a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a>
+<a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a>! Subinterfaz para VLAN 100
+<a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a>interface GigabitEthernet0/1.100
+<a id="__codelineno-37-15" name="__codelineno-37-15" href="#__codelineno-37-15"></a> encapsulation dot1Q 100
+<a id="__codelineno-37-16" name="__codelineno-37-16" href="#__codelineno-37-16"></a> ip address 10.100.255.254 255.255.0.0
+<a id="__codelineno-37-17" name="__codelineno-37-17" href="#__codelineno-37-17"></a>
+<a id="__codelineno-37-18" name="__codelineno-37-18" href="#__codelineno-37-18"></a>! Subinterfaz para VLAN 200
+<a id="__codelineno-37-19" name="__codelineno-37-19" href="#__codelineno-37-19"></a>interface GigabitEthernet0/1.200
+<a id="__codelineno-37-20" name="__codelineno-37-20" href="#__codelineno-37-20"></a> encapsulation dot1Q 200
+<a id="__codelineno-37-21" name="__codelineno-37-21" href="#__codelineno-37-21"></a> ip address 10.200.255.254 255.255.0.0
+<a id="__codelineno-37-22" name="__codelineno-37-22" href="#__codelineno-37-22"></a>
+<a id="__codelineno-37-23" name="__codelineno-37-23" href="#__codelineno-37-23"></a>! Rutas estáticas hacia las redes que gestiona SWL3_1
+<a id="__codelineno-37-24" name="__codelineno-37-24" href="#__codelineno-37-24"></a>ip route 192.168.30.0 255.255.255.0 10.0.0.1
+<a id="__codelineno-37-25" name="__codelineno-37-25" href="#__codelineno-37-25"></a>ip route 192.168.40.0 255.255.255.0 10.0.0.1
+<a id="__codelineno-37-26" name="__codelineno-37-26" href="#__codelineno-37-26"></a>
+<a id="__codelineno-37-27" name="__codelineno-37-27" href="#__codelineno-37-27"></a>end
 </code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">Verificación R_1</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>show ip interface brief    ! Gig0/0, Gig0/1.100 y Gig0/1.200 up/up con sus IPs
-<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>show ip route              ! C: 10.0.0.0, 10.100.0.0, 10.200.0.0 — S: 192.168.30.0, 192.168.40.0
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>show ip interface brief    ! Gig0/0, Gig0/1.100 y Gig0/1.200 up/up con sus IPs
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>show ip route              ! C: 10.0.0.0, 10.100.0.0, 10.200.0.0 — S: 192.168.30.0, 192.168.40.0
 </code></pre></div>
 </div>
-<hr />
-<h3 id="orden-de-configuracion-recomendado">Orden de configuración recomendado<a class="headerlink" href="#orden-de-configuracion-recomendado" title="Permanent link">&para;</a></h3>
-<p>Para evitar dependencias y facilitar la verificación por pasos:</p>
-<ol>
-<li><strong>PCs</strong> — asignar IP, máscara y gateway en cada PC</li>
-<li><strong>SW_1</strong> — VLANs 30/40 + puertos access + trunk hacia SWL3_1</li>
-<li><strong>SW_2</strong> — VLANs 100/200 + puertos access + trunks hacia R_1 y SW_3</li>
-<li><strong>SW_3</strong> — VLANs 100/200 + puertos access + trunk hacia SW_2</li>
-<li><strong>SWL3_1</strong> — <code>ip routing</code> + VLANs + trunk hacia SW_1 + puerto routed + SVIs + rutas estáticas</li>
-<li><strong>R_1</strong> — Gig0/0 + Gig0/1 (<code>no shutdown</code>) + subinterfaces + rutas estáticas</li>
-</ol>
-<div class="admonition tip">
-<p class="admonition-title">Verifica antes de avanzar</p>
-<p>Ejecuta el <code>show</code> de verificación después de configurar cada dispositivo. Si el resultado no es el esperado, corrige antes de pasar al siguiente. Un error en un paso anterior arruina todos los pasos posteriores.</p>
-</div>
+<p>-</p>
 
 
 
