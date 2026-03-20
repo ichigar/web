@@ -1,0 +1,3272 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Novedades y artículos sobre X">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/blog/pni/ut4/recursos/ut4_3_guia_estudio_recuperacion/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Guía de estudio — Recuperación UT4-AE1: VLAN + SVI + Enrutamiento - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_ansi.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guia-de-estudio-recuperacion-ut4-ae1-vlan-svi-enrutamiento" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Guía de estudio — Recuperación UT4-AE1: VLAN + SVI + Enrutamiento
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../rde/" class="md-tabs__link">
+          
+  
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../lnd/" class="md-tabs__link">
+          
+  
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../pd4/" class="md-tabs__link">
+          
+  
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../imw/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../soj/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pd4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#como-usar-esta-guia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cómo usar esta guía
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-el-diagrama-de-direccionamiento-como-calcularlo-y-que-no-olvidar" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. El diagrama de direccionamiento: cómo calcularlo y qué no olvidar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. El diagrama de direccionamiento: cómo calcularlo y qué no olvidar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-leer-los-criterios-de-asignacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cómo leer los criterios de asignación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-que-se-suelen-olvidar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interfaces que se suelen olvidar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-calcular-la-ultima-ip-disponible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cómo calcular la última IP disponible
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-generar-la-captura-del-diagrama" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cómo generar la captura del diagrama
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-conceptos-previos-imprescindibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Conceptos previos imprescindibles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Conceptos previos imprescindibles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-switch-de-capa-2-vs-switch-de-capa-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Switch de capa 2 vs switch de capa 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-vlans-en-que-switch-crearlas-y-que-tipo-de-puerto-usar" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 VLANs: en qué switch crearlas y qué tipo de puerto usar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-puertos-trunk-cuando-y-donde-configurarlos" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Puertos trunk: cuándo y dónde configurarlos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-svi-ip-routing-en-el-switch-l3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 SVI + ip routing en el switch L3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-router-on-a-stick" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Router-on-a-stick
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-enrutamiento-estatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 Enrutamiento estático
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-regla-de-la-ultima-ip-disponible" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7 Regla de la última IP disponible
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-catalogo-de-comandos-show-relevantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.8 Catálogo de comandos show relevantes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-resolucion-guiada-paso-a-paso" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Resolución guiada paso a paso
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Resolución guiada paso a paso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-0a-tabla-de-redes-mascaras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 0a — Tabla de redes: máscaras
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-0b-diagrama-de-direccionamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 0b — Diagrama de direccionamiento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-configuracion-ip-en-un-pc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1 — Configuración IP en un PC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2a-crear-vlans-en-el-switch-de-acceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2a — Crear VLANs en el switch de acceso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2b-verificar-vlans-con-show-vlan-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2b — Verificar VLANs con show vlan brief
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3a-configurar-puertos-trunk-en-sw_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3a — Configurar puertos trunk en SW_2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3b-verificar-show-vlan-brief-tras-configurar-trunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3b — Verificar show vlan brief tras configurar trunks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3c-ping-entre-pcs-de-la-misma-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3c — Ping entre PCs de la misma VLAN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4a-configurar-svis-en-el-switch-l3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4a — Configurar SVIs en el switch L3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4b-show-ip-interface-brief-en-swl3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4b — show ip interface brief en SWL3_1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4c-ping-inter-vlan-a-traves-de-swl3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4c — Ping inter-VLAN a través de SWL3_1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-5a-configurar-enlace-routed-en-swl3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 5a — Configurar enlace routed en SWL3_1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-5b-show-interfaces-switchport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 5b — show interfaces switchport
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-6a-configurar-router-on-a-stick-en-r_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 6a — Configurar router-on-a-stick en R_1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-6b-show-ip-interface-brief-en-r_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 6b — show ip interface brief en R_1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-6c-ping-inter-vlan-a-traves-de-r_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 6c — Ping inter-VLAN a través de R_1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-7a-rutas-estaticas-en-r_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 7a — Rutas estáticas en R_1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-7b-show-ip-route-en-swl3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 7b — show ip route en SWL3_1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-8-pruebas-de-conectividad-entre-redes-remotas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 8 — Pruebas de conectividad entre redes remotas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-errores-frecuentes-tabla-resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Errores frecuentes — Tabla resumen
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-checklist-final-de-autoevaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Checklist final de autoevaluación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Checklist final de autoevaluación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direccionamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direccionamiento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vlans" class="md-nav__link">
+    <span class="md-ellipsis">
+      VLANs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trunk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switch-l3-svi-e-ip-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Switch L3 — SVI e ip routing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enlace-routed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enlace routed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#router-on-a-stick" class="md-nav__link">
+    <span class="md-ellipsis">
+      Router-on-a-stick
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rutas-estaticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rutas estáticas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capturas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capturas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-anexo-configuracion-completa-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Anexo: configuración completa de referencia
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Anexo: configuración completa de referencia">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen-de-la-topologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen de la topología
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-los-pcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración de los PCs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sw_1-switch-de-acceso-vlans-30-y-40" class="md-nav__link">
+    <span class="md-ellipsis">
+      SW_1 — Switch de acceso (VLANs 30 y 40)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sw_2-switch-de-distribucion-vlans-100-y-200" class="md-nav__link">
+    <span class="md-ellipsis">
+      SW_2 — Switch de distribución (VLANs 100 y 200)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sw_3-switch-de-acceso-remoto-vlans-100-y-200" class="md-nav__link">
+    <span class="md-ellipsis">
+      SW_3 — Switch de acceso remoto (VLANs 100 y 200)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swl3_1-switch-de-capa-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      SWL3_1 — Switch de capa 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r_1-router-router-on-a-stick-rutas-estaticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      R_1 — Router (router-on-a-stick + rutas estáticas)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orden-de-configuracion-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orden de configuración recomendado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="guia-de-estudio-recuperacion-ut4-ae1-vlan-svi-enrutamiento">Guía de estudio — Recuperación UT4-AE1: VLAN + SVI + Enrutamiento<a class="headerlink" href="#guia-de-estudio-recuperacion-ut4-ae1-vlan-svi-enrutamiento" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="como-usar-esta-guia">Cómo usar esta guía<a class="headerlink" href="#como-usar-esta-guia" title="Permanent link">&para;</a></h2>
+<p>Esta guía está pensada para los alumnos que necesitan preparar el examen de recuperación de la prueba práctica UT4-AE1. Cubre todos los apartados de la prueba con explicaciones, comandos y los errores más frecuentes detectados en las correcciones.</p>
+<p><strong>Método de estudio recomendado:</strong></p>
+<ol>
+<li>Lee la explicación conceptual de cada apartado.</li>
+<li>Reproduce la configuración en Packet Tracer desde cero.</li>
+<li>Verifica el resultado con el comando <code>show</code> correspondiente.</li>
+<li>Responde mentalmente la pregunta de reflexión antes de pasar al siguiente paso.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">La recuperación será similar, pero distinta</p>
+<p>Los números de VLAN, las redes IP, los nombres de interfaz y los comandos de verificación pedidos <strong>pueden cambiar</strong> respecto a la prueba original. Lo que no cambia es la lógica de configuración. Esta guía te enseña el método, no los valores de memoria.</p>
+</div>
+<hr />
+<h2 id="1-el-diagrama-de-direccionamiento-como-calcularlo-y-que-no-olvidar">1. El diagrama de direccionamiento: cómo calcularlo y qué no olvidar<a class="headerlink" href="#1-el-diagrama-de-direccionamiento-como-calcularlo-y-que-no-olvidar" title="Permanent link">&para;</a></h2>
+<p>Antes de configurar ningún dispositivo en Packet Tracer debes tener claras las IPs de <strong>todas</strong> las interfaces que llevan dirección IP. Es lo que pide el paso 0b y es la base de todo lo que viene después.</p>
+<h3 id="como-leer-los-criterios-de-asignacion">Cómo leer los criterios de asignación<a class="headerlink" href="#como-leer-los-criterios-de-asignacion" title="Permanent link">&para;</a></h3>
+<p>Lee siempre el enunciado antes de calcular. Los criterios habituales son:</p>
+<table>
+<thead>
+<tr>
+<th>Tipo de interfaz</th>
+<th>Criterio de asignación</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PCs y dispositivos finales</td>
+<td>IP de la red + número del equipo como host</td>
+<td>PCC_2 → 10.100.0.2</td>
+</tr>
+<tr>
+<td>SVI del switch L3 (gateway de VLAN)</td>
+<td><strong>Última IP disponible</strong> del prefijo</td>
+<td>Vlan30 → 192.168.30.254</td>
+</tr>
+<tr>
+<td>Subinterfaces del router (RoaS)</td>
+<td><strong>Última IP disponible</strong> del prefijo</td>
+<td>Gig0/1.100 → 10.100.255.254</td>
+</tr>
+<tr>
+<td>Enlace punto a punto (/30)</td>
+<td>De izquierda a derecha según el diagrama</td>
+<td>SWL3_1 → 10.0.0.1 · R_1 → 10.0.0.2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="interfaces-que-se-suelen-olvidar">Interfaces que se suelen olvidar<a class="headerlink" href="#interfaces-que-se-suelen-olvidar" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Olvido más frecuente: las subinterfaces del router-on-a-stick</p>
+<p>Las subinterfaces del router (Gig0/1.100, Gig0/1.200…) deben aparecer en el diagrama con sus IPs. Es el error más habitual en el paso 0b: se dibuja la IP del enlace /30 y las SVIs del L3, pero se olvidan las subinterfaces del router.</p>
+<p>Antes de entregar el diagrama comprueba que aparecen <strong>todas</strong> estas IPs:</p>
+<ul>
+<li>SWL3_1 Gig0/2 y R_1 Gig0/0 (enlace /30)</li>
+<li><strong>R_1 Gig0/1.100 y Gig0/1.200</strong> (subinterfaces RoaS) ← las que más se olvidan</li>
+<li>SWL3_1 Vlan30 y Vlan40 (SVIs del switch L3 se ponen encima del mismo)</li>
+</ul>
+</div>
+<h3 id="como-calcular-la-ultima-ip-disponible">Cómo calcular la última IP disponible<a class="headerlink" href="#como-calcular-la-ultima-ip-disponible" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Error más frecuente: confundir la última IP del prefijo</p>
+<p>Para una red <strong>/16</strong> como 10.100.0.0/16:</p>
+<ul>
+<li>Broadcast = 10.100.<strong>255</strong>.255</li>
+<li>Última host = <strong>10.100.255.254</strong> </li>
+<li>¡<strong>NO</strong> es 10.100.0.254! — esa sería la última del primer /24 dentro del /16.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Prefijo</th>
+<th>Broadcast</th>
+<th>Última host</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.100.0.0/<strong>16</strong></td>
+<td>10.100.255.255</td>
+<td><strong>10.100.255.254</strong></td>
+</tr>
+<tr>
+<td>192.168.30.0/<strong>24</strong></td>
+<td>192.168.30.255</td>
+<td><strong>192.168.30.254</strong></td>
+</tr>
+<tr>
+<td>10.0.0.0/<strong>30</strong></td>
+<td>10.0.0.3</td>
+<td>10.0.0.2 (host 2 de 2)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="como-generar-la-captura-del-diagrama">Cómo generar la captura del diagrama<a class="headerlink" href="#como-generar-la-captura-del-diagrama" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Abre la vista <strong>Logical</strong> en Packet Tracer.</li>
+<li>Etiqueta cada interfaz con su IP directamente sobre el canvas (notas de texto o etiquetas del dispositivo).</li>
+<li>Haz la captura cuando <strong>todas</strong> las interfaces con IP estén visibles y etiquetadas.</li>
+</ol>
+<hr />
+<h2 id="2-conceptos-previos-imprescindibles">2. Conceptos previos imprescindibles<a class="headerlink" href="#2-conceptos-previos-imprescindibles" title="Permanent link">&para;</a></h2>
+<h3 id="21-switch-de-capa-2-vs-switch-de-capa-3">2.1 Switch de capa 2 vs switch de capa 3<a class="headerlink" href="#21-switch-de-capa-2-vs-switch-de-capa-3" title="Permanent link">&para;</a></h3>
+<p>Antes de empezar a configurar, es fundamental saber qué dispositivo tienes delante.</p>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Switch L2 (ej. SW_2, SW_3)</th>
+<th>Switch L3 (ej. SWL3_1)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Función principal</td>
+<td>Conmutar tramas (capa 2)</td>
+<td>Conmutar tramas + enrutar paquetes</td>
+</tr>
+<tr>
+<td>VLANs</td>
+<td>Sí</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Puertos trunk/access</td>
+<td>Sí</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>SVIs con IP</td>
+<td>Solo para gestión (VLAN 1)</td>
+<td>Para enrutamiento inter-VLAN</td>
+</tr>
+<tr>
+<td><code>ip routing</code></td>
+<td>No disponible</td>
+<td><strong>Obligatorio para enrutar</strong></td>
+</tr>
+<tr>
+<td>Puertos routed (<code>no switchport</code>)</td>
+<td>No</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Tabla de enrutamiento</td>
+<td>No</td>
+<td>Sí (<code>show ip route</code>)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Concepto clave</p>
+<p>Un switch L3 <strong>no enruta automáticamente</strong> por el hecho de tener SVIs configuradas. Necesita el comando <code>ip routing</code> para activar el plano de enrutamiento. Sin él, las SVIs solo sirven para gestión.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>En tu topología, ¿qué dispositivos son L2 y cuál es L3? ¿Por qué no tiene sentido ejecutar <code>ip routing</code> en un switch L2?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<p>SW_2 y SW_3 son L2; SWL3_1 es L3. Un switch L2 trabaja exclusivamente con direcciones MAC y no tiene tabla de enrutamiento IP. El comando <code>ip routing</code> activa el motor de enrutamiento de capa 3, que un L2 no posee; ejecutarlo en un L2 daría error o no tendría ningún efecto.</p>
+</details>
+<hr />
+<h3 id="22-vlans-en-que-switch-crearlas-y-que-tipo-de-puerto-usar">2.2 VLANs: en qué switch crearlas y qué tipo de puerto usar<a class="headerlink" href="#22-vlans-en-que-switch-crearlas-y-que-tipo-de-puerto-usar" title="Permanent link">&para;</a></h3>
+<p><strong>Tipos de puerto:</strong></p>
+<ul>
+<li><strong>Access:</strong> conecta un único dispositivo final (PC, impresora). El tráfico no lleva etiqueta VLAN.</li>
+<li><strong>Trunk:</strong> conecta dos switches entre sí, o un switch con un router. Transporta tráfico de múltiples VLANs con etiqueta 802.1Q.</li>
+</ul>
+<p><strong>Dónde crear cada VLAN:</strong></p>
+<p>Solo se crea una VLAN en un switch si ese switch tiene dispositivos de esa VLAN conectados <strong>directamente</strong>, o si necesita transportar esa VLAN por un trunk.</p>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Crear VLANs de redes remotas en un switch que no tiene dispositivos de esas VLANs. Por ejemplo, crear VLAN 30 y VLAN 40 en SW_3 cuando los PCs de esas redes están conectados a SWL3_1, no a SW_3. Solo las VLANs que SW_3 necesita transportar (100 y 200) deben existir en SW_3.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>Mira la topología. Traza el camino que sigue un paquete de PCC_2 a PCA_1. ¿Qué switches atraviesa? ¿Qué VLANs necesita conocer cada uno?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<p>PCC_2 → SW_3 (VLAN 100) → SW_2 (trunk VLAN 100) → R_1 (subinterfaz Gig0/1.100, enruta) → Gig0/0 → SWL3_1 (enruta por Vlan30) → SW_1 → PCA_1.</p>
+<ul>
+<li><strong>SW_3</strong>: necesita VLAN 100 para transportarla al trunk hacia SW_2.</li>
+<li><strong>SW_2</strong>: necesita VLAN 100 (access de PCC) y trunk activo hacia R_1.</li>
+<li><strong>SWL3_1</strong>: necesita VLAN 30 (SVI gateway de PCA_1).</li>
+<li><strong>SW_1</strong>: necesita VLAN 30 con el puerto access de PCA_1.</li>
+</ul>
+</details>
+<hr />
+<h3 id="23-puertos-trunk-cuando-y-donde-configurarlos">2.3 Puertos trunk: cuándo y dónde configurarlos<a class="headerlink" href="#23-puertos-trunk-cuando-y-donde-configurarlos" title="Permanent link">&para;</a></h3>
+<p>Un puerto debe estar en modo trunk cuando transporta tráfico de <strong>más de una VLAN</strong>. Eso ocurre en:</p>
+<ul>
+<li>Los <strong>uplinks entre switches</strong> (el cable que conecta un switch con otro switch).</li>
+<li>La interfaz del switch que conecta con el <strong>router-on-a-stick</strong> (el router que hace subinterfaces para enrutar entre VLANs).</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Error más frecuente</p>
+<p>No configurar trunk en la interfaz del switch que conecta al router. Sin ese trunk, el router recibe el tráfico sin etiquetar y no puede distinguir a qué VLAN pertenece cada paquete. El resultado es que el enrutamiento inter-VLAN falla por completo.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Error también frecuente</p>
+<p>Configurar trunk en los puertos de acceso (los que van a los PCs, por ejemplo Fa0/1 o Fa0/10) en lugar de en los uplinks (Gig0/1, Gig0/2). Consecuencia: esos puertos dejan de ser access y las VLANs pierden sus puertos asignados en el <code>show vlan brief</code>.</p>
+</div>
+<p><strong>Comandos para configurar y verificar:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>! Configurar trunk
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>interface GigabitEthernet0/1
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a> switchport mode trunk
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>! Verificar trunks activos
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>show interfaces trunk
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>! Verificar estado de VLANs y puertos
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>show vlan brief
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Comandos de verificación alternativos</p>
+<p>En la recuperación puede pedirse <code>show interfaces trunk</code> en lugar de <code>show vlan brief</code>. Ambos son válidos para verificar la configuración de trunks. <code>show interfaces trunk</code> muestra directamente qué interfaces están en modo trunk y qué VLANs transportan.</p>
+</div>
+<hr />
+<h3 id="24-svi-ip-routing-en-el-switch-l3">2.4 SVI + <code>ip routing</code> en el switch L3<a class="headerlink" href="#24-svi-ip-routing-en-el-switch-l3" title="Permanent link">&para;</a></h3>
+<p>Una <strong>SVI (Switch Virtual Interface)</strong> es una interfaz lógica asociada a una VLAN. En un switch L3, se usa para asignar una IP a cada VLAN y actuar como puerta de enlace de los dispositivos de esa VLAN.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ip routing                          ! Activa el enrutamiento
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>interface vlan 30
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a> ip address 192.168.30.254 255.255.255.0
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a> no shutdown
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>interface vlan 40
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a> ip address 192.168.40.254 255.255.255.0
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a> no shutdown
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Olvidar el comando <code>ip routing</code>. Las SVIs aparecerán configuradas y el <code>show ip interface brief</code> mostrará las IPs, pero el switch <strong>no enrutará</strong> entre VLANs. Los pings inter-VLAN fallarán.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Verificación</p>
+<p>Ejecuta <code>show ip route</code>. Si ves las redes directamente conectadas (C) de las VLANs, <code>ip routing</code> está activo. Si el comando devuelve error o tabla vacía, falta <code>ip routing</code>.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>¿Por qué el estado de una SVI puede aparecer como up/down aunque la hayas configurado correctamente? ¿Qué significa que el protocolo esté down?</p>
+</div>
+<hr />
+<h3 id="25-router-on-a-stick">2.5 Router-on-a-stick<a class="headerlink" href="#25-router-on-a-stick" title="Permanent link">&para;</a></h3>
+<p>El router-on-a-stick permite enrutar entre VLANs usando <strong>subinterfaces</strong> en una única interfaz física. Cada subinterfaz se asocia a una VLAN mediante <code>encapsulation dot1Q</code>.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>interface GigabitEthernet0/1.100
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a> encapsulation dot1Q 100
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a> ip address 10.100.255.254 255.255.0.0
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>interface GigabitEthernet0/1.200
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a> encapsulation dot1Q 200
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a> ip address 10.200.255.254 255.255.0.0
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Omitir <code>encapsulation dot1Q</code>. Sin este comando, el router no sabe a qué VLAN pertenece el tráfico que llega por esa subinterfaz. Las subinterfaces quedarán configuradas pero no funcionarán.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Concepto clave</p>
+<p>La interfaz física (Gig0/1) <strong>no necesita IP</strong>. Son las subinterfaces las que tienen IP. La interfaz física solo necesita estar en <code>no shutdown</code>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Consejo</p>
+<p>Verifica con <code>show ip interface brief</code> que las subinterfaces aparecen <strong>up/up</strong>. Si aparecen administratively down, la interfaz física (Gig0/1) probablemente tiene <code>shutdown</code>.</p>
+</div>
+<hr />
+<h3 id="26-enrutamiento-estatico">2.6 Enrutamiento estático<a class="headerlink" href="#26-enrutamiento-estatico" title="Permanent link">&para;</a></h3>
+<p>El comando <code>ip route</code> agrega manualmente una ruta a la tabla de enrutamiento.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ip route &lt;red_destino&gt; &lt;máscara&gt; &lt;next-hop&gt;
+</code></pre></div>
+<ul>
+<li><strong>red_destino:</strong> la red a la que quiero llegar</li>
+<li><strong>máscara:</strong> la máscara de esa red</li>
+<li><strong>next-hop:</strong> la IP del siguiente salto (el dispositivo al que envío el paquete)</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Teclear los comandos <code>ip route</code> pero que las rutas no aparezcan en el <code>show ip route</code>. Esto ocurre cuando el next-hop no es alcanzable (falta conectividad al enlace punto a punto) o cuando hay un error tipográfico en la IP. El comando puede aceptarse sin error pero la ruta queda inactiva.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Verificación</p>
+<p>Ejecuta <code>show ip route</code>. Las rutas estáticas activas aparecen con la letra <strong>S</strong>. Si no ves la S junto a la red destino, la ruta no está activa aunque hayas tecleado el comando.</p>
+</div>
+<hr />
+<h3 id="27-regla-de-la-ultima-ip-disponible">2.7 Regla de la última IP disponible<a class="headerlink" href="#27-regla-de-la-ultima-ip-disponible" title="Permanent link">&para;</a></h3>
+<p>Las puertas de enlace y las IPs de subinterfaces/SVIs se asignan habitualmente a la <strong>última IP host disponible</strong> de la red.</p>
+<table>
+<thead>
+<tr>
+<th>Prefijo</th>
+<th>Última IP host</th>
+<th>Broadcast</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/24</td>
+<td>x.x.x.<strong>254</strong></td>
+<td>x.x.x.255</td>
+</tr>
+<tr>
+<td>/16</td>
+<td>x.x.<strong>255.254</strong></td>
+<td>x.x.255.255</td>
+</tr>
+<tr>
+<td>/30</td>
+<td>Depende del bloque</td>
+<td>Depende del bloque</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cómo calcularlo para cualquier red:</strong></p>
+<p>El broadcast de una red es la dirección con todos los bits de host en 1. La última IP host es el broadcast menos 1.</p>
+<ul>
+<li>10.100.0.0/16 → broadcast = 10.100.255.255 → última host = <strong>10.100.255.254</strong> ✓</li>
+<li>10.100.0.0/16 → <strong>NO</strong> es 10.100.0.254 (esa sería la última del primer bloque /24, no del /16)</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Asignar 10.100.0.254 en lugar de 10.100.255.254 para una red /16. Es el error más común: confundir la última IP del /16 con la última del primer /24 dentro de ese /16.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>¿Cuál sería la última IP host de la red 172.16.0.0/12? ¿Y de 10.0.0.0/30?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<ul>
+<li><strong>172.16.0.0/12</strong>: broadcast = 172.31.255.255 → última host = <strong>172.31.255.254</strong></li>
+<li><strong>10.0.0.0/30</strong>: rango = 10.0.0.0–10.0.0.3, broadcast = 10.0.0.3, hosts válidos = 10.0.0.1 y 10.0.0.2 → última host = <strong>10.0.0.2</strong></li>
+</ul>
+</details>
+<hr />
+<h3 id="28-catalogo-de-comandos-show-relevantes">2.8 Catálogo de comandos <code>show</code> relevantes<a class="headerlink" href="#28-catalogo-de-comandos-show-relevantes" title="Permanent link">&para;</a></h3>
+<p>Estos son los comandos de verificación que pueden aparecer en la prueba. Cualquiera de ellos puede pedirse en cualquier apartado.</p>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Qué muestra</th>
+<th>Cuándo pedirlo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show vlan brief</code></td>
+<td>VLANs existentes, estado y puertos asignados</td>
+<td>Tras crear VLANs y asignar puertos access</td>
+</tr>
+<tr>
+<td><code>show interfaces trunk</code></td>
+<td>Interfaces en modo trunk, VLANs permitidas/activas</td>
+<td>Para verificar que los trunks están configurados correctamente</td>
+</tr>
+<tr>
+<td><code>show interfaces &lt;int&gt; switchport</code></td>
+<td>Modo del puerto (access/trunk), VLAN asignada, si switchport está habilitado</td>
+<td>Para verificar estado de una interfaz específica; en puertos routed muestra "Switchport: Disabled"</td>
+</tr>
+<tr>
+<td><code>show ip interface brief</code></td>
+<td>Estado up/down de todas las interfaces con sus IPs</td>
+<td>Tras configurar SVIs, subinterfaces o IPs en interfaces</td>
+</tr>
+<tr>
+<td><code>show ip route</code></td>
+<td>Tabla de enrutamiento: rutas directas (C), estáticas (S), etc.</td>
+<td>Para confirmar que las rutas estáticas están activas</td>
+</tr>
+<tr>
+<td><code>show running-config</code></td>
+<td>Configuración activa completa del dispositivo</td>
+<td>Para verificar cualquier configuración cuando no hay un show específico</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Consejo</p>
+<p>Memoriza qué muestra cada comando. Si en la recuperación te piden un show distinto al de la prueba original, no entres en pánico: busca cuál de estos es el más adecuado para lo que se quiere verificar.</p>
+</div>
+<hr />
+<h2 id="3-resolucion-guiada-paso-a-paso">3. Resolución guiada paso a paso<a class="headerlink" href="#3-resolucion-guiada-paso-a-paso" title="Permanent link">&para;</a></h2>
+<p>A continuación se recorre cada apartado de la prueba. Los bloques de código muestran los valores del examen original como <strong>ejemplo</strong>; en la recuperación pueden cambiar.</p>
+<hr />
+<h3 id="paso-0a-tabla-de-redes-mascaras">Paso 0a — Tabla de redes: máscaras<a class="headerlink" href="#paso-0a-tabla-de-redes-mascaras" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> completar una tabla con las máscaras de subred de las redes de la topología.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>La máscara indica cuántos bits son de red. Debes conocer la equivalencia entre la notación CIDR (/16, /24, /30) y la decimal punteada.</p>
+<table>
+<thead>
+<tr>
+<th>CIDR</th>
+<th>Decimal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/30</td>
+<td>255.255.255.252</td>
+</tr>
+<tr>
+<td>/24</td>
+<td>255.255.255.0</td>
+</tr>
+<tr>
+<td>/16</td>
+<td>255.255.0.0</td>
+</tr>
+<tr>
+<td>/12</td>
+<td>255.240.0.0</td>
+</tr>
+<tr>
+<td>/8</td>
+<td>255.0.0.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Ejemplo (prueba original):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Red</th>
+<th>CIDR</th>
+<th>Máscara</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.30.0</td>
+<td>/24</td>
+<td>255.255.255.0</td>
+</tr>
+<tr>
+<td>192.168.40.0</td>
+<td>/24</td>
+<td>255.255.255.0</td>
+</tr>
+<tr>
+<td>10.100.0.0</td>
+<td>/16</td>
+<td>255.255.0.0</td>
+</tr>
+<tr>
+<td>10.200.0.0</td>
+<td>/16</td>
+<td>255.255.0.0</td>
+</tr>
+<tr>
+<td>10.0.0.0</td>
+<td>/30</td>
+<td>255.255.255.252</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Dejar alguna máscara en blanco o poner 255.255.255.0 para un /16. Todas las filas deben estar completas y correctas.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>¿Por qué el enlace punto a punto entre dos routers/switches suele ser /30? ¿Cuántos hosts admite una /30?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Una /30 admite exactamente <strong>2 hosts</strong> (2² − 2 = 2). Para un enlace P2P solo se necesitan dos IPs (una por extremo), y usar /30 evita desperdiciar un bloque más grande. Es la máscara más eficiente para este tipo de enlace.</p>
+</details>
+<hr />
+<h3 id="paso-0b-diagrama-de-direccionamiento">Paso 0b — Diagrama de direccionamiento<a class="headerlink" href="#paso-0b-diagrama-de-direccionamiento" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> completar el diagrama de topología con las IPs de todas las interfaces que tienen dirección IP asignada.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>En una topología mixta con VLANs y enrutamiento, las interfaces con IP son:
+- <strong>IPs de PCs:</strong> red + número de equipo como host (ej. PCC_2 → 10.100.0.2)
+- <strong>SVIs del switch L3:</strong> última IP disponible del prefijo de cada VLAN
+- <strong>Subinterfaces del router (RoaS):</strong> última IP disponible del prefijo de cada VLAN
+- <strong>Enlace punto a punto:</strong> IPs consecutivas del bloque /30</p>
+</div>
+<p><strong>Ejemplo (prueba original):</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>SWL3_1 Gig0/2  → 10.0.0.1/30
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>R_1 Gig0/0     → 10.0.0.2/30
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>R_1 Gig0/1.100 → 10.100.255.254/16   ← última del /16
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>R_1 Gig0/1.200 → 10.200.255.254/16   ← última del /16
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>SWL3_1 Vlan30  → 192.168.30.254/24   ← última del /24
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>SWL3_1 Vlan40  → 192.168.40.254/24   ← última del /24
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>PCC_2          → 10.100.0.2/16
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>PCD_2          → 10.200.0.2/16
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>PCA_2          → 192.168.30.2/24
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>PRB_2          → 192.168.40.2/24
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Asignar 10.100.0.254 en lugar de 10.100.255.254 para una subinterfaz /16. Recuerda: para un /16, la última IP host está en el octeto 3 con valor 255, no 0.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>¿Por qué las subinterfaces del router y las SVIs del L3 usan la última IP disponible y no la primera?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Es una convención de diseño que facilita identificar visualmente el gateway: la primera IP (.1 o .0.1) queda libre para el primer host, y la última (.254 o .255.254) se reserva para el router/gateway. No hay razón técnica obligatoria, pero el enunciado lo especifica explícitamente y es práctica habitual en entornos Cisco.</p>
+</details>
+<hr />
+<h3 id="paso-1-configuracion-ip-en-un-pc">Paso 1 — Configuración IP en un PC<a class="headerlink" href="#paso-1-configuracion-ip-en-un-pc" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura de un PC con IP, máscara y puerta de enlace correctas.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>La puerta de enlace de un PC debe ser la IP de la SVI o subinterfaz que actúa como gateway de esa VLAN. Si el gateway está mal, el PC no podrá comunicarse con otras redes aunque su IP sea correcta.</p>
+</div>
+<p><strong>Ejemplo (prueba original, PCC_2 en VLAN 100 /16):</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>IPv4 Address  : 10.100.0.2
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Subnet Mask   : 255.255.0.0
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Default Gateway: 10.100.255.254
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Poner como gateway la primera IP de la red (10.100.0.254 en lugar de 10.100.255.254) o una IP de otra red. El ping al gateway fallará y, por tanto, todos los pings a redes remotas también.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Verificación</p>
+<p>Desde el PC, haz ping a la puerta de enlace. Si responde, la configuración IP es correcta.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>¿Qué ocurre si la IP del PC es correcta pero el gateway es incorrecto? ¿Puede el PC comunicarse con otro PC de la misma VLAN? ¿Y con uno de otra VLAN?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<ul>
+<li><strong>Misma VLAN</strong>: sí puede comunicarse. Los PCs del mismo segmento se alcanzan directamente en capa 2, sin necesidad de gateway.</li>
+<li><strong>Otra VLAN</strong>: no puede. Para enviar a otra red el PC necesita reenviar el paquete al gateway; si es incorrecto, la trama nunca llega al router/switch L3 y la comunicación falla.</li>
+</ul>
+</details>
+<hr />
+<h3 id="paso-2a-crear-vlans-en-el-switch-de-acceso">Paso 2a — Crear VLANs en el switch de acceso<a class="headerlink" href="#paso-2a-crear-vlans-en-el-switch-de-acceso" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura mostrando la creación de VLANs en un switch L2.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>Solo se crean las VLANs que ese switch necesita. Un switch necesita una VLAN si:
+- Tiene dispositivos de esa VLAN conectados directamente, o
+- Necesita transportarla por un trunk hacia otro switch.</p>
+<p><strong>No</strong> se crean VLANs de redes remotas que no pasan por ese switch.</p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>! En el switch L2 de acceso
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>vlan 100
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a> name VLAN_100
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>vlan 200
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a> name VLAN_200
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>exit
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Crear VLANs innecesarias (por ejemplo, VLAN 30 y VLAN 40 en SW_3 cuando esas redes pertenecen al bloque de SWL3_1). Aunque no penaliza directamente, demuestra confusión sobre qué dispositivos hay en cada segmento.</p>
+<p>También es error usar la GUI de Packet Tracer (pestaña Config) en lugar de la CLI. La GUI no crea las VLANs correctamente en todos los escenarios.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Comandos de verificación</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>show vlan brief
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>show running-config
+</code></pre></div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>Si creas VLAN 100 en un switch pero no asignas ningún puerto en modo access a esa VLAN, ¿qué verás en el <code>show vlan brief</code>? ¿Tendrá algún efecto en la conectividad?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<p>El <code>show vlan brief</code> mostrará VLAN 100 como <code>active</code> pero con la columna Ports vacía. No tendrá efecto en la conectividad: los PCs conectados a puertos que sigan en VLAN 1 (default) no podrán comunicarse con otros equipos de VLAN 100 aunque la VLAN exista.</p>
+</details>
+<hr />
+<h3 id="paso-2b-verificar-vlans-con-show-vlan-brief">Paso 2b — Verificar VLANs con show vlan brief<a class="headerlink" href="#paso-2b-verificar-vlans-con-show-vlan-brief" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura del <code>show vlan brief</code> mostrando las VLANs con sus puertos asignados.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>El <code>show vlan brief</code> muestra el estado de cada VLAN y los puertos access asignados. Un puerto en modo trunk <strong>no aparece</strong> en esta lista (los trunks transportan todas las VLANs pero no se muestran como asignados a ninguna en particular).</p>
+</div>
+<p><strong>Salida esperada (ejemplo):</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>VLAN Name                             Status    Ports
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>---- -------------------------------- --------- -------------------------------
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>1    default                          active    ...
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>100  VLAN_100                         active    Fa0/1
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>200  VLAN_200                         active    Fa0/10
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Comandos de verificación alternativos</p>
+<p>En la recuperación puede pedirse <code>show interfaces trunk</code> para verificar los trunks, o <code>show vlan brief</code> para los puertos access. Prepara ambos.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>Si Fa0/1 aparece en la columna de VLAN 1 en lugar de VLAN 100, ¿qué falta configurar?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Falta asignar el puerto en modo access a VLAN 100:
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>interface FastEthernet0/1
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a> switchport mode access
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a> switchport access vlan 100
+</code></pre></div></p>
+</details>
+<hr />
+<h3 id="paso-3a-configurar-puertos-trunk-en-sw_2">Paso 3a — Configurar puertos trunk en SW_2<a class="headerlink" href="#paso-3a-configurar-puertos-trunk-en-sw_2" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura de la configuración de los puertos trunk en el switch que conecta al router y a otros switches.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>Los trunks van en los <strong>uplinks</strong>: las interfaces que conectan con el router (RoaS) y con otros switches. En ningún caso van en puertos que conectan a PCs.</p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>! En SW_2
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>interface GigabitEthernet0/1
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a> switchport mode trunk        ! uplink hacia R_1 (router-on-a-stick)
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>interface GigabitEthernet0/2
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a> switchport mode trunk        ! uplink hacia SW_3
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Error más frecuente</p>
+<p>No configurar trunk en Gig0/1 (el uplink hacia el router). Sin este trunk, el router recibe tráfico sin etiquetar y no puede enrutar entre VLANs. Es el error que más impacta en la funcionalidad de toda la topología.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Error también frecuente</p>
+<p>Configurar Fa0/1 y Fa0/10 como trunk. Estos son puertos de acceso hacia PCs. Al ponerlos en modo trunk, dejan de pertenecer a sus VLANs y el <code>show vlan brief</code> deja de mostrar los puertos asignados.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Comandos de verificación</p>
+<p><div class="language-text highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>show interfaces trunk
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>show vlan brief
+</code></pre></div>
+Con <code>show interfaces trunk</code> verás exactamente qué interfaces están en modo trunk y qué VLANs están activas en ellas.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>Si Gig0/1 no está en modo trunk, ¿qué le pasa al tráfico de VLAN 100 cuando llega al router? ¿Lo puede procesar la subinterfaz Gig0/1.100?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Si Gig0/1 está en modo access (o sin configurar), el switch solo envía al router el tráfico sin etiquetar de la VLAN nativa (normalmente VLAN 1). El tráfico de VLAN 100 <strong>no llega etiquetado</strong> al router. La subinterfaz Gig0/1.100 usa <code>encapsulation dot1Q 100</code> para identificar paquetes con esa etiqueta; sin etiqueta, no los puede distinguir y el enrutamiento inter-VLAN falla completamente.</p>
+</details>
+<hr />
+<h3 id="paso-3b-verificar-show-vlan-brief-tras-configurar-trunks">Paso 3b — Verificar show vlan brief tras configurar trunks<a class="headerlink" href="#paso-3b-verificar-show-vlan-brief-tras-configurar-trunks" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura del <code>show vlan brief</code> después de configurar los trunks, mostrando que los puertos access siguen correctamente asignados.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>Este apartado verifica que los trunks no han dañado la asignación de puertos access. Si los puertos access (Fa0/1, Fa0/10) siguen apareciendo en sus VLANs correspondientes, la configuración es correcta.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Si en el paso anterior pusiste Fa0/1 o Fa0/10 como trunk, aquí verás que esos puertos ya no aparecen asignados a ninguna VLAN. Debes corregir la configuración de trunks antes de tomar esta captura.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Comandos de verificación alternativos</p>
+<p>En la recuperación puede pedirse <code>show interfaces trunk</code> en lugar de (o además de) <code>show vlan brief</code>.</p>
+</div>
+<hr />
+<h3 id="paso-3c-ping-entre-pcs-de-la-misma-vlan">Paso 3c — Ping entre PCs de la misma VLAN<a class="headerlink" href="#paso-3c-ping-entre-pcs-de-la-misma-vlan" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura de <code>ipconfig</code> + <code>ping</code> entre dos PCs de la misma VLAN para verificar conectividad L2.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>Este ping prueba que las VLANs están correctamente configuradas y los trunks funcionan. No requiere enrutamiento: ambos PCs están en la misma red lógica.</p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Ejemplo: PCD_1 (10.200.0.1) → ping → PCD_2 (10.200.0.2)
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Hacer ping a la propia IP del PC (self-ping). Eso siempre responde y no prueba ninguna conectividad. El ping debe ser a <strong>otro</strong> PC de la misma VLAN.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Sobre los timeouts en Packet Tracer</p>
+<p>El primer paquete del ping puede salir como timeout por la resolución ARP. Esto es normal. Con que haya <strong>al menos una respuesta</strong> (Reply), la conectividad está demostrada.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>Si el ping de este paso falla, ¿qué elementos de configuración deberías revisar? Lista al menos tres posibles causas.</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<ol>
+<li>VLANs no creadas en alguno de los switches del camino.</li>
+<li>Puertos access no asignados a la VLAN correcta en los switches de acceso.</li>
+<li>Trunks no configurados en los uplinks entre switches.</li>
+<li>Los PCs origen y destino están configurados en VLANs distintas por error.</li>
+<li>Problema de conectividad física en PT (cable desconectado).</li>
+</ol>
+</details>
+<hr />
+<h3 id="paso-4a-configurar-svis-en-el-switch-l3">Paso 4a — Configurar SVIs en el switch L3<a class="headerlink" href="#paso-4a-configurar-svis-en-el-switch-l3" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura mostrando la creación de las SVIs con sus IPs y el comando <code>ip routing</code> en el switch L3.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>Para enrutamiento inter-VLAN en un switch L3 se necesitan dos cosas:
+1. <code>ip routing</code> — activa el motor de enrutamiento
+2. Una SVI por cada VLAN, con IP y <code>no shutdown</code></p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>! En SWL3_1
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>ip routing
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>interface vlan 30
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a> ip address 192.168.30.254 255.255.255.0
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a> no shutdown
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>interface vlan 40
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a> ip address 192.168.40.254 255.255.255.0
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a> no shutdown
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Configurar las SVIs correctamente pero olvidar <code>ip routing</code>. El switch no enrutará entre VLANs aunque todo lo demás esté bien. En la captura del examen, <code>ip routing</code> debe ser visible en el bloque de comandos o en el <code>show running-config</code>.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Verificación</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>show ip interface brief   ! Vlan30 y Vlan40 deben aparecer up/up con sus IPs
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>show ip route             ! Deben aparecer las redes C (connected) de las VLANs
+</code></pre></div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>Una SVI puede estar up/down (up en capa 1, down en capa 2). ¿Qué significa eso? ¿Qué tendrías que hacer para que aparezca up/up?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<p><strong>Status up / Protocol down</strong>: la interfaz lógica existe y no tiene <code>shutdown</code> (capa 1 ok), pero el protocolo de capa 2 está caído porque no hay ningún puerto físico activo asignado a esa VLAN en el switch. Para que aparezca <strong>up/up</strong> debe existir al menos un puerto de esa VLAN activo con conexión. En PT: conecta un PC a un puerto access de esa VLAN y asegúrate de que la interfaz del PC está up.</p>
+</details>
+<hr />
+<h3 id="paso-4b-show-ip-interface-brief-en-swl3_1">Paso 4b — show ip interface brief en SWL3_1<a class="headerlink" href="#paso-4b-show-ip-interface-brief-en-swl3_1" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura del <code>show ip interface brief</code> en el switch L3 mostrando las SVIs activas.</p>
+<p><strong>Salida esperada (ejemplo):</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Interface              IP-Address      OK? Method Status                Protocol
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>...
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>Vlan30                 192.168.30.254  YES manual up                    up
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>Vlan40                 192.168.40.254  YES manual up                    up
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>GigabitEthernet0/2     10.0.0.1        YES manual up                    up
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Las SVIs aparecen up/down (protocolo down). Esto ocurre cuando no hay puertos activos asignados a esas VLANs. Comprueba que los PCs de esas VLANs están conectados y sus interfaces están up.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>¿Qué diferencia hay entre el Status y el Protocol en la salida del <code>show ip interface brief</code>? ¿Qué indica cada uno cuando está down?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<ul>
+<li><strong>Status (capa 1)</strong>: estado físico de la interfaz. <code>administratively down</code> = hay un <code>shutdown</code> manual; <code>down</code> = sin señal o sin conexión.</li>
+<li><strong>Protocol (capa 2)</strong>: comunicación bidireccional activa con el otro extremo. <code>down</code> con Status up = conexión física ok, pero sin protocolo de capa 2 funcionando (típico en SVIs sin puertos activos en esa VLAN, o enlaces sin configuración en el extremo remoto).</li>
+</ul>
+</details>
+<hr />
+<h3 id="paso-4c-ping-inter-vlan-a-traves-de-swl3_1">Paso 4c — Ping inter-VLAN a través de SWL3_1<a class="headerlink" href="#paso-4c-ping-inter-vlan-a-traves-de-swl3_1" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura de un ping entre dos PCs de VLANs distintas, enrutado por SWL3_1.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>Este ping prueba el enrutamiento inter-VLAN del switch L3. El paquete sube por la SVI de la VLAN origen, el switch lo enruta, y lo entrega por la SVI de la VLAN destino.</p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Ejemplo: PCA_2 (192.168.30.2) → ping → PRB_2 (192.168.40.2)
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>El ping falla porque falta <code>ip routing</code> (ver paso 4a). Si este ping falla pero los del paso 3c funcionaron, el problema está en el enrutamiento, no en las VLANs.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>¿Qué ruta sigue el paquete de PCA_2 a PRB_2? ¿Qué dispositivo hace el enrutamiento? ¿Qué IP usa cada PC como gateway?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<p>PCA_2 (192.168.30.2) envía el paquete a su gateway <strong>192.168.30.254</strong> (Vlan30 de SWL3_1). SWL3_1 consulta su tabla de rutas: 192.168.40.0/24 es directamente conectada por Vlan40, y lo reenvía por ahí. PRB_2 (192.168.40.2) lo recibe.</p>
+<ul>
+<li><strong>Dispositivo que enruta</strong>: SWL3_1.</li>
+<li><strong>Gateway de PCA_2</strong>: 192.168.30.254</li>
+<li><strong>Gateway de PRB_2</strong>: 192.168.40.254</li>
+</ul>
+</details>
+<hr />
+<h3 id="paso-5a-configurar-enlace-routed-en-swl3_1">Paso 5a — Configurar enlace routed en SWL3_1<a class="headerlink" href="#paso-5a-configurar-enlace-routed-en-swl3_1" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura mostrando la configuración de la interfaz Gig0/2 del switch L3 como puerto routed (no switchport) con IP.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>Por defecto, todas las interfaces de un switch son puertos de capa 2 (switchport). Para conectar el switch L3 directamente con el router mediante una IP punto a punto, hay que convertir esa interfaz a modo routed con <code>no switchport</code>.</p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>! En SWL3_1
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>interface GigabitEthernet0/2
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a> no switchport
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a> ip address 10.0.0.1 255.255.255.252
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a> no shutdown
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Olvidar <code>no switchport</code>. Sin él, la interfaz permanece en modo L2 y no acepta dirección IP. El enlace punto a punto con el router no funcionará.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>¿Por qué en este caso no se usa una SVI sino un puerto routed? ¿Cuál es la diferencia entre un puerto routed y una SVI?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Se usa un puerto routed porque el enlace con R_1 es <strong>punto a punto</strong> y no pertenece a ninguna VLAN — es una conexión de red pura entre dos dispositivos L3.</p>
+<ul>
+<li><strong>SVI</strong>: interfaz lógica asociada a una VLAN; actúa como gateway de todos los dispositivos de esa VLAN. No es una interfaz física, no puede usarse para un enlace P2P.</li>
+<li><strong>Puerto routed</strong> (<code>no switchport</code>): convierte una interfaz física en un puerto de capa 3 con su propia IP, sin pertenecer a ninguna VLAN. Ideal para enlaces directos entre routers o entre router y switch L3.</li>
+</ul>
+</details>
+<hr />
+<h3 id="paso-5b-show-interfaces-switchport">Paso 5b — show interfaces switchport<a class="headerlink" href="#paso-5b-show-interfaces-switchport" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura del comando <code>show interfaces GigabitEthernet0/2 switchport</code> mostrando que el puerto está en modo routed.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>El comando <code>show interfaces &lt;interfaz&gt; switchport</code> muestra si una interfaz tiene el modo switchport habilitado o no. En un puerto routed (después de <code>no switchport</code>), la salida indica <code>Switchport: Disabled</code>.</p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>show interfaces GigabitEthernet0/2 switchport
+</code></pre></div>
+<p><strong>Salida esperada:</strong>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Name: Gig0/2
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Switchport: Disabled
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>...
+</code></pre></div></p>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Usar <code>show interfaces GigabitEthernet0/2</code> (sin la palabra clave <code>switchport</code>). Este comando muestra estadísticas de la interfaz (paquetes, errores, etc.) pero <strong>no muestra</strong> el campo "Switchport: Disabled". La captura no será válida para este apartado.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>¿Qué diferencia hay en la salida entre <code>show interfaces Gig0/2</code> y <code>show interfaces Gig0/2 switchport</code>? ¿Por qué es importante usar el comando correcto?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<ul>
+<li><code>show interfaces Gig0/2</code>: muestra estadísticas físicas de la interfaz (estado, velocidad, duplex, contadores de paquetes y errores). <strong>No indica si switchport está habilitado o no</strong>.</li>
+<li><code>show interfaces Gig0/2 switchport</code>: muestra la configuración de capa 2: si switchport está habilitado (<code>Enabled</code>) o deshabilitado (<code>Disabled</code>), el modo (access/trunk) y la VLAN asignada. En un puerto routed, aparece <code>Switchport: Disabled</code>.</li>
+</ul>
+<p>Es importante usar el correcto porque el apartado 5b pide demostrar explícitamente que el puerto está en modo routed, y solo el segundo comando lo hace visible.</p>
+</details>
+<hr />
+<h3 id="paso-6a-configurar-router-on-a-stick-en-r_1">Paso 6a — Configurar router-on-a-stick en R_1<a class="headerlink" href="#paso-6a-configurar-router-on-a-stick-en-r_1" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura de la configuración de las subinterfaces del router con <code>encapsulation dot1Q</code> e IPs.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>En el router-on-a-stick, cada subinterfaz se asocia a una VLAN mediante <code>encapsulation dot1Q &lt;id_vlan&gt;</code>. Este comando debe ejecutarse <strong>antes</strong> de asignar la IP. La interfaz física no necesita IP pero sí debe estar en <code>no shutdown</code>.</p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>! En R_1
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>interface GigabitEthernet0/1
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a> no shutdown          ! La física debe estar activa
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>interface GigabitEthernet0/1.100
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a> encapsulation dot1Q 100
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a> ip address 10.100.255.254 255.255.0.0
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>interface GigabitEthernet0/1.200
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a> encapsulation dot1Q 200
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a> ip address 10.200.255.254 255.255.0.0
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Omitir <code>encapsulation dot1Q</code>. Sin este comando, la subinterfaz no sabe qué tráfico VLAN debe procesar. El router no enrutará correctamente el tráfico de esas VLANs.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>IP de subinterfaz incorrecta. Para una red /16 como 10.100.0.0/16, la última IP host es 10.100.<strong>255</strong>.254, no 10.100.<strong>0</strong>.254.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Verificación</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>show ip interface brief
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>! Gig0/1.100 y Gig0/1.200 deben aparecer up/up con sus IPs
+</code></pre></div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>¿Qué sucede si pones <code>encapsulation dot1Q 100</code> en la subinterfaz que debería ser VLAN 200, y viceversa? ¿Cómo afectaría a la conectividad?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<p>El tráfico de VLAN 100 llegaría a la subinterfaz con la IP de VLAN 200, y el de VLAN 200 a la de VLAN 100. Los PCs no encontrarían su gateway en la subinterfaz correcta. Los pings entre VLANs fallarían porque el router respondería desde la IP equivocada. En la práctica, los PCs ni siquiera podrían alcanzar su gateway predeterminado.</p>
+</details>
+<hr />
+<h3 id="paso-6b-show-ip-interface-brief-en-r_1">Paso 6b — show ip interface brief en R_1<a class="headerlink" href="#paso-6b-show-ip-interface-brief-en-r_1" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura del <code>show ip interface brief</code> en R_1 mostrando las subinterfaces activas.</p>
+<p><strong>Salida esperada (ejemplo):</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Interface              IP-Address       OK? Method Status                Protocol
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>GigabitEthernet0/0     10.0.0.2         YES manual up                    up
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>GigabitEthernet0/1     unassigned       YES unset  up                    up
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>GigabitEthernet0/1.100 10.100.255.254   YES manual up                    up
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>GigabitEthernet0/1.200 10.200.255.254   YES manual up                    up
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Las subinterfaces aparecen como administratively down. Esto ocurre cuando la interfaz física (Gig0/1) tiene <code>shutdown</code>. Asegúrate de ejecutar <code>no shutdown</code> en Gig0/1.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>Si Gig0/1 está up pero Gig0/1.100 está down, ¿cuál puede ser la causa? ¿Y si ambas están administratively down?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<ul>
+<li><strong>Gig0/1 up pero Gig0/1.100 down</strong>: la subinterfaz tiene <code>shutdown</code> manual, o el trunk del switch no está activo (la VLAN no llega al router).</li>
+<li><strong>Ambas administratively down</strong>: la interfaz física Gig0/1 tiene <code>shutdown</code>. Ejecuta <code>no shutdown</code> en <code>interface GigabitEthernet0/1</code>. Al activarla, las subinterfaces deberían subir automáticamente.</li>
+</ul>
+</details>
+<hr />
+<h3 id="paso-6c-ping-inter-vlan-a-traves-de-r_1">Paso 6c — Ping inter-VLAN a través de R_1<a class="headerlink" href="#paso-6c-ping-inter-vlan-a-traves-de-r_1" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura de un ping entre PCs de las VLANs gestionadas por el router (VLANs 100 y 200).</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Ejemplo: PCC_2 (10.100.0.2) → ping → PCD_2 (10.200.0.2)
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>Este ping prueba que el router-on-a-stick funciona correctamente. El paquete sale por VLAN 100, llega al router por la subinterfaz Gig0/1.100, el router lo enruta, y lo envía de vuelta por Gig0/1.200 hacia VLAN 200.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>Para que este ping funcione, ¿qué configuraciones previas deben estar correctas? Enumera al menos 4.</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<ol>
+<li>VLANs 100 y 200 creadas en SW_2/SW_3/SW_4 con puertos access asignados correctamente.</li>
+<li>Trunk activo en Gig0/1 de SW_2 (uplink hacia R_1).</li>
+<li>Subinterfaces del router con <code>encapsulation dot1Q</code> correcto e IPs correctas (x.x.255.254/16).</li>
+<li>Interfaz física Gig0/1 del router en <code>no shutdown</code>.</li>
+<li>IPs de los PCs configuradas con el gateway correcto (x.x.255.254).</li>
+</ol>
+</details>
+<hr />
+<h3 id="paso-7a-rutas-estaticas-en-r_1">Paso 7a — Rutas estáticas en R_1<a class="headerlink" href="#paso-7a-rutas-estaticas-en-r_1" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura mostrando los comandos <code>ip route</code> en R_1 y el <code>show ip route</code> con las rutas activas.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>R_1 necesita rutas estáticas para llegar a las redes de las VLANs 30 y 40, que están detrás de SWL3_1. El next-hop es la IP de SWL3_1 en el enlace punto a punto (la IP del lado de SWL3_1 en el /30).</p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>! En R_1
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>ip route 192.168.30.0 255.255.255.0 10.0.0.1
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>ip route 192.168.40.0 255.255.255.0 10.0.0.1
+</code></pre></div>
+<p><strong>Verificación en show ip route:</strong>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>S    192.168.30.0/24 [1/0] via 10.0.0.1
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>S    192.168.40.0/24 [1/0] via 10.0.0.1
+</code></pre></div></p>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Los comandos <code>ip route</code> se teclean correctamente pero <strong>las rutas no aparecen como S activas</strong> en el <code>show ip route</code>. Causa habitual: el next-hop (10.0.0.1) no es alcanzable porque el enlace punto a punto no está configurado correctamente (paso 5a o la IP del lado R_1 en Gig0/0 es incorrecta).</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Verificación</p>
+<p>La captura del <code>show ip route</code> es la prueba definitiva. Si no ves la S junto a las redes destino, las rutas <strong>no están activas</strong> aunque hayas tecleado los comandos.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>¿Qué rutas directamente conectadas (C) debería ver R_1 en su tabla de enrutamiento? Enuméralas antes de mirar la solución.</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<p>R_1 tiene tres redes directamente conectadas:</p>
+<ul>
+<li><code>C  10.0.0.0/30</code> — por Gig0/0 (enlace P2P con SWL3_1)</li>
+<li><code>C  10.100.0.0/16</code> — por Gig0/1.100 (subinterfaz VLAN 100)</li>
+<li><code>C  10.200.0.0/16</code> — por Gig0/1.200 (subinterfaz VLAN 200)</li>
+</ul>
+<p>Las redes 192.168.30.0/24 y 192.168.40.0/24 <strong>no son directamente conectadas</strong> a R_1 (están detrás de SWL3_1), por eso necesitan rutas estáticas S.</p>
+</details>
+<hr />
+<h3 id="paso-7b-show-ip-route-en-swl3_1">Paso 7b — show ip route en SWL3_1<a class="headerlink" href="#paso-7b-show-ip-route-en-swl3_1" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> captura del <code>show ip route</code> en SWL3_1 mostrando la tabla de enrutamiento completa.</p>
+<p><strong>Tabla esperada (ejemplo):</strong></p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>C    10.0.0.0/30         via GigabitEthernet0/2
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>S    10.100.0.0/16       [1/0] via 10.0.0.2
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>S    10.200.0.0/16       [1/0] via 10.0.0.2
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>C    192.168.30.0/24     via Vlan30
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>C    192.168.40.0/24     via Vlan40
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<ul>
+<li><strong>C (Connected):</strong> redes directamente conectadas al dispositivo</li>
+<li><strong>S (Static):</strong> rutas configuradas manualmente con <code>ip route</code></li>
+<li>El next-hop de las rutas S hacia las VLANs del router es la IP de R_1 en el enlace punto a punto</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>¿Por qué SWL3_1 necesita rutas estáticas hacia 10.100.0.0/16 y 10.200.0.0/16? ¿No podría llegar a esas redes directamente?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<p>SWL3_1 no tiene ninguna interfaz en las redes 10.100.0.0/16 ni 10.200.0.0/16. Esas redes están al otro lado de R_1. Sin rutas estáticas, SWL3_1 no sabría por dónde enviar los paquetes destinados a esas redes. Las rutas estáticas le indican: «para llegar a 10.100.0.0/16 o 10.200.0.0/16, envía el paquete a R_1 (next-hop 10.0.0.2)».</p>
+</details>
+<hr />
+<h3 id="paso-8-pruebas-de-conectividad-entre-redes-remotas">Paso 8 — Pruebas de conectividad entre redes remotas<a class="headerlink" href="#paso-8-pruebas-de-conectividad-entre-redes-remotas" title="Permanent link">&para;</a></h3>
+<p><strong>Qué se pide:</strong> capturas de pings entre dispositivos de redes distintas, verificando que el enrutamiento end-to-end funciona.</p>
+<div class="admonition note">
+<p class="admonition-title">Concepto</p>
+<p>Estos pings prueban que toda la topología funciona de extremo a extremo: VLANs, trunks, SVIs, enlace routed, router-on-a-stick y rutas estáticas. Si algún paso anterior falla, estos pings lo evidenciarán.</p>
+</div>
+<p><strong>Ejemplo de pares probados en la prueba original:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Apt.</th>
+<th>Origen</th>
+<th>Destino</th>
+<th>Ruta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8a</td>
+<td>PCA_1 (192.168.30.1)</td>
+<td>PCC_1 (10.100.0.1)</td>
+<td>SWL3_1 → R_1</td>
+</tr>
+<tr>
+<td>8b</td>
+<td>PCA_2 (192.168.30.2)</td>
+<td>PCD_1 (10.200.0.1)</td>
+<td>SWL3_1 → R_1</td>
+</tr>
+<tr>
+<td>8c</td>
+<td>PCB_1 (192.168.40.1)</td>
+<td>PCC_2 (10.100.0.2)</td>
+<td>SWL3_1 → R_1</td>
+</tr>
+<tr>
+<td>8d</td>
+<td>PCD_2 (10.200.0.2)</td>
+<td>PRB_2 (192.168.40.2)</td>
+<td>R_1 → SWL3_1</td>
+</tr>
+<tr>
+<td>8e</td>
+<td>PCA_1 (192.168.30.1)</td>
+<td>R_1 Gig0/0 (10.0.0.2)</td>
+<td>SWL3_1</td>
+</tr>
+<tr>
+<td>8f</td>
+<td>PCD_2 (10.200.0.2)</td>
+<td>SWL3_1 Gig0/2 (10.0.0.1)</td>
+<td>R_1</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Sobre los timeouts</p>
+<p>En Packet Tracer el primer paquete del ping puede salir como timeout (<code>.</code>) por la resolución ARP. <strong>No es un error.</strong> Con una sola respuesta (<code>!</code>) la conectividad está demostrada.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>Hacer ping al destino incorrecto. Por ejemplo, hacer ping a 10.200.0.2 cuando se pide a 10.100.0.2. Lee con cuidado el enunciado de cada apartado para identificar el par correcto.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Error frecuente</p>
+<p>No incluir captura de algún ping. Cada apartado (8a, 8b, 8c, 8d, 8e, 8f) necesita su propia captura o estar visible en la misma captura junto a los demás pings del mismo PC.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Reflexión</p>
+<p>Si el ping del apartado 8a falla pero los de los pasos 4c y 6c funcionaron, ¿qué parte de la configuración falta? ¿En qué dispositivo está el problema?</p>
+</div>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Si 4c (inter-VLAN por SWL3_1) y 6c (inter-VLAN por R_1) funcionan pero 8a (PCA_1 → PCC_1, entre redes remotas) falla, la conectividad local es correcta en ambos bloques, pero <strong>falta el enrutamiento entre ellos</strong>. El problema está en las <strong>rutas estáticas</strong> (Paso 7): R_1 no sabe llegar a 192.168.30.0/24 (falta la ruta S en R_1) y/o SWL3_1 no sabe llegar a 10.100.0.0/16 (falta la ruta S en SWL3_1).</p>
+</details>
+<hr />
+<h2 id="4-errores-frecuentes-tabla-resumen">4. Errores frecuentes — Tabla resumen<a class="headerlink" href="#4-errores-frecuentes-tabla-resumen" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Apartado</th>
+<th>Error</th>
+<th>Consecuencia</th>
+<th>Cómo evitarlo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0a</td>
+<td>Mascara incorrecta para un prefijo /16</td>
+<td>0 puntos en el apartado</td>
+<td>Memoriza la tabla de máscaras por CIDR</td>
+</tr>
+<tr>
+<td>0b</td>
+<td>IP de subinterfaz = x.x.0.254 en lugar de x.x.255.254 para un /16</td>
+<td>Penalización en 0b y errores en pasos siguientes</td>
+<td>Calcula siempre la última IP host del prefijo completo</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Gateway del PC incorrecto</td>
+<td>El PC no puede comunicarse con otras redes</td>
+<td>El gateway debe coincidir con la SVI/subinterfaz de esa VLAN</td>
+</tr>
+<tr>
+<td>2a</td>
+<td>Crear VLANs de redes remotas en un switch que no las necesita</td>
+<td>Desorden en la configuración</td>
+<td>Analiza qué VLANs tiene cada switch en su segmento</td>
+</tr>
+<tr>
+<td>2a</td>
+<td>Usar GUI en lugar de CLI para crear VLANs</td>
+<td>VLANs no creadas correctamente</td>
+<td>Usa siempre la CLI</td>
+</tr>
+<tr>
+<td>3a</td>
+<td>No configurar trunk en el uplink hacia el router</td>
+<td>El router no recibe tráfico etiquetado; inter-VLAN falla</td>
+<td>Los trunks van en uplinks, no en puertos de acceso</td>
+</tr>
+<tr>
+<td>3a</td>
+<td>Configurar trunk en Fa0/1 / Fa0/10 (puertos de acceso)</td>
+<td>Las VLANs pierden sus puertos en el show vlan brief</td>
+<td>Solo los uplinks (Gig0/1, Gig0/2) son trunk</td>
+</tr>
+<tr>
+<td>4a</td>
+<td>Olvidar <code>ip routing</code> en el switch L3</td>
+<td>Las SVIs existen pero no hay enrutamiento</td>
+<td>Ejecuta <code>ip routing</code> antes de configurar SVIs</td>
+</tr>
+<tr>
+<td>4b</td>
+<td>SVIs en estado up/down</td>
+<td>No hay enrutamiento inter-VLAN funcional</td>
+<td>Verifica que hay puertos activos en esas VLANs</td>
+</tr>
+<tr>
+<td>5b</td>
+<td><code>show interfaces Gig0/2</code> sin <code>switchport</code></td>
+<td>La salida no muestra "Switchport: Disabled"</td>
+<td>El comando completo es <code>show interfaces Gig0/2 switchport</code></td>
+</tr>
+<tr>
+<td>6a</td>
+<td>Olvidar <code>encapsulation dot1Q</code></td>
+<td>Las subinterfaces no procesan el tráfico VLAN</td>
+<td>Es obligatorio antes de la IP en cada subinterfaz</td>
+</tr>
+<tr>
+<td>6a</td>
+<td>IP incorrecta en subinterfaz (x.x.0.254 en lugar de x.x.255.254)</td>
+<td>El gateway de los PCs no coincide</td>
+<td>Calcula la última IP del prefijo /16</td>
+</tr>
+<tr>
+<td>6b</td>
+<td>Subinterfaces administratively down</td>
+<td>El router no enruta</td>
+<td>Haz <code>no shutdown</code> en la interfaz física (Gig0/1)</td>
+</tr>
+<tr>
+<td>7a</td>
+<td><code>ip route</code> tecleado pero ruta no activa en show ip route</td>
+<td>Los pings del bloque 8 fallan</td>
+<td>Verifica conectividad al next-hop antes de agregar la ruta</td>
+</tr>
+<tr>
+<td>8a–8f</td>
+<td>Ping al destino incorrecto</td>
+<td>0 puntos en ese apartado</td>
+<td>Lee el enunciado con atención antes de hacer el ping</td>
+</tr>
+<tr>
+<td>8a–8f</td>
+<td>Captura ausente</td>
+<td>0 puntos en ese apartado</td>
+<td>Toma captura de <strong>todos</strong> los apartados</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-checklist-final-de-autoevaluacion">5. Checklist final de autoevaluación<a class="headerlink" href="#5-checklist-final-de-autoevaluacion" title="Permanent link">&para;</a></h2>
+<p>Antes de entregar, repasa esta lista. Si algún punto no puedes marcarlo, vuelve al apartado correspondiente.</p>
+<h3 id="direccionamiento">Direccionamiento<a class="headerlink" href="#direccionamiento" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] La tabla de redes tiene <strong>todas</strong> las máscaras correctas (0a)</li>
+<li>[ ] Las IPs de subinterfaces y SVIs son la <strong>última IP host</strong> del prefijo, no la primera</li>
+<li>[ ] La puerta de enlace de cada PC coincide con la SVI/subinterfaz de su VLAN</li>
+</ul>
+<h3 id="vlans">VLANs<a class="headerlink" href="#vlans" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] Solo he creado las VLANs necesarias en cada switch (las que tiene en su segmento)</li>
+<li>[ ] He usado la CLI, no la GUI, para crear las VLANs</li>
+<li>[ ] Los puertos de acceso están asignados a las VLANs correctas</li>
+<li>[ ] El <code>show vlan brief</code> (o <code>show interfaces trunk</code>) confirma la configuración</li>
+</ul>
+<h3 id="trunk">Trunk<a class="headerlink" href="#trunk" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] Los trunks están configurados en los <strong>uplinks</strong> (hacia el router y hacia otros switches)</li>
+<li>[ ] Ningún puerto de acceso (hacia PCs) está en modo trunk</li>
+<li>[ ] El uplink hacia el router (RoaS) está en modo trunk</li>
+</ul>
+<h3 id="switch-l3-svi-e-ip-routing">Switch L3 — SVI e ip routing<a class="headerlink" href="#switch-l3-svi-e-ip-routing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] He ejecutado <code>ip routing</code> en el switch L3</li>
+<li>[ ] Las SVIs tienen IP y están en <code>no shutdown</code></li>
+<li>[ ] El <code>show ip interface brief</code> muestra las SVIs en estado up/up</li>
+<li>[ ] El <code>show ip route</code> muestra las redes de las VLANs como C (connected)</li>
+</ul>
+<h3 id="enlace-routed">Enlace routed<a class="headerlink" href="#enlace-routed" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] He ejecutado <code>no switchport</code> en la interfaz punto a punto del L3</li>
+<li>[ ] La interfaz tiene la IP correcta del bloque /30</li>
+<li>[ ] El <code>show interfaces &lt;int&gt; switchport</code> muestra "Switchport: Disabled"</li>
+</ul>
+<h3 id="router-on-a-stick">Router-on-a-stick<a class="headerlink" href="#router-on-a-stick" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] La interfaz física del router está en <code>no shutdown</code></li>
+<li>[ ] Cada subinterfaz tiene <code>encapsulation dot1Q &lt;id_vlan&gt;</code> antes de la IP</li>
+<li>[ ] Las IPs de las subinterfaces son correctas (última IP del prefijo)</li>
+<li>[ ] El <code>show ip interface brief</code> muestra las subinterfaces up/up</li>
+</ul>
+<h3 id="rutas-estaticas">Rutas estáticas<a class="headerlink" href="#rutas-estaticas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] He configurado rutas estáticas en ambos sentidos (R_1 hacia las redes del L3, y SWL3_1 hacia las redes del router)</li>
+<li>[ ] El <code>show ip route</code> confirma que las rutas <strong>S</strong> están activas (no solo tecleadas)</li>
+</ul>
+<h3 id="capturas">Capturas<a class="headerlink" href="#capturas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] Tengo captura de <strong>todos</strong> los apartados, incluidos los pings 8a–8f</li>
+<li>[ ] Los pings muestran al menos una respuesta (<code>!</code>) aunque haya timeouts (<code>.</code>)</li>
+<li>[ ] Los destinos de los pings son los correctos según el enunciado</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>Recuerda:</strong> en la recuperación los valores concretos (IPs, VLANs, nombres de interfaz, comandos de verificación) pueden cambiar. Este checklist y los conceptos de la guía aplican a cualquier variante de la prueba.</p>
+</blockquote>
+<hr />
+<h2 id="6-anexo-configuracion-completa-de-referencia">6. Anexo: configuración completa de referencia<a class="headerlink" href="#6-anexo-configuracion-completa-de-referencia" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Valores del examen original</p>
+<p>Los comandos de este anexo usan los valores concretos del examen original. En la recuperación las IPs, VLANs, interfaces y nombres de dispositivo pueden cambiar. Usa este anexo como plantilla para entender la secuencia de configuración, no para memorizar los valores.</p>
+</div>
+<h3 id="resumen-de-la-topologia">Resumen de la topología<a class="headerlink" href="#resumen-de-la-topologia" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Dispositivo</th>
+<th>Interfaz</th>
+<th>Conectado a</th>
+<th>Modo</th>
+<th>Dirección IP / VLAN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SW_1</td>
+<td>Fa0/1</td>
+<td>PCA_1</td>
+<td>access</td>
+<td>VLAN 30</td>
+</tr>
+<tr>
+<td>SW_1</td>
+<td>Fa0/2</td>
+<td>PCA_2</td>
+<td>access</td>
+<td>VLAN 30</td>
+</tr>
+<tr>
+<td>SW_1</td>
+<td>Fa0/10</td>
+<td>PCB_1</td>
+<td>access</td>
+<td>VLAN 40</td>
+</tr>
+<tr>
+<td>SW_1</td>
+<td>Fa0/11</td>
+<td>PRB_2</td>
+<td>access</td>
+<td>VLAN 40</td>
+</tr>
+<tr>
+<td>SW_1</td>
+<td>Gig0/1</td>
+<td>SWL3_1 Gig0/1</td>
+<td>trunk</td>
+<td>VLANs 30, 40</td>
+</tr>
+<tr>
+<td>SW_2</td>
+<td>Fa0/1</td>
+<td>PCC_1</td>
+<td>access</td>
+<td>VLAN 100</td>
+</tr>
+<tr>
+<td>SW_2</td>
+<td>Fa0/10</td>
+<td>PCD_1</td>
+<td>access</td>
+<td>VLAN 200</td>
+</tr>
+<tr>
+<td>SW_2</td>
+<td>Gig0/1</td>
+<td>R_1 Gig0/1</td>
+<td>trunk</td>
+<td>VLANs 100, 200</td>
+</tr>
+<tr>
+<td>SW_2</td>
+<td>Gig0/2</td>
+<td>SW_3 Gig0/1</td>
+<td>trunk</td>
+<td>VLANs 100, 200</td>
+</tr>
+<tr>
+<td>SW_3</td>
+<td>Fa0/1</td>
+<td>PCC_2</td>
+<td>access</td>
+<td>VLAN 100</td>
+</tr>
+<tr>
+<td>SW_3</td>
+<td>Fa0/10</td>
+<td>PCD_2</td>
+<td>access</td>
+<td>VLAN 200</td>
+</tr>
+<tr>
+<td>SW_3</td>
+<td>Gig0/1</td>
+<td>SW_2 Gig0/2</td>
+<td>trunk</td>
+<td>VLANs 100, 200</td>
+</tr>
+<tr>
+<td>SWL3_1</td>
+<td>Gig0/1</td>
+<td>SW_1 Gig0/1</td>
+<td>trunk</td>
+<td>VLANs 30, 40</td>
+</tr>
+<tr>
+<td>SWL3_1</td>
+<td>Gig0/2</td>
+<td>R_1 Gig0/0</td>
+<td>routed</td>
+<td>10.0.0.1/30</td>
+</tr>
+<tr>
+<td>SWL3_1</td>
+<td>Vlan30</td>
+<td>—</td>
+<td>SVI</td>
+<td>192.168.30.254/24</td>
+</tr>
+<tr>
+<td>SWL3_1</td>
+<td>Vlan40</td>
+<td>—</td>
+<td>SVI</td>
+<td>192.168.40.254/24</td>
+</tr>
+<tr>
+<td>R_1</td>
+<td>Gig0/0</td>
+<td>SWL3_1 Gig0/2</td>
+<td>routed</td>
+<td>10.0.0.2/30</td>
+</tr>
+<tr>
+<td>R_1</td>
+<td>Gig0/1</td>
+<td>SW_2 Gig0/1</td>
+<td>física (sin IP)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>R_1</td>
+<td>Gig0/1.100</td>
+<td>—</td>
+<td>subinterfaz</td>
+<td>10.100.255.254/16</td>
+</tr>
+<tr>
+<td>R_1</td>
+<td>Gig0/1.200</td>
+<td>—</td>
+<td>subinterfaz</td>
+<td>10.200.255.254/16</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="configuracion-de-los-pcs">Configuración de los PCs<a class="headerlink" href="#configuracion-de-los-pcs" title="Permanent link">&para;</a></h3>
+<p>Accede a cada PC → pestaña <strong>Desktop</strong> → <strong>IP Configuration</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>PC</th>
+<th>IP Address</th>
+<th>Subnet Mask</th>
+<th>Default Gateway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PCA_1</td>
+<td>192.168.30.1</td>
+<td>255.255.255.0</td>
+<td>192.168.30.254</td>
+</tr>
+<tr>
+<td>PCA_2</td>
+<td>192.168.30.2</td>
+<td>255.255.255.0</td>
+<td>192.168.30.254</td>
+</tr>
+<tr>
+<td>PCB_1</td>
+<td>192.168.40.1</td>
+<td>255.255.255.0</td>
+<td>192.168.40.254</td>
+</tr>
+<tr>
+<td>PRB_2</td>
+<td>192.168.40.2</td>
+<td>255.255.255.0</td>
+<td>192.168.40.254</td>
+</tr>
+<tr>
+<td>PCC_1</td>
+<td>10.100.0.1</td>
+<td>255.255.0.0</td>
+<td>10.100.255.254</td>
+</tr>
+<tr>
+<td>PCC_2</td>
+<td>10.100.0.2</td>
+<td>255.255.0.0</td>
+<td>10.100.255.254</td>
+</tr>
+<tr>
+<td>PCD_1</td>
+<td>10.200.0.1</td>
+<td>255.255.0.0</td>
+<td>10.200.255.254</td>
+</tr>
+<tr>
+<td>PCD_2</td>
+<td>10.200.0.2</td>
+<td>255.255.0.0</td>
+<td>10.200.255.254</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="sw_1-switch-de-acceso-vlans-30-y-40">SW_1 — Switch de acceso (VLANs 30 y 40)<a class="headerlink" href="#sw_1-switch-de-acceso-vlans-30-y-40" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>enable
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>configure terminal
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>! Crear VLANs
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>vlan 30
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a> name VLAN_30
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>vlan 40
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a> name VLAN_40
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>exit
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>
+<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>! Puertos de acceso hacia los PCs
+<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>interface FastEthernet0/1
+<a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a> switchport mode access
+<a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a> switchport access vlan 30
+<a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a>interface FastEthernet0/2
+<a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a> switchport mode access
+<a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a> switchport access vlan 30
+<a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a>interface FastEthernet0/10
+<a id="__codelineno-27-19" name="__codelineno-27-19" href="#__codelineno-27-19"></a> switchport mode access
+<a id="__codelineno-27-20" name="__codelineno-27-20" href="#__codelineno-27-20"></a> switchport access vlan 40
+<a id="__codelineno-27-21" name="__codelineno-27-21" href="#__codelineno-27-21"></a>interface FastEthernet0/11
+<a id="__codelineno-27-22" name="__codelineno-27-22" href="#__codelineno-27-22"></a> switchport mode access
+<a id="__codelineno-27-23" name="__codelineno-27-23" href="#__codelineno-27-23"></a> switchport access vlan 40
+<a id="__codelineno-27-24" name="__codelineno-27-24" href="#__codelineno-27-24"></a>
+<a id="__codelineno-27-25" name="__codelineno-27-25" href="#__codelineno-27-25"></a>! Uplink hacia el switch L3
+<a id="__codelineno-27-26" name="__codelineno-27-26" href="#__codelineno-27-26"></a>interface GigabitEthernet0/1
+<a id="__codelineno-27-27" name="__codelineno-27-27" href="#__codelineno-27-27"></a> switchport mode trunk
+<a id="__codelineno-27-28" name="__codelineno-27-28" href="#__codelineno-27-28"></a>
+<a id="__codelineno-27-29" name="__codelineno-27-29" href="#__codelineno-27-29"></a>end
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Verificación SW_1</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>show vlan brief          ! VLANs 30 y 40 activas con Fa0/1, Fa0/2, Fa0/10, Fa0/11
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>show interfaces trunk    ! Gig0/1 en modo trunk transportando VLANs 30 y 40
+</code></pre></div>
+</div>
+<hr />
+<h3 id="sw_2-switch-de-distribucion-vlans-100-y-200">SW_2 — Switch de distribución (VLANs 100 y 200)<a class="headerlink" href="#sw_2-switch-de-distribucion-vlans-100-y-200" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>enable
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>configure terminal
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>! Crear VLANs
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>vlan 100
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a> name VLAN_100
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>vlan 200
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a> name VLAN_200
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>exit
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a>
+<a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a>! Puertos de acceso hacia los PCs
+<a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a>interface FastEthernet0/1
+<a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a> switchport mode access
+<a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a> switchport access vlan 100
+<a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a>interface FastEthernet0/10
+<a id="__codelineno-29-16" name="__codelineno-29-16" href="#__codelineno-29-16"></a> switchport mode access
+<a id="__codelineno-29-17" name="__codelineno-29-17" href="#__codelineno-29-17"></a> switchport access vlan 200
+<a id="__codelineno-29-18" name="__codelineno-29-18" href="#__codelineno-29-18"></a>
+<a id="__codelineno-29-19" name="__codelineno-29-19" href="#__codelineno-29-19"></a>! Uplinks en modo trunk
+<a id="__codelineno-29-20" name="__codelineno-29-20" href="#__codelineno-29-20"></a>interface GigabitEthernet0/1
+<a id="__codelineno-29-21" name="__codelineno-29-21" href="#__codelineno-29-21"></a> switchport mode trunk       ! hacia R_1 (router-on-a-stick)
+<a id="__codelineno-29-22" name="__codelineno-29-22" href="#__codelineno-29-22"></a>interface GigabitEthernet0/2
+<a id="__codelineno-29-23" name="__codelineno-29-23" href="#__codelineno-29-23"></a> switchport mode trunk       ! hacia SW_3
+<a id="__codelineno-29-24" name="__codelineno-29-24" href="#__codelineno-29-24"></a>
+<a id="__codelineno-29-25" name="__codelineno-29-25" href="#__codelineno-29-25"></a>end
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Verificación SW_2</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>show vlan brief          ! VLAN 100 con Fa0/1 y VLAN 200 con Fa0/10
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>show interfaces trunk    ! Gig0/1 y Gig0/2 en modo trunk con VLANs 100 y 200
+</code></pre></div>
+</div>
+<hr />
+<h3 id="sw_3-switch-de-acceso-remoto-vlans-100-y-200">SW_3 — Switch de acceso remoto (VLANs 100 y 200)<a class="headerlink" href="#sw_3-switch-de-acceso-remoto-vlans-100-y-200" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>enable
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>configure terminal
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>! Crear VLANs
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>vlan 100
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a> name VLAN_100
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>vlan 200
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a> name VLAN_200
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>exit
+<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a>
+<a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a>! Puertos de acceso hacia los PCs
+<a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a>interface FastEthernet0/1
+<a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a> switchport mode access
+<a id="__codelineno-31-14" name="__codelineno-31-14" href="#__codelineno-31-14"></a> switchport access vlan 100
+<a id="__codelineno-31-15" name="__codelineno-31-15" href="#__codelineno-31-15"></a>interface FastEthernet0/10
+<a id="__codelineno-31-16" name="__codelineno-31-16" href="#__codelineno-31-16"></a> switchport mode access
+<a id="__codelineno-31-17" name="__codelineno-31-17" href="#__codelineno-31-17"></a> switchport access vlan 200
+<a id="__codelineno-31-18" name="__codelineno-31-18" href="#__codelineno-31-18"></a>
+<a id="__codelineno-31-19" name="__codelineno-31-19" href="#__codelineno-31-19"></a>! Uplink hacia SW_2
+<a id="__codelineno-31-20" name="__codelineno-31-20" href="#__codelineno-31-20"></a>interface GigabitEthernet0/1
+<a id="__codelineno-31-21" name="__codelineno-31-21" href="#__codelineno-31-21"></a> switchport mode trunk
+<a id="__codelineno-31-22" name="__codelineno-31-22" href="#__codelineno-31-22"></a>
+<a id="__codelineno-31-23" name="__codelineno-31-23" href="#__codelineno-31-23"></a>end
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Verificación SW_3</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>show vlan brief          ! VLAN 100 con Fa0/1 y VLAN 200 con Fa0/10
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>show interfaces trunk    ! Gig0/1 en modo trunk con VLANs 100 y 200
+</code></pre></div>
+</div>
+<hr />
+<h3 id="swl3_1-switch-de-capa-3">SWL3_1 — Switch de capa 3<a class="headerlink" href="#swl3_1-switch-de-capa-3" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>enable
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>configure terminal
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>! Activar enrutamiento (OBLIGATORIO antes de cualquier SVI)
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>ip routing
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>! Crear VLANs
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>vlan 30
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a> name VLAN_30
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a>vlan 40
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a> name VLAN_40
+<a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a>exit
+<a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a>
+<a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a>! Trunk hacia SW_1
+<a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a>interface GigabitEthernet0/1
+<a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a> switchport mode trunk
+<a id="__codelineno-33-17" name="__codelineno-33-17" href="#__codelineno-33-17"></a>
+<a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a>! Enlace punto a punto hacia R_1 (puerto routed, sin switchport)
+<a id="__codelineno-33-19" name="__codelineno-33-19" href="#__codelineno-33-19"></a>interface GigabitEthernet0/2
+<a id="__codelineno-33-20" name="__codelineno-33-20" href="#__codelineno-33-20"></a> no switchport
+<a id="__codelineno-33-21" name="__codelineno-33-21" href="#__codelineno-33-21"></a> ip address 10.0.0.1 255.255.255.252
+<a id="__codelineno-33-22" name="__codelineno-33-22" href="#__codelineno-33-22"></a> no shutdown
+<a id="__codelineno-33-23" name="__codelineno-33-23" href="#__codelineno-33-23"></a>
+<a id="__codelineno-33-24" name="__codelineno-33-24" href="#__codelineno-33-24"></a>! SVIs: una por VLAN, actúan como gateway de sus PCs
+<a id="__codelineno-33-25" name="__codelineno-33-25" href="#__codelineno-33-25"></a>interface vlan 30
+<a id="__codelineno-33-26" name="__codelineno-33-26" href="#__codelineno-33-26"></a> ip address 192.168.30.254 255.255.255.0
+<a id="__codelineno-33-27" name="__codelineno-33-27" href="#__codelineno-33-27"></a> no shutdown
+<a id="__codelineno-33-28" name="__codelineno-33-28" href="#__codelineno-33-28"></a>interface vlan 40
+<a id="__codelineno-33-29" name="__codelineno-33-29" href="#__codelineno-33-29"></a> ip address 192.168.40.254 255.255.255.0
+<a id="__codelineno-33-30" name="__codelineno-33-30" href="#__codelineno-33-30"></a> no shutdown
+<a id="__codelineno-33-31" name="__codelineno-33-31" href="#__codelineno-33-31"></a>
+<a id="__codelineno-33-32" name="__codelineno-33-32" href="#__codelineno-33-32"></a>! Rutas estáticas hacia las redes que gestiona R_1
+<a id="__codelineno-33-33" name="__codelineno-33-33" href="#__codelineno-33-33"></a>ip route 10.100.0.0 255.255.0.0 10.0.0.2
+<a id="__codelineno-33-34" name="__codelineno-33-34" href="#__codelineno-33-34"></a>ip route 10.200.0.0 255.255.0.0 10.0.0.2
+<a id="__codelineno-33-35" name="__codelineno-33-35" href="#__codelineno-33-35"></a>
+<a id="__codelineno-33-36" name="__codelineno-33-36" href="#__codelineno-33-36"></a>end
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Verificación SWL3_1</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>show ip interface brief            ! Vlan30, Vlan40 y Gig0/2 up/up con sus IPs
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>show interfaces GigabitEthernet0/2 switchport   ! Switchport: Disabled
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>show interfaces trunk              ! Gig0/1 en modo trunk con VLANs 30 y 40
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>show ip route                      ! C: 10.0.0.0, 192.168.30.0, 192.168.40.0 — S: 10.100.0.0, 10.200.0.0
+</code></pre></div>
+</div>
+<hr />
+<h3 id="r_1-router-router-on-a-stick-rutas-estaticas">R_1 — Router (router-on-a-stick + rutas estáticas)<a class="headerlink" href="#r_1-router-router-on-a-stick-rutas-estaticas" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>enable
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>configure terminal
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>! Enlace punto a punto hacia SWL3_1
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>interface GigabitEthernet0/0
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a> ip address 10.0.0.2 255.255.255.252
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a> no shutdown
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>
+<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a>! Interfaz física del router-on-a-stick (sin IP; solo debe estar activa)
+<a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a>interface GigabitEthernet0/1
+<a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a> no shutdown
+<a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a>
+<a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a>! Subinterfaz para VLAN 100
+<a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a>interface GigabitEthernet0/1.100
+<a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a> encapsulation dot1Q 100
+<a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a> ip address 10.100.255.254 255.255.0.0
+<a id="__codelineno-35-17" name="__codelineno-35-17" href="#__codelineno-35-17"></a>
+<a id="__codelineno-35-18" name="__codelineno-35-18" href="#__codelineno-35-18"></a>! Subinterfaz para VLAN 200
+<a id="__codelineno-35-19" name="__codelineno-35-19" href="#__codelineno-35-19"></a>interface GigabitEthernet0/1.200
+<a id="__codelineno-35-20" name="__codelineno-35-20" href="#__codelineno-35-20"></a> encapsulation dot1Q 200
+<a id="__codelineno-35-21" name="__codelineno-35-21" href="#__codelineno-35-21"></a> ip address 10.200.255.254 255.255.0.0
+<a id="__codelineno-35-22" name="__codelineno-35-22" href="#__codelineno-35-22"></a>
+<a id="__codelineno-35-23" name="__codelineno-35-23" href="#__codelineno-35-23"></a>! Rutas estáticas hacia las redes que gestiona SWL3_1
+<a id="__codelineno-35-24" name="__codelineno-35-24" href="#__codelineno-35-24"></a>ip route 192.168.30.0 255.255.255.0 10.0.0.1
+<a id="__codelineno-35-25" name="__codelineno-35-25" href="#__codelineno-35-25"></a>ip route 192.168.40.0 255.255.255.0 10.0.0.1
+<a id="__codelineno-35-26" name="__codelineno-35-26" href="#__codelineno-35-26"></a>
+<a id="__codelineno-35-27" name="__codelineno-35-27" href="#__codelineno-35-27"></a>end
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Verificación R_1</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>show ip interface brief    ! Gig0/0, Gig0/1.100 y Gig0/1.200 up/up con sus IPs
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>show ip route              ! C: 10.0.0.0, 10.100.0.0, 10.200.0.0 — S: 192.168.30.0, 192.168.40.0
+</code></pre></div>
+</div>
+<hr />
+<h3 id="orden-de-configuracion-recomendado">Orden de configuración recomendado<a class="headerlink" href="#orden-de-configuracion-recomendado" title="Permanent link">&para;</a></h3>
+<p>Para evitar dependencias y facilitar la verificación por pasos:</p>
+<ol>
+<li><strong>PCs</strong> — asignar IP, máscara y gateway en cada PC</li>
+<li><strong>SW_1</strong> — VLANs 30/40 + puertos access + trunk hacia SWL3_1</li>
+<li><strong>SW_2</strong> — VLANs 100/200 + puertos access + trunks hacia R_1 y SW_3</li>
+<li><strong>SW_3</strong> — VLANs 100/200 + puertos access + trunk hacia SW_2</li>
+<li><strong>SWL3_1</strong> — <code>ip routing</code> + VLANs + trunk hacia SW_1 + puerto routed + SVIs + rutas estáticas</li>
+<li><strong>R_1</strong> — Gig0/0 + Gig0/1 (<code>no shutdown</code>) + subinterfaces + rutas estáticas</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Verifica antes de avanzar</p>
+<p>Ejecuta el <code>show</code> de verificación después de configurar cada dispositivo. Si el resultado no es el esperado, corrige antes de pasar al siguiente. Un error en un paso anterior arruina todos los pasos posteriores.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://ichigar.codeberg.page" target="_blank" rel="noopener" title="ichigar.codeberg.page" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../../assets/_markdown_exec_pyodide.js"></script>
+      
+    
+  </body>
+</html>
