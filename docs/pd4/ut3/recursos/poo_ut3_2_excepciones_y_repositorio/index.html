@@ -1036,6 +1036,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#patron-avanzado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Patrón avanzado
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1210,16 +1219,14 @@
 <hr />
 <h2 id="1-el-gestor-de-contexto-with-conn">1. El gestor de contexto <code>with conn:</code><a class="headerlink" href="#1-el-gestor-de-contexto-with-conn" title="Permanent link">&para;</a></h2>
 <h3 id="por-que-usarlo">Por qué usarlo<a class="headerlink" href="#por-que-usarlo" title="Permanent link">&para;</a></h3>
-<p>En los apuntes anteriores llamábamos a <code>commit()</code> manualmente al terminar cada operación, pero nunca gestionamos qué ocurre si algo falla. Ahora que trabajamos con excepciones necesitamos también deshacer la transacción en caso de error. El gestor de contexto <code>with conn:</code> nos evita tener que hacerlo a mano:</p>
+<p>En los apuntes anteriores llamábamos a <code>commit()</code> manualmente al terminar cada operación para que los cambios pendientes se vuelquen en disco. Pero nunca gestionamos qué ocurre si algo falla. Ahora que vamos a trabajar con excepciones necesitamos también deshacer la transacción en caso de error. </p>
+<p>El gestor de contexto <code>with conn:</code> nos evita tener que hacerlo a mano:</p>
 <ul>
-<li>Si el bloque termina <strong>sin errores</strong> → <code>commit()</code> automático.</li>
-<li>Si el bloque termina <strong>con una excepción</strong> → Deshacer la transacción, <code>rollback()</code> automático.</li>
+<li>Si el bloque termina <strong>sin errores</strong> → se ejecuta <code>commit()</code> automático. Cambios se escriben en disco. <strong>Se procesa transacción</strong></li>
+<li>Si el bloque termina <strong>con una excepción</strong> → se ejecuta <code>rollback()</code> de forma automática, deshaciendo los cambios en memoria. <strong>Se deshace transacción</strong></li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">No cierra la conexión</p>
-<p><code>with conn:</code> gestiona la <strong>transacción</strong>, no la conexión. Hay que cerrar la conexión con <code>conn.close()</code> en el bloque <code>finally</code>.</p>
-</div>
 <h3 id="patron-recomendado">Patrón recomendado<a class="headerlink" href="#patron-recomendado" title="Permanent link">&para;</a></h3>
+<p>El siguiente patrón a la hora de ejecutar desde Python  consultas en la BBDD evita gestionar manualmente las transacciones y reduce el riesgo de dejar cambios "a medias".</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
@@ -1233,62 +1240,42 @@
 <span class="normal"><a href="#__codelineno-0-11">11</a></span>
 <span class="normal"><a href="#__codelineno-0-12">12</a></span>
 <span class="normal"><a href="#__codelineno-0-13">13</a></span>
-<span class="normal"><a href="#__codelineno-0-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="hll">    <span class="k">with</span> <span class="n">conn</span><span class="p">:</span>                         <span class="c1">## abre transacción</span>
-</span><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="hll">        <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>    <span class="c1">## Conectamos/creamos fichero con base de datos</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">try</span><span class="p">:</span>                                        <span class="c1">## Intentamos ejecutar transacción</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="hll">    <span class="k">with</span> <span class="n">conn</span><span class="p">:</span>                              <span class="c1">## abre transacción</span>
+</span><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="hll">        <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>              <span class="c1">## objeto intermediario entre python y bbdd</span>
 </span><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="hll">        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
 </span><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="hll">            <span class="s2">&quot;INSERT INTO productos VALUES (?, ?, ?, ?)&quot;</span><span class="p">,</span>
 </span><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="hll">            <span class="p">(</span><span class="s2">&quot;B2&quot;</span><span class="p">,</span> <span class="s2">&quot;Zumo&quot;</span><span class="p">,</span> <span class="mf">1.50</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 </span><a id="__codelineno-0-8" name="__codelineno-0-8"></a>        <span class="p">)</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="c1">## commit() automático al salir del bloque with sin error</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">IntegrityError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">IntegrityError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>        <span class="c1">## capturamos el error que puede producirse</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error de integridad: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12"></a>    <span class="c1">## rollback() ya fue ejecutado automáticamente por with conn:</span>
 <a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="k">finally</span><span class="p">:</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>                       <span class="c1">## siempre cerramos</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>                           <span class="c1">## siempre cerramos</span>
 </code></pre></div></td></tr></table></div>
+<div class="admonition warning">
+<p class="admonition-title">No cierra la conexión</p>
+<p><code>with conn:</code> gestiona la <strong>transacción, no la conexión</strong>. Hay que cerrar la conexión con <code>conn.close()</code> en el bloque <code>finally</code>.</p>
+</div>
 <blockquote>
 <p><code>sqlite3.IntegrityError</code> es uno de los tipos de excepción de SQLite — los veremos en detalle en la sección siguiente.</p>
 </blockquote>
+<div class="admonition tip">
+<p class="admonition-title">si el fichero no existe se crea</p>
+<p>Recuerda que si al intentar abrir el fichero de la base de datos este no existe, se crea automáticamente. Si queremos comprobar que el fichero existe antes de abrirlo es recuerda que el módulos <code>Path</code> incluye el método <code>exists()</code> para verificar si un fichero existe:
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: la base de datos no existe.&quot;</span><span class="p">)</span>   <span class="c1"># O lanzamos una excepción</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+</div>
 <p>Comparado con el patrón manual de UT3-1, desaparecen las llamadas explícitas a <code>commit()</code> y <code>rollback()</code> — el código queda más limpio y menos propenso a errores.</p>
-<hr />
-<h2 id="2-manejo-de-excepciones-en-sqlite">2. Manejo de excepciones en SQLite<a class="headerlink" href="#2-manejo-de-excepciones-en-sqlite" title="Permanent link">&para;</a></h2>
-<h3 id="jerarquia-de-excepciones">Jerarquía de excepciones<a class="headerlink" href="#jerarquia-de-excepciones" title="Permanent link">&para;</a></h3>
-<p>El módulo <code>sqlite3</code> define su propia jerarquía de excepciones, todas derivadas de <code>sqlite3.Error</code>:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sqlite3.Error
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>└── sqlite3.DatabaseError
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    ├── sqlite3.IntegrityError    ← violación de restricciones (PK, FK, NOT NULL, UNIQUE)
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    ├── sqlite3.OperationalError  ← errores del motor (tabla inexistente, SQL incorrecto…)
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    ├── sqlite3.ProgrammingError  ← errores de uso de la API (parámetros incorrectos…)
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    ├── sqlite3.DataError         ← datos fuera de rango o tipo incorrecto
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    └── sqlite3.NotSupportedError ← operación no soportada por el motor
-</code></pre></div>
-<p>En la práctica, las dos que encontrarás con más frecuencia son <code>IntegrityError</code> y <code>OperationalError</code>.</p>
-<h3 id="integrityerror-violacion-de-restricciones"><code>IntegrityError</code> — violación de restricciones<a class="headerlink" href="#integrityerror-violacion-de-restricciones" title="Permanent link">&para;</a></h3>
-<p>Se lanza cuando se viola una restricción de la tabla: <code>PRIMARY KEY</code>, <code>NOT NULL</code>, <code>UNIQUE</code> o <code>FOREIGN KEY</code>.</p>
-<table>
-<thead>
-<tr>
-<th>Causa</th>
-<th>Ejemplo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Clave primaria duplicada</td>
-<td>Dos productos con el mismo <code>codigo</code></td>
-</tr>
-<tr>
-<td>Campo <code>NOT NULL</code> con <code>None</code></td>
-<td><code>None</code> en una columna obligatoria</td>
-</tr>
-<tr>
-<td>Clave foránea sin referencia</td>
-<td><code>codigo</code> en <code>descuentos</code> que no existe en <code>productos</code></td>
-</tr>
-</tbody>
-</table>
+<h3 id="patron-avanzado">Patrón avanzado<a class="headerlink" href="#patron-avanzado" title="Permanent link">&para;</a></h3>
+<p>Si no queremos tener que cerrar manualmente la conexión tendríamos que añadir un <code>with</code> para la propia conexión:</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
@@ -1298,18 +1285,66 @@
 <span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
 <span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-2-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="k">with</span> <span class="n">conn</span><span class="p">:</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a>        <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5"></a>        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;A1&#39;, &#39;Agua&#39;, 1.00, 10)&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6"></a>        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;A1&#39;, &#39;Duplicado&#39;, 0.50, 5)&quot;</span><span class="p">)</span>  <span class="c1">## codigo repetido</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="hll"><span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">IntegrityError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error de integridad: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="k">finally</span><span class="p">:</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="hll"><span class="k">with</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>   <span class="c1"># abrimos contexto para conexión</span>
+</span><a id="__codelineno-2-2" name="__codelineno-2-2"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="hll">        <span class="k">with</span> <span class="n">conn</span><span class="p">:</span>                                <span class="c1"># abrimos contexto para transaccióncommit/rollback automático</span>
+</span><a id="__codelineno-2-4" name="__codelineno-2-4"></a>            <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>                <span class="s2">&quot;INSERT INTO productos VALUES (?, ?, ?, ?)&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>                <span class="p">(</span><span class="s2">&quot;B2&quot;</span><span class="p">,</span> <span class="s2">&quot;Zumo&quot;</span><span class="p">,</span> <span class="mf">1.50</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>            <span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">IntegrityError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error de integridad: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Error de integridad: UNIQUE constraint failed: productos.codigo
+<p>De esta forma tenemos dos context managers anidados, cada uno con su responsabilidad:</p>
+<ul>
+<li><code>with sqlite3.connect(...) as conn:</code> → gestiona la conexión (la cierra al salir)</li>
+<li><code>with conn:</code> → gestiona la transacción (commit o rollback)</li>
+</ul>
+<p>Ahora no necesitamos el <code>finally: conn.close()</code>.</p>
+<blockquote>
+<p>En el lab de la unidad no usaremos este patrón sino el que vimos en el apartado anterior</p>
+</blockquote>
+<h2 id="2-manejo-de-excepciones-en-sqlite">2. Manejo de excepciones en SQLite<a class="headerlink" href="#2-manejo-de-excepciones-en-sqlite" title="Permanent link">&para;</a></h2>
+<h3 id="jerarquia-de-excepciones">Jerarquía de excepciones<a class="headerlink" href="#jerarquia-de-excepciones" title="Permanent link">&para;</a></h3>
+<p>El módulo <code>sqlite3</code> define su propia jerarquía de excepciones, todas derivadas de <code>sqlite3.Error</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sqlite3.Error
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>└── sqlite3.DatabaseError
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    ├── sqlite3.IntegrityError    ← violación de restricciones (PK, FK, NOT NULL, UNIQUE)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    ├── sqlite3.OperationalError  ← errores del motor (tabla inexistente, SQL incorrecto…)
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    ├── sqlite3.ProgrammingError  ← errores de uso de la API (parámetros incorrectos…)
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    ├── sqlite3.DataError         ← datos fuera de rango o tipo incorrecto
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    └── sqlite3.NotSupportedError ← operación no soportada por el motor
+</code></pre></div>
+<p>En la práctica, las dos que encontrarás con más frecuencia son <code>IntegrityError</code> y <code>OperationalError</code>.</p>
+<h3 id="integrityerror-violacion-de-restricciones"><code>IntegrityError</code> — violación de restricciones<a class="headerlink" href="#integrityerror-violacion-de-restricciones" title="Permanent link">&para;</a></h3>
+<p>Se lanza cuando se viola una <strong>restricción</strong> de la tabla: <code>PRIMARY KEY</code>, <code>NOT NULL</code>, <code>UNIQUE</code> o <code>FOREIGN KEY</code>.</p>
+<p>| Causa | Excepción | Ejemplo |
+|---|---|
+| Clave primaria duplicada o campos únicos | <code>UNIQUE constraint failed</code> | Dos productos con el mismo <code>codigo</code> |
+| Campo <code>NOT NULL</code> con <code>None</code> | <code>NOT NULL constraint failed</code> | <code>None</code> en una columna obligatoria |
+| Clave foránea sin referencia | <code>FOREIGN KEY constraint failed</code> | <code>codigo</code> en <code>descuentos</code> que no existe en <code>productos</code> |</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="k">with</span> <span class="n">conn</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>        <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;A1&#39;, &#39;Agua&#39;, 1.00, 10)&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="hll">        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (&#39;A1&#39;, &#39;Duplicado&#39;, 0.50, 5)&quot;</span><span class="p">)</span>  <span class="c1">## codigo repetido</span>
+</span><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="hll"><span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">IntegrityError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error de integridad: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Error de integridad: UNIQUE constraint failed: productos.codigo
 </code></pre></div>
 <h3 id="operationalerror-errores-del-motor"><code>OperationalError</code> — errores del motor<a class="headerlink" href="#operationalerror-errores-del-motor" title="Permanent link">&para;</a></h3>
 <p>Se lanza ante problemas del motor SQLite: tabla inexistente, SQL incorrecto, o intentar crear una tabla que ya existe.</p>
@@ -1335,27 +1370,6 @@
 </tr>
 </tbody>
 </table>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
-<span class="normal"><a href="#__codelineno-4-2">2</a></span>
-<span class="normal"><a href="#__codelineno-4-3">3</a></span>
-<span class="normal"><a href="#__codelineno-4-4">4</a></span>
-<span class="normal"><a href="#__codelineno-4-5">5</a></span>
-<span class="normal"><a href="#__codelineno-4-6">6</a></span>
-<span class="normal"><a href="#__codelineno-4-7">7</a></span>
-<span class="normal"><a href="#__codelineno-4-8">8</a></span>
-<span class="normal"><a href="#__codelineno-4-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="k">with</span> <span class="n">conn</span><span class="p">:</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4"></a>        <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="hll">        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM ventas&quot;</span><span class="p">)</span>   <span class="c1">## la tabla no existe</span>
-</span><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="hll"><span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><a id="__codelineno-4-7" name="__codelineno-4-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error operacional: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="k">finally</span><span class="p">:</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div></td></tr></table></div>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Error operacional: no such table: ventas
-</code></pre></div>
-<p>Para <code>CREATE TABLE</code> la solución es siempre <code>IF NOT EXISTS</code>, no capturar la excepción:</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
 <span class="normal"><a href="#__codelineno-6-2">2</a></span>
 <span class="normal"><a href="#__codelineno-6-3">3</a></span>
@@ -1363,36 +1377,60 @@
 <span class="normal"><a href="#__codelineno-6-5">5</a></span>
 <span class="normal"><a href="#__codelineno-6-6">6</a></span>
 <span class="normal"><a href="#__codelineno-6-7">7</a></span>
-<span class="normal"><a href="#__codelineno-6-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="hll"><span class="s2">    CREATE TABLE IF NOT EXISTS productos (</span>
-</span><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="s2">        codigo   TEXT    PRIMARY KEY,</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="s2">        nombre   TEXT    NOT NULL,</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="s2">        precio   REAL    NOT NULL,</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="s2">        cantidad INTEGER NOT NULL</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="s2">    )</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-6-8">8</a></span>
+<span class="normal"><a href="#__codelineno-6-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>    <span class="k">with</span> <span class="n">conn</span><span class="p">:</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>        <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="hll">        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM ventas_no_existe&quot;</span><span class="p">)</span>   <span class="c1">## la tabla no existe</span>
+</span><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="hll"><span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><a id="__codelineno-6-7" name="__codelineno-6-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error operacional: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Error operacional: no such table: ventas
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">IF NOT EXIST al crear tabla</p>
+<p>Para <code>CREATE TABLE</code> deberíamos ejecutar la consulta con <code>IF NOT EXISTS</code>, en lugar de capturar la excepción:
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span>
+<span class="normal"><a href="#__codelineno-8-7">7</a></span>
+<span class="normal"><a href="#__codelineno-8-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="hll"><span class="s2">    CREATE TABLE IF NOT EXISTS productos (</span>
+</span><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="s2">        codigo   TEXT    PRIMARY KEY,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="s2">        nombre   TEXT    NOT NULL,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="s2">        precio   REAL    NOT NULL,</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="s2">        cantidad INTEGER NOT NULL</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="s2">    )</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div></p>
+</div>
 <h3 id="programmingerror-uso-incorrecto-de-la-api"><code>ProgrammingError</code> — uso incorrecto de la API<a class="headerlink" href="#programmingerror-uso-incorrecto-de-la-api" title="Permanent link">&para;</a></h3>
 <p>Se lanza cuando el número de parámetros <code>?</code> no coincide con los valores proporcionados, o se usa la conexión después de cerrarla.</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
-<span class="normal"><a href="#__codelineno-7-2">2</a></span>
-<span class="normal"><a href="#__codelineno-7-3">3</a></span>
-<span class="normal"><a href="#__codelineno-7-4">4</a></span>
-<span class="normal"><a href="#__codelineno-7-5">5</a></span>
-<span class="normal"><a href="#__codelineno-7-6">6</a></span>
-<span class="normal"><a href="#__codelineno-7-7">7</a></span>
-<span class="normal"><a href="#__codelineno-7-8">8</a></span>
-<span class="normal"><a href="#__codelineno-7-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a>    <span class="k">with</span> <span class="n">conn</span><span class="p">:</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="hll">        <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-</span><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="hll">        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (?, ?, ?)&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="s2">&quot;Agua&quot;</span><span class="p">,</span> <span class="mf">1.00</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1">## 3 ? pero 4 valores</span>
-</span><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">ProgrammingError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error de programación: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="k">finally</span><span class="p">:</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span>
+<span class="normal"><a href="#__codelineno-9-8">8</a></span>
+<span class="normal"><a href="#__codelineno-9-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;expendedora.db&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>    <span class="k">with</span> <span class="n">conn</span><span class="p">:</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="hll">        <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="hll">        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos VALUES (?, ?, ?)&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="s2">&quot;Agua&quot;</span><span class="p">,</span> <span class="mf">1.00</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1">## 3 ? pero 4 valores</span>
+</span><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">ProgrammingError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error de programación: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Error de programación: binding 4 has no name
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Error de programación: binding 4 has no name
 </code></pre></div>
 <h3 id="resumen-de-excepciones">Resumen de excepciones<a class="headerlink" href="#resumen-de-excepciones" title="Permanent link">&para;</a></h3>
 <table>
@@ -1435,239 +1473,239 @@
 <h3 id="por-que-crear-excepciones-propias">Por qué crear excepciones propias<a class="headerlink" href="#por-que-crear-excepciones-propias" title="Permanent link">&para;</a></h3>
 <p>Cuando el repositorio captura un <code>sqlite3.IntegrityError</code> y lo deja propagarse, el menú o la capa de aplicación recibe una excepción de infraestructura que no debería conocer. El menú no debería saber nada de SQLite: solo debería saber de productos, precios y stocks.</p>
 <p>La solución es que el <strong>repositorio</strong> capture las excepciones de SQLite y las transforme en <strong>excepciones propias del dominio</strong>:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sqlite3.IntegrityError   →   ProductoYaExisteError
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>sqlite3.OperationalError →   ErrorPersistencia
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sqlite3.IntegrityError   →   ProductoYaExisteError
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>sqlite3.OperationalError →   ErrorPersistencia
 </code></pre></div>
 <p>El menú captura <code>ProductoYaExisteError</code> y muestra un mensaje legible. Nunca ve <code>sqlite3.IntegrityError</code>.</p>
 <h3 id="definir-excepciones-propias">Definir excepciones propias<a class="headerlink" href="#definir-excepciones-propias" title="Permanent link">&para;</a></h3>
 <p>Las excepciones propias son clases que heredan de <code>Exception</code>. La convención es crear una excepción base del módulo y derivar de ella las específicas:</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-10-10">10</a></span>
-<span class="normal"><a href="#__codelineno-10-11">11</a></span>
-<span class="normal"><a href="#__codelineno-10-12">12</a></span>
-<span class="normal"><a href="#__codelineno-10-13">13</a></span>
-<span class="normal"><a href="#__codelineno-10-14">14</a></span>
-<span class="normal"><a href="#__codelineno-10-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ErrorRepositorio</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Excepción base para errores de persistencia.&quot;&quot;&quot;</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3"></a>    <span class="k">pass</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4"></a>
-<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">ProductoYaExisteError</span><span class="p">(</span><span class="n">ErrorRepositorio</span><span class="p">):</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Se lanza cuando se intenta guardar un producto con un código ya existente.&quot;&quot;&quot;</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7"></a>    <span class="k">pass</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8"></a>
-<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="k">class</span><span class="w"> </span><span class="nc">ProductoNoEncontradoError</span><span class="p">(</span><span class="n">ErrorRepositorio</span><span class="p">):</span>
-<a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Se lanza cuando se busca un producto que no existe en la base de datos.&quot;&quot;&quot;</span>
-<a id="__codelineno-10-11" name="__codelineno-10-11"></a>    <span class="k">pass</span>
-<a id="__codelineno-10-12" name="__codelineno-10-12"></a>
-<a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="k">class</span><span class="w"> </span><span class="nc">ErrorPersistencia</span><span class="p">(</span><span class="n">ErrorRepositorio</span><span class="p">):</span>
-<a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Se lanza ante cualquier otro error del motor de base de datos.&quot;&quot;&quot;</span>
-<a id="__codelineno-10-15" name="__codelineno-10-15"></a>    <span class="k">pass</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ErrorRepositorio</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Excepción base para errores de persistencia.&quot;&quot;&quot;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>    <span class="k">pass</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">ProductoYaExisteError</span><span class="p">(</span><span class="n">ErrorRepositorio</span><span class="p">):</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Se lanza cuando se intenta guardar un producto con un código ya existente.&quot;&quot;&quot;</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a>    <span class="k">pass</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="k">class</span><span class="w"> </span><span class="nc">ProductoNoEncontradoError</span><span class="p">(</span><span class="n">ErrorRepositorio</span><span class="p">):</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Se lanza cuando se busca un producto que no existe en la base de datos.&quot;&quot;&quot;</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a>    <span class="k">pass</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="k">class</span><span class="w"> </span><span class="nc">ErrorPersistencia</span><span class="p">(</span><span class="n">ErrorRepositorio</span><span class="p">):</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Se lanza ante cualquier otro error del motor de base de datos.&quot;&quot;&quot;</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15"></a>    <span class="k">pass</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Herencia en las excepciones propias</p>
 <p>Que todas hereden de <code>ErrorRepositorio</code> permite al código que llama capturar cualquier error de persistencia con un solo <code>except ErrorRepositorio</code>, o capturar errores concretos con <code>except ProductoYaExisteError</code>. La misma lógica que con la jerarquía de <code>sqlite3</code>.</p>
 </div>
 <h3 id="usar-las-excepciones-propias">Usar las excepciones propias<a class="headerlink" href="#usar-las-excepciones-propias" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-11-10">10</a></span>
-<span class="normal"><a href="#__codelineno-11-11">11</a></span>
-<span class="normal"><a href="#__codelineno-11-12">12</a></span>
-<span class="normal"><a href="#__codelineno-11-13">13</a></span>
-<span class="normal"><a href="#__codelineno-11-14">14</a></span>
-<span class="normal"><a href="#__codelineno-11-15">15</a></span>
-<span class="normal"><a href="#__codelineno-11-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">guardar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2"></a>    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ruta_bd</span><span class="p">)</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3"></a>    <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4"></a>        <span class="k">with</span> <span class="n">conn</span><span class="p">:</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5"></a>            <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="hll">            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA foreign_keys = ON&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="hll">            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-</span><a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="hll">                <span class="s2">&quot;INSERT INTO productos VALUES (?, ?, ?, ?)&quot;</span><span class="p">,</span>
-</span><a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="hll">                <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">codigo</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">precio</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">cantidad</span><span class="p">)</span>
-</span><a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="hll">            <span class="p">)</span>
-</span><a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="hll">    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">IntegrityError</span><span class="p">:</span>
-</span><a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="hll">        <span class="k">raise</span> <span class="n">ProductoYaExisteError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ya existe un producto con código &#39;</span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">codigo</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="hll">    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><a id="__codelineno-11-14" name="__codelineno-11-14"></a>        <span class="k">raise</span> <span class="n">ErrorPersistencia</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al acceder a la base de datos: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-11-15" name="__codelineno-11-15"></a>    <span class="k">finally</span><span class="p">:</span>
-<a id="__codelineno-11-16" name="__codelineno-11-16"></a>        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span>
+<span class="normal"><a href="#__codelineno-13-13">13</a></span>
+<span class="normal"><a href="#__codelineno-13-14">14</a></span>
+<span class="normal"><a href="#__codelineno-13-15">15</a></span>
+<span class="normal"><a href="#__codelineno-13-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">guardar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a>    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ruta_bd</span><span class="p">)</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a>        <span class="k">with</span> <span class="n">conn</span><span class="p">:</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a>            <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="hll">            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA foreign_keys = ON&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="hll">            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+</span><a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="hll">                <span class="s2">&quot;INSERT INTO productos VALUES (?, ?, ?, ?)&quot;</span><span class="p">,</span>
+</span><a id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="hll">                <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">codigo</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">precio</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">cantidad</span><span class="p">)</span>
+</span><a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="hll">            <span class="p">)</span>
+</span><a id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="hll">    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">IntegrityError</span><span class="p">:</span>
+</span><a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="hll">        <span class="k">raise</span> <span class="n">ProductoYaExisteError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ya existe un producto con código &#39;</span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">codigo</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-13-13" name="__codelineno-13-13"></a><span class="hll">    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><a id="__codelineno-13-14" name="__codelineno-13-14"></a>        <span class="k">raise</span> <span class="n">ErrorPersistencia</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al acceder a la base de datos: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15"></a>    <span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16"></a>        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 <p>Ahora el código que llama a <code>guardar()</code> solo necesita conocer <code>ProductoYaExisteError</code>:</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
-<span class="normal"><a href="#__codelineno-12-2">2</a></span>
-<span class="normal"><a href="#__codelineno-12-3">3</a></span>
-<span class="normal"><a href="#__codelineno-12-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2"></a>    <span class="n">repo</span><span class="o">.</span><span class="n">guardar</span><span class="p">(</span><span class="n">Item</span><span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="s2">&quot;Agua&quot;</span><span class="p">,</span> <span class="mf">1.00</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="k">except</span> <span class="n">ProductoYaExisteError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No se pudo guardar: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a>    <span class="n">repo</span><span class="o">.</span><span class="n">guardar</span><span class="p">(</span><span class="n">Item</span><span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="s2">&quot;Agua&quot;</span><span class="p">,</span> <span class="mf">1.00</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="k">except</span> <span class="n">ProductoYaExisteError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No se pudo guardar: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <hr />
 <h2 id="4-el-repositorio-como-frontera">4. El repositorio como frontera<a class="headerlink" href="#4-el-repositorio-como-frontera" title="Permanent link">&para;</a></h2>
 <h3 id="las-capas-de-la-aplicacion">Las capas de la aplicación<a class="headerlink" href="#las-capas-de-la-aplicacion" title="Permanent link">&para;</a></h3>
 <p>Una aplicación bien estructurada separa el código en capas con responsabilidades distintas. Cada capa solo conoce la que tiene inmediatamente debajo:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>┌──────────────────────────────┐
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>│  Menú / Interfaz de usuario  │  captura excepciones de dominio
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>├──────────────────────────────┤
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>│  Dominio (Item, Maquina…)    │  lógica de negocio, sin SQLite
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>├──────────────────────────────┤
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>│  Repositorio                 │  ← FRONTERA: traduce SQLite ↔ dominio
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>├──────────────────────────────┤
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>│  SQLite / Base de datos      │  lanza excepciones sqlite3.*
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>└──────────────────────────────┘
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>┌──────────────────────────────┐
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>│  Menú / Interfaz de usuario  │  captura excepciones de dominio
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>├──────────────────────────────┤
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>│  Dominio (Item, Maquina…)    │  lógica de negocio, sin SQLite
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>├──────────────────────────────┤
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>│  Repositorio                 │  ← FRONTERA: traduce SQLite ↔ dominio
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>├──────────────────────────────┤
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>│  SQLite / Base de datos      │  lanza excepciones sqlite3.*
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>└──────────────────────────────┘
 </code></pre></div>
 <p>El <strong>repositorio</strong> es la única capa que importa <code>sqlite3</code>. Todo lo que está por encima solo ve objetos de dominio y excepciones de dominio.</p>
 <h3 id="ejemplo-completo-repositorio-con-excepciones-propias">Ejemplo completo: repositorio con excepciones propias<a class="headerlink" href="#ejemplo-completo-repositorio-con-excepciones-propias" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-14-10">10</a></span>
-<span class="normal"><a href="#__codelineno-14-11">11</a></span>
-<span class="normal"><a href="#__codelineno-14-12">12</a></span>
-<span class="normal"><a href="#__codelineno-14-13">13</a></span>
-<span class="normal"><a href="#__codelineno-14-14">14</a></span>
-<span class="normal"><a href="#__codelineno-14-15">15</a></span>
-<span class="normal"><a href="#__codelineno-14-16">16</a></span>
-<span class="normal"><a href="#__codelineno-14-17">17</a></span>
-<span class="normal"><a href="#__codelineno-14-18">18</a></span>
-<span class="normal"><a href="#__codelineno-14-19">19</a></span>
-<span class="normal"><a href="#__codelineno-14-20">20</a></span>
-<span class="normal"><a href="#__codelineno-14-21">21</a></span>
-<span class="normal"><a href="#__codelineno-14-22">22</a></span>
-<span class="normal"><a href="#__codelineno-14-23">23</a></span>
-<span class="normal"><a href="#__codelineno-14-24">24</a></span>
-<span class="normal"><a href="#__codelineno-14-25">25</a></span>
-<span class="normal"><a href="#__codelineno-14-26">26</a></span>
-<span class="normal"><a href="#__codelineno-14-27">27</a></span>
-<span class="normal"><a href="#__codelineno-14-28">28</a></span>
-<span class="normal"><a href="#__codelineno-14-29">29</a></span>
-<span class="normal"><a href="#__codelineno-14-30">30</a></span>
-<span class="normal"><a href="#__codelineno-14-31">31</a></span>
-<span class="normal"><a href="#__codelineno-14-32">32</a></span>
-<span class="normal"><a href="#__codelineno-14-33">33</a></span>
-<span class="normal"><a href="#__codelineno-14-34">34</a></span>
-<span class="normal"><a href="#__codelineno-14-35">35</a></span>
-<span class="normal"><a href="#__codelineno-14-36">36</a></span>
-<span class="normal"><a href="#__codelineno-14-37">37</a></span>
-<span class="normal"><a href="#__codelineno-14-38">38</a></span>
-<span class="normal"><a href="#__codelineno-14-39">39</a></span>
-<span class="normal"><a href="#__codelineno-14-40">40</a></span>
-<span class="normal"><a href="#__codelineno-14-41">41</a></span>
-<span class="normal"><a href="#__codelineno-14-42">42</a></span>
-<span class="normal"><a href="#__codelineno-14-43">43</a></span>
-<span class="normal"><a href="#__codelineno-14-44">44</a></span>
-<span class="normal"><a href="#__codelineno-14-45">45</a></span>
-<span class="normal"><a href="#__codelineno-14-46">46</a></span>
-<span class="normal"><a href="#__codelineno-14-47">47</a></span>
-<span class="normal"><a href="#__codelineno-14-48">48</a></span>
-<span class="normal"><a href="#__codelineno-14-49">49</a></span>
-<span class="normal"><a href="#__codelineno-14-50">50</a></span>
-<span class="normal"><a href="#__codelineno-14-51">51</a></span>
-<span class="normal"><a href="#__codelineno-14-52">52</a></span>
-<span class="normal"><a href="#__codelineno-14-53">53</a></span>
-<span class="normal"><a href="#__codelineno-14-54">54</a></span>
-<span class="normal"><a href="#__codelineno-14-55">55</a></span>
-<span class="normal"><a href="#__codelineno-14-56">56</a></span>
-<span class="normal"><a href="#__codelineno-14-57">57</a></span>
-<span class="normal"><a href="#__codelineno-14-58">58</a></span>
-<span class="normal"><a href="#__codelineno-14-59">59</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">domain.item</span><span class="w"> </span><span class="kn">import</span> <span class="n">Item</span><span class="p">,</span> <span class="n">ItemConDescuento</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">infrastructure.errores</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4"></a>    <span class="n">ProductoYaExisteError</span><span class="p">,</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5"></a>    <span class="n">ProductoNoEncontradoError</span><span class="p">,</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6"></a>    <span class="n">ErrorPersistencia</span><span class="p">,</span>
-<a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="p">)</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8"></a>
-<a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="k">class</span><span class="w"> </span><span class="nc">RepositorioProductosSQLite</span><span class="p">:</span>
-<a id="__codelineno-14-10" name="__codelineno-14-10"></a>
-<a id="__codelineno-14-11" name="__codelineno-14-11"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ruta_bd</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<a id="__codelineno-14-12" name="__codelineno-14-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_ruta_bd</span> <span class="o">=</span> <span class="n">ruta_bd</span>
-<a id="__codelineno-14-13" name="__codelineno-14-13"></a>
-<a id="__codelineno-14-14" name="__codelineno-14-14"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">guardar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">Item</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-14-15" name="__codelineno-14-15"></a>        <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ruta_bd</span><span class="p">)</span>
-<a id="__codelineno-14-16" name="__codelineno-14-16"></a>        <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-14-17" name="__codelineno-14-17"></a>            <span class="k">with</span> <span class="n">conn</span><span class="p">:</span>
-<a id="__codelineno-14-18" name="__codelineno-14-18"></a>                <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<a id="__codelineno-14-19" name="__codelineno-14-19"></a>                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA foreign_keys = ON&quot;</span><span class="p">)</span>
-<a id="__codelineno-14-20" name="__codelineno-14-20"></a>                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-<a id="__codelineno-14-21" name="__codelineno-14-21"></a>                    <span class="s2">&quot;INSERT INTO productos VALUES (?, ?, ?, ?)&quot;</span><span class="p">,</span>
-<a id="__codelineno-14-22" name="__codelineno-14-22"></a>                    <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">codigo</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">precio</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">cantidad</span><span class="p">)</span>
-<a id="__codelineno-14-23" name="__codelineno-14-23"></a>                <span class="p">)</span>
-<a id="__codelineno-14-24" name="__codelineno-14-24"></a>                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">ItemConDescuento</span><span class="p">):</span>
-<a id="__codelineno-14-25" name="__codelineno-14-25"></a>                    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-<a id="__codelineno-14-26" name="__codelineno-14-26"></a>                        <span class="s2">&quot;INSERT INTO descuentos VALUES (?, ?)&quot;</span><span class="p">,</span>
-<a id="__codelineno-14-27" name="__codelineno-14-27"></a>                        <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">codigo</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">porcentaje_descuento</span><span class="p">)</span>
-<a id="__codelineno-14-28" name="__codelineno-14-28"></a>                    <span class="p">)</span>
-<a id="__codelineno-14-29" name="__codelineno-14-29"></a>        <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">IntegrityError</span><span class="p">:</span>
-<a id="__codelineno-14-30" name="__codelineno-14-30"></a>            <span class="k">raise</span> <span class="n">ProductoYaExisteError</span><span class="p">(</span>
-<a id="__codelineno-14-31" name="__codelineno-14-31"></a>                <span class="sa">f</span><span class="s2">&quot;Ya existe un producto con código &#39;</span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">codigo</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
-<a id="__codelineno-14-32" name="__codelineno-14-32"></a>            <span class="p">)</span>
-<a id="__codelineno-14-33" name="__codelineno-14-33"></a>        <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-14-34" name="__codelineno-14-34"></a>            <span class="k">raise</span> <span class="n">ErrorPersistencia</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al guardar: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-14-35" name="__codelineno-14-35"></a>        <span class="k">finally</span><span class="p">:</span>
-<a id="__codelineno-14-36" name="__codelineno-14-36"></a>            <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<a id="__codelineno-14-37" name="__codelineno-14-37"></a>
-<a id="__codelineno-14-38" name="__codelineno-14-38"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">obtener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codigo_buscado</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Item</span><span class="p">:</span>
-<a id="__codelineno-14-39" name="__codelineno-14-39"></a>        <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ruta_bd</span><span class="p">)</span>
-<a id="__codelineno-14-40" name="__codelineno-14-40"></a>        <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-14-41" name="__codelineno-14-41"></a>            <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<a id="__codelineno-14-42" name="__codelineno-14-42"></a>            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM productos WHERE codigo = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">codigo_buscado</span><span class="p">,))</span>
-<a id="__codelineno-14-43" name="__codelineno-14-43"></a>            <span class="n">fila</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
-<a id="__codelineno-14-44" name="__codelineno-14-44"></a>            <span class="k">if</span> <span class="n">fila</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-14-45" name="__codelineno-14-45"></a>                <span class="k">raise</span> <span class="n">ProductoNoEncontradoError</span><span class="p">(</span>
-<a id="__codelineno-14-46" name="__codelineno-14-46"></a>                    <span class="sa">f</span><span class="s2">&quot;No existe ningún producto con código &#39;</span><span class="si">{</span><span class="n">codigo_buscado</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
-<a id="__codelineno-14-47" name="__codelineno-14-47"></a>                <span class="p">)</span>
-<a id="__codelineno-14-48" name="__codelineno-14-48"></a>            <span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span> <span class="o">=</span> <span class="n">fila</span>
-<a id="__codelineno-14-49" name="__codelineno-14-49"></a>            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-<a id="__codelineno-14-50" name="__codelineno-14-50"></a>                <span class="s2">&quot;SELECT porcentaje FROM descuentos WHERE codigo = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">codigo</span><span class="p">,)</span>
-<a id="__codelineno-14-51" name="__codelineno-14-51"></a>            <span class="p">)</span>
-<a id="__codelineno-14-52" name="__codelineno-14-52"></a>            <span class="n">descuento</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
-<a id="__codelineno-14-53" name="__codelineno-14-53"></a>            <span class="k">if</span> <span class="n">descuento</span><span class="p">:</span>
-<a id="__codelineno-14-54" name="__codelineno-14-54"></a>                <span class="k">return</span> <span class="n">ItemConDescuento</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">,</span> <span class="n">descuento</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<a id="__codelineno-14-55" name="__codelineno-14-55"></a>            <span class="k">return</span> <span class="n">Item</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">)</span>
-<a id="__codelineno-14-56" name="__codelineno-14-56"></a>        <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-14-57" name="__codelineno-14-57"></a>            <span class="k">raise</span> <span class="n">ErrorPersistencia</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al leer: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-14-58" name="__codelineno-14-58"></a>        <span class="k">finally</span><span class="p">:</span>
-<a id="__codelineno-14-59" name="__codelineno-14-59"></a>            <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span>
+<span class="normal"><a href="#__codelineno-16-11">11</a></span>
+<span class="normal"><a href="#__codelineno-16-12">12</a></span>
+<span class="normal"><a href="#__codelineno-16-13">13</a></span>
+<span class="normal"><a href="#__codelineno-16-14">14</a></span>
+<span class="normal"><a href="#__codelineno-16-15">15</a></span>
+<span class="normal"><a href="#__codelineno-16-16">16</a></span>
+<span class="normal"><a href="#__codelineno-16-17">17</a></span>
+<span class="normal"><a href="#__codelineno-16-18">18</a></span>
+<span class="normal"><a href="#__codelineno-16-19">19</a></span>
+<span class="normal"><a href="#__codelineno-16-20">20</a></span>
+<span class="normal"><a href="#__codelineno-16-21">21</a></span>
+<span class="normal"><a href="#__codelineno-16-22">22</a></span>
+<span class="normal"><a href="#__codelineno-16-23">23</a></span>
+<span class="normal"><a href="#__codelineno-16-24">24</a></span>
+<span class="normal"><a href="#__codelineno-16-25">25</a></span>
+<span class="normal"><a href="#__codelineno-16-26">26</a></span>
+<span class="normal"><a href="#__codelineno-16-27">27</a></span>
+<span class="normal"><a href="#__codelineno-16-28">28</a></span>
+<span class="normal"><a href="#__codelineno-16-29">29</a></span>
+<span class="normal"><a href="#__codelineno-16-30">30</a></span>
+<span class="normal"><a href="#__codelineno-16-31">31</a></span>
+<span class="normal"><a href="#__codelineno-16-32">32</a></span>
+<span class="normal"><a href="#__codelineno-16-33">33</a></span>
+<span class="normal"><a href="#__codelineno-16-34">34</a></span>
+<span class="normal"><a href="#__codelineno-16-35">35</a></span>
+<span class="normal"><a href="#__codelineno-16-36">36</a></span>
+<span class="normal"><a href="#__codelineno-16-37">37</a></span>
+<span class="normal"><a href="#__codelineno-16-38">38</a></span>
+<span class="normal"><a href="#__codelineno-16-39">39</a></span>
+<span class="normal"><a href="#__codelineno-16-40">40</a></span>
+<span class="normal"><a href="#__codelineno-16-41">41</a></span>
+<span class="normal"><a href="#__codelineno-16-42">42</a></span>
+<span class="normal"><a href="#__codelineno-16-43">43</a></span>
+<span class="normal"><a href="#__codelineno-16-44">44</a></span>
+<span class="normal"><a href="#__codelineno-16-45">45</a></span>
+<span class="normal"><a href="#__codelineno-16-46">46</a></span>
+<span class="normal"><a href="#__codelineno-16-47">47</a></span>
+<span class="normal"><a href="#__codelineno-16-48">48</a></span>
+<span class="normal"><a href="#__codelineno-16-49">49</a></span>
+<span class="normal"><a href="#__codelineno-16-50">50</a></span>
+<span class="normal"><a href="#__codelineno-16-51">51</a></span>
+<span class="normal"><a href="#__codelineno-16-52">52</a></span>
+<span class="normal"><a href="#__codelineno-16-53">53</a></span>
+<span class="normal"><a href="#__codelineno-16-54">54</a></span>
+<span class="normal"><a href="#__codelineno-16-55">55</a></span>
+<span class="normal"><a href="#__codelineno-16-56">56</a></span>
+<span class="normal"><a href="#__codelineno-16-57">57</a></span>
+<span class="normal"><a href="#__codelineno-16-58">58</a></span>
+<span class="normal"><a href="#__codelineno-16-59">59</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">domain.item</span><span class="w"> </span><span class="kn">import</span> <span class="n">Item</span><span class="p">,</span> <span class="n">ItemConDescuento</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">infrastructure.errores</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a>    <span class="n">ProductoYaExisteError</span><span class="p">,</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5"></a>    <span class="n">ProductoNoEncontradoError</span><span class="p">,</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6"></a>    <span class="n">ErrorPersistencia</span><span class="p">,</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="p">)</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8"></a>
+<a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="k">class</span><span class="w"> </span><span class="nc">RepositorioProductosSQLite</span><span class="p">:</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10"></a>
+<a id="__codelineno-16-11" name="__codelineno-16-11"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ruta_bd</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_ruta_bd</span> <span class="o">=</span> <span class="n">ruta_bd</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13"></a>
+<a id="__codelineno-16-14" name="__codelineno-16-14"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">guardar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">Item</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15"></a>        <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ruta_bd</span><span class="p">)</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17"></a>            <span class="k">with</span> <span class="n">conn</span><span class="p">:</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18"></a>                <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19"></a>                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA foreign_keys = ON&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20"></a>                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21"></a>                    <span class="s2">&quot;INSERT INTO productos VALUES (?, ?, ?, ?)&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22"></a>                    <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">codigo</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">precio</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">cantidad</span><span class="p">)</span>
+<a id="__codelineno-16-23" name="__codelineno-16-23"></a>                <span class="p">)</span>
+<a id="__codelineno-16-24" name="__codelineno-16-24"></a>                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">ItemConDescuento</span><span class="p">):</span>
+<a id="__codelineno-16-25" name="__codelineno-16-25"></a>                    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<a id="__codelineno-16-26" name="__codelineno-16-26"></a>                        <span class="s2">&quot;INSERT INTO descuentos VALUES (?, ?)&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-27" name="__codelineno-16-27"></a>                        <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">codigo</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">porcentaje_descuento</span><span class="p">)</span>
+<a id="__codelineno-16-28" name="__codelineno-16-28"></a>                    <span class="p">)</span>
+<a id="__codelineno-16-29" name="__codelineno-16-29"></a>        <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">IntegrityError</span><span class="p">:</span>
+<a id="__codelineno-16-30" name="__codelineno-16-30"></a>            <span class="k">raise</span> <span class="n">ProductoYaExisteError</span><span class="p">(</span>
+<a id="__codelineno-16-31" name="__codelineno-16-31"></a>                <span class="sa">f</span><span class="s2">&quot;Ya existe un producto con código &#39;</span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">codigo</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+<a id="__codelineno-16-32" name="__codelineno-16-32"></a>            <span class="p">)</span>
+<a id="__codelineno-16-33" name="__codelineno-16-33"></a>        <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-16-34" name="__codelineno-16-34"></a>            <span class="k">raise</span> <span class="n">ErrorPersistencia</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al guardar: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-35" name="__codelineno-16-35"></a>        <span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-16-36" name="__codelineno-16-36"></a>            <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<a id="__codelineno-16-37" name="__codelineno-16-37"></a>
+<a id="__codelineno-16-38" name="__codelineno-16-38"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">obtener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codigo_buscado</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Item</span><span class="p">:</span>
+<a id="__codelineno-16-39" name="__codelineno-16-39"></a>        <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ruta_bd</span><span class="p">)</span>
+<a id="__codelineno-16-40" name="__codelineno-16-40"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-16-41" name="__codelineno-16-41"></a>            <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<a id="__codelineno-16-42" name="__codelineno-16-42"></a>            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM productos WHERE codigo = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">codigo_buscado</span><span class="p">,))</span>
+<a id="__codelineno-16-43" name="__codelineno-16-43"></a>            <span class="n">fila</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+<a id="__codelineno-16-44" name="__codelineno-16-44"></a>            <span class="k">if</span> <span class="n">fila</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-16-45" name="__codelineno-16-45"></a>                <span class="k">raise</span> <span class="n">ProductoNoEncontradoError</span><span class="p">(</span>
+<a id="__codelineno-16-46" name="__codelineno-16-46"></a>                    <span class="sa">f</span><span class="s2">&quot;No existe ningún producto con código &#39;</span><span class="si">{</span><span class="n">codigo_buscado</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+<a id="__codelineno-16-47" name="__codelineno-16-47"></a>                <span class="p">)</span>
+<a id="__codelineno-16-48" name="__codelineno-16-48"></a>            <span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span> <span class="o">=</span> <span class="n">fila</span>
+<a id="__codelineno-16-49" name="__codelineno-16-49"></a>            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<a id="__codelineno-16-50" name="__codelineno-16-50"></a>                <span class="s2">&quot;SELECT porcentaje FROM descuentos WHERE codigo = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">codigo</span><span class="p">,)</span>
+<a id="__codelineno-16-51" name="__codelineno-16-51"></a>            <span class="p">)</span>
+<a id="__codelineno-16-52" name="__codelineno-16-52"></a>            <span class="n">descuento</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+<a id="__codelineno-16-53" name="__codelineno-16-53"></a>            <span class="k">if</span> <span class="n">descuento</span><span class="p">:</span>
+<a id="__codelineno-16-54" name="__codelineno-16-54"></a>                <span class="k">return</span> <span class="n">ItemConDescuento</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">,</span> <span class="n">descuento</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<a id="__codelineno-16-55" name="__codelineno-16-55"></a>            <span class="k">return</span> <span class="n">Item</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">)</span>
+<a id="__codelineno-16-56" name="__codelineno-16-56"></a>        <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-16-57" name="__codelineno-16-57"></a>            <span class="k">raise</span> <span class="n">ErrorPersistencia</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al leer: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-58" name="__codelineno-16-58"></a>        <span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-16-59" name="__codelineno-16-59"></a>            <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="como-queda-el-menu">Cómo queda el menú<a class="headerlink" href="#como-queda-el-menu" title="Permanent link">&para;</a></h3>
 <p>El menú nunca importa <code>sqlite3</code>. Solo captura excepciones de dominio:</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
-<span class="normal"><a href="#__codelineno-15-2">2</a></span>
-<span class="normal"><a href="#__codelineno-15-3">3</a></span>
-<span class="normal"><a href="#__codelineno-15-4">4</a></span>
-<span class="normal"><a href="#__codelineno-15-5">5</a></span>
-<span class="normal"><a href="#__codelineno-15-6">6</a></span>
-<span class="normal"><a href="#__codelineno-15-7">7</a></span>
-<span class="normal"><a href="#__codelineno-15-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">opcion_guardar</span><span class="p">(</span><span class="n">repo</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2"></a>    <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3"></a>        <span class="n">repo</span><span class="o">.</span><span class="n">guardar</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Producto &#39;</span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">codigo</span><span class="si">}</span><span class="s2">&#39; guardado correctamente.&quot;</span><span class="p">)</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="hll">    <span class="k">except</span> <span class="n">ProductoYaExisteError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="hll">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="hll">    <span class="k">except</span> <span class="n">ErrorPersistencia</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="hll">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error inesperado de base de datos: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span>
+<span class="normal"><a href="#__codelineno-17-4">4</a></span>
+<span class="normal"><a href="#__codelineno-17-5">5</a></span>
+<span class="normal"><a href="#__codelineno-17-6">6</a></span>
+<span class="normal"><a href="#__codelineno-17-7">7</a></span>
+<span class="normal"><a href="#__codelineno-17-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">opcion_guardar</span><span class="p">(</span><span class="n">repo</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a>        <span class="n">repo</span><span class="o">.</span><span class="n">guardar</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Producto &#39;</span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">codigo</span><span class="si">}</span><span class="s2">&#39; guardado correctamente.&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="hll">    <span class="k">except</span> <span class="n">ProductoYaExisteError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><a id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="hll">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="hll">    <span class="k">except</span> <span class="n">ErrorPersistencia</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><a id="__codelineno-17-8" name="__codelineno-17-8"></a><span class="hll">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error inesperado de base de datos: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Ventaja de esta separación</p>
