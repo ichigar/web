@@ -1559,15 +1559,13 @@
 <h2 id="4-el-repositorio-como-frontera">4. El repositorio como frontera<a class="headerlink" href="#4-el-repositorio-como-frontera" title="Permanent link">&para;</a></h2>
 <h3 id="las-capas-de-la-aplicacion">Las capas de la aplicación<a class="headerlink" href="#las-capas-de-la-aplicacion" title="Permanent link">&para;</a></h3>
 <p>Una aplicación bien estructurada separa el código en capas con responsabilidades distintas. Cada capa solo conoce la que tiene inmediatamente debajo:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>┌──────────────────────────────┐
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>│  Menú / Interfaz de usuario  │  captura excepciones de dominio
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>├──────────────────────────────┤
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>│  Dominio (Item, Maquina…)    │  lógica de negocio, sin SQLite
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>├──────────────────────────────┤
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>│  Repositorio                 │  ← FRONTERA: traduce SQLite ↔ dominio
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>├──────────────────────────────┤
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>│  SQLite / Base de datos      │  lanza excepciones sqlite3.*
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>└──────────────────────────────┘
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>block-beta
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    columns 1
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    A[&quot;🖥️ Menú / Interfaz de usuario\ncaptura excepciones de dominio&quot;]
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    B[&quot;📦 Dominio (Item, Maquina…)\nlógica de negocio, sin SQLite&quot;]
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    C[&quot;🔄 Repositorio ← FRONTERA\ntraduce SQLite ↔ dominio&quot;]
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    D[&quot;🗄️ SQLite / Base de datos\nlanza excepciones sqlite3.*&quot;]
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    A --&gt; B --&gt; C --&gt; D
 </code></pre></div>
 <p>El <strong>repositorio</strong> es la única capa que importa <code>sqlite3</code>. Todo lo que está por encima solo ve objetos de dominio y excepciones de dominio.</p>
 <h3 id="ejemplo-completo-repositorio-con-excepciones-propias">Ejemplo completo: repositorio con excepciones propias<a class="headerlink" href="#ejemplo-completo-repositorio-con-excepciones-propias" title="Permanent link">&para;</a></h3>
