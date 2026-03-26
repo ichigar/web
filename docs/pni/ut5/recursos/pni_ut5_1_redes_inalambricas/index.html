@@ -1402,6 +1402,7 @@
 <p>Una <strong>red inalámbrica</strong> es un tipo de red de comunicación de datos en la que los dispositivos se conectan entre sí sin utilizar cables físicos. En su lugar, emplean tecnologías inalámbricas para transmitir y recibir información a través del aire.</p>
 <p>Las redes inalámbricas se clasifican según su alcance geográfico en cuatro grandes categorías: WPAN, WLAN, WMAN y WWAN.</p>
 <h3 id="clasificacion-por-alcance">Clasificación por alcance<a class="headerlink" href="#clasificacion-por-alcance" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="../img/wpan_lan_man_wan.jpg" /></p>
 <table>
 <thead>
 <tr>
@@ -1557,6 +1558,8 @@
 <p>El <strong>SSID</strong> (<em>Service Set Identifier</em>) es el nombre que identifica a una red inalámbrica. Cada punto de acceso o dispositivo multifunción emite un SSID para que los dispositivos cercanos puedan identificar la red y solicitar la conexión. Es el nombre que aparece en la lista de redes Wi-Fi disponibles de un portátil o un móvil — por ejemplo, <code>MOVISTAR_A1B2</code>, <code>eduroam</code> o <code>wifi_oficina</code>.</p>
 <p>El SSID puede tener hasta 32 caracteres y distingue entre mayúsculas y minúsculas — <code>MiRed</code> y <code>mired</code> son dos SSID diferentes.</p>
 <h3 id="broadcast-ssid-vs-hidden-ssid">Broadcast SSID vs Hidden SSID<a class="headerlink" href="#broadcast-ssid-vs-hidden-ssid" title="Permanent link">&para;</a></h3>
+<p><img alt="SSID vs Hidden SSID" src="../img/ssid_hidden-ssid.png" /></p>
+<p><em>Fuente: Imagen generada con IA (ChatGPT, OpenAI), 2026.</em></p>
 <p>Existen dos modos de difusión del SSID:</p>
 <table>
 <thead>
@@ -1587,7 +1590,9 @@
 </div>
 <h3 id="configuracion-del-ssid-en-packet-tracer">Configuración del SSID en Packet Tracer<a class="headerlink" href="#configuracion-del-ssid-en-packet-tracer" title="Permanent link">&para;</a></h3>
 <p>En un <strong>punto de acceso</strong> (AP-PT-N), el SSID se configura en <em>Config → Port 1</em>. El campo <em>SSID</em> muestra el nombre actual de la red — por defecto, <code>Default</code>.</p>
+<p><img alt="Configuración de SSID en AP-PT-N" src="../img/ssid_ap-pt-n.png" /></p>
 <p>En un <strong>dispositivo multifunción</strong> (WRT300N), el SSID se configura desde la interfaz GUI (<em>pestaña GUI → Wireless → Basic Wireless Settings</em>) o desde <em>Config → Wireless</em>.</p>
+<p><img alt="Configuración de SSID en WRT300N" src="../img/ssid_wrt300n.png" /></p>
 <blockquote>
 <p>Si cambias el SSID del punto de acceso, los dispositivos que estaban conectados perderán la conexión. Deberás actualizar el SSID en la configuración inalámbrica de cada cliente para que vuelvan a asociarse.</p>
 </blockquote>
@@ -1677,6 +1682,8 @@
 </table>
 <p>A pesar de sus ventajas, WPA3 tiene una adopción limitada porque requiere hardware compatible. Muchos dispositivos y puntos de acceso actualmente en uso solo soportan hasta WPA2. Por esta razón, WPA2 sigue siendo la opción más práctica en la mayoría de escenarios.</p>
 <h3 id="comparativa-de-protocolos-de-seguridad">Comparativa de protocolos de seguridad<a class="headerlink" href="#comparativa-de-protocolos-de-seguridad" title="Permanent link">&para;</a></h3>
+<p><img alt="Comparativa protocolos de seguridad" src="../img/wep_wpa_2_3.png" />
+<em>Fuente: Imagen generada con IA (ChatGPT, OpenAI), 2026.</em></p>
 <table>
 <thead>
 <tr>
@@ -1772,6 +1779,8 @@
 <p>Si el dispositivo ofrece la opción de elegir entre TKIP y AES (o AES+TKIP), selecciona siempre <strong>AES</strong>. TKIP solo tiene sentido para mantener compatibilidad con dispositivos muy antiguos que no soportan AES, un caso cada vez más raro.</p>
 </div>
 <h3 id="el-servidor-radius">El servidor RADIUS<a class="headerlink" href="#el-servidor-radius" title="Permanent link">&para;</a></h3>
+<p><img alt="Servidor RADIUS" src="../img/radius_server.png" />
+<em>Fuente: Imagen generada con IA (ChatGPT, OpenAI), 2026</em></p>
 <p>Un <strong>servidor RADIUS</strong> (<em>Remote Authentication Dial-In User Service</em>) es un servidor de autenticación centralizado que valida las credenciales de los usuarios que intentan conectarse a la red. Es el componente clave que diferencia WPA2 Enterprise de WPA2 Personal.</p>
 <p>El flujo de autenticación en WPA2 Enterprise funciona así:</p>
 <ol>
@@ -1817,6 +1826,8 @@
 <p>El <strong>filtrado MAC</strong> es un mecanismo de control de acceso que permite configurar en el punto de acceso una lista de direcciones MAC autorizadas (o denegadas) para conectarse a la red.</p>
 <p>Cada tarjeta de red tiene una <strong>dirección MAC</strong> (<em>Media Access Control</em>) única de fábrica — un identificador de 48 bits expresado como seis pares hexadecimales (por ejemplo, <code>00:1A:2B:3C:4D:5E</code>). El filtrado MAC utiliza esta dirección para decidir si un dispositivo puede o no acceder a la red.</p>
 <p>Existen dos enfoques:</p>
+<p><img alt="Filtrado de direcciones MAC" src="../img/filtrado_mac.png" />
+<em>Fuente: Imagen generada con IA (ChatGPT, OpenAI), 2026.</em></p>
 <table>
 <thead>
 <tr>
