@@ -1106,14 +1106,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-scripts-de-despliegue-multiplataforma" class="md-nav__link">
+  <a href="#2-arquitectura-de-carpetas-y-ramas" class="md-nav__link">
     <span class="md-ellipsis">
-      2) Scripts de despliegue multiplataforma
+      2) Arquitectura de carpetas y ramas
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2) Scripts de despliegue multiplataforma">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-scripts-de-despliegue-multiplataforma" class="md-nav__link">
+    <span class="md-ellipsis">
+      3) Scripts de despliegue multiplataforma
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3) Scripts de despliegue multiplataforma">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flujo-de-despliegue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flujo de despliegue
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#deploypy-codeberg-pages" class="md-nav__link">
@@ -1206,7 +1224,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              3 minutos de lectura
+                              4 minutos de lectura
                             
                           </span>
                         </div>
@@ -1246,6 +1264,7 @@
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># coloca aquí setup_env.py</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>python<span class="w"> </span>setup_env.py
 </code></pre></div>
+<p><img alt="Salida de setup_env.py ejecutándose con éxito" src="img/setup_env_output.png" /></p>
 <h3 id="que-hace-paso-a-paso">Qué hace paso a paso<a class="headerlink" href="#que-hace-paso-a-paso" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>1. Verifica que uv está instalado
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>2. Clona el repositorio en pages/  (rama main)
@@ -1277,8 +1296,38 @@
 <h3 id="deteccion-de-requisitos">Detección de requisitos<a class="headerlink" href="#deteccion-de-requisitos" title="Permanent link">&para;</a></h3>
 <p>Si <code>uv</code> no está instalado, el script muestra las instrucciones de instalación y aborta. Lo mismo con <code>rsync</code> al final: avisa si no está disponible e indica cómo instalarlo según el sistema operativo.</p>
 <hr />
-<h2 id="2-scripts-de-despliegue-multiplataforma">2) Scripts de despliegue multiplataforma<a class="headerlink" href="#2-scripts-de-despliegue-multiplataforma" title="Permanent link">&para;</a></h2>
+<h2 id="2-arquitectura-de-carpetas-y-ramas">2) Arquitectura de carpetas y ramas<a class="headerlink" href="#2-arquitectura-de-carpetas-y-ramas" title="Permanent link">&para;</a></h2>
+<p>El repositorio usa git worktrees para trabajar con dos ramas en carpetas separadas sin tener que cambiar de rama. Con el despliegue en GitHub se añade una tercera carpeta hermana.</p>
+<pre class="mermaid"><code>graph LR
+    subgraph Codeberg
+        repo[("Repositorio\nichigar/pages")]
+        repo --&gt;|"rama main"| pages["pages/\n(HTML publicado)"]
+        repo --&gt;|"rama src"| src["src/\n(fuentes + scripts)"]
+    end
+
+    subgraph GitHub
+        gh[("Repositorio\nichigar/web")]
+        gh --&gt;|"rama main"| web["web/\n(web/docs/ → HTML)"]
+    end
+
+    src --&gt;|"deploy.py"| pages
+    src --&gt;|"deploy-github.py"| web</code></pre>
+<hr />
+<h2 id="3-scripts-de-despliegue-multiplataforma">3) Scripts de despliegue multiplataforma<a class="headerlink" href="#3-scripts-de-despliegue-multiplataforma" title="Permanent link">&para;</a></h2>
 <p>Los scripts <code>.sh</code> existentes necesitan bash y rsync, lo que los hace incómodos en Windows. Se han añadido equivalentes en Python que funcionan en cualquier plataforma.</p>
+<h3 id="flujo-de-despliegue">Flujo de despliegue<a class="headerlink" href="#flujo-de-despliegue" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart TD
+    edit["✏️ Editar docs/"]
+    commit["git commit + push\nrama src"]
+    build["mkdocs build\n→ site/"]
+
+    edit --&gt; commit --&gt; build
+
+    build --&gt; codeberg["🔄 sync site/ → pages/\ngit commit + push main"]
+    build --&gt; github["🔄 sync site/ → web/docs/\ngit commit + push"]
+
+    codeberg --&gt; pub1["🌐 Codeberg Pages"]
+    github --&gt; pub2["🌐 GitHub Pages"]</code></pre>
 <h3 id="deploypy-codeberg-pages">deploy.py (Codeberg Pages)<a class="headerlink" href="#deploypy-codeberg-pages" title="Permanent link">&para;</a></h3>
 <p>Replica la lógica de <code>deploy.sh</code>: commit en rama <code>src</code>, build con MkDocs, sincronización a <code>../pages/</code> y commit en rama <code>main</code>.</p>
 <p>El sustituto de <code>rsync --delete</code> borra todo lo que haya en <code>../pages/</code> excepto <code>.git</code> y copia el contenido de <code>site/</code>:</p>
@@ -1298,22 +1347,9 @@
 <a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>            <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="deploy-githubpy-github-pages">deploy-github.py (GitHub Pages)<a class="headerlink" href="#deploy-githubpy-github-pages" title="Permanent link">&para;</a></h3>
-<p>El repositorio <a href="https://github.com/ichigar/web">github.com/ichigar/web</a> aloja una segunda copia del sitio en su subcarpeta <code>docs/</code>. El script hace el ciclo completo:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>1. Commit &amp; push en rama src (Codeberg)
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>2. mkdocs build
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>3. git pull --rebase en ../web/
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>4. Copia site/ → ../web/docs/
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>5. Commit &amp; push en ../web/ (GitHub)
-</code></pre></div>
-<p>Para usarlo hay que tener el repo de GitHub clonado como carpeta hermana:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># desde codeberg-pages-develop/</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ichigar/web<span class="w"> </span>../web
-</code></pre></div>
-<p>La estructura de carpetas queda así:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>codeberg-pages-develop/
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  pages/     ← rama main de Codeberg
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  src/       ← rama src  (fuentes + scripts)
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  web/       ← repo GitHub (web/docs/ recibe el HTML)
+<p>El repositorio <a href="https://github.com/ichigar/web">github.com/ichigar/web</a> aloja una segunda copia del sitio en su subcarpeta <code>docs/</code>. Para usarlo hay que tener el repo clonado como carpeta hermana:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># desde codeberg-pages-develop/</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ichigar/web<span class="w"> </span>../web
 </code></pre></div>
 <hr />
 <h2 id="resumen-de-scripts-disponibles">Resumen de scripts disponibles<a class="headerlink" href="#resumen-de-scripts-disponibles" title="Permanent link">&para;</a></h2>
@@ -1349,10 +1385,10 @@
 </tbody>
 </table>
 <p>El flujo de trabajo habitual no cambia:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>src/
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1"># editar docs/...</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>python<span class="w"> </span>deploy.py<span class="w">           </span><span class="c1"># publica en Codeberg</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>python<span class="w"> </span>deploy-github.py<span class="w">    </span><span class="c1"># publica en GitHub</span>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>src/
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># editar docs/...</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>python<span class="w"> </span>deploy.py<span class="w">           </span><span class="c1"># publica en Codeberg</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>python<span class="w"> </span>deploy-github.py<span class="w">    </span><span class="c1"># publica en GitHub</span>
 </code></pre></div>
 
 
@@ -1429,6 +1465,8 @@
       <script src="../../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
         <script src="../../../../../assets/_markdown_exec_pyodide.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
       
     
   </body>
