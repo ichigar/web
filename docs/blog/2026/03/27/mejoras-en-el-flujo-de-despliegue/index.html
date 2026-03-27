@@ -10,11 +10,11 @@
       
       
       
-        <link rel="canonical" href="https://ichigar.codeberg.page/blog/blog/2025/10/01/tutorial-de-mkdocs/">
+        <link rel="canonical" href="https://ichigar.codeberg.page/blog/blog/2026/03/27/mejoras-en-el-flujo-de-despliegue/">
       
       
+        <link rel="prev" href="../../../../2025/10/01/tutorial-de-mkdocs/">
       
-        <link rel="next" href="../../../../2026/03/27/mejoras-en-el-flujo-de-despliegue/">
       
       
         <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../../feed_rss_created.xml">
@@ -25,7 +25,7 @@
     
     
       
-        <title>Tutorial de mkdocs - Web personal de ichigar</title>
+        <title>Mejoras en el flujo de despliegue - Web personal de ichigar</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tutorial-compacto-de-mkdocs" class="md-skip">
+        <a href="#nuevo-flujo-de-despliegue-setup_envpy-uv-y-scripts-multiplataforma" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Tutorial de mkdocs
+              Mejoras en el flujo de despliegue
             
           </span>
         </div>
@@ -1055,64 +1055,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-instalacion-ubuntu-2404-con-entorno-virtual" class="md-nav__link">
+  <a href="#el-punto-de-partida" class="md-nav__link">
     <span class="md-ellipsis">
-      1) Instalación (Ubuntu 24.04 con entorno virtual)
+      El punto de partida
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-crear-proyecto-base" class="md-nav__link">
+  <a href="#1-setup_envpy-configuracion-del-entorno-en-un-solo-paso" class="md-nav__link">
     <span class="md-ellipsis">
-      2) Crear proyecto base
+      1) setup_env.py: configuración del entorno en un solo paso
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-traer-tu-contenido" class="md-nav__link">
-    <span class="md-ellipsis">
-      3) Traer tu contenido
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-configuracion-minima-mkdocsyml" class="md-nav__link">
-    <span class="md-ellipsis">
-      4) Configuración mínima (mkdocs.yml)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-vista-previa-y-build" class="md-nav__link">
-    <span class="md-ellipsis">
-      5) Vista previa y build
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-mejoras-rapidas-material" class="md-nav__link">
-    <span class="md-ellipsis">
-      6) Mejoras rápidas (Material)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="6) Mejoras rápidas (Material)">
+    <nav class="md-nav" aria-label="1) setup_env.py: configuración del entorno en un solo paso">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#61-resaltar-lineas-en-bloques-de-codigo" class="md-nav__link">
+  <a href="#que-hace-paso-a-paso" class="md-nav__link">
     <span class="md-ellipsis">
-      6.1) Resaltar líneas en bloques de código
+      Qué hace paso a paso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-del-entorno-con-uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gestión del entorno con uv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deteccion-de-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detección de requisitos
     </span>
   </a>
   
@@ -1124,46 +1106,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-enlaces-imagenes-y-estaticos" class="md-nav__link">
+  <a href="#2-scripts-de-despliegue-multiplataforma" class="md-nav__link">
     <span class="md-ellipsis">
-      7) Enlaces, imágenes y estáticos
+      2) Scripts de despliegue multiplataforma
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8-busqueda" class="md-nav__link">
-    <span class="md-ellipsis">
-      8) Búsqueda
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-despliegue" class="md-nav__link">
-    <span class="md-ellipsis">
-      9) Despliegue
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="9) Despliegue">
+    <nav class="md-nav" aria-label="2) Scripts de despliegue multiplataforma">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#github-pages-rapido" class="md-nav__link">
+  <a href="#deploypy-codeberg-pages" class="md-nav__link">
     <span class="md-ellipsis">
-      GitHub Pages (rápido)
+      deploy.py (Codeberg Pages)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#servidor-propio" class="md-nav__link">
+  <a href="#deploy-githubpy-github-pages" class="md-nav__link">
     <span class="md-ellipsis">
-      Servidor propio
+      deploy-github.py (GitHub Pages)
     </span>
   </a>
   
@@ -1175,18 +1139,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#10-opcional-versionado-de-docs" class="md-nav__link">
+  <a href="#resumen-de-scripts-disponibles" class="md-nav__link">
     <span class="md-ellipsis">
-      10) Opcional: versionado de docs
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#11-problemas-comunes-y-soluciones" class="md-nav__link">
-    <span class="md-ellipsis">
-      11) Problemas comunes (y soluciones)
+      Resumen de scripts disponibles
     </span>
   </a>
   
@@ -1229,7 +1184,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2025-10-01 00:00:00+00:00" class="md-ellipsis">1 de octubre de 2025</time>
+                        <time datetime="2026-03-27 00:00:00+00:00" class="md-ellipsis">27 de marzo de 2026</time>
                       </div>
                     </li>
                     
@@ -1275,189 +1230,130 @@
 
 
 
-<h1 id="tutorial-compacto-de-mkdocs">Tutorial compacto de MkDocs<a class="headerlink" href="#tutorial-compacto-de-mkdocs" title="Permanent link">&para;</a></h1>
-<p>Convierte tu carpeta de Markdown en un sitio HTML moderno con buscador.</p>
+<h1 id="nuevo-flujo-de-despliegue-setup_envpy-uv-y-scripts-multiplataforma">Nuevo flujo de despliegue: setup_env.py, uv y scripts multiplataforma<a class="headerlink" href="#nuevo-flujo-de-despliegue-setup_envpy-uv-y-scripts-multiplataforma" title="Permanent link">&para;</a></h1>
+<p>El sistema de publicación de mis apuntes y recursos estrena tres novedades: un script de configuración inicial del entorno, migración a <code>uv</code> para gestionar dependencias Python y scripts de despliegue en Python que funcionan en cualquier plataforma sin necesitar bash ni rsync.</p>
 <hr />
-<h2 id="1-instalacion-ubuntu-2404-con-entorno-virtual">1) Instalación (Ubuntu 24.04 con entorno virtual)<a class="headerlink" href="#1-instalacion-ubuntu-2404-con-entorno-virtual" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 1) Dependencias del sistema (si no tienes venv)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3-venv
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 2) Crear y activar entorno virtual en el proyecto</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># 3) Instalar MkDocs y tema Material dentro del venv</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>pip<span class="w"> </span>install<span class="w"> </span>mkdocs<span class="w"> </span>mkdocs-material
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># 4) (Opcional) Salir del venv cuando acabes</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># deactivate</span>
-</code></pre></div>
+<h2 id="el-punto-de-partida">El punto de partida<a class="headerlink" href="#el-punto-de-partida" title="Permanent link">&para;</a></h2>
+<p>Hasta ahora preparar el entorno de desarrollo requería ejecutar una serie de comandos git y pip a mano. En Windows había un problema adicional: los scripts de despliegue (<code>deploy.sh</code>, <code>deploy-github.sh</code>) necesitan bash y rsync, herramientas que no vienen de serie.</p>
+<p>La solución ha sido crear un script de configuración automática y versiones Python de los scripts de despliegue.</p>
 <!-- more -->
 
-<blockquote>
-<p>Sugerencia: añade <code>.venv/</code> a tu <code>.gitignore</code>.</p>
-</blockquote>
-<h2 id="2-crear-proyecto-base">2) Crear proyecto base<a class="headerlink" href="#2-crear-proyecto-base" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mkdocs<span class="w"> </span>new<span class="w"> </span>mi-sitio
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>mi-sitio
+<hr />
+<h2 id="1-setup_envpy-configuracion-del-entorno-en-un-solo-paso">1) setup_env.py: configuración del entorno en un solo paso<a class="headerlink" href="#1-setup_envpy-configuracion-del-entorno-en-un-solo-paso" title="Permanent link">&para;</a></h2>
+<p><code>setup_env.py</code> automatiza todo lo necesario para empezar a trabajar. Basta con descargarlo en el directorio de trabajo y ejecutarlo:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>codeberg-pages-develop
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>codeberg-pages-develop
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># coloca aquí setup_env.py</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>python<span class="w"> </span>setup_env.py
 </code></pre></div>
-<p>Estructura inicial:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mi-sitio/
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  mkdocs.yml        # configuración
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  docs/
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    index.md        # portada
+<h3 id="que-hace-paso-a-paso">Qué hace paso a paso<a class="headerlink" href="#que-hace-paso-a-paso" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>1. Verifica que uv está instalado
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>2. Clona el repositorio en pages/  (rama main)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>3. Crea el worktree de la rama src en src/
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>4. Crea el entorno virtual Python 3.12 en src/.venv/
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>5. Instala todas las dependencias desde requirements.txt
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>6. Comprueba si rsync está disponible (necesario para deploy.sh)
 </code></pre></div>
-<h2 id="3-traer-tu-contenido">3) Traer tu contenido<a class="headerlink" href="#3-traer-tu-contenido" title="Permanent link">&para;</a></h2>
-<p>Copia <strong>tu árbol de .md</strong> dentro de <code>docs/</code> respetando subcarpetas:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docs/
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  index.md
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  guia/
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    intro.md
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    avanzado.md
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  referencias/
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    api.md
+<p>Al terminar muestra las instrucciones para activar el entorno y lanzar <code>mkdocs serve</code>.</p>
+<h3 id="gestion-del-entorno-con-uv">Gestión del entorno con uv<a class="headerlink" href="#gestion-del-entorno-con-uv" title="Permanent link">&para;</a></h3>
+<p>El script usa <a href="https://docs.astral.sh/uv/">uv</a> en lugar de <code>pip</code> + <code>venv</code>. <code>uv</code> es un gestor de entornos y paquetes escrito en Rust, mucho más rápido y con mejor resolución de dependencias. Fija Python 3.12, versión con wheels precompiladas para todas las dependencias del proyecto.</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Instalar uv antes de ejecutar setup_env.py</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Windows</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>scoop<span class="w"> </span>install<span class="w"> </span>uv
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># o</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>winget<span class="w"> </span>install<span class="w"> </span>--id<span class="o">=</span>astral-sh.uv
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># Linux / macOS</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </code></pre></div>
-<h2 id="4-configuracion-minima-mkdocsyml">4) Configuración mínima (<code>mkdocs.yml</code>)<a class="headerlink" href="#4-configuracion-minima-mkdocsyml" title="Permanent link">&para;</a></h2>
-<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">site_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mi Documentación</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">theme</span><span class="p">:</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material</span><span class="w">     </span><span class="c1"># o &quot;readthedocs&quot; si no instalas material</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nt">nav</span><span class="p">:</span><span class="w">                 </span><span class="c1"># navegación manual (opcional, recomendado)</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Inicio</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">index.md</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Guía</span><span class="p">:</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Introducción</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">guia/intro.md</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Avanzado</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">guia/avanzado.md</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Referencias</span><span class="p">:</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">API</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">referencias/api.md</span>
-</code></pre></div>
-<p>Notas:</p>
-<ul>
-<li>Si omites <code>nav</code>, MkDocs genera navegación simple por archivos.</li>
-<li>Para <strong>salida en otra carpeta</strong>, añade:</li>
-</ul>
-<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">site_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../salida_html</span>
-</code></pre></div>
-<h2 id="5-vista-previa-y-build">5) Vista previa y build<a class="headerlink" href="#5-vista-previa-y-build" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>mkdocs<span class="w"> </span>serve<span class="w">   </span><span class="c1"># http://127.0.0.1:8000 con recarga en caliente</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>mkdocs<span class="w"> </span>build<span class="w">   </span><span class="c1"># genera HTML en site/ (o en site_dir si lo definiste)</span>
-</code></pre></div>
-<h2 id="6-mejoras-rapidas-material">6) Mejoras rápidas (Material)<a class="headerlink" href="#6-mejoras-rapidas-material" title="Permanent link">&para;</a></h2>
-<p>En <code>mkdocs.yml</code>:</p>
-<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">theme</span><span class="p">:</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">features</span><span class="p">:</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">navigation.tabs</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">navigation.sections</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">search.suggest</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">content.code.copy</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="nt">markdown_extensions</span><span class="p">:</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admonition</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">toc</span><span class="p">:</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">      </span><span class="nt">permalink</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">footnotes</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tables</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codehilite</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="nt">extra</span><span class="p">:</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">  </span><span class="nt">social</span><span class="p">:</span>
-<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fontawesome/brands/github</span>
-<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">      </span><span class="nt">link</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/tuusuario</span>
-</code></pre></div>
-<p>Bloques de admonición en tus <code>.md</code>:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>!!! note &quot;Recuerda&quot;
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    Este es un bloque de nota.
-</code></pre></div>
-<h3 id="61-resaltar-lineas-en-bloques-de-codigo">6.1) Resaltar líneas en bloques de código<a class="headerlink" href="#61-resaltar-lineas-en-bloques-de-codigo" title="Permanent link">&para;</a></h3>
-<p><strong>Plugin/extensión recomendada:</strong> <code>pymdownx.highlight</code> (y <code>pymdownx.superfences</code>).</p>
-<ol>
-<li>Instala dependencias en tu <strong>entorno virtual</strong>:</li>
-</ol>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>pip<span class="w"> </span>install<span class="w"> </span>pymdown-extensions<span class="w"> </span>pygments
-</code></pre></div>
-<ol>
-<li>Activa en <code>mkdocs.yml</code>:</li>
-</ol>
-<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">markdown_extensions</span><span class="p">:</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.highlight</span><span class="p">:</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">      </span><span class="nt">anchor_linenums</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">   </span><span class="c1"># anclas por línea (útil para enlazar)</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">      </span><span class="nt">linenums</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w">         </span><span class="c1"># SIN números de línea por defecto</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">      </span><span class="nt">linenums_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table</span><span class="w">   </span><span class="c1"># (solo si algún bloque los activa)</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">      </span><span class="nt">pygments_lang_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<p>Internamente el script hace:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">run</span><span class="p">([</span><span class="s2">&quot;uv&quot;</span><span class="p">,</span> <span class="s2">&quot;venv&quot;</span><span class="p">,</span> <span class="s2">&quot;--python&quot;</span><span class="p">,</span> <span class="s2">&quot;3.12&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">venv</span><span class="p">)])</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">run</span><span class="p">([</span><span class="s2">&quot;uv&quot;</span><span class="p">,</span> <span class="s2">&quot;pip&quot;</span><span class="p">,</span> <span class="s2">&quot;install&quot;</span><span class="p">,</span> <span class="s2">&quot;--python&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">venv</span><span class="p">),</span> <span class="s2">&quot;-r&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">req_file</span><span class="p">)],</span> <span class="n">cwd</span><span class="o">=</span><span class="n">src</span><span class="p">)</span>
 </code></pre></div>
 <blockquote>
-<p>Con <code>linenums: false</code> los bloques <strong>no</strong> mostrarán números de línea salvo que se pidan explícitamente.</p>
+<p><code>uv venv</code> genera un entorno estándar compatible con cualquier herramienta que espere un venv convencional. Los scripts de despliegue existentes funcionan sin cambios.</p>
 </blockquote>
-<ol>
-<li>Control por bloque (cuando necesites numeración):</li>
-</ol>
-<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="sb">```python</span><span class="w"> </span>linenums=&quot;3&quot; hl_lines=&quot;1 3&quot;
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1"># Este bloque SÍ tendrá números, empezando en 1</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="sb">```</span>
+<h3 id="deteccion-de-requisitos">Detección de requisitos<a class="headerlink" href="#deteccion-de-requisitos" title="Permanent link">&para;</a></h3>
+<p>Si <code>uv</code> no está instalado, el script muestra las instrucciones de instalación y aborta. Lo mismo con <code>rsync</code> al final: avisa si no está disponible e indica cómo instalarlo según el sistema operativo.</p>
+<hr />
+<h2 id="2-scripts-de-despliegue-multiplataforma">2) Scripts de despliegue multiplataforma<a class="headerlink" href="#2-scripts-de-despliegue-multiplataforma" title="Permanent link">&para;</a></h2>
+<p>Los scripts <code>.sh</code> existentes necesitan bash y rsync, lo que los hace incómodos en Windows. Se han añadido equivalentes en Python que funcionan en cualquier plataforma.</p>
+<h3 id="deploypy-codeberg-pages">deploy.py (Codeberg Pages)<a class="headerlink" href="#deploypy-codeberg-pages" title="Permanent link">&para;</a></h3>
+<p>Replica la lógica de <code>deploy.sh</code>: commit en rama <code>src</code>, build con MkDocs, sincronización a <code>../pages/</code> y commit en rama <code>main</code>.</p>
+<p>El sustituto de <code>rsync --delete</code> borra todo lo que haya en <code>../pages/</code> excepto <code>.git</code> y copia el contenido de <code>site/</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">sync_site</span><span class="p">(</span><span class="n">src</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">dst</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dst</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;.git&quot;</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>            <span class="k">continue</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>            <span class="n">item</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">src</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>        <span class="n">dest</span> <span class="o">=</span> <span class="n">dst</span> <span class="o">/</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>            <span class="n">shutil</span><span class="o">.</span><span class="n">copytree</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>            <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span>
 </code></pre></div>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-3">3</a></span>
-<span class="normal"><a href="#__codelineno-12-4">4</a></span>
-<span class="normal"><a href="#__codelineno-12-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="hll"><span class="c1"># Este bloque SÍ tendrá números, empezando en 3 </span>
-</span><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="hll"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
-</span></code></pre></div></td></tr></table></div>
-<ol>
-<li>
-<p>¿Ya tienes números globales y quieres ocultarlos?</p>
-</li>
-<li>
-<p>Opción A (recomendada): pon <code>linenums: false</code> en <code>pymdownx.highlight</code> y usa <code>linenums="1"</code> solo donde quieras numeración.</p>
-</li>
-<li>Opción B (rápida sin tocar YAML): añade CSS para ocultarlos visualmente.</li>
-</ol>
-<p><strong>CSS para ocultar numeración (Material):</strong></p>
-<ol>
-<li>Crea <code>docs/styles/ocultar-linenums.css</code> con:</li>
-</ol>
-<div class="language-css highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c">/* Oculta columna de números y ajusta ancho del código */</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="p">.</span><span class="nc">md-typeset</span><span class="w"> </span><span class="p">.</span><span class="nc">highlighttable</span><span class="w"> </span><span class="p">.</span><span class="nc">linenos</span><span class="o">,</span><span class="w"> </span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">.</span><span class="nc">md-typeset</span><span class="w"> </span><span class="p">.</span><span class="nc">highlighttable</span><span class="w"> </span><span class="p">.</span><span class="nc">linenodiv</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="p">.</span><span class="nc">md-typeset</span><span class="w"> </span><span class="p">.</span><span class="nc">highlighttable</span><span class="w"> </span><span class="nt">td</span><span class="p">.</span><span class="nc">code</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<h3 id="deploy-githubpy-github-pages">deploy-github.py (GitHub Pages)<a class="headerlink" href="#deploy-githubpy-github-pages" title="Permanent link">&para;</a></h3>
+<p>El repositorio <a href="https://github.com/ichigar/web">github.com/ichigar/web</a> aloja una segunda copia del sitio en su subcarpeta <code>docs/</code>. El script hace el ciclo completo:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>1. Commit &amp; push en rama src (Codeberg)
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>2. mkdocs build
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>3. git pull --rebase en ../web/
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>4. Copia site/ → ../web/docs/
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>5. Commit &amp; push en ../web/ (GitHub)
 </code></pre></div>
-<ol>
-<li>Declara en <code>mkdocs.yml</code>:</li>
-</ol>
-<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">extra_css</span><span class="p">:</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">styles/ocultar-linenums.css</span>
+<p>Para usarlo hay que tener el repo de GitHub clonado como carpeta hermana:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># desde codeberg-pages-develop/</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ichigar/web<span class="w"> </span>../web
 </code></pre></div>
-<blockquote>
-<p>Con <strong>Material for MkDocs</strong>, <code>pymdownx.highlight</code> ofrece mejor integración visual que <code>codehilite</code> puro.</p>
-</blockquote>
-<h2 id="7-enlaces-imagenes-y-estaticos">7) Enlaces, imágenes y estáticos<a class="headerlink" href="#7-enlaces-imagenes-y-estaticos" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Enlaces internos</strong>: rutas relativas dentro de <code>docs/</code> (p. ej. <code>[Avanzado](../guia/avanzado.md)</code> o sin extensión <code>[Avanzado](../guia/avanzado/)</code>).</li>
-<li><strong>Imágenes</strong>: colócalas en <code>docs/img/</code> y enlaza <code>![Alt](img/diagrama.png)</code>.</li>
-<li><strong>Archivos estáticos</strong> (PDF, etc.): también bajo <code>docs/</code>.</li>
-</ul>
-<h2 id="8-busqueda">8) Búsqueda<a class="headerlink" href="#8-busqueda" title="Permanent link">&para;</a></h2>
-<p>MkDocs incluye buscador por defecto. Con <strong>Material</strong> ya viene listo; no hay que configurar nada extra.</p>
-<h2 id="9-despliegue">9) Despliegue<a class="headerlink" href="#9-despliegue" title="Permanent link">&para;</a></h2>
-<h3 id="github-pages-rapido">GitHub Pages (rápido)<a class="headerlink" href="#github-pages-rapido" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material<span class="w">  </span><span class="c1"># en CI/entorno de build</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>mkdocs<span class="w"> </span>gh-deploy<span class="w"> </span>--force<span class="w">     </span><span class="c1"># crea rama gh-pages y publica</span>
+<p>La estructura de carpetas queda así:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>codeberg-pages-develop/
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  pages/     ← rama main de Codeberg
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  src/       ← rama src  (fuentes + scripts)
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  web/       ← repo GitHub (web/docs/ recibe el HTML)
 </code></pre></div>
-<p>O configura un workflow que ejecute <code>mkdocs build</code> y publique <code>site/</code>.</p>
-<h3 id="servidor-propio">Servidor propio<a class="headerlink" href="#servidor-propio" title="Permanent link">&para;</a></h3>
-<p>Sirve el contenido estático de <code>site/</code> (o <code>site_dir</code>) con Nginx/Apache o cualquier hosting estático (Netlify, Cloudflare Pages, Vercel).</p>
-<h2 id="10-opcional-versionado-de-docs">10) Opcional: versionado de docs<a class="headerlink" href="#10-opcional-versionado-de-docs" title="Permanent link">&para;</a></h2>
-<p>Para docs versionadas (v1, v2, etc.) usa <strong>mike</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>pip<span class="w"> </span>install<span class="w"> </span>mike
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>mike<span class="w"> </span>deploy<span class="w"> </span><span class="m">1</span>.0
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>mike<span class="w"> </span>set-default<span class="w"> </span><span class="m">1</span>.0
+<hr />
+<h2 id="resumen-de-scripts-disponibles">Resumen de scripts disponibles<a class="headerlink" href="#resumen-de-scripts-disponibles" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Plataforma</th>
+<th>Destino</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deploy.sh</code></td>
+<td>Linux / macOS</td>
+<td>Codeberg Pages</td>
+</tr>
+<tr>
+<td><code>deploy.py</code></td>
+<td>Cualquiera</td>
+<td>Codeberg Pages</td>
+</tr>
+<tr>
+<td><code>deploy-github.sh</code></td>
+<td>Linux / macOS</td>
+<td>GitHub (<code>web/docs/</code>)</td>
+</tr>
+<tr>
+<td><code>deploy-github.py</code></td>
+<td>Cualquiera</td>
+<td>GitHub (<code>web/docs/</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>El flujo de trabajo habitual no cambia:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>src/
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1"># editar docs/...</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>python<span class="w"> </span>deploy.py<span class="w">           </span><span class="c1"># publica en Codeberg</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>python<span class="w"> </span>deploy-github.py<span class="w">    </span><span class="c1"># publica en GitHub</span>
 </code></pre></div>
-<h2 id="11-problemas-comunes-y-soluciones">11) Problemas comunes (y soluciones)<a class="headerlink" href="#11-problemas-comunes-y-soluciones" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>404 al navegar</strong>: revisa que el <code>nav</code> apunte a rutas correctas bajo <code>docs/</code>.</li>
-<li><strong>Enlaces rotos tras build</strong>: evita enlaces absolutos a disco; usa relativos desde el archivo actual.</li>
-<li><strong>CSS no aplicado</strong>: confirma <code>theme.name</code> correcto y que instalaste el paquete del tema.</li>
-<li><strong>Salida en el mismo repo</strong>: usa <code>site_dir</code> para poner los HTML en otra carpeta de salida.</li>
-</ul>
 
 
 
