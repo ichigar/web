@@ -10,10 +10,10 @@
       
       
       
-        <link rel="canonical" href="https://ichigar.codeberg.page/blog/pd4/">
+        <link rel="canonical" href="https://ichigar.codeberg.page/pd4/">
       
       
-        <link rel="prev" href="../pni/">
+        <link rel="prev" href="../ce-python/">
       
       
         <link rel="next" href="../misc/">
@@ -56,6 +56,10 @@
       <link rel="stylesheet" href="../assets/_markdown_exec_pyodide.css">
     
       <link rel="stylesheet" href="../assets/_markdown_exec_ansi.css">
+    
+      <link rel="stylesheet" href="../stylesheets/footer-contrast.css">
+    
+      <link rel="stylesheet" href="../stylesheets/blog-terminal.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -257,7 +261,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../rde/" class="md-tabs__link">
+        <a href="../smr/" class="md-tabs__link">
           
   
   
@@ -279,7 +283,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../lnd/" class="md-tabs__link">
+        <a href="../asir/" class="md-tabs__link">
           
   
   
@@ -303,7 +307,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../ce-python/" class="md-tabs__link">
           
   
   
@@ -438,8 +442,6 @@
     
       
       
-        
-      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -495,8 +497,6 @@
     
     
       
-      
-        
       
     
     
@@ -601,8 +601,6 @@
     
       
       
-        
-      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -687,12 +685,12 @@
       
         
       
-    
-    
-    
-      
-      
         
+      
+    
+    
+    
+      
       
     
     
@@ -704,7 +702,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../rde/" class="md-nav__link ">
+            <a href="../smr/" class="md-nav__link ">
               
   
   
@@ -730,6 +728,29 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -779,14 +800,10 @@
       
         
       
-        
-      
     
     
     
       
-      
-        
       
     
     
@@ -798,7 +815,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../lnd/" class="md-nav__link ">
+            <a href="../asir/" class="md-nav__link ">
               
   
   
@@ -833,58 +850,35 @@
   
   
     <li class="md-nav__item">
+      <a href="../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pni/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     PNI
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../imw/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    IMW
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../soj/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    SOJ
     
   </span>
   
@@ -917,6 +911,8 @@
           
         
       
+        
+      
     
     
     
@@ -924,8 +920,6 @@
         
         
       
-      
-        
       
     
     
@@ -937,7 +931,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../ce-python/" class="md-nav__link ">
               
   
   
@@ -949,6 +943,11 @@
 
             </a>
             
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
           </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
@@ -958,6 +957,194 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ut1" class="md-nav__link">
+    <span class="md-ellipsis">
+      UT1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UT1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ut2-ficheros-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      UT2 - Ficheros en Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UT2 - Ficheros en Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recursos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Labs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ut3-bbdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      UT3 - BBDD
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UT3 - BBDD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recursos_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recursos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apuntes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apuntes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presentaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Presentaciones
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#labs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Labs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    <span class="md-ellipsis">
+      MISC
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
               
             
           </ul>
@@ -1272,7 +1459,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../pni/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: PNI">
+          <a href="../ce-python/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: CE Python · Desarrollo Web con Python">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1282,7 +1469,7 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                PNI
+                CE Python · Desarrollo Web con Python
               </div>
             </div>
           </a>
@@ -1364,7 +1551,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
@@ -1372,6 +1559,8 @@
         <script src="../assets/_markdown_exec_pyodide.js"></script>
       
         <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="../javascripts/blog-class.js"></script>
       
     
   </body>

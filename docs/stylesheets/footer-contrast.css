@@ -1,0 +1,26 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   footer-contrast.css
+   Corrige el contraste del footer en modo claro del tema Material.
+   El copyright es ilegible en modo claro porque usa color claro sobre
+   fondo claro. Esta hoja corrige eso sin afectar al modo oscuro.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* En modo claro, cambiar las variables CSS de Material para el footer */
+[data-md-color-scheme="default"] {
+  --md-footer-fg-color: rgba(0, 0, 0, 0.87);
+  --md-footer-fg-color--light: rgba(0, 0, 0, 0.62);
+  --md-footer-fg-color--lighter: rgba(0, 0, 0, 0.32);
+}
+
+/* Fallback: si las variables no funcionan, aplicar directamente */
+[data-md-color-scheme="default"] .md-footer-meta,
+[data-md-color-scheme="default"] .md-footer-meta p,
+[data-md-color-scheme="default"] .md-footer-meta a {
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
+/* Iconos SVG del footer en modo claro */
+[data-md-color-scheme="default"] .md-footer-meta svg,
+[data-md-color-scheme="default"] .md-footer-meta svg path {
+  fill: rgba(0, 0, 0, 0.87) !important;
+}

@@ -1,0 +1,480 @@
+/* ==========================================================================
+   blog-terminal.css
+   Estilo dev/terminal para las páginas del blog.
+   Respeta el esquema de color de Material (claro/oscuro).
+   Se activa solo cuando el <body> tiene la clase `blog-page` (inyectada
+   por javascripts/blog-class.js).
+
+   Paleta modo oscuro (GitHub dark):
+     - Fondo base:     #0d1117
+     - Fondo elevado:  #161b22
+     - Borde sutil:    #30363d
+     - Texto primario: #c9d1d9
+     - Texto suave:    #8b949e
+     - Acento verde:   #3fb950
+     - Acento cian:    #58a6ff (enlaces)
+
+   Paleta modo claro (GitHub light):
+     - Fondo base:     #ffffff
+     - Fondo elevado:  #f6f8fa
+     - Borde sutil:    #d0d7de
+     - Texto primario: #1f2328
+     - Texto suave:    #656d76
+     - Acento verde:   #1a7f37
+     - Acento azul:    #0969da (enlaces)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ── Variables del blog — modo claro (esquema "default") ─────────────────── */
+.blog-page,
+.blog-page[data-md-color-scheme="default"] {
+  --blog-bg: #ffffff;
+  --blog-bg-elev: #f6f8fa;
+  --blog-border: #d0d7de;
+  --blog-text: #1f2328;
+  --blog-text-dim: #656d76;
+  --blog-accent: #1a7f37;
+  --blog-link: #0969da;
+  --blog-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --blog-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ── Variables del blog — modo oscuro (esquema "slate") ──────────────────── */
+.blog-page[data-md-color-scheme="slate"] {
+  --blog-bg: #0d1117;
+  --blog-bg-elev: #161b22;
+  --blog-border: #30363d;
+  --blog-text: #c9d1d9;
+  --blog-text-dim: #8b949e;
+  --blog-accent: #3fb950;
+  --blog-link: #58a6ff;
+}
+
+/* Override de las variables de Material en ambos esquemas */
+.blog-page {
+  --md-default-bg-color: var(--blog-bg);
+  --md-default-fg-color: var(--blog-text);
+  --md-default-fg-color--light: var(--blog-text-dim);
+  --md-default-fg-color--lighter: var(--blog-border);
+  --md-primary-fg-color: var(--blog-bg-elev);
+  --md-primary-bg-color: var(--blog-text);
+  --md-accent-fg-color: var(--blog-accent);
+  --md-typeset-a-color: var(--blog-link);
+  --md-code-bg-color: var(--blog-bg-elev);
+  --md-code-fg-color: var(--blog-text);
+}
+
+/* ── Cabecera y barra de pestañas ────────────────────────────────────────── */
+.blog-page .md-header,
+.blog-page .md-tabs {
+  background-color: var(--blog-bg-elev) !important;
+  color: var(--blog-text);
+  border-bottom: 1px solid var(--blog-border);
+}
+
+.blog-page .md-header a,
+.blog-page .md-header__title,
+.blog-page .md-tabs__link {
+  color: var(--blog-text);
+  font-family: var(--blog-mono);
+  font-size: 0.8rem;
+}
+
+.blog-page .md-tabs__link--active,
+.blog-page .md-tabs__link:hover {
+  color: var(--blog-accent);
+  opacity: 1;
+}
+
+/* Subrayado verde bajo la pestaña activa */
+.blog-page .md-tabs__link--active {
+  border-bottom: 2px solid var(--blog-accent);
+}
+
+/* ── Fondo general ───────────────────────────────────────────────────────── */
+.blog-page .md-main,
+.blog-page .md-content,
+.blog-page .md-container,
+.blog-page .md-sidebar,
+.blog-page .md-sidebar__scrollwrap {
+  background: var(--blog-bg);
+}
+
+.blog-page body,
+.blog-page.blog-page {
+  background: var(--blog-bg);
+}
+
+/* Barras laterales con texto claro */
+.blog-page .md-nav,
+.blog-page .md-nav__title,
+.blog-page .md-nav__link {
+  color: var(--blog-text);
+  font-family: var(--blog-mono);
+  font-size: 0.72rem;
+}
+
+.blog-page .md-nav__link:hover,
+.blog-page .md-nav__link--active {
+  color: var(--blog-accent);
+}
+
+/* ── Tipografía general ──────────────────────────────────────────────────── */
+.blog-page .md-typeset {
+  font-family: var(--blog-sans);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--blog-text);
+}
+
+.blog-page .md-typeset h1,
+.blog-page .md-typeset h2,
+.blog-page .md-typeset h3,
+.blog-page .md-typeset h4 {
+  font-family: var(--blog-mono);
+  color: var(--blog-text);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ── H1 del post: prefijo "$ " y cursor parpadeante opcional ─────────────── */
+.blog-page .md-typeset h1 {
+  font-size: 1.9rem;
+  line-height: 1.3;
+  margin-top: 0.5em;
+  margin-bottom: 0.8em;
+  padding: 1.2rem 1.4rem;
+  background: var(--blog-bg-elev);
+  border: 1px solid var(--blog-border);
+  border-left: 3px solid var(--blog-accent);
+  border-radius: 6px;
+  color: var(--blog-text);
+}
+
+.blog-page .md-typeset h1::before {
+  content: "$ ";
+  color: var(--blog-accent);
+  font-weight: 700;
+}
+
+/* ── H2: prefijo "# " (estilo comentario/header shell) ───────────────────── */
+.blog-page .md-typeset h2 {
+  font-size: 1.35rem;
+  margin-top: 2.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--blog-border);
+  color: var(--blog-text);
+}
+
+.blog-page .md-typeset h2::before {
+  content: "# ";
+  color: var(--blog-accent);
+}
+
+/* ── H3: prefijo ">> " ───────────────────────────────────────────────────── */
+.blog-page .md-typeset h3 {
+  font-size: 1.1rem;
+  color: var(--blog-text-dim);
+}
+
+.blog-page .md-typeset h3::before {
+  content: ">> ";
+  color: var(--blog-accent);
+}
+
+/* ── Párrafos ────────────────────────────────────────────────────────────── */
+.blog-page .md-typeset p,
+.blog-page .md-typeset li {
+  color: var(--blog-text);
+}
+
+/* ── Enlaces en cian estilo terminal ─────────────────────────────────────── */
+.blog-page .md-typeset a {
+  color: var(--blog-link);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--blog-link);
+  transition: all 0.15s ease;
+}
+
+.blog-page .md-typeset a:hover {
+  color: var(--blog-accent);
+  border-bottom-color: var(--blog-accent);
+  border-bottom-style: solid;
+}
+
+/* ── Código inline ───────────────────────────────────────────────────────── */
+.blog-page .md-typeset code {
+  background: var(--blog-bg-elev);
+  color: var(--blog-accent);
+  border: 1px solid var(--blog-border);
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  font-family: var(--blog-mono);
+  font-size: 0.85em;
+}
+
+.blog-page .md-typeset pre > code,
+.blog-page .md-typeset pre code {
+  border: none;
+  background: transparent;
+  color: var(--blog-text);
+  padding: 0;
+}
+
+/* Alineación de números de línea con el código en linenums_style: table.
+
+   Diagnóstico final (con getComputedStyle sobre cada elemento):
+
+     td.linenos: padTop=12.66px, padBottom=12.66px, height=94.23px
+     td.code:    padTop=0px,     padBottom=0px,     height=58.55px
+     code_inner: line-height=19.5167px (= 13.94 × 1.4)
+     pre_linenos: line-height=22.9667px (= 16.4 × 1.4)
+
+   Dos problemas:
+
+   1. El <td.linenos> tiene padding vertical de 0.772em (≈12.66px) que
+      el <td.code> no tiene → la columna de números empieza ~13px más
+      abajo del borde superior, medio line-height, lo que hace que los
+      números parezcan intercalados entre las líneas del código.
+
+   2. El <code> interno del td.code mantiene font-size .85em (13.94px)
+      heredado de .md-typeset code, lo que da line-height 19.51px. La
+      columna de números usa 22.96px (mi regla anterior forzó font-size 1em).
+      Con distintos line-heights por línea, cada fila acumula desfase.
+
+   Fix: igualar el padding vertical del td.linenos al del td.code (cero),
+   y dejar que ambas columnas calculen el line-height sobre el MISMO
+   font-size efectivo (.85em, el de <code>, que es el tamaño natural del
+   texto de código). */
+
+/* (1) Eliminar padding vertical del td de números */
+.blog-page .md-typeset .highlighttable td.linenos {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* (2) Exactamente el mismo font-size y line-height efectivo que el
+       <code> interno del td.code:
+         code_inner: font-size=13.94px, line-height=19.5167px
+       Con valores idénticos, las filas tienen la misma altura y el
+       texto se ve del mismo tamaño. */
+.blog-page .md-typeset .highlighttable td.linenos,
+.blog-page .md-typeset .highlighttable .linenodiv,
+.blog-page .md-typeset .highlighttable .linenodiv pre,
+.blog-page .md-typeset .highlighttable .linenodiv pre span,
+.blog-page .md-typeset .highlighttable .linenodiv pre a {
+  font-size: 13.94px !important;
+  line-height: 19.5167px !important;
+}
+
+/* ── Bloques de código destacados ────────────────────────────────────────── */
+.blog-page .md-typeset pre,
+.blog-page .md-typeset .highlight {
+  background: var(--blog-bg-elev);
+  border: 1px solid var(--blog-border);
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(63, 185, 80, 0.08);
+}
+
+.blog-page .md-typeset .highlight pre {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* Etiqueta de lenguaje / nombre fichero del highlight */
+.blog-page .md-typeset .filename,
+.blog-page .md-typeset .highlight .filename {
+  background: transparent;
+  border-bottom: 1px solid var(--blog-border);
+  color: var(--blog-accent);
+  font-family: var(--blog-mono);
+  font-size: 0.72rem;
+}
+
+/* ── Metadatos del post (fecha, categorías) ──────────────────────────────── */
+.blog-page .md-post__meta,
+.blog-page .md-post-action,
+.blog-page .md-typeset .md-post__meta {
+  font-family: var(--blog-mono);
+  font-size: 0.68rem;
+  color: var(--blog-text-dim);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.blog-page .md-post__meta::before {
+  content: "// ";
+  color: var(--blog-accent);
+}
+
+/* ── Separadores ─────────────────────────────────────────────────────────── */
+.blog-page .md-typeset hr {
+  border: none;
+  text-align: center;
+  margin: 2rem 0;
+  overflow: visible;
+  height: 0;
+}
+
+.blog-page .md-typeset hr::before {
+  content: "── ── ──";
+  display: inline-block;
+  color: var(--blog-accent);
+  font-family: var(--blog-mono);
+  letter-spacing: 0.3rem;
+  font-size: 0.85rem;
+}
+
+/* ── Blockquotes estilo comentario de código ─────────────────────────────── */
+.blog-page .md-typeset blockquote {
+  border-left: 3px solid var(--blog-accent);
+  background: var(--blog-bg-elev);
+  color: var(--blog-text-dim);
+  padding: 0.8rem 1.2rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  border-radius: 0 4px 4px 0;
+}
+
+.blog-page .md-typeset blockquote::before {
+  content: "/* ";
+  color: var(--blog-accent);
+  font-style: normal;
+  font-family: var(--blog-mono);
+}
+
+.blog-page .md-typeset blockquote::after {
+  content: " */";
+  color: var(--blog-accent);
+  font-style: normal;
+  font-family: var(--blog-mono);
+}
+
+/* ── Listado de posts en el índice ───────────────────────────────────────── */
+.blog-page .md-post {
+  border: 1px solid var(--blog-border);
+  background: var(--blog-bg-elev);
+  border-radius: 6px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.2rem;
+  transition: border-color 0.15s ease;
+}
+
+.blog-page .md-post:hover {
+  border-color: var(--blog-accent);
+}
+
+.blog-page .md-post__header {
+  font-family: var(--blog-mono);
+  font-size: 0.7rem;
+  color: var(--blog-text-dim);
+}
+
+.blog-page .md-post__title,
+.blog-page .md-post .md-typeset h2 {
+  font-family: var(--blog-mono) !important;
+  font-weight: 700;
+  font-size: 1.15rem !important;
+  margin-top: 0.3rem !important;
+  border: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.blog-page .md-post__title::before,
+.blog-page .md-post .md-typeset h2::before {
+  content: "> ";
+  color: var(--blog-accent);
+}
+
+.blog-page .md-post__title a {
+  color: var(--blog-text) !important;
+  border: none;
+}
+
+.blog-page .md-post__title a:hover {
+  color: var(--blog-accent) !important;
+}
+
+.blog-page .md-post__excerpt {
+  font-family: var(--blog-sans);
+  color: var(--blog-text-dim);
+  font-size: 0.78rem;
+  margin-top: 0.6rem;
+}
+
+/* ── Tablas ──────────────────────────────────────────────────────────────── */
+.blog-page .md-typeset table:not([class]) {
+  font-family: var(--blog-mono);
+  background: var(--blog-bg-elev);
+  border: 1px solid var(--blog-border);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  overflow: hidden;
+}
+
+.blog-page .md-typeset table:not([class]) th {
+  background: var(--blog-bg);
+  color: var(--blog-accent);
+  border-bottom: 1px solid var(--blog-border);
+  text-transform: lowercase;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+
+.blog-page .md-typeset table:not([class]) td {
+  border-top: 1px solid var(--blog-border);
+  color: var(--blog-text);
+}
+
+/* ── Listas con bullets verdes ───────────────────────────────────────────── */
+.blog-page .md-typeset ul li::marker {
+  color: var(--blog-accent);
+}
+
+.blog-page .md-typeset ol li::marker {
+  color: var(--blog-accent);
+  font-family: var(--blog-mono);
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.blog-page .md-footer,
+.blog-page .md-footer-meta {
+  background: var(--blog-bg-elev);
+  color: var(--blog-text-dim);
+  border-top: 1px solid var(--blog-border);
+}
+
+/* Mejorar contraste del copyright en modo claro */
+.blog-page[data-md-color-scheme="default"] .md-footer-meta {
+  color: var(--blog-text);
+}
+
+/* ── Barra de búsqueda ───────────────────────────────────────────────────── */
+.blog-page .md-search__form {
+  background: var(--blog-bg);
+  border: 1px solid var(--blog-border);
+}
+
+.blog-page .md-search__input {
+  color: var(--blog-text);
+  font-family: var(--blog-mono);
+}
+
+.blog-page .md-search__input::placeholder {
+  color: var(--blog-text-dim);
+}
+
+/* ── Ajustes para modo móvil ─────────────────────────────────────────────── */
+@media screen and (max-width: 76.1875em) {
+  .blog-page .md-typeset h1 {
+    font-size: 1.5rem;
+    padding: 1rem 1.2rem;
+  }
+
+  .blog-page .md-typeset h2 {
+    font-size: 1.15rem;
+  }
+}
