@@ -2251,17 +2251,19 @@ Si cambias de motor de BD, este test se rompe aunque el repositorio funcione bie
 </div>
 <hr />
 <h2 id="checklist-de-entrega">Checklist de entrega<a class="headerlink" href="#checklist-de-entrega" title="Permanent link">&para;</a></h2>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He creado <code>tests/test_repositorio_sqlite.py</code> con <code>BD_TEST</code> como atributo de clase.
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He implementado <code>setUp</code> que crea el esquema completo antes de cada test.
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He implementado <code>tearDown</code> que elimina el fichero de BD al terminar.
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He escrito tests para <code>guardar()</code> verificando atributos individuales.
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He escrito tests de tipo con <code>assertIsInstance</code> y <code>assertNotIsInstance</code>.
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He escrito tests de excepciones con <code>assertRaises</code> usando excepciones de dominio.
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He verificado el mensaje de la excepción con <code>ctx.exception</code>.
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He añadido la entrada <code>[0.4.0]</code> al <code>CHANGELOG.md</code>.
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He actualizado <code>docs/CONTRATO_REPOSITORIO.md</code> con el nuevo contrato.
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He actualizado <code>docs/ARQUITECTURA_POR_CAPAS.md</code> y <code>docs/TESTS_Y_PASOS.md</code>.
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He actualizado <code>README.md</code> con la estructura actual del proyecto.</p>
+<ul>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He creado <code>tests/test_repositorio_sqlite.py</code> con <code>BD_TEST</code> como atributo de clase.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He implementado <code>setUp</code> que crea el esquema completo antes de cada test.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He implementado <code>tearDown</code> que elimina el fichero de BD al terminar.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He escrito tests para <code>guardar()</code> verificando atributos individuales.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He escrito tests de tipo con <code>assertIsInstance</code> y <code>assertNotIsInstance</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He escrito tests de excepciones con <code>assertRaises</code> usando excepciones de dominio.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He verificado el mensaje de la excepción con <code>ctx.exception</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He añadido la entrada <code>[0.4.0]</code> al <code>CHANGELOG.md</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He actualizado <code>docs/CONTRATO_REPOSITORIO.md</code> con el nuevo contrato.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He actualizado <code>docs/ARQUITECTURA_POR_CAPAS.md</code> y <code>docs/TESTS_Y_PASOS.md</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> He actualizado <code>README.md</code> con la estructura actual del proyecto.</li>
+</ul>
 <hr />
 <h2 id="actividades-de-ampliacion">Actividades de ampliación<a class="headerlink" href="#actividades-de-ampliacion" title="Permanent link">&para;</a></h2>
 <p><strong>A — Test de <code>listar()</code> vacío</strong> (Paso 5) <code>tests/test_repositorio_sqlite.py</code></p>
