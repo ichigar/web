@@ -25,6 +25,10 @@
          <lastmod>2026-04-08</lastmod>
     </url>
     <url>
+         <loc>https://ichigar.codeberg.page/blog/2026/04/08/c%C3%B3mo-habilitar-comentarios-en-el-blog-con-giscus/</loc>
+         <lastmod>2026-04-08</lastmod>
+    </url>
+    <url>
          <loc>https://ichigar.codeberg.page/ce-python/</loc>
          <lastmod>2026-04-08</lastmod>
     </url>
@@ -418,6 +422,10 @@
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/blog/category/novedades/</loc>
+         <lastmod>2026-04-08</lastmod>
+    </url>
+    <url>
+         <loc>https://ichigar.codeberg.page/blog/category/tutoriales/</loc>
          <lastmod>2026-04-08</lastmod>
     </url>
 </urlset>
