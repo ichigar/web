@@ -1,0 +1,2115 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes y recursos de clase de SMR, ASIR y CE Python">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/pni/ut5/actividades/pni_ut5_lab_1_vlans_omada_real/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Lab: VLANs y autenticación inalámbrica con hardware Omada - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_ansi.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/footer-contrast.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/blog-terminal.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-vlans-y-autenticacion-inalambrica-con-hardware-omada" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab: VLANs y autenticación inalámbrica con hardware Omada
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../smr/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../asir/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../ce-python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../blog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/tutoriales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutoriales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../smr/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../asir/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../ce-python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pd4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#escenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Escenario
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Escenario">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#topologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topología
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plan-de-direccionamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plan de direccionamiento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conceptos-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conceptos clave
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-0-acceso-a-las-interfaces-de-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 0 — Acceso a las interfaces de configuración
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parte 0 — Acceso a las interfaces de configuración">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acceso-al-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acceso al switch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceso-al-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acceso al router
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceso-al-punto-de-acceso-ap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acceso al punto de acceso (AP)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-de-acceso-a-los-tres-dispositivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen de acceso a los tres dispositivos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reset-de-fabrica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reset de fábrica
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-1-configuracion-del-punto-de-acceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 1 — Configuración del punto de acceso
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parte 1 — Configuración del punto de acceso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conexion-fisica-para-este-paso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conexión física para este paso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-ssids" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración de SSIDs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cambio-de-ip-de-gestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cambio de IP de gestión
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conexion-al-switch-final-de-esta-parte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conexión al switch (final de esta parte)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-2-configuracion-del-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 2 — Configuración del switch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parte 2 — Configuración del switch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conexion-fisica-antes-de-configurar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conexión física antes de configurar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-vlans-y-puertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración de VLANs y puertos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-3-configuracion-del-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 3 — Configuración del router
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parte 3 — Configuración del router">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-conexion-a-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 — Conexión a Internet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-configuracion-de-interfaces-lan-y-dhcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 — Configuración de interfaces LAN y DHCP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-4-servidor-radius-con-freeradius-opcional-ampliacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 4 — Servidor RADIUS con FreeRADIUS (opcional — ampliación)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parte 4 — Servidor RADIUS con FreeRADIUS (opcional — ampliación)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-41-preparar-la-maquina-virtual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4.1 — Preparar la máquina virtual
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-42-configurar-la-ip-estatica-en-la-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4.2 — Configurar la IP estática en la VM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-43-instalar-freeradius" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4.3 — Instalar FreeRADIUS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-44-registrar-el-ap-como-cliente-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4.4 — Registrar el AP como cliente RADIUS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-45-crear-usuarios-de-prueba" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4.5 — Crear usuarios de prueba
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-46-reiniciar-y-probar-el-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4.6 — Reiniciar y probar el servidor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-47-verificar-autenticacion-real-desde-el-ap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4.7 — Verificar autenticación real desde el AP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacion-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificación final
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrega
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lab-vlans-y-autenticacion-inalambrica-con-hardware-omada">Lab: VLANs y autenticación inalámbrica con hardware Omada<a class="headerlink" href="#lab-vlans-y-autenticacion-inalambrica-con-hardware-omada" title="Permanent link">&para;</a></h1>
+<ul>
+<li><strong>Módulo:</strong> PNI — Planificación y Administración de Redes</li>
+<li><strong>Unidad:</strong> UT5 — Redes inalámbricas</li>
+<li><strong>Agrupamiento:</strong> Grupos de 3-4 alumnos (un grupo dispondrá del hardware real)</li>
+<li><strong>Modalidad:</strong> Práctica con hardware real (router, switch y AP Omada)</li>
+<li><strong>Hardware necesario:</strong> </li>
+<li>1 PC para configuración (Partes 1-3, conectado a VLAN 10)</li>
+<li>1 PC adicional para servidor FreeRADIUS <em>(Parte 4, opcional — VLAN 40 con VM Ubuntu Server)</em></li>
+<li><strong>Duración estimada:</strong> 3-4 horas (partes 1-3) + 1-2 horas adicionales (parte 4, opcional)</li>
+<li><strong>Entrega:</strong> consulta al final de la actividad el documento de entrega</li>
+</ul>
+<hr />
+<h2 id="escenario">Escenario<a class="headerlink" href="#escenario" title="Permanent link">&para;</a></h2>
+<p>El centro educativo necesita segmentar su red en distintas zonas con diferentes niveles de acceso. Actuaréis como administradores de red y configuraréis la infraestructura completa utilizando hardware real TP-Link Omada en modo standalone.</p>
+<h3 id="topologia">Topología<a class="headerlink" href="#topologia" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Internet
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>[Router Omada ER605]
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    │  (enlace trunk 802.1Q)
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>[Switch Omada]
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    ├─── Puerto trunk ──→ [AP Omada]
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    │                         ├── SSID: &quot;PNI-Invitados&quot;  (VLAN 30)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    │                         └── SSID: &quot;PNI-Empleados&quot;  (VLAN 20)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    ├─── Puerto acceso VLAN 10 ──→ PC de administración (para configuración)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    └─── Puerto acceso VLAN 40 ──→ PC servidor (VM FreeRADIUS) *opcional
+</code></pre></div>
+<p><img alt="Diagrama de topología" src="../pni_ut5_diagrama_topologia.svg" /></p>
+<h3 id="plan-de-direccionamiento">Plan de direccionamiento<a class="headerlink" href="#plan-de-direccionamiento" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>VLAN</th>
+<th>Nombre</th>
+<th>Red</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>Gestión / PCs</td>
+<td>192.168.10.0/24</td>
+<td>Equipos de administración</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Empleados</td>
+<td>192.168.20.0/24</td>
+<td>WiFi autenticada (RADIUS)</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Invitados</td>
+<td>192.168.30.0/24</td>
+<td>WiFi solo con clave compartida</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Servidores</td>
+<td>192.168.40.0/24</td>
+<td>VM con FreeRADIUS <em>(opcional)</em></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="conceptos-clave">Conceptos clave<a class="headerlink" href="#conceptos-clave" title="Permanent link">&para;</a></h2>
+<p>Antes de comenzar, asegúrate de tener claros los siguientes conceptos:</p>
+<ul>
+<li><strong>VLAN (Virtual LAN):</strong> segmentación lógica de una red en el mismo switch físico. Cada VLAN es un dominio de broadcast independiente.</li>
+<li><strong>Enlace trunk (802.1Q):</strong> puerto que transporta tráfico de varias VLANs etiquetado. Necesario entre el switch y el router, y entre el switch y el AP.</li>
+<li><strong>Inter-VLAN routing:</strong> en este escenario lo realiza el <strong>router</strong>, que tiene una subinterfaz (o interfaz VLAN) por cada red. El switch SG2xxx actúa solo en capa 2.</li>
+<li><strong>DHCP por VLAN:</strong> el router asignará direcciones IP de forma independiente a cada VLAN.</li>
+<li><strong>WPA2-Personal:</strong> autenticación WiFi con clave compartida (PSK). Todos los usuarios usan la misma contraseña.</li>
+<li><strong>WPA2-Enterprise (802.1X):</strong> autenticación WiFi individual mediante usuario y contraseña, validada por un servidor RADIUS externo.</li>
+<li><strong>RADIUS:</strong> protocolo cliente-servidor para autenticación centralizada. El AP actúa como cliente RADIUS; el servidor verifica las credenciales.</li>
+<li><strong>PoE (Power over Ethernet):</strong> tecnología que permite suministrar alimentación eléctrica a un dispositivo a través del mismo cable de red RJ45, sin necesidad de un cable de corriente separado. El switch "inyecta" la electricidad en el cable y el dispositivo (en este caso el AP) la recibe y se alimenta de ella. Para que funcione, tanto el switch como el dispositivo deben ser compatibles con PoE. En este lab el switch SG2xxx tiene puertos PoE, por lo que el EAP610 se alimenta directamente desde el cable de red — no necesita adaptador de corriente.</li>
+<li><strong>Router-on-a-stick:</strong> escenario de inter-VLAN routing en el que un único enlace físico trunk conecta el switch con el router. Todas las VLANs viajan etiquetadas por ese enlace; el router tiene una subinterfaz por cada VLAN y es el responsable de enrutar el tráfico entre ellas. El tráfico entre dos VLANs sube al router y vuelve a bajar por el mismo cable, de ahí el nombre. Es el escenario que se usa en este lab: el switch SG2xxx trabaja solo en capa 2 y el ER605 hace todo el routing.</li>
+<li><strong>Modo Standalone vs Controlador Omada:</strong> Los dispositivos Omada pueden funcionar en dos modos distintos:</li>
+<li><strong>Standalone:</strong> cada dispositivo se gestiona de forma independiente. Accedes a la interfaz web de cada equipo por separado (router, switch, AP), introduces las configuraciones específicas en cada uno, y no hay una plataforma centralizada que coordine todos los dispositivos. Es más simple para labs pequeños o entornos sin necesidad de gestión centralizada, pero requiere acceder a múltiples interfaces. <strong>Este lab usa modo standalone.</strong></li>
+<li><strong>Controlador Omada:</strong> existe un servidor de control central (Software Controller o Hardware Controller dedicado) que gestiona toda la infraestructura Omada. Los dispositivos se "adoptan" en el controlador y se configuran desde una única plataforma centralizada. Ventajas: gestión unificada, configuración consistente, visibilidad global, roaming sin fisuras en APs. Desventaja: complejidad adicional y requiere que el controlador esté disponible. Típico en despliegues empresariales con múltiples APs o switches distribuidos. En clase de FP es menos común porque requiere infraestructura adicional.</li>
+</ul>
+<hr />
+<h2 id="parte-0-acceso-a-las-interfaces-de-configuracion">Parte 0 — Acceso a las interfaces de configuración<a class="headerlink" href="#parte-0-acceso-a-las-interfaces-de-configuracion" title="Permanent link">&para;</a></h2>
+<p>Antes de configurar nada, es necesario acceder a la interfaz web de cada dispositivo. Los dispositivos Omada en <strong>modo standalone</strong> se gestionan individualmente desde un navegador. El procedimiento de acceso es similar en todos ellos, pero con IPs y credenciales propias de fábrica.</p>
+<div class="admonition warning">
+<p class="admonition-title">Importante</p>
+<p>Cada dispositivo debe configurarse <strong>de forma aislada</strong> en el primer acceso: conecta el PC directamente al dispositivo, sin pasar por otros equipos ya configurados, para evitar conflictos de direccionamiento.</p>
+</div>
+<hr />
+<h3 id="acceso-al-switch">Acceso al switch<a class="headerlink" href="#acceso-al-switch" title="Permanent link">&para;</a></h3>
+<p><strong>Conexión física:</strong></p>
+<ol>
+<li>Conecta el PC al switch mediante un cable de red en <strong>cualquier puerto</strong> (excepto el que usarás para el trunk al router, que conviene dejar libre por ahora).</li>
+<li>Configura la tarjeta de red del PC con una IP estática en el mismo rango que el switch:<ul>
+<li>IP: <code>192.168.0.X</code> (por ejemplo, <code>192.168.0.100</code>)</li>
+<li>Máscara: <code>255.255.255.0</code></li>
+<li>Gateway: no es necesario en este paso</li>
+</ul>
+</li>
+<li>Comprueba conectividad con <code>ping 192.168.0.1</code> antes de abrir el navegador.</li>
+</ol>
+<p><strong>Acceso web:</strong></p>
+<ol>
+<li>Abre el navegador y accede a <code>http://192.168.0.1</code></li>
+<li>En el primer acceso se solicitará crear una contraseña de administrador. Establece una que el grupo recuerde.</li>
+<li>Las credenciales por defecto son <code>admin</code> / <code>admin</code> (si el dispositivo no ha sido inicializado antes).</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Indicación</p>
+<p>Si el switch no responde en <code>192.168.0.1</code>, puede tener una IP diferente asignada previamente. Consulta al profesor o realiza un <strong>reset de fábrica</strong> manteniendo pulsado el botón Reset durante 5-10 segundos.</p>
+</div>
+<hr />
+<h3 id="acceso-al-router">Acceso al router<a class="headerlink" href="#acceso-al-router" title="Permanent link">&para;</a></h3>
+<p><strong>Conexión física:</strong></p>
+<ol>
+<li>Conecta el PC al router mediante un cable de red en cualquiera de los <strong>puertos LAN</strong> (no el puerto WAN).</li>
+<li>El router tiene activo el servidor DHCP en la LAN por defecto, por lo que el PC puede obtener IP automáticamente. Deja la tarjeta del PC en <strong>DHCP</strong> para este paso.</li>
+<li>Comprueba la IP obtenida (comando <code>ip a</code> en Linux o <code>ipconfig</code> en Windows) y anota el gateway — esa es la IP del router.</li>
+</ol>
+<p><strong>Acceso web:</strong></p>
+<ol>
+<li>Abre el navegador y accede a <code>http://192.168.0.1</code> (IP por defecto de los routers Omada).</li>
+<li>En el primer acceso se mostrará un asistente de configuración inicial. Puedes completarlo o cerrarlo y acceder directamente a la configuración avanzada.</li>
+<li>Credenciales por defecto: <code>admin</code> / <code>admin</code>. Se pedirá cambio de contraseña en el primer inicio de sesión.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Indicación</p>
+<p>El ER605 tiene la interfaz web únicamente en los <strong>puertos LAN</strong> (puertos 2-5). El puerto WAN (puerto 1) es solo para la conexión a Internet y no da acceso a la administración.</p>
+</div>
+<hr />
+<h3 id="acceso-al-punto-de-acceso-ap">Acceso al punto de acceso (AP)<a class="headerlink" href="#acceso-al-punto-de-acceso-ap" title="Permanent link">&para;</a></h3>
+<p><strong>NOTA:</strong> La Parte 0 explica cómo acceder a cada dispositivo de forma aislada. Para el AP, esto significa conectarlo <strong>directamente a un PC sin pasar por el switch</strong>. El acceso real al AP en la topología completa ocurre en la <strong>Parte 1 (Configuración del punto de acceso)</strong>.</p>
+<p>El AP no tiene puertos LAN propios accesibles desde fuera: se gestiona a través de la red a la que está conectado. Su IP por defecto es <code>192.168.0.254</code>.</p>
+<p><strong>Conexión física (primera vez — aislado):</strong></p>
+<ol>
+<li>Conecta el <strong>adaptador de corriente</strong> del AP a la red eléctrica.</li>
+<li>Conecta el AP <strong>directamente a un PC con un cable de red</strong> (sin pasar por el switch).</li>
+<li>Configura el PC con IP estática en el rango <code>192.168.0.X</code> (por ejemplo, <code>192.168.0.100</code>, máscara <code>255.255.255.0</code>).</li>
+<li>Comprueba conectividad con <code>ping 192.168.0.254</code>.</li>
+</ol>
+<p><strong>Acceso web:</strong></p>
+<ol>
+<li>Abre el navegador y accede a <code>http://192.168.0.254</code></li>
+<li>Credenciales por defecto: <code>admin</code> / <code>admin</code>. Se pedirá establecer una nueva contraseña en el primer acceso.</li>
+<li>Desde la interfaz standalone del AP podrás configurar los SSIDs, seguridad y VLANs de cada red inalámbrica.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Alimentación PoE</p>
+<p>El switch SG2xxx del lab tiene puertos PoE, por lo que el EAP610 recibe alimentación directamente a través del cable de red. No es necesario conectar ningún adaptador de corriente al AP. Asegúrate de conectar el AP a un puerto con PoE activo (revisa las especificaciones del switch si no estás seguro de qué puertos lo tienen).</p>
+</div>
+<hr />
+<h3 id="resumen-de-acceso-a-los-tres-dispositivos">Resumen de acceso a los tres dispositivos<a class="headerlink" href="#resumen-de-acceso-a-los-tres-dispositivos" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Dispositivo</th>
+<th>IP por defecto</th>
+<th>IP después Parte 1</th>
+<th>Puerto de gestión</th>
+<th>Usuario</th>
+<th>Contraseña</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Switch SG2xxx</td>
+<td><code>192.168.0.1</code></td>
+<td>(sin cambios)</td>
+<td>Cualquier puerto LAN</td>
+<td><code>admin</code></td>
+<td><code>admin</code> (primer acceso: crear nueva)</td>
+</tr>
+<tr>
+<td>Router Omada ER605</td>
+<td><code>192.168.0.1</code></td>
+<td>(sin cambios)</td>
+<td>Puertos LAN</td>
+<td><code>admin</code></td>
+<td><code>admin</code> (primer acceso: crear nueva)</td>
+</tr>
+<tr>
+<td>AP Omada</td>
+<td><code>192.168.0.254</code></td>
+<td><code>192.168.10.254</code></td>
+<td>A través del switch (VLAN 10)</td>
+<td><code>admin</code></td>
+<td><code>admin</code> (primer acceso: crear nueva)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Conflicto de IPs</p>
+<p>El switch y el router comparten la misma IP por defecto (<code>192.168.0.1</code>). <strong>Nunca los conectes entre sí antes de cambiar la IP de gestión de uno de ellos</strong>, o habrá conflicto y ninguno responderá correctamente. Configura cada dispositivo de forma aislada primero.</p>
+</div>
+<hr />
+<h3 id="reset-de-fabrica">Reset de fábrica<a class="headerlink" href="#reset-de-fabrica" title="Permanent link">&para;</a></h3>
+<p>Si un dispositivo tiene configuración previa y no responde en su IP por defecto, o las credenciales no funcionan, es necesario restablecerlo a valores de fábrica.</p>
+<div class="admonition warning">
+<p class="admonition-title">El reset borra toda la configuración</p>
+<p>Realiza el reset solo si el profesor lo indica o si el dispositivo es completamente inaccesible. Esta operación es irreversible.</p>
+</div>
+<p><strong>Switch y AP:</strong></p>
+<ol>
+<li>Localiza el botón <strong>Reset</strong> en el chasis (generalmente en la parte trasera o lateral).</li>
+<li>Con el dispositivo encendido, mantén pulsado el botón con un clip durante <strong>5-10 segundos</strong>.</li>
+<li>Los LEDs parpadearán indicando que el proceso ha comenzado.</li>
+<li>Espera 30-60 segundos a que el dispositivo arranque de nuevo.</li>
+<li>Comprueba que responde en su IP por defecto.</li>
+</ol>
+<p><strong>Router Omada:</strong></p>
+<ol>
+<li>Localiza el botón <strong>Reset</strong> en el panel trasero.</li>
+<li>Con el router encendido, mantenlo pulsado durante <strong>5 segundos</strong> hasta que el LED del sistema parpadee.</li>
+<li>El router se reiniciará automáticamente. Espera 60-90 segundos hasta que los LEDs se estabilicen.</li>
+<li>Comprueba acceso en <code>http://192.168.0.1</code>.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Indicación</p>
+<p>Algunos modelos de AP Omada requieren mantener el Reset hasta 10 segundos hasta que el LED parpadee en ámbar. Consulta la guía rápida impresa incluida con el dispositivo si tienes dudas.</p>
+</div>
+<hr />
+<h2 id="parte-1-configuracion-del-punto-de-acceso">Parte 1 — Configuración del punto de acceso<a class="headerlink" href="#parte-1-configuracion-del-punto-de-acceso" title="Permanent link">&para;</a></h2>
+<p>En este paso configuramos los SSIDs del AP mientras aún está aislado del switch, con su IP de fábrica accesible directamente desde el <strong>PC de administración</strong>. Esto nos permite también cambiar su IP de gestión a VLAN 10 antes de integrarlo en la topología final.</p>
+<div class="admonition note">
+<p class="admonition-title">Equipos en esta parte</p>
+<ul>
+<li><strong>PC de administración</strong>: El equipo que usarás durante las Partes 1, 2 y 3 para configurar router, switch y AP.</li>
+<li><strong>PC servidor</strong> (opcional): Equipo separado que usarás en la Parte 4 para instalar VirtualBox y la VM con FreeRADIUS.</li>
+</ul>
+</div>
+<h3 id="conexion-fisica-para-este-paso">Conexión física para este paso<a class="headerlink" href="#conexion-fisica-para-este-paso" title="Permanent link">&para;</a></h3>
+<p>El PC no tiene PoE, por lo que el AP necesita alimentación eléctrica externa en este paso.</p>
+<ol>
+<li>Conecta el <strong>adaptador de corriente</strong> del AP a la red eléctrica.</li>
+<li>Conecta el AP al <strong>PC de administración</strong> directamente con un cable de red (sin pasar por el switch).</li>
+<li>Configura la tarjeta del PC con IP estática:<ul>
+<li>IP: <code>192.168.0.100</code></li>
+<li>Máscara: <code>255.255.255.0</code></li>
+<li>Gateway: no necesario</li>
+</ul>
+</li>
+<li>Comprueba conectividad: <code>ping 192.168.0.254</code></li>
+<li>Accede a <code>http://192.168.0.254</code> con las credenciales establecidas en la Parte 0.</li>
+</ol>
+<h3 id="configuracion-de-ssids">Configuración de SSIDs<a class="headerlink" href="#configuracion-de-ssids" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Crea la SSID <strong>"PNI-Invitados"</strong>:</p>
+<ul>
+<li>Seguridad: WPA2-Personal (clave compartida)</li>
+<li>VLAN: 30</li>
+<li>Establece una contraseña de acceso</li>
+</ul>
+</li>
+<li>
+<p>Crea la SSID <strong>"PNI-Empleados"</strong>:</p>
+<ul>
+<li>Seguridad: WPA2-Enterprise (802.1X)</li>
+<li>VLAN: 20</li>
+<li>IP del servidor RADIUS: 192.168.40.10 (se configurará en la Parte 4)</li>
+<li>Puerto RADIUS: 1812</li>
+<li><strong>Secret compartido (Pre-Shared Secret):</strong> Define una contraseña compleja que recordarás. <strong>Este mismo secret deberá usarse en la configuración del servidor FreeRADIUS en la Parte 4.4.</strong></li>
+</ul>
+</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Orden importante</p>
+<p>La SSID de empleados no funcionará hasta completar la Parte 4. Puedes crearla ahora y dejarla desactivada.</p>
+</div>
+<h3 id="cambio-de-ip-de-gestion">Cambio de IP de gestión<a class="headerlink" href="#cambio-de-ip-de-gestion" title="Permanent link">&para;</a></h3>
+<p>Antes de conectar el AP al switch hay que cambiar su IP de gestión para que quede en VLAN 10. De lo contrario, cuando el switch esté configurado con VLANs, el PC (en VLAN 10, rango 192.168.10.x) no podrá alcanzar la IP de fábrica del AP (192.168.0.254).</p>
+<ol>
+<li>Ve a <strong>Settings → Management</strong> (o sección equivalente de tu firmware).</li>
+<li>Cambia la configuración IP del AP:<ul>
+<li>IP: <code>192.168.10.254</code></li>
+<li>Máscara: <code>255.255.255.0</code></li>
+<li>Gateway: <code>192.168.10.1</code></li>
+</ul>
+</li>
+<li>Guarda y espera a que el AP se reinicie con la nueva IP.</li>
+<li>Comprueba el acceso en <code>http://192.168.10.254</code> antes de continuar.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">¿Por qué VLAN 10 para la gestión?</p>
+<p>Cuando el AP se conecte al switch en la Parte 2, el puerto será trunk con VLANs 10, 20 y 30. El AP usará cada VLAN para un propósito distinto:
+- <strong>VLAN 10</strong> — tráfico de gestión (acceso a la interfaz web del AP)
+- <strong>VLAN 20</strong> — tráfico inalámbrico de la SSID "PNI-Empleados"
+- <strong>VLAN 30</strong> — tráfico inalámbrico de la SSID "PNI-Invitados"</p>
+<p>Al asignar la IP de gestión a VLAN 10, el AP seguirá siendo accesible desde el PC (que también está en VLAN 10) después de integrar toda la topología.</p>
+</div>
+<h3 id="conexion-al-switch-final-de-esta-parte">Conexión al switch (final de esta parte)<a class="headerlink" href="#conexion-al-switch-final-de-esta-parte" title="Permanent link">&para;</a></h3>
+<p>Una vez configurado el AP y verificada la nueva IP de gestión:</p>
+<ol>
+<li>Desconecta el <strong>adaptador de corriente</strong> del AP.</li>
+<li>Desconecta el cable entre el AP y el PC.</li>
+<li>Conecta el AP al switch mediante un cable de red en el puerto trunk que configurarás en la Parte 2. A partir de ahora el switch suministrará alimentación al AP a través del cable de red mediante <strong>PoE</strong> — no necesitará adaptador de corriente.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">PoE desde el switch</p>
+<p>El switch SG2xxx tiene puertos PoE. En cuanto el AP quede conectado al switch y este esté encendido, recibirá corriente por el cable de red sin necesidad de ningún adaptador externo. Asegúrate de conectarlo a un puerto con PoE activo.</p>
+</div>
+<hr />
+<h2 id="parte-2-configuracion-del-switch">Parte 2 — Configuración del switch<a class="headerlink" href="#parte-2-configuracion-del-switch" title="Permanent link">&para;</a></h2>
+<h3 id="conexion-fisica-antes-de-configurar">Conexión física antes de configurar<a class="headerlink" href="#conexion-fisica-antes-de-configurar" title="Permanent link">&para;</a></h3>
+<p>En este momento la topología es:
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Router ← (conectar cable trunk aquí)
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Switch ← (ya tienes el AP aquí del final de Parte 1)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>         ← (aquí conectarás el PC de administración)
+</code></pre></div></p>
+<p><strong>Antes de empezar:</strong></p>
+<ol>
+<li>Conecta un cable desde el <strong>puerto LAN del router</strong> hasta el <strong>puerto que designarás como P1 TRUNK del switch</strong> (por ejemplo, puerto 1 del switch).</li>
+<li>Desconecta el PC de administración del AP. Ahora conecta el PC de administración al <strong>switch</strong> en cualquier puerto que no sea P1 (por ejemplo, puerto 3, 4 o 5).</li>
+<li>Configura la tarjeta del PC con IP estática:</li>
+<li>IP: <code>192.168.0.100</code></li>
+<li>Máscara: <code>255.255.255.0</code></li>
+<li>Gateway: no necesario por ahora</li>
+</ol>
+<h3 id="configuracion-de-vlans-y-puertos">Configuración de VLANs y puertos<a class="headerlink" href="#configuracion-de-vlans-y-puertos" title="Permanent link">&para;</a></h3>
+<p>Accede a la interfaz de administración del switch en modo standalone (en <code>http://192.168.0.1</code>) y realiza las siguientes tareas:</p>
+<ol>
+<li>Crea las VLANs necesarias según el plan de direccionamiento (IDs: 10, 20, 30, 40).</li>
+<li>Configura el <strong>puerto 1 (P1) como TRUNK</strong>, permitiendo todas las VLANs del lab (10, 20, 30, 40). Este puerto se conectará al router.</li>
+<li>Configura el <strong>puerto 2 (P2) como TRUNK</strong>, permitiendo las VLANs <strong>10, 20 y 30</strong> (VLAN 10 para tráfico de gestión del AP, VLANs 20 y 30 para tráfico inalámbrico). Este puerto se conectará al AP.</li>
+<li>Configura el <strong>puerto 3 (P3) como ACCESS en VLAN 10</strong>. Este puerto se conectará al PC de administración.</li>
+<li>Configura el <strong>puerto 4 (P4) como ACCESS en VLAN 40</strong> (opcional, para Parte 4). Este puerto se conectará al PC servidor.</li>
+<li>Verifica que la tabla de VLANs y los modos de puerto son correctos antes de continuar.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Indicación</p>
+<p>En switches Omada SG2xxx, la configuración de VLANs se realiza desde la sección <strong>L2 Features → 802.1Q VLAN</strong>. Los modos de puerto (trunk/acceso) se gestionan en <strong>Switching → Port</strong>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Cables conectados en esta parte</p>
+<p>Al final de la Parte 2 debe haber tres cables conectados al switch:
+- <strong>Puerto 1 (P1)</strong>: Cable del router (trunk)
+- <strong>Puerto 2 (P2)</strong>: Cable del AP (trunk)
+- <strong>Puerto 3 (P3)</strong>: Cable del PC de administración (access VLAN 10)</p>
+</div>
+<hr />
+<h2 id="parte-3-configuracion-del-router">Parte 3 — Configuración del router<a class="headerlink" href="#parte-3-configuracion-del-router" title="Permanent link">&para;</a></h2>
+<h3 id="31-conexion-a-internet">3.1 — Conexión a Internet<a class="headerlink" href="#31-conexion-a-internet" title="Permanent link">&para;</a></h3>
+<p>El router obtendrá su configuración de red exterior (IP pública de aula, gateway y DNS) automáticamente desde la red del centro a través del puerto WAN.</p>
+<div class="admonition note">
+<p class="admonition-title">Estado actual de cables</p>
+<p>Al empezar la Parte 3 ya tienes:
+- Cable P1 TRUNK del switch al puerto LAN del router (ya conectado en Parte 2)
+- AP conectado a P2 TRUNK del switch
+- PC de administración conectado a P3 ACCESS VLAN 10 del switch</p>
+</div>
+<p><strong>Conexión del puerto WAN:</strong></p>
+<ol>
+<li>Localiza el <strong>puerto WAN</strong> del router (marcado como <code>WAN</code> o con icono de globo en el chasis del ER605).</li>
+<li>Conecta un cable de red desde el <strong>puerto WAN del router</strong> hasta una de las <strong>rosetas de red del aula</strong> (roseta de Internet).</li>
+<li>El puerto WAN es <strong>diferente</strong> de los puertos LAN — no confundas.</li>
+<li>Accede a la interfaz web del router y comprueba que el puerto WAN ha obtenido IP automáticamente: ve a <strong>Status → WAN/LAN</strong>. Debes ver una IP asignada, un gateway y DNS válidos.</li>
+<li>Verifica acceso a Internet desde el propio router haciendo un ping de prueba desde <strong>Preferences → Diagnostics → Ping</strong> a <code>8.8.8.8</code>.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Indicación</p>
+<p>Los routers Omada tienen el puerto WAN configurado en <strong>DHCP</strong> por defecto, por lo que no es necesario modificar nada en ese puerto si la roseta de aula proporciona DHCP, que es el caso habitual.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Sin IP en el WAN</p>
+<p>Si el puerto WAN no obtiene IP, verifica que el cable está conectado a la roseta correcta y que esta tiene conectividad activa. Consulta al profesor si el problema persiste.</p>
+</div>
+<hr />
+<h3 id="32-configuracion-de-interfaces-lan-y-dhcp">3.2 — Configuración de interfaces LAN y DHCP<a class="headerlink" href="#32-configuracion-de-interfaces-lan-y-dhcp" title="Permanent link">&para;</a></h3>
+<p>Accede a la interfaz de administración del router y configura el enrutamiento inter-VLAN y los servicios DHCP:</p>
+<ol>
+<li>Crea una interfaz LAN por cada VLAN con la IP de gateway indicada en el plan de direccionamiento.</li>
+<li>Activa el servidor DHCP en cada interfaz con un rango apropiado.</li>
+<li>Verifica la conectividad desde el PC de prueba: debe obtener IP de VLAN 10 y tener acceso a Internet.</li>
+<li>Comprueba que el router puede alcanzar todas las subredes (tabla de rutas).</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Indicación ER605</p>
+<p>Las interfaces VLAN se crean desde <strong>Network → LAN</strong>. Haz clic en <strong>+Add</strong> para añadir una nueva red LAN e introduce el VLAN ID, la IP del gateway y la máscara. El servidor DHCP se configura en la pestaña <strong>DHCP Server</strong> dentro de cada LAN. Para ver la tabla de rutas activa ve a <strong>Network → Routing</strong>.</p>
+</div>
+<hr />
+<h2 id="parte-4-servidor-radius-con-freeradius-opcional-ampliacion">Parte 4 — Servidor RADIUS con FreeRADIUS <em>(opcional — ampliación)</em><a class="headerlink" href="#parte-4-servidor-radius-con-freeradius-opcional-ampliacion" title="Permanent link">&para;</a></h2>
+<p>En el <strong>PC servidor</strong> (equipo diferente al PC de administración usado en Partes 1-3), instala una máquina virtual con <strong>Ubuntu Server 24.04 LTS</strong> en VirtualBox y configura un servidor FreeRADIUS básico que autentique los usuarios de la SSID "PNI-Empleados".</p>
+<div class="admonition warning">
+<p class="admonition-title">Requisito previo: Completar Partes 1-3</p>
+<p><strong>No inicies la Parte 4 hasta haber completado y verificado las Partes 1, 2 y 3.</strong> El PC servidor necesita acceso a Internet a través del router (VLAN 40) para descargar paquetes de Ubuntu. Si el router no está configurado con DHCP y rutas en VLAN 40, la VM no tendrá conectividad.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Cambio de equipo en esta parte</p>
+<p><strong>Prepara un segundo PC (PC servidor) diferente al PC de administración.</strong> Este PC debe estar conectado físicamente al <strong>puerto de acceso VLAN 40</strong> del switch. De esta forma, la VM en VirtualBox (con adaptador puente) obtendrá una IP en rango 192.168.40.x y tendrá acceso a Internet a través del router.</p>
+</div>
+<hr />
+<h3 id="paso-41-preparar-la-maquina-virtual">Paso 4.1 — Preparar la máquina virtual<a class="headerlink" href="#paso-41-preparar-la-maquina-virtual" title="Permanent link">&para;</a></h3>
+<p><strong>Conexión física:</strong></p>
+<ol>
+<li>Verifica que el <strong>PC servidor</strong> está conectado físicamente al <strong>puerto de acceso VLAN 40</strong> del switch (puerto P4).</li>
+<li>Comprueba que el router está completamente configurado (Partes 1-3 terminadas) con:</li>
+<li>DHCP activo en VLAN 40 (rango 192.168.40.x)</li>
+<li>Interfaz VLAN 40 con IP 192.168.40.1</li>
+<li>Acceso a Internet verificado</li>
+</ol>
+<p><strong>Creación de la VM:</strong></p>
+<ol>
+<li>En el <strong>PC servidor</strong>, clona la OVA con la plantilla de Ubuntu Server usada en otras actividades o crea una nueva VM en VirtualBox con los siguientes parámetros mínimos:<ul>
+<li>Sistema operativo: Ubuntu Server 24.04 LTS (64 bits)</li>
+<li>RAM: 1024 MB</li>
+<li>Disco: 10 GB</li>
+<li><strong>Adaptador de red:</strong> <strong>Adaptador puente</strong> (Bridged) sobre la interfaz de red física del equipo (la que está conectada al puerto de acceso VLAN 40 del switch)</li>
+</ul>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Cómo obtiene Internet la VM</p>
+<p>Cuando arranques la VM con adaptador puente, obtendrá una IP automáticamente por DHCP del servidor del router en VLAN 40 (rango 192.168.40.x). A través del router, la VM tendrá acceso a Internet para descargar paquetes de Ubuntu y FreeRADIUS.</p>
+</div>
+<ol>
+<li>
+<p>Si es una OVA clonada, actualiza el sistema operativo. Si es una máquina nueva, instala Ubuntu Server siguiendo el asistente. Durante la instalación:</p>
+<ul>
+<li>Selecciona instalación mínima (no es necesario instalar ningún paquete adicional en este paso)</li>
+<li>Crea un usuario con nombre y contraseña que recuerdes (por ejemplo, usuario <code>user</code>)</li>
+</ul>
+</li>
+<li>
+<p>Una vez instalado, inicia sesión en la consola de la VM.</p>
+</li>
+</ol>
+<hr />
+<h3 id="paso-42-configurar-la-ip-estatica-en-la-vm">Paso 4.2 — Configurar la IP estática en la VM<a class="headerlink" href="#paso-42-configurar-la-ip-estatica-en-la-vm" title="Permanent link">&para;</a></h3>
+<p>La VM debe tener una IP fija en la VLAN 40 para que el AP sepa siempre a dónde enviar las peticiones RADIUS.</p>
+<ol>
+<li>
+<p>Identifica el nombre de la interfaz de red:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ip<span class="w"> </span>link<span class="w"> </span>show
+</code></pre></div>
+<p>Anota el nombre de la interfaz (habitualmente <code>enp0s3</code> o similar).</p>
+</li>
+<li>
+<p>Edita la configuración de red con <code>netplan</code>. Abre el fichero de configuración:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/netplan/00-installer-config.yaml
+</code></pre></div>
+</li>
+<li>
+<p>Sustituye el contenido por lo siguiente, adaptando el nombre de interfaz:</p>
+<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">network</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">enp0s3</span><span class="p">:</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">      </span><span class="nt">addresses</span><span class="p">:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.40.10/24</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">      </span><span class="nt">routes</span><span class="p">:</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">          </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.40.1</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">      </span><span class="nt">nameservers</span><span class="p">:</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">        </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">8.8.8.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.1.1.1</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+</li>
+<li>
+<p>Aplica la configuración:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>apply
+</code></pre></div>
+</li>
+<li>
+<p>Verifica que la IP es correcta y que hay conectividad con el router:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ip<span class="w"> </span>a
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ping<span class="w"> </span><span class="m">192</span>.168.40.1
+</code></pre></div>
+</li>
+</ol>
+<hr />
+<h3 id="paso-43-instalar-freeradius">Paso 4.3 — Instalar FreeRADIUS<a class="headerlink" href="#paso-43-instalar-freeradius" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Actualiza los repositorios e instala el paquete:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>freeradius<span class="w"> </span>-y
+</code></pre></div>
+</li>
+<li>
+<p>Comprueba que el servicio está activo:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>freeradius
+</code></pre></div>
+<p>El estado debe mostrar <code>active (running)</code>.</p>
+</li>
+<li>
+<p>Activa el inicio automático al arrancar:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>freeradius
+</code></pre></div>
+</li>
+</ol>
+<hr />
+<h3 id="paso-44-registrar-el-ap-como-cliente-radius">Paso 4.4 — Registrar el AP como cliente RADIUS<a class="headerlink" href="#paso-44-registrar-el-ap-como-cliente-radius" title="Permanent link">&para;</a></h3>
+<p>FreeRADIUS necesita saber qué dispositivos tienen permiso para enviarle peticiones de autenticación. El AP actúa como <strong>cliente RADIUS</strong> (también llamado NAS — Network Access Server).</p>
+<ol>
+<li>
+<p>Abre el fichero de clientes:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/freeradius/3.0/clients.conf
+</code></pre></div>
+</li>
+<li>
+<p>Al final del fichero, añade el bloque siguiente con la IP de gestión del AP y el secret que configuraste en la Parte 1:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>client ap-omada {
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    ipaddr          = 192.168.10.254
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    secret          = clave_secreta_compartida
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    shortname       = AP-Omada-Lab
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    nas_type        = other
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>}
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">La clave secreta debe coincidir exactamente</p>
+<p>El valor de <code>secret</code> aquí debe ser <strong>idéntico</strong> al que introdujiste en la configuración 802.1X del AP. Un carácter diferente impedirá la autenticación.</p>
+</div>
+</li>
+<li>
+<p>Guarda y cierra el fichero (<code>Ctrl+O</code>, <code>Enter</code>, <code>Ctrl+X</code>).</p>
+</li>
+</ol>
+<hr />
+<h3 id="paso-45-crear-usuarios-de-prueba">Paso 4.5 — Crear usuarios de prueba<a class="headerlink" href="#paso-45-crear-usuarios-de-prueba" title="Permanent link">&para;</a></h3>
+<p>FreeRADIUS permite definir usuarios locales en un fichero de texto plano, suficiente para este lab.</p>
+<ol>
+<li>
+<p>Abre el fichero de usuarios:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/freeradius/3.0/users
+</code></pre></div>
+</li>
+<li>
+<p>Al principio del fichero (antes de las líneas comentadas), añade los usuarios con el formato siguiente:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>alumno1    Cleartext-Password := &quot;password1&quot;
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>alumno2    Cleartext-Password := &quot;password2&quot;
+</code></pre></div>
+<p>Añade tantos usuarios como el grupo necesite para las pruebas.</p>
+</li>
+<li>
+<p>Guarda y cierra el fichero.</p>
+</li>
+</ol>
+<hr />
+<h3 id="paso-46-reiniciar-y-probar-el-servidor">Paso 4.6 — Reiniciar y probar el servidor<a class="headerlink" href="#paso-46-reiniciar-y-probar-el-servidor" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Reinicia FreeRADIUS para que cargue los cambios:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>freeradius
+</code></pre></div>
+</li>
+<li>
+<p>Comprueba que no hay errores en los logs:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>freeradius<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span>
+</code></pre></div>
+</li>
+<li>
+<p>Realiza una prueba local de autenticación con la herramienta <code>radtest</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>radtest<span class="w"> </span>alumno1<span class="w"> </span>password1<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span><span class="m">0</span><span class="w"> </span>testing123
+</code></pre></div>
+<p>La respuesta debe incluir <code>Access-Accept</code>. Si aparece <code>Access-Reject</code>, revisa el fichero <code>users</code>.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Indicación</p>
+<p>El secret <code>testing123</code> es el que FreeRADIUS asigna por defecto al cliente <code>localhost</code>. Solo se usa para la prueba local; no es el secret del AP.</p>
+</div>
+<hr />
+<h3 id="paso-47-verificar-autenticacion-real-desde-el-ap">Paso 4.7 — Verificar autenticación real desde el AP<a class="headerlink" href="#paso-47-verificar-autenticacion-real-desde-el-ap" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Activa la SSID <strong>"PNI-Empleados"</strong> en la interfaz del AP (que dejaste desactivada en la Parte 3).</li>
+<li>Desde un móvil o portátil, conéctate a la red "PNI-Empleados":<ul>
+<li>Método de autenticación: <strong>WPA2-Enterprise / EAP-TTLS</strong> o <strong>PEAP</strong> (según soporte del cliente)</li>
+<li>Usuario: <code>alumno1</code></li>
+<li>Contraseña: <code>password1</code></li>
+</ul>
+</li>
+<li>Si la conexión se establece correctamente, el dispositivo obtendrá una IP del rango VLAN 20.</li>
+<li>
+<p>Consulta los logs de FreeRADIUS en tiempo real para ver el proceso de autenticación:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>freeradius<span class="w"> </span>-f
+</code></pre></div>
+<p>Deberías ver una línea con <code>Access-Accept</code> y el nombre de usuario autenticado.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Sobre el método EAP</p>
+<p>Para este lab, FreeRADIUS está configurado con los métodos EAP por defecto (PEAP-MSCHAPv2). La mayoría de dispositivos móviles y portátiles con Windows/Linux lo soportan sin configuración adicional. En iOS puede ser necesario aceptar un certificado autofirmado en el primer acceso.</p>
+</div>
+<hr />
+<h2 id="verificacion-final">Verificación final<a class="headerlink" href="#verificacion-final" title="Permanent link">&para;</a></h2>
+<p>Antes de dar la práctica por completada, el grupo debe demostrar:</p>
+<ul>
+<li>[ ] Un dispositivo conectado al puerto de VLAN 10 obtiene IP y accede a Internet.</li>
+<li>[ ] Un móvil se conecta a "PNI-Invitados" con la clave compartida y obtiene IP de VLAN 30.</li>
+<li>[ ] Las VLANs 10 y 30 <strong>no</strong> se ven entre sí (comprobar con ping).</li>
+<li>[ ] <em>(Parte 4)</em> Un móvil se autentica en "PNI-Empleados" con usuario y contraseña individuales.</li>
+<li>[ ] <em>(Parte 4)</em> El log de FreeRADIUS muestra el acceso aceptado.</li>
+</ul>
+<hr />
+<h2 id="entrega">Entrega<a class="headerlink" href="#entrega" title="Permanent link">&para;</a></h2>
+<p>Documentad en un informe breve (formato libre):</p>
+<ul>
+<li>Debe incluir el nombre de todos los miembros del grupo</li>
+<li>Topología final con IPs reales utilizadas.</li>
+<li>Capturas de pantalla de la configuración de cada dispositivo.</li>
+<li>Resultado de las comprobaciones de la verificación final.</li>
+<li><em>(Parte 4)</em> Captura del log de FreeRADIUS con una autenticación exitosa.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ichigar
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/ichigar/web" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://codeberg.org/ichigar/pages" target="_blank" rel="noopener" title="Codeberg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.999.747A11.974 11.974 0 0 0 0 12.75c0 2.254.635 4.465 1.833 6.376L11.837 6.19c.072-.092.251-.092.323 0l4.178 5.402h-2.992l.065.239h3.113l.882 1.138h-3.674l.103.374h3.86l.777 1.003h-4.358l.135.483h4.593l.695.894h-5.038l.165.589h5.326l.609.785h-5.717l.182.65h6.038l.562.727h-6.397l.183.65h6.717A12 12 0 0 0 24 12.75 11.977 11.977 0 0 0 11.999.747m3.654 19.104.182.65h5.326c.173-.204.353-.433.513-.65zm.385 1.377.18.65h3.563c.233-.198.485-.428.712-.65zm.383 1.377.182.648h1.203c.356-.204.685-.412 1.042-.648z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/feed_rss_created.xml" target="_blank" rel="noopener" title="RSS" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../../assets/_markdown_exec_pyodide.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="../../../../javascripts/blog-class.js"></script>
+      
+    
+  </body>
+</html>

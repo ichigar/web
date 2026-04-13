@@ -1,0 +1,164 @@
+<svg viewBox="0 0 900 720" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+
+  <!-- Fondo -->
+  <rect width="900" height="720" fill="#f4f6f9" rx="12"/>
+
+  <!-- Título -->
+  <text x="450" y="36" text-anchor="middle" font-size="17" font-weight="bold" fill="#2c3e50">Topología de red — Lab VLANs y autenticación inalámbrica</text>
+  <text x="450" y="54" text-anchor="middle" font-size="12" fill="#7f8c8d">Hardware Omada — Modo Standalone</text>
+
+  <!-- ══════════════ LEYENDA ══════════════ -->
+  <rect x="20" y="66" width="220" height="108" rx="8" fill="white" stroke="#bdc3c7" stroke-width="1.2"/>
+  <text x="30" y="84" font-size="12" font-weight="bold" fill="#2c3e50">Leyenda</text>
+  <line x1="30" y1="96" x2="70" y2="96" stroke="#e67e22" stroke-width="3" stroke-dasharray="6,3"/>
+  <text x="78" y="100" font-size="11" fill="#555">Enlace trunk 802.1Q</text>
+  <line x1="30" y1="116" x2="70" y2="116" stroke="#27ae60" stroke-width="2.5"/>
+  <text x="78" y="120" font-size="11" fill="#555">Puerto acceso (access)</text>
+  <line x1="30" y1="136" x2="70" y2="136" stroke="#2980b9" stroke-width="2.5"/>
+  <text x="78" y="140" font-size="11" fill="#555">Enlace WAN a Internet</text>
+  <line x1="30" y1="156" x2="70" y2="156" stroke="#8e44ad" stroke-width="2" stroke-dasharray="4,4"/>
+  <text x="78" y="160" font-size="11" fill="#555">Señal WiFi (inalámbrico)</text>
+
+  <!-- ══════════════ INTERNET + ROSETA ══════════════ -->
+  <!-- Nube Internet -->
+  <ellipse cx="270" cy="108" rx="54" ry="28" fill="#d6eaf8" stroke="#2980b9" stroke-width="1.8"/>
+  <ellipse cx="248" cy="118" rx="36" ry="20" fill="#d6eaf8" stroke="#2980b9" stroke-width="1.8"/>
+  <ellipse cx="296" cy="118" rx="36" ry="20" fill="#d6eaf8" stroke="#2980b9" stroke-width="1.8"/>
+  <ellipse cx="270" cy="128" rx="54" ry="16" fill="#d6eaf8" stroke="#2980b9" stroke-width="1.8"/>
+  <text x="270" y="115" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a5276">Internet</text>
+
+  <!-- Roseta -->
+  <rect x="390" y="82" width="100" height="46" rx="8" fill="#fdfefe" stroke="#95a5a6" stroke-width="1.5"/>
+  <text x="440" y="101" text-anchor="middle" font-size="11" font-weight="bold" fill="#555">Roseta de aula</text>
+  <text x="440" y="117" text-anchor="middle" font-size="10" fill="#888">DHCP red centro</text>
+
+  <!-- Cable Internet → roseta -->
+  <line x1="325" y1="108" x2="390" y2="105" stroke="#2980b9" stroke-width="2.5"/>
+
+  <!-- ══════════════ ROUTER ══════════════ -->
+  <rect x="340" y="172" width="200" height="66" rx="10" fill="#2c3e50" stroke="#1a252f" stroke-width="1.5"/>
+  <text x="440" y="197" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Router Omada</text>
+  <text x="440" y="213" text-anchor="middle" font-size="10" fill="#bdc3c7">ER605 / ER7206</text>
+
+  <!-- Etiquetas puertos router -->
+  <rect x="340" y="172" width="44" height="18" rx="4" fill="#2980b9"/>
+  <text x="362" y="184" text-anchor="middle" font-size="10" fill="white">WAN</text>
+  <rect x="478" y="224" width="44" height="18" rx="4" fill="#e67e22"/>
+  <text x="500" y="236" text-anchor="middle" font-size="10" fill="white">LAN</text>
+  <!-- IPs del router en puerto LAN -->
+  <text x="500" y="252" text-anchor="middle" font-size="9" fill="#555" font-weight="bold">.10.1 / .20.1</text>
+  <text x="500" y="265" text-anchor="middle" font-size="9" fill="#555">.30.1 / .40.1</text>
+
+  <!-- Etiqueta DHCP en cable roseta -->
+  <text x="420" y="150" font-size="10" fill="#2980b9" font-style="italic">DHCP</text>
+
+  <!-- Cable roseta → router WAN -->
+  <line x1="440" y1="128" x2="362" y2="181" stroke="#2980b9" stroke-width="2.5"/>
+
+  <!-- ══════════════ SWITCH ══════════════ -->
+  <rect x="290" y="330" width="320" height="66" rx="10" fill="#154360" stroke="#0e2f44" stroke-width="1.5"/>
+  <text x="450" y="356" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Switch Omada SG2xxx</text>
+  <text x="450" y="372" text-anchor="middle" font-size="10" fill="#aab7b8">Gestionado modo Standalone</text>
+
+  <!-- Puertos switch (5 cajas) -->
+  <!-- Puerto 1: Trunk router -->
+  <rect x="280" y="338" width="52" height="18" rx="3" fill="#e67e22"/>
+  <text x="306" y="350" text-anchor="middle" font-size="9" fill="white">P1 TRUNK</text>
+  <!-- Puerto 2: Trunk AP -->
+  <rect x="362" y="382" width="52" height="18" rx="3" fill="#e67e22"/>
+  <text x="388" y="394" text-anchor="middle" font-size="9" fill="white">P2 TRUNK</text>
+  <!-- Puerto 3: Access VLAN10 -->
+  <rect x="422" y="382" width="56" height="18" rx="3" fill="#27ae60"/>
+  <text x="450" y="394" text-anchor="middle" font-size="9" fill="white">P3 V10</text>
+  <!-- Puerto 4: Access VLAN40 -->
+  <rect x="486" y="382" width="56" height="18" rx="3" fill="#8e44ad"/>
+  <text x="514" y="394" text-anchor="middle" font-size="9" fill="white">P4 V40*</text>
+  <!-- Puerto 5: Mgmt -->
+  <rect x="550" y="382" width="48" height="18" rx="3" fill="#7f8c8d"/>
+  <text x="574" y="394" text-anchor="middle" font-size="9" fill="white">MGMT</text>
+
+  <!-- Cable router LAN → switch trunk P1 -->
+  <line x1="500" y1="242" x2="500" y2="310" stroke="#e67e22" stroke-width="3" stroke-dasharray="7,3"/>
+  <line x1="500" y1="310" x2="306" y2="347" stroke="#e67e22" stroke-width="3" stroke-dasharray="7,3"/>
+  <!-- Etiqueta trunk router-switch -->
+  <rect x="348" y="274" width="156" height="28" rx="5" fill="white" stroke="#e67e22" stroke-width="1.2"/>
+  <text x="426" y="286" text-anchor="middle" font-size="10" fill="#e67e22" font-weight="bold">Trunk 802.1Q</text>
+  <text x="426" y="298" text-anchor="middle" font-size="9" fill="#888">VLANs 10 · 20 · 30 · 40</text>
+
+  <!-- ══════════════ AP OMADA ══════════════ -->
+  <rect x="60" y="510" width="170" height="56" rx="10" fill="#1a5276" stroke="#154360" stroke-width="1.5"/>
+  <text x="145" y="533" text-anchor="middle" font-size="13" font-weight="bold" fill="white">AP Omada</text>
+  <text x="145" y="549" text-anchor="middle" font-size="10" fill="#aab7b8">EAP / punto de acceso</text>
+  <!-- IP de gestión del AP -->
+  <rect x="85" y="568" width="120" height="16" rx="3" fill="#27ae60" stroke="#1e8449" stroke-width="1"/>
+  <text x="145" y="580" text-anchor="middle" font-size="9" fill="white" font-weight="bold">192.168.10.254</text>
+  <!-- Puerto trunk AP -->
+  <rect x="126" y="510" width="38" height="14" rx="3" fill="#e67e22"/>
+  <text x="145" y="521" text-anchor="middle" font-size="8" fill="white">TRUNK</text>
+
+  <!-- Cable switch → AP trunk -->
+  <line x1="388" y1="382" x2="388" y2="348" stroke="#e67e22" stroke-width="3" stroke-dasharray="7,3"/>
+  <line x1="388" y1="348" x2="388" y2="430" stroke="#e67e22" stroke-width="3" stroke-dasharray="7,3"/>
+  <line x1="388" y1="430" x2="145" y2="517" stroke="#e67e22" stroke-width="3" stroke-dasharray="7,3"/>
+  <!-- Etiqueta trunk switch-AP -->
+  <rect x="216" y="448" width="140" height="28" rx="5" fill="white" stroke="#e67e22" stroke-width="1.2"/>
+  <text x="286" y="460" text-anchor="middle" font-size="10" fill="#e67e22" font-weight="bold">Trunk 802.1Q</text>
+  <text x="286" y="472" text-anchor="middle" font-size="9" fill="#888">VLANs 10 · 20 · 30</text>
+
+  <!-- SSIDs -->
+  <!-- SSID Invitados VLAN 30 -->
+  <line x1="100" y1="566" x2="60" y2="630" stroke="#8e44ad" stroke-width="1.8" stroke-dasharray="5,4"/>
+  <rect x="10" y="630" width="150" height="46" rx="8" fill="#f9ebff" stroke="#8e44ad" stroke-width="1.5"/>
+  <text x="85" y="649" text-anchor="middle" font-size="11" font-weight="bold" fill="#6c3483">📶 PNI-Invitados</text>
+  <text x="85" y="663" text-anchor="middle" font-size="10" fill="#7d3c98">VLAN 30 · WPA2-Personal</text>
+  <text x="85" y="675" text-anchor="middle" font-size="10" fill="#aaa">192.168.30.0/24</text>
+
+  <!-- SSID Empleados VLAN 20 -->
+  <line x1="190" y1="566" x2="230" y2="630" stroke="#8e44ad" stroke-width="1.8" stroke-dasharray="5,4"/>
+  <rect x="170" y="630" width="160" height="46" rx="8" fill="#eaf4fb" stroke="#2980b9" stroke-width="1.5"/>
+  <text x="250" y="649" text-anchor="middle" font-size="11" font-weight="bold" fill="#1a5276">📶 PNI-Empleados</text>
+  <text x="250" y="663" text-anchor="middle" font-size="10" fill="#2471a3">VLAN 20 · WPA2-Enterprise</text>
+  <text x="250" y="675" text-anchor="middle" font-size="10" fill="#aaa">192.168.20.0/24</text>
+
+  <!-- ══════════════ PC DE PRUEBA VLAN 10 ══════════════ -->
+  <rect x="390" y="510" width="150" height="56" rx="10" fill="#1e8449" stroke="#196f3d" stroke-width="1.5"/>
+  <text x="465" y="533" text-anchor="middle" font-size="12" font-weight="bold" fill="white">PC de prueba</text>
+  <text x="465" y="549" text-anchor="middle" font-size="10" fill="#a9dfbf">VLAN 10 · Access</text>
+  <text x="465" y="563" text-anchor="middle" font-size="10" fill="#a9dfbf">192.168.10.x/24</text>
+
+  <!-- Cable switch → PC acceso VLAN10 -->
+  <line x1="450" y1="400" x2="450" y2="430" stroke="#27ae60" stroke-width="2.5"/>
+  <line x1="450" y1="430" x2="465" y2="510" stroke="#27ae60" stroke-width="2.5"/>
+  <rect x="454" y="444" width="70" height="16" rx="4" fill="white" stroke="#27ae60" stroke-width="1"/>
+  <text x="489" y="455" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="bold">Access VLAN 10</text>
+
+  <!-- ══════════════ PC ALUMNO + VM RADIUS ══════════════ -->
+  <rect x="630" y="490" width="210" height="90" rx="10" fill="#4a235a" stroke="#3b1a47" stroke-width="1.5"/>
+  <text x="735" y="513" text-anchor="middle" font-size="12" font-weight="bold" fill="white">PC Alumno</text>
+  <text x="735" y="529" text-anchor="middle" font-size="10" fill="#d7bde2">VLAN 40 · Access *(opcional)</text>
+  <text x="735" y="543" text-anchor="middle" font-size="10" fill="#d7bde2">192.168.40.0/24</text>
+  <!-- VM badge -->
+  <rect x="660" y="552" width="150" height="22" rx="6" fill="#7d3c98"/>
+  <text x="735" y="567" text-anchor="middle" font-size="10" fill="white">🖥 VM FreeRADIUS · 192.168.40.10</text>
+
+  <!-- Cable switch → PC VLAN40 -->
+  <line x1="514" y1="400" x2="514" y2="430" stroke="#8e44ad" stroke-width="2.5" stroke-dasharray="5,3"/>
+  <line x1="514" y1="430" x2="680" y2="490" stroke="#8e44ad" stroke-width="2.5" stroke-dasharray="5,3"/>
+  <rect x="530" y="444" width="100" height="16" rx="4" fill="white" stroke="#8e44ad" stroke-width="1"/>
+  <text x="580" y="455" text-anchor="middle" font-size="9" fill="#8e44ad" font-weight="bold">Access VLAN 40 *</text>
+
+  <!-- Flecha RADIUS: VM → AP -->
+  <path d="M 660 535 Q 450 620 240 566" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+  <text x="450" y="620" text-anchor="middle" font-size="9" fill="#c0392b">Peticiones RADIUS UDP 1812</text>
+
+  <!-- Definición flecha -->
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#c0392b"/>
+    </marker>
+  </defs>
+
+  <!-- Nota opcional -->
+  <text x="450" y="708" text-anchor="middle" font-size="10" fill="#95a5a6">* Puerto VLAN 40 y VM FreeRADIUS son opcionales (Parte 4 del lab)</text>
+
+</svg>
