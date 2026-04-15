@@ -2,434 +2,438 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ichigar.codeberg.page/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/asir/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/blog/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/blog/2025/10/01/tutorial-de-mkdocs/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/blog/2026/03/27/mejoras-en-el-flujo-de-despliegue/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/blog/2026/04/07/darle-al-blog-una-apariencia-propia/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/blog/2026/04/08/c%C3%B3mo-habilitar-comentarios-en-el-blog-con-giscus/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/ce-python/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/apuntes/ut1/funciones_software_l-marcas/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut1/lenguaje_marcas_cookml/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut2/apuntes_formularios_html/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut2/trabajando_git_github/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut2/tutorial_intro_html/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut2/tutorial_tablas_html/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut3/ejemplo_maquetado_web/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut3/intro_css/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut3/maquetacion_css/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut3/modelo_cajas_css/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut4/espacios_nombres_xml/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut4/intro_xml/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut4/xml_validacion_dtd/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut4/xml_validacion_xsd/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut5/introduccion_sindicacion_contenidos/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut5/rss/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut6/introduccion_json/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/recursos/ut6/php_json/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/ut1/actividades_iniciales/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/lnd/ut1/ut1-a4_lenguajes_marcas/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/misc/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/misc/tutoriales/mkdocs_ubuntu/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/misc/funcion_hash/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/misc/miniguia-trabajo-ramas-git/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/misc/misc_entornos_virtuales/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/misc/misc_guia_git_basico/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut1/recursos/poo_ut1_1_intro_objetos/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut1/recursos/poo_ut1_2_encapsulacion/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut1/recursos/poo_ut1_3_herencia_polimorfismo/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut1/recursos/poo_ut1_4_diseno_capas/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut1/recursos/poo_ut1_5_modulos_paquetes_imports/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut1/recursos/poo_ut1_6_documentacion/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut1/recursos/poo_ut1_7_unittest/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut2/labs/poo_ut2_a1_lab_operaciones_ficheros/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut2/labs/poo_ut2_a2_lab_rutas_y_errores/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut2/recursos/poo_ut2_1_intro/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut2/recursos/poo_ut2_2_operaciones/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut2/recursos/poo_ut2_3_errores/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut2/recursos/poo_ut2_4_rutas/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut2/recursos/poo_ut2_5_csv/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut2/recursos/poo_ut2_6_json/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut2/recursos/poo_ut2_7_binarios/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut3/labs/poo_ut3_a1_lab_del-modelo-a-la-bbdd/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut3/labs/poo_ut3_a2_lab_excepciones_y_repositorio/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut3/labs/poo_ut3_a2_lab_excepciones_y_repositorio_old/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut3/labs/poo_ut3_a3_lab_tests_y_documentacion/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut3/recursos/poo_ut3_1_del_modelo_a_la_bbdd/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut3/recursos/poo_ut3_2_excepciones_y_repositorio/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut3/recursos/poo_ut3_3_tests_repositorio_sqlite/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut3/recursos/presentaciones/poo_ut3_1_presentacion_del_modelo_a_la_bbdd/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut3/recursos/presentaciones/poo_ut3_2_presentacion_excepciones_y_repositorio/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pd4/ut3/recursos/presentaciones/poo_ut3_3_tests_repositorio_sqlite/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut1/recursos/clasificaciones_lan/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut1/recursos/direccionamiento_ip/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut1/recursos/redes_con_clase/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut1/recursos/redes_direcciones_ip_especiales/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut1/recursos/redes_publicas_privadas/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut1/recursos/redes_sin_clase/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut1/recursos/protocolos_modelos/protocolos-modelos/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut2/recursos/conmutacion_tramas/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut2/recursos/direccionamiento_fisico/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut2/recursos/dominios_colision_difusion/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut2/recursos/protocolo_arp/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut2/recursos/protocolo_stp/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut2/recursos/tramas/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut3/recursos/pni-ut3-vlsm/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut4/recursos/ut4-resumen-comantos-vlan/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut4/recursos/ut4_1_vlan_switching/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut4/recursos/ut4_2_switch_capa3/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut4/recursos/ut4_3_guia_estudio_recuperacion/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut5/actividades/pni_ut5_lab_1_vlans_omada_real/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ichigar.codeberg.page/pni/ut5/actividades/pni_ut5_lab_2_omada_sdn/</loc>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/pni/ut5/recursos/pni_ut5_1_redes_inalambricas/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/rde/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/rde/apuntes/ut5/punto_acceso/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/rde/apuntes/ut5/redes_inalmabricas/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/rde/apuntes/ut6/cableado_lan/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/rde/apuntes/ut6/categoria_sce/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/rde/apuntes/ut6/espacios_sce_local/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/rde/apuntes/ut6/etiquetado_sce/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/rde/apuntes/ut6/normativa_elementos-espacios-sce/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/rde/apuntes/ut6/normativa_sce/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/smr/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/src/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/src/apuntes/ut0/cambiar_nombre_equipo_ubuntu/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/src/apuntes/ut0/comandos_linux/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/src/apuntes/ut0/configuracion_red_netplan/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/src/apuntes/ut0/direccionamiento_ip/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/src/apuntes/ut0/ip_duplicada_m_clonada/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/src/apuntes/ut2/src-ut2-tutorial_dig/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/src/recursos/rubricas/trabajo_grupo_presentacion/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/src/recursos/ut2/simil_dns_casa/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/src/tutoriales/debloat/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/src/tutoriales/ubuntu_router_nat/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/blog/archive/2026/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/blog/archive/2025/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/blog/category/novedades/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
     <url>
          <loc>https://ichigar.codeberg.page/blog/category/tutoriales/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-15</lastmod>
     </url>
 </urlset>

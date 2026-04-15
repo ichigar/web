@@ -1411,7 +1411,11 @@
 <li><strong>Módulo:</strong> PNI — Planificación y Administración de Redes</li>
 <li><strong>Unidad:</strong> UT5 — Redes inalámbricas</li>
 <li><strong>Agrupamiento:</strong> Grupos de 3-4 alumnos (un grupo dispondrá del hardware real)</li>
-<li><strong>Modalidad:</strong> Práctica con hardware real (router, switch y AP Omada)</li>
+<li><strong>Modalidad:</strong> Práctica con hardware real — TP-Link Omada en modo standalone</li>
+<li><strong>Hardware de red utilizado:</strong></li>
+<li>Router VPN <strong>Omada ER605</strong> (1 WAN Gigabit fijo + 3 puertos LAN/WAN configurables, por defecto LAN)</li>
+<li>Switch Gigabit PoE+ <strong>Omada SG2008P</strong> (8 puertos Gigabit, <strong>PoE+ 802.3af/at solo en P1-P4</strong>, consumo total 62 W, hasta 30 W por puerto)</li>
+<li>Punto de acceso WiFi 6 <strong>Omada EAP610 (AX1800)</strong> (dual-band 2.4 GHz + 5 GHz, hasta ~1800 Mbps agregados, alimentación <strong>PoE+ 802.3at</strong> ~11 W o adaptador 12 V/1.5 A, soporta hasta 16 SSIDs)</li>
 <li><strong>Hardware necesario:</strong> </li>
 <li>1 PC para configuración (Partes 1-3, conectado a VLAN 10)</li>
 <li>1 PC adicional para servidor FreeRADIUS <em>(Parte 4, opcional — VLAN 40 con VM Ubuntu Server)</em></li>
@@ -1425,13 +1429,13 @@
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Internet
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    │
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>[Router Omada ER605]
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    │  (enlace trunk 802.1Q)
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>[Switch Omada]
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    ├─── Puerto trunk ──→ [AP Omada]
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    │                         ├── SSID: &quot;PNI-Invitados&quot;  (VLAN 30)
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    │                         └── SSID: &quot;PNI-Empleados&quot;  (VLAN 20)
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    ├─── Puerto acceso VLAN 10 ──→ PC de administración (para configuración)
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    └─── Puerto acceso VLAN 40 ──→ PC servidor (VM FreeRADIUS) *opcional
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    │  (enlace trunk 802.1Q, LAN1 del router ↔ P1 del switch)
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>[Switch Omada SG2008P]
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    ├─── P2 trunk (PoE+) ──→ [AP Omada EAP610 / AX1800]
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    │                              ├── SSID: &quot;PNI-Invitados-GrupoN&quot;  (VLAN 30)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    │                              └── SSID: &quot;PNI-Empleados-GrupoN&quot;  (VLAN 20)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    ├─── P3 acceso VLAN 10 ──→ PC de administración (para configuración)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    └─── P4 acceso VLAN 40 ──→ PC servidor (VM FreeRADIUS) *opcional
 </code></pre></div>
 <p><img alt="Diagrama de topología" src="../pni_ut5_diagrama_topologia.svg" /></p>
 <h3 id="plan-de-direccionamiento">Plan de direccionamiento<a class="headerlink" href="#plan-de-direccionamiento" title="Permanent link">&para;</a></h3>
@@ -1477,13 +1481,13 @@
 <ul>
 <li><strong>VLAN (Virtual LAN):</strong> segmentación lógica de una red en el mismo switch físico. Cada VLAN es un dominio de broadcast independiente.</li>
 <li><strong>Enlace trunk (802.1Q):</strong> puerto que transporta tráfico de varias VLANs etiquetado. Necesario entre el switch y el router, y entre el switch y el AP.</li>
-<li><strong>Inter-VLAN routing:</strong> en este escenario lo realiza el <strong>router</strong>, que tiene una subinterfaz (o interfaz VLAN) por cada red. El switch SG2xxx actúa solo en capa 2.</li>
+<li><strong>Inter-VLAN routing:</strong> en este escenario lo realiza el <strong>router ER605</strong>, que tiene una subinterfaz (o interfaz VLAN) por cada red. El switch SG2008P actúa solo en capa 2 (es un switch gestionado L2, no L3).</li>
 <li><strong>DHCP por VLAN:</strong> el router asignará direcciones IP de forma independiente a cada VLAN.</li>
 <li><strong>WPA2-Personal:</strong> autenticación WiFi con clave compartida (PSK). Todos los usuarios usan la misma contraseña.</li>
 <li><strong>WPA2-Enterprise (802.1X):</strong> autenticación WiFi individual mediante usuario y contraseña, validada por un servidor RADIUS externo.</li>
 <li><strong>RADIUS:</strong> protocolo cliente-servidor para autenticación centralizada. El AP actúa como cliente RADIUS; el servidor verifica las credenciales.</li>
-<li><strong>PoE (Power over Ethernet):</strong> tecnología que permite suministrar alimentación eléctrica a un dispositivo a través del mismo cable de red RJ45, sin necesidad de un cable de corriente separado. El switch "inyecta" la electricidad en el cable y el dispositivo (en este caso el AP) la recibe y se alimenta de ella. Para que funcione, tanto el switch como el dispositivo deben ser compatibles con PoE. En este lab el switch SG2xxx tiene puertos PoE, por lo que el EAP610 se alimenta directamente desde el cable de red — no necesita adaptador de corriente.</li>
-<li><strong>Router-on-a-stick:</strong> escenario de inter-VLAN routing en el que un único enlace físico trunk conecta el switch con el router. Todas las VLANs viajan etiquetadas por ese enlace; el router tiene una subinterfaz por cada VLAN y es el responsable de enrutar el tráfico entre ellas. El tráfico entre dos VLANs sube al router y vuelve a bajar por el mismo cable, de ahí el nombre. Es el escenario que se usa en este lab: el switch SG2xxx trabaja solo en capa 2 y el ER605 hace todo el routing.</li>
+<li><strong>PoE (Power over Ethernet):</strong> tecnología que permite suministrar alimentación eléctrica a un dispositivo a través del mismo cable de red RJ45, sin necesidad de un cable de corriente separado. El switch "inyecta" la electricidad en el cable y el dispositivo (en este caso el AP) la recibe y se alimenta de ella. Para que funcione, tanto el switch como el dispositivo deben ser compatibles con PoE. En este lab el switch <strong>SG2008P ofrece PoE+ (802.3af/at) solo en los puertos 1-4</strong> (consumo total 62 W), y el <strong>EAP610 requiere PoE+ 802.3at</strong> (~11 W), por lo que debe conectarse a uno de esos cuatro puertos para alimentarse sin adaptador externo.</li>
+<li><strong>Router-on-a-stick:</strong> escenario de inter-VLAN routing en el que un único enlace físico trunk conecta el switch con el router. Todas las VLANs viajan etiquetadas por ese enlace; el router tiene una subinterfaz por cada VLAN y es el responsable de enrutar el tráfico entre ellas. El tráfico entre dos VLANs sube al router y vuelve a bajar por el mismo cable, de ahí el nombre. Es el escenario que se usa en este lab: el SG2008P trabaja solo en capa 2 y el ER605 hace todo el routing.</li>
 <li><strong>Modo Standalone vs Controlador Omada:</strong> Los dispositivos Omada pueden funcionar en dos modos distintos:</li>
 <li><strong>Standalone:</strong> cada dispositivo se gestiona de forma independiente. Accedes a la interfaz web de cada equipo por separado (router, switch, AP), introduces las configuraciones específicas en cada uno, y no hay una plataforma centralizada que coordine todos los dispositivos. Es más simple para labs pequeños o entornos sin necesidad de gestión centralizada, pero requiere acceder a múltiples interfaces. <strong>Este lab usa modo standalone.</strong></li>
 <li><strong>Controlador Omada:</strong> existe un servidor de control central (Software Controller o Hardware Controller dedicado) que gestiona toda la infraestructura Omada. Los dispositivos se "adoptan" en el controlador y se configuran desde una única plataforma centralizada. Ventajas: gestión unificada, configuración consistente, visibilidad global, roaming sin fisuras en APs. Desventaja: complejidad adicional y requiere que el controlador esté disponible. Típico en despliegues empresariales con múltiples APs o switches distribuidos. En clase de FP es menos común porque requiere infraestructura adicional.</li>
@@ -1520,6 +1524,7 @@
 </div>
 <hr />
 <h3 id="acceso-al-router">Acceso al router<a class="headerlink" href="#acceso-al-router" title="Permanent link">&para;</a></h3>
+<p>El ER605 tiene <strong>1 puerto WAN Gigabit fijo</strong> y <strong>3 puertos LAN/WAN configurables</strong> (que de fábrica funcionan como LAN). La administración se hace a través de los puertos LAN.</p>
 <p><strong>Conexión física:</strong></p>
 <ol>
 <li>Conecta el PC al router mediante un cable de red en cualquiera de los <strong>puertos LAN</strong> (no el puerto WAN).</li>
@@ -1534,28 +1539,28 @@
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Indicación</p>
-<p>El ER605 tiene la interfaz web únicamente en los <strong>puertos LAN</strong> (puertos 2-5). El puerto WAN (puerto 1) es solo para la conexión a Internet y no da acceso a la administración.</p>
+<p>El puerto WAN del ER605 es fijo y está claramente marcado en el chasis. Los otros tres puertos pueden reasignarse como WAN en la configuración (para escenarios multi-WAN), pero de fábrica son LAN y dan acceso a la interfaz web.</p>
 </div>
 <hr />
 <h3 id="acceso-al-punto-de-acceso-ap">Acceso al punto de acceso (AP)<a class="headerlink" href="#acceso-al-punto-de-acceso-ap" title="Permanent link">&para;</a></h3>
 <p><strong>NOTA:</strong> La Parte 0 explica cómo acceder a cada dispositivo de forma aislada. Para el AP, esto significa conectarlo <strong>directamente a un PC sin pasar por el switch</strong>. El acceso real al AP en la topología completa ocurre en la <strong>Parte 1 (Configuración del punto de acceso)</strong>.</p>
-<p>El AP no tiene puertos LAN propios accesibles desde fuera: se gestiona a través de la red a la que está conectado. Su IP por defecto es <code>192.168.0.254</code>.</p>
+<p>El AP no tiene puertos LAN propios accesibles desde fuera: se gestiona a través de la red a la que está conectado. El EAP610 <strong>de fábrica obtiene IP por DHCP</strong>; si no hay servidor DHCP en su segmento (como en esta fase aislada PC ↔ AP), recurre a la IP <strong>de respaldo <code>192.168.0.254</code></strong>.</p>
 <p><strong>Conexión física (primera vez — aislado):</strong></p>
 <ol>
-<li>Conecta el <strong>adaptador de corriente</strong> del AP a la red eléctrica.</li>
+<li>Conecta el <strong>adaptador de corriente</strong> del AP a la red eléctrica (el PC no suministra PoE, así que en esta fase alimentamos el AP con su adaptador externo).</li>
 <li>Conecta el AP <strong>directamente a un PC con un cable de red</strong> (sin pasar por el switch).</li>
 <li>Configura el PC con IP estática en el rango <code>192.168.0.X</code> (por ejemplo, <code>192.168.0.100</code>, máscara <code>255.255.255.0</code>).</li>
-<li>Comprueba conectividad con <code>ping 192.168.0.254</code>.</li>
+<li>Espera 1-2 minutos a que el AP arranque y active su IP de respaldo. Comprueba conectividad con <code>ping 192.168.0.254</code>.</li>
 </ol>
 <p><strong>Acceso web:</strong></p>
 <ol>
 <li>Abre el navegador y accede a <code>http://192.168.0.254</code></li>
 <li>Credenciales por defecto: <code>admin</code> / <code>admin</code>. Se pedirá establecer una nueva contraseña en el primer acceso.</li>
-<li>Desde la interfaz standalone del AP podrás configurar los SSIDs, seguridad y VLANs de cada red inalámbrica.</li>
+<li>Desde la interfaz standalone del AP podrás configurar los SSIDs (hasta 16 en el EAP610, 8 por banda), seguridad y VLANs de cada red inalámbrica.</li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Alimentación PoE</p>
-<p>El switch SG2xxx del lab tiene puertos PoE, por lo que el EAP610 recibe alimentación directamente a través del cable de red. No es necesario conectar ningún adaptador de corriente al AP. Asegúrate de conectar el AP a un puerto con PoE activo (revisa las especificaciones del switch si no estás seguro de qué puertos lo tienen).</p>
+<p>El EAP610 requiere <strong>PoE+ 802.3at</strong> (~11 W). Los puertos <strong>P1-P4 del SG2008P</strong> son compatibles (PoE 802.3af/at); los puertos P5-P8 <strong>no</strong> tienen PoE. En la topología final conectaremos el AP a uno de los puertos P1-P4 y podremos retirar su adaptador de corriente. Si accidentalmente lo conectamos a P5-P8, el AP no arrancará a menos que le volvamos a poner el adaptador.</p>
 </div>
 <hr />
 <h3 id="resumen-de-acceso-a-los-tres-dispositivos">Resumen de acceso a los tres dispositivos<a class="headerlink" href="#resumen-de-acceso-a-los-tres-dispositivos" title="Permanent link">&para;</a></h3>
@@ -1572,25 +1577,25 @@
 </thead>
 <tbody>
 <tr>
-<td>Switch SG2xxx</td>
-<td><code>192.168.0.1</code></td>
+<td>Switch Omada SG2008P</td>
+<td><code>192.168.0.1</code> (estática)</td>
 <td>(sin cambios)</td>
-<td>Cualquier puerto LAN</td>
+<td>Cualquier puerto (1-8)</td>
 <td><code>admin</code></td>
 <td><code>admin</code> (primer acceso: crear nueva)</td>
 </tr>
 <tr>
 <td>Router Omada ER605</td>
-<td><code>192.168.0.1</code></td>
+<td><code>192.168.0.1</code> (estática, LAN)</td>
 <td>(sin cambios)</td>
-<td>Puertos LAN</td>
+<td>Puertos LAN (no WAN)</td>
 <td><code>admin</code></td>
 <td><code>admin</code> (primer acceso: crear nueva)</td>
 </tr>
 <tr>
-<td>AP Omada</td>
-<td><code>192.168.0.254</code></td>
-<td><code>192.168.10.254</code></td>
+<td>AP Omada EAP610 (AX1800)</td>
+<td>DHCP / fallback <code>192.168.0.254</code></td>
+<td><code>192.168.10.254</code> (estática tras Parte 1)</td>
 <td>A través del switch (VLAN 10)</td>
 <td><code>admin</code></td>
 <td><code>admin</code> (primer acceso: crear nueva)</td>
@@ -1625,7 +1630,7 @@
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Indicación</p>
-<p>Algunos modelos de AP Omada requieren mantener el Reset hasta 10 segundos hasta que el LED parpadee en ámbar. Consulta la guía rápida impresa incluida con el dispositivo si tienes dudas.</p>
+<p>El EAP610 puede requerir mantener el botón Reset hasta 10 segundos hasta que el LED parpadee en ámbar. Consulta la guía rápida impresa incluida con el dispositivo si tienes dudas.</p>
 </div>
 <hr />
 <h2 id="parte-1-configuracion-del-punto-de-acceso">Parte 1 — Configuración del punto de acceso<a class="headerlink" href="#parte-1-configuracion-del-punto-de-acceso" title="Permanent link">&para;</a></h2>
@@ -1652,9 +1657,13 @@
 <li>Accede a <code>http://192.168.0.254</code> con las credenciales establecidas en la Parte 0.</li>
 </ol>
 <h3 id="configuracion-de-ssids">Configuración de SSIDs<a class="headerlink" href="#configuracion-de-ssids" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Añade el número de grupo al nombre de la SSID</p>
+<p>Como en el aula habrá varios grupos configurando AP al mismo tiempo, los SSIDs deben incluir un identificador de grupo para no solaparse en el aire. Sustituye <code>N</code> por el número de tu grupo (por ejemplo <code>PNI-Invitados-Grupo1</code>, <code>PNI-Empleados-Grupo2</code>...). En todas las menciones posteriores de este lab se asume este patrón.</p>
+</div>
 <ol>
 <li>
-<p>Crea la SSID <strong>"PNI-Invitados"</strong>:</p>
+<p>Crea la SSID <strong>"PNI-Invitados-GrupoN"</strong>:</p>
 <ul>
 <li>Seguridad: WPA2-Personal (clave compartida)</li>
 <li>VLAN: 30</li>
@@ -1662,7 +1671,7 @@
 </ul>
 </li>
 <li>
-<p>Crea la SSID <strong>"PNI-Empleados"</strong>:</p>
+<p>Crea la SSID <strong>"PNI-Empleados-GrupoN"</strong>:</p>
 <ul>
 <li>Seguridad: WPA2-Enterprise (802.1X)</li>
 <li>VLAN: 20</li>
@@ -1693,8 +1702,8 @@
 <p class="admonition-title">¿Por qué VLAN 10 para la gestión?</p>
 <p>Cuando el AP se conecte al switch en la Parte 2, el puerto será trunk con VLANs 10, 20 y 30. El AP usará cada VLAN para un propósito distinto:
 - <strong>VLAN 10</strong> — tráfico de gestión (acceso a la interfaz web del AP)
-- <strong>VLAN 20</strong> — tráfico inalámbrico de la SSID "PNI-Empleados"
-- <strong>VLAN 30</strong> — tráfico inalámbrico de la SSID "PNI-Invitados"</p>
+- <strong>VLAN 20</strong> — tráfico inalámbrico de la SSID "PNI-Empleados-GrupoN"
+- <strong>VLAN 30</strong> — tráfico inalámbrico de la SSID "PNI-Invitados-GrupoN"</p>
 <p>Al asignar la IP de gestión a VLAN 10, el AP seguirá siendo accesible desde el PC (que también está en VLAN 10) después de integrar toda la topología.</p>
 </div>
 <h3 id="conexion-al-switch-final-de-esta-parte">Conexión al switch (final de esta parte)<a class="headerlink" href="#conexion-al-switch-final-de-esta-parte" title="Permanent link">&para;</a></h3>
@@ -1706,7 +1715,7 @@
 </ol>
 <div class="admonition note">
 <p class="admonition-title">PoE desde el switch</p>
-<p>El switch SG2xxx tiene puertos PoE. En cuanto el AP quede conectado al switch y este esté encendido, recibirá corriente por el cable de red sin necesidad de ningún adaptador externo. Asegúrate de conectarlo a un puerto con PoE activo.</p>
+<p>El SG2008P ofrece PoE+ <strong>solo en los puertos P1-P4</strong> (consumo total 62 W). En este lab el AP va en <strong>P2</strong> (PoE+, ~11 W) y recibirá corriente por el cable de red sin necesidad de adaptador externo. No conectes el AP a P5-P8: no tienen PoE y el AP no arrancará.</p>
 </div>
 <hr />
 <h2 id="parte-2-configuracion-del-switch">Parte 2 — Configuración del switch<a class="headerlink" href="#parte-2-configuracion-del-switch" title="Permanent link">&para;</a></h2>
@@ -1726,19 +1735,62 @@
 <li>Gateway: no necesario por ahora</li>
 </ol>
 <h3 id="configuracion-de-vlans-y-puertos">Configuración de VLANs y puertos<a class="headerlink" href="#configuracion-de-vlans-y-puertos" title="Permanent link">&para;</a></h3>
-<p>Accede a la interfaz de administración del switch en modo standalone (en <code>http://192.168.0.1</code>) y realiza las siguientes tareas:</p>
-<ol>
-<li>Crea las VLANs necesarias según el plan de direccionamiento (IDs: 10, 20, 30, 40).</li>
-<li>Configura el <strong>puerto 1 (P1) como TRUNK</strong>, permitiendo todas las VLANs del lab (10, 20, 30, 40). Este puerto se conectará al router.</li>
-<li>Configura el <strong>puerto 2 (P2) como TRUNK</strong>, permitiendo las VLANs <strong>10, 20 y 30</strong> (VLAN 10 para tráfico de gestión del AP, VLANs 20 y 30 para tráfico inalámbrico). Este puerto se conectará al AP.</li>
-<li>Configura el <strong>puerto 3 (P3) como ACCESS en VLAN 10</strong>. Este puerto se conectará al PC de administración.</li>
-<li>Configura el <strong>puerto 4 (P4) como ACCESS en VLAN 40</strong> (opcional, para Parte 4). Este puerto se conectará al PC servidor.</li>
-<li>Verifica que la tabla de VLANs y los modos de puerto son correctos antes de continuar.</li>
-</ol>
+<p>Accede a la interfaz de administración del switch en modo standalone (en <code>http://192.168.0.1</code>) y crea las VLANs necesarias según el plan de direccionamiento (IDs: 10, 20, 30, 40).</p>
 <div class="admonition note">
-<p class="admonition-title">Indicación</p>
-<p>En switches Omada SG2xxx, la configuración de VLANs se realiza desde la sección <strong>L2 Features → 802.1Q VLAN</strong>. Los modos de puerto (trunk/acceso) se gestionan en <strong>Switching → Port</strong>.</p>
+<p class="admonition-title">Cómo se configuran los puertos trunk y acceso en el SG2008P</p>
+<p>En los switches Omada SG2xxx (incluido el SG2008P) <strong>no existe un botón explícito "modo trunk" o "modo acceso"</strong> por puerto. El modo de cada puerto se define <strong>de forma implícita</strong> al añadir los puertos a cada VLAN como <strong>Tagged</strong> o <strong>Untagged</strong> desde <strong>L2 Features → 802.1Q VLAN</strong>:</p>
+<ul>
+<li><strong>Puerto trunk (transporta varias VLANs etiquetadas):</strong> se añade a cada VLAN que deba transportar marcándolo como <strong>Tagged</strong>. El tráfico sale con etiqueta 802.1Q, que el dispositivo del otro extremo (router o AP) usa para distinguir las VLANs.</li>
+<li><strong>Puerto de acceso (una sola VLAN, sin etiquetar):</strong> se añade a esa única VLAN marcándolo como <strong>Untagged</strong>, y además se configura su <strong>PVID</strong> con ese VLAN ID (pestaña <strong>PVID</strong>). El PC conectado recibe los paquetes sin etiqueta, como si estuviera en una red normal.</li>
+</ul>
+<p>Un puerto <strong>no debe aparecer como Untagged en más de una VLAN</strong>. Si lo añades Untagged a la VLAN correcta y olvidas quitarlo de la VLAN 1 por defecto, ambas competirán.</p>
 </div>
+<p>Aplicando lo anterior a nuestra topología, la configuración por VLAN queda así:</p>
+<table>
+<thead>
+<tr>
+<th>VLAN</th>
+<th>Tagged (trunk)</th>
+<th>Untagged (acceso)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 (Gestión)</td>
+<td>P1 (router), P2 (AP)</td>
+<td>P3 (PC admin)</td>
+</tr>
+<tr>
+<td>20 (Empleados)</td>
+<td>P1 (router), P2 (AP)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>30 (Invitados)</td>
+<td>P1 (router), P2 (AP)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>40 (Servidores)</td>
+<td>P1 (router)</td>
+<td>P4 (PC servidor, opcional)</td>
+</tr>
+</tbody>
+</table>
+<p>Además, configura el <strong>PVID</strong> de cada puerto de acceso para que el tráfico entrante sin etiqueta se asigne a la VLAN correcta:</p>
+<ul>
+<li>PVID de <strong>P3 = 10</strong> (PC admin → VLAN 10).</li>
+<li>PVID de <strong>P4 = 40</strong> (PC servidor → VLAN 40, si se utiliza).</li>
+<li>P1 y P2 son trunk: su PVID es menos relevante porque todo el tráfico útil va etiquetado; déjalos en el valor por defecto (1) salvo indicación contraria.</li>
+</ul>
+<p>Pasos concretos en la interfaz:</p>
+<ol>
+<li>Ve a <strong>L2 Features → 802.1Q VLAN → VLAN Config</strong> y crea las VLANs 10, 20, 30 y 40.</li>
+<li>Para cada VLAN, edítala y añade los puertos con su tipo (<strong>Tagged</strong> o <strong>Untagged</strong>) según la tabla anterior.</li>
+<li>Ve a la pestaña <strong>Port Config</strong> (o <strong>PVID Config</strong>) y ajusta el PVID de P3 y P4.</li>
+<li>Quita los puertos P3 y P4 de la VLAN 1 por defecto para evitar que aparezcan Untagged en dos VLANs a la vez.</li>
+<li>Verifica que la tabla de VLANs refleja exactamente el cuadro anterior antes de continuar.</li>
+</ol>
 <div class="admonition warning">
 <p class="admonition-title">Cables conectados en esta parte</p>
 <p>Al final de la Parte 2 debe haber tres cables conectados al switch:
@@ -1788,7 +1840,7 @@
 </div>
 <hr />
 <h2 id="parte-4-servidor-radius-con-freeradius-opcional-ampliacion">Parte 4 — Servidor RADIUS con FreeRADIUS <em>(opcional — ampliación)</em><a class="headerlink" href="#parte-4-servidor-radius-con-freeradius-opcional-ampliacion" title="Permanent link">&para;</a></h2>
-<p>En el <strong>PC servidor</strong> (equipo diferente al PC de administración usado en Partes 1-3), instala una máquina virtual con <strong>Ubuntu Server 24.04 LTS</strong> en VirtualBox y configura un servidor FreeRADIUS básico que autentique los usuarios de la SSID "PNI-Empleados".</p>
+<p>En el <strong>PC servidor</strong> (equipo diferente al PC de administración usado en Partes 1-3), instala una máquina virtual con <strong>Ubuntu Server 24.04 LTS</strong> en VirtualBox y configura un servidor FreeRADIUS básico que autentique los usuarios de la SSID "PNI-Empleados-GrupoN".</p>
 <div class="admonition warning">
 <p class="admonition-title">Requisito previo: Completar Partes 1-3</p>
 <p><strong>No inicies la Parte 4 hasta haber completado y verificado las Partes 1, 2 y 3.</strong> El PC servidor necesita acceso a Internet a través del router (VLAN 40) para descargar paquetes de Ubuntu. Si el router no está configurado con DHCP y rutas en VLAN 40, la VM no tendrá conectividad.</p>
@@ -1971,8 +2023,8 @@
 <hr />
 <h3 id="paso-47-verificar-autenticacion-real-desde-el-ap">Paso 4.7 — Verificar autenticación real desde el AP<a class="headerlink" href="#paso-47-verificar-autenticacion-real-desde-el-ap" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Activa la SSID <strong>"PNI-Empleados"</strong> en la interfaz del AP (que dejaste desactivada en la Parte 3).</li>
-<li>Desde un móvil o portátil, conéctate a la red "PNI-Empleados":<ul>
+<li>Activa la SSID <strong>"PNI-Empleados-GrupoN"</strong> en la interfaz del AP (que dejaste desactivada en la Parte 3).</li>
+<li>Desde un móvil o portátil, conéctate a la red "PNI-Empleados-GrupoN":<ul>
 <li>Método de autenticación: <strong>WPA2-Enterprise / EAP-TTLS</strong> o <strong>PEAP</strong> (según soporte del cliente)</li>
 <li>Usuario: <code>alumno1</code></li>
 <li>Contraseña: <code>password1</code></li>
@@ -1995,9 +2047,9 @@
 <p>Antes de dar la práctica por completada, el grupo debe demostrar:</p>
 <ul>
 <li>[ ] Un dispositivo conectado al puerto de VLAN 10 obtiene IP y accede a Internet.</li>
-<li>[ ] Un móvil se conecta a "PNI-Invitados" con la clave compartida y obtiene IP de VLAN 30.</li>
+<li>[ ] Un móvil se conecta a "PNI-Invitados-GrupoN" con la clave compartida y obtiene IP de VLAN 30.</li>
 <li>[ ] Las VLANs 10 y 30 <strong>no</strong> se ven entre sí (comprobar con ping).</li>
-<li>[ ] <em>(Parte 4)</em> Un móvil se autentica en "PNI-Empleados" con usuario y contraseña individuales.</li>
+<li>[ ] <em>(Parte 4)</em> Un móvil se autentica en "PNI-Empleados-GrupoN" con usuario y contraseña individuales.</li>
 <li>[ ] <em>(Parte 4)</em> El log de FreeRADIUS muestra el acceso aceptado.</li>
 </ul>
 <hr />
