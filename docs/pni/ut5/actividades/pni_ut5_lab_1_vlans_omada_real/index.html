@@ -1422,7 +1422,6 @@
 <li><strong>Duración estimada:</strong> 3-4 horas (partes 1-3) + 1-2 horas adicionales (parte 4, opcional)</li>
 <li><strong>Entrega:</strong> consulta al final de la actividad el documento de entrega</li>
 </ul>
-<hr />
 <h2 id="escenario">Escenario<a class="headerlink" href="#escenario" title="Permanent link">&para;</a></h2>
 <p>El centro educativo necesita segmentar su red en distintas zonas con diferentes niveles de acceso. Actuaréis como administradores de red y configuraréis la infraestructura completa utilizando hardware real TP-Link Omada en modo standalone.</p>
 <h3 id="topologia">Topología<a class="headerlink" href="#topologia" title="Permanent link">&para;</a></h3>
@@ -1475,7 +1474,6 @@
 </tr>
 </tbody>
 </table>
-<hr />
 <h2 id="conceptos-clave">Conceptos clave<a class="headerlink" href="#conceptos-clave" title="Permanent link">&para;</a></h2>
 <p>Antes de comenzar, asegúrate de tener claros los siguientes conceptos:</p>
 <ul>
@@ -1492,14 +1490,12 @@
 <li><strong>Standalone:</strong> cada dispositivo se gestiona de forma independiente. Accedes a la interfaz web de cada equipo por separado (router, switch, AP), introduces las configuraciones específicas en cada uno, y no hay una plataforma centralizada que coordine todos los dispositivos. Es más simple para labs pequeños o entornos sin necesidad de gestión centralizada, pero requiere acceder a múltiples interfaces. <strong>Este lab usa modo standalone.</strong></li>
 <li><strong>Controlador Omada:</strong> existe un servidor de control central (Software Controller o Hardware Controller dedicado) que gestiona toda la infraestructura Omada. Los dispositivos se "adoptan" en el controlador y se configuran desde una única plataforma centralizada. Ventajas: gestión unificada, configuración consistente, visibilidad global, roaming sin fisuras en APs. Desventaja: complejidad adicional y requiere que el controlador esté disponible. Típico en despliegues empresariales con múltiples APs o switches distribuidos. En clase de FP es menos común porque requiere infraestructura adicional.</li>
 </ul>
-<hr />
 <h2 id="parte-0-acceso-a-las-interfaces-de-configuracion">Parte 0 — Acceso a las interfaces de configuración<a class="headerlink" href="#parte-0-acceso-a-las-interfaces-de-configuracion" title="Permanent link">&para;</a></h2>
 <p>Antes de configurar nada, es necesario acceder a la interfaz web de cada dispositivo. Los dispositivos Omada en <strong>modo standalone</strong> se gestionan individualmente desde un navegador. El procedimiento de acceso es similar en todos ellos, pero con IPs y credenciales propias de fábrica.</p>
 <div class="admonition warning">
 <p class="admonition-title">Importante</p>
 <p>Cada dispositivo debe configurarse <strong>de forma aislada</strong> en el primer acceso: conecta el PC directamente al dispositivo, sin pasar por otros equipos ya configurados, para evitar conflictos de direccionamiento.</p>
 </div>
-<hr />
 <h3 id="acceso-al-switch">Acceso al switch<a class="headerlink" href="#acceso-al-switch" title="Permanent link">&para;</a></h3>
 <p><strong>Conexión física:</strong></p>
 <ol>
@@ -1522,7 +1518,6 @@
 <p class="admonition-title">Indicación</p>
 <p>Si el switch no responde en <code>192.168.0.1</code>, puede tener una IP diferente asignada previamente. Consulta al profesor o realiza un <strong>reset de fábrica</strong> manteniendo pulsado el botón Reset durante 5-10 segundos.</p>
 </div>
-<hr />
 <h3 id="acceso-al-router">Acceso al router<a class="headerlink" href="#acceso-al-router" title="Permanent link">&para;</a></h3>
 <p>El ER605 tiene <strong>1 puerto WAN Gigabit fijo</strong> y <strong>3 puertos LAN/WAN configurables</strong> (que de fábrica funcionan como LAN). La administración se hace a través de los puertos LAN.</p>
 <p><strong>Conexión física:</strong></p>
@@ -1541,7 +1536,6 @@
 <p class="admonition-title">Indicación</p>
 <p>El puerto WAN del ER605 es fijo y está claramente marcado en el chasis. Los otros tres puertos pueden reasignarse como WAN en la configuración (para escenarios multi-WAN), pero de fábrica son LAN y dan acceso a la interfaz web.</p>
 </div>
-<hr />
 <h3 id="acceso-al-punto-de-acceso-ap">Acceso al punto de acceso (AP)<a class="headerlink" href="#acceso-al-punto-de-acceso-ap" title="Permanent link">&para;</a></h3>
 <p><strong>NOTA:</strong> La Parte 0 explica cómo acceder a cada dispositivo de forma aislada. Para el AP, esto significa conectarlo <strong>directamente a un PC sin pasar por el switch</strong>. El acceso real al AP en la topología completa ocurre en la <strong>Parte 1 (Configuración del punto de acceso)</strong>.</p>
 <p>El AP no tiene puertos LAN propios accesibles desde fuera: se gestiona a través de la red a la que está conectado. El EAP610 <strong>de fábrica obtiene IP por DHCP</strong>; si no hay servidor DHCP en su segmento (como en esta fase aislada PC ↔ AP), recurre a la IP <strong>de respaldo <code>192.168.0.254</code></strong>.</p>
@@ -1562,7 +1556,6 @@
 <p class="admonition-title">Alimentación PoE</p>
 <p>El EAP610 requiere <strong>PoE+ 802.3at</strong> (~11 W). Los puertos <strong>P1-P4 del SG2008P</strong> son compatibles (PoE 802.3af/at); los puertos P5-P8 <strong>no</strong> tienen PoE. En la topología final conectaremos el AP a uno de los puertos P1-P4 y podremos retirar su adaptador de corriente. Si accidentalmente lo conectamos a P5-P8, el AP no arrancará a menos que le volvamos a poner el adaptador.</p>
 </div>
-<hr />
 <h3 id="resumen-de-acceso-a-los-tres-dispositivos">Resumen de acceso a los tres dispositivos<a class="headerlink" href="#resumen-de-acceso-a-los-tres-dispositivos" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1606,7 +1599,6 @@
 <p class="admonition-title">Conflicto de IPs</p>
 <p>El switch y el router comparten la misma IP por defecto (<code>192.168.0.1</code>). <strong>Nunca los conectes entre sí antes de cambiar la IP de gestión de uno de ellos</strong>, o habrá conflicto y ninguno responderá correctamente. Configura cada dispositivo de forma aislada primero.</p>
 </div>
-<hr />
 <h3 id="reset-de-fabrica">Reset de fábrica<a class="headerlink" href="#reset-de-fabrica" title="Permanent link">&para;</a></h3>
 <p>Si un dispositivo tiene configuración previa y no responde en su IP por defecto, o las credenciales no funcionan, es necesario restablecerlo a valores de fábrica.</p>
 <div class="admonition warning">
@@ -1632,7 +1624,6 @@
 <p class="admonition-title">Indicación</p>
 <p>El EAP610 puede requerir mantener el botón Reset hasta 10 segundos hasta que el LED parpadee en ámbar. Consulta la guía rápida impresa incluida con el dispositivo si tienes dudas.</p>
 </div>
-<hr />
 <h2 id="parte-1-configuracion-del-punto-de-acceso">Parte 1 — Configuración del punto de acceso<a class="headerlink" href="#parte-1-configuracion-del-punto-de-acceso" title="Permanent link">&para;</a></h2>
 <p>En este paso configuramos los SSIDs del AP mientras aún está aislado del switch, con su IP de fábrica accesible directamente desde el <strong>PC de administración</strong>. Esto nos permite también cambiar su IP de gestión a VLAN 10 antes de integrarlo en la topología final.</p>
 <div class="admonition note">
@@ -1717,7 +1708,6 @@
 <p class="admonition-title">PoE desde el switch</p>
 <p>El SG2008P ofrece PoE+ <strong>solo en los puertos P1-P4</strong> (consumo total 62 W). En este lab el AP va en <strong>P2</strong> (PoE+, ~11 W) y recibirá corriente por el cable de red sin necesidad de adaptador externo. No conectes el AP a P5-P8: no tienen PoE y el AP no arrancará.</p>
 </div>
-<hr />
 <h2 id="parte-2-configuracion-del-switch">Parte 2 — Configuración del switch<a class="headerlink" href="#parte-2-configuracion-del-switch" title="Permanent link">&para;</a></h2>
 <h3 id="conexion-fisica-antes-de-configurar">Conexión física antes de configurar<a class="headerlink" href="#conexion-fisica-antes-de-configurar" title="Permanent link">&para;</a></h3>
 <p>En este momento la topología es:
@@ -1798,7 +1788,6 @@
 - <strong>Puerto 2 (P2)</strong>: Cable del AP (trunk)
 - <strong>Puerto 3 (P3)</strong>: Cable del PC de administración (access VLAN 10)</p>
 </div>
-<hr />
 <h2 id="parte-3-configuracion-del-router">Parte 3 — Configuración del router<a class="headerlink" href="#parte-3-configuracion-del-router" title="Permanent link">&para;</a></h2>
 <h3 id="31-conexion-a-internet">3.1 — Conexión a Internet<a class="headerlink" href="#31-conexion-a-internet" title="Permanent link">&para;</a></h3>
 <p>El router obtendrá su configuración de red exterior (IP pública de aula, gateway y DNS) automáticamente desde la red del centro a través del puerto WAN.</p>
@@ -1825,7 +1814,6 @@
 <p class="admonition-title">Sin IP en el WAN</p>
 <p>Si el puerto WAN no obtiene IP, verifica que el cable está conectado a la roseta correcta y que esta tiene conectividad activa. Consulta al profesor si el problema persiste.</p>
 </div>
-<hr />
 <h3 id="32-configuracion-de-interfaces-lan-y-dhcp">3.2 — Configuración de interfaces LAN y DHCP<a class="headerlink" href="#32-configuracion-de-interfaces-lan-y-dhcp" title="Permanent link">&para;</a></h3>
 <p>Accede a la interfaz de administración del router y configura el enrutamiento inter-VLAN y los servicios DHCP:</p>
 <ol>
@@ -1838,7 +1826,6 @@
 <p class="admonition-title">Indicación ER605</p>
 <p>Las interfaces VLAN se crean desde <strong>Network → LAN</strong>. Haz clic en <strong>+Add</strong> para añadir una nueva red LAN e introduce el VLAN ID, la IP del gateway y la máscara. El servidor DHCP se configura en la pestaña <strong>DHCP Server</strong> dentro de cada LAN. Para ver la tabla de rutas activa ve a <strong>Network → Routing</strong>.</p>
 </div>
-<hr />
 <h2 id="parte-4-servidor-radius-con-freeradius-opcional-ampliacion">Parte 4 — Servidor RADIUS con FreeRADIUS <em>(opcional — ampliación)</em><a class="headerlink" href="#parte-4-servidor-radius-con-freeradius-opcional-ampliacion" title="Permanent link">&para;</a></h2>
 <p>En el <strong>PC servidor</strong> (equipo diferente al PC de administración usado en Partes 1-3), instala una máquina virtual con <strong>Ubuntu Server 24.04 LTS</strong> en VirtualBox y configura un servidor FreeRADIUS básico que autentique los usuarios de la SSID "PNI-Empleados-GrupoN".</p>
 <div class="admonition warning">
@@ -1849,7 +1836,6 @@
 <p class="admonition-title">Cambio de equipo en esta parte</p>
 <p><strong>Prepara un segundo PC (PC servidor) diferente al PC de administración.</strong> Este PC debe estar conectado físicamente al <strong>puerto de acceso VLAN 40</strong> del switch. De esta forma, la VM en VirtualBox (con adaptador puente) obtendrá una IP en rango 192.168.40.x y tendrá acceso a Internet a través del router.</p>
 </div>
-<hr />
 <h3 id="paso-41-preparar-la-maquina-virtual">Paso 4.1 — Preparar la máquina virtual<a class="headerlink" href="#paso-41-preparar-la-maquina-virtual" title="Permanent link">&para;</a></h3>
 <p><strong>Conexión física:</strong></p>
 <ol>
@@ -1885,7 +1871,6 @@
 <p>Una vez instalado, inicia sesión en la consola de la VM.</p>
 </li>
 </ol>
-<hr />
 <h3 id="paso-42-configurar-la-ip-estatica-en-la-vm">Paso 4.2 — Configurar la IP estática en la VM<a class="headerlink" href="#paso-42-configurar-la-ip-estatica-en-la-vm" title="Permanent link">&para;</a></h3>
 <p>La VM debe tener una IP fija en la VLAN 40 para que el AP sepa siempre a dónde enviar las peticiones RADIUS.</p>
 <ol>
@@ -1928,7 +1913,6 @@
 </code></pre></div>
 </li>
 </ol>
-<hr />
 <h3 id="paso-43-instalar-freeradius">Paso 4.3 — Instalar FreeRADIUS<a class="headerlink" href="#paso-43-instalar-freeradius" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
@@ -1948,47 +1932,66 @@
 <div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>freeradius
 </code></pre></div>
 </li>
+<li>
+<p>Verifica que FreeRADIUS está escuchando en el puerto correcto:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ss<span class="w"> </span>-ulnp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">1812</span>
+</code></pre></div>
+<p>Si el comando no devuelve ninguna línea, el servidor <strong>no está escuchando en UDP 1812</strong>. Esto ocurre porque el fichero de configuración incluye <code>port = 0</code> por defecto, que en Ubuntu 24.04 no resuelve automáticamente al puerto estándar. Hay que cambiarlo manualmente:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/freeradius/3.0/sites-enabled/default
+</code></pre></div>
+<p>El fichero contiene muchas líneas comentadas (empiezan por <code>#</code>). Localiza el bloque <code>listen</code> con <code>type = auth</code> que <strong>no esté comentado</strong> y cambia la línea <code>port = 0</code> por <code>port = 1812</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>listen {
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    type = auth
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    ipaddr = *
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    port = 1812     # cambiar de 0 a 1812
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    ...
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>}
+</code></pre></div>
+<p>Guarda, reinicia el servicio y vuelve a verificar:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>freeradius
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>ss<span class="w"> </span>-ulnp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">1812</span>
+</code></pre></div>
+<p>Ahora debe aparecer una línea con <code>0.0.0.0:1812</code> confirmando que el servidor escucha correctamente.</p>
+</li>
 </ol>
-<hr />
 <h3 id="paso-44-registrar-el-ap-como-cliente-radius">Paso 4.4 — Registrar el AP como cliente RADIUS<a class="headerlink" href="#paso-44-registrar-el-ap-como-cliente-radius" title="Permanent link">&para;</a></h3>
 <p>FreeRADIUS necesita saber qué dispositivos tienen permiso para enviarle peticiones de autenticación. El AP actúa como <strong>cliente RADIUS</strong> (también llamado NAS — Network Access Server).</p>
 <ol>
 <li>
 <p>Abre el fichero de clientes:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/freeradius/3.0/clients.conf
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/freeradius/3.0/clients.conf
 </code></pre></div>
 </li>
 <li>
 <p>Al final del fichero, añade el bloque siguiente con la IP de gestión del AP y el secret que configuraste en la Parte 1:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>client ap-omada {
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    ipaddr          = 192.168.10.254
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    secret          = clave_secreta_compartida
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    shortname       = AP-Omada-Lab
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    nas_type        = other
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>}
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>client ap-omada {
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    ipaddr          = 192.168.10.254
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    secret          = clave_secreta_compartida  # Misma clave que secreto compartido el SSID PNI-Empleados-GrupoN
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    shortname       = AP-Omada-Lab
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    nas_type        = other
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>}
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">La clave secreta debe coincidir exactamente</p>
-<p>El valor de <code>secret</code> aquí debe ser <strong>idéntico</strong> al que introdujiste en la configuración 802.1X del AP. Un carácter diferente impedirá la autenticación.</p>
+<p>El valor de <code>secret</code> aquí debe ser <strong>idéntico</strong> al que introdujiste en la configuración del punto de acceso en el apartado <strong>Secret compartido (Pre-Shared Secret)</strong> para el SSID <strong>"PNI-Empleados-GrupoN"</strong> con seguridad: WPA2-Enterprise (802.1X)</p>
 </div>
 </li>
 <li>
 <p>Guarda y cierra el fichero (<code>Ctrl+O</code>, <code>Enter</code>, <code>Ctrl+X</code>).</p>
 </li>
 </ol>
-<hr />
 <h3 id="paso-45-crear-usuarios-de-prueba">Paso 4.5 — Crear usuarios de prueba<a class="headerlink" href="#paso-45-crear-usuarios-de-prueba" title="Permanent link">&para;</a></h3>
 <p>FreeRADIUS permite definir usuarios locales en un fichero de texto plano, suficiente para este lab.</p>
 <ol>
 <li>
 <p>Abre el fichero de usuarios:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/freeradius/3.0/users
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/freeradius/3.0/users
 </code></pre></div>
 </li>
 <li>
 <p>Al principio del fichero (antes de las líneas comentadas), añade los usuarios con el formato siguiente:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>alumno1    Cleartext-Password := &quot;password1&quot;
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>alumno2    Cleartext-Password := &quot;password2&quot;
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>alumno1    Cleartext-Password := &quot;password1&quot;
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>alumno2    Cleartext-Password := &quot;password2&quot;
 </code></pre></div>
 <p>Añade tantos usuarios como el grupo necesite para las pruebas.</p>
 </li>
@@ -1996,22 +1999,21 @@
 <p>Guarda y cierra el fichero.</p>
 </li>
 </ol>
-<hr />
 <h3 id="paso-46-reiniciar-y-probar-el-servidor">Paso 4.6 — Reiniciar y probar el servidor<a class="headerlink" href="#paso-46-reiniciar-y-probar-el-servidor" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>Reinicia FreeRADIUS para que cargue los cambios:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>freeradius
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>freeradius
 </code></pre></div>
 </li>
 <li>
 <p>Comprueba que no hay errores en los logs:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>freeradius<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>freeradius<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span>
 </code></pre></div>
 </li>
 <li>
 <p>Realiza una prueba local de autenticación con la herramienta <code>radtest</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>radtest<span class="w"> </span>alumno1<span class="w"> </span>password1<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span><span class="m">0</span><span class="w"> </span>testing123
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>radtest<span class="w"> </span>alumno1<span class="w"> </span>password1<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span><span class="m">0</span><span class="w"> </span>testing123
 </code></pre></div>
 <p>La respuesta debe incluir <code>Access-Accept</code>. Si aparece <code>Access-Reject</code>, revisa el fichero <code>users</code>.</p>
 </li>
@@ -2020,7 +2022,6 @@
 <p class="admonition-title">Indicación</p>
 <p>El secret <code>testing123</code> es el que FreeRADIUS asigna por defecto al cliente <code>localhost</code>. Solo se usa para la prueba local; no es el secret del AP.</p>
 </div>
-<hr />
 <h3 id="paso-47-verificar-autenticacion-real-desde-el-ap">Paso 4.7 — Verificar autenticación real desde el AP<a class="headerlink" href="#paso-47-verificar-autenticacion-real-desde-el-ap" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Activa la SSID <strong>"PNI-Empleados-GrupoN"</strong> en la interfaz del AP (que dejaste desactivada en la Parte 3).</li>
@@ -2033,7 +2034,7 @@
 <li>Si la conexión se establece correctamente, el dispositivo obtendrá una IP del rango VLAN 20.</li>
 <li>
 <p>Consulta los logs de FreeRADIUS en tiempo real para ver el proceso de autenticación:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>freeradius<span class="w"> </span>-f
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>freeradius<span class="w"> </span>-f
 </code></pre></div>
 <p>Deberías ver una línea con <code>Access-Accept</code> y el nombre de usuario autenticado.</p>
 </li>
@@ -2042,17 +2043,15 @@
 <p class="admonition-title">Sobre el método EAP</p>
 <p>Para este lab, FreeRADIUS está configurado con los métodos EAP por defecto (PEAP-MSCHAPv2). La mayoría de dispositivos móviles y portátiles con Windows/Linux lo soportan sin configuración adicional. En iOS puede ser necesario aceptar un certificado autofirmado en el primer acceso.</p>
 </div>
-<hr />
 <h2 id="verificacion-final">Verificación final<a class="headerlink" href="#verificacion-final" title="Permanent link">&para;</a></h2>
 <p>Antes de dar la práctica por completada, el grupo debe demostrar:</p>
 <ul>
-<li>Un dispositivo conectado al puerto de VLAN 10 obtiene IP y accede a Internet.</li>
-<li>Un móvil se conecta a "PNI-Invitados-GrupoN" con la clave compartida y obtiene IP de VLAN 30.</li>
-<li>Las VLANs 10 y 30 <strong>no</strong> se ven entre sí (comprobar con ping).</li>
-<li><em>(Parte 4)</em> Un móvil se autentica en "PNI-Empleados-GrupoN" con usuario y contraseña individuales.</li>
-<li><em>(Parte 4)</em> El log de FreeRADIUS muestra el acceso aceptado.</li>
+<li>[ ] Un dispositivo conectado al puerto de VLAN 10 obtiene IP y accede a Internet.</li>
+<li>[ ] Un móvil se conecta a "PNI-Invitados-GrupoN" con la clave compartida y obtiene IP de VLAN 30.</li>
+<li>[ ] Las VLANs 10 y 30 <strong>no</strong> se ven entre sí (comprobar con ping).</li>
+<li>[ ] <em>(Parte 4)</em> Un móvil se autentica en "PNI-Empleados-GrupoN" con usuario y contraseña individuales.</li>
+<li>[ ] <em>(Parte 4)</em> El log de FreeRADIUS muestra el acceso aceptado.</li>
 </ul>
-<hr />
 <h2 id="entrega">Entrega<a class="headerlink" href="#entrega" title="Permanent link">&para;</a></h2>
 <p>Documentad en un informe breve (formato libre):</p>
 <ul>
