@@ -1410,12 +1410,12 @@
 <li>El título "Apache2 Ubuntu Default Page".</li>
 </ul>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Verificación.</strong></p>
-<ul>
-<li>[ ] <code>sudo systemctl status apache2</code> muestra <code>Active: active (running)</code>.</li>
-<li>[ ] <code>curl -I http://localhost</code> desde el servidor devuelve <code>HTTP/1.1 200 OK</code>.</li>
-<li>[ ] He anotado la <code>IP_DEL_SERVIDOR</code>.</li>
-<li>[ ] El navegador de mi Windows carga <code>http://IP_DEL_SERVIDOR</code> con la página de Apache.</li>
-<li>[ ] He guardado <code>capturas/paso1_apache_funcionando.png</code>.</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>sudo systemctl status apache2</code> muestra <code>Active: active (running)</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>curl -I http://localhost</code> desde el servidor devuelve <code>HTTP/1.1 200 OK</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He anotado la <code>IP_DEL_SERVIDOR</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El navegador de mi Windows carga <code>http://IP_DEL_SERVIDOR</code> con la página de Apache.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He guardado <code>capturas/paso1_apache_funcionando.png</code>.</li>
 </ul>
 <hr />
 <h2 id="paso-2-verificar-que-php-funciona">Paso 2 — Verificar que PHP funciona<a class="headerlink" href="#paso-2-verificar-que-php-funciona" title="Permanent link">&para;</a></h2>
@@ -1450,11 +1450,11 @@
 <li>La cabecera con la versión de PHP (por ejemplo "PHP Version 8.3.x").</li>
 </ul>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Verificación.</strong></p>
-<ul>
-<li>[ ] <code>http://IP_DEL_SERVIDOR/phpinfo.php</code> mostraba la página de información de PHP.</li>
-<li>[ ] He borrado <code>/var/www/html/phpinfo.php</code>.</li>
-<li>[ ] Al recargar, <code>http://IP_DEL_SERVIDOR/phpinfo.php</code> devuelve 404.</li>
-<li>[ ] He guardado <code>capturas/paso2_phpinfo.png</code>.</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>http://IP_DEL_SERVIDOR/phpinfo.php</code> mostraba la página de información de PHP.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He borrado <code>/var/www/html/phpinfo.php</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Al recargar, <code>http://IP_DEL_SERVIDOR/phpinfo.php</code> devuelve 404.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He guardado <code>capturas/paso2_phpinfo.png</code>.</li>
 </ul>
 <hr />
 <h2 id="paso-3-estructura-del-proyecto-y-virtualhost">Paso 3 — Estructura del proyecto y VirtualHost<a class="headerlink" href="#paso-3-estructura-del-proyecto-y-virtualhost" title="Permanent link">&para;</a></h2>
@@ -1568,13 +1568,13 @@
 <li>La respuesta de Apache (aunque sea un 403 o un 404, debe ser visiblemente una página de Apache, no un error de "no se puede resolver el nombre").</li>
 </ul>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Verificación.</strong></p>
-<ul>
-<li>[ ] Existen las carpetas <code>~/gestor/public/</code>, <code>~/gestor/src/</code>, <code>~/gestor/templates/</code>, <code>~/gestor/data/</code> en el servidor.</li>
-<li>[ ] <code>/etc/apache2/sites-available/gestor.conf</code> existe en el servidor y apunta a <code>/home/TU_USUARIO/gestor/public</code>.</li>
-<li>[ ] El fichero <code>hosts</code> de Windows (<code>C:\Windows\System32\drivers\etc\hosts</code>) tiene la línea <code>IP_DEL_SERVIDOR    gestor.local</code>.</li>
-<li>[ ] Desde PowerShell en Windows, <code>ping gestor.local</code> resuelve a la IP del servidor.</li>
-<li>[ ] Desde el navegador en Windows, <code>http://gestor.local</code> responde (aunque sea con un error de Apache, no con "host no encontrado").</li>
-<li>[ ] He guardado <code>capturas/paso3_gestor_local.png</code>.</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Existen las carpetas <code>~/gestor/public/</code>, <code>~/gestor/src/</code>, <code>~/gestor/templates/</code>, <code>~/gestor/data/</code> en el servidor.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>/etc/apache2/sites-available/gestor.conf</code> existe en el servidor y apunta a <code>/home/TU_USUARIO/gestor/public</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El fichero <code>hosts</code> de Windows (<code>C:\Windows\System32\drivers\etc\hosts</code>) tiene la línea <code>IP_DEL_SERVIDOR    gestor.local</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Desde PowerShell en Windows, <code>ping gestor.local</code> resuelve a la IP del servidor.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Desde el navegador en Windows, <code>http://gestor.local</code> responde (aunque sea con un error de Apache, no con "host no encontrado").</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He guardado <code>capturas/paso3_gestor_local.png</code>.</li>
 </ul>
 <hr />
 <h2 id="antes-del-paso-4-como-editar-los-ficheros-del-servidor-desde-vscode">Antes del Paso 4 — Cómo editar los ficheros del servidor desde VSCode<a class="headerlink" href="#antes-del-paso-4-como-editar-los-ficheros-del-servidor-desde-vscode" title="Permanent link">&para;</a></h2>
@@ -1720,13 +1720,13 @@
 <li>Al menos 7 valores mostrados (las 5 variables de partida + las 2 nuevas).</li>
 </ul>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Verificación.</strong></p>
-<ul>
-<li>[ ] <code>~/gestor/public/index.php</code> existe.</li>
-<li>[ ] Tiene al menos 7 variables declaradas.</li>
-<li>[ ] <code>http://gestor.local</code> muestra la página personalizada con tu nombre y los 7+ valores.</li>
-<li>[ ] Todas las variables de texto usan <code>htmlspecialchars()</code>.</li>
-<li>[ ] Ver código fuente (Ctrl+U) muestra solo HTML, sin código PHP.</li>
-<li>[ ] He guardado <code>capturas/paso4_pagina_personal.png</code>.</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>~/gestor/public/index.php</code> existe.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Tiene al menos 7 variables declaradas.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>http://gestor.local</code> muestra la página personalizada con tu nombre y los 7+ valores.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Todas las variables de texto usan <code>htmlspecialchars()</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Ver código fuente (Ctrl+U) muestra solo HTML, sin código PHP.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He guardado <code>capturas/paso4_pagina_personal.png</code>.</li>
 </ul>
 <hr />
 <h2 id="paso-5-depuracion-ver-los-errores-de-php">Paso 5 — Depuración: ver los errores de PHP<a class="headerlink" href="#paso-5-depuracion-ver-los-errores-de-php" title="Permanent link">&para;</a></h2>
@@ -1792,12 +1792,12 @@
 <li>El mensaje de error con el fichero y la línea indicados.</li>
 </ul>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Verificación.</strong></p>
-<ul>
-<li>[ ] Con el <code>;</code> eliminado, el navegador muestra un mensaje de error detallado.</li>
-<li>[ ] El mismo error aparece en <code>/var/log/apache2/error.log</code>.</li>
-<li>[ ] He corregido el error y la página vuelve a funcionar.</li>
-<li>[ ] <code>error_reporting(E_ALL)</code> e <code>ini_set('display_errors', '1')</code> están al inicio del fichero final.</li>
-<li>[ ] He guardado <code>capturas/paso5_error_php.png</code>.</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Con el <code>;</code> eliminado, el navegador muestra un mensaje de error detallado.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El mismo error aparece en <code>/var/log/apache2/error.log</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He corregido el error y la página vuelve a funcionar.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>error_reporting(E_ALL)</code> e <code>ini_set('display_errors', '1')</code> están al inicio del fichero final.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He guardado <code>capturas/paso5_error_php.png</code>.</li>
 </ul>
 <hr />
 <h2 id="paso-6-aplica-lo-aprendido-panel-de-diagnostico-del-servidor">Paso 6 — Aplica lo aprendido: panel de diagnóstico del servidor<a class="headerlink" href="#paso-6-aplica-lo-aprendido-panel-de-diagnostico-del-servidor" title="Permanent link">&para;</a></h2>
@@ -1886,15 +1886,15 @@
 <li>La tabla con al menos 8 filas (una por variable).</li>
 </ul>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Verificación.</strong></p>
-<ul>
-<li>[ ] <code>~/gestor/public/info_servidor.php</code> existe y carga en el navegador.</li>
-<li>[ ] Tiene al menos 8 variables.</li>
-<li>[ ] Usa <code>phpversion()</code>, <code>gethostname()</code> y <code>date()</code> al menos.</li>
-<li>[ ] Las variables <code>$espacio_libre</code> y <code>$uptime</code> tienen valores reales copiados de la terminal (no <code>''</code> ni <code>'TODO'</code>).</li>
-<li>[ ] La página tiene <code>&lt;h1&gt;</code> y <code>&lt;table&gt;</code> con todos los valores.</li>
-<li>[ ] Todos los valores se muestran con <code>htmlspecialchars()</code>.</li>
-<li>[ ] <code>error_reporting(E_ALL)</code> está al inicio.</li>
-<li>[ ] He guardado <code>capturas/paso6_info_servidor.png</code>.</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>~/gestor/public/info_servidor.php</code> existe y carga en el navegador.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Tiene al menos 8 variables.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Usa <code>phpversion()</code>, <code>gethostname()</code> y <code>date()</code> al menos.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Las variables <code>$espacio_libre</code> y <code>$uptime</code> tienen valores reales copiados de la terminal (no <code>''</code> ni <code>'TODO'</code>).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> La página tiene <code>&lt;h1&gt;</code> y <code>&lt;table&gt;</code> con todos los valores.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Todos los valores se muestran con <code>htmlspecialchars()</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>error_reporting(E_ALL)</code> está al inicio.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He guardado <code>capturas/paso6_info_servidor.png</code>.</li>
 </ul>
 <hr />
 <h2 id="ampliacion-opcional-https-en-local-con-certificado-autofirmado">Ampliación opcional — HTTPS en local con certificado autofirmado<a class="headerlink" href="#ampliacion-opcional-https-en-local-con-certificado-autofirmado" title="Permanent link">&para;</a></h2>
@@ -1928,15 +1928,15 @@
 <hr />
 <h2 id="checklist-final-de-entrega">Checklist final de entrega<a class="headerlink" href="#checklist-final-de-entrega" title="Permanent link">&para;</a></h2>
 <p>Antes de subir el ZIP al Campus, revisa:</p>
-<ul>
-<li>[ ] He creado la carpeta <code>apellido_nombre_lab01/</code> con mi apellido y nombre reales.</li>
-<li>[ ] Dentro hay <code>gestor/public/index.php</code> con mi código personalizado (al menos 7 variables, todas con <code>htmlspecialchars()</code>, y las dos líneas de <code>error_reporting</code> al principio).</li>
-<li>[ ] Dentro hay <code>gestor/public/info_servidor.php</code> con el panel de diagnóstico del Paso 6.</li>
-<li>[ ] Dentro hay <code>capturas/</code> con los 6 PNG: <code>paso1_apache_funcionando.png</code>, <code>paso2_phpinfo.png</code>, <code>paso3_gestor_local.png</code>, <code>paso4_pagina_personal.png</code>, <code>paso5_error_php.png</code>, <code>paso6_info_servidor.png</code>.</li>
-<li>[ ] Dentro hay <code>RESPUESTAS.md</code> con las 6 secciones (<code>## Paso 1</code> a <code>## Paso 6</code>) rellenas.</li>
-<li>[ ] Tanto <code>index.php</code> como <code>info_servidor.php</code> pasan <code>php -l</code> sin errores.</li>
-<li>[ ] El ZIP se llama <code>apellido_nombre_lab01.zip</code> y al descomprimir aparece una sola carpeta raíz con ese nombre.</li>
-<li>[ ] He subido el ZIP a la tarea correspondiente en el Campus antes de la fecha límite.</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He creado la carpeta <code>apellido_nombre_lab01/</code> con mi apellido y nombre reales.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dentro hay <code>gestor/public/index.php</code> con mi código personalizado (al menos 7 variables, todas con <code>htmlspecialchars()</code>, y las dos líneas de <code>error_reporting</code> al principio).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dentro hay <code>gestor/public/info_servidor.php</code> con el panel de diagnóstico del Paso 6.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dentro hay <code>capturas/</code> con los 6 PNG: <code>paso1_apache_funcionando.png</code>, <code>paso2_phpinfo.png</code>, <code>paso3_gestor_local.png</code>, <code>paso4_pagina_personal.png</code>, <code>paso5_error_php.png</code>, <code>paso6_info_servidor.png</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dentro hay <code>RESPUESTAS.md</code> con las 6 secciones (<code>## Paso 1</code> a <code>## Paso 6</code>) rellenas.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Tanto <code>index.php</code> como <code>info_servidor.php</code> pasan <code>php -l</code> sin errores.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El ZIP se llama <code>apellido_nombre_lab01.zip</code> y al descomprimir aparece una sola carpeta raíz con ese nombre.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He subido el ZIP a la tarea correspondiente en el Campus antes de la fecha límite.</li>
 </ul>
 <hr />
 <h2 id="anexo-plantilla-de-respuestasmd">Anexo — Plantilla de <code>RESPUESTAS.md</code><a class="headerlink" href="#anexo-plantilla-de-respuestasmd" title="Permanent link">&para;</a></h2>

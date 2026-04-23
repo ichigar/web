@@ -2946,54 +2946,54 @@ Con <code>show interfaces trunk</code> verás exactamente qué interfaces están
 <h2 id="5-checklist-final-de-autoevaluacion">5. Checklist final de autoevaluación<a class="headerlink" href="#5-checklist-final-de-autoevaluacion" title="Permanent link">&para;</a></h2>
 <p>Antes de entregar, repasa esta lista. Si algún punto no puedes marcarlo, vuelve al apartado correspondiente.</p>
 <h3 id="direccionamiento">Direccionamiento<a class="headerlink" href="#direccionamiento" title="Permanent link">&para;</a></h3>
-<ul>
-<li>[ ] La tabla de redes tiene <strong>todas</strong> las máscaras correctas (0a)</li>
-<li>[ ] Las IPs de subinterfaces y SVIs son la <strong>última IP host</strong> del prefijo, no la primera</li>
-<li>[ ] La puerta de enlace de cada PC coincide con la SVI/subinterfaz de su VLAN</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> La tabla de redes tiene <strong>todas</strong> las máscaras correctas (0a)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Las IPs de subinterfaces y SVIs son la <strong>última IP host</strong> del prefijo, no la primera</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> La puerta de enlace de cada PC coincide con la SVI/subinterfaz de su VLAN</li>
 </ul>
 <h3 id="vlans">VLANs<a class="headerlink" href="#vlans" title="Permanent link">&para;</a></h3>
-<ul>
-<li>[ ] Solo he creado las VLANs necesarias en cada switch (las que tiene en su segmento)</li>
-<li>[ ] He usado la CLI, no la GUI, para crear las VLANs</li>
-<li>[ ] Los puertos de acceso están asignados a las VLANs correctas</li>
-<li>[ ] El <code>show vlan brief</code> (o <code>show interfaces trunk</code>) confirma la configuración</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Solo he creado las VLANs necesarias en cada switch (las que tiene en su segmento)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He usado la CLI, no la GUI, para crear las VLANs</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Los puertos de acceso están asignados a las VLANs correctas</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El <code>show vlan brief</code> (o <code>show interfaces trunk</code>) confirma la configuración</li>
 </ul>
 <h3 id="trunk">Trunk<a class="headerlink" href="#trunk" title="Permanent link">&para;</a></h3>
-<ul>
-<li>[ ] Los trunks están configurados en los <strong>uplinks</strong> (hacia el router y hacia otros switches)</li>
-<li>[ ] Ningún puerto de acceso (hacia PCs) está en modo trunk</li>
-<li>[ ] El uplink hacia el router (RoaS) está en modo trunk</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Los trunks están configurados en los <strong>uplinks</strong> (hacia el router y hacia otros switches)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Ningún puerto de acceso (hacia PCs) está en modo trunk</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El uplink hacia el router (RoaS) está en modo trunk</li>
 </ul>
 <h3 id="switch-l3-svi-e-ip-routing">Switch L3 — SVI e ip routing<a class="headerlink" href="#switch-l3-svi-e-ip-routing" title="Permanent link">&para;</a></h3>
-<ul>
-<li>[ ] He ejecutado <code>ip routing</code> en el switch L3</li>
-<li>[ ] Las SVIs tienen IP y están en <code>no shutdown</code></li>
-<li>[ ] El <code>show ip interface brief</code> muestra las SVIs en estado up/up</li>
-<li>[ ] El <code>show ip route</code> muestra las redes de las VLANs como C (connected)</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He ejecutado <code>ip routing</code> en el switch L3</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Las SVIs tienen IP y están en <code>no shutdown</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El <code>show ip interface brief</code> muestra las SVIs en estado up/up</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El <code>show ip route</code> muestra las redes de las VLANs como C (connected)</li>
 </ul>
 <h3 id="enlace-routed">Enlace routed<a class="headerlink" href="#enlace-routed" title="Permanent link">&para;</a></h3>
-<ul>
-<li>[ ] He ejecutado <code>no switchport</code> en la interfaz punto a punto del L3</li>
-<li>[ ] La interfaz tiene la IP correcta del bloque /30</li>
-<li>[ ] El <code>show interfaces &lt;int&gt; switchport</code> muestra "Switchport: Disabled"</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He ejecutado <code>no switchport</code> en la interfaz punto a punto del L3</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> La interfaz tiene la IP correcta del bloque /30</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El <code>show interfaces &lt;int&gt; switchport</code> muestra "Switchport: Disabled"</li>
 </ul>
 <h3 id="router-on-a-stick">Router-on-a-stick<a class="headerlink" href="#router-on-a-stick" title="Permanent link">&para;</a></h3>
-<ul>
-<li>[ ] La interfaz física del router está en <code>no shutdown</code></li>
-<li>[ ] Cada subinterfaz tiene <code>encapsulation dot1Q &lt;id_vlan&gt;</code> antes de la IP</li>
-<li>[ ] Las IPs de las subinterfaces son correctas (última IP del prefijo)</li>
-<li>[ ] El <code>show ip interface brief</code> muestra las subinterfaces up/up</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> La interfaz física del router está en <code>no shutdown</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Cada subinterfaz tiene <code>encapsulation dot1Q &lt;id_vlan&gt;</code> antes de la IP</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Las IPs de las subinterfaces son correctas (última IP del prefijo)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El <code>show ip interface brief</code> muestra las subinterfaces up/up</li>
 </ul>
 <h3 id="rutas-estaticas">Rutas estáticas<a class="headerlink" href="#rutas-estaticas" title="Permanent link">&para;</a></h3>
-<ul>
-<li>[ ] He configurado rutas estáticas en ambos sentidos (R_1 hacia las redes del L3, y SWL3_1 hacia las redes del router)</li>
-<li>[ ] El <code>show ip route</code> confirma que las rutas <strong>S</strong> están activas (no solo tecleadas)</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He configurado rutas estáticas en ambos sentidos (R_1 hacia las redes del L3, y SWL3_1 hacia las redes del router)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El <code>show ip route</code> confirma que las rutas <strong>S</strong> están activas (no solo tecleadas)</li>
 </ul>
 <h3 id="capturas">Capturas<a class="headerlink" href="#capturas" title="Permanent link">&para;</a></h3>
-<ul>
-<li>[ ] Tengo captura de <strong>todos</strong> los apartados, incluidos los pings 8a–8f</li>
-<li>[ ] Los pings muestran al menos una respuesta (<code>!</code>) aunque haya timeouts (<code>.</code>)</li>
-<li>[ ] Los destinos de los pings son los correctos según el enunciado</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Tengo captura de <strong>todos</strong> los apartados, incluidos los pings 8a–8f</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Los pings muestran al menos una respuesta (<code>!</code>) aunque haya timeouts (<code>.</code>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Los destinos de los pings son los correctos según el enunciado</li>
 </ul>
 <hr />
 <blockquote>
