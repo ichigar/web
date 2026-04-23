@@ -1,0 +1,1782 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes y recursos de clase de SMR, ASIR y CE Python">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/imw/recursos/ut4_php_01_entorno_php/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>ENTORNO APACHE + PHP Y PRIMER SCRIPT - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../../assets/_markdown_exec_ansi.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/footer-contrast.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/blog-terminal.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#entorno-apache-php-y-primer-script" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ENTORNO APACHE + PHP Y PRIMER SCRIPT
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../blog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../smr/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../asir/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ce-python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../blog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/archive/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/tutoriales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutoriales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../smr/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../asir/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../pni/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../soj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ce-python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../pd4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#php-como-lenguaje-de-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      PHP como lenguaje de servidor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PHP como lenguaje de servidor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ciclo-de-una-peticion-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo de una petición PHP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apache-modulo-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apache + módulo PHP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Apache + módulo PHP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phpinfo-radiografia-de-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      phpinfo() — radiografía de PHP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estructura-de-proyecto-con-public" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura de proyecto con public/
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bloques-php-dentro-de-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloques PHP dentro de HTML
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bloques PHP dentro de HTML">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sintaxis-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sintaxis básica
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#echo-y-la-forma-corta" class="md-nav__link">
+    <span class="md-ellipsis">
+      echo y la forma corta &lt;?= ?&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables-y-paralelismo-con-bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables y paralelismo con bash
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funciones-de-introspeccion-del-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funciones de introspección del servidor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escape-de-salida-protegerse-de-xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      Escape de salida: protegerse de XSS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Escape de salida: protegerse de XSS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué es XSS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#htmlspecialchars" class="md-nav__link">
+    <span class="md-ellipsis">
+      htmlspecialchars()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#depuracion-y-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Depuración y logs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Depuración y logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#errores-de-php-durante-el-desarrollo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Errores de PHP durante el desarrollo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leer-un-error-de-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leer un error de PHP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-de-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log de Apache
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validacion-sintactica-con-php-l" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validación sintáctica con php -l
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="entorno-apache-php-y-primer-script">ENTORNO APACHE + PHP Y PRIMER SCRIPT<a class="headerlink" href="#entorno-apache-php-y-primer-script" title="Permanent link">&para;</a></h1>
+<p>Estos apuntes son material de consulta para el Lab 01 y los siguientes. Asumen que ya conoces Apache y sabes configurar <code>VirtualHost</code> de trabajos anteriores; aquí nos centramos en los conceptos específicos de PHP como lenguaje de servidor.</p>
+<h2 id="php-como-lenguaje-de-servidor">PHP como lenguaje de servidor<a class="headerlink" href="#php-como-lenguaje-de-servidor" title="Permanent link">&para;</a></h2>
+<p>Los lenguajes de servidor se ejecutan en la máquina servidor para generar contenido dinámico antes de enviarlo al navegador. PHP es el más extendido en hosting tradicional tipo LAMP.</p>
+<table>
+<thead>
+<tr>
+<th>Lenguaje</th>
+<th>Entorno habitual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PHP</strong></td>
+<td>Apache/Nginx + <code>mod_php</code> o PHP-FPM</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>Flask, Django, FastAPI</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>Node.js</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Cliente vs servidor</p>
+<p>HTML, CSS y JavaScript se ejecutan en el <strong>navegador del usuario</strong>. PHP se ejecuta en el <strong>servidor</strong>: el usuario nunca ve el código PHP, solo el HTML que el servidor le devuelve.</p>
+</div>
+<h3 id="ciclo-de-una-peticion-php">Ciclo de una petición PHP<a class="headerlink" href="#ciclo-de-una-peticion-php" title="Permanent link">&para;</a></h3>
+<p>Cuando el navegador solicita un fichero <code>.php</code>, el proceso es:</p>
+<ol>
+<li>El navegador envía <code>GET /listado.php HTTP/1.1</code> al servidor.</li>
+<li>Apache detecta la extensión <code>.php</code> y pasa el fichero al intérprete PHP a través del módulo <code>libapache2-mod-php</code>.</li>
+<li>PHP ejecuta el script de arriba a abajo y construye la respuesta HTML.</li>
+<li>Apache devuelve el HTML al navegador.</li>
+</ol>
+<blockquote>
+<p>PHP ejecuta el script <strong>completo de nuevo</strong> en cada petición. No hay estado entre peticiones (HTTP es <em>stateless</em>) salvo lo que se guarde explícitamente en sesión, cookie o fichero.</p>
+</blockquote>
+<h2 id="apache-modulo-php">Apache + módulo PHP<a class="headerlink" href="#apache-modulo-php" title="Permanent link">&para;</a></h2>
+<p>En el stack LAMP, PHP no es un servicio independiente: vive <strong>dentro</strong> de Apache a través del módulo <code>libapache2-mod-php</code>. Una vez instalado el módulo, Apache envía automáticamente cualquier fichero con extensión <code>.php</code> al intérprete PHP. No hay que configurar nada adicional.</p>
+<p>Herramientas rápidas para comprobar el entorno:</p>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Para qué sirve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apache2 -v</code></td>
+<td>Versión de Apache instalada</td>
+</tr>
+<tr>
+<td><code>php -v</code></td>
+<td>Versión de PHP instalada en CLI</td>
+</tr>
+<tr>
+<td><code>php -l fichero.php</code></td>
+<td>Valida la sintaxis del fichero sin ejecutarlo (<em>lint</em>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phpinfo-radiografia-de-php"><code>phpinfo()</code> — radiografía de PHP<a class="headerlink" href="#phpinfo-radiografia-de-php" title="Permanent link">&para;</a></h3>
+<p>La función <code>phpinfo()</code> imprime una página HTML con toda la configuración de PHP activa: versión, extensiones cargadas, directivas de <code>php.ini</code>, rutas internas, variables de entorno. Es la forma estándar de comprobar que Apache está ejecutando PHP correctamente y de consultar el valor por defecto de una directiva.</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">&lt;?php</span> <span class="nb">phpinfo</span><span class="p">();</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Mala práctica: dejar <code>phpinfo()</code> accesible en producción</p>
+<p><code>phpinfo()</code> expone <strong>información sensible</strong> — rutas absolutas del servidor, versiones exactas de módulos, extensiones, variables de entorno. Un atacante que vea esa página sabe exactamente qué vulnerabilidades conocidas probar.</p>
+<p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="x">## Incorrecto: dejar info.php en el DocumentRoot tras verificar</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">&lt;?php</span> <span class="nb">phpinfo</span><span class="p">();</span>   <span class="c1">// fichero olvidado en /var/www/html/info.php</span>
+</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">## Correcto: úsalo como herramienta de diagnóstico temporal</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>/var/www/html/info.php
+</code></pre></div></p>
+</div>
+<h2 id="estructura-de-proyecto-con-public">Estructura de proyecto con <code>public/</code><a class="headerlink" href="#estructura-de-proyecto-con-public" title="Permanent link">&para;</a></h2>
+<p>Un error frecuente es colocar toda la aplicación directamente en el <code>DocumentRoot</code> de Apache. Cualquier fichero allí es accesible por URL, incluidos los datos y la lógica interna. La solución estándar es el patrón de <strong>document root pequeño</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gestor/
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── public/        ← único directorio accesible por URL (DocumentRoot)
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>├── src/           ← lógica PHP reutilizable (funciones, helpers)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>├── templates/     ← cabeceras y pies HTML comunes
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>└── data/          ← datos persistentes (JSON, etc.)
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Carpeta</th>
+<th>Contiene</th>
+<th style="text-align: center;">Accesible por navegador</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>public/</code></td>
+<td><code>index.php</code>, <code>listado.php</code>, hojas CSS, imágenes</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr>
+<td><code>src/</code></td>
+<td>Funciones y clases PHP que se incluyen desde <code>public/</code></td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td><code>templates/</code></td>
+<td>Fragmentos HTML/PHP reutilizables (<code>_header.php</code>, <code>_footer.php</code>)</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td><code>data/</code></td>
+<td>Ficheros de datos leídos y escritos por la aplicación</td>
+<td style="text-align: center;">No</td>
+</tr>
+</tbody>
+</table>
+<p>Apache se configura con un <code>VirtualHost</code> cuyo <code>DocumentRoot</code> apunta directamente a <code>public/</code>. El resto de carpetas quedan por encima del <code>DocumentRoot</code> y por tanto no son accesibles por URL, aunque PHP sí puede leerlas y escribirlas desde dentro del servidor.</p>
+<div class="admonition note">
+<p class="admonition-title">Permisos de escritura en <code>data/</code></p>
+<p>Los ficheros PHP se ejecutan bajo el usuario del proceso Apache (habitualmente <code>www-data</code>). Para que un script pueda escribir en <code>data/</code>, ese usuario debe tener permiso de escritura sobre el directorio. En desarrollo basta con dejar <code>data/</code> escribible por <code>www-data</code>; el resto del proyecto puede mantenerse con tu usuario para editar cómodamente.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Mala práctica: mezclar datos y código publicado</p>
+<p><div class="language-text highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>## Incorrecto: incidencias.json accesible vía URL
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>public/
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>├── listado.php
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>└── incidencias.json   ← cualquiera puede abrir http://.../incidencias.json
+</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>## Correcto: datos fuera del DocumentRoot
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>public/listado.php
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>data/incidencias.json   ← solo PHP puede leerlo, no el navegador
+</code></pre></div></p>
+</div>
+<h2 id="bloques-php-dentro-de-html">Bloques PHP dentro de HTML<a class="headerlink" href="#bloques-php-dentro-de-html" title="Permanent link">&para;</a></h2>
+<p>Un fichero <code>.php</code> puede mezclar PHP y HTML libremente. Todo lo que va entre <code>&lt;?php</code> y <code>?&gt;</code> lo ejecuta el intérprete de PHP; lo que queda fuera pasa tal cual al navegador.</p>
+<h3 id="sintaxis-basica">Sintaxis básica<a class="headerlink" href="#sintaxis-basica" title="Permanent link">&para;</a></h3>
+<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="hll"><span class="cp">&lt;?php</span>
+</span><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="nv">$titulo</span> <span class="o">=</span> <span class="s1">&#39;Gestor de incidencias&#39;</span><span class="p">;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="nv">$ahora</span>  <span class="o">=</span> <span class="nb">date</span><span class="p">(</span><span class="s1">&#39;d/m/Y H:i&#39;</span><span class="p">);</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="cp">?&gt;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="hll"><span class="x">&lt;!doctype html&gt;</span>
+</span><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="x">&lt;html lang=&quot;es&quot;&gt;</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="x">&lt;body&gt;</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="x">  &lt;h1&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$titulo</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/h1&gt;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="hll"><span class="x">  &lt;p&gt;Fecha del servidor: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$ahora</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+</span><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="x">&lt;/body&gt;</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="x">&lt;/html&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p>Observa la estructura: el bloque PHP al inicio <strong>calcula los datos</strong>, y el HTML de abajo los <strong>muestra</strong>. Esta separación entre <em>lógica</em> y <em>presentación</em> es el patrón que seguirás en todos los labs de la unidad.</p>
+<h3 id="echo-y-la-forma-corta"><code>echo</code> y la forma corta <code>&lt;?= ?&gt;</code><a class="headerlink" href="#echo-y-la-forma-corta" title="Permanent link">&para;</a></h3>
+<p>Las dos formas siguientes son equivalentes:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$titulo</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$titulo</span><span class="p">)</span> <span class="cp">?&gt;</span>
+</code></pre></div>
+<p>La forma corta <code>&lt;?= ... ?&gt;</code> se usa dentro del HTML porque es más legible. Internamente aplica <code>echo</code> al resultado de la expresión.</p>
+<h3 id="variables-y-paralelismo-con-bash">Variables y paralelismo con bash<a class="headerlink" href="#variables-y-paralelismo-con-bash" title="Permanent link">&para;</a></h3>
+<p>Las variables en PHP empiezan por <code>$</code> y las instrucciones acaban en <code>;</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Bash</th>
+<th>PHP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>titulo="Impresora"</code></td>
+<td><code>$titulo = 'Impresora';</code></td>
+</tr>
+<tr>
+<td><code>echo "$titulo"</code></td>
+<td><code>echo $titulo;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Diferencias: PHP <strong>sí</strong> distingue mayúsculas (<code>$var</code> ≠ <code>$Var</code>), el <code>;</code> es <strong>obligatorio</strong>, las operaciones aritméticas se escriben directamente (<code>$a + $b</code>, no <code>$((a+b))</code>).</p>
+<h2 id="funciones-de-introspeccion-del-servidor">Funciones de introspección del servidor<a class="headerlink" href="#funciones-de-introspeccion-del-servidor" title="Permanent link">&para;</a></h2>
+<p>PHP ofrece funciones y constantes para consultar información sobre el servidor y el entorno de ejecución. Son útiles para scripts de diagnóstico y para depurar.</p>
+<table>
+<thead>
+<tr>
+<th>Función / constante</th>
+<th>Devuelve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>date('d/m/Y H:i')</code></td>
+<td>Fecha y hora actuales con el formato indicado</td>
+</tr>
+<tr>
+<td><code>phpversion()</code></td>
+<td>Versión exacta de PHP (p. ej. <code>"8.3.6"</code>)</td>
+</tr>
+<tr>
+<td><code>gethostname()</code></td>
+<td>Nombre del host del servidor</td>
+</tr>
+<tr>
+<td><code>PHP_OS</code></td>
+<td>Sistema operativo donde corre PHP (p. ej. <code>"Linux"</code>)</td>
+</tr>
+<tr>
+<td><code>__DIR__</code></td>
+<td>Directorio absoluto del fichero actual</td>
+</tr>
+<tr>
+<td><code>get_current_user()</code></td>
+<td>Usuario propietario del fichero PHP que se ejecuta</td>
+</tr>
+<tr>
+<td><code>php_sapi_name()</code></td>
+<td>Interfaz que invoca a PHP (<code>"apache2handler"</code>, <code>"cli"</code>, etc.)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title"><code>get_current_user()</code> no devuelve <code>www-data</code></p>
+<p>Aunque Apache <strong>ejecuta</strong> el script bajo el usuario <code>www-data</code>, <code>get_current_user()</code> devuelve el <strong>usuario propietario del fichero PHP</strong>, no el usuario del proceso. Si tu fichero <code>index.php</code> lo creaste tú, verás tu nombre de usuario.</p>
+<p>Para saber bajo qué usuario se está ejecutando el proceso en realidad, mira <code>phpinfo()</code> (sección "Environment", variable <code>USER</code>) o usa extensiones como <code>posix</code>.</p>
+</div>
+<h2 id="escape-de-salida-protegerse-de-xss">Escape de salida: protegerse de XSS<a class="headerlink" href="#escape-de-salida-protegerse-de-xss" title="Permanent link">&para;</a></h2>
+<p>Siempre que una variable se imprime dentro de HTML, hay que <strong>escaparla</strong> primero. Si no, un valor malicioso puede romper el HTML o inyectar código JavaScript en la página.</p>
+<h3 id="que-es-xss">Qué es XSS<a class="headerlink" href="#que-es-xss" title="Permanent link">&para;</a></h3>
+<p><em>Cross-Site Scripting</em> (XSS) es una vulnerabilidad en la que un atacante consigue que el navegador de la víctima ejecute JavaScript arbitrario. El vector más común es imprimir datos del usuario sin escapar:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="x">// Suponiendo que $titulo llega del usuario:</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="x">$titulo = &#39;&lt;script&gt;alert(&quot;hackeado&quot;)&lt;/script&gt;&#39;;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="x">echo &quot;&lt;h1&gt;$titulo&lt;/h1&gt;&quot;;   // el navegador ejecuta el &lt;script&gt;</span>
+</code></pre></div>
+<h3 id="htmlspecialchars"><code>htmlspecialchars()</code><a class="headerlink" href="#htmlspecialchars" title="Permanent link">&para;</a></h3>
+<p>Convierte los caracteres que tienen significado especial en HTML a sus entidades seguras:</p>
+<table>
+<thead>
+<tr>
+<th>Carácter</th>
+<th>Se convierte en</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;</code></td>
+<td><code>&amp;lt;</code></td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td><code>&amp;gt;</code></td>
+</tr>
+<tr>
+<td><code>"</code></td>
+<td><code>&amp;quot;</code></td>
+</tr>
+<tr>
+<td><code>'</code></td>
+<td><code>&amp;#039;</code></td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td><code>&amp;amp;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Firma completa recomendada: <code>htmlspecialchars($valor, ENT_QUOTES, 'UTF-8')</code>. El segundo argumento escapa también las comillas simples (útil dentro de atributos) y el tercero fija la codificación.</p>
+<div class="admonition warning">
+<p class="admonition-title">Mala práctica: imprimir variables sin escapar</p>
+<p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="x">## Incorrecto: cualquier &lt; o &gt; del usuario se interpreta como HTML</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="x">echo &quot;&lt;h1&gt;$titulo&lt;/h1&gt;&quot;;</span>
+</code></pre></div>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="x">## Correcto: escapar siempre al imprimir</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="x">echo &quot;&lt;h1&gt;&quot; . htmlspecialchars($titulo, ENT_QUOTES, &#39;UTF-8&#39;) . &quot;&lt;/h1&gt;&quot;;</span>
+</code></pre></div></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Qué escapar y qué no</p>
+<ul>
+<li><strong>Sí escapa</strong>: cualquier cadena que vayas a imprimir dentro de HTML (valores de formularios, campos de una ficha, URLs de usuario…).</li>
+<li><strong>No hace falta escapar</strong>: números enteros y decimales que controles tú mismo, pues no pueden contener caracteres HTML peligrosos.</li>
+</ul>
+<p>En el Lab 07 crearás un helper <code>e()</code> que encapsula la llamada para no repetirla en cada plantilla.</p>
+</div>
+<h2 id="depuracion-y-logs">Depuración y logs<a class="headerlink" href="#depuracion-y-logs" title="Permanent link">&para;</a></h2>
+<h3 id="errores-de-php-durante-el-desarrollo">Errores de PHP durante el desarrollo<a class="headerlink" href="#errores-de-php-durante-el-desarrollo" title="Permanent link">&para;</a></h3>
+<p>Por defecto, PHP <strong>no muestra errores en el navegador</strong> (configuración pensada para producción): los escribe silenciosamente en el log y al usuario le devuelve una página genérica o en blanco. Durante el desarrollo necesitas verlos para poder corregirlos.</p>
+<p>Activa los errores al inicio del script:</p>
+<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="hll"><span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
+</span><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="hll"><span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
+</span><a id="__codelineno-11-4" name="__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="c1">// ... tu código ...</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><code>error_reporting(E_ALL)</code> activa todos los niveles de aviso (avisos, advertencias, errores).</li>
+<li><code>ini_set('display_errors', '1')</code> los muestra en la respuesta HTML.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Mala práctica: <code>display_errors</code> en producción</p>
+<p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="x">## Incorrecto: cualquier error expone rutas internas, nombres de variables, SQL...</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="x">ini_set(&#39;display_errors&#39;, &#39;1&#39;);   // en un servidor público</span>
+</code></pre></div>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="x">## Correcto: en producción, solo logs</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="x">ini_set(&#39;display_errors&#39;, &#39;0&#39;);</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="x">ini_set(&#39;log_errors&#39;, &#39;1&#39;);</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="x">// los errores quedan en /var/log/apache2/error.log</span>
+</code></pre></div></p>
+</div>
+<h3 id="leer-un-error-de-php">Leer un error de PHP<a class="headerlink" href="#leer-un-error-de-php" title="Permanent link">&para;</a></h3>
+<p>Un mensaje típico tiene la forma:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Parse error: syntax error, unexpected token &quot;$alumno&quot;, expecting &quot;,&quot; or &quot;;&quot;
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>in /home/tuusuario/gestor/public/index.php on line 6
+</code></pre></div>
+<p>Te indica <strong>qué</strong> falla (token inesperado), <strong>dónde</strong> (ruta completa del fichero) y <strong>en qué línea</strong>. Leer el mensaje entero resuelve el 80 % de los errores antes de tener que buscar en Google.</p>
+<h3 id="log-de-apache">Log de Apache<a class="headerlink" href="#log-de-apache" title="Permanent link">&para;</a></h3>
+<p>Los errores de PHP y los errores del propio Apache se escriben en:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>/var/log/apache2/error.log
+</code></pre></div>
+<p>Durante el desarrollo es útil seguir el log en tiempo real mientras trabajas en otra terminal:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/apache2/error.log
+</code></pre></div>
+<p>Cada recarga de una página con error añade una línea nueva al final del fichero.</p>
+<h3 id="validacion-sintactica-con-php-l">Validación sintáctica con <code>php -l</code><a class="headerlink" href="#validacion-sintactica-con-php-l" title="Permanent link">&para;</a></h3>
+<p>Antes de probar un fichero en el navegador puedes comprobar que al menos no tiene errores de sintaxis:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>php<span class="w"> </span>-l<span class="w"> </span>public/index.php
+</code></pre></div>
+<ul>
+<li>Si la sintaxis es correcta: <code>No syntax errors detected in public/index.php</code>.</li>
+<li>Si hay un error: devuelve el mismo formato que verías en el navegador, con fichero y línea.</li>
+</ul>
+<p>Es un chequeo rápido que puedes automatizar en el flujo de trabajo antes de entregar el lab o publicar un cambio.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ichigar
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/ichigar/web" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://codeberg.org/ichigar/pages" target="_blank" rel="noopener" title="Codeberg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.999.747A11.974 11.974 0 0 0 0 12.75c0 2.254.635 4.465 1.833 6.376L11.837 6.19c.072-.092.251-.092.323 0l4.178 5.402h-2.992l.065.239h3.113l.882 1.138h-3.674l.103.374h3.86l.777 1.003h-4.358l.135.483h4.593l.695.894h-5.038l.165.589h5.326l.609.785h-5.717l.182.65h6.038l.562.727h-6.397l.183.65h6.717A12 12 0 0 0 24 12.75 11.977 11.977 0 0 0 11.999.747m3.654 19.104.182.65h5.326c.173-.204.353-.433.513-.65zm.385 1.377.18.65h3.563c.233-.198.485-.428.712-.65zm.383 1.377.182.648h1.203c.356-.204.685-.412 1.042-.648z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/feed_rss_created.xml" target="_blank" rel="noopener" title="RSS" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../assets/_markdown_exec_pyodide.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="../../../javascripts/blog-class.js"></script>
+      
+    
+  </body>
+</html>
