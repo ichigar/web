@@ -1,0 +1,2039 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes y recursos de clase de SMR, ASIR y CE Python">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/pd4/ut4/recursos/poo_ut4_2_rutas_dinamicas_excepciones/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>RUTAS DINÁMICAS Y EXCEPCIONES EN FLASK - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_ansi.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/footer-contrast.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/blog-terminal.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rutas-dinamicas-y-excepciones-en-flask" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              RUTAS DINÁMICAS Y EXCEPCIONES EN FLASK
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../smr/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../asir/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../ce-python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../blog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/tutoriales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutoriales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../smr/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../asir/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pni/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../imw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../soj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../ce-python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-en-los-parametros-de-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tipos en los parámetros de URL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tipos en los parámetros de URL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recordatorio-parametros-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recordatorio: parámetros variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#converters-de-flask" class="md-nav__link">
+    <span class="md-ellipsis">
+      Converters de Flask
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#las-regex-detras-de-los-converters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Las regex detrás de los converters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donde-termina-flask-y-empieza-el-dominio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dónde termina Flask y empieza el dominio
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codigos-http-como-lenguaje-comun" class="md-nav__link">
+    <span class="md-ellipsis">
+      Códigos HTTP como lenguaje común
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Códigos HTTP como lenguaje común">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-un-codigo-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué es un código HTTP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#los-codigos-que-usaras-en-este-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Los códigos que usarás en este lab
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devolver-un-codigo-desde-un-route" class="md-nav__link">
+    <span class="md-ellipsis">
+      Devolver un código desde un route
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elegir-el-codigo-correcto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elegir el código correcto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redireccion-y-urls-declarativas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redirección y URLs declarativas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redirección y URLs declarativas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-codigo-302-y-redirect" class="md-nav__link">
+    <span class="md-ellipsis">
+      El código 302 y redirect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-problema-de-los-strings-hardcodeados" class="md-nav__link">
+    <span class="md-ellipsis">
+      El problema de los strings hardcodeados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url_for-y-el-desacoplamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      url_for y el desacoplamiento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-patron-actua-redirige" class="md-nav__link">
+    <span class="md-ellipsis">
+      El patrón "actúa → redirige"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estado-de-la-aplicacion-en-el-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estado de la aplicación en el servidor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estado de la aplicación en el servidor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-servicio-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      El servicio global
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maquina-de-estados-en-el-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Máquina de estados en el servidor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-1-estado-compartido-entre-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema 1: estado compartido entre usuarios
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-2-estado-perdido-al-reiniciar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema 2: estado perdido al reiniciar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hacia-donde-vamos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hacia dónde vamos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parametros-en-url-vs-formularios-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parámetros en URL vs formularios HTML
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parámetros en URL vs formularios HTML">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#los-limites-de-la-url-como-entrada-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Los límites de la URL como entrada de datos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Los límites de la URL como entrada de datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#legibilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legibilidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caracteres-especiales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caracteres especiales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-problema-del-separador-decimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      El problema del separador decimal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hacia-los-formularios-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hacia los formularios HTML
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="rutas-dinamicas-y-excepciones-en-flask">RUTAS DINÁMICAS Y EXCEPCIONES EN FLASK<a class="headerlink" href="#rutas-dinamicas-y-excepciones-en-flask" title="Permanent link">&para;</a></h1>
+<h2 id="tipos-en-los-parametros-de-url">Tipos en los parámetros de URL<a class="headerlink" href="#tipos-en-los-parametros-de-url" title="Permanent link">&para;</a></h2>
+<h3 id="recordatorio-parametros-variables">Recordatorio: parámetros variables<a class="headerlink" href="#recordatorio-parametros-variables" title="Permanent link">&para;</a></h3>
+<p>Una URL puede contener partes que cambian: el código de un producto, una cantidad, un identificador. En los apuntes anteriores viste que Flask captura esas partes con la notación <code>&lt;nombre&gt;</code>:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/producto/&lt;codigo&gt;&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">ver_producto</span><span class="p">(</span><span class="n">codigo</span><span class="p">):</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Has pedido el producto </span><span class="si">{</span><span class="n">codigo</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>Por defecto, lo que captura <code>&lt;codigo&gt;</code> es <strong>siempre texto</strong>: si pides <code>/producto/A1</code>, <code>codigo</code> vale <code>"A1"</code>; si pides <code>/producto/12</code>, <code>codigo</code> vale <code>"12"</code> (cadena, no número). Esto es suficiente cuando la URL lleva un código o un nombre, pero no cuando esperas un número para operar con él.</p>
+<h3 id="converters-de-flask">Converters de Flask<a class="headerlink" href="#converters-de-flask" title="Permanent link">&para;</a></h3>
+<p>Un <strong>converter</strong> es un validador de tipo que Flask aplica al segmento de URL antes de llamar a tu función. Se escribe con la sintaxis <code>&lt;tipo:nombre&gt;</code>. Si el valor no cumple el tipo, Flask responde con un <strong>404</strong> automáticamente y tu función <strong>ni siquiera se ejecuta</strong>.</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/comprar/&lt;int:cantidad&gt;&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">comprar</span><span class="p">(</span><span class="n">cantidad</span><span class="p">):</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Compras </span><span class="si">{</span><span class="n">cantidad</span><span class="si">}</span><span class="s2"> unidades&quot;</span>  <span class="c1">## cantidad ya es int</span>
+</code></pre></div></td></tr></table></div>
+<p>Flask ofrece cinco converters integrados:</p>
+<table>
+<thead>
+<tr>
+<th>Converter</th>
+<th>Qué acepta</th>
+<th style="text-align: center;">Tipo Python</th>
+<th>Uso típico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;string:x&gt;</code></td>
+<td>Texto sin <code>/</code> (converter por defecto)</td>
+<td style="text-align: center;"><code>str</code></td>
+<td>Códigos, nombres, <em>slugs</em></td>
+</tr>
+<tr>
+<td><code>&lt;int:x&gt;</code></td>
+<td>Números enteros sin signo</td>
+<td style="text-align: center;"><code>int</code></td>
+<td>Cantidades, identificadores</td>
+</tr>
+<tr>
+<td><code>&lt;float:x&gt;</code></td>
+<td>Números decimales con punto</td>
+<td style="text-align: center;"><code>float</code></td>
+<td>Precios, porcentajes</td>
+</tr>
+<tr>
+<td><code>&lt;path:x&gt;</code></td>
+<td>Texto que puede incluir <code>/</code></td>
+<td style="text-align: center;"><code>str</code></td>
+<td>Rutas de ficheros anidadas</td>
+</tr>
+<tr>
+<td><code>&lt;uuid:x&gt;</code></td>
+<td>Identificadores UUID</td>
+<td style="text-align: center;"><code>UUID</code></td>
+<td>Identificadores únicos</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Cuando se omite el tipo (<code>&lt;codigo&gt;</code>), Flask aplica <code>string</code> por defecto.</p>
+</blockquote>
+<h3 id="las-regex-detras-de-los-converters">Las regex detrás de los converters<a class="headerlink" href="#las-regex-detras-de-los-converters" title="Permanent link">&para;</a></h3>
+<p>Cada converter tiene por dentro una <strong>expresión regular</strong> (<em>regex</em>) — una fórmula que describe qué forma tiene que tener el texto para ser aceptado. Si no conoces las expresiones regulares, basta con saber esto: son patrones que describen qué caracteres están permitidos y en qué orden.</p>
+<table>
+<thead>
+<tr>
+<th>Converter</th>
+<th style="text-align: center;">Regex interna</th>
+<th>Qué significa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;int:x&gt;</code></td>
+<td style="text-align: center;"><code>\d+</code></td>
+<td>Uno o más dígitos (<code>0-9</code>). <strong>No acepta</strong> signo ni decimales.</td>
+</tr>
+<tr>
+<td><code>&lt;float:x&gt;</code></td>
+<td style="text-align: center;"><code>\d+\.\d+</code></td>
+<td>Dígitos, punto, dígitos. <strong>No acepta</strong> enteros puros ni signo.</td>
+</tr>
+<tr>
+<td><code>&lt;string:x&gt;</code></td>
+<td style="text-align: center;"><code>[^/]+</code></td>
+<td>Cualquier carácter salvo <code>/</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Esto tiene consecuencias <strong>sorprendentes</strong> cuando el usuario teclea la URL:</p>
+<table>
+<thead>
+<tr>
+<th>URL solicitada</th>
+<th>Resultado</th>
+<th>Por qué</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/comprar/3</code></td>
+<td>Llega al route con <code>cantidad=3</code></td>
+<td>Matchea <code>\d+</code></td>
+</tr>
+<tr>
+<td><code>/comprar/tres</code></td>
+<td><strong>404</strong></td>
+<td><code>tres</code> no son dígitos</td>
+</tr>
+<tr>
+<td><code>/comprar/-1</code></td>
+<td><strong>404</strong></td>
+<td>El signo <code>-</code> no es un dígito</td>
+</tr>
+<tr>
+<td><code>/insertar/1.5</code></td>
+<td>Llega con <code>cantidad=1.5</code></td>
+<td>Matchea <code>\d+\.\d+</code></td>
+</tr>
+<tr>
+<td><code>/insertar/1</code></td>
+<td><strong>404</strong></td>
+<td><code>&lt;float&gt;</code> exige punto decimal</td>
+</tr>
+<tr>
+<td><code>/insertar/-1.5</code></td>
+<td><strong>404</strong></td>
+<td>El signo <code>-</code> tampoco es un dígito</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Flask filtra antes que tu código</p>
+<p>Si el converter rechaza el valor, tu función de vista <strong>no se llega a ejecutar</strong>. Flask devuelve un 404 directamente. Esto significa que los <code>try/except ValueError</code> que pongas dentro de la función nunca se disparan para valores inválidos de tipo — solo se disparan si el dominio rechaza el valor una vez convertido.</p>
+</div>
+<h3 id="donde-termina-flask-y-empieza-el-dominio">Dónde termina Flask y empieza el dominio<a class="headerlink" href="#donde-termina-flask-y-empieza-el-dominio" title="Permanent link">&para;</a></h3>
+<p>Los converters solo validan el <strong>formato</strong>. La validación de <strong>negocio</strong> (que el precio sea positivo, que la cantidad sea razonable, que el código exista) sigue en el dominio. Flask filtra lo que no cumple el tipo; el dominio filtra lo que no cumple las reglas.</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/insertar/&lt;float:cantidad&gt;&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">insertar</span><span class="p">(</span><span class="n">cantidad</span><span class="p">):</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="hll">        <span class="n">servicio</span><span class="o">.</span><span class="n">insertar_dinero</span><span class="p">(</span><span class="n">cantidad</span><span class="p">)</span>   <span class="c1">## lanza ValueError si es 0 o negativo</span>
+</span><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="hll">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Saldo: </span><span class="si">{</span><span class="n">servicio</span><span class="o">.</span><span class="n">saldo</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> EUR&quot;</span>
+</span><a id="__codelineno-2-6" name="__codelineno-2-6"></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">400</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>En este ejemplo, <code>cantidad=0.0</code> sí llega al dominio (matchea <code>\d+\.\d+</code>). El <code>try/except</code> captura el <code>ValueError</code> que lanza <code>insertar_dinero</code> porque la cantidad no es positiva. En cambio, <code>cantidad=-1.5</code> nunca llega — Flask responde 404 antes.</p>
+</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Antipatrón: validar el tipo en el dominio</p>
+<p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">## Incorrecto: el dominio no debe preocuparse del formato de la URL</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/insertar/&lt;cantidad&gt;&quot;</span><span class="p">)</span>   <span class="c1">## string por defecto</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">insertar</span><span class="p">(</span><span class="n">cantidad</span><span class="p">):</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="n">cantidad_num</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">cantidad</span><span class="p">)</span>   <span class="c1">## conversión manual</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="n">servicio</span><span class="o">.</span><span class="n">insertar_dinero</span><span class="p">(</span><span class="n">cantidad_num</span><span class="p">)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="k">return</span> <span class="s2">&quot;Formato incorrecto o cantidad inválida&quot;</span><span class="p">,</span> <span class="mi">400</span>
+</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">## Correcto</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/insertar/&lt;float:cantidad&gt;&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">insertar</span><span class="p">(</span><span class="n">cantidad</span><span class="p">):</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="n">servicio</span><span class="o">.</span><span class="n">insertar_dinero</span><span class="p">(</span><span class="n">cantidad</span><span class="p">)</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">400</span>
+</code></pre></div>
+Delegar la conversión de tipo a Flask mantiene el route más limpio y el dominio solo ve valores del tipo correcto.</p>
+</div>
+<hr />
+<h2 id="codigos-http-como-lenguaje-comun">Códigos HTTP como lenguaje común<a class="headerlink" href="#codigos-http-como-lenguaje-comun" title="Permanent link">&para;</a></h2>
+<h3 id="que-es-un-codigo-http">Qué es un código HTTP<a class="headerlink" href="#que-es-un-codigo-http" title="Permanent link">&para;</a></h3>
+<p>Cada respuesta HTTP empieza con un <strong>código de estado</strong>: un número de tres dígitos que resume qué ha pasado. El navegador lo lee antes que el cuerpo para saber si la petición ha ido bien, si hay que redirigir, si hay un error del cliente o del servidor.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>HTTP/1.1 200 OK                 ← código de estado + descripción
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Content-Type: text/html
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>&lt;h1&gt;Productos&lt;/h1&gt;              ← cuerpo
+</code></pre></div>
+<p>Los códigos están agrupados por la primera cifra:</p>
+<table>
+<thead>
+<tr>
+<th>Rango</th>
+<th>Familia</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>2xx</code></td>
+<td>Éxito</td>
+<td>La petición ha ido bien.</td>
+</tr>
+<tr>
+<td><code>3xx</code></td>
+<td>Redirección</td>
+<td>El recurso está en otra URL; el navegador debe ir ahí.</td>
+</tr>
+<tr>
+<td><code>4xx</code></td>
+<td>Error del cliente</td>
+<td>La petición tiene algo mal: URL, datos, permisos.</td>
+</tr>
+<tr>
+<td><code>5xx</code></td>
+<td>Error del servidor</td>
+<td>El servidor ha fallado al procesar una petición correcta.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="los-codigos-que-usaras-en-este-lab">Los códigos que usarás en este lab<a class="headerlink" href="#los-codigos-que-usaras-en-este-lab" title="Permanent link">&para;</a></h3>
+<p>No hace falta memorizar todos los códigos. Estos son los relevantes para una app como la expendedora:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Código</th>
+<th>Nombre</th>
+<th>Cuándo lo devuelves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>200</code></td>
+<td>OK</td>
+<td>Respuesta normal con contenido.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>302</code></td>
+<td>Found (redirección)</td>
+<td>Tras una acción, rediriges a otra URL.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>400</code></td>
+<td>Bad Request</td>
+<td>El cliente mandó datos inválidos (cantidad negativa, precio cero…).</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>404</code></td>
+<td>Not Found</td>
+<td>El recurso pedido no existe (producto con código inexistente, URL no registrada).</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>409</code></td>
+<td>Conflict</td>
+<td>La petición choca con el estado actual (alta con un código que ya existe).</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>500</code></td>
+<td>Internal Server Error</td>
+<td>El servidor ha lanzado una excepción no controlada.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="devolver-un-codigo-desde-un-route">Devolver un código desde un route<a class="headerlink" href="#devolver-un-codigo-desde-un-route" title="Permanent link">&para;</a></h3>
+<p>Por defecto, cuando una función de vista hace <code>return "texto"</code>, Flask añade el código <code>200 OK</code>. Para devolver otro código, <code>return</code> acepta una tupla <code>(cuerpo, codigo)</code>:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/producto/&lt;codigo&gt;&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">ver_producto</span><span class="p">(</span><span class="n">codigo</span><span class="p">):</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">servicio</span><span class="o">.</span><span class="n">obtener_producto</span><span class="p">(</span><span class="n">codigo</span><span class="p">))</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="hll">    <span class="k">except</span> <span class="n">ProductoNoEncontradoError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="hll">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="mi">404</span>
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p>El código va <strong>como segundo elemento de la tupla</strong>, no como argumento con nombre. La descripción (<code>"Not Found"</code>) la añade Flask por ti a partir del número.</p>
+</blockquote>
+<h3 id="elegir-el-codigo-correcto">Elegir el código correcto<a class="headerlink" href="#elegir-el-codigo-correcto" title="Permanent link">&para;</a></h3>
+<p>La elección del código no es arbitraria. Herramientas automáticas (navegadores, motores de búsqueda, clientes de API) actúan según el código recibido:</p>
+<ul>
+<li>El navegador solo cachea respuestas <code>200</code>.</li>
+<li>Un <code>302</code> hace que el navegador cargue automáticamente la URL indicada en la cabecera.</li>
+<li>Un <code>404</code> le dice al motor de búsqueda "este enlace está roto, no lo indexes".</li>
+<li>Un <code>500</code> indica un fallo del servidor: los sistemas de monitorización lo cuentan aparte de los <code>4xx</code>.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Situación</th>
+<th style="text-align: center;">Código</th>
+<th>Por qué no otro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Producto con código inexistente</td>
+<td style="text-align: center;"><code>404</code></td>
+<td>El recurso no existe. No es culpa de los datos del cliente: la URL apuntaba a algo que no está.</td>
+</tr>
+<tr>
+<td>Precio de alta con valor cero</td>
+<td style="text-align: center;"><code>400</code></td>
+<td>Los datos enviados son inválidos; el cliente debe reenviar con otros distintos.</td>
+</tr>
+<tr>
+<td>Alta con código ya existente</td>
+<td style="text-align: center;"><code>409</code></td>
+<td>La petición está bien formada, pero choca con el estado del servidor. Un <code>400</code> ocultaría que el problema es el estado, no los datos.</td>
+</tr>
+<tr>
+<td>Excepción no capturada en un route</td>
+<td style="text-align: center;"><code>500</code></td>
+<td>Es un fallo del servidor que no habíamos previsto.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Elige el código que comunique mejor</p>
+<p>Si dudas entre <code>400</code> y <code>404</code>, piensa: ¿el cliente mandó datos malos (<code>400</code>) o pidió algo que no está (<code>404</code>)? Si dudas entre <code>400</code> y <code>409</code>, piensa: ¿el problema está en los datos (<code>400</code>) o en el estado del servidor (<code>409</code>)?</p>
+</div>
+<hr />
+<h2 id="redireccion-y-urls-declarativas">Redirección y URLs declarativas<a class="headerlink" href="#redireccion-y-urls-declarativas" title="Permanent link">&para;</a></h2>
+<h3 id="el-codigo-302-y-redirect">El código 302 y <code>redirect</code><a class="headerlink" href="#el-codigo-302-y-redirect" title="Permanent link">&para;</a></h3>
+<p>Un <strong>redirect</strong> (redirección) es una respuesta HTTP que le dice al navegador: "no estoy en esta URL, ve a esta otra". El código habitual es <code>302 Found</code>. El navegador, al recibirla, <strong>carga automáticamente</strong> la URL indicada sin que el usuario haga nada.</p>
+<p>Flask tiene una función auxiliar <code>redirect(url)</code> que construye esa respuesta:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="hll"><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">redirect</span>
+</span><a id="__codelineno-7-2" name="__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/comprar&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">comprar</span><span class="p">():</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="hll">    <span class="n">servicio</span><span class="o">.</span><span class="n">comprar</span><span class="p">()</span>
+</span><a id="__codelineno-7-6" name="__codelineno-7-6"></a>    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/productos&quot;</span><span class="p">)</span>   <span class="c1">## el navegador carga /productos</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="el-problema-de-los-strings-hardcodeados">El problema de los strings hardcodeados<a class="headerlink" href="#el-problema-de-los-strings-hardcodeados" title="Permanent link">&para;</a></h3>
+<p>Escribir la URL a mano (como <code>"/productos"</code> arriba) funciona, pero <strong>se rompe</strong> en cuanto cambias la ruta. Imagina que decides renombrar <code>/productos</code> a <code>/catalogo</code>: tendrías que buscar y sustituir cada <code>redirect("/productos")</code> repartido por el código. Es error-prono y fácil de olvidar.</p>
+<h3 id="url_for-y-el-desacoplamiento"><code>url_for</code> y el desacoplamiento<a class="headerlink" href="#url_for-y-el-desacoplamiento" title="Permanent link">&para;</a></h3>
+<p><code>url_for()</code> <strong>construye una URL a partir del nombre de la función de vista</strong>, no del string de la URL. Si cambias la ruta del decorador, <code>url_for</code> sigue devolviendo la URL correcta.</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">url_for</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/comprar&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">comprar</span><span class="p">():</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>    <span class="n">servicio</span><span class="o">.</span><span class="n">comprar</span><span class="p">()</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="hll">    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;listar_productos&quot;</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Para rutas con parámetros, se pasan como argumentos con nombre:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/producto/&lt;codigo&gt;&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">ver_producto</span><span class="p">(</span><span class="n">codigo</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/reponer/&lt;codigo&gt;/&lt;int:unidades&gt;&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">reponer</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">unidades</span><span class="p">):</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="hll">    <span class="n">servicio</span><span class="o">.</span><span class="n">reponer</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">unidades</span><span class="p">)</span>
+</span><a id="__codelineno-9-7" name="__codelineno-9-7"></a>    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;ver_producto&quot;</span><span class="p">,</span> <span class="n">codigo</span><span class="o">=</span><span class="n">codigo</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>El primer argumento de <code>url_for</code> es <strong>el nombre de la función Python</strong>, no la URL. Esto desacopla el código de las URLs concretas: si mañana cambias <code>@app.route("/producto/&lt;codigo&gt;")</code> por <code>@app.route("/item/&lt;codigo&gt;")</code>, todas las llamadas a <code>url_for("ver_producto", …)</code> siguen funcionando.</p>
+</blockquote>
+<h3 id="el-patron-actua-redirige">El patrón "actúa → redirige"<a class="headerlink" href="#el-patron-actua-redirige" title="Permanent link">&para;</a></h3>
+<p>Cuando un route modifica el estado (comprar, agregar, eliminar), conviene <strong>redirigir al acabar</strong> en lugar de devolver directamente el mensaje de éxito. Así evitas un problema clásico: si el usuario pulsa <em>recargar</em> en el navegador, la última petición se reenvía, y si esa petición era una acción destructiva (comprar, eliminar) se repite sin querer.</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">6</a></span>
+<span class="normal"><a href="#__codelineno-10-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/agregar/&lt;codigo&gt;/&lt;nombre&gt;/&lt;float:precio&gt;/&lt;int:cantidad&gt;&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">agregar</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">):</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a>        <span class="n">servicio</span><span class="o">.</span><span class="n">agregar_producto</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">)</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a>        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;ver_producto&quot;</span><span class="p">,</span> <span class="n">codigo</span><span class="o">=</span><span class="n">codigo</span><span class="p">))</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="hll">    <span class="k">except</span> <span class="n">ProductoYaExisteError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><a id="__codelineno-10-7" name="__codelineno-10-7"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">409</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>Tras el <code>redirect</code>, el navegador queda en <code>/producto/&lt;codigo&gt;</code>. Si el usuario pulsa <em>recargar</em>, lo que se repite es la <strong>consulta</strong> al detalle, no el alta. Es la consulta la que se vuelve a ejecutar, no la acción.</p>
+</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Antipatrón: devolver el resultado de la acción como página final</p>
+<p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">## Incorrecto: si el usuario recarga, repite el alta → 409</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/agregar/&lt;codigo&gt;/...&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">agregar</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="n">servicio</span><span class="o">.</span><span class="n">agregar_producto</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;h1&gt;Producto </span><span class="si">{</span><span class="n">codigo</span><span class="si">}</span><span class="s2"> añadido&lt;/h1&gt;&quot;</span>
+</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">## Correcto</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/agregar/&lt;codigo&gt;/...&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">agregar</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">servicio</span><span class="o">.</span><span class="n">agregar_producto</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;ver_producto&quot;</span><span class="p">,</span> <span class="n">codigo</span><span class="o">=</span><span class="n">codigo</span><span class="p">))</span>
+</code></pre></div></p>
+</div>
+<hr />
+<h2 id="estado-de-la-aplicacion-en-el-servidor">Estado de la aplicación en el servidor<a class="headerlink" href="#estado-de-la-aplicacion-en-el-servidor" title="Permanent link">&para;</a></h2>
+<h3 id="el-servicio-global">El <code>servicio</code> global<a class="headerlink" href="#el-servicio-global" title="Permanent link">&para;</a></h3>
+<p>En la expendedora, creamos un único objeto <code>servicio</code> al arrancar <code>app.py</code> y lo usamos desde todos los routes:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span>
+<span class="normal"><a href="#__codelineno-13-6">6</a></span>
+<span class="normal"><a href="#__codelineno-13-7">7</a></span>
+<span class="normal"><a href="#__codelineno-13-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="hll"><span class="n">servicio</span> <span class="o">=</span> <span class="n">crear_servicio_sqlite</span><span class="p">()</span>
+</span><a id="__codelineno-13-2" name="__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/seleccionar/&lt;codigo&gt;&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">seleccionar</span><span class="p">(</span><span class="n">codigo</span><span class="p">):</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a>    <span class="n">servicio</span><span class="o">.</span><span class="n">seleccionar</span><span class="p">(</span><span class="n">codigo</span><span class="p">)</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a>    <span class="o">...</span>
+</code></pre></div></td></tr></table></div>
+<p>Ese <code>servicio</code> <strong>vive en memoria mientras el proceso Python esté corriendo</strong>. Es la misma instancia que atiende a todas las peticiones. Su estado interno (<code>_saldo</code>, <code>_seleccion</code>) se acumula entre peticiones.</p>
+<h3 id="maquina-de-estados-en-el-servidor">Máquina de estados en el servidor<a class="headerlink" href="#maquina-de-estados-en-el-servidor" title="Permanent link">&para;</a></h3>
+<p>La máquina expendedora es una <strong>máquina de estados</strong>: no puedes comprar sin antes seleccionar un producto e insertar dinero. El orden importa.</p>
+<p>Al exponer esto en Flask, <strong>cada route es una transición de estado</strong>, no una transacción completa. El flujo de compra queda repartido en varias peticiones HTTP:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>GET /seleccionar/A1       → _seleccion = Item(A1)
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>GET /insertar/2.0         → _saldo += 2.0
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>GET /comprar              → compra con _seleccion y _saldo, reinicia
+</code></pre></div>
+<blockquote>
+<p>Entre una petición y la siguiente pueden pasar segundos o minutos. El navegador no guarda el estado; lo guarda el servidor dentro del objeto <code>servicio</code>.</p>
+</blockquote>
+<h3 id="problema-1-estado-compartido-entre-usuarios">Problema 1: estado compartido entre usuarios<a class="headerlink" href="#problema-1-estado-compartido-entre-usuarios" title="Permanent link">&para;</a></h3>
+<p>Como <code>servicio</code> es uno solo, si <strong>dos navegadores</strong> apuntan al mismo servidor a la vez, se pisan el estado. El usuario A hace <code>/seleccionar/A1</code>, y antes de que pulse <code>/comprar</code> el usuario B hace <code>/seleccionar/B2</code> — la selección queda como <code>B2</code> para todos. Cuando A pulse <code>/comprar</code>, comprará <code>B2</code>, no lo que pidió.</p>
+<p>Esto no es un fallo del dominio: el dominio está diseñado para <strong>un</strong> usuario. El fallo es asumir que ese único estado global puede servir a cualquier cantidad de clientes.</p>
+<h3 id="problema-2-estado-perdido-al-reiniciar">Problema 2: estado perdido al reiniciar<a class="headerlink" href="#problema-2-estado-perdido-al-reiniciar" title="Permanent link">&para;</a></h3>
+<p>El estado vive en la RAM del proceso. Si detienes el servidor con <code>Ctrl+C</code> y lo vuelves a arrancar, el <code>_saldo</code> y la <code>_seleccion</code> vuelven a cero. Lo único que sobrevive es lo que hay en disco: la base de datos SQLite con los productos.</p>
+<h3 id="hacia-donde-vamos">Hacia dónde vamos<a class="headerlink" href="#hacia-donde-vamos" title="Permanent link">&para;</a></h3>
+<p>Estos dos problemas no se resuelven en este lab; requieren herramientas que aún no hemos visto:</p>
+<ul>
+<li><strong>Persistencia del estado en fichero JSON</strong>. Si guardamos <code>_saldo</code> y <code>_seleccion</code> en un fichero tras cada operación, sobreviven al reinicio. Conecta con los apuntes de UT3 sobre ficheros y con la serialización JSON.</li>
+<li><strong>Sesiones HTTP</strong> (<code>flask.session</code>). Cada navegador obtiene una "cookie" que identifica su propio estado en el servidor. Resuelve el problema de usuarios concurrentes. Lo veremos cuando introduzcamos formularios.</li>
+</ul>
+<p>Por ahora basta con reconocer las limitaciones: la expendedora web, tal como está, <strong>es monousuario y volátil</strong>. Es honesto nombrarlo.</p>
+<hr />
+<h2 id="parametros-en-url-vs-formularios-html">Parámetros en URL vs formularios HTML<a class="headerlink" href="#parametros-en-url-vs-formularios-html" title="Permanent link">&para;</a></h2>
+<h3 id="los-limites-de-la-url-como-entrada-de-datos">Los límites de la URL como entrada de datos<a class="headerlink" href="#los-limites-de-la-url-como-entrada-de-datos" title="Permanent link">&para;</a></h3>
+<p>Hasta ahora, todas las entradas del usuario viajan en la URL: <code>/agregar/X1/Zumo/1.5/10</code>. Esto funciona para probar routes, pero tiene problemas serios para un usuario real.</p>
+<h4 id="legibilidad">Legibilidad<a class="headerlink" href="#legibilidad" title="Permanent link">&para;</a></h4>
+<p>Una URL como <code>/agregar_descuento/X1/Zumo/1.5/10/20.0</code> es <strong>ilegible</strong>. El orden de los parámetros es arbitrario y no se indica qué significa cada valor. Un error de orden (poner el porcentaje donde va la cantidad) se acepta sin avisar.</p>
+<h4 id="caracteres-especiales">Caracteres especiales<a class="headerlink" href="#caracteres-especiales" title="Permanent link">&para;</a></h4>
+<p>Los nombres con espacios, acentos o barras no se pueden poner tal cual en una URL: <code>"Zumo de naranja"</code> tiene que pasarse como <code>"Zumo%20de%20naranja"</code> (URL-encoding). El usuario no va a escribir eso a mano.</p>
+<h4 id="el-problema-del-separador-decimal">El problema del separador decimal<a class="headerlink" href="#el-problema-del-separador-decimal" title="Permanent link">&para;</a></h4>
+<p>Aquí entra un concepto del sistema operativo llamado <strong>locale</strong>. El <em>locale</em> es el conjunto de <strong>convenciones culturales</strong> que un sistema aplica: idioma de los mensajes, formato de las fechas, separador decimal, símbolo de moneda. Los <em>locales</em> se nombran con códigos como <code>es_ES</code> (español de España), <code>en_US</code> (inglés de EE. UU.) o <code>fr_FR</code> (francés de Francia).</p>
+<p>El detalle que nos afecta: en <code>es_ES</code> el separador decimal es la coma (<code>1,5</code>), mientras que en <code>en_US</code> y en la mayoría de lenguajes de programación es el punto (<code>1.5</code>). Flask —como todo Python— espera <strong>siempre el punto</strong> porque es la convención del código, independientemente del idioma del sistema operativo.</p>
+<p>Resultado: un usuario español que teclee <code>/agregar/X1/Zumo/1,5/10</code> obtendrá un 404 misterioso. Desde su punto de vista, "1,5" es un número válido; desde el punto de vista del converter de Flask, no matchea <code>\d+\.\d+</code>.</p>
+<h3 id="hacia-los-formularios-html">Hacia los formularios HTML<a class="headerlink" href="#hacia-los-formularios-html" title="Permanent link">&para;</a></h3>
+<p>En un próximo lab pasaremos a recoger los datos con <strong>formularios HTML</strong> (<code>&lt;form&gt;</code>). Cada campo del formulario tiene su propia casilla etiquetada, el navegador se encarga del encoding y los datos viajan en el cuerpo de la petición, no en la URL. Además, los formularios permiten validación en el cliente y una experiencia de usuario mucho más natural.</p>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Parámetros en URL</th>
+<th>Formularios HTML</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Legibilidad</td>
+<td>Baja: orden y separadores frágiles</td>
+<td>Alta: cada campo etiquetado</td>
+</tr>
+<tr>
+<td>Caracteres especiales</td>
+<td>Hay que codificar manualmente</td>
+<td>Gestionado por el navegador</td>
+</tr>
+<tr>
+<td>Separador decimal</td>
+<td>Obligatorio <code>.</code></td>
+<td>El <code>&lt;input type="number"&gt;</code> abstrae el formato</td>
+</tr>
+<tr>
+<td>Aptos para producción</td>
+<td>Solo para pruebas y lecturas simples</td>
+<td>Sí</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Por eso usar parámetros en la URL para <strong>lecturas</strong> (<code>/producto/A1</code>) es razonable, pero usarlos para <strong>altas</strong> (<code>/agregar/X1/Zumo/1.5/10</code>) es una solución provisional que reemplazaremos en el siguiente lab.</p>
+</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Antipatrón: rutas con decenas de parámetros en la URL</p>
+<p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1">## Incorrecto: URL imposible de construir a mano</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/editar/&lt;codigo&gt;/&lt;nombre&gt;/&lt;float:precio&gt;/&lt;int:cantidad&gt;/&lt;float:descuento&gt;/&lt;categoria&gt;&quot;</span><span class="p">)</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">editar</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">,</span> <span class="n">descuento</span><span class="p">,</span> <span class="n">categoria</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1">## Correcto (adelanto del lab a5)</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/editar/&lt;codigo&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">editar</span><span class="p">(</span><span class="n">codigo</span><span class="p">):</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="n">nombre</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">]</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="n">precio</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;precio&quot;</span><span class="p">])</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="o">...</span>
+</code></pre></div>
+La URL identifica el recurso; los datos van en el cuerpo del formulario.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ichigar
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/ichigar/web" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://codeberg.org/ichigar/pages" target="_blank" rel="noopener" title="Codeberg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.999.747A11.974 11.974 0 0 0 0 12.75c0 2.254.635 4.465 1.833 6.376L11.837 6.19c.072-.092.251-.092.323 0l4.178 5.402h-2.992l.065.239h3.113l.882 1.138h-3.674l.103.374h3.86l.777 1.003h-4.358l.135.483h4.593l.695.894h-5.038l.165.589h5.326l.609.785h-5.717l.182.65h6.038l.562.727h-6.397l.183.65h6.717A12 12 0 0 0 24 12.75 11.977 11.977 0 0 0 11.999.747m3.654 19.104.182.65h5.326c.173-.204.353-.433.513-.65zm.385 1.377.18.65h3.563c.233-.198.485-.428.712-.65zm.383 1.377.182.648h1.203c.356-.204.685-.412 1.042-.648z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/feed_rss_created.xml" target="_blank" rel="noopener" title="RSS" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../../assets/_markdown_exec_pyodide.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="../../../../javascripts/blog-class.js"></script>
+      
+    
+  </body>
+</html>

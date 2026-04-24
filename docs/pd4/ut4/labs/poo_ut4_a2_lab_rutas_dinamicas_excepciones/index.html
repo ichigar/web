@@ -1,0 +1,2495 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes y recursos de clase de SMR, ASIR y CE Python">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/pd4/ut4/labs/poo_ut4_a2_lab_rutas_dinamicas_excepciones/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Lab guiado: Rutas dinámicas, excepciones y cobertura completa de la API - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_ansi.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/footer-contrast.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/blog-terminal.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-guiado-rutas-dinamicas-excepciones-y-cobertura-completa-de-la-api" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab guiado: Rutas dinámicas, excepciones y cobertura completa de la API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../smr/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../asir/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../ce-python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../blog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/tutoriales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutoriales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../smr/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../asir/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pni/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../imw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../soj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../ce-python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#punto-de-partida" class="md-nav__link">
+    <span class="md-ellipsis">
+      Punto de partida
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-1-operaciones-de-lectura-busqueda-y-saldo-apppy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1 — Operaciones de lectura: búsqueda y saldo app.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 1 — Operaciones de lectura: búsqueda y saldo app.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pregunta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-2-tipos-en-parametros-de-url-apppy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2 — Tipos en parámetros de URL app.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 2 — Tipos en parámetros de URL app.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pregunta_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-3-el-koan-de-las-excepciones-reflexion-comprobacion-rapida" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3 — El kōan de las excepciones (reflexión + comprobación rápida)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 3 — El kōan de las excepciones (reflexión + comprobación rápida)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pregunta_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-4-redirect-y-url_for-tras-acciones-que-modifican-datos-apppy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4 — redirect y url_for tras acciones que modifican datos app.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 4 — redirect y url_for tras acciones que modifican datos app.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pregunta_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-5-routes-de-la-transaccion-de-compra-apppy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 5 — Routes de la transacción de compra app.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 5 — Routes de la transacción de compra app.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion-flujo-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación — flujo completo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion-arquitectonica-muy-importante" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión arquitectónica (muy importante)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reflexión arquitectónica (muy importante)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pregunta-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pregunta-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pregunta-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-6-routes-de-administracion-crud-apppy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 6 — Routes de administración (CRUD) app.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 6 — Routes de administración (CRUD) app.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pregunta_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-7-actualizar-la-documentacion-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 7 — Actualizar la documentación del proyecto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 7 — Actualizar la documentación del proyecto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changelogmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGELOG.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readmemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      README.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checklist-de-entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checklist de entrega
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemas-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problemas comunes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lab-guiado-rutas-dinamicas-excepciones-y-cobertura-completa-de-la-api">Lab guiado: Rutas dinámicas, excepciones y cobertura completa de la API<a class="headerlink" href="#lab-guiado-rutas-dinamicas-excepciones-y-cobertura-completa-de-la-api" title="Permanent link">&para;</a></h1>
+<ul>
+<li><strong>Unidad:</strong> UT4 — Interfaz web con Flask</li>
+<li><strong>Sesión:</strong> 2 — Rutas dinámicas, excepciones y cobertura completa de la API (parte 1 de 2; continúa en el lab a3).</li>
+<li><strong>Agrupamiento:</strong> Individual o en parejas conductor/navegante (igual que el lab a1).</li>
+<li><strong>Recursos:</strong><ul>
+<li><a href="https://ichigar.codeberg.page/pd4/ut4/recursos/poo_ut4_2_rutas_dinamicas_excepciones/">Apuntes UT4 sesión 2 — Rutas dinámicas y excepciones</a></li>
+<li><a href="https://flask.palletsprojects.com/en/stable/quickstart/#routing">Documentación Flask — Routing</a></li>
+<li><a href="https://ichigar.codeberg.page/pd4/ut3/recursos/poo_ut3_2_excepciones_y_repositorio/">Apuntes excepciones y repositorio SQLite</a></li>
+</ul>
+</li>
+<li><strong>Ficheros de trabajo:</strong><ul>
+<li><code>expendedora/presentation/app.py</code></li>
+<li><code>expendedora/application/servicios.py</code> (solo añadirás un método de delegación)</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="punto-de-partida">Punto de partida<a class="headerlink" href="#punto-de-partida" title="Permanent link">&para;</a></h2>
+<p>Parte del zip que entregaste al final del lab a1. Antes de empezar:</p>
+<ol>
+<li>Activa el entorno virtual del proyecto (<code>source .venv/bin/activate</code> en Linux/Mac, o <code>source .venv/Scripts/activate</code> en Git Bash de Windows).</li>
+<li>Sitúate en la carpeta padre de <code>expendedora/</code> (la misma desde la que arrancas el menú).</li>
+<li>Arranca el servidor web: <code>python -m expendedora.presentation.app</code>.</li>
+<li>Deja esa terminal con el servidor corriendo. Para probar las URLs abre el navegador en <code>http://localhost:5000</code> y, si necesitas ejecutar comandos, usa <strong>otra terminal distinta</strong>.</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Trabajo en parejas</p>
+<p>Si decides trabajar en pareja, sigue el procedimiento conductor/navegante del lab a1: conductor al teclado, navegante lee y detecta errores, rotáis al final de cada paso.</p>
+</div>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">Antes de empezar: repasemos los conceptos</p>
+<p><strong>Routes como equivalente del menú</strong><br />
+En <code>menu.py</code> cada opción del menú (<code>if opcion == "1"</code>) llama a una función distinta. En Flask cada route (<code>@app.route('/ruta')</code>) hace exactamente lo mismo: asocia una acción a una entrada del usuario, que ahora es una URL en lugar de un número.</p>
+<p><strong>Parámetros en la URL</strong><br />
+Flask permite capturar segmentos de la URL como variables: <code>@app.route('/producto/&lt;codigo&gt;')</code> captura el texto entre barras y lo pasa a la función. Se puede especificar el tipo: <code>&lt;int:cantidad&gt;</code>, <code>&lt;float:precio&gt;</code>.</p>
+<p><strong>Excepciones de dominio en el route</strong><br />
+El route es la capa de presentación. Las excepciones de dominio (<code>ProductoYaExisteError</code>, <code>ProductoNoEncontradoError</code>) se capturan aquí, igual que se capturaban en el bucle <code>main()</code> de <code>menu.py</code>. La capa de aplicación no cambia.</p>
+<p><strong>Código de respuesta HTTP</strong><br />
+Junto con el contenido, Flask puede devolver un código HTTP: <code>return "No encontrado", 404</code>. Los códigos más comunes: 200 (OK), 400 (petición incorrecta), 404 (no encontrado), 409 (conflicto, por ejemplo "ya existe"), 500 (error del servidor).</p>
+<p><strong><code>redirect</code> y <code>url_for</code></strong><br />
+Tras realizar una acción (comprar, añadir), es buena práctica redirigir al usuario a otra página en lugar de mostrar el resultado directamente. <code>url_for('nombre_funcion')</code> genera la URL correspondiente a esa función, de modo que si más adelante cambias la URL del route, los redirects no se rompen.</p>
+</div>
+<hr />
+<h2 id="paso-1-operaciones-de-lectura-busqueda-y-saldo-apppy">Paso 1 — Operaciones de lectura: búsqueda y saldo  <code>app.py</code><a class="headerlink" href="#paso-1-operaciones-de-lectura-busqueda-y-saldo-apppy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p>En el lab a1 ya creaste los routes de lectura más básicos: <code>/</code>, <code>/productos</code> y <code>/producto/&lt;codigo&gt;</code>. Ahora añadiremos los dos que faltan para cubrir todas las operaciones de <strong>consulta</strong> del menú: buscar por nombre y ver el saldo actual.</p>
+</div>
+<h3 id="objetivo"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h3>
+<p>Exponer como routes las dos operaciones de lectura que aún no tienen su equivalente web.</p>
+<h3 id="tarea"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea" title="Permanent link">&para;</a></h3>
+<p>Empezaremos por <strong>añadir un método de delegación</strong> en el servicio, porque <code>ServicioExpendedora</code> todavía no permite consultar el saldo desde fuera. Abre <code>expendedora/application/servicios.py</code> y añade, justo después de <code>insertar_dinero</code>:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">saldo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Devuelve el saldo actual insertado en la maquina.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maquina</span><span class="o">.</span><span class="n">saldo</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition info">
+<p class="admonition-title">¿Por qué tocamos <code>application/</code>?</p>
+<p>La propiedad <code>MaquinaExpendedora.saldo</code> ya existe en el dominio. Lo único que hacemos es exponerla en la capa de aplicación como delegación pura (una línea, sin lógica nueva). Así, el route podrá llamar a <code>servicio.saldo()</code> sin romper la regla de que la presentación solo conoce la capa de aplicación. Nada más cambia fuera de <code>presentation/</code>.</p>
+</div>
+<p>Ahora abre <code>expendedora/presentation/app.py</code> y, debajo del route <code>/producto/&lt;codigo&gt;</code> que creaste en el lab a1, añade los dos routes siguientes:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/buscar/&lt;texto&gt;&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">buscar</span><span class="p">(</span><span class="n">texto</span><span class="p">):</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="n">productos</span> <span class="o">=</span> <span class="n">servicio</span><span class="o">.</span><span class="n">buscar_producto</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">productos</span><span class="p">:</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;No hay coincidencias para &#39;</span><span class="si">{</span><span class="n">texto</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>    <span class="n">lineas</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">codigo</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2"> — </span><span class="si">{</span><span class="n">precio_final</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> EUR (</span><span class="si">{</span><span class="n">cantidad</span><span class="si">}</span><span class="s2"> uds.)&quot;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>        <span class="k">for</span> <span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">_precio_base</span><span class="p">,</span> <span class="n">precio_final</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">,</span> <span class="n">_descuento</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>        <span class="ow">in</span> <span class="n">productos</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>    <span class="p">]</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>    <span class="k">return</span> <span class="s1">&#39;&lt;br&gt;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lineas</span><span class="p">)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/saldo&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">saldo</span><span class="p">():</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a>    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Saldo actual: </span><span class="si">{</span><span class="n">servicio</span><span class="o">.</span><span class="n">saldo</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> EUR&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>Actualiza también el route <code>/</code> para que ofrezca enlaces a las rutas nuevas:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">inicio</span><span class="p">():</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;&lt;h1&gt;Expendedora&lt;/h1&gt;&#39;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>            <span class="s1">&#39;&lt;ul&gt;&#39;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>            <span class="s1">&#39;&lt;li&gt;&lt;a href=&quot;/productos&quot;&gt;Ver productos&lt;/a&gt;&lt;/li&gt;&#39;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>            <span class="s1">&#39;&lt;li&gt;&lt;a href=&quot;/saldo&quot;&gt;Ver saldo actual&lt;/a&gt;&lt;/li&gt;&#39;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>            <span class="s1">&#39;&lt;/ul&gt;&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<details class="tip">
+<summary>Pista</summary>
+<p><code>servicio.buscar_producto(texto)</code> devuelve una lista de tuplas con la misma estructura que <code>listar_productos()</code>: <code>(codigo, nombre, precio_base, precio_final, cantidad, porcentaje_descuento)</code>. Los guiones bajos delante de <code>_precio_base</code> y <code>_descuento</code> indican que no los usamos en el bucle, pero los capturamos porque están en la tupla.</p>
+</details>
+<h4 id="pregunta"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta<a class="headerlink" href="#pregunta" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>¿Por qué hemos añadido el método <code>saldo</code> en el servicio en lugar de escribir en el route <code>servicio._maquina.saldo</code>?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Porque la presentación solo debe conocer la capa de aplicación (el servicio). Acceder a <code>servicio._maquina</code> rompe la encapsulación de capas y delata un atributo privado (<code>_maquina</code>), que por convención en Python indica "no toques esto desde fuera". El método del servicio es una puerta oficial a esa información.</p>
+</details>
+<h4 id="comprobacion"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion" title="Permanent link">&para;</a></h4>
+<p>Prueba en el navegador:
+- <code>http://localhost:5000/buscar/agua</code> — debe mostrar los productos cuyo nombre contenga "agua".
+- <code>http://localhost:5000/buscar/xxxxxx</code> — debe mostrar "No hay coincidencias…".
+- <code>http://localhost:5000/saldo</code> — debe mostrar "Saldo actual: 0.00 EUR".
+- <code>http://localhost:5000/</code> — ahora con enlaces activos.</p>
+<h3 id="reflexion"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li>Cada operación del menú se convierte en un route; <code>buscar_producto</code> y <code>saldo</code> son los dos últimos de lectura que faltaban.</li>
+<li>El <code>saldo</code> del servicio es un método de delegación pura: no añade lógica, solo expone la capa de aplicación a la de presentación.</li>
+<li>Igual que en el menú, los textos largos se construyen con listas por comprensión y <code>join</code>, no concatenando strings uno a uno.</li>
+</ul>
+</details>
+<hr />
+<h2 id="paso-2-tipos-en-parametros-de-url-apppy">Paso 2 — Tipos en parámetros de URL  <code>app.py</code><a class="headerlink" href="#paso-2-tipos-en-parametros-de-url-apppy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p>Flask convierte automáticamente el tipo del parámetro si se especifica: <code>&lt;int:cantidad&gt;</code> garantiza que <code>cantidad</code> llegará como entero a la función. Si el usuario escribe algo que no sea un entero, Flask devuelve 404 automáticamente. Lo mismo ocurre con <code>&lt;float:cantidad&gt;</code>.</p>
+</div>
+<h3 id="objetivo_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_1" title="Permanent link">&para;</a></h3>
+<p>Añadir los routes de <strong>insertar dinero</strong> y <strong>reponer stock</strong>, usando tipos explícitos, y comprobar dónde termina la validación de Flask y empieza la del dominio.</p>
+<h3 id="tarea_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_1" title="Permanent link">&para;</a></h3>
+<p>Añade a <code>app.py</code> los dos routes:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/insertar/&lt;float:cantidad&gt;&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">insertar</span><span class="p">(</span><span class="n">cantidad</span><span class="p">):</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>        <span class="n">servicio</span><span class="o">.</span><span class="n">insertar_dinero</span><span class="p">(</span><span class="n">cantidad</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Saldo actualizado: </span><span class="si">{</span><span class="n">servicio</span><span class="o">.</span><span class="n">saldo</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> EUR&quot;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">400</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/reponer/&lt;codigo&gt;/&lt;int:unidades&gt;&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">reponer</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">unidades</span><span class="p">):</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>        <span class="n">servicio</span><span class="o">.</span><span class="n">reponer</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">unidades</span><span class="p">)</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Reposición realizada: +</span><span class="si">{</span><span class="n">unidades</span><span class="si">}</span><span class="s2"> unidades de </span><span class="si">{</span><span class="n">codigo</span><span class="si">}</span><span class="s2">.&quot;</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>    <span class="k">except</span> <span class="n">ProductoNoEncontradoError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">404</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">400</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition info">
+<p class="admonition-title">Import que necesitas</p>
+<p>Asegúrate de que al inicio del fichero tienes ya importada la excepción. Si no la tienes (debería estar desde el lab a1), añádela junto a los demás imports:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">expendedora.infrastructure.errores</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProductoNoEncontradoError</span>
+</code></pre></div>
+</div>
+<p>Antes de ejecutar, <strong>predice</strong> qué ocurrirá en cada caso y escríbelo:</p>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Tu predicción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/insertar/1.5</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>/insertar/1</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>/insertar/uno</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>/insertar/-1.5</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>/reponer/A1/3</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>/reponer/A1/tres</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>/reponer/A1/-1</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>/producto/</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Luego pruébalas y completa la tabla con el resultado real.</p>
+<details class="tip">
+<summary>Pista — converters más estrictos de lo que parecen</summary>
+<p>Los converters <code>&lt;int:&gt;</code> y <code>&lt;float:&gt;</code> de Flask son más estrictos de lo que sugiere su nombre. Por debajo usan expresiones regulares muy concretas:</p>
+<ul>
+<li><code>&lt;int:x&gt;</code> acepta solo dígitos (<code>\d+</code>): no acepta signo menos, ni decimales.</li>
+<li><code>&lt;float:x&gt;</code> acepta dígitos-punto-dígitos (<code>\d+\.\d+</code>): <strong>no acepta enteros sin decimal</strong>, ni signo menos.</li>
+</ul>
+<p>Por tanto:</p>
+<ul>
+<li><code>/insertar/1</code> → <strong>404</strong> (no matchea <code>&lt;float&gt;</code> porque falta el <code>.x</code>).</li>
+<li><code>/insertar/-1.5</code> → <strong>404</strong> (no matchea <code>&lt;float&gt;</code> porque empieza con <code>-</code>).</li>
+<li><code>/reponer/A1/-1</code> → <strong>404</strong> (no matchea <code>&lt;int&gt;</code>).</li>
+<li><code>/reponer/A1/tres</code> → <strong>404</strong> (no matchea <code>&lt;int&gt;</code>).</li>
+<li><code>/producto/</code> (sin parámetro) → <strong>404</strong> (no coincide con ninguna ruta).</li>
+</ul>
+<p>Esto significa que los <code>except ValueError</code> del route para "cantidad negativa" <strong>no se activarán</strong> con los converters estándar: Flask rechaza antes. Son una red de seguridad por si en el futuro cambias el converter por uno personalizado que sí deje pasar negativos, o aceptas el parámetro como string y lo conviertes a mano.</p>
+<p>Si quieres que el dominio reciba los valores inválidos y responda 400 (para ver el mensaje específico), tendrías que usar <code>&lt;string:x&gt;</code> y convertir el tipo dentro del route. En un lab posterior con formularios veremos la alternativa elegante: los formularios HTML permiten que el dominio valide todo sin que Flask filtre antes.</p>
+</details>
+<h4 id="pregunta_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta<a class="headerlink" href="#pregunta_1" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>¿Quién debería rechazar una cantidad negativa desde el punto de vista arquitectónico: Flask, el route, el servicio o el dominio? ¿Por qué?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Conceptualmente, el <strong>dominio</strong>, porque "no se puede insertar una cantidad negativa de dinero" o "no se puede reponer unidades negativas" son reglas de negocio, no problemas de formato. Sin embargo, con los converters estándar de Flask nunca llega al dominio porque la propia regex lo filtra antes: el resultado es un 404 en lugar del 400 que devolvería el dominio. Ambas respuestas son válidas, pero el 400 es más informativo (incluye el mensaje de por qué). Por eso en labs posteriores, cuando usemos formularios HTML, dejaremos que Flask acepte cualquier texto y sea el dominio quien rechace — así el mensaje de error llega al usuario.</p>
+</details>
+<h4 id="comprobacion_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion_1" title="Permanent link">&para;</a></h4>
+<p>Rellena la tabla de predicciones y compara con los resultados reales. Anota las diferencias y por qué ocurrieron.</p>
+<h3 id="reflexion_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_1" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li><code>&lt;int:x&gt;</code> y <code>&lt;float:x&gt;</code> validan el formato con regex estrictas: solo aceptan la forma literal (dígitos para int, dígitos-punto-dígitos para float).</li>
+<li>Cualquier cosa que no matchee la regex provoca un <strong>404 de Flask</strong>, no llega al route.</li>
+<li>La validación de negocio vive en el dominio, pero solo se ejecuta con valores que Flask ha dejado pasar. Con converters más permisivos (o <code>&lt;string&gt;</code> + conversión manual), el dominio recuperaría el control.</li>
+</ul>
+</details>
+<hr />
+<h2 id="paso-3-el-koan-de-las-excepciones-reflexion-comprobacion-rapida">Paso 3 — El kōan de las excepciones  <em>(reflexión + comprobación rápida)</em><a class="headerlink" href="#paso-3-el-koan-de-las-excepciones-reflexion-comprobacion-rapida" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p>Un <strong>kōan</strong> es una pregunta zen sin respuesta inmediata, pensada para forzar el análisis. Este paso no tiene código nuevo: es un ejercicio de análisis arquitectónico que prepara las decisiones de diseño del resto del lab.</p>
+</div>
+<h3 id="objetivo_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_2" title="Permanent link">&para;</a></h3>
+<p>Decidir conscientemente dónde debe ir el manejo de excepciones en una app Flask.</p>
+<h3 id="tarea_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_2" title="Permanent link">&para;</a></h3>
+<p>Responde <strong>por escrito</strong> a estas preguntas. Si trabajas en pareja, respondedlas juntos.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>1. En menu.py, ¿en qué función está el try/except que captura
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>   ProductoYaExisteError? (¿En opcion_agregar? ¿En ServicioExpendedora?
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>   ¿En el repositorio?)
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>2. En Flask, ¿ese try/except debería estar en el route, en servicios.py
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>   o en el repositorio? Justifica tu respuesta.
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>3. ¿Qué pasaría si pusieras el try/except dentro de servicios.py en lugar
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>   del route? ¿Qué información perdería la presentación?
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>4. ¿Qué pasaría si no capturas la excepción en ningún sitio?
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>   Pruébalo: quita temporalmente el try/except del route /reponer
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>   y pide una URL con código inexistente.
+</code></pre></div>
+<h4 id="pregunta_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta<a class="headerlink" href="#pregunta_2" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>El route es la capa de presentación. ¿Qué hace la presentación con las excepciones de dominio que recibe?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Las transforma en mensajes para el usuario. En consola era <code>print("X " + str(e))</code>. En Flask es <code>return str(e), 400</code>. La excepción no cambia — solo cambia cómo se muestra al usuario.</p>
+</details>
+<h4 id="comprobacion_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion_2" title="Permanent link">&para;</a></h4>
+<p>Prueba qué muestra Flask cuando no hay try/except y ocurre un error. Observa el traceback en el navegador (que funciona gracias al <code>debug=True</code> que viene activado desde a1). Después <strong>restablece el try/except</strong> para que el route siga siendo robusto.</p>
+<h3 id="reflexion_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_2" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li>El try/except de excepciones de dominio pertenece al route (presentación).</li>
+<li><code>servicios.py</code> no captura excepciones de dominio — las deja subir para que las capture quien sabe cómo mostrarlas.</li>
+<li>Sin manejo, Flask muestra un error 500 con el traceback completo (solo en modo debug; en producción sería una página en blanco de error).</li>
+</ul>
+</details>
+<hr />
+<h2 id="paso-4-redirect-y-url_for-tras-acciones-que-modifican-datos-apppy">Paso 4 — <code>redirect</code> y <code>url_for</code> tras acciones que modifican datos  <code>app.py</code><a class="headerlink" href="#paso-4-redirect-y-url_for-tras-acciones-que-modifican-datos-apppy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p>Después de una acción (reponer, comprar, agregar), redirigir al usuario evita que recargue la página y repita la acción sin querer. <code>url_for('nombre_funcion')</code> genera la URL correcta a partir del <strong>nombre de la función</strong> del route, de modo que si mañana cambias la URL del route, los redirects siguen funcionando.</p>
+</div>
+<h3 id="objetivo_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_3" title="Permanent link">&para;</a></h3>
+<p>Añadir redirección en el route <code>/reponer</code> para que el usuario vea inmediatamente el stock actualizado.</p>
+<h3 id="tarea_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_3" title="Permanent link">&para;</a></h3>
+<p>Modifica el route <code>/reponer</code> para que, tras reponer, redirija a <code>/producto/&lt;codigo&gt;</code>:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="hll"><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">url_for</span>
+</span><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="c1"># ... (junto a los demás imports del principio del fichero)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/reponer/&lt;codigo&gt;/&lt;int:unidades&gt;&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">reponer</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">unidades</span><span class="p">):</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>        <span class="n">servicio</span><span class="o">.</span><span class="n">reponer</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">unidades</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;ver_producto&#39;</span><span class="p">,</span> <span class="n">codigo</span><span class="o">=</span><span class="n">codigo</span><span class="p">))</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="hll">    <span class="k">except</span> <span class="n">ProductoNoEncontradoError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><a id="__codelineno-6-10" name="__codelineno-6-10"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">404</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">400</span>
+</code></pre></div></td></tr></table></div>
+<details class="tip">
+<summary>Pista</summary>
+<p><code>url_for('ver_producto', codigo=codigo)</code> genera <code>/producto/A1</code> si <code>codigo='A1'</code>. El primer argumento es el <strong>nombre de la función</strong> (<code>ver_producto</code>), no la URL. Si más adelante decides cambiar <code>@app.route('/producto/&lt;codigo&gt;')</code> por <code>@app.route('/item/&lt;codigo&gt;')</code>, todos los <code>url_for('ver_producto', …)</code> se actualizan solos. Un string hardcodeado como <code>f'/producto/{codigo}'</code> se rompería.</p>
+</details>
+<h4 id="pregunta_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta<a class="headerlink" href="#pregunta_3" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>¿Por qué es mejor usar <code>url_for('ver_producto', codigo=codigo)</code> que escribir directamente <code>f'/producto/{codigo}'</code>?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Porque <code>url_for</code> es robusto ante cambios en las URLs. Las URLs pueden evolucionar (por ejemplo, añadir un prefijo <code>/api/</code> o versionado <code>/v1/</code>); los nombres de función son más estables. Este desacoplamiento es uno de los motivos por los que Flask trabaja con nombres de función y no con strings de URL.</p>
+</details>
+<h4 id="comprobacion_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion_3" title="Permanent link">&para;</a></h4>
+<p>Tras <code>/reponer/A1/5</code>, el navegador debe acabar mostrando <code>/producto/A1</code> con el stock incrementado en 5.</p>
+<h3 id="reflexion_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_3" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li><code>redirect</code> devuelve una respuesta HTTP 302 que indica al navegador qué URL cargar a continuación.</li>
+<li><code>url_for</code> desacopla el código de las URLs concretas, usando nombres de función.</li>
+<li>El patrón "actúa → redirige" evita reenvíos accidentales al recargar la página.</li>
+</ul>
+</details>
+<hr />
+<h2 id="paso-5-routes-de-la-transaccion-de-compra-apppy">Paso 5 — Routes de la transacción de compra  <code>app.py</code><a class="headerlink" href="#paso-5-routes-de-la-transaccion-de-compra-apppy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p>La expendedora es una <strong>máquina de estados</strong>: para comprar, primero se selecciona un producto, luego se inserta dinero y finalmente se confirma la compra. Los routes que ahora vamos a crear reflejan <strong>cada transición de estado</strong> como una URL independiente.</p>
+</div>
+<h3 id="objetivo_4"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_4" title="Permanent link">&para;</a></h3>
+<p>Cubrir las cuatro operaciones transaccionales del menú: seleccionar, insertar (ya hecho en Paso 2), comprar y cancelar.</p>
+<h3 id="tarea_4"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_4" title="Permanent link">&para;</a></h3>
+<p>Añade los tres routes que faltan:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span>
+<span class="normal"><a href="#__codelineno-7-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/seleccionar/&lt;codigo&gt;&#39;</span><span class="p">)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">seleccionar</span><span class="p">(</span><span class="n">codigo</span><span class="p">):</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>        <span class="n">servicio</span><span class="o">.</span><span class="n">seleccionar</span><span class="p">(</span><span class="n">codigo</span><span class="p">)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;ver_producto&#39;</span><span class="p">,</span> <span class="n">codigo</span><span class="o">=</span><span class="n">codigo</span><span class="p">))</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>    <span class="k">except</span> <span class="n">ProductoNoEncontradoError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">404</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/comprar&#39;</span><span class="p">)</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">comprar</span><span class="p">():</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a>        <span class="n">cambio</span> <span class="o">=</span> <span class="n">servicio</span><span class="o">.</span><span class="n">comprar</span><span class="p">()</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a>        <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Compra realizada. Cambio: </span><span class="si">{</span><span class="n">cambio</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> EUR. &quot;</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a>                <span class="sa">f</span><span class="s2">&quot;&lt;a href=&#39;/&#39;&gt;Volver&lt;/a&gt;&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">400</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18"></a>
+<a id="__codelineno-7-19" name="__codelineno-7-19"></a>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/cancelar&#39;</span><span class="p">)</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21"></a><span class="k">def</span><span class="w"> </span><span class="nf">cancelar</span><span class="p">():</span>
+<a id="__codelineno-7-22" name="__codelineno-7-22"></a>    <span class="n">devuelto</span> <span class="o">=</span> <span class="n">servicio</span><span class="o">.</span><span class="n">cancelar</span><span class="p">()</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23"></a>    <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Operación cancelada. Devuelto: </span><span class="si">{</span><span class="n">devuelto</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> EUR. &quot;</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24"></a>            <span class="sa">f</span><span class="s2">&quot;&lt;a href=&#39;/&#39;&gt;Volver&lt;/a&gt;&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition info">
+<p class="admonition-title">Fíjate en <code>/cancelar</code></p>
+<p><code>servicio.cancelar()</code> no lanza excepciones (no hay nada que validar: si no hay saldo, devuelve 0). Por eso su route no tiene <code>try/except</code>: solo captura excepciones cuando realmente pueden ocurrir.</p>
+</div>
+<h4 id="comprobacion-flujo-completo"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación — flujo completo<a class="headerlink" href="#comprobacion-flujo-completo" title="Permanent link">&para;</a></h4>
+<p>Prueba la secuencia de compra completa, en orden, en el navegador:</p>
+<ol>
+<li><code>http://localhost:5000/seleccionar/A1</code> → redirige a <code>/producto/A1</code>.</li>
+<li><code>http://localhost:5000/insertar/2.0</code> → muestra <code>Saldo actualizado: 2.00 EUR</code>.</li>
+<li><code>http://localhost:5000/saldo</code> → confirma el saldo.</li>
+<li><code>http://localhost:5000/comprar</code> → muestra el cambio.</li>
+<li>Prueba ahora <code>http://localhost:5000/comprar</code> sin haber seleccionado antes → debes obtener 400 con el mensaje "No hay producto seleccionado".</li>
+<li>Prueba <code>/seleccionar/A1</code> + <code>/cancelar</code> → debe devolver el saldo acumulado.</li>
+</ol>
+<h3 id="reflexion_4"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_4" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li>Cada route representa una transición de la máquina de estados, no una transacción completa.</li>
+<li>El servidor Flask mantiene el estado (<code>_seleccion</code>, <code>_saldo</code>) en la instancia global <code>servicio</code>.</li>
+<li>La misma excepción <code>ValueError</code> cubre varios casos (no hay selección, saldo insuficiente, stock agotado): el dominio pone el mensaje adecuado y el route lo transmite.</li>
+</ul>
+</details>
+<h3 id="reflexion-arquitectonica-muy-importante"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión arquitectónica (muy importante)<a class="headerlink" href="#reflexion-arquitectonica-muy-importante" title="Permanent link">&para;</a></h3>
+<p>Responde a las siguientes preguntas. Son la clave para entender qué falta todavía en esta aplicación:</p>
+<h4 id="pregunta-1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta 1<a class="headerlink" href="#pregunta-1" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>Si <strong>dos usuarios distintos</strong> abren la web a la vez, uno hace <code>/seleccionar/A1</code> y el otro <code>/seleccionar/B2</code> justo después, ¿qué pasará cuando el primer usuario pulse <code>/comprar</code>?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p>El <code>servicio</code> es una variable global única en el proceso de Flask. <code>_seleccion</code> ha sido sobrescrita por el segundo usuario, así que cuando el primer usuario ejecuta <code>/comprar</code>, comprará <strong>B2</strong>, no A1. Los dos usuarios se pisan el estado.</p>
+</details>
+<h4 id="pregunta-2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta 2<a class="headerlink" href="#pregunta-2" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>Si detienes el servidor con <code>Ctrl+C</code> y vuelves a arrancarlo, ¿qué ocurre con el saldo que tuvieras insertado?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Se pierde. El estado de la máquina (<code>_saldo</code>, <code>_seleccion</code>) vive en la memoria del proceso Python; al morir el proceso, muere el estado. Lo único persistente es la base de datos SQLite (los productos), porque ahí sí hay escritura a disco.</p>
+</details>
+<h4 id="pregunta-3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta 3<a class="headerlink" href="#pregunta-3" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>A lo largo del curso ya hemos trabajado con <strong>ficheros</strong> (lectura/escritura, JSON). ¿Cómo podríamos resolver los dos problemas anteriores: que el estado sobreviva al reinicio y que cada usuario tenga el suyo?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Son dos problemas distintos con soluciones complementarias:</p>
+<ul>
+<li><strong>Persistir el estado en un fichero JSON</strong> (por ejemplo, <code>estado.json</code> con <code>{"saldo": 0.0, "seleccion": "A1"}</code>). Resuelve el problema del reinicio: el estado sobrevive al <code>Ctrl+C</code>. Esto lo veremos en una práctica futura, y es un buen pretexto para repasar <code>json.load</code>, <code>json.dump</code> y gestión de ficheros con <code>with</code>.</li>
+<li><strong>Sesiones HTTP</strong> (<code>flask.session</code>). Resuelve el problema de los usuarios concurrentes: cada navegador tendría su propio estado sin pisar el de los demás. Esto lo veremos cuando toquemos formularios y autenticación.</li>
+</ul>
+</details>
+<p>Estas limitaciones no son un fallo del diseño del dominio — son un síntoma de que la web multiusuario pide mecanismos que todavía no hemos visto. Tenlas presentes: las resolveremos progresivamente.</p>
+<hr />
+<h2 id="paso-6-routes-de-administracion-crud-apppy">Paso 6 — Routes de administración (CRUD)  <code>app.py</code><a class="headerlink" href="#paso-6-routes-de-administracion-crud-apppy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p>Nos faltan las operaciones administrativas del menú: agregar productos (con y sin descuento) y eliminar. Aquí usaremos códigos HTTP más precisos que un genérico 400: el <strong>409 (Conflict)</strong> indica "no se puede procesar porque entra en conflicto con el estado actual del servidor" — por ejemplo, intentar crear un producto con un código que ya existe.</p>
+</div>
+<h3 id="objetivo_5"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_5" title="Permanent link">&para;</a></h3>
+<p>Exponer las operaciones de alta, alta con descuento y baja de productos. Completar la API que deja cubierto todo el menú.</p>
+<h3 id="tarea_5"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_5" title="Permanent link">&para;</a></h3>
+<p>Al inicio del fichero, asegúrate de importar también la excepción de alta duplicada:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">expendedora.infrastructure.errores</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>    <span class="n">ProductoNoEncontradoError</span><span class="p">,</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>    <span class="n">ProductoYaExisteError</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Luego añade los tres routes:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span>
+<span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span>
+<span class="normal"><a href="#__codelineno-9-26">26</a></span>
+<span class="normal"><a href="#__codelineno-9-27">27</a></span>
+<span class="normal"><a href="#__codelineno-9-28">28</a></span>
+<span class="normal"><a href="#__codelineno-9-29">29</a></span>
+<span class="normal"><a href="#__codelineno-9-30">30</a></span>
+<span class="normal"><a href="#__codelineno-9-31">31</a></span>
+<span class="normal"><a href="#__codelineno-9-32">32</a></span>
+<span class="normal"><a href="#__codelineno-9-33">33</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/agregar/&lt;codigo&gt;/&lt;nombre&gt;/&lt;float:precio&gt;/&lt;int:cantidad&gt;&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">agregar</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">):</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>        <span class="n">servicio</span><span class="o">.</span><span class="n">agregar_producto</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;ver_producto&#39;</span><span class="p">,</span> <span class="n">codigo</span><span class="o">=</span><span class="n">codigo</span><span class="p">))</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a>    <span class="k">except</span> <span class="n">ProductoYaExisteError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">409</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">400</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a>    <span class="s1">&#39;/agregar_descuento/&lt;codigo&gt;/&lt;nombre&gt;/&lt;float:precio&gt;/&lt;int:cantidad&gt;/&lt;float:porcentaje&gt;&#39;</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="p">)</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">agregar_descuento</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">,</span> <span class="n">porcentaje</span><span class="p">):</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a>        <span class="n">servicio</span><span class="o">.</span><span class="n">agregar_producto_con_descuento</span><span class="p">(</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18"></a>            <span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">,</span> <span class="n">porcentaje</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19"></a>        <span class="p">)</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20"></a>        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;ver_producto&#39;</span><span class="p">,</span> <span class="n">codigo</span><span class="o">=</span><span class="n">codigo</span><span class="p">))</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21"></a>    <span class="k">except</span> <span class="n">ProductoYaExisteError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">409</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23"></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">400</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25"></a>
+<a id="__codelineno-9-26" name="__codelineno-9-26"></a>
+<a id="__codelineno-9-27" name="__codelineno-9-27"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/eliminar/&lt;codigo&gt;&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28"></a><span class="k">def</span><span class="w"> </span><span class="nf">eliminar</span><span class="p">(</span><span class="n">codigo</span><span class="p">):</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30"></a>        <span class="n">servicio</span><span class="o">.</span><span class="n">eliminar_producto</span><span class="p">(</span><span class="n">codigo</span><span class="p">)</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Producto </span><span class="si">{</span><span class="n">codigo</span><span class="si">}</span><span class="s2"> eliminado. &lt;a href=&#39;/productos&#39;&gt;Ver lista&lt;/a&gt;&quot;</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32"></a>    <span class="k">except</span> <span class="n">ProductoNoEncontradoError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">404</span>
+</code></pre></div></td></tr></table></div>
+<details class="tip">
+<summary>Pista sobre el código 409</summary>
+<p>Los códigos HTTP no son arbitrarios. <strong>409 (Conflict)</strong> describe mejor "no se puede crear porque ya existe un producto con ese código" que un 400 genérico. 404 se reserva para recursos no encontrados (lecturas). Para validación de datos, el 400 sigue siendo correcto.</p>
+<p><strong>¿Cómo distinguir entre 400 y 409 cuando la regla la impone el dominio?</strong> La clave no es "es lógica de negocio" sino <strong>qué hace fallar la petición</strong>:</p>
+<ul>
+<li><strong>400 — los datos son inválidos en sí mismos.</strong> Ejemplos: <code>precio = 0</code>, cantidad negativa, email sin <code>@</code>. Repetir la misma petición seguirá fallando — el problema está <strong>en lo que mandas</strong>.</li>
+<li><strong>409 — los datos son válidos, pero chocan con el estado actual del servidor.</strong> Ejemplo: alta con código <code>A1</code> cuando ya hay un <code>A1</code>. Si alguien borra <code>A1</code>, la misma petición funcionaría — el problema está <strong>en el estado</strong>, no en los datos.</li>
+</ul>
+<p>Regla rápida: ¿si otro usuario cambia algo en el servidor, tu petición podría funcionar sin cambiar nada? Entonces es <code>409</code>. ¿Seguiría fallando hagas lo que hagas en el servidor? Entonces es <code>400</code>.</p>
+</details>
+<h4 id="comprobacion_4"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>http://localhost:5000/agregar/X1/Zumo/1.5/10</code> → redirige a <code>/producto/X1</code> con el producto recién creado.</li>
+<li>Repite la misma URL → debes obtener 409 con mensaje de "ya existe".</li>
+<li><code>http://localhost:5000/agregar/X2/Agua/0.0/5</code> → 400 (precio &lt;= 0, lo rechaza el dominio). Nota: ponemos <code>0.0</code> y no <code>0</code> porque Flask exige el punto decimal para aceptarlo como <code>&lt;float&gt;</code>; si pusieras <code>0</code> obtendrías un 404 antes de llegar al dominio (ver Paso 2).</li>
+<li><code>http://localhost:5000/agregar_descuento/X3/Promo/2.0/10/20.0</code> → producto con 20% de descuento.</li>
+<li><code>http://localhost:5000/eliminar/X1</code> → mensaje de eliminación.</li>
+<li><code>http://localhost:5000/eliminar/ZZZ</code> → 404.</li>
+</ul>
+<h4 id="pregunta_4"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta<a class="headerlink" href="#pregunta_4" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>Acabas de meter un decimal (<code>1.5</code>) en una URL. ¿Qué problemas ves para un usuario real?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<ul>
+<li>Es <strong>difícil de escribir</strong>: <code>/agregar/X1/Zumo/1.5/10</code> no es algo que ningún usuario vaya a teclear en la barra del navegador.</li>
+<li>Es <strong>fácil equivocarse</strong> al copiar valores, y los errores (un espacio, un carácter especial en el nombre) no se pueden corregir sin reescribir toda la URL.</li>
+<li>El <strong>separador decimal</strong> no es universal: en español escribimos "1,5" pero Flask espera "1.5" porque es la convención de los lenguajes de programación. Esta diferencia — lo que el sistema operativo considera "el formato correcto de un número" según el idioma configurado, algo a lo que se llama <em>locale</em> — hace que la misma URL pueda parecer incorrecta a un usuario.</li>
+</ul>
+<p>Por eso, en el siguiente lab usaremos <strong>formularios HTML con <code>&lt;form method="post"&gt;</code></strong>, que son la forma correcta de introducir datos desde el navegador: cada campo tiene su propia casilla, el usuario no tiene que escribir URLs a mano y los datos viajan por el cuerpo de la petición, no por la URL.</p>
+</details>
+<h3 id="reflexion_5"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_5" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li><code>agregar_producto</code> y <code>agregar_producto_con_descuento</code> son dos casos de uso separados en el dominio: el route también los separa.</li>
+<li>Mismo patrón en los tres: <code>try</code> → operación del servicio → <code>redirect</code> o mensaje; <code>except</code> → código HTTP apropiado.</li>
+<li>Todas estas operaciones son de admin; en una app real estarían protegidas por login. Eso lo veremos en labs posteriores.</li>
+</ul>
+</details>
+<hr />
+<h2 id="paso-7-actualizar-la-documentacion-del-proyecto">Paso 7 — Actualizar la documentación del proyecto<a class="headerlink" href="#paso-7-actualizar-la-documentacion-del-proyecto" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p>Un proyecto bien mantenido tiene su documentación sincronizada con el código. Igual que en el lab a1, cerramos este lab dejando los ficheros de documentación al día con los cambios que hemos introducido.</p>
+</div>
+<h3 id="objetivo_6"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_6" title="Permanent link">&para;</a></h3>
+<p>Dejar <code>CHANGELOG.md</code> y <code>README.md</code> reflejando la cobertura completa de la API del dominio en routes y el nuevo método <code>saldo()</code> del servicio.</p>
+<h3 id="tarea_6"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_6" title="Permanent link">&para;</a></h3>
+<h4 id="changelogmd"><code>CHANGELOG.md</code><a class="headerlink" href="#changelogmd" title="Permanent link">&para;</a></h4>
+<p>Añade una entrada nueva al inicio del fichero:</p>
+<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gu">## [0.6.0] - (Fase 06: API del dominio completa en routes)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="gu">### Added</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">-</span><span class="w"> </span><span class="sb">`presentation/app.py`</span>: routes de lectura <span class="sb">`/buscar/&lt;texto&gt;`</span> y <span class="sb">`/saldo`</span>.
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">-</span><span class="w"> </span><span class="sb">`presentation/app.py`</span>: routes de la máquina de estados <span class="sb">`/seleccionar/&lt;codigo&gt;`</span>, <span class="sb">`/insertar/&lt;float:cantidad&gt;`</span>, <span class="sb">`/comprar`</span>, <span class="sb">`/cancelar`</span>.
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">-</span><span class="w"> </span><span class="sb">`presentation/app.py`</span>: routes de administración <span class="sb">`/agregar/&lt;codigo&gt;/&lt;nombre&gt;/&lt;float:precio&gt;/&lt;int:cantidad&gt;`</span>, <span class="sb">`/agregar_descuento/...`</span>, <span class="sb">`/eliminar/&lt;codigo&gt;`</span>, <span class="sb">`/reponer/&lt;codigo&gt;/&lt;int:unidades&gt;`</span>.
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="gu">### Changed</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="k">-</span><span class="w"> </span><span class="sb">`application/servicios.py`</span>: añadido <span class="sb">`saldo()`</span> como delegación pura en <span class="sb">`MaquinaExpendedora.saldo`</span> (antes no había forma de leer el saldo desde fuera del servicio).
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="k">-</span><span class="w"> </span><span class="sb">`presentation/app.py`</span>: el route <span class="sb">`/`</span> ahora ofrece enlaces a las rutas principales.
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">¿Por qué <code>0.6.0</code> y no <code>0.5.1</code>?</p>
+<p>El proyecto usa <a href="https://semver.org/lang/es/"><strong>Semantic Versioning</strong></a> (SemVer), con el formato <code>MAYOR.MENOR.PARCHE</code>:</p>
+<ul>
+<li><strong>PARCHE</strong> (<code>0.5.0 → 0.5.1</code>) se reserva para <strong>correcciones de errores</strong> compatibles hacia atrás: un bug arreglado, una errata en la documentación, un mensaje de error retocado. <strong>No añade funcionalidad</strong>.</li>
+<li><strong>MENOR</strong> (<code>0.5.0 → 0.6.0</code>) se usa cuando <strong>añades funcionalidad nueva</strong> sin romper lo anterior. Es justo lo que hace este lab: diez routes nuevos y un método nuevo en el servicio, pero <code>menu.py</code> y todo lo anterior sigue funcionando igual.</li>
+<li><strong>MAYOR</strong> (<code>0.5.0 → 1.0.0</code>) indica <strong>cambios incompatibles</strong> que rompen a los usuarios actuales del código. No es el caso aquí.</li>
+</ul>
+<p>Por eso toca saltar a <code>0.6.0</code>. Dejamos <code>0.5.1</code>, <code>0.5.2</code>... libres para cuando necesitemos arreglar bugs reales en la versión 0.5.</p>
+</div>
+<h4 id="readmemd"><code>README.md</code><a class="headerlink" href="#readmemd" title="Permanent link">&para;</a></h4>
+<p>En la sección <strong>Uso (interfaz web)</strong>, sustituye el listado actual de rutas por el nuevo con toda la API:</p>
+<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gu">## Uso (interfaz web)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Ejecuta desde la carpeta padre que contiene el paquete <span class="sb">`expendedora/`</span>:
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="sb">```bash</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>python<span class="w"> </span>-m<span class="w"> </span>expendedora.presentation.app
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="sb">```</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>Abre <span class="sb">`http://localhost:5000`</span> en el navegador. Rutas disponibles:
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="gs">**Lectura:**</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="k">-</span><span class="w"> </span><span class="sb">`/`</span> — enlaces a las rutas principales.
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="k">-</span><span class="w"> </span><span class="sb">`/productos`</span> — lista todos los productos.
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="k">-</span><span class="w"> </span><span class="sb">`/producto/&lt;codigo&gt;`</span> — detalle de un producto (404 si no existe).
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="k">-</span><span class="w"> </span><span class="sb">`/buscar/&lt;texto&gt;`</span> — productos cuyo nombre contiene el texto.
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="k">-</span><span class="w"> </span><span class="sb">`/saldo`</span> — saldo actual de la máquina.
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="gs">**Transacción (máquina de estados):**</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="k">-</span><span class="w"> </span><span class="sb">`/seleccionar/&lt;codigo&gt;`</span> — selecciona un producto.
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="k">-</span><span class="w"> </span><span class="sb">`/insertar/&lt;float:cantidad&gt;`</span> — añade dinero al saldo.
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="k">-</span><span class="w"> </span><span class="sb">`/comprar`</span> — ejecuta la compra del producto seleccionado.
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="k">-</span><span class="w"> </span><span class="sb">`/cancelar`</span> — cancela y devuelve el saldo acumulado.
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="gs">**Administración:**</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="k">-</span><span class="w"> </span><span class="sb">`/agregar/&lt;codigo&gt;/&lt;nombre&gt;/&lt;float:precio&gt;/&lt;int:cantidad&gt;`</span> — alta de producto.
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="k">-</span><span class="w"> </span><span class="sb">`/agregar_descuento/&lt;codigo&gt;/&lt;nombre&gt;/&lt;float:precio&gt;/&lt;int:cantidad&gt;/&lt;float:porcentaje&gt;`</span> — alta con descuento.
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="k">-</span><span class="w"> </span><span class="sb">`/reponer/&lt;codigo&gt;/&lt;int:unidades&gt;`</span> — reposición de stock.
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="k">-</span><span class="w"> </span><span class="sb">`/eliminar/&lt;codigo&gt;`</span> — baja de producto.
+</code></pre></div>
+<h4 id="comprobacion_5"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion_5" title="Permanent link">&para;</a></h4>
+<p>Abre <code>README.md</code> y comprueba que alguien que no conozca el proyecto entiende, solo leyéndolo, que la web cubre ahora todas las operaciones del menú de consola. Arranca el servidor y verifica visitando <code>http://localhost:5000/</code> que los enlaces de la portada funcionan.</p>
+<h3 id="reflexion_6"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_6" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li>El <code>CHANGELOG.md</code> es la memoria del proyecto: cada entrega queda registrada con fichero y método afectados.</li>
+<li>El <code>README.md</code> es el escaparate: quien llega al proyecto sin contexto se apoya en él para saber qué hay y cómo se ejecuta.</li>
+<li>Documentar al final del lab, con los cambios frescos, es más fácil que intentar reconstruirlos días después.</li>
+</ul>
+</details>
+<hr />
+<h2 id="checklist-de-entrega">Checklist de entrega<a class="headerlink" href="#checklist-de-entrega" title="Permanent link">&para;</a></h2>
+<ul>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> Método <code>saldo()</code> añadido a <code>application/servicios.py</code> como delegación pura.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> Routes de lectura creados: <code>/</code>, <code>/productos</code>, <code>/producto/&lt;codigo&gt;</code>, <code>/buscar/&lt;texto&gt;</code>, <code>/saldo</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> Routes de transacción creados: <code>/seleccionar/&lt;codigo&gt;</code>, <code>/insertar/&lt;float:cantidad&gt;</code>, <code>/comprar</code>, <code>/cancelar</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> Routes de administración creados: <code>/agregar/&lt;codigo&gt;/&lt;nombre&gt;/&lt;float:precio&gt;/&lt;int:cantidad&gt;</code>, <code>/agregar_descuento/...</code>, <code>/eliminar/&lt;codigo&gt;</code>, <code>/reponer/&lt;codigo&gt;/&lt;int:unidades&gt;</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> <code>domain/</code> e <code>infrastructure/</code> intactos.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> <code>presentation/menu.py</code> sigue funcionando sin cambios.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> Reflexiones escritas del Paso 3 (kōan) y del Paso 5 (estado global y persistencia).</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> <code>CHANGELOG.md</code> y <code>README.md</code> actualizados.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> Entregado un <strong>zip con todo el proyecto</strong> — será la base del lab a3.</li>
+</ul>
+<hr />
+<h2 id="problemas-comunes">Problemas comunes<a class="headerlink" href="#problemas-comunes" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title"><code>AttributeError: 'ServicioExpendedora' object has no attribute 'saldo'</code></p>
+<p>Te has olvidado de añadir el método <code>saldo</code> en <code>application/servicios.py</code>. Revisa el Paso 1.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title"><code>NameError: name 'ProductoYaExisteError' is not defined</code></p>
+<p>Falta el import al inicio de <code>app.py</code>. Revisa el Paso 6.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title"><code>NameError: name 'redirect' is not defined</code> o <code>url_for</code></p>
+<p>Falta añadir <code>redirect, url_for</code> al import de Flask del inicio del fichero (Paso 4).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Un cambio no se refleja al recargar la página</p>
+<p>El servidor Flask en modo <code>debug=True</code> recarga al guardar, pero a veces el navegador cachea. Haz <code>Ctrl+F5</code> para recarga dura.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title"><code>/comprar</code> siempre da error 400 'No hay producto seleccionado'</p>
+<p>Los routes reflejan la máquina de estados: antes de <code>/comprar</code> tienes que pasar por <code>/seleccionar/&lt;codigo&gt;</code> y <code>/insertar/&lt;float:cantidad&gt;</code>. Revisa la secuencia del Paso 5.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ichigar
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/ichigar/web" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://codeberg.org/ichigar/pages" target="_blank" rel="noopener" title="Codeberg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.999.747A11.974 11.974 0 0 0 0 12.75c0 2.254.635 4.465 1.833 6.376L11.837 6.19c.072-.092.251-.092.323 0l4.178 5.402h-2.992l.065.239h3.113l.882 1.138h-3.674l.103.374h3.86l.777 1.003h-4.358l.135.483h4.593l.695.894h-5.038l.165.589h5.326l.609.785h-5.717l.182.65h6.038l.562.727h-6.397l.183.65h6.717A12 12 0 0 0 24 12.75 11.977 11.977 0 0 0 11.999.747m3.654 19.104.182.65h5.326c.173-.204.353-.433.513-.65zm.385 1.377.18.65h3.563c.233-.198.485-.428.712-.65zm.383 1.377.182.648h1.203c.356-.204.685-.412 1.042-.648z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/feed_rss_created.xml" target="_blank" rel="noopener" title="RSS" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../../assets/_markdown_exec_pyodide.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="../../../../javascripts/blog-class.js"></script>
+      
+    
+  </body>
+</html>
