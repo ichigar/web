@@ -1526,7 +1526,7 @@
 <tr>
 <td><code>/comprar/3</code></td>
 <td>Llega al route con <code>cantidad=3</code></td>
-<td>Matchea <code>\d+</code></td>
+<td>Verifica <code>\d+</code></td>
 </tr>
 <tr>
 <td><code>/comprar/tres</code></td>
@@ -1541,7 +1541,7 @@
 <tr>
 <td><code>/insertar/1.5</code></td>
 <td>Llega con <code>cantidad=1.5</code></td>
-<td>Matchea <code>\d+\.\d+</code></td>
+<td>Verifica <code>\d+\.\d+</code></td>
 </tr>
 <tr>
 <td><code>/insertar/1</code></td>
@@ -1576,10 +1576,10 @@
 <a id="__codelineno-2-7" name="__codelineno-2-7"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">400</span>
 </code></pre></div></td></tr></table></div>
 <blockquote>
-<p>En este ejemplo, <code>cantidad=0.0</code> sí llega al dominio (matchea <code>\d+\.\d+</code>). El <code>try/except</code> captura el <code>ValueError</code> que lanza <code>insertar_dinero</code> porque la cantidad no es positiva. En cambio, <code>cantidad=-1.5</code> nunca llega — Flask responde 404 antes.</p>
+<p>En este ejemplo, <code>cantidad=0.0</code> sí llega al dominio (verifica <code>\d+\.\d+</code>). El <code>try/except</code> captura el <code>ValueError</code> que lanza <code>insertar_dinero</code> porque la cantidad no es positiva. En cambio, <code>cantidad=-1.5</code> nunca llega — Flask responde 404 antes.</p>
 </blockquote>
 <div class="admonition warning">
-<p class="admonition-title">Antipatrón: validar el tipo en el dominio</p>
+<p class="admonition-title">Mala práctica: validar el tipo en el dominio</p>
 <p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">## Incorrecto: el dominio no debe preocuparse del formato de la URL</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/insertar/&lt;cantidad&gt;&quot;</span><span class="p">)</span>   <span class="c1">## string por defecto</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">insertar</span><span class="p">(</span><span class="n">cantidad</span><span class="p">):</span>
@@ -1814,7 +1814,7 @@ Delegar la conversión de tipo a Flask mantiene el route más limpio y el domini
 <p>Tras el <code>redirect</code>, el navegador queda en <code>/producto/&lt;codigo&gt;</code>. Si el usuario pulsa <em>recargar</em>, lo que se repite es la <strong>consulta</strong> al detalle, no el alta. Es la consulta la que se vuelve a ejecutar, no la acción.</p>
 </blockquote>
 <div class="admonition warning">
-<p class="admonition-title">Antipatrón: devolver el resultado de la acción como página final</p>
+<p class="admonition-title">Mala práctica: devolver el resultado de la acción como página final</p>
 <p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">## Incorrecto: si el usuario recarga, repite el alta → 409</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/agregar/&lt;codigo&gt;/...&quot;</span><span class="p">)</span>
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">agregar</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
@@ -1882,7 +1882,7 @@ Delegar la conversión de tipo a Flask mantiene el route más limpio y el domini
 <h4 id="el-problema-del-separador-decimal">El problema del separador decimal<a class="headerlink" href="#el-problema-del-separador-decimal" title="Permanent link">&para;</a></h4>
 <p>Aquí entra un concepto del sistema operativo llamado <strong>locale</strong>. El <em>locale</em> es el conjunto de <strong>convenciones culturales</strong> que un sistema aplica: idioma de los mensajes, formato de las fechas, separador decimal, símbolo de moneda. Los <em>locales</em> se nombran con códigos como <code>es_ES</code> (español de España), <code>en_US</code> (inglés de EE. UU.) o <code>fr_FR</code> (francés de Francia).</p>
 <p>El detalle que nos afecta: en <code>es_ES</code> el separador decimal es la coma (<code>1,5</code>), mientras que en <code>en_US</code> y en la mayoría de lenguajes de programación es el punto (<code>1.5</code>). Flask —como todo Python— espera <strong>siempre el punto</strong> porque es la convención del código, independientemente del idioma del sistema operativo.</p>
-<p>Resultado: un usuario español que teclee <code>/agregar/X1/Zumo/1,5/10</code> obtendrá un 404 misterioso. Desde su punto de vista, "1,5" es un número válido; desde el punto de vista del converter de Flask, no matchea <code>\d+\.\d+</code>.</p>
+<p>Resultado: un usuario español que teclee <code>/agregar/X1/Zumo/1,5/10</code> obtendrá un 404 misterioso. Desde su punto de vista, "1,5" es un número válido; desde el punto de vista del converter de Flask, no Verifica <code>\d+\.\d+</code>.</p>
 <h3 id="hacia-los-formularios-html">Hacia los formularios HTML<a class="headerlink" href="#hacia-los-formularios-html" title="Permanent link">&para;</a></h3>
 <p>En un próximo lab pasaremos a recoger los datos con <strong>formularios HTML</strong> (<code>&lt;form&gt;</code>). Cada campo del formulario tiene su propia casilla etiquetada, el navegador se encarga del encoding y los datos viajan en el cuerpo de la petición, no en la URL. Además, los formularios permiten validación en el cliente y una experiencia de usuario mucho más natural.</p>
 <table>
@@ -1920,7 +1920,7 @@ Delegar la conversión de tipo a Flask mantiene el route más limpio y el domini
 <p>Por eso usar parámetros en la URL para <strong>lecturas</strong> (<code>/producto/A1</code>) es razonable, pero usarlos para <strong>altas</strong> (<code>/agregar/X1/Zumo/1.5/10</code>) es una solución provisional que reemplazaremos en el siguiente lab.</p>
 </blockquote>
 <div class="admonition warning">
-<p class="admonition-title">Antipatrón: rutas con decenas de parámetros en la URL</p>
+<p class="admonition-title">Mala práctica: rutas con decenas de parámetros en la URL</p>
 <p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1">## Incorrecto: URL imposible de construir a mano</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/editar/&lt;codigo&gt;/&lt;nombre&gt;/&lt;float:precio&gt;/&lt;int:cantidad&gt;/&lt;float:descuento&gt;/&lt;categoria&gt;&quot;</span><span class="p">)</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">editar</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">cantidad</span><span class="p">,</span> <span class="n">descuento</span><span class="p">,</span> <span class="n">categoria</span><span class="p">):</span> <span class="o">...</span>

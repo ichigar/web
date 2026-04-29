@@ -1,0 +1,2054 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes y recursos de clase de SMR, ASIR y CE Python">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/pni/ut6/recursos/pni_ut6_tecnicas_aprender_ia/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>TÉCNICAS PARA APRENDER CON IA — MANUAL DE REFERENCIA - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_ansi.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/footer-contrast.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/blog-terminal.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tecnicas-para-aprender-con-ia-manual-de-referencia" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TÉCNICAS PARA APRENDER CON IA — MANUAL DE REFERENCIA
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../smr/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../asir/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../ce-python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../blog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/tutoriales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutoriales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../smr/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../asir/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../imw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../soj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../ce-python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pd4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#la-actitud-que-sostiene-todo-lo-demas" class="md-nav__link">
+    <span class="md-ellipsis">
+      La actitud que sostiene todo lo demás
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-se-lee-este-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cómo se lee este manual
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bloque-a-tecnicas-base-de-consulta-y-repaso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloque A — Técnicas base de consulta y repaso
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bloque A — Técnicas base de consulta y repaso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-pedir-explicacion-no-solucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Pedir explicación, no solución
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pedir-la-pregunta-antes-que-la-respuesta" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Pedir la pregunta antes que la respuesta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-devolver-la-explicacion-al-estilo-feynman" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Devolver la explicación al estilo Feynman
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-pedir-el-contraejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Pedir el contraejemplo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-pedir-la-version-simple-despues-la-matizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Pedir la versión simple, después la matizada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-para-cada-dato-preguntarte-que-cambiaria-si-fuera-distinto" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Para cada dato, preguntarte qué cambiaría si fuera distinto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-cerrar-el-chat-antes-de-hacer-la-tarea" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Cerrar el chat antes de hacer la tarea
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-anotar-una-linea-de-que-se-me-habia-escapado" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Anotar una línea de "qué se me había escapado"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-preguntar-por-que-te-equivocaste" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Preguntar por qué te equivocaste
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-comparar-la-respuesta-de-dos-ias" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Comparar la respuesta de dos IAs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-iterar-sin-reiniciar" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Iterar sin reiniciar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-saber-cuando-seguir-y-cuando-abrir-un-chat-nuevo" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Saber cuándo seguir y cuándo abrir un chat nuevo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bloque-b-tecnicas-para-mejorar-el-resultado-o-usar-segun-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloque B — Técnicas para mejorar el resultado o usar según objetivo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bloque B — Técnicas para mejorar el resultado o usar según objetivo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disenar-la-consulta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diseñar la consulta
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diseñar la consulta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13-pedir-ayuda-a-la-ia-para-construir-tu-consulta" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Pedir ayuda a la IA para construir tu consulta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-pedir-critica-de-tu-consulta-antes-de-enviarla" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Pedir crítica de tu consulta antes de enviarla
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-pedir-la-descomposicion-de-una-tarea-grande" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Pedir la descomposición de una tarea grande
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurar-el-chat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurar el chat
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurar el chat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#16-asignacion-explicita-de-rol" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Asignación explícita de rol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-encabezado-fijo-de-modo-estudio" class="md-nav__link">
+    <span class="md-ellipsis">
+      17. Encabezado fijo de modo estudio
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profundizar-la-comprension" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profundizar la comprensión
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profundizar la comprensión">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#18-pedir-los-errores-conceptuales-habituales-del-tema" class="md-nav__link">
+    <span class="md-ellipsis">
+      18. Pedir los errores conceptuales habituales del tema
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-pedir-que-cuestione-tus-supuestos" class="md-nav__link">
+    <span class="md-ellipsis">
+      19. Pedir que cuestione tus supuestos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20-devolver-la-explicacion-con-punto-de-quiebre" class="md-nav__link">
+    <span class="md-ellipsis">
+      20. Devolver la explicación con punto de quiebre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autoevaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autoevaluación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Autoevaluación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-pedir-una-pregunta-de-examen-diagnostica" class="md-nav__link">
+    <span class="md-ellipsis">
+      21. Pedir una pregunta de examen diagnóstica
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bloque-c-curiosidad-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloque C — Curiosidad técnica
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bloque C — Curiosidad técnica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#22-repetir-la-consulta-dos-veces" class="md-nav__link">
+    <span class="md-ellipsis">
+      22. Repetir la consulta dos veces
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chuleta-resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chuleta resumen
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escenario-practico-preparar-el-examen-de-ut3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Escenario práctico — preparar el examen de UT3
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="tecnicas-para-aprender-con-ia-manual-de-referencia">TÉCNICAS PARA APRENDER CON IA — MANUAL DE REFERENCIA<a class="headerlink" href="#tecnicas-para-aprender-con-ia-manual-de-referencia" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Cómo encaja este manual en la unidad</p>
+<p>Este manual aplica los cuatro principios de uso de IA que trabajaste en A0 con técnicas concretas. Vas a tirar de él cuando los labs A1–A5 te lo pidan, y consultarlo libremente cuando te haga falta. No vas a usar las 22 técnicas: cada actividad introducirá las que encajen con su tarea.</p>
+</div>
+<h2 id="la-actitud-que-sostiene-todo-lo-demas">La actitud que sostiene todo lo demás<a class="headerlink" href="#la-actitud-que-sostiene-todo-lo-demas" title="Permanent link">&para;</a></h2>
+<p>Antes de las técnicas hay que hablar de algo que ninguna guía puede sustituir: <strong>la actitud con la que abres el chat</strong>, la disposición mental con la que te enfrentas a la tarea. La misma herramienta produce dos cosas distintas según con qué intención la uses, y reconocer esa intención de forma honesta es <strong>lo más importante</strong> que vamos a trabajar en esta unidad.</p>
+<p><strong>Querer aprender, no querer entregar.</strong> Si lo que te mueve es terminar la tarea, vas a usar la IA para atajar. Si lo que te mueve es entender, vas a usar la IA para profundizar. Las dos cosas son posibles con la misma herramienta y <strong>nadie puede decidirlo por ti</strong>. Pregúntate al abrir cada chat cuál de las dos estás haciendo. Engañarte en esa pregunta — convencerte de que estás aprendiendo cuando solo estás copiando — es lo que hace que llegue el examen y descubras que no sabes hacerlo o que cuando llegues al mundo laboral no sepas aplicar los conocimientos en las tareas a las que te enfrentes.</p>
+<p><strong>Paciencia con tu propio proceso.</strong> La IA no acelera el aprendizaje, solo el acceso a la información. Tener una explicación delante en cinco segundos no significa haberla entendido en cinco segundos. La parte que tarda — leer, procesar, contrastar, equivocarte, corregir, defender — sigue tardando lo mismo que tardaba antes, y es justo la parte que cuenta. Si después de una sesión rápida tienes la sensación de haber aprendido mucho sin esfuerzo, casi seguro que has accedido a información sin haberla asimilado.</p>
+<p><strong>Tolerar el malestar de no entender.</strong> El momento incómodo en el que llevas leyendo media hora y todavía no te cuadra es el momento en el que estás aprendiendo. La tentación es pedirle a la IA que te lo resuma o que te lo dé masticado para salir de esa sensación. Cuando cedes, sales del malestar pero también del aprendizaje. La sensación de no entender no es señal de que algo va mal: es la señal de que tu cerebro está construyendo el modelo. Aguanta ahí.</p>
+<p><strong>No esperar resultados inmediatos.</strong> Una sesión de estudio bien hecha puede dejarte con menos respuestas y más preguntas que si hubieras leído el libro a secas. Eso es buena señal. Las preguntas nuevas son la prueba de que has entendido lo suficiente para ver lo que antes no veías. Las sesiones que terminan con sensación de claridad total suelen ser las que menos enseñan.</p>
+<p><strong>Aceptar que la IA se equivoca y no por eso es inútil.</strong> La IA da datos incorrectos, comandos inexistentes y explicaciones plausibles pero falsas. La actitud no es <strong>ni rechazarla</strong> por eso <strong>ni confiar a ciegas</strong>: es tratarla como <strong>un compañero brillante pero distraído</strong> que sabe mucho pero al que hay que verificar. Esa actitud intermedia es la que sostiene todo lo que viene después.</p>
+<p><strong>Honestidad al cerrar el chat.</strong> Pregúntate siempre lo mismo: <em>"¿he aprendido algo o solo he producido algo?"</em>. Las dos respuestas son válidas según para qué hayas usado la IA. Lo que no es válido es no haberse hecho la pregunta.</p>
+<h2 id="como-se-lee-este-manual">Cómo se lee este manual<a class="headerlink" href="#como-se-lee-este-manual" title="Permanent link">&para;</a></h2>
+<ul>
+<li>El <strong>bloque A</strong> son técnicas base. Las usas casi siempre, en cualquier consulta de estudio. Si solo te quedas con un bloque, que sea este.</li>
+<li>El <strong>bloque B</strong> son técnicas para mejorar el resultado o usar según el objetivo: configurar el chat, profundizar en la comprensión, autoevaluarte. Las eliges según lo que estés haciendo.</li>
+<li>El <strong>bloque C</strong> es una técnica como curiosidad, con la explicación de por qué podría funcionar.</li>
+<li>Al final hay una <strong>chuleta resumen</strong> y un <strong>escenario práctico</strong> que combina varias técnicas para preparar el examen de la unidad.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Antes de empezar: lo mínimo que conviene tener claro</p>
+<p>Una consulta útil cierra el espacio de respuesta especificando audiencia, formato y restricciones. La IA puede equivocarse con seguridad en datos numéricos y comandos concretos, así que el laboratorio (Packet Tracer o consola real) es siempre el árbitro final, por encima de lo que diga la IA.</p>
+</div>
+<h2 id="bloque-a-tecnicas-base-de-consulta-y-repaso">Bloque A — Técnicas base de consulta y repaso<a class="headerlink" href="#bloque-a-tecnicas-base-de-consulta-y-repaso" title="Permanent link">&para;</a></h2>
+<p>Estas técnicas se aplican en casi cualquier sesión de estudio. La idea común es <strong>forzar que la IA explique en lugar de resolver</strong>, y que tú hagas el trabajo de síntesis.</p>
+<h3 id="1-pedir-explicacion-no-solucion">1. Pedir explicación, no solución<a class="headerlink" href="#1-pedir-explicacion-no-solucion" title="Permanent link">&para;</a></h3>
+<p>La diferencia entre aprender con la IA y dejar que te haga el trabajo está casi siempre en este punto. Cambia <em>"resuélveme esto"</em> por <em>"sin darme la respuesta, explícame qué pasos seguirías y por qué"</em>.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> el ejercicio te lo van a pedir hacer a ti en un examen o en el laboratorio.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Tengo que configurar enrutamiento estático en R1 para alcanzar la red
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>192.168.30.0/24 a través de R2 (siguiente salto 10.0.0.2). Sin darme
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>el comando completo, explícame qué información debo aportar en una
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>sentencia `ip route` y por qué cada parte es necesaria. Después la
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>escribo yo.
+</code></pre></div>
+<h3 id="2-pedir-la-pregunta-antes-que-la-respuesta">2. Pedir la pregunta antes que la respuesta<a class="headerlink" href="#2-pedir-la-pregunta-antes-que-la-respuesta" title="Permanent link">&para;</a></h3>
+<p>Antes de estudiar un tema, pregunta qué tendrías que saber explicar para considerar que lo dominas. Eso te da una rúbrica con la que medirte después.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> empiezas un tema nuevo y no sabes por dónde se evalúa la comprensión.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Voy a empezar a estudiar RIPv1 partiendo de que ya conozco enrutamiento
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>estático. ¿Qué cinco preguntas debería ser capaz de contestar para
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>considerar que lo entiendo a nivel introductorio? No me las contestes.
+</code></pre></div>
+<h3 id="3-devolver-la-explicacion-al-estilo-feynman">3. Devolver la explicación al estilo Feynman<a class="headerlink" href="#3-devolver-la-explicacion-al-estilo-feynman" title="Permanent link">&para;</a></h3>
+<p>Inviertes los papeles: tú explicas, la IA corrige. Te obliga a verbalizar lo que crees saber y descubre los huecos antes de que la IA te los rellene.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> crees que entiendes algo pero no estás del todo seguro.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Voy a explicarte cómo creo que funciona el enrutamiento estático.
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Léeme y dime dónde me equivoco, qué falta y qué digo bien.
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>&quot;Una ruta estática es una entrada que el administrador escribe a mano
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>en la tabla de enrutamiento. Le indica al router que para llegar a una
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>red destino concreta debe enviar el tráfico a una dirección llamada
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>siguiente salto. La distancia administrativa de una ruta estática es 1,
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>lo que significa que el router la prefiere antes que las rutas
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>aprendidas por protocolos dinámicos.&quot;
+</code></pre></div>
+<h3 id="4-pedir-el-contraejemplo">4. Pedir el contraejemplo<a class="headerlink" href="#4-pedir-el-contraejemplo" title="Permanent link">&para;</a></h3>
+<p>Saber cuándo una regla <strong>no</strong> se cumple es lo que distingue al que entiende del que ha memorizado.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> acabas de aprender una regla o un patrón y quieres comprobar que la has entendido de verdad.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Acabo de leer que RIPv1 elige siempre la ruta con menor número de saltos.
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Dame un caso donde esa regla lleve a una decisión claramente subóptima
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>para la red, y explícame por qué la métrica de saltos no captura ese
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>caso. Ejemplo concreto, no genérico.
+</code></pre></div>
+<h3 id="5-pedir-la-version-simple-despues-la-matizada">5. Pedir la versión simple, después la matizada<a class="headerlink" href="#5-pedir-la-version-simple-despues-la-matizada" title="Permanent link">&para;</a></h3>
+<p>Las dos capas funcionan juntas: la primera fija la intuición, la segunda devuelve el rigor. Saltarse la simple es lo que hace que aprendas vocabulario sin entender el concepto.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> un tema te suena pero no acabas de visualizar qué hace exactamente.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Explícame qué es la distancia administrativa como si tuviera 12 años,
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>con una analogía cotidiana. Después, dime qué he simplificado en esa
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>analogía y qué matices añadirías a un alumno de FP de redes.
+</code></pre></div>
+<h3 id="6-para-cada-dato-preguntarte-que-cambiaria-si-fuera-distinto">6. Para cada dato, preguntarte qué cambiaría si fuera distinto<a class="headerlink" href="#6-para-cada-dato-preguntarte-que-cambiaria-si-fuera-distinto" title="Permanent link">&para;</a></h3>
+<p>Esta no se la pides a la IA: te la haces tú. Si la IA te dice <em>"la distancia administrativa de RIP es 120"</em>, párate y pregúntate: <em>"¿qué cambiaría si fuera 90?"</em>. Si no sabes qué cambiaría, no entiendes el dato — solo lo memorizas. Si sabes qué cambiaría (que RIP pasaría a ser preferido frente a OSPF, que las rutas estáticas seguirían ganando porque tienen AD 1), has entendido el dato en su contexto.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> estás leyendo respuestas con muchos números, valores por defecto o constantes.</p>
+</blockquote>
+<h3 id="7-cerrar-el-chat-antes-de-hacer-la-tarea">7. Cerrar el chat antes de hacer la tarea<a class="headerlink" href="#7-cerrar-el-chat-antes-de-hacer-la-tarea" title="Permanent link">&para;</a></h3>
+<p>Antes de configurar un router, antes de programar, antes de redactar tu informe: cierra el chat. Si necesitas reabrirlo cada dos minutos, todavía no lo has aprendido. Si terminas la tarea sin reabrirlo, lo sabes. Es un termómetro brutal y honesto.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> vas a producir algo evaluable o defendible.</p>
+</blockquote>
+<h3 id="8-anotar-una-linea-de-que-se-me-habia-escapado">8. Anotar una línea de "qué se me había escapado"<a class="headerlink" href="#8-anotar-una-linea-de-que-se-me-habia-escapado" title="Permanent link">&para;</a></h3>
+<p>Sin estructura, sin formato, sin cinco campos. Una libreta o un fichero <code>.md</code> con frases sueltas que escribes en el momento en que la IA acaba de aclararte algo que no sabías que ignorabas. En seis meses tienes un mapa de tus puntos ciegos y dejas de necesitar la IA para esos temas.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> detectas el momento <em>"ah, claro"</em> en mitad de una explicación.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Ejemplos de líneas reales:
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>- Las rutas estáticas no se mueven aunque caiga el enlace; siguen ahí
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>  hasta que tú las quitas.
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>- En RIPv1 el comando `network` admite solo direcciones de red con
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  máscara classful, no se puede afinar más.
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>- La AD de la estática es 1, no 0; el 0 es para directamente conectadas.
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>- RIPv1 manda actualizaciones por difusión a 255.255.255.255 cada 30s,
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>  no es tráfico unicast como yo creía.
+</code></pre></div>
+<h3 id="9-preguntar-por-que-te-equivocaste">9. Preguntar por qué te equivocaste<a class="headerlink" href="#9-preguntar-por-que-te-equivocaste" title="Permanent link">&para;</a></h3>
+<p>Cuando algo no te sale, no le pidas la solución directamente. Pega lo que has hecho y pide diagnóstico de razonamiento.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> un comando, una configuración o un razonamiento no funciona y no sabes por qué.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>He configurado RIPv1 en R1 con estos comandos:
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>router rip
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a> network 192.168.10.0
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a> network 10.0.0.1
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Pero R2 no aprende ninguna ruta. Sin darme la configuración correcta,
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>dime dónde está el error de razonamiento y qué concepto del comando
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>`network` debería repasar para verlo yo.
+</code></pre></div>
+<h3 id="10-comparar-la-respuesta-de-dos-ias">10. Comparar la respuesta de dos IAs<a class="headerlink" href="#10-comparar-la-respuesta-de-dos-ias" title="Permanent link">&para;</a></h3>
+<p>Pídele lo mismo a Claude y a ChatGPT (o a Gemini). Donde coinciden suele ser sólido. Donde divergen, ahí hay un matiz que merece la pena entender o una invención de alguna de las dos.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> un dato te parece raro, un concepto te está costando, o quieres triangular antes de fiarte.</p>
+</blockquote>
+<h3 id="11-iterar-sin-reiniciar">11. Iterar sin reiniciar<a class="headerlink" href="#11-iterar-sin-reiniciar" title="Permanent link">&para;</a></h3>
+<p>Cuando la primera respuesta no es exactamente lo que querías, <strong>no abras un chat nuevo ni reescribas todo desde cero</strong>. Corrige solo el dato que falla y deja avanzar la conversación. La IA mantiene el contexto y aplica la corrección al resto del trabajo.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> la respuesta es casi buena pero le falta o le sobra algo concreto.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Consulta inicial:
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Hazme un resumen de cómo funcionan las actualizaciones en RIPv1.
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Continuación en el mismo chat (no abras uno nuevo):
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>Recorta a la mitad y quita la comparación con OSPF, todavía no lo damos.
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>Centra el resumen en cada cuántos segundos se mandan las actualizaciones,
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>a qué dirección destino van y por qué eso tiene consecuencias en redes
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>con muchos equipos.
+</code></pre></div>
+<h3 id="12-saber-cuando-seguir-y-cuando-abrir-un-chat-nuevo">12. Saber cuándo seguir y cuándo abrir un chat nuevo<a class="headerlink" href="#12-saber-cuando-seguir-y-cuando-abrir-un-chat-nuevo" title="Permanent link">&para;</a></h3>
+<p>Decisión que tomas en cada turno. <strong>Sigues en el mismo chat</strong> cuando profundizas en el tema actual, ya tienes un rol o un encabezado cargados (técnicas 16 y 17), o estás corrigiendo algo que la IA acaba de generar. <strong>Abres un chat nuevo</strong> cuando cambias de tema, las respuestas se vuelven repetitivas o pierden foco, arrastras un error que la IA repite aunque ya lo hayas corregido, o quieres preguntar lo mismo desde otro ángulo sin que la conversación previa contamine la respuesta.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> llevas un rato largo y notas que la conversación se ha vuelto pesada o derivada.</p>
+</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Señal poco evidente: la IA empieza a darte la razón en todo</p>
+<p>Si llevas muchos turnos en el mismo chat y la IA deja de matizarte como hacía al principio, o empieza a responder <em>"sí, exactamente, tienes razón"</em> a cosas que antes habría discutido, eso es señal de que el contexto está saturado. Abre uno nuevo y vuelve a plantear la pregunta. Una IA que te da la razón en todo no te está enseñando, te está adulando.</p>
+</div>
+<h2 id="bloque-b-tecnicas-para-mejorar-el-resultado-o-usar-segun-objetivo">Bloque B — Técnicas para mejorar el resultado o usar según objetivo<a class="headerlink" href="#bloque-b-tecnicas-para-mejorar-el-resultado-o-usar-segun-objetivo" title="Permanent link">&para;</a></h2>
+<p>Estas técnicas no se aplican siempre. Se eligen según lo que estés haciendo en cada momento: si estás diseñando una consulta complicada, si quieres configurar el comportamiento del chat para una sesión larga, si quieres profundizar en un concepto, o si quieres autoevaluarte.</p>
+<h3 id="disenar-la-consulta">Diseñar la consulta<a class="headerlink" href="#disenar-la-consulta" title="Permanent link">&para;</a></h3>
+<h4 id="13-pedir-ayuda-a-la-ia-para-construir-tu-consulta">13. Pedir ayuda a la IA para construir tu consulta<a class="headerlink" href="#13-pedir-ayuda-a-la-ia-para-construir-tu-consulta" title="Permanent link">&para;</a></h4>
+<p>Cuando no sabes ni por dónde empezar a preguntar, pídele a la IA que te ayude a estructurar la pregunta. Lo describes con tus palabras y la IA te devuelve una versión bien formulada con los tres ejes (audiencia, formato, restricciones).</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> tienes una duda gorda pero no sabes cómo formularla con precisión.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Quiero pedirle a la IA que me ayude a entender cómo se decide qué ruta
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>prefiere un router cuando hay varias para el mismo destino. ¿Cómo
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>formularía la consulta para que me explique los conceptos sin darme
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>ejemplos de configuración? Hazme la consulta, no me la respondas.
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Cuidado con convertirla en muleta</p>
+<p>Esta técnica es un andamio temporal, no un hábito. Si cada vez que tienes que aprender algo le pides a la IA que diseñe la consulta por ti, no estás aprendiendo a interactuar con la IA: estás delegando incluso la interacción. Úsala dos o tres veces al principio para ver el patrón, luego intenta tú directamente.</p>
+</div>
+<h4 id="14-pedir-critica-de-tu-consulta-antes-de-enviarla">14. Pedir crítica de tu consulta antes de enviarla<a class="headerlink" href="#14-pedir-critica-de-tu-consulta-antes-de-enviarla" title="Permanent link">&para;</a></h4>
+<p>Variante más sana de la anterior: tú escribes la consulta, y antes de mandarla pides que te la critiquen. Mantienes el control del diseño y aprendes dónde fallan tus consultas.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> has redactado una consulta importante y quieres asegurarte de que va a dar el resultado que esperas.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Voy a usar esta consulta para estudiar RIPv1:
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>&quot;Explícame RIPv1, sus características y cómo se configura.&quot;
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Antes de mandarla, dime qué le falta, qué es ambiguo, y qué tres
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>respuestas distintas podrías darme con esa consulta tal cual está.
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>No me la respondas todavía.
+</code></pre></div>
+<h4 id="15-pedir-la-descomposicion-de-una-tarea-grande">15. Pedir la descomposición de una tarea grande<a class="headerlink" href="#15-pedir-la-descomposicion-de-una-tarea-grande" title="Permanent link">&para;</a></h4>
+<p>Cuando tienes que estudiar un bloque entero, no preguntes por el bloque entero. Pide que te lo descomponga en subtemas y qué tipo de pregunta tendrías que hacer en cada uno.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> te enfrentas a una unidad nueva y no sabes cómo estructurar el estudio.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Tengo que estudiar la introducción al enrutamiento dinámico, partiendo
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>de que ya domino enrutamiento estático. Solo entra RIPv1 (no v2 ni
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>otros protocolos). Dime en qué subtemas lo dividirías para estudiarlo
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>en orden y qué tipo de pregunta haría yo a la IA en cada subtema.
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>No me respondas las preguntas, solo el mapa.
+</code></pre></div>
+<h3 id="configurar-el-chat">Configurar el chat<a class="headerlink" href="#configurar-el-chat" title="Permanent link">&para;</a></h3>
+<h4 id="16-asignacion-explicita-de-rol">16. Asignación explícita de rol<a class="headerlink" href="#16-asignacion-explicita-de-rol" title="Permanent link">&para;</a></h4>
+<p>En lugar de dejar el tono de la IA implícito, fíjale un papel al principio del chat. El rol persiste varios turnos y ahorra repetir restricciones cada vez.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> vas a tener una sesión larga sobre un mismo tema y quieres un comportamiento consistente.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>A partir de ahora, durante toda esta conversación, eres un profesor
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>exigente de redes especializado en formación profesional. No me das
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>nunca la solución completa de un ejercicio: me explicas conceptos,
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>me haces preguntas que me lleven a la respuesta, y me corriges cuando
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>me equivoco. Si te pido que me hagas una configuración entera, te
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>niegas y me preguntas qué parte concreta no entiendo. ¿De acuerdo?
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">El rol no es magia</p>
+<p>El rol orienta la respuesta, no garantiza nada. Una IA con rol de "profesor exigente" puede seguir dándote la solución si la presionas. La técnica funciona si tú colaboras manteniendo el rol; si en el siguiente turno le dices <em>"vale, pero ahora dame la respuesta de una vez"</em>, el rol cae.</p>
+</div>
+<h4 id="17-encabezado-fijo-de-modo-estudio">17. Encabezado fijo de modo estudio<a class="headerlink" href="#17-encabezado-fijo-de-modo-estudio" title="Permanent link">&para;</a></h4>
+<p>Un párrafo que pegas al inicio de cada chat dedicado a aprender. Hace explícito el modo de trabajo y evita que la IA caiga en hábitos de "te resuelvo la tarea".</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> quieres estandarizar tu forma de estudiar con IA y dejar de improvisar el tono cada vez.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Texto plantilla para pegar al inicio de cada chat de estudio:
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Mi objetivo en esta conversación es entender el tema, no que me hagas
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>el trabajo. No redactes ni configures nada por mí. Tu trabajo es
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>explicarme conceptos, señalarme errores frecuentes, sugerirme fuentes
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>fiables y hacerme preguntas que me obliguen a pensar. Cuando yo te
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>pegue una configuración o un razonamiento, dime qué tiene mal de
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>forma específica, sin reescribirlo.
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>[Aquí va tu pregunta concreta]
+</code></pre></div>
+<h3 id="profundizar-la-comprension">Profundizar la comprensión<a class="headerlink" href="#profundizar-la-comprension" title="Permanent link">&para;</a></h3>
+<h4 id="18-pedir-los-errores-conceptuales-habituales-del-tema">18. Pedir los errores conceptuales habituales del tema<a class="headerlink" href="#18-pedir-los-errores-conceptuales-habituales-del-tema" title="Permanent link">&para;</a></h4>
+<p>En lugar de pedir la explicación canónica, pide directamente qué errores comete típicamente alguien que aprende esto por primera vez. La respuesta es un mapa de los puntos donde tú probablemente vas a fallar.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> quieres preparar un examen o consolidar un tema que ya has estudiado.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>¿Cuáles son los cinco errores conceptuales más habituales que comete
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>alguien que aprende RIPv1 por primera vez, especialmente si viene de
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>haber estudiado solo enrutamiento estático? Para cada uno, dime cuál
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>es el error y cuál es la idea correcta.
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Verifica los errores que te dé</p>
+<p>La IA puede inventar errores que suenan plausibles pero que en realidad nadie comete, o presentar como error algo que en realidad no lo es. Como con cualquier respuesta técnica, contrasta los errores que te dé con los apuntes de clase o con la documentación oficial antes de fiarte.</p>
+</div>
+<h4 id="19-pedir-que-cuestione-tus-supuestos">19. Pedir que cuestione tus supuestos<a class="headerlink" href="#19-pedir-que-cuestione-tus-supuestos" title="Permanent link">&para;</a></h4>
+<p>A veces la dificultad para entender algo viene de un supuesto erróneo que tienes incorporado y no detectas. Pide a la IA que lo identifique.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> una pregunta tuya recibe siempre la misma respuesta que no te aclara, o sientes que algo no encaja pero no sabes qué.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Mi pregunta es: &quot;¿por qué RIPv1 manda toda la tabla de enrutamiento
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>cada 30 segundos en lugar de mandar solo los cambios?&quot;. Antes de
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>contestarme, dime qué estoy asumiendo en esta pregunta que podría
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>estar mal o que reflejaría una expectativa equivocada por mi parte.
+</code></pre></div>
+<h4 id="20-devolver-la-explicacion-con-punto-de-quiebre">20. Devolver la explicación con punto de quiebre<a class="headerlink" href="#20-devolver-la-explicacion-con-punto-de-quiebre" title="Permanent link">&para;</a></h4>
+<p>Versión refinada del Feynman (técnica 3). Tú explicas y la IA señala <strong>el punto exacto</strong> donde tu explicación se vuelve borrosa. Es más quirúrgico que pedir corrección general.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> has explicado algo y sospechas que en alguna parte la lías, pero no sabes dónde.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Voy a explicarte qué pasa cuando un router con RIPv1 recibe una
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>actualización de un vecino. Léeme y señálame el momento exacto en
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>el que mi explicación deja de ser clara, se vuelve imprecisa o
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>mezcla conceptos. Quiero el punto concreto, no una corrección general.
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>&quot;Cuando R1 recibe una actualización de R2 por su interfaz Serial0/0,
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>extrae la lista de redes que R2 le anuncia con sus métricas. Para cada
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>red anunciada, R1 suma 1 al hop count porque R2 está a un salto.
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>Compara entonces lo que R2 dice con lo que ya tiene en su tabla y
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>si la nueva información es mejor la mete, y si no la descarta...&quot;
+</code></pre></div>
+<h3 id="autoevaluacion">Autoevaluación<a class="headerlink" href="#autoevaluacion" title="Permanent link">&para;</a></h3>
+<h4 id="21-pedir-una-pregunta-de-examen-diagnostica">21. Pedir una pregunta de examen diagnóstica<a class="headerlink" href="#21-pedir-una-pregunta-de-examen-diagnostica" title="Permanent link">&para;</a></h4>
+<p>Pide a la IA que te haga la pregunta que distinguiría a quien entiende el tema de quien lo ha memorizado. Te da un test honesto contra el que medirte antes del examen real.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> crees que tienes el tema controlado y quieres comprobarlo de verdad.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Si fueras profesor de PNI y tuvieras que poner una pregunta corta de
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>examen sobre la diferencia entre enrutamiento estático y RIPv1, una
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>pregunta que distinguiera claramente a quien ha entendido los dos de
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>quien solo ha memorizado los comandos, ¿qué pregunta pondrías y por qué?
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>No me la respondas. La voy a contestar yo.
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">No es la pregunta del examen real</p>
+<p>La pregunta que te dé la IA es un buen ejercicio de autoevaluación, pero no es la que te va a poner tu profesor concreto. El estilo, la dificultad y el enfoque dependen del docente. Úsala para detectar si entiendes el concepto, no como predicción de qué va a caer.</p>
+</div>
+<h2 id="bloque-c-curiosidad-tecnica">Bloque C — Curiosidad técnica<a class="headerlink" href="#bloque-c-curiosidad-tecnica" title="Permanent link">&para;</a></h2>
+<h3 id="22-repetir-la-consulta-dos-veces">22. Repetir la consulta dos veces<a class="headerlink" href="#22-repetir-la-consulta-dos-veces" title="Permanent link">&para;</a></h3>
+<p>Algunas guías de uso de IA en educación recomiendan, después de redactar la consulta, copiarla y pegarla una segunda vez al final, de forma que aparezca dos veces en el mismo mensaje. Hay un estudio de Google de finales de 2024 que medía mejoras de precisión apreciables en respuestas de modelos cuando se aplicaba esta repetición.</p>
+<blockquote>
+<p><strong>Útil cuando:</strong> la consulta es larga y notas que la IA se olvida a la mitad de las restricciones que le has puesto al principio.</p>
+</blockquote>
+<p><strong>Por qué podría funcionar.</strong> Los modelos de lenguaje no procesan el texto de manera uniforme: prestan más atención al principio y al final del mensaje que reciben (es lo que se llama el sesgo de posición). Cuando una instrucción importante queda enterrada en mitad de una consulta larga, el modelo puede pasarla por alto. Repetirla al final hace que esa instrucción aparezca también en la zona de máxima atención, y eso refuerza la probabilidad de que la respuesta la respete.</p>
+<p><strong>Por qué con modelos actuales el efecto es menor de lo que sugiere el estudio.</strong> Las versiones modernas de Claude, ChatGPT o Gemini tienen ventanas de contexto mucho más largas y mecanismos de atención mejorados respecto a los modelos sobre los que se hizo el estudio. En la práctica, con consultas de longitud razonable (las típicas de estudio) la repetición aporta poco o nada y a veces confunde al modelo, que puede interpretar la repetición como dos peticiones distintas.</p>
+<p><strong>Cuándo merece la pena probar.</strong> En consultas largas con muchas restricciones (cinco o más) y donde notas que la IA atiende a las primeras pero ignora las del medio. En consultas cortas no hace falta. Si pruebas y no notas mejora, no lo conviertas en hábito.</p>
+<h2 id="chuleta-resumen">Chuleta resumen<a class="headerlink" href="#chuleta-resumen" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Técnica</th>
+<th>Útil cuando</th>
+<th>En una palabra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Pedir explicación, no solución</td>
+<td>El ejercicio te lo van a pedir hacer a ti</td>
+<td>Explicar</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Pedir la pregunta antes que la respuesta</td>
+<td>Empiezas un tema nuevo</td>
+<td>Rúbrica</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Devolver la explicación al estilo Feynman</td>
+<td>Crees entender pero no estás seguro</td>
+<td>Verbalizar</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Pedir el contraejemplo</td>
+<td>Has aprendido una regla y quieres comprobarla</td>
+<td>Romper</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Versión simple, después matizada</td>
+<td>Un tema te suena pero no lo visualizas</td>
+<td>Capas</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Qué cambiaría si el dato fuera distinto</td>
+<td>Lees números o constantes</td>
+<td>Contextualizar</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Cerrar el chat antes de hacer la tarea</td>
+<td>Vas a producir algo evaluable</td>
+<td>Termómetro</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Anotar una línea de qué se te había escapado</td>
+<td>Detectas un momento <em>"ah, claro"</em></td>
+<td>Mapa</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Preguntar por qué te equivocaste</td>
+<td>Algo no funciona y no sabes por qué</td>
+<td>Diagnóstico</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Comparar la respuesta de dos IAs</td>
+<td>Un dato te parece raro</td>
+<td>Triangular</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Iterar sin reiniciar</td>
+<td>La respuesta es casi buena</td>
+<td>Quirúrgico</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Saber cuándo abrir un chat nuevo</td>
+<td>Llevas mucho rato y la conversación deriva</td>
+<td>Higiene</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Pedir ayuda a la IA para construir tu consulta</td>
+<td>No sabes ni por dónde preguntar</td>
+<td>Andamio</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Pedir crítica de tu consulta antes de enviarla</td>
+<td>Has redactado una consulta importante</td>
+<td>Pre-mortem</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Pedir la descomposición de una tarea grande</td>
+<td>Te enfrentas a una unidad nueva</td>
+<td>Mapa</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Asignación explícita de rol</td>
+<td>Sesión larga sobre un mismo tema</td>
+<td>Marco</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Encabezado fijo de modo estudio</td>
+<td>Quieres estandarizar tu forma de estudiar</td>
+<td>Plantilla</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Pedir los errores conceptuales habituales</td>
+<td>Preparas examen o consolidas un tema</td>
+<td>Puntos ciegos</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Pedir que cuestione tus supuestos</td>
+<td>Algo no encaja y no sabes qué</td>
+<td>Supuestos</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Devolver la explicación con punto de quiebre</td>
+<td>Sospechas que la lías pero no sabes dónde</td>
+<td>Bisturí</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Pedir una pregunta de examen diagnóstica</td>
+<td>Crees tener el tema controlado</td>
+<td>Prueba</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Repetir la consulta dos veces</td>
+<td>Consulta larga con muchas restricciones</td>
+<td>Refuerzo</td>
+</tr>
+</tbody>
+</table>
+<h2 id="escenario-practico-preparar-el-examen-de-ut3">Escenario práctico — preparar el examen de UT3<a class="headerlink" href="#escenario-practico-preparar-el-examen-de-ut3" title="Permanent link">&para;</a></h2>
+<p>Pongamos que mañana tienes el examen de la unidad y quieres usar la IA para hacer un repaso de verdad, no para que te resuelva ejercicios. Aquí va una sesión combinando varias técnicas en orden lógico, sobre el contenido completo de la unidad (estático + RIPv1).</p>
+<p><strong>Paso 1 — Saca el mapa de lo que tienes que dominar (técnica 2).</strong></p>
+<p>Empieza un chat nuevo. Pega el encabezado de modo estudio (técnica 17) y pide:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>¿Qué ocho preguntas debería ser capaz de contestar para considerar
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>que entiendo enrutamiento estático más introducción a RIPv1 a nivel
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>de FP de grado superior? No me las contestes.
+</code></pre></div>
+<p>Imprime esa lista o pásala a un fichero. Es tu rúbrica.</p>
+<p><strong>Paso 2 — Detecta tus puntos ciegos (técnica 18).</strong></p>
+<p>En el mismo chat:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Para cada una de esas ocho preguntas, dime cuál es el error conceptual
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>más típico que comete alguien que aprende esto por primera vez. Sin
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>contestar la pregunta, solo el error.
+</code></pre></div>
+<p>Apunta los errores que te suenan haber cometido tú alguna vez. Esos son tus puntos a reforzar.</p>
+<p><strong>Paso 3 — Para los puntos débiles, pide contraejemplos (técnica 4).</strong></p>
+<p>Por cada concepto que te ha sonado flojo:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>La AD de RIP es 120 y la de la estática es 1, así que la estática gana
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>siempre. Dame un caso donde esa preferencia me lleve a tomar una
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>decisión de diseño mala, y explícame por qué.
+</code></pre></div>
+<p><strong>Paso 4 — Autoexplícate y deja que la IA te corrija (técnica 20).</strong></p>
+<p>Para los conceptos que crees dominar, escríbelos con tus palabras y pide punto de quiebre. Si no señala ninguno, lo dominas. Si señala uno, ahí está el siguiente repaso.</p>
+<p><strong>Paso 5 — Cierra el chat y haz un repaso a solas (técnica 7).</strong></p>
+<p>Con la lista de las ocho preguntas en papel y sin chat abierto, intenta contestarlas en voz alta o por escrito. Las que respondas con fluidez están listas. Las que se atasquen son las que vuelves a abrir mañana antes del examen.</p>
+<p><strong>Paso 6 — Pregunta de examen diagnóstica (técnica 21).</strong></p>
+<p>La noche anterior, en un chat nuevo:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Si fueras profesor de PNI y tuvieras que poner una sola pregunta corta
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>sobre la transición de enrutamiento estático a RIPv1, una pregunta que
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>distinguiera quien ha entendido la transición de quien solo ha
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>memorizado los comandos, ¿qué pondrías?
+</code></pre></div>
+<p>Contéstala sin abrir más chats. Si puedes, te has preparado bien. Si no, ya sabes dónde repasar antes de dormir.</p>
+<p><strong>Paso 7 — Apunta lo que se te había escapado (técnica 8).</strong></p>
+<p>En cualquier momento de la sesión, si te has dado un <em>"ah, claro"</em>, escribe la frase en tu fichero de notas. Mañana antes del examen relees solo esas frases. Es el repaso de mayor rendimiento por minuto que existe.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ichigar
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/ichigar/web" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://codeberg.org/ichigar/pages" target="_blank" rel="noopener" title="Codeberg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.999.747A11.974 11.974 0 0 0 0 12.75c0 2.254.635 4.465 1.833 6.376L11.837 6.19c.072-.092.251-.092.323 0l4.178 5.402h-2.992l.065.239h3.113l.882 1.138h-3.674l.103.374h3.86l.777 1.003h-4.358l.135.483h4.593l.695.894h-5.038l.165.589h5.326l.609.785h-5.717l.182.65h6.038l.562.727h-6.397l.183.65h6.717A12 12 0 0 0 24 12.75 11.977 11.977 0 0 0 11.999.747m3.654 19.104.182.65h5.326c.173-.204.353-.433.513-.65zm.385 1.377.18.65h3.563c.233-.198.485-.428.712-.65zm.383 1.377.182.648h1.203c.356-.204.685-.412 1.042-.648z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/feed_rss_created.xml" target="_blank" rel="noopener" title="RSS" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../../assets/_markdown_exec_pyodide.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="../../../../javascripts/blog-class.js"></script>
+      
+    
+  </body>
+</html>
