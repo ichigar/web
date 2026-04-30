@@ -1271,10 +1271,10 @@
 </tbody>
 </table>
 <p>La diferencia entre las dos formas no está en si usas IA o no — está en <strong>cómo formulas el prompt</strong>. Y ese es uno de los objetivos de aprendizaje los contendidos de esta UT.</p>
-<p><img alt="" src="img/ia_atajo_vs_tutor.png" /></p>
+<p><img alt="" src="../img/ia_atajo_vs_tutor.png" /></p>
 <h2 id="los-cuatro-principios">Los cuatro principios<a class="headerlink" href="#los-cuatro-principios" title="Permanent link">&para;</a></h2>
 <p>Cada vez que vayas a escribir un prompt sobre las prácticas de clase, comprueba que cumple los cuatro principios. Si un prompt falla en cualquiera de ellos, reescríbelo antes de enviarlo.</p>
-<p><img alt="" src="img/ia_4principios_uso.png" /></p>
+<p><img alt="" src="../img/ia_4principios_uso.png" /></p>
 <h3 id="principio-1-pide-entender-no-resolver">Principio 1 — Pide entender, no resolver<a class="headerlink" href="#principio-1-pide-entender-no-resolver" title="Permanent link">&para;</a></h3>
 <p>El verbo del prompt importa. <strong>"Resuélveme"</strong>, <strong>"hazme"</strong>, <strong>"dame los comandos"</strong> te dan resultado pero no aprendizaje. <strong>"Explícame por qué"</strong>, <strong>"qué pasa si"</strong>, <strong>"cómo se relaciona X con Y"</strong> te dan comprensión.</p>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Prompt orientado a entender:
@@ -1300,7 +1300,7 @@
 </code></pre></div></p>
 <p><strong>Por qué este prompt es correcto:</strong> cumple los cuatro principios. Pide explicación del proceso de decisión, no comandos (P1). Incluye contexto propio — 3 routers en línea, direcciones reales y estado actual de la configuración (P2). El <em>"paso a paso"</em> deja claro que quieres el razonamiento del router, no solo el resultado (P3). Y la respuesta es verificable contra tu propia tabla <code>show ip route</code>: si la IA inventa el orden de decisión, lo cazas en 30 segundos (P4).</p>
 </div>
-<p><img alt="" src="img/ia_principio1_entender.png" /></p>
+<p><img alt="" src="../img/ia_principio1_entender.png" /></p>
 <h3 id="principio-2-incluye-tu-contexto">Principio 2 — Incluye tu contexto<a class="headerlink" href="#principio-2-incluye-tu-contexto" title="Permanent link">&para;</a></h3>
 <p>Un prompt sin contexto fuerza a la IA a darte una respuesta de manual. Un prompt con <strong>tu</strong> topología, <strong>tus</strong> direcciones, <strong>tu</strong> error concreto fuerza a la IA a razonar sobre tu caso.</p>
 <p>Esto tiene tres efectos: (1) la respuesta te sirve directamente sin tener que adaptarla; (2) detectas mucho antes si la IA está alucinando porque sus afirmaciones se contrastan con datos que tú ves; (3) si después necesitas releerla, la respuesta tiene tus datos concretos y no un párrafo genérico que podría haber dado sobre cualquier red.</p>
@@ -1329,7 +1329,7 @@
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>entrada que la red de partida no llegue?&quot;
 </code></pre></div></p>
 </div>
-<p><img alt="" src="img/ia_principio2_contexto.png" /></p>
+<p><img alt="" src="../img/ia_principio2_contexto.png" /></p>
 <h3 id="principio-3-pide-proceso-no-producto-final">Principio 3 — Pide proceso, no producto final<a class="headerlink" href="#principio-3-pide-proceso-no-producto-final" title="Permanent link">&para;</a></h3>
 <p>Cuando le pides a la IA "el resultado", recibes el resultado. Cuando le pides "los pasos del razonamiento", recibes el razonamiento — y eso te enseña a hacerlo tú la próxima vez.</p>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Prompt orientado al proceso:
@@ -1356,7 +1356,7 @@
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>en cuatro octetos, y finalmente cómo se traduce cada octeto a decimal.&quot;
 </code></pre></div></p>
 </div>
-<p><img alt="" src="img/ia_principio3_proceso.png" /></p>
+<p><img alt="" src="../img/ia_principio3_proceso.png" /></p>
 <h3 id="principio-4-verifica-antes-de-aceptar">Principio 4 — Verifica antes de aceptar<a class="headerlink" href="#principio-4-verifica-antes-de-aceptar" title="Permanent link">&para;</a></h3>
 <p>La IA se equivoca. A veces de forma sutil — un número mal calculado, un comando que no existe en la versión de IOS de Packet Tracer, o una explicación que suena correcta pero <strong>dice lo contrario de lo que en realidad pasa</strong> (por ejemplo: "una máscara más larga abarca más direcciones", cuando es justo al revés — /27 abarca menos direcciones que /24). </p>
 <p>Tu trabajo es <strong>comprobar lo que te devuelve antes de incorporarlo</strong> a tus recursos y prácticas.</p>
@@ -1372,7 +1372,7 @@
 </ul>
 <p>La consecuencia práctica: cuanto más segura suene una afirmación, más necesario es verificarla. Una alucinación nunca viene con una advertencia.</p>
 </div>
-<p><img alt="" src="img/ia_alucinacion.png" /></p>
+<p><img alt="" src="../img/ia_alucinacion.png" /></p>
 <p>Cómo verificar, por orden de fiabilidad:</p>
 <ol>
 <li><strong>Ejecutándolo en el entorno de trabajo</strong> Por ejemplo en Packet tracer, o en Ubuntu Server. Si la IA te dice un comando o una configuración, prúebalo. Si funciona, anota qué hace. Si no funciona, te ahorras escribir teoría falsa en tus apuntes o pasos incorrectos en las prácticas.</li>
@@ -1407,7 +1407,7 @@
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>→ Reformular con tus palabras y un ejemplo propio en la sección de apuntes o de la práctica correspondiente.
 </code></pre></div></p>
 </div>
-<p><img alt="" src="img/ia_principio4_verificar.png" /></p>
+<p><img alt="" src="../img/ia_principio4_verificar.png" /></p>
 <h2 id="escribir-un-buen-prompt-plantilla-practica">Escribir un buen prompt — plantilla práctica<a class="headerlink" href="#escribir-un-buen-prompt-plantilla-practica" title="Permanent link">&para;</a></h2>
 <p>Cuando estés bloqueado escribiendo un prompt, usa esta plantilla y rellena los huecos. No es la única forma de hacer un prompt bueno, pero garantiza que cumple los cuatro principios.</p>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>[CONTEXTO]
@@ -1457,7 +1457,7 @@
 <a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>des la solución; dame la lista de comprobaciones que haría un técnico,
 <a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>en orden de probabilidad, y qué comando usaría para verificar cada una.
 </code></pre></div>
-<p><img alt="" src="img/ia_plantilla_prompt.png" /></p>
+<p><img alt="" src="../img/ia_plantilla_prompt.png" /></p>
 <p>La respuesta a este prompt es <strong>una guía de diagnóstico</strong> aplicable a tu caso. Te enseña a pensar como un administrador de red. La respuesta al prompt malo equivalente (<em>"mi ping no funciona, arréglalo"</em>) te daría una lista genérica de soluciones que no sabrías cuál aplicar.</p>
 <h2 id="como-registrar-tu-uso-de-la-ia-en-esta-unidad">Cómo registrar tu uso de la IA en esta unidad<a class="headerlink" href="#como-registrar-tu-uso-de-la-ia-en-esta-unidad" title="Permanent link">&para;</a></h2>
 <p>Conviene separar dos cosas en tu material de trabajo:</p>
