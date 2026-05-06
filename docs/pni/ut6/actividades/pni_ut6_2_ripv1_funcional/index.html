@@ -1397,7 +1397,7 @@
 </ul>
 <hr />
 <h2 id="como-trabajar-en-parejas">Cómo trabajar en parejas<a class="headerlink" href="#como-trabajar-en-parejas" title="Permanent link">&para;</a></h2>
-<p>Este lab se realiza en <strong>parejas conductor/navegante</strong>. Lean las instrucciones antes de empezar.</p>
+<p>Este lab se realiza en <strong>parejas conductor/navegante</strong>. Vamos a leer las instrucciones antes de empezar.</p>
 <h3 id="roles">Roles<a class="headerlink" href="#roles" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1419,26 +1419,26 @@
 </table>
 <h3 id="rotacion">Rotación<a class="headerlink" href="#rotacion" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Cambien de rol <strong>al final de cada fase</strong>.</li>
+<li>Vamos a cambiar de rol <strong>al final de cada fase</strong>.</li>
 <li>Al rotar, el navegante ocupa el teclado y el conductor se convierte en navegante.</li>
 <li>Ambos deben poder explicar cualquier parte del trabajo al terminar el lab.</li>
 </ul>
 <h3 id="entrega">Entrega<a class="headerlink" href="#entrega" title="Permanent link">&para;</a></h3>
-<p>Suban a CAMPUS los tres ficheros en la misma tarea: <strong><code>a2_ripv1_funcional.pkt</code></strong>, el documento de apuntes de A2 con las secciones nuevas rellenas, y el diario de aprendizaje con la entrada A2 rellena.</p>
+<p>Sube a CAMPUS los tres ficheros en la misma tarea: <strong><code>a2_ripv1_funcional.pkt</code></strong>, el documento de apuntes de A2 con las secciones nuevas rellenas, y el diario de aprendizaje con la entrada A2 rellena.</p>
 <hr />
 <h2 id="checkpoint-de-repaso">Checkpoint de repaso<a class="headerlink" href="#checkpoint-de-repaso" title="Permanent link">&para;</a></h2>
-<p>Antes de abrir Packet Tracer, repasen en pareja los conceptos que van a necesitar. Si algo no sale, usen la IA como tutor de repaso — pero aplicando los principios de A0.</p>
-<p>En A1 vieron lo que cuesta mantener una red de 5 routers con enrutamiento estático: cada vez que cae un enlace o se añade una red, hay que tocar varios routers a mano. Hoy van a ver qué cambia cuando ese trabajo lo hace <strong>un protocolo dinámico</strong>: RIPv1.</p>
-<p>En A1 trabajaron la <strong>técnica #1 — pedir explicación, no solución</strong> del <a href="../../recursos/pni_ut6_tecnicas_aprender_ia/">manual de técnicas</a>. Hoy la siguen aplicando: los dos prompts guiados de la Fase 2 son ejemplos de esa técnica.</p>
+<p>Antes de abrir Packet Tracer, vamos a repasar en pareja los conceptos que vamos a necesitar. Si algo no sale, podemos usar la IA como tutor de repaso — pero aplicando los principios de A0.</p>
+<p>En A1 vimos lo que cuesta mantener una red de 5 routers con enrutamiento estático: cada vez que cae un enlace o se añade una red, hay que tocar varios routers a mano. Hoy vamos a ver qué cambia cuando ese trabajo lo hace <strong>un protocolo dinámico</strong>: RIPv1.</p>
+<p>En A1 trabajamos la <strong>técnica #1 — pedir explicación, no solución</strong> del <a href="../../recursos/pni_ut6_tecnicas_aprender_ia/">manual de técnicas</a>. Hoy la seguimos aplicando: los dos prompts guiados de la Fase 2 son ejemplos de esa técnica.</p>
 <p>Las técnicas del manual no sustituyen los cuatro principios de A0: el prompt sigue necesitando contexto propio (P2), pedir proceso (P3) y ser verificable (P4).</p>
 <div class="admonition note">
-<p class="admonition-title">Conceptos que van a necesitar en este lab</p>
+<p class="admonition-title">Conceptos que vamos a necesitar en este lab</p>
 <p><strong>Enrutamiento dinámico — qué resuelve</strong>
 Un protocolo de enrutamiento dinámico es un programa que se ejecuta en cada router y se encarga de <strong>descubrir y mantener las rutas automáticamente</strong>. Los routers se comunican entre sí, comparten información sobre las redes que conocen y, cuando algo cambia (cae un enlace, aparece una red nueva), recalculan las rutas sin que el administrador tenga que tocar nada.</p>
 <p><strong>RIP — el primer protocolo de enrutamiento dinámico</strong>
 RIP (<em>Routing Information Protocol</em>) es uno de los protocolos dinámicos más antiguos y más sencillos. Cada router con RIP envía a sus vecinos directos, <strong>cada 30 segundos</strong>, la lista completa de redes que conoce y a cuántos saltos están. Los vecinos aprenden esas redes, suman 1 al número de saltos y, a su vez, las anuncian a sus propios vecinos. Así, sin que nadie configure rutas a mano, todos los routers acaban sabiendo cómo llegar a todas las redes.</p>
 <p><strong>RIPv1 vs. RIPv2</strong>
-RIP tiene dos versiones. <strong>RIPv1</strong> es la original (1988): muy sencilla, con limitaciones que se notan en redes modernas — pero no las van a ver hoy. <strong>RIPv2</strong> (1998) arregla varias de esas limitaciones; entra en A4. Hoy trabajan con RIPv1 porque es el más fácil de entender y porque sirve perfectamente sobre la red sencilla del lab.</p>
+RIP tiene dos versiones. <strong>RIPv1</strong> es la original (1988): muy sencilla, con limitaciones que se notan en redes modernas — pero no las vamos a ver hoy. <strong>RIPv2</strong> (1998) arregla varias de esas limitaciones; entra en A4. Hoy trabajamos con RIPv1 porque es el más fácil de entender y porque sirve perfectamente sobre la red sencilla del lab.</p>
 <p><strong><code>router rip</code> y <code>network</code></strong>
 Para activar RIP en un router se entra al modo de configuración con <code>router rip</code>. Después se le indica con uno o varios <code>network &lt;dirección&gt;</code> en qué redes queremos que funcione. La dirección que se pone en <code>network</code> tiene que ser la <strong>dirección classful</strong> de la red (la red completa de clase A, B o C a la que pertenece la interfaz). Hoy todas las interfaces del lab están dentro de la clase B 172.16.0.0/16, así que basta con un único <code>network 172.16.0.0</code> por router. RIP queda entonces activo en todas las interfaces de ese router.</p>
 <p><strong>Métrica de RIP — el contador de saltos</strong>
@@ -1446,7 +1446,7 @@ RIP mide el coste de una ruta en <em>saltos</em> (hops): cuántos routers interm
 <p><strong>Convergencia</strong>
 Cuando un protocolo dinámico ha terminado de propagar la información sobre la red y todos los routers tienen tablas de rutas coherentes, decimos que la red <strong>ha convergido</strong>. En RIPv1, la convergencia inicial tarda unos 30-60 segundos en una red pequeña como la del lab. Si después algo cambia (cae un enlace), el protocolo necesita un tiempo similar para volver a converger.</p>
 <p><strong><code>show ip route</code> — distinguir C, S y R</strong>
-Ya conocen <code>C</code> (connected) y <code>S</code> (static) de A1. Hoy aparece <strong><code>R</code></strong>: ruta aprendida por RIP. La distancia administrativa de RIP es 120 y la métrica son los saltos; aparecerán entre corchetes en la línea de la ruta, igual que en A1 vieron <code>[1/0]</code> para las estáticas.</p>
+Ya conocemos <code>C</code> (connected) y <code>S</code> (static) de A1. Hoy aparece <strong><code>R</code></strong>: ruta aprendida por RIP. La distancia administrativa de RIP es 120 y la métrica son los saltos; aparecerán entre corchetes en la línea de la ruta, igual que en A1 vimos <code>[1/0]</code> para las estáticas.</p>
 </div>
 <details class="tip">
 <summary>¿No te salen los conceptos solos?</summary>
@@ -1548,7 +1548,18 @@ Ya conocen <code>C</code> (connected) y <code>S</code> (static) de A1. Hoy apare
 <p><strong>Gateway por defecto en los PCs:</strong> PC-A → 172.16.1.1; PC-E → 172.16.7.1.</p>
 <div class="admonition warning">
 <p class="admonition-title">Solo direccionamiento — no configures rutas estáticas</p>
-<p>En este lab <strong>solo configuras las direcciones IP de las interfaces y la gateway de los PCs</strong>. <strong>No añadas ningún <code>ip route ...</code> en ningún router.</strong> Lo que vas a comprobar es justo si RIPv1 consigue por sí solo construir las rutas necesarias para llegar de PC-A a PC-E. Si añades estáticas, ocultas el resultado del experimento: habría conectevidad por las rutas manuales, no gracias a RIP.</p>
+<p>En este lab <strong>solo configuras las direcciones IP de las interfaces y la gateway de los PCs</strong>. <strong>No añadas ningún <code>ip route ...</code> en ningún router.</strong> Lo que vas a comprobar es justo si RIPv1 consigue por sí solo construir las rutas necesarias para llegar de PC-A a PC-E. Si añades estáticas, ocultas el resultado del experimento: habría conectividad por las rutas manuales, no gracias a RIP.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Si reutilizas el .pkt de A1: borra primero las rutas estáticas viejas</p>
+<p>Si abres tu <code>.pkt</code> de A1 y solo cambias el direccionamiento, las <strong>12 rutas estáticas que configuraste en A1 siguen ahí</strong>. Si las dejas y activas RIPv1 encima, no sabrás si la conectividad viene del estático que sobró o del dinámico que acabas de configurar — y el experimento de hoy queda contaminado.</p>
+<p>Antes de cambiar IPs, en cada router con estáticas (R1, R2, R3, R5):</p>
+<ol>
+<li>Lista las que tienes con <code>R# show running-config | include ip route</code>.</li>
+<li>Bórralas una a una con <code>R(config)# no ip route &lt;misma sintaxis&gt;</code>. Por ejemplo: <code>no ip route 10.0.0.4 255.255.255.252 10.0.0.2</code>.</li>
+<li>Vuelve a hacer <code>show ip route</code> y confirma que solo aparecen rutas <code>C</code> (directly connected). Ninguna <code>S</code>.</li>
+</ol>
+<p>Recién entonces cambia las IPs al direccionamiento /24 nuevo y empieza el lab.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Antes de seguir: verifica el direccionamiento directo</p>
@@ -1628,7 +1639,10 @@ Ya conocen <code>C</code> (connected) y <code>S</code> (static) de A1. Hoy apare
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>R2(config-if)# end
 </code></pre></div>
 <p><strong>No añadas ninguna ruta.</strong> Espera <strong>un minuto</strong> para que RIP detecte el cambio y converja.</p>
-<p>Mientras esperas, lanza pings continuos desde PC-A a PC-E. Verás que durante un rato fallan (mientras RIP detecta el cambio) y luego <strong>vuelven a funcionar solos</strong>.</p>
+<p>Mientras esperas, lanza un ping continuo desde PC-A a PC-E con la opción <code>-t</code> (envía paquetes hasta que lo paras tú con <code>Ctrl+C</code>):</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>PC-A&gt; ping -t 172.16.7.10
+</code></pre></div>
+<p>Verás cómo durante un rato fallan los paquetes (mientras RIP detecta el cambio) y luego <strong>vuelven a funcionar solos</strong>, sin tocar la configuración. Pulsa <code>Ctrl+C</code> para detener el ping cuando hayas visto la transición.</p>
 <p>Una vez recuperada la conectividad, lanza otra vez <code>tracert</code> desde PC-A a PC-E. Anota en el diario, entrada A2, apartado «Antes de empezar (fase sin IA)», campo «Comandos que añadí para recuperar la conectividad», el camino del tracert tras la convergencia: debería pasar ahora por R4 en lugar de R3.</p>
 <p>Anota en el diario, entrada A2, apartado «Antes de empezar (fase sin IA)», campo <strong>«Comandos que añadí para recuperar la conectividad»</strong>:</p>
 <blockquote>
