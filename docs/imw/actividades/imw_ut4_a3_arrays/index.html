@@ -1171,9 +1171,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#paso-4-guardar-el-total-en-una-variable-y-comprobar-si-un-array-esta-vacio" class="md-nav__link">
+  <a href="#paso-4-guardar-el-total-en-una-variable-reutilizable" class="md-nav__link">
     <span class="md-ellipsis">
-      Paso 4 — Guardar el total en una variable y comprobar si un array está vacío
+      Paso 4 — Guardar el total en una variable reutilizable
     </span>
   </a>
   
@@ -1253,6 +1253,10 @@
 <td>UT4 — PHP en servidor</td>
 </tr>
 <tr>
+<td>Criterios de evaluación (CE)</td>
+<td><strong>d</strong> (estructuras de control: <code>foreach</code>)</td>
+</tr>
+<tr>
 <td>Requisitos</td>
 <td>Labs 01 y 02 completados</td>
 </tr>
@@ -1266,7 +1270,7 @@
 </tr>
 <tr>
 <td>Apuntes</td>
-<td><code>ut4_php_03_arrays_y_listas.md</code></td>
+<td><a href="https://ichigar.codeberg.page/imw/recursos/ut4_php_03_arrays_y_listas/">https://ichigar.codeberg.page/imw/recursos/ut4_php_03_arrays_y_listas/</a></td>
 </tr>
 <tr>
 <td>Tiempo estimado</td>
@@ -1310,9 +1314,8 @@
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── paso1_lista_simple.png
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   ├── paso2_incidencia_asociativa.png
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   ├── paso3_tabla_incidencias.png
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   ├── paso4_contadores.png
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   └── paso5_catalogo.png
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>└── RESPUESTAS.md
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   └── paso5_catalogo.png
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>└── RESPUESTAS.md
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Nombres prescritos</p>
@@ -1320,7 +1323,7 @@
 </div>
 <p><strong>Cómo preparar el ZIP (Windows o Linux/macOS):</strong></p>
 <ol>
-<li>Crea la carpeta <code>apellido_nombre_lab03/</code> (minúsculas, sin espacios ni acentos) y reproduce la estructura: los 3 ficheros PHP los crearás en el servidor durante los pasos del lab y debes copiarlos a tu carpeta de entrega antes de hacer el ZIP; guarda también las 5 capturas con el nombre exacto, y crea <code>RESPUESTAS.md</code>.</li>
+<li>Crea la carpeta <code>apellido_nombre_lab03/</code> (minúsculas, sin espacios ni acentos) y reproduce la estructura: los 3 ficheros PHP los crearás en el servidor durante los pasos del lab y debes copiarlos a tu carpeta de entrega antes de hacer el ZIP; guarda también las 4 capturas con el nombre exacto, y crea <code>RESPUESTAS.md</code>.</li>
 <li>Comprime:<ul>
 <li><strong>Windows:</strong> clic derecho sobre la carpeta → <em>Enviar a</em> → <em>Carpeta comprimida (en zip)</em>.</li>
 <li><strong>Linux/macOS:</strong> <code>zip -r apellido_nombre_lab03.zip apellido_nombre_lab03/</code>.</li>
@@ -1335,9 +1338,10 @@
 <ul>
 <li>Un <strong>array indexado</strong> es una lista de valores con índice numérico. El primer elemento está en la posición <code>0</code>.</li>
 <li>Se crea con corchetes: <code>$arr = ['baja', 'media', 'alta'];</code>.</li>
-<li>Se añade al final con <code>$arr[] = 'critica';</code>.</li>
+<li>Se añade al final con <code>$arr[] = 'critica';</code>. Los corchetes vacíos no son un error: significan "el siguiente índice libre", y PHP lo asigna automáticamente.</li>
 <li>Se cuenta el número de elementos con <code>count($arr)</code>.</li>
 <li><strong><code>foreach</code></strong> recorre todos los elementos uno a uno.</li>
+<li><strong>Sintaxis <code>foreach (...): ... endforeach</code></strong>: dentro de bloques HTML usamos esta forma en lugar de las llaves <code>{ ... }</code>. Es más legible cuando se mezclan PHP y HTML porque la etiqueta de cierre dice claramente qué bloque se cierra. <strong>Cada <code>foreach</code> necesita su <code>endforeach</code></strong>: si te lo saltas, PHP intenta interpretar el resto del fichero como parte del bucle y la página deja de funcionar.</li>
 </ul>
 </div>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Crear un array con varias prioridades y mostrarlas como una lista HTML <code>&lt;ul&gt;</code>.</p>
@@ -1391,10 +1395,6 @@
 <a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="x">&lt;/html&gt;</span>
 </code></pre></div></td></tr></table></div>
 <p>Visita <code>http://gestor.local/arrays.php</code>. Debes ver una lista con 4 prioridades.</p>
-<div class="admonition note">
-<p class="admonition-title">Sintaxis alternativa de <code>foreach</code></p>
-<p>Dentro de HTML usamos la forma <code>foreach (...): ... endforeach</code> en lugar de llaves <code>{ ... }</code>. Es más legible cuando se mezclan PHP y HTML. En este lab la aplicamos por primera vez con <code>foreach</code>; la volverás a usar mucho en los labs siguientes, por ejemplo con <code>if</code> en el Lab 04.</p>
-</div>
 <details class="tip">
 <summary>Pista si no aparece nada</summary>
 <p>Comprueba que cada <code>foreach</code> tiene su <code>endforeach</code> al final. Si te saltas uno, la página entera deja de funcionar.</p>
@@ -1420,12 +1420,11 @@
 <div class="admonition note">
 <p class="admonition-title">Conceptos</p>
 <ul>
-<li>Un <strong>array asociativo</strong> tiene claves de texto en lugar de índices numéricos. Es el equivalente PHP de un diccionario en Python o un objeto JSON.</li>
-<li>Se crea con la sintaxis <code>'clave' =&gt; valor</code>.</li>
-<li>Se accede a un valor con <code>$arr['clave']</code>.</li>
-<li>Para comprobar si una clave existe, <code>isset($arr['clave'])</code>.</li>
+<li>Un <strong>array asociativo</strong> se diferencia del indexado del Paso 1 en que las claves son <strong>texto</strong> en lugar de números. En el Paso 1 accedías con <code>$prioridades[0]</code> (índice numérico); aquí accederás con <code>$incidencia['titulo']</code> (clave de texto). La notación es la misma, lo que cambia es el contenido entre corchetes.</li>
+<li>Se crea con la sintaxis <code>'clave' =&gt; valor</code>. El símbolo <code>=&gt;</code> se lee como <strong>"apunta a"</strong>: <code>'titulo' =&gt; 'Impresora'</code> se lee "la clave titulo apunta al valor Impresora".</li>
+<li>Las claves distinguen mayúsculas: <code>$inc['titulo']</code> y <code>$inc['Titulo']</code> son claves distintas.</li>
+<li>Es el equivalente PHP de un diccionario en Python o un objeto JSON. Lo usaremos para representar cada <strong>incidencia</strong> en el proyecto: un array con claves <code>id</code>, <code>titulo</code>, <code>descripcion</code>, <code>prioridad</code>, <code>estado</code>, etc.</li>
 </ul>
-<p>Este tipo de array es el que representará cada <strong>incidencia</strong> en nuestro proyecto: un array con claves <code>id</code>, <code>titulo</code>, <code>descripcion</code>, <code>prioridad</code>, <code>estado</code>, etc.</p>
 </div>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Ampliar <code>arrays.php</code> para mostrar los datos de una única incidencia representada como array asociativo.</p>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea.</strong> Modifica <code>~/gestor/public/arrays.php</code>. Dentro del bloque PHP que ya tienes, <strong>justo después de la línea <code>$prioridades[] = 'critica';</code> y antes del <code>?&gt;</code></strong>, añade:</p>
@@ -1489,10 +1488,11 @@
 <ul>
 <li>En aplicaciones reales, normalmente tienes <strong>muchos</strong> registros del mismo tipo: una lista de incidencias, una lista de usuarios, una lista de pedidos. Se representan como <strong>arrays de arrays asociativos</strong>.</li>
 <li>Se recorren con <code>foreach</code>, y dentro del bucle accedes a cada campo con la notación <code>$elemento['clave']</code>.</li>
+<li><strong>Variable de iteración</strong>: en <code>foreach ($incidencias as $inc):</code>, la variable <code>$inc</code> toma el valor de cada elemento en cada vuelta del bucle. Dentro del bucle, <code>$inc</code> representa la incidencia "actual" (un array asociativo), y accedes a sus claves con <code>$inc['id']</code>, <code>$inc['titulo']</code>, etc. Después del <code>endforeach</code>, <code>$inc</code> ya no se usa. El nombre <code>$inc</code> es solo una elección — podríamos haberla llamado <code>$x</code> o <code>$item</code>, pero conviene un nombre que indique qué representa.</li>
 <li>La estructura HTML natural para presentarlos es una tabla <code>&lt;table&gt;</code>.</li>
 </ul>
 </div>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Crear un fichero nuevo <code>listado.php</code> con una lista de 5 incidencias y mostrarlas en una tabla HTML.</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Crear un fichero nuevo <code>listado.php</code> con una lista de <strong>al menos 5 incidencias</strong> y mostrarlas en una tabla HTML.</p>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea.</strong> Crea <code>~/gestor/public/listado.php</code>:</p>
 <div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
@@ -1593,6 +1593,10 @@
 <a id="__codelineno-4-49" name="__codelineno-4-49"></a><span class="x">&lt;/html&gt;</span>
 </code></pre></div></td></tr></table></div>
 <p>Visita <code>http://gestor.local/listado.php</code>. Debes ver una tabla con las 5 filas.</p>
+<div class="admonition note">
+<p class="admonition-title">El bloque <code>&lt;style&gt;</code> es opcional</p>
+<p>El <code>&lt;style&gt;</code> con CSS dentro del <code>&lt;head&gt;</code> se incluye solo para que la tabla sea legible (bordes, padding, fondo de cabecera). Es un detalle estético: si lo quitas, la tabla sigue siendo válida. Los siguientes ficheros del lab no requieren CSS.</p>
+</div>
 <details class="tip">
 <summary>Pista sobre el <code>foreach</code> dentro de la tabla</summary>
 <p>Observa dónde están el <code>&lt;?php foreach ...: ?&gt;</code> y el <code>&lt;?php endforeach ?&gt;</code>: <strong>fuera</strong> de <code>&lt;tr&gt;</code> y <code>&lt;/tr&gt;</code>. Es decir, por cada iteración del bucle se genera un <code>&lt;tr&gt;</code> completo. Un error habitual es meter el <code>foreach</code> dentro del <code>&lt;tr&gt;</code> y generar tablas rotas.</p>
@@ -1601,7 +1605,7 @@
 <blockquote>
 <p>Añade una 6ª incidencia al array <code>$incidencias</code> y recarga. ¿Has tenido que tocar el bloque del <code>foreach</code> para que aparezca la nueva fila? ¿Por qué?</p>
 </blockquote>
-<p>Puedes dejar la 6ª incidencia en el array o volver a quitarla al responder: cualquiera de las dos opciones es válida para los pasos siguientes (el script de corrección acepta entre 5 y cualquier número mayor de incidencias).</p>
+<p>La 6ª incidencia es <strong>solo para responder a la pregunta</strong>. Puedes dejarla en el array o quitarla — el requisito mínimo de entrega son 5 incidencias.</p>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m8 3a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3"/></svg></span> <strong>Captura requerida.</strong> Guarda en <code>capturas/paso3_tabla_incidencias.png</code> una captura con la tabla visible. Debe verse:</p>
 <ul>
 <li>La URL <code>http://gestor.local/listado.php</code>.</li>
@@ -1616,15 +1620,15 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He guardado <code>capturas/paso3_tabla_incidencias.png</code>.</li>
 </ul>
 <hr />
-<h2 id="paso-4-guardar-el-total-en-una-variable-y-comprobar-si-un-array-esta-vacio">Paso 4 — Guardar el total en una variable y comprobar si un array está vacío<a class="headerlink" href="#paso-4-guardar-el-total-en-una-variable-y-comprobar-si-un-array-esta-vacio" title="Permanent link">&para;</a></h2>
+<h2 id="paso-4-guardar-el-total-en-una-variable-reutilizable">Paso 4 — Guardar el total en una variable reutilizable<a class="headerlink" href="#paso-4-guardar-el-total-en-una-variable-reutilizable" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Conceptos</p>
 <ul>
-<li><strong>Guardar un valor en una variable reutilizable</strong> evita calcularlo varias veces. En el Paso 3 llamabas a <code>count($incidencias)</code> directamente dentro del HTML; ahora lo guardaremos una vez en <code>$total_incidencias</code> y lo usaremos cuantas veces haga falta.</li>
-<li><strong><code>empty($array)</code></strong> devuelve <code>true</code> si el array está vacío o no existe, y <code>false</code> si tiene al menos un elemento. En el Lab 04 la usaremos para decidir qué pintar en la página (tabla o mensaje alternativo); aquí solo la conocemos y la probamos con <code>var_dump()</code>.</li>
+<li><strong>Guardar un valor en una variable reutilizable</strong> hace el código más claro y mantenible. En el Paso 3 llamabas a <code>count($incidencias)</code> directamente dentro del HTML; en aplicaciones reales es habitual reutilizar el total en varios sitios (cabecera, pie, mensaje "X de Y elementos"...). Si el cálculo cambia mañana — por ejemplo, contar solo las abiertas — solo tocas una línea.</li>
+<li>Esta refactorización es además la forma natural de tener el total disponible para los condicionales del <strong>Lab 04</strong>: allí decidiremos <em>qué pintar</em> según si hay incidencias o no.</li>
 </ul>
 </div>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Ampliar <code>listado.php</code> para guardar el total en una variable reutilizable y conocer la función <code>empty()</code>.</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Ampliar <code>listado.php</code> para guardar el total en una variable reutilizable.</p>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 1 — Declarar <code>$total_incidencias</code>.</strong> Modifica <code>~/gestor/public/listado.php</code>. Añade al bloque PHP inicial, <strong>después del array <code>$incidencias</code></strong>:</p>
 <div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="x">$total_incidencias = count($incidencias);</span>
 </code></pre></div></td></tr></table></div>
@@ -1634,58 +1638,23 @@
 <p>por esta otra que usa la variable ya calculada:</p>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="x">&lt;p&gt;Total: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$total_incidencias</span> <span class="cp">?&gt;</span><span class="x"> incidencias.&lt;/p&gt;</span>
 </code></pre></div>
-<p>Guarda y recarga <code>http://gestor.local/listado.php</code>. La página se ve <strong>exactamente igual</strong> que en el Paso 3: el cambio es interno, no visual.</p>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 3 — Probar <code>empty()</code> con <code>var_dump()</code>.</strong> En el bloque PHP inicial, <strong>después de la línea <code>$total_incidencias = count($incidencias);</code></strong> que añadiste en la Tarea 1, añade esta variable:</p>
-<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
-<span class="normal"><a href="#__codelineno-8-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="x">// Array vacío para comparar con $incidencias en empty()</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="x">$ejemplo_vacio = [];</span>
-</code></pre></div></td></tr></table></div>
-<p>Después, en el HTML, <strong>dentro del <code>&lt;body&gt;</code>, justo después del <code>&lt;h1&gt;</code></strong>, añade este bloque <code>&lt;pre&gt;</code>:</p>
-<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
-<span class="normal"><a href="#__codelineno-9-2">2</a></span>
-<span class="normal"><a href="#__codelineno-9-3">3</a></span>
-<span class="normal"><a href="#__codelineno-9-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="x">&lt;pre&gt;</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="x">empty($incidencias) vale:   </span><span class="cp">&lt;?php</span> <span class="nb">var_dump</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$incidencias</span><span class="p">));</span> <span class="cp">?&gt;</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="x">empty($ejemplo_vacio) vale: </span><span class="cp">&lt;?php</span> <span class="nb">var_dump</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$ejemplo_vacio</span><span class="p">));</span> <span class="cp">?&gt;</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="x">&lt;/pre&gt;</span>
-</code></pre></div></td></tr></table></div>
-<p>Recarga la página. Encima de la tabla deberías ver algo como:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>empty($incidencias) vale:   bool(false)
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>empty($ejemplo_vacio) vale: bool(true)
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">¿Y por qué no la usamos ya para mostrar un mensaje?</p>
-<p>Para mostrar un mensaje distinto según si la lista está vacía o llena, necesitamos un <strong><code>if</code></strong>, que veremos en el Lab 04. En ese lab retomaremos <code>empty()</code> con condicionales para decidir qué pintar en la página.</p>
-</div>
+<p>Guarda y recarga <code>http://gestor.local/listado.php</code>. La página se ve <strong>exactamente igual</strong> que en el Paso 3: el cambio es interno, no visual. Por eso este paso no requiere captura nueva.</p>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> <strong>Responde en <code>RESPUESTAS.md</code>, sección <code>## Paso 4</code>.</strong></p>
 <blockquote>
-<ol>
-<li>¿Qué ventaja tiene guardar el total en <code>$total_incidencias</code> y reutilizar la variable, frente a escribir <code>count($incidencias)</code> dos veces (una en el bloque PHP y otra en el HTML)?</li>
-<li>¿Qué valor devuelve <code>empty()</code> cuando el array tiene elementos? ¿Y cuando está vacío? Copia las dos líneas que imprime <code>var_dump()</code> en tu página.</li>
-</ol>
+<p>¿Qué ventaja tiene guardar el total en <code>$total_incidencias</code> frente a escribir <code>count($incidencias)</code> cada vez que necesites el número? Piensa en el escenario de tener que mostrar el total en dos sitios distintos de la página, o en cómo afectaría a tu código si mañana cambiaras el criterio (contar solo abiertas, por ejemplo).</p>
 </blockquote>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m8 3a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3"/></svg></span> <strong>Captura requerida.</strong> Guarda en <code>capturas/paso4_contadores.png</code> una captura de la página que muestre:</p>
-<ul>
-<li>La URL <code>http://gestor.local/listado.php</code>.</li>
-<li>El contador "Total: N incidencias." con el número correcto.</li>
-<li>El bloque <code>&lt;pre&gt;</code> con las dos líneas de <code>var_dump(empty(...))</code>: <code>empty($incidencias)</code> → <code>bool(false)</code> y <code>empty($ejemplo_vacio)</code> → <code>bool(true)</code>.</li>
-<li>La tabla con todas las filas del Paso 3 (sigue debajo, intacta).</li>
-</ul>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Verificación.</strong></p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>listado.php</code> declara la variable <code>$total_incidencias = count($incidencias)</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>listado.php</code> declara la variable <code>$total_incidencias = count($incidencias)</code> en el bloque PHP inicial.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El <code>&lt;p&gt;Total:&lt;/p&gt;</code> del Paso 3 usa ahora <code>$total_incidencias</code> en lugar de <code>count()</code> inline.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>listado.php</code> declara también <code>$ejemplo_vacio = [];</code> en el bloque PHP inicial.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El fichero usa <code>empty()</code> en las dos llamadas a <code>var_dump</code>.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> La página muestra el contador, las dos líneas de <code>var_dump(empty(...))</code> y la tabla.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He guardado <code>capturas/paso4_contadores.png</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>listado.php</code> pasa <code>php -l</code> sin errores.</li>
 </ul>
 <hr />
 <h2 id="paso-5-aplica-lo-aprendido-catalogo-de-equipos-del-taller">Paso 5 — Aplica lo aprendido: catálogo de equipos del taller<a class="headerlink" href="#paso-5-aplica-lo-aprendido-catalogo-de-equipos-del-taller" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Qué es este paso</p>
 <p>Los cuatro pasos anteriores han sido guiados: te he dado el código y tú lo has tecleado, probado y respondido. En este quinto paso <strong>no hay código de referencia</strong>. Lo que hay son <strong>requisitos</strong>, y tú aplicas lo aprendido en los pasos 1 a 4 para cumplirlos.</p>
-<p>Cambiamos de dominio: en lugar de incidencias, vas a catalogar <strong>equipos informáticos de un pequeño taller de reparaciones</strong>. Todo el patrón que ya conoces (array asociativo, array de arrays, tabla HTML con <code>foreach</code>, <code>count()</code>) se transfiere a este nuevo contexto.</p>
+<p>Vas a aplicar <strong>exactamente el mismo patrón que en los Pasos 2, 3 y 4</strong>, pero con un contexto distinto: en lugar de incidencias, equipos de un taller de reparaciones. Los tipos de array, la tabla HTML, el <code>foreach</code>, <code>count()</code> y <code>htmlspecialchars()</code> funcionan igual — solo cambian los nombres de las variables y los campos.</p>
 </div>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Crear un fichero nuevo <code>catalogo.php</code> que muestre una ficha del taller y una tabla con sus equipos, aplicando todo lo visto en los pasos 1 a 4.</p>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea.</strong> Crea <code>~/gestor/public/catalogo.php</code> cumpliendo los requisitos siguientes.</p>
@@ -1726,10 +1695,10 @@
 <details class="tip">
 <summary>Pista sobre la concatenación del <code>&lt;h1&gt;</code></summary>
 <p>Puedes usar interpolación con comillas dobles (la v2 del Lab 02 Paso 4):</p>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="x">$titulo = &quot;Catálogo de equipos de {$taller[&#39;nombre&#39;]}&quot;;</span>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="x">$titulo = &quot;Catálogo de equipos de {$taller[&#39;nombre&#39;]}&quot;;</span>
 </code></pre></div>
 <p>O el operador punto:</p>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="x">$titulo = &#39;Catálogo de equipos de &#39; . $taller[&#39;nombre&#39;];</span>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="x">$titulo = &#39;Catálogo de equipos de &#39; . $taller[&#39;nombre&#39;];</span>
 </code></pre></div>
 <p>Ambas valen. Elige la que te resulte más cómoda.</p>
 </details>
@@ -1776,7 +1745,7 @@
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He creado la carpeta <code>apellido_nombre_lab03/</code> con mi apellido y nombre reales.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dentro hay <code>gestor/public/arrays.php</code>, <code>listado.php</code> y <code>catalogo.php</code>.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dentro hay <code>capturas/</code> con los 5 PNG (<code>paso1_lista_simple.png</code>, <code>paso2_incidencia_asociativa.png</code>, <code>paso3_tabla_incidencias.png</code>, <code>paso4_contadores.png</code>, <code>paso5_catalogo.png</code>).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dentro hay <code>capturas/</code> con los 4 PNG (<code>paso1_lista_simple.png</code>, <code>paso2_incidencia_asociativa.png</code>, <code>paso3_tabla_incidencias.png</code>, <code>paso5_catalogo.png</code>).</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dentro hay <code>RESPUESTAS.md</code> con las 5 secciones (<code>## Paso 1</code> a <code>## Paso 5</code>) rellenas.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Los 3 ficheros PHP pasan <code>php -l</code> sin errores.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El ZIP se llama <code>apellido_nombre_lab03.zip</code> y al descomprimir aparece una sola carpeta raíz.</li>
@@ -1785,32 +1754,31 @@
 <hr />
 <h2 id="anexo-plantilla-de-respuestasmd">Anexo — Plantilla de <code>RESPUESTAS.md</code><a class="headerlink" href="#anexo-plantilla-de-respuestasmd" title="Permanent link">&para;</a></h2>
 <p>Crea <code>RESPUESTAS.md</code> dentro de <code>apellido_nombre_lab03/</code>:</p>
-<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="gh"># Respuestas — Lab 03 Arrays y foreach</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="gs">**Nombre:**</span> Apellido, Nombre
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="gs">**Fecha:**</span> YYYY-MM-DD
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="gu">## Paso 1</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>(Tu respuesta: qué pasa al añadir una 5ª prioridad y valor de <span class="sb">`count($prioridades)`</span>.)
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
-<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="gu">## Paso 2</span>
-<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
-<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>(Tu respuesta: diferencia entre array indexado y asociativo, y un escenario práctico de cada uno.)
-<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
-<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="gu">## Paso 3</span>
-<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>
-<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>(Tu respuesta: ¿has tocado el <span class="sb">`foreach`</span> al añadir la 6ª incidencia? ¿Por qué?)
-<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>
-<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="gu">## Paso 4</span>
-<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>
-<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="k">1.</span> (Tu respuesta: ventaja de guardar el total en <span class="sb">`$total_incidencias`</span> frente a escribir <span class="sb">`count()`</span> dos veces.)
-<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="k">2.</span> (Tu respuesta: valor de <span class="sb">`empty()`</span> con array lleno y con array vacío; copia las dos líneas de <span class="sb">`var_dump()`</span>.)
-<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>
-<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="gu">## Paso 5</span>
-<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>
-<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="k">1.</span> (Tu respuesta: diferencias entre <span class="sb">`$taller`</span> y <span class="sb">`$equipos`</span>, tipo de cada uno y por qué.)
-<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="k">2.</span> (Tu respuesta: descripción informal de qué necesitarías para contar equipos operativos y si las herramientas de este lab te bastan o no.)
+<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gh"># Respuestas — Lab 03 Arrays y foreach</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="gs">**Nombre:**</span> Apellido, Nombre
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="gs">**Fecha:**</span> YYYY-MM-DD
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="gu">## Paso 1</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>(Tu respuesta: qué pasa al añadir una 5ª prioridad y valor de <span class="sb">`count($prioridades)`</span>.)
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="gu">## Paso 2</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>(Tu respuesta: diferencia entre array indexado y asociativo, y un escenario práctico de cada uno.)
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="gu">## Paso 3</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>(Tu respuesta: ¿has tocado el <span class="sb">`foreach`</span> al añadir la 6ª incidencia? ¿Por qué?)
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="gu">## Paso 4</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>(Tu respuesta: ventaja de guardar el total en <span class="sb">`$total_incidencias`</span> frente a escribir <span class="sb">`count($incidencias)`</span> cada vez. Piensa en mostrar el total en dos sitios y en el escenario de cambiar mañana el criterio de cálculo.)
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="gu">## Paso 5</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="k">1.</span> (Tu respuesta: diferencias entre <span class="sb">`$taller`</span> y <span class="sb">`$equipos`</span>, tipo de cada uno y por qué.)
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="k">2.</span> (Tu respuesta: descripción informal de qué necesitarías para contar equipos operativos y si las herramientas de este lab te bastan o no.)
 </code></pre></div>
 
 

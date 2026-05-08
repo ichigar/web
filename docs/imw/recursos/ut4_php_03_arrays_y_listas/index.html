@@ -1228,28 +1228,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#contar-y-comprobar-si-un-array-esta-vacio" class="md-nav__link">
+  <a href="#contar-elementos-count" class="md-nav__link">
     <span class="md-ellipsis">
-      Contar y comprobar si un array está vacío
+      Contar elementos: count()
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Contar y comprobar si un array está vacío">
+    <nav class="md-nav" aria-label="Contar elementos: count()">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#guardar-el-total-en-una-variable" class="md-nav__link">
     <span class="md-ellipsis">
       Guardar el total en una variable
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#empty-para-distinguir-lista-vacia-de-lista-llena" class="md-nav__link">
-    <span class="md-ellipsis">
-      empty() para distinguir lista vacía de lista llena
     </span>
   </a>
   
@@ -1467,14 +1458,14 @@
 <span class="normal"><a href="#__codelineno-9-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="x">&lt;ul class=&quot;lista-prioridades&quot;&gt;</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$prioridades</span> <span class="k">as</span> <span class="nv">$p</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
 </span><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="x">  &lt;li&gt;</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="x">    </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$p</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="x">    </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$p</span><span class="p">)</span> <span class="cp">?&gt;</span>
 <a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="x">  &lt;/li&gt;</span>
 <a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
 </span><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="x">&lt;/ul&gt;</span>
 </code></pre></div></td></tr></table></div>
 <p>Compara con la forma clásica:</p>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$prioridades</span> <span class="k">as</span> <span class="nv">$p</span><span class="p">)</span> <span class="p">{</span> <span class="cp">?&gt;</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="x">  &lt;li&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$p</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="x">  &lt;li&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$p</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="cp">&lt;?php</span> <span class="p">}</span> <span class="cp">?&gt;</span>
 </code></pre></div>
 <p>Las dos funcionan, pero <code>endforeach</code> se lee mejor cuando el cuerpo del bucle tiene varias líneas de HTML.</p>
@@ -1500,10 +1491,10 @@
 <a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="x">  &lt;tbody&gt;</span>
 <a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$incidencias</span> <span class="k">as</span> <span class="nv">$inc</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
 <a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="x">    &lt;tr&gt;</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>        <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="hll"><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;titulo&#39;</span><span class="p">],</span>    <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
-</span><a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;prioridad&#39;</span><span class="p">],</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;estado&#39;</span><span class="p">],</span>    <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="hll"><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;titulo&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+</span><a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;prioridad&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;estado&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
 <a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="x">    &lt;/tr&gt;</span>
 <a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
 <a id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="x">  &lt;/tbody&gt;</span>
@@ -1516,48 +1507,26 @@
 <span class="normal"><a href="#__codelineno-12-2">2</a></span>
 <span class="normal"><a href="#__codelineno-12-3">3</a></span>
 <span class="normal"><a href="#__codelineno-12-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$incidencia</span> <span class="k">as</span> <span class="nv">$campo</span> <span class="o">=&gt;</span> <span class="nv">$valor</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
-</span><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="x">  &lt;li&gt;&lt;strong&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$campo</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">:&lt;/strong&gt;</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="x">      </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$valor</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
+</span><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="x">  &lt;li&gt;&lt;strong&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$campo</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">:&lt;/strong&gt;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="x">      </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$valor</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
 <a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition warning">
 <p class="admonition-title">Cada <code>foreach</code> necesita su <code>endforeach</code></p>
 <p>Si te saltas un <code>endforeach</code>, la página entera deja de funcionar: PHP intentará seguir interpretando el resto del fichero como parte del bucle. Lo mismo pasará con <code>endif</code>, <code>endwhile</code>, etc., que verás en los próximos labs.</p>
 </div>
-<h2 id="contar-y-comprobar-si-un-array-esta-vacio">Contar y comprobar si un array está vacío<a class="headerlink" href="#contar-y-comprobar-si-un-array-esta-vacio" title="Permanent link">&para;</a></h2>
-<p>Dos funciones aparecen constantemente al trabajar con listas:</p>
-<table>
-<thead>
-<tr>
-<th>Función</th>
-<th>Qué devuelve</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>count($array)</code></td>
-<td>Número de elementos (entero)</td>
-</tr>
-<tr>
-<td><code>empty($array)</code></td>
-<td><code>true</code> si el array está vacío o no existe, <code>false</code> si tiene al menos un elemento</td>
-</tr>
-</tbody>
-</table>
+<h2 id="contar-elementos-count">Contar elementos: <code>count()</code><a class="headerlink" href="#contar-elementos-count" title="Permanent link">&para;</a></h2>
+<p><code>count($array)</code> devuelve el número de elementos del array (entero):</p>
 <div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
 <span class="normal"><a href="#__codelineno-13-2">2</a></span>
 <span class="normal"><a href="#__codelineno-13-3">3</a></span>
 <span class="normal"><a href="#__codelineno-13-4">4</a></span>
-<span class="normal"><a href="#__codelineno-13-5">5</a></span>
-<span class="normal"><a href="#__codelineno-13-6">6</a></span>
-<span class="normal"><a href="#__codelineno-13-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="x">$incidencias    = [/* ... tres elementos ... */];</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="hll"><span class="x">$total          = count($incidencias);   ## 3</span>
-</span><a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="hll"><span class="x">var_dump(empty($incidencias));           ## bool(false)</span>
-</span><a id="__codelineno-13-4" name="__codelineno-13-4"></a>
-<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="x">$ejemplo_vacio = [];</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="hll"><span class="x">count($ejemplo_vacio);                   ## 0</span>
-</span><a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="hll"><span class="x">var_dump(empty($ejemplo_vacio));         ## bool(true)</span>
-</span></code></pre></div></td></tr></table></div>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="x">$incidencias = [/* ... tres elementos ... */];</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="x">$total       = count($incidencias);   ## 3</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="x">$ejemplo_vacio = [];</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="x">count($ejemplo_vacio);                 ## 0</span>
+</code></pre></div></td></tr></table></div>
 <h3 id="guardar-el-total-en-una-variable">Guardar el total en una variable<a class="headerlink" href="#guardar-el-total-en-una-variable" title="Permanent link">&para;</a></h3>
 <p>Cuando vas a usar el total varias veces en la misma página, es mejor calcularlo una vez y guardarlo en una variable:</p>
 <div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
@@ -1580,13 +1549,14 @@
 <a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="hll"><span class="x">&lt;/table&gt;</span>
 </span><a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="x">&lt;p&gt;Fin del listado (</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$total_incidencias</span> <span class="cp">?&gt;</span><span class="x">).&lt;/p&gt;</span>
 </code></pre></div></td></tr></table></div>
-<p>Así evitas recorrer el array dos veces y el código queda más claro: si mañana cambias el cálculo del total (por ejemplo, para contar solo las abiertas), solo tocas una línea.</p>
-<h3 id="empty-para-distinguir-lista-vacia-de-lista-llena"><code>empty()</code> para distinguir lista vacía de lista llena<a class="headerlink" href="#empty-para-distinguir-lista-vacia-de-lista-llena" title="Permanent link">&para;</a></h3>
-<p><code>empty()</code> te permite saber si un array tiene contenido sin tener que escribir <code>count($arr) &gt; 0</code>. Es lo que usarás en el Lab 04 junto con <code>if</code> para decidir qué pintar en la página (la tabla con las incidencias, o un mensaje "No hay incidencias registradas").</p>
-<p>En el Lab 03 solo la conoces y la pruebas con <code>var_dump()</code>; aún no la combinas con <code>if</code>, porque los condicionales llegan en el Lab 04.</p>
+<p>Así el código queda más claro: si mañana cambias el cálculo del total (por ejemplo, para contar solo las abiertas), solo tocas una línea.</p>
 <div class="admonition tip">
 <p class="admonition-title">Función <code>count</code> en bash vs en PHP</p>
 <p>En bash cuentas elementos de un array con <code>${#arr[@]}</code>. En PHP, <code>count($arr)</code> hace exactamente lo mismo, pero con una sintaxis mucho más cómoda: una función normal a la que le pasas el array como argumento.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><code>empty()</code> viene en el Lab 04</p>
+<p>Para distinguir si una lista tiene contenido o está vacía existe la función <code>empty()</code>, pero la veremos en el Lab 04 junto con <code>if</code>, donde la usarás de verdad para decidir qué mostrar en la página.</p>
 </div>
 
 

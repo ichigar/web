@@ -1271,6 +1271,10 @@
 <td>UT4 — PHP en servidor</td>
 </tr>
 <tr>
+<td>Criterios de evaluación (CE)</td>
+<td><strong>a</strong> (lenguajes de guiones de servidor), <strong>b</strong> (relación con HTML), <strong>c</strong> (sintaxis básica)</td>
+</tr>
+<tr>
 <td>Requisitos</td>
 <td>Ubuntu con acceso <code>sudo</code></td>
 </tr>
@@ -1284,7 +1288,7 @@
 </tr>
 <tr>
 <td>Apuntes</td>
-<td><code>ut4_php_01_entorno_php.md</code></td>
+<td><a href="https://ichigar.codeberg.page/imw/recursos/ut4_php_01_entorno_php/">https://ichigar.codeberg.page/imw/recursos/ut4_php_01_entorno_php/</a></td>
 </tr>
 <tr>
 <td>Tiempo estimado</td>
@@ -1803,7 +1807,7 @@
 <h2 id="paso-6-aplica-lo-aprendido-panel-de-diagnostico-del-servidor">Paso 6 — Aplica lo aprendido: panel de diagnóstico del servidor<a class="headerlink" href="#paso-6-aplica-lo-aprendido-panel-de-diagnostico-del-servidor" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Qué es este paso</p>
-<p>Los cinco pasos anteriores han sido guiados: te he dado los comandos y el código, y tú los has ejecutado. En este sexto paso <strong>no hay código de referencia</strong>: aplicas lo aprendido en los pasos 4 y 5 (variables, <code>htmlspecialchars()</code>, <code>error_reporting</code>) a un contexto nuevo y cercano a tu trabajo como administrador de sistemas.</p>
+<p>Los cinco pasos anteriores han sido guiados: se dan los comandos y el código, y tú los has ejecutado. En este sexto paso <strong>no hay código de referencia</strong>: aplicas lo aprendido en los pasos 4 y 5 (variables, <code>htmlspecialchars()</code>, <code>error_reporting</code>) a un contexto nuevo y cercano a tu trabajo como administrador de sistemas.</p>
 <p>La idea es sencilla: un administrador de sistemas necesita a menudo un script que muestre el estado del servidor de un vistazo <strong>sin exponer información sensible</strong> como hace <code>phpinfo()</code>. Vas a construir uno tú mismo.</p>
 </div>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Crear un fichero <code>info_servidor.php</code> que muestre información útil sobre el servidor donde corres la aplicación, usando funciones propias de PHP y datos que obtengas ejecutando comandos en la terminal de la VM.</p>

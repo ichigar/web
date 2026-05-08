@@ -1253,6 +1253,10 @@
 <td>UT4 — PHP en servidor</td>
 </tr>
 <tr>
+<td>Criterios de evaluación (CE)</td>
+<td><strong>b</strong> (relación con HTML), <strong>c</strong> (sintaxis básica)</td>
+</tr>
+<tr>
 <td>Requisitos</td>
 <td>Lab 01 completado (entorno Apache+PHP + VirtualHost <code>gestor.local</code>)</td>
 </tr>
@@ -1266,7 +1270,7 @@
 </tr>
 <tr>
 <td>Apuntes</td>
-<td><code>ut4_php_02_variables_tipos_salida.md</code></td>
+<td><a href="https://ichigar.codeberg.page/imw/recursos/ut4_php_02_variables_tipos_salida/">https://ichigar.codeberg.page/imw/recursos/ut4_php_02_variables_tipos_salida/</a></td>
 </tr>
 <tr>
 <td>Tiempo estimado</td>
@@ -1285,7 +1289,7 @@
 <li><code>tipos.php</code> — para inspeccionar tipos con <code>var_dump()</code>.</li>
 <li><code>ficha.php</code> — página completa que integra todo lo anterior.</li>
 </ul>
-<p>Al terminar tendrás interiorizado el ciclo <em>"declaro variable → opero con ella → la muestro escapada en HTML"</em>, que es la base de todo lo que viene.</p>
+<p>Al terminar tendrás interiorizado el ciclo <em>"declaro variable → opero con ella → la muestro escapada en HTML"</em>, que es la base de todo lo que vamos a hacer a continuación.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Paralelismo con bash</p>
@@ -1365,7 +1369,8 @@
 <ul>
 <li>Una <strong>variable de texto</strong> (string) guarda una cadena de caracteres.</li>
 <li>Se puede escribir con <strong>comillas simples</strong> <code>'texto'</code> o <strong>comillas dobles</strong> <code>"texto"</code>. Hay una diferencia importante que veremos en el Paso 4.</li>
-<li>Igual que en el Lab 01: toda variable mostrada en HTML se escapa con <code>htmlspecialchars($var)</code> para evitar ataques XSS.</li>
+<li>Igual que en el Lab 01: toda variable de texto mostrada en HTML se escapa con <code>htmlspecialchars($var)</code> para evitar ataques XSS.</li>
+<li>Solo se escapan las variables de <strong>texto</strong>: los números no pueden contener etiquetas HTML, así que no necesitan <code>htmlspecialchars()</code>. Lo veremos en el Paso 2.</li>
 </ul>
 </div>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Crear un primer fichero con 3 variables de texto y mostrarlas en una página HTML.</p>
@@ -1431,7 +1436,14 @@
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Deshaz el experimento antes de seguir</p>
-<p><strong>Vuelve a poner</strong> <code>&lt;h1&gt;&lt;?= htmlspecialchars($titulo) ?&gt;&lt;/h1&gt;</code> y restaura el valor original <code>$titulo = 'Impresora sin papel';</code> <strong>antes de pasar al Paso 2</strong>. Recarga y comprueba que el popup ya no aparece y que se ve el texto <code>"Impresora sin papel"</code> en el <code>&lt;h1&gt;</code>.</p>
+<p>Antes de pasar al Paso 2, deja <code>variables.php</code> como estaba. Tienes que hacer <strong>los dos cambios</strong>, no solo uno:</p>
+<p><strong>1. Restaura el valor original de <code>$titulo</code>:</strong></p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="x">$titulo = &#39;Impresora sin papel&#39;;</span>
+</code></pre></div>
+<p><strong>2. Vuelve a poner <code>htmlspecialchars()</code> en el <code>&lt;h1&gt;</code>:</strong></p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="x">&lt;h1&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$titulo</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/h1&gt;</span>
+</code></pre></div>
+<p>Guarda, recarga <code>http://gestor.local/variables.php</code> y comprueba que el popup ya no aparece y que se ve el texto "Impresora sin papel" en el <code>&lt;h1&gt;</code>. Si solo deshaces uno de los dos cambios el popup desaparece igualmente, pero la página sigue siendo insegura: por eso hay que deshacer los dos.</p>
 </div>
 <details class="tip">
 <summary>Pista si ves código PHP en la página</summary>
@@ -1462,64 +1474,64 @@
 <li>Una <strong>variable numérica</strong> guarda un número entero (<code>int</code>, por ejemplo <code>7</code>) o decimal (<code>float</code>, por ejemplo <code>3.14</code>).</li>
 <li>No llevan comillas. Paralelismo con bash: <code>$n = 7;</code> en PHP es <code>n=7</code> en bash.</li>
 <li>Operadores aritméticos: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code> (resto de la división). Igual que en bash pero <strong>sin</strong> el <code>$(( ... ))</code> — en PHP las operaciones se escriben tal cual.</li>
-<li>La función <strong><code>round($valor, $decimales)</code></strong> redondea un número.</li>
+<li>La función <strong><code>round($valor, $decimales)</code></strong> redondea un número a un número exacto de decimales. Por ejemplo, <code>round(30.456, 1)</code> da <code>30.5</code> (1 decimal) y <code>round(30.456, 2)</code> da <code>30.46</code> (2 decimales). Sin segundo argumento redondea al entero más cercano.</li>
 </ul>
 </div>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Ampliar <code>variables.php</code> para mostrar estadísticas básicas calculadas con operaciones aritméticas.</p>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 1 — Añadir variables numéricas al bloque PHP.</strong> Abre <code>~/gestor/public/variables.php</code>. Dentro del bloque PHP que ya tienes (entre <code>&lt;?php</code> y <code>?&gt;</code>, justo después de la línea <code>$prioridad = 'alta';</code>), añade estas 4 líneas:</p>
-<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
-<span class="normal"><a href="#__codelineno-4-2">2</a></span>
-<span class="normal"><a href="#__codelineno-4-3">3</a></span>
-<span class="normal"><a href="#__codelineno-4-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="hll"><span class="x">$abiertas  = 7;</span>
-</span><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="hll"><span class="x">$resueltas = 3;</span>
-</span><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="hll"><span class="x">$total     = $abiertas + $resueltas;</span>
-</span><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="hll"><span class="x">$porcentaje_resueltas = round($resueltas / $total * 100, 1);</span>
-</span></code></pre></div></td></tr></table></div>
-<p>El bloque PHP completo debe quedar así (conservando lo del Paso 1 y añadiendo lo nuevo):</p>
-<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-5-10">10</a></span>
-<span class="normal"><a href="#__codelineno-5-11">11</a></span>
-<span class="normal"><a href="#__codelineno-5-12">12</a></span>
-<span class="normal"><a href="#__codelineno-5-13">13</a></span>
-<span class="normal"><a href="#__codelineno-5-14">14</a></span>
-<span class="normal"><a href="#__codelineno-5-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="cp">&lt;?php</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4"></a>
-<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="c1">// Tres variables de texto (string)</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="nv">$titulo</span>      <span class="o">=</span> <span class="s1">&#39;Impresora sin papel&#39;</span><span class="p">;</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="nv">$descripcion</span> <span class="o">=</span> <span class="s1">&#39;La impresora de la sala 201 no tiene papel.&#39;</span><span class="p">;</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="nv">$prioridad</span>   <span class="o">=</span> <span class="s1">&#39;alta&#39;</span><span class="p">;</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9"></a>
-<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="c1">// Variables numéricas y cálculos</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="nv">$abiertas</span>  <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="nv">$resueltas</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="nv">$total</span>     <span class="o">=</span> <span class="nv">$abiertas</span> <span class="o">+</span> <span class="nv">$resueltas</span><span class="p">;</span>
-<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="nv">$porcentaje_resueltas</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nv">$resueltas</span> <span class="o">/</span> <span class="nv">$total</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="cp">?&gt;</span>
-</code></pre></div></td></tr></table></div>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 2 — Añadir la sección HTML.</strong> Más abajo en el mismo fichero, <strong>justo antes de la etiqueta <code>&lt;/body&gt;</code></strong>, añade este bloque:</p>
 <div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
 <span class="normal"><a href="#__codelineno-6-2">2</a></span>
 <span class="normal"><a href="#__codelineno-6-3">3</a></span>
-<span class="normal"><a href="#__codelineno-6-4">4</a></span>
-<span class="normal"><a href="#__codelineno-6-5">5</a></span>
-<span class="normal"><a href="#__codelineno-6-6">6</a></span>
-<span class="normal"><a href="#__codelineno-6-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="x">&lt;h2&gt;Estadísticas&lt;/h2&gt;</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="x">&lt;ul&gt;</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="x">  &lt;li&gt;Incidencias abiertas: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$abiertas</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="x">  &lt;li&gt;Incidencias resueltas: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$resueltas</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="x">  &lt;li&gt;Total: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$total</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="x">  &lt;li&gt;Porcentaje resueltas: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$porcentaje_resueltas</span> <span class="cp">?&gt;</span><span class="x"> %&lt;/li&gt;</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="x">&lt;/ul&gt;</span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="hll"><span class="x">$abiertas  = 7;</span>
+</span><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="hll"><span class="x">$resueltas = 3;</span>
+</span><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="hll"><span class="x">$total     = $abiertas + $resueltas;</span>
+</span><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="hll"><span class="x">$porcentaje_resueltas = round($resueltas / $total * 100, 1);</span>
+</span></code></pre></div></td></tr></table></div>
+<p>El bloque PHP completo debe quedar así (conservando lo del Paso 1 y añadiendo lo nuevo):</p>
+<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="c1">// Tres variables de texto (string)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="nv">$titulo</span>      <span class="o">=</span> <span class="s1">&#39;Impresora sin papel&#39;</span><span class="p">;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="nv">$descripcion</span> <span class="o">=</span> <span class="s1">&#39;La impresora de la sala 201 no tiene papel.&#39;</span><span class="p">;</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="nv">$prioridad</span>   <span class="o">=</span> <span class="s1">&#39;alta&#39;</span><span class="p">;</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="c1">// Variables numéricas y cálculos</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="nv">$abiertas</span>  <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="nv">$resueltas</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="nv">$total</span>     <span class="o">=</span> <span class="nv">$abiertas</span> <span class="o">+</span> <span class="nv">$resueltas</span><span class="p">;</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="nv">$porcentaje_resueltas</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nv">$resueltas</span> <span class="o">/</span> <span class="nv">$total</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="cp">?&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 2 — Añadir la sección HTML.</strong> Más abajo en el mismo fichero, <strong>justo antes de la etiqueta <code>&lt;/body&gt;</code></strong>, añade este bloque:</p>
+<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span>
+<span class="normal"><a href="#__codelineno-8-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="x">&lt;h2&gt;Estadísticas&lt;/h2&gt;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="x">&lt;ul&gt;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="x">  &lt;li&gt;Incidencias abiertas: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$abiertas</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="x">  &lt;li&gt;Incidencias resueltas: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$resueltas</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="x">  &lt;li&gt;Total: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$total</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="x">  &lt;li&gt;Porcentaje resueltas: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$porcentaje_resueltas</span> <span class="cp">?&gt;</span><span class="x"> %&lt;/li&gt;</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="x">&lt;/ul&gt;</span>
 </code></pre></div></td></tr></table></div>
 <p>Observa que los números <strong>no</strong> llevan <code>htmlspecialchars()</code>. No hace falta: un número no puede contener etiquetas HTML ni comillas. Solo aplicamos <code>htmlspecialchars()</code> a texto.</p>
 <p>Guarda y recarga <code>http://gestor.local/variables.php</code>. Deben aparecer las estadísticas con el porcentaje calculado debajo de los textos del Paso 1.</p>
@@ -1548,8 +1560,8 @@
 <div class="admonition note">
 <p class="admonition-title">Conceptos</p>
 <ul>
-<li>PHP es de <strong>tipado dinámico</strong>: no declaras el tipo de una variable, PHP lo averigua solo. Pero a veces necesitas saber qué tipo tiene exactamente una variable (por ejemplo, cuando algo no funciona y no sabes por qué).</li>
-<li>La función <strong><code>var_dump($variable)</code></strong> muestra el <strong>tipo</strong> y el <strong>valor</strong> de una variable.</li>
+<li>PHP es de <strong>tipado dinámico</strong>: no declaras el tipo de una variable, PHP lo averigua solo. Cuando algo no funciona y no sabes por qué (un número que se trata como texto, un booleano inesperado), necesitas saber qué tipo tiene una variable. Para eso existe <strong><code>var_dump($var)</code></strong>, <strong>la herramienta principal de depuración en PHP</strong>. Úsala cada vez que algo no se comporte como esperas.</li>
+<li><code>var_dump()</code> muestra el <strong>tipo</strong> y el <strong>valor</strong> de la variable.</li>
 <li>Los tipos básicos que verás:<ul>
 <li><code>string(N)</code> → texto de N caracteres.</li>
 <li><code>int(N)</code> → número entero.</li>
@@ -1558,74 +1570,70 @@
 <li><code>NULL</code> → valor nulo (no hay valor).</li>
 </ul>
 </li>
-<li><code>var_dump()</code> es la herramienta principal de depuración en PHP. Úsala cada vez que algo no se comporta como esperas.</li>
+<li><strong>La etiqueta HTML <code>&lt;pre&gt;</code></strong> preserva espacios y saltos de línea. <code>var_dump()</code> genera salida con varios saltos, así que envolveremos las llamadas dentro de <code>&lt;pre&gt;...&lt;/pre&gt;</code> para que se lean bien en el navegador.</li>
 </ul>
 </div>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Crear un fichero aparte donde inspeccionar los tipos de varias variables.</p>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea.</strong> Crea <code>~/gestor/public/tipos.php</code>:</p>
-<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-7-10">10</a></span>
-<span class="normal"><a href="#__codelineno-7-11">11</a></span>
-<span class="normal"><a href="#__codelineno-7-12">12</a></span>
-<span class="normal"><a href="#__codelineno-7-13">13</a></span>
-<span class="normal"><a href="#__codelineno-7-14">14</a></span>
-<span class="normal"><a href="#__codelineno-7-15">15</a></span>
-<span class="normal"><a href="#__codelineno-7-16">16</a></span>
-<span class="normal"><a href="#__codelineno-7-17">17</a></span>
-<span class="normal"><a href="#__codelineno-7-18">18</a></span>
-<span class="normal"><a href="#__codelineno-7-19">19</a></span>
-<span class="normal"><a href="#__codelineno-7-20">20</a></span>
-<span class="normal"><a href="#__codelineno-7-21">21</a></span>
-<span class="normal"><a href="#__codelineno-7-22">22</a></span>
-<span class="normal"><a href="#__codelineno-7-23">23</a></span>
-<span class="normal"><a href="#__codelineno-7-24">24</a></span>
-<span class="normal"><a href="#__codelineno-7-25">25</a></span>
-<span class="normal"><a href="#__codelineno-7-26">26</a></span>
-<span class="normal"><a href="#__codelineno-7-27">27</a></span>
-<span class="normal"><a href="#__codelineno-7-28">28</a></span>
-<span class="normal"><a href="#__codelineno-7-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="cp">&lt;?php</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4"></a>
-<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="nv">$titulo</span>      <span class="o">=</span> <span class="s1">&#39;Impresora sin papel&#39;</span><span class="p">;</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="nv">$abiertas</span>    <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="nv">$porcentaje</span>  <span class="o">=</span> <span class="mf">30.0</span><span class="p">;</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="nv">$resuelto</span>    <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="nv">$sin_asignar</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="cp">?&gt;</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="x">&lt;!DOCTYPE html&gt;</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="x">&lt;html lang=&quot;es&quot;&gt;</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="x">&lt;head&gt;</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="x">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="x">  &lt;title&gt;Tipos de datos&lt;/title&gt;</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="x">&lt;/head&gt;</span>
-<a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="x">&lt;body&gt;</span>
-<a id="__codelineno-7-18" name="__codelineno-7-18"></a><span class="x">&lt;h1&gt;Tipos de las variables&lt;/h1&gt;</span>
-<a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="x">&lt;pre&gt;</span>
-<a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="cp">&lt;?php</span>
-<a id="__codelineno-7-21" name="__codelineno-7-21"></a><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$titulo</span><span class="p">);</span>
-<a id="__codelineno-7-22" name="__codelineno-7-22"></a><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$abiertas</span><span class="p">);</span>
-<a id="__codelineno-7-23" name="__codelineno-7-23"></a><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$porcentaje</span><span class="p">);</span>
-<a id="__codelineno-7-24" name="__codelineno-7-24"></a><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$resuelto</span><span class="p">);</span>
-<a id="__codelineno-7-25" name="__codelineno-7-25"></a><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$sin_asignar</span><span class="p">);</span>
-<a id="__codelineno-7-26" name="__codelineno-7-26"></a><span class="cp">?&gt;</span>
-<a id="__codelineno-7-27" name="__codelineno-7-27"></a><span class="x">&lt;/pre&gt;</span>
-<a id="__codelineno-7-28" name="__codelineno-7-28"></a><span class="x">&lt;/body&gt;</span>
-<a id="__codelineno-7-29" name="__codelineno-7-29"></a><span class="x">&lt;/html&gt;</span>
+<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span>
+<span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span>
+<span class="normal"><a href="#__codelineno-9-26">26</a></span>
+<span class="normal"><a href="#__codelineno-9-27">27</a></span>
+<span class="normal"><a href="#__codelineno-9-28">28</a></span>
+<span class="normal"><a href="#__codelineno-9-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="nv">$titulo</span>      <span class="o">=</span> <span class="s1">&#39;Impresora sin papel&#39;</span><span class="p">;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="nv">$abiertas</span>    <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="nv">$porcentaje</span>  <span class="o">=</span> <span class="mf">30.0</span><span class="p">;</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="nv">$resuelto</span>    <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="nv">$sin_asignar</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="cp">?&gt;</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="x">&lt;!DOCTYPE html&gt;</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="x">&lt;html lang=&quot;es&quot;&gt;</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="x">&lt;head&gt;</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="x">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="x">  &lt;title&gt;Tipos de datos&lt;/title&gt;</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="x">&lt;/head&gt;</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="x">&lt;body&gt;</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="x">&lt;h1&gt;Tipos de las variables&lt;/h1&gt;</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19"></a><span class="x">&lt;pre&gt;</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21"></a><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$titulo</span><span class="p">);</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22"></a><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$abiertas</span><span class="p">);</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23"></a><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$porcentaje</span><span class="p">);</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24"></a><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$resuelto</span><span class="p">);</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25"></a><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$sin_asignar</span><span class="p">);</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26"></a><span class="cp">?&gt;</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27"></a><span class="x">&lt;/pre&gt;</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28"></a><span class="x">&lt;/body&gt;</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29"></a><span class="x">&lt;/html&gt;</span>
 </code></pre></div></td></tr></table></div>
 <p>Visita <code>http://gestor.local/tipos.php</code>. Dentro de la etiqueta <code>&lt;pre&gt;</code> verás la salida de cada <code>var_dump()</code>.</p>
-<div class="admonition note">
-<p class="admonition-title">¿Por qué <code>&lt;pre&gt;</code>?</p>
-<p>La etiqueta <code>&lt;pre&gt;</code> en HTML preserva espacios y saltos de línea. Sin ella, toda la salida se juntaría en una sola línea ilegible.</p>
-</div>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> <strong>Responde en <code>RESPUESTAS.md</code>, sección <code>## Paso 3</code>.</strong></p>
 <blockquote>
 <p>Copia literalmente la línea que muestra el <code>var_dump</code> de <code>$titulo</code>, la de <code>$abiertas</code> y la de <code>$resuelto</code>. Luego, en una frase, explica qué información te da <code>var_dump()</code> que no te daría un simple <code>echo</code>.</p>
@@ -1658,21 +1666,21 @@
 </div>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Practicar las dos formas de construir una cadena a partir de variables.</p>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea.</strong> Añade al final del bloque PHP de <code>variables.php</code> (antes del <code>?&gt;</code> que abre el HTML) estas variables:</p>
-<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
-<span class="normal"><a href="#__codelineno-8-2">2</a></span>
-<span class="normal"><a href="#__codelineno-8-3">3</a></span>
-<span class="normal"><a href="#__codelineno-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="x">// Tres formas de construir la misma cadena</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="x">$etiqueta_v1 = &#39;Incidencia: &#39; . $titulo . &#39; (&#39; . $prioridad . &#39;)&#39;;</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="x">$etiqueta_v2 = &quot;Incidencia: $titulo ($prioridad)&quot;;</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="x">$etiqueta_v3 = &#39;Incidencia: $titulo ($prioridad)&#39;;   // comillas simples: sin expansión</span>
+<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="x">// Tres formas de construir la misma cadena</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="x">$etiqueta_v1 = &#39;Incidencia: &#39; . $titulo . &#39; (&#39; . $prioridad . &#39;)&#39;;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="x">$etiqueta_v2 = &quot;Incidencia: $titulo ($prioridad)&quot;;</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="x">$etiqueta_v3 = &#39;Incidencia: $titulo ($prioridad)&#39;;   // comillas simples: sin expansión</span>
 </code></pre></div></td></tr></table></div>
 <p>Y en el HTML, antes de <code>&lt;/body&gt;</code>, añade:</p>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="x">&lt;h2&gt;Tres formas de construir la etiqueta&lt;/h2&gt;</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="x">&lt;ul&gt;</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="x">  &lt;li&gt;v1 (concatenación con .): </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$etiqueta_v1</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="x">  &lt;li&gt;v2 (comillas dobles): </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$etiqueta_v2</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="x">  &lt;li&gt;v3 (comillas simples): </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$etiqueta_v3</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="x">&lt;/ul&gt;</span>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="x">&lt;h2&gt;Tres formas de construir la etiqueta&lt;/h2&gt;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="x">&lt;ul&gt;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="x">  &lt;li&gt;v1 (concatenación con .): </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$etiqueta_v1</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="x">  &lt;li&gt;v2 (comillas dobles): </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$etiqueta_v2</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="x">  &lt;li&gt;v3 (comillas simples): </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$etiqueta_v3</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="x">&lt;/ul&gt;</span>
 </code></pre></div>
 <p>Guarda y recarga. Fíjate en la <strong>v3</strong>: como usa comillas simples, <code>$titulo</code> y <code>$prioridad</code> no se sustituyen por su valor, sino que aparecen literalmente.</p>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> <strong>Responde en <code>RESPUESTAS.md</code>, sección <code>## Paso 4</code>.</strong></p>
@@ -1699,105 +1707,105 @@
 <li>Cada variable de texto se escapa con <code>htmlspecialchars()</code> al imprimirla. Los números van sin escape (no pueden contener HTML malicioso).</li>
 </ul>
 </div>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Crear una página <code>ficha.php</code> que muestre una ficha completa de una incidencia con al menos 6 variables.</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Crear una página <code>ficha.php</code> que muestre una ficha completa de una incidencia con variables de texto, numéricas y al menos una variable construida por concatenación.</p>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea.</strong> Crea <code>~/gestor/public/ficha.php</code>:</p>
-<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-10-10">10</a></span>
-<span class="normal"><a href="#__codelineno-10-11">11</a></span>
-<span class="normal"><a href="#__codelineno-10-12">12</a></span>
-<span class="normal"><a href="#__codelineno-10-13">13</a></span>
-<span class="normal"><a href="#__codelineno-10-14">14</a></span>
-<span class="normal"><a href="#__codelineno-10-15">15</a></span>
-<span class="normal"><a href="#__codelineno-10-16">16</a></span>
-<span class="normal"><a href="#__codelineno-10-17">17</a></span>
-<span class="normal"><a href="#__codelineno-10-18">18</a></span>
-<span class="normal"><a href="#__codelineno-10-19">19</a></span>
-<span class="normal"><a href="#__codelineno-10-20">20</a></span>
-<span class="normal"><a href="#__codelineno-10-21">21</a></span>
-<span class="normal"><a href="#__codelineno-10-22">22</a></span>
-<span class="normal"><a href="#__codelineno-10-23">23</a></span>
-<span class="normal"><a href="#__codelineno-10-24">24</a></span>
-<span class="normal"><a href="#__codelineno-10-25">25</a></span>
-<span class="normal"><a href="#__codelineno-10-26">26</a></span>
-<span class="normal"><a href="#__codelineno-10-27">27</a></span>
-<span class="normal"><a href="#__codelineno-10-28">28</a></span>
-<span class="normal"><a href="#__codelineno-10-29">29</a></span>
-<span class="normal"><a href="#__codelineno-10-30">30</a></span>
-<span class="normal"><a href="#__codelineno-10-31">31</a></span>
-<span class="normal"><a href="#__codelineno-10-32">32</a></span>
-<span class="normal"><a href="#__codelineno-10-33">33</a></span>
-<span class="normal"><a href="#__codelineno-10-34">34</a></span>
-<span class="normal"><a href="#__codelineno-10-35">35</a></span>
-<span class="normal"><a href="#__codelineno-10-36">36</a></span>
-<span class="normal"><a href="#__codelineno-10-37">37</a></span>
-<span class="normal"><a href="#__codelineno-10-38">38</a></span>
-<span class="normal"><a href="#__codelineno-10-39">39</a></span>
-<span class="normal"><a href="#__codelineno-10-40">40</a></span>
-<span class="normal"><a href="#__codelineno-10-41">41</a></span>
-<span class="normal"><a href="#__codelineno-10-42">42</a></span>
-<span class="normal"><a href="#__codelineno-10-43">43</a></span>
-<span class="normal"><a href="#__codelineno-10-44">44</a></span>
-<span class="normal"><a href="#__codelineno-10-45">45</a></span>
-<span class="normal"><a href="#__codelineno-10-46">46</a></span>
-<span class="normal"><a href="#__codelineno-10-47">47</a></span>
-<span class="normal"><a href="#__codelineno-10-48">48</a></span>
-<span class="normal"><a href="#__codelineno-10-49">49</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="cp">&lt;?php</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4"></a>
-<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="c1">// Datos de la incidencia (todo en variables)</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="nv">$id</span>            <span class="o">=</span> <span class="s1">&#39;inc001&#39;</span><span class="p">;</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="nv">$titulo</span>        <span class="o">=</span> <span class="s1">&#39;Impresora sin papel&#39;</span><span class="p">;</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="nv">$descripcion</span>   <span class="o">=</span> <span class="s1">&#39;La impresora de la sala 201 lleva tres días sin papel.&#39;</span><span class="p">;</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="nv">$prioridad</span>     <span class="o">=</span> <span class="s1">&#39;alta&#39;</span><span class="p">;</span>
-<a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="nv">$estado</span>        <span class="o">=</span> <span class="s1">&#39;pendiente&#39;</span><span class="p">;</span>
-<a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="nv">$fecha</span>         <span class="o">=</span> <span class="s1">&#39;2026-04-22&#39;</span><span class="p">;</span>
-<a id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="nv">$horas_estim</span>   <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
-<a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="nv">$autor</span>         <span class="o">=</span> <span class="s1">&#39;Ana López&#39;</span><span class="p">;</span>
-<a id="__codelineno-10-14" name="__codelineno-10-14"></a>
-<a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="nv">$cabecera</span> <span class="o">=</span> <span class="s2">&quot;[</span><span class="si">$prioridad</span><span class="s2">] </span><span class="si">$titulo</span><span class="s2">&quot;</span><span class="p">;</span>
-<a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="cp">?&gt;</span>
-<a id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="x">&lt;!DOCTYPE html&gt;</span>
-<a id="__codelineno-10-18" name="__codelineno-10-18"></a><span class="x">&lt;html lang=&quot;es&quot;&gt;</span>
-<a id="__codelineno-10-19" name="__codelineno-10-19"></a><span class="x">&lt;head&gt;</span>
-<a id="__codelineno-10-20" name="__codelineno-10-20"></a><span class="x">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
-<a id="__codelineno-10-21" name="__codelineno-10-21"></a><span class="x">  &lt;title&gt;Ficha de incidencia </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/title&gt;</span>
-<a id="__codelineno-10-22" name="__codelineno-10-22"></a><span class="x">&lt;/head&gt;</span>
-<a id="__codelineno-10-23" name="__codelineno-10-23"></a><span class="x">&lt;body&gt;</span>
-<a id="__codelineno-10-24" name="__codelineno-10-24"></a><span class="x">  &lt;h1&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$cabecera</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/h1&gt;</span>
-<a id="__codelineno-10-25" name="__codelineno-10-25"></a>
-<a id="__codelineno-10-26" name="__codelineno-10-26"></a><span class="x">  &lt;dl&gt;</span>
-<a id="__codelineno-10-27" name="__codelineno-10-27"></a><span class="x">    &lt;dt&gt;Identificador&lt;/dt&gt;</span>
-<a id="__codelineno-10-28" name="__codelineno-10-28"></a><span class="x">    &lt;dd&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/dd&gt;</span>
-<a id="__codelineno-10-29" name="__codelineno-10-29"></a>
-<a id="__codelineno-10-30" name="__codelineno-10-30"></a><span class="x">    &lt;dt&gt;Descripción&lt;/dt&gt;</span>
-<a id="__codelineno-10-31" name="__codelineno-10-31"></a><span class="x">    &lt;dd&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$descripcion</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/dd&gt;</span>
-<a id="__codelineno-10-32" name="__codelineno-10-32"></a>
-<a id="__codelineno-10-33" name="__codelineno-10-33"></a><span class="x">    &lt;dt&gt;Estado&lt;/dt&gt;</span>
-<a id="__codelineno-10-34" name="__codelineno-10-34"></a><span class="x">    &lt;dd&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$estado</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/dd&gt;</span>
-<a id="__codelineno-10-35" name="__codelineno-10-35"></a>
-<a id="__codelineno-10-36" name="__codelineno-10-36"></a><span class="x">    &lt;dt&gt;Prioridad&lt;/dt&gt;</span>
-<a id="__codelineno-10-37" name="__codelineno-10-37"></a><span class="x">    &lt;dd&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$prioridad</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/dd&gt;</span>
-<a id="__codelineno-10-38" name="__codelineno-10-38"></a>
-<a id="__codelineno-10-39" name="__codelineno-10-39"></a><span class="x">    &lt;dt&gt;Fecha&lt;/dt&gt;</span>
-<a id="__codelineno-10-40" name="__codelineno-10-40"></a><span class="x">    &lt;dd&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$fecha</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/dd&gt;</span>
-<a id="__codelineno-10-41" name="__codelineno-10-41"></a>
-<a id="__codelineno-10-42" name="__codelineno-10-42"></a><span class="x">    &lt;dt&gt;Horas estimadas&lt;/dt&gt;</span>
-<a id="__codelineno-10-43" name="__codelineno-10-43"></a><span class="x">    &lt;dd&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$horas_estim</span> <span class="cp">?&gt;</span><span class="x">&lt;/dd&gt;</span>
-<a id="__codelineno-10-44" name="__codelineno-10-44"></a>
-<a id="__codelineno-10-45" name="__codelineno-10-45"></a><span class="x">    &lt;dt&gt;Registrado por&lt;/dt&gt;</span>
-<a id="__codelineno-10-46" name="__codelineno-10-46"></a><span class="x">    &lt;dd&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$autor</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/dd&gt;</span>
-<a id="__codelineno-10-47" name="__codelineno-10-47"></a><span class="x">  &lt;/dl&gt;</span>
-<a id="__codelineno-10-48" name="__codelineno-10-48"></a><span class="x">&lt;/body&gt;</span>
-<a id="__codelineno-10-49" name="__codelineno-10-49"></a><span class="x">&lt;/html&gt;</span>
+<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span>
+<span class="normal"><a href="#__codelineno-12-16">16</a></span>
+<span class="normal"><a href="#__codelineno-12-17">17</a></span>
+<span class="normal"><a href="#__codelineno-12-18">18</a></span>
+<span class="normal"><a href="#__codelineno-12-19">19</a></span>
+<span class="normal"><a href="#__codelineno-12-20">20</a></span>
+<span class="normal"><a href="#__codelineno-12-21">21</a></span>
+<span class="normal"><a href="#__codelineno-12-22">22</a></span>
+<span class="normal"><a href="#__codelineno-12-23">23</a></span>
+<span class="normal"><a href="#__codelineno-12-24">24</a></span>
+<span class="normal"><a href="#__codelineno-12-25">25</a></span>
+<span class="normal"><a href="#__codelineno-12-26">26</a></span>
+<span class="normal"><a href="#__codelineno-12-27">27</a></span>
+<span class="normal"><a href="#__codelineno-12-28">28</a></span>
+<span class="normal"><a href="#__codelineno-12-29">29</a></span>
+<span class="normal"><a href="#__codelineno-12-30">30</a></span>
+<span class="normal"><a href="#__codelineno-12-31">31</a></span>
+<span class="normal"><a href="#__codelineno-12-32">32</a></span>
+<span class="normal"><a href="#__codelineno-12-33">33</a></span>
+<span class="normal"><a href="#__codelineno-12-34">34</a></span>
+<span class="normal"><a href="#__codelineno-12-35">35</a></span>
+<span class="normal"><a href="#__codelineno-12-36">36</a></span>
+<span class="normal"><a href="#__codelineno-12-37">37</a></span>
+<span class="normal"><a href="#__codelineno-12-38">38</a></span>
+<span class="normal"><a href="#__codelineno-12-39">39</a></span>
+<span class="normal"><a href="#__codelineno-12-40">40</a></span>
+<span class="normal"><a href="#__codelineno-12-41">41</a></span>
+<span class="normal"><a href="#__codelineno-12-42">42</a></span>
+<span class="normal"><a href="#__codelineno-12-43">43</a></span>
+<span class="normal"><a href="#__codelineno-12-44">44</a></span>
+<span class="normal"><a href="#__codelineno-12-45">45</a></span>
+<span class="normal"><a href="#__codelineno-12-46">46</a></span>
+<span class="normal"><a href="#__codelineno-12-47">47</a></span>
+<span class="normal"><a href="#__codelineno-12-48">48</a></span>
+<span class="normal"><a href="#__codelineno-12-49">49</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="c1">// Datos de la incidencia (todo en variables)</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="nv">$id</span>            <span class="o">=</span> <span class="s1">&#39;inc001&#39;</span><span class="p">;</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="nv">$titulo</span>        <span class="o">=</span> <span class="s1">&#39;Impresora sin papel&#39;</span><span class="p">;</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="nv">$descripcion</span>   <span class="o">=</span> <span class="s1">&#39;La impresora de la sala 201 lleva tres días sin papel.&#39;</span><span class="p">;</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="nv">$prioridad</span>     <span class="o">=</span> <span class="s1">&#39;alta&#39;</span><span class="p">;</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="nv">$estado</span>        <span class="o">=</span> <span class="s1">&#39;pendiente&#39;</span><span class="p">;</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="nv">$fecha</span>         <span class="o">=</span> <span class="s1">&#39;2026-04-22&#39;</span><span class="p">;</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="nv">$horas_estim</span>   <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="nv">$autor</span>         <span class="o">=</span> <span class="s1">&#39;Ana López&#39;</span><span class="p">;</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a>
+<a id="__codelineno-12-15" name="__codelineno-12-15"></a><span class="nv">$cabecera</span> <span class="o">=</span> <span class="s2">&quot;[</span><span class="si">$prioridad</span><span class="s2">] </span><span class="si">$titulo</span><span class="s2">&quot;</span><span class="p">;</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16"></a><span class="cp">?&gt;</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17"></a><span class="x">&lt;!DOCTYPE html&gt;</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18"></a><span class="x">&lt;html lang=&quot;es&quot;&gt;</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19"></a><span class="x">&lt;head&gt;</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20"></a><span class="x">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<a id="__codelineno-12-21" name="__codelineno-12-21"></a><span class="x">  &lt;title&gt;Ficha de incidencia </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/title&gt;</span>
+<a id="__codelineno-12-22" name="__codelineno-12-22"></a><span class="x">&lt;/head&gt;</span>
+<a id="__codelineno-12-23" name="__codelineno-12-23"></a><span class="x">&lt;body&gt;</span>
+<a id="__codelineno-12-24" name="__codelineno-12-24"></a><span class="x">  &lt;h1&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$cabecera</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/h1&gt;</span>
+<a id="__codelineno-12-25" name="__codelineno-12-25"></a>
+<a id="__codelineno-12-26" name="__codelineno-12-26"></a><span class="x">  &lt;dl&gt;</span>
+<a id="__codelineno-12-27" name="__codelineno-12-27"></a><span class="x">    &lt;dt&gt;Identificador&lt;/dt&gt;</span>
+<a id="__codelineno-12-28" name="__codelineno-12-28"></a><span class="x">    &lt;dd&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/dd&gt;</span>
+<a id="__codelineno-12-29" name="__codelineno-12-29"></a>
+<a id="__codelineno-12-30" name="__codelineno-12-30"></a><span class="x">    &lt;dt&gt;Descripción&lt;/dt&gt;</span>
+<a id="__codelineno-12-31" name="__codelineno-12-31"></a><span class="x">    &lt;dd&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$descripcion</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/dd&gt;</span>
+<a id="__codelineno-12-32" name="__codelineno-12-32"></a>
+<a id="__codelineno-12-33" name="__codelineno-12-33"></a><span class="x">    &lt;dt&gt;Estado&lt;/dt&gt;</span>
+<a id="__codelineno-12-34" name="__codelineno-12-34"></a><span class="x">    &lt;dd&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$estado</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/dd&gt;</span>
+<a id="__codelineno-12-35" name="__codelineno-12-35"></a>
+<a id="__codelineno-12-36" name="__codelineno-12-36"></a><span class="x">    &lt;dt&gt;Prioridad&lt;/dt&gt;</span>
+<a id="__codelineno-12-37" name="__codelineno-12-37"></a><span class="x">    &lt;dd&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$prioridad</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/dd&gt;</span>
+<a id="__codelineno-12-38" name="__codelineno-12-38"></a>
+<a id="__codelineno-12-39" name="__codelineno-12-39"></a><span class="x">    &lt;dt&gt;Fecha&lt;/dt&gt;</span>
+<a id="__codelineno-12-40" name="__codelineno-12-40"></a><span class="x">    &lt;dd&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$fecha</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/dd&gt;</span>
+<a id="__codelineno-12-41" name="__codelineno-12-41"></a>
+<a id="__codelineno-12-42" name="__codelineno-12-42"></a><span class="x">    &lt;dt&gt;Horas estimadas&lt;/dt&gt;</span>
+<a id="__codelineno-12-43" name="__codelineno-12-43"></a><span class="x">    &lt;dd&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$horas_estim</span> <span class="cp">?&gt;</span><span class="x">&lt;/dd&gt;</span>
+<a id="__codelineno-12-44" name="__codelineno-12-44"></a>
+<a id="__codelineno-12-45" name="__codelineno-12-45"></a><span class="x">    &lt;dt&gt;Registrado por&lt;/dt&gt;</span>
+<a id="__codelineno-12-46" name="__codelineno-12-46"></a><span class="x">    &lt;dd&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$autor</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/dd&gt;</span>
+<a id="__codelineno-12-47" name="__codelineno-12-47"></a><span class="x">  &lt;/dl&gt;</span>
+<a id="__codelineno-12-48" name="__codelineno-12-48"></a><span class="x">&lt;/body&gt;</span>
+<a id="__codelineno-12-49" name="__codelineno-12-49"></a><span class="x">&lt;/html&gt;</span>
 </code></pre></div></td></tr></table></div>
 <p>Visita <code>http://gestor.local/ficha.php</code>. Personaliza al menos 3 valores (pon una incidencia tuya inventada, cambia el autor a tu nombre real, etc.).</p>
 <details class="tip">
@@ -1836,41 +1844,41 @@
 <div class="admonition note">
 <p class="admonition-title">Esqueleto inicial del fichero</p>
 <p>Para evitar el "miedo al folio en blanco", empieza por este esqueleto y ve rellenándolo:</p>
-<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-11-10">10</a></span>
-<span class="normal"><a href="#__codelineno-11-11">11</a></span>
-<span class="normal"><a href="#__codelineno-11-12">12</a></span>
-<span class="normal"><a href="#__codelineno-11-13">13</a></span>
-<span class="normal"><a href="#__codelineno-11-14">14</a></span>
-<span class="normal"><a href="#__codelineno-11-15">15</a></span>
-<span class="normal"><a href="#__codelineno-11-16">16</a></span>
-<span class="normal"><a href="#__codelineno-11-17">17</a></span>
-<span class="normal"><a href="#__codelineno-11-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="cp">&lt;?php</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4"></a>
-<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="c1">// Dashboard del taller: variables de texto, numéricas, calculadas y concatenación</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="c1">// (declara aquí tus variables)</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7"></a>
-<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="cp">?&gt;</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="x">&lt;!DOCTYPE html&gt;</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="x">&lt;html lang=&quot;es&quot;&gt;</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="x">&lt;head&gt;</span>
-<a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="x">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
-<a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="x">  &lt;title&gt;Resumen del taller&lt;/title&gt;</span>
-<a id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="x">&lt;/head&gt;</span>
-<a id="__codelineno-11-15" name="__codelineno-11-15"></a><span class="x">&lt;body&gt;</span>
-<a id="__codelineno-11-16" name="__codelineno-11-16"></a><span class="x">  &lt;!-- aquí irá tu &lt;h1&gt; y tu &lt;ul&gt; --&gt;</span>
-<a id="__codelineno-11-17" name="__codelineno-11-17"></a><span class="x">&lt;/body&gt;</span>
-<a id="__codelineno-11-18" name="__codelineno-11-18"></a><span class="x">&lt;/html&gt;</span>
+<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span>
+<span class="normal"><a href="#__codelineno-13-13">13</a></span>
+<span class="normal"><a href="#__codelineno-13-14">14</a></span>
+<span class="normal"><a href="#__codelineno-13-15">15</a></span>
+<span class="normal"><a href="#__codelineno-13-16">16</a></span>
+<span class="normal"><a href="#__codelineno-13-17">17</a></span>
+<span class="normal"><a href="#__codelineno-13-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="c1">// Dashboard del taller: variables de texto, numéricas, calculadas y concatenación</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="c1">// (declara aquí tus variables)</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a>
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="cp">?&gt;</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="x">&lt;!DOCTYPE html&gt;</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="x">&lt;html lang=&quot;es&quot;&gt;</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="x">&lt;head&gt;</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="x">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13"></a><span class="x">  &lt;title&gt;Resumen del taller&lt;/title&gt;</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14"></a><span class="x">&lt;/head&gt;</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15"></a><span class="x">&lt;body&gt;</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16"></a><span class="x">  &lt;!-- aquí irá tu &lt;h1&gt; y tu &lt;ul&gt; --&gt;</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17"></a><span class="x">&lt;/body&gt;</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18"></a><span class="x">&lt;/html&gt;</span>
 </code></pre></div></td></tr></table></div>
 </div>
 <p><strong>Requisitos obligatorios de contenido:</strong></p>
@@ -1890,6 +1898,15 @@
 <li>Una lista <code>&lt;ul&gt;</code> con una línea <code>&lt;li&gt;</code> por cada variable (texto, numérica y calculada).</li>
 <li>Las variables de texto se muestran con <code>htmlspecialchars()</code>; las numéricas sin él.</li>
 </ul>
+<p>Estructura HTML esperada (orientativa, los valores los pones tú):</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Taller &quot;Reparaciones Chema&quot; — Las Palmas — Abril 2026<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Nombre del taller: ...<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Equipos recibidos: ...<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Porcentaje reparados: ... %<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>  <span class="cm">&lt;!-- una línea &lt;li&gt; por cada variable que hayas declarado --&gt;</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</code></pre></div>
 <p><strong>Requisitos de calidad del código:</strong></p>
 <ul>
 <li><code>error_reporting(E_ALL)</code> y <code>ini_set('display_errors', '1')</code> al principio del fichero.</li>
@@ -1898,20 +1915,24 @@
 </ul>
 <details class="tip">
 <summary>Pista si te atascas con los cálculos</summary>
-<p>Si has recibido 12 equipos, has reparado 9 y has trabajado 40 horas en total:</p>
-<ul>
-<li>Porcentaje reparados: <code>round(9 / 12 * 100, 1)</code> → <code>75.0</code>.</li>
-<li>Media horas por equipo: <code>round(40 / 12, 1)</code> → <code>3.3</code>.</li>
-</ul>
+<p>Imagina que tu taller ha recibido <strong>12 equipos</strong>, ha reparado <strong>9</strong> y ha trabajado <strong>40 horas en total</strong>. Las variables las declararías así:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="x">$equipos_recibidos = 12;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="x">$equipos_reparados = 9;</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="x">$horas_trabajadas  = 40;</span>
+</code></pre></div>
+<p>Y las dos variables calculadas:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="x">$porcentaje_reparados = round($equipos_reparados / $equipos_recibidos * 100, 1);  // 75.0</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="x">$media_horas          = round($horas_trabajadas / $equipos_recibidos, 1);         // 3.3</span>
+</code></pre></div>
 <p>Los operadores y funciones son los mismos que en el Paso 2: <code>/</code>, <code>*</code>, <code>round()</code>.</p>
 </details>
 <details class="tip">
 <summary>Pista sobre la concatenación</summary>
 <p>Si te resulta más cómodo, usa interpolación con comillas dobles (como en el Paso 4 v2):</p>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="x">$titulo_resumen = &quot;Taller &#39;$nombre_taller&#39; — $ciudad — $mes&quot;;</span>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="x">$titulo_resumen = &quot;Taller &#39;$nombre_taller&#39; — $ciudad — $mes&quot;;</span>
 </code></pre></div>
 <p>O con el operador punto:</p>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="x">$titulo_resumen = &quot;Taller &#39;&quot; . $nombre_taller . &quot;&#39; — &quot; . $ciudad . &quot; — &quot; . $mes;</span>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="x">$titulo_resumen = &quot;Taller &#39;&quot; . $nombre_taller . &quot;&#39; — &quot; . $ciudad . &quot; — &quot; . $mes;</span>
 </code></pre></div>
 <p>Ambas son válidas. Elige la que te parezca más legible.</p>
 </details>
@@ -1949,34 +1970,34 @@
 <hr />
 <h2 id="anexo-plantilla-de-respuestasmd">Anexo — Plantilla de <code>RESPUESTAS.md</code><a class="headerlink" href="#anexo-plantilla-de-respuestasmd" title="Permanent link">&para;</a></h2>
 <p>Crea <code>RESPUESTAS.md</code> dentro de <code>apellido_nombre_lab02/</code>:</p>
-<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="gh"># Respuestas — Lab 02 Variables, tipos y salida</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="gs">**Nombre:**</span> Apellido, Nombre
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="gs">**Fecha:**</span> YYYY-MM-DD
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="gu">## Paso 1</span>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>(Tu respuesta: qué pasaría sin <span class="sb">`htmlspecialchars()`</span> si <span class="sb">`$titulo`</span> fuera <span class="sb">`&lt;script&gt;alert(&#39;hola&#39;)&lt;/script&gt;`</span>.)
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
-<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="gu">## Paso 2</span>
-<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
-<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>(Tu respuesta: porcentajes con 5/5 y 0/10, y explicación de la operación.)
-<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
-<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="gu">## Paso 3</span>
-<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
-<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>(Tu respuesta: las 3 líneas literales del <span class="sb">`var_dump`</span> y explicación de qué aporta respecto a <span class="sb">`echo`</span>.)
-<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>
-<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="gu">## Paso 4</span>
-<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>
-<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>(Tu respuesta: por qué v3 no expande las variables, ventaja de v2 frente a v1, cuándo preferir v1.)
-<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>
-<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="gu">## Paso 5</span>
-<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>
-<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>(Tu respuesta: número de variables declaradas, cuáles escapas con <span class="sb">`htmlspecialchars()`</span> y por qué.)
-<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>
-<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="gu">## Paso 6</span>
-<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>
-<a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>(Tu respuesta: lista de variables declaradas en <span class="sb">`resumen.php`</span> con su tipo — texto, numérica o calculada —, línea donde has usado concatenación y técnica elegida, y por qué los números no necesitan <span class="sb">`htmlspecialchars()`</span> pero los textos sí.)
+<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="gh"># Respuestas — Lab 02 Variables, tipos y salida</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="gs">**Nombre:**</span> Apellido, Nombre
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="gs">**Fecha:**</span> YYYY-MM-DD
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="gu">## Paso 1</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>(Tu respuesta: qué pasaría sin <span class="sb">`htmlspecialchars()`</span> si <span class="sb">`$titulo`</span> fuera <span class="sb">`&lt;script&gt;alert(&#39;hola&#39;)&lt;/script&gt;`</span>.)
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="gu">## Paso 2</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>(Tu respuesta: porcentajes con 5/5 y 0/10, y explicación de la operación.)
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="gu">## Paso 3</span>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>(Tu respuesta: las 3 líneas literales del <span class="sb">`var_dump`</span> y explicación de qué aporta respecto a <span class="sb">`echo`</span>.)
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="gu">## Paso 4</span>
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>(Tu respuesta: por qué v3 no expande las variables, ventaja de v2 frente a v1, cuándo preferir v1.)
+<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>
+<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="gu">## Paso 5</span>
+<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>
+<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>(Tu respuesta: número de variables declaradas, cuáles escapas con <span class="sb">`htmlspecialchars()`</span> y por qué.)
+<a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>
+<a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="gu">## Paso 6</span>
+<a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>
+<a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>(Tu respuesta: lista de variables declaradas en <span class="sb">`resumen.php`</span> con su tipo — texto, numérica o calculada —, línea donde has usado concatenación y técnica elegida, y por qué los números no necesitan <span class="sb">`htmlspecialchars()`</span> pero los textos sí.)
 </code></pre></div>
 
 

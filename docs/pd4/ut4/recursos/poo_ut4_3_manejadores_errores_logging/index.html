@@ -1291,10 +1291,10 @@
 </blockquote>
 <h2 id="manejadores-globales-de-error">Manejadores globales de error<a class="headerlink" href="#manejadores-globales-de-error" title="Permanent link">&para;</a></h2>
 <h3 id="el-problema-que-resuelven">El problema que resuelven<a class="headerlink" href="#el-problema-que-resuelven" title="Permanent link">&para;</a></h3>
-<p>Hasta ahora, cada route captura sus propias excepciones de dominio con <code>try/except</code>. Pero hay errores que <strong>no ocurren dentro de ningún route</strong>: URLs que no coinciden con ninguna ruta registrada, excepciones no previstas, errores de sintaxis en la base de datos.</p>
+<p>Hasta ahora, cada route captura sus propias excepciones de dominio con <code>try/except</code>. Pero hay errores que <strong>no ocurren dentro de ningún route</strong>: URLs que no coinciden con ninguna ruta registrada, divisiones por cero accidentales, variables no definidas o ficheros que no se pueden abrir.</p>
 <p>Sin manejo, Flask muestra una página genérica (o, en modo debug, el traceback completo). Con un <strong>manejador de error</strong> podemos controlar qué ve el usuario en esos casos.</p>
 <h3 id="el-decorador-apperrorhandler">El decorador <code>@app.errorhandler</code><a class="headerlink" href="#el-decorador-apperrorhandler" title="Permanent link">&para;</a></h3>
-<p>Un <strong>manejador de error</strong> es una función registrada con <code>@app.errorhandler(codigo)</code> que Flask ejecuta cuando se genera un error con ese código. Funciona como un route especial que captura por código HTTP en vez de por URL.</p>
+<p>Un <strong>manejador de error</strong> es una función registrada con <code>@app.errorhandler(codigo)</code> que Flask ejecuta cuando se genera un error con ese código. Funciona como un route especial que captura por código HTTP en vez de por URL (URL = <code>/producto/A1</code>; código HTTP = <code>404</code>).</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
 <span class="normal"><a href="#__codelineno-0-2">2</a></span>
 <span class="normal"><a href="#__codelineno-0-3">3</a></span>
@@ -1312,6 +1312,14 @@
 <blockquote>
 <p>El parámetro <code>e</code> recibe el objeto de excepción que Flask ha generado. Puedes interpolarlo en el mensaje, loguearlo o ignorarlo según convenga.</p>
 </blockquote>
+<div class="admonition info">
+<p class="admonition-title">¿Qué excepción recibes en <code>e</code>?</p>
+<p>Internamente Flask lanza <code>werkzeug.exceptions.NotFound</code> cuando ninguna URL coincide, <code>InternalServerError</code> cuando una excepción se escapa de un route, etc. No tienes que importarlas ni instanciarlas tú: el manejador las recibe ya construidas en el parámetro <code>e</code>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Dónde colocar los manejadores en <code>app.py</code></p>
+<p>Coloca los manejadores junto al resto de routes. Suelen ir <strong>al final del fichero</strong>, separados con un comentario tipo <code># --- Manejadores globales ---</code>, para que se vean de un golpe y no se confundan con los routes normales.</p>
+</div>
 <h3 id="interaccion-con-los-tryexcept-de-los-routes">Interacción con los <code>try/except</code> de los routes<a class="headerlink" href="#interaccion-con-los-tryexcept-de-los-routes" title="Permanent link">&para;</a></h3>
 <p>Los manejadores globales <strong>no sustituyen</strong> al <code>try/except</code> dentro de los routes: lo <strong>complementan</strong>. Cada uno captura cosas distintas:</p>
 <table>
@@ -1335,13 +1343,13 @@
 <td><code>@app.errorhandler(500)</code> global</td>
 </tr>
 <tr>
-<td>Converter de tipo que rechaza el valor</td>
+<td>Converter de tipo que rechaza el valor (p.ej. <code>&lt;int:cantidad&gt;</code> con <code>tres</code>; ver apuntes UT4-2)</td>
 <td><code>@app.errorhandler(404)</code> global</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>Los manejadores globales son una <strong>red de seguridad</strong>: atrapan lo que se escapa de los <code>try/except</code>, no lo que ya está bien manejado.</p>
+<p>Sin manejador 404, una URL inexistente muestra una página técnica de Flask en inglés. Con manejador, ves tu página personalizada y coherente con el resto de la app. Los manejadores globales son una <strong>red de seguridad</strong>: atrapan lo que se escapa de los <code>try/except</code>, no lo que ya está bien manejado.</p>
 </blockquote>
 <div class="admonition tip">
 <p class="admonition-title">Manejadores globales para experiencia de usuario coherente</p>
@@ -1351,8 +1359,11 @@
 <h2 id="introspeccion-la-app-conoce-sus-rutas">Introspección: la app conoce sus rutas<a class="headerlink" href="#introspeccion-la-app-conoce-sus-rutas" title="Permanent link">&para;</a></h2>
 <h3 id="que-es-la-introspeccion">Qué es la introspección<a class="headerlink" href="#que-es-la-introspeccion" title="Permanent link">&para;</a></h3>
 <p><strong>Introspección</strong> es la capacidad de un programa de <strong>observar su propio estado</strong> en tiempo de ejecución. Flask permite consultar qué rutas tiene registradas sin leer el código fuente: la información está viva dentro del objeto <code>app</code>.</p>
+<blockquote>
+<p>Ya has visto introspección antes en Python: <code>dir(objeto)</code> te dice qué métodos tiene un objeto, y <code>type(x)</code> te dice de qué clase es. Aquí hacemos lo mismo con la app: le preguntamos qué rutas tiene.</p>
+</blockquote>
 <h3 id="el-objeto-appurl_map">El objeto <code>app.url_map</code><a class="headerlink" href="#el-objeto-appurl_map" title="Permanent link">&para;</a></h3>
-<p><code>app.url_map</code> es el <strong>mapa de rutas</strong> que Flask usa internamente para decidir qué función de vista llamar ante una URL. Desde fuera, lo puedes iterar con <code>iter_rules()</code>:</p>
+<p><code>app.url_map</code> es el <strong>mapa de rutas</strong> que Flask usa internamente para decidir qué función de vista llamar ante una URL. Cada vez que escribes <code>@app.route("/algo")</code>, Flask añade esa ruta a <code>app.url_map</code> por dentro. Por eso no tienes que crear el mapa: ya está construido cuando arranca la app. Desde fuera, lo puedes iterar con <code>iter_rules()</code>:</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
 <span class="normal"><a href="#__codelineno-1-2">2</a></span>
 <span class="normal"><a href="#__codelineno-1-3">3</a></span>
@@ -1360,14 +1371,16 @@
 <span class="normal"><a href="#__codelineno-1-5">5</a></span>
 <span class="normal"><a href="#__codelineno-1-6">6</a></span>
 <span class="normal"><a href="#__codelineno-1-7">7</a></span>
-<span class="normal"><a href="#__codelineno-1-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/ayuda&quot;</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span>
+<span class="normal"><a href="#__codelineno-1-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/ayuda&quot;</span><span class="p">)</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">ayuda</span><span class="p">():</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="n">lineas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&lt;h2&gt;Rutas disponibles&lt;/h2&gt;&lt;ul&gt;&quot;</span><span class="p">]</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="hll">    <span class="k">for</span> <span class="n">regla</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">url_map</span><span class="o">.</span><span class="n">iter_rules</span><span class="p">():</span>
 </span><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="hll">        <span class="k">if</span> <span class="n">regla</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">!=</span> <span class="s2">&quot;static&quot;</span><span class="p">:</span>
-</span><a id="__codelineno-1-6" name="__codelineno-1-6"></a>            <span class="n">lineas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;li&gt;&lt;code&gt;</span><span class="si">{</span><span class="n">regla</span><span class="o">.</span><span class="n">rule</span><span class="si">}</span><span class="s2">&lt;/code&gt; — </span><span class="si">{</span><span class="n">regla</span><span class="o">.</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&lt;/li&gt;&quot;</span><span class="p">)</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7"></a>    <span class="n">lineas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&lt;/ul&gt;&quot;</span><span class="p">)</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8"></a>    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lineas</span><span class="p">)</span>
+</span><a id="__codelineno-1-6" name="__codelineno-1-6"></a>            <span class="c1"># regla.rule es el patrón &quot;/producto/&lt;codigo&gt;&quot;, no una URL concreta como &quot;/producto/A1&quot;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>            <span class="n">lineas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;li&gt;&lt;code&gt;</span><span class="si">{</span><span class="n">regla</span><span class="o">.</span><span class="n">rule</span><span class="si">}</span><span class="s2">&lt;/code&gt; — </span><span class="si">{</span><span class="n">regla</span><span class="o">.</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&lt;/li&gt;&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>    <span class="n">lineas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&lt;/ul&gt;&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lineas</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <p>Cada <code>regla</code> tiene dos atributos importantes:</p>
 <table>
@@ -1394,8 +1407,15 @@
 <blockquote>
 <p>Fíjate: <code>regla.rule</code> es el <strong>patrón</strong>, no una URL concreta. Muestra <code>&lt;codigo&gt;</code> literal, no <code>A1</code> o <code>B2</code>. Para generar URLs concretas necesitarías <code>url_for</code> con valores.</p>
 </blockquote>
+<div class="admonition note">
+<p class="admonition-title">Patrón <code>lista + append + join</code></p>
+<p>El patrón <code>lineas = [...]; lineas.append(x); "\n".join(lineas)</code> es la forma habitual en Python de construir un texto largo a partir de muchas piezas. Es preferible a concatenar con <code>+</code> en un bucle: más rápido y más legible. Lo verás muchas veces a lo largo del curso.</p>
+</div>
 <h3 id="la-regla-static">La regla <code>static</code><a class="headerlink" href="#la-regla-static" title="Permanent link">&para;</a></h3>
-<p>Flask registra automáticamente una ruta <code>/static/&lt;path:filename&gt;</code> para servir ficheros estáticos (CSS, imágenes, JavaScript). Conviene filtrarla en páginas de ayuda porque no forma parte de tu lógica de aplicación:</p>
+<p>Flask registra automáticamente una ruta <code>/static/&lt;path:filename&gt;</code> para servir ficheros estáticos (CSS, imágenes, JavaScript). Conviene filtrarla en páginas de ayuda porque no forma parte de tu lógica de aplicación.</p>
+<blockquote>
+<p><code>&lt;path:filename&gt;</code> usa el converter <code>path</code>, otro converter de Flask que acepta cualquier cosa hasta el final de la URL, <strong>incluyendo barras</strong> (a diferencia de <code>&lt;int:&gt;</code> o <code>&lt;float:&gt;</code> que viste en el apuntes anterior). Tú no tendrás que escribirlo en este lab — solo aparece aquí para que entiendas qué estamos filtrando con <code>regla.endpoint != "static"</code>:</p>
+</blockquote>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
 <span class="normal"><a href="#__codelineno-2-2">2</a></span>
 <span class="normal"><a href="#__codelineno-2-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">for</span> <span class="n">regla</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">url_map</span><span class="o">.</span><span class="n">iter_rules</span><span class="p">():</span>
@@ -1432,10 +1452,34 @@
 <hr />
 <h2 id="hooks-y-logging">Hooks y logging<a class="headerlink" href="#hooks-y-logging" title="Permanent link">&para;</a></h2>
 <h3 id="que-es-un-hook">Qué es un hook<a class="headerlink" href="#que-es-un-hook" title="Permanent link">&para;</a></h3>
-<p>Un <strong>hook</strong> (literalmente <em>gancho</em>) es un punto del flujo de un programa en el que puedes "enganchar" código propio para que se ejecute automáticamente, sin modificar el flujo original. Flask ofrece varios hooks; el más útil para empezar es <code>@app.before_request</code>, que ejecuta una función <strong>antes de cada petición</strong>, pase por el route que pase.</p>
-<p>Los hooks permiten añadir comportamientos transversales (logging, autenticación, medición de tiempos) sin tocar los routes uno por uno.</p>
+<p>Un <strong>hook</strong> (literalmente <em>gancho</em>) es un punto del flujo de un programa en el que puedes "enganchar" código propio para que se ejecute automáticamente, sin modificar el flujo original. Flask ofrece varios hooks:</p>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>Cuándo se ejecuta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@app.before_request</code></td>
+<td>Antes de cada petición, pase por el route que pase.</td>
+</tr>
+<tr>
+<td><code>@app.after_request</code></td>
+<td>Después de cada petición que ha terminado bien.</td>
+</tr>
+<tr>
+<td><code>@app.teardown_request</code></td>
+<td>Al final de cada petición, haya ido bien o mal (sirve para liberar recursos).</td>
+</tr>
+</tbody>
+</table>
+<p>En este apuntes solo usaremos <code>before_request</code>. Los hooks permiten añadir comportamientos transversales (logging, autenticación, medición de tiempos) sin tocar los routes uno por uno.</p>
 <h3 id="el-modulo-logging">El módulo <code>logging</code><a class="headerlink" href="#el-modulo-logging" title="Permanent link">&para;</a></h3>
-<p><code>logging</code> es el <strong>módulo estándar de Python</strong> para registrar mensajes durante la ejecución. A diferencia de <code>print</code>, permite:</p>
+<p><code>logging</code> es el <strong>módulo estándar de Python</strong> para registrar mensajes durante la ejecución.</p>
+<p>Imagina que cierras la terminal y mañana alguien te pregunta <em>"¿qué hizo tu app ayer a las 17h?"</em>. Con <code>print</code> no queda nada — los mensajes se fueron con la consola. Con <code>logging</code> queda escrito en un fichero, con timestamp, y puedes filtrar por nivel de gravedad.</p>
+<p>A diferencia de <code>print</code>, permite:</p>
 <ul>
 <li>Escribir a un fichero en vez de a la consola.</li>
 <li>Clasificar mensajes por <strong>nivel</strong> (<code>DEBUG</code>, <code>INFO</code>, <code>WARNING</code>, <code>ERROR</code>, <code>CRITICAL</code>).</li>
@@ -1456,6 +1500,13 @@
 </span><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="hll">    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> [</span><span class="si">%(levelname)s</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
 </span><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="hll"><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title">Dónde colocar <code>basicConfig</code> en <code>app.py</code></p>
+<p>Esta configuración se pone <strong>una sola vez</strong>, al inicio del fichero, justo después de los <code>import</code> y antes de instanciar <code>app = Flask(__name__)</code>. Si la pones después del primer <code>app.logger.info(...)</code> no tendrá efecto sobre las llamadas anteriores.</p>
+</div>
+<blockquote>
+<p>La sintaxis <code>%(nombre)s</code> del parámetro <code>format</code> es la del módulo <code>logging</code> — <strong>no es f-string ni <code>.format()</code></strong>. Para este lab basta con copiar el formato; no tienes que dominarla.</p>
+</blockquote>
 <table>
 <thead>
 <tr>
@@ -1470,7 +1521,7 @@
 </tr>
 <tr>
 <td><code>level</code></td>
-<td>Nivel mínimo que se registra. <code>INFO</code> captura INFO/WARNING/ERROR/CRITICAL pero descarta DEBUG.</td>
+<td>Listón mínimo. Si pones <code>INFO</code>, registra INFO/WARNING/ERROR/CRITICAL y descarta DEBUG. Como un termómetro: lo que está por encima del listón pasa; lo de abajo no.</td>
 </tr>
 <tr>
 <td><code>format</code></td>
@@ -1512,9 +1563,23 @@
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>Flask tiene su propio logger accesible como <code>app.logger</code>. Al llamar <code>app.logger.info(...)</code> se aprovecha la configuración que hiciste con <code>basicConfig</code>.</p>
-</blockquote>
+<div class="admonition tip">
+<p class="admonition-title"><code>app.logger</code> vs <code>logging.info</code> directo</p>
+<p><code>logging.info(...)</code> y <code>app.logger.info(...)</code> son equivalentes para nuestro caso, pero <strong><code>app.logger</code> es la forma idiomática en Flask</strong>: usa la configuración de la app y permite distinguir tus logs de los de Flask cuando depures. Tómalo como costumbre desde el principio.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Dónde colocar el hook en <code>app.py</code></p>
+<p>El hook se registra junto al resto de configuración global, al principio del fichero, después de la creación de <code>app</code>. El <strong>orden de declaración no importa</strong>: Flask los descubre todos al cargar el módulo, no al ejecutar línea por línea.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Cómo verificar que el logging funciona</p>
+<p>Tras configurarlo, arranca el servidor (<code>python -m expendedora.presentation.app</code>), visita varias URLs en el navegador y comprueba:</p>
+<ol>
+<li>En la carpeta desde la que arrancaste la app aparece el fichero <code>expendedora.log</code>.</li>
+<li>Cada petición ha generado una línea con timestamp, nivel y método/ruta.</li>
+</ol>
+<p>Si <strong>no aparece el fichero</strong>: revisa que <code>basicConfig</code> esté antes de cualquier <code>app.logger.info(...)</code>. Si <strong>aparece pero no se rellena</strong>: revisa que el <code>level</code> no sea más alto que el nivel del mensaje (<code>level=logging.INFO</code> registra <code>info()</code>; <code>level=logging.WARNING</code> lo descarta).</p>
+</div>
 <h3 id="que-se-versiona-y-que-no">Qué se versiona y qué no<a class="headerlink" href="#que-se-versiona-y-que-no" title="Permanent link">&para;</a></h3>
 <p>Los ficheros de log son <strong>generados en ejecución</strong>: cambian cada vez que corres la app, dependen de qué URLs visites, contienen información de depuración. <strong>No se versionan</strong> en Git: se añaden al <code>.gitignore</code>. El código que genera el log sí se versiona; el log en sí no.</p>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>## .gitignore

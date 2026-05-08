@@ -1489,8 +1489,8 @@
 <a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="hll"><span class="x">&lt;!doctype html&gt;</span>
 </span><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="x">&lt;html lang=&quot;es&quot;&gt;</span>
 <a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="x">&lt;body&gt;</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="x">  &lt;h1&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$titulo</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/h1&gt;</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="hll"><span class="x">  &lt;p&gt;Fecha del servidor: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$ahora</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="x">  &lt;h1&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$titulo</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/h1&gt;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="hll"><span class="x">  &lt;p&gt;Fecha del servidor: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$ahora</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
 </span><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="x">&lt;/body&gt;</span>
 <a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="x">&lt;/html&gt;</span>
 </code></pre></div></td></tr></table></div>
@@ -1607,14 +1607,14 @@
 </tr>
 </tbody>
 </table>
-<p>Firma completa recomendada: <code>htmlspecialchars($valor, ENT_QUOTES, 'UTF-8')</code>. El segundo argumento escapa también las comillas simples (útil dentro de atributos) y el tercero fija la codificación.</p>
+<p>En esta unidad usamos la <strong>forma corta</strong> <code>htmlspecialchars($valor)</code>. En PHP 8+ es equivalente a la forma larga <code>htmlspecialchars($valor, ENT_QUOTES, 'UTF-8')</code>, que es la versión explícita que verás en proyectos profesionales (escapa también las comillas simples y fija la codificación). En el Lab 07 envolveremos esa forma larga en un helper <code>e()</code>, de modo que escribirás <code>&lt;?= e($titulo) ?&gt;</code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Mala práctica: imprimir variables sin escapar</p>
 <p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="x">## Incorrecto: cualquier &lt; o &gt; del usuario se interpreta como HTML</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="x">echo &quot;&lt;h1&gt;$titulo&lt;/h1&gt;&quot;;</span>
 </code></pre></div>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="x">## Correcto: escapar siempre al imprimir</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="x">echo &quot;&lt;h1&gt;&quot; . htmlspecialchars($titulo, ENT_QUOTES, &#39;UTF-8&#39;) . &quot;&lt;/h1&gt;&quot;;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="x">echo &quot;&lt;h1&gt;&quot; . htmlspecialchars($titulo) . &quot;&lt;/h1&gt;&quot;;</span>
 </code></pre></div></p>
 </div>
 <div class="admonition tip">
