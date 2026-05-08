@@ -1162,36 +1162,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#paso-3-match-alternativa-compacta-a-if-elseif" class="md-nav__link">
+  <a href="#paso-3-leer-un-parametro-de-la-url-con-valor-por-defecto" class="md-nav__link">
     <span class="md-ellipsis">
-      Paso 3 — match: alternativa compacta a if / elseif
+      Paso 3 — ??: leer un parámetro de la URL con valor por defecto
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#paso-4-leer-un-parametro-de-la-url-con-valor-por-defecto" class="md-nav__link">
+  <a href="#paso-4-filtrar-dentro-de-un-foreach-y-mostrar-mensaje-si-la-lista-esta-vacia" class="md-nav__link">
     <span class="md-ellipsis">
-      Paso 4 — ??: leer un parámetro de la URL con valor por defecto
+      Paso 4 — Filtrar dentro de un foreach y mostrar mensaje si la lista está vacía
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#paso-5-filtrar-dentro-de-un-foreach-lista-de-incidencias-abiertas" class="md-nav__link">
+  <a href="#paso-5-aplica-lo-aprendido-filtrado-interactivo-desde-la-url" class="md-nav__link">
     <span class="md-ellipsis">
-      Paso 5 — Filtrar dentro de un foreach: lista de incidencias abiertas
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ampliacion-opcional" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ampliación opcional
+      Paso 5 — Aplica lo aprendido: filtrado interactivo desde la URL
     </span>
   </a>
   
@@ -1253,6 +1244,10 @@
 <td>UT4 — PHP en servidor</td>
 </tr>
 <tr>
+<td>Criterios de evaluación (CE)</td>
+<td><strong>d</strong> (estructuras de control: <code>if</code>/<code>elseif</code>/<code>else</code>)</td>
+</tr>
+<tr>
 <td>Requisitos</td>
 <td>Labs 01, 02 y 03 completados</td>
 </tr>
@@ -1266,7 +1261,7 @@
 </tr>
 <tr>
 <td>Apuntes</td>
-<td><code>ut4_php_04_control_de_flujo.md</code></td>
+<td><a href="https://ichigar.codeberg.page/imw/recursos/ut4_php_04_control_de_flujo/">https://ichigar.codeberg.page/imw/recursos/ut4_php_04_control_de_flujo/</a></td>
 </tr>
 <tr>
 <td>Tiempo estimado</td>
@@ -1290,8 +1285,8 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Qué vamos a construir</p>
-<p>A lo largo del lab, iremos completando un único fichero: <code>~/gestor/public/estado.php</code>. Empieza mostrando el estado de una incidencia y acaba filtrando una lista completa según los parámetros de la URL.</p>
-<p>Cada paso amplía el fichero del paso anterior. Al final integrarás los 5 conceptos vistos.</p>
+<p>A lo largo del lab iremos completando un único fichero: <code>~/gestor/public/estado.php</code>. Empieza mostrando el estado de una incidencia y acaba con un selector que filtra una lista de incidencias por estado mediante la URL.</p>
+<p>Cada paso amplía el fichero del paso anterior. Al final habrás integrado las cuatro herramientas del lab: <code>if/elseif/else</code>, lectura de parámetros de la URL con <code>??</code>, filtrado dentro de <code>foreach</code>, y comprobación de listas vacías con <code>empty()</code>.</p>
 </div>
 <hr />
 <h2 id="como-se-entrega-este-lab">Cómo se entrega este lab<a class="headerlink" href="#como-se-entrega-este-lab" title="Permanent link">&para;</a></h2>
@@ -1303,9 +1298,10 @@
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├── capturas/
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── paso1_boton_abierta.png
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   ├── paso2_prioridad_alta.png
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   ├── paso4_url_resuelta.png
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   └── paso5_lista_filtrada.png
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>└── RESPUESTAS.md
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   ├── paso3_url_resuelta.png
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   ├── paso4_lista_filtrada.png
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   └── paso5_selector_estado.png
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>└── RESPUESTAS.md
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Nombres prescritos</p>
@@ -1316,7 +1312,7 @@
 <li>Crea una carpeta en tu equipo llamada <code>apellido_nombre_lab04</code> (sustituye por tu apellido y nombre reales, en minúsculas y sin espacios ni acentos).</li>
 <li>Dentro, reproduce la estructura de arriba:<ul>
 <li>Una subcarpeta <code>gestor/public/</code> con tu fichero <code>estado.php</code>. Lo construirás en el servidor durante los pasos del lab; cópialo a tu carpeta de entrega antes de hacer el ZIP.</li>
-<li>Una subcarpeta <code>capturas/</code> con los 4 PNG, ya <strong>renombrados exactamente</strong> como se indica en cada paso.</li>
+<li>Una subcarpeta <code>capturas/</code> con los 5 PNG, ya <strong>renombrados exactamente</strong> como se indica en cada paso.</li>
 <li>Un fichero <code>RESPUESTAS.md</code> en la raíz de la carpeta, con una sección <code>## Paso N</code> por cada pregunta del lab (la plantilla está en el anexo al final de este documento).</li>
 </ul>
 </li>
@@ -1338,7 +1334,7 @@
 <ul>
 <li><code>if</code> comprueba una condición y ejecuta un bloque solo si es verdadera.</li>
 <li>Paralelismo con bash: <code>if [ "$estado" = "abierta" ]; then ... fi</code> en PHP se escribe <code>if ($estado === 'abierta') { ... }</code>.</li>
-<li>Operadores de comparación en PHP: <code>===</code> (igual estricto), <code>!==</code> (distinto estricto), <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>. Usa siempre <code>===</code>, nunca <code>==</code> (te ahorra bugs por <em>type juggling</em>).</li>
+<li>Operadores de comparación en PHP: <code>===</code> (igual estricto), <code>!==</code> (distinto estricto), <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>. Usa siempre <code>===</code>, nunca <code>==</code>. Razón: <code>==</code> hace conversiones automáticas de tipo (lo que se llama <em>type juggling</em>) y produce sorpresas como <code>0 == 'texto'</code> que devuelve <code>true</code>. Con <code>===</code> no ocurre: <code>0 === 'texto'</code> es <code>false</code> porque PHP no convierte nada antes de comparar.</li>
 <li>Cuando mezclamos PHP dentro de HTML, la sintaxis alternativa <code>if (...): ... endif;</code> es más legible que usar llaves.</li>
 </ul>
 </div>
@@ -1477,74 +1473,25 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He guardado <code>capturas/paso2_prioridad_alta.png</code>.</li>
 </ul>
 <hr />
-<h2 id="paso-3-match-alternativa-compacta-a-if-elseif">Paso 3 — <code>match</code>: alternativa compacta a <code>if</code> / <code>elseif</code><a class="headerlink" href="#paso-3-match-alternativa-compacta-a-if-elseif" title="Permanent link">&para;</a></h2>
+<h2 id="paso-3-leer-un-parametro-de-la-url-con-valor-por-defecto">Paso 3 — <code>??</code>: leer un parámetro de la URL con valor por defecto<a class="headerlink" href="#paso-3-leer-un-parametro-de-la-url-con-valor-por-defecto" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Conceptos</p>
 <ul>
-<li><code>match</code> (PHP 8+) es una forma más compacta de comparar una variable contra varios valores.</li>
-<li>Usa comparación estricta (<code>===</code>) automáticamente. No hay <em>type juggling</em>.</li>
-<li>Si el valor no coincide con ningún caso y no hay <code>default</code>, PHP lanza un error. Por eso es buena práctica incluir siempre un <code>default</code>.</li>
-</ul>
-<p>Estructura:
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="x">$resultado = match ($variable) {</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="x">    valor1  =&gt; &#39;algo&#39;,</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="x">    valor2  =&gt; &#39;otra cosa&#39;,</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="x">    default =&gt; &#39;por defecto&#39;,</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="x">};</span>
-</code></pre></div></p>
-</div>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Reescribir el <code>if</code>/<code>elseif</code>/<code>else</code> del paso 2 usando <code>match</code>, de forma que el texto de la etiqueta se calcule en una variable antes de imprimirlo.</p>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 1 — Añadir la asignación con <code>match</code>.</strong> En el bloque PHP inicial, <strong>justo después de la línea <code>$prioridad = 'alta';</code></strong> (la que añadiste en el Paso 2) y antes del <code>?&gt;</code>, añade:</p>
-<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
-<span class="normal"><a href="#__codelineno-6-2">2</a></span>
-<span class="normal"><a href="#__codelineno-6-3">3</a></span>
-<span class="normal"><a href="#__codelineno-6-4">4</a></span>
-<span class="normal"><a href="#__codelineno-6-5">5</a></span>
-<span class="normal"><a href="#__codelineno-6-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="x">$etiqueta_prio = match ($prioridad) {</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="x">    &#39;alta&#39;  =&gt; &#39;URGENTE — atender cuanto antes&#39;,</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="x">    &#39;media&#39; =&gt; &#39;Prioridad media — planificar para esta semana&#39;,</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="x">    &#39;baja&#39;  =&gt; &#39;Prioridad baja — cuando haya tiempo&#39;,</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="x">    default =&gt; &#39;(prioridad no reconocida)&#39;,</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="x">};</span>
-</code></pre></div></td></tr></table></div>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 2 — Sustituir el bloque HTML de condicionales.</strong> En el HTML, <strong>borra el bloque completo</strong> que añadiste en el Paso 2: desde la línea <code>&lt;p&gt;Prioridad:</code> hasta la línea <code>&lt;/p&gt;</code> (incluye los 4 <code>&lt;?php if/elseif/else/endif ?&gt;</code> del medio, son unas 11 líneas en total). Sustitúyelo por una única línea:</p>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="x">&lt;p&gt;Prioridad: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$etiqueta_prio</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
-</code></pre></div>
-<p>Guarda y recarga la página con los mismos 4 valores del Paso 2 (<code>'alta'</code>, <code>'media'</code>, <code>'baja'</code>, <code>'desconocida'</code>). El resultado visual debe ser <strong>idéntico</strong> al del Paso 2; el cambio es solo interno.</p>
-<details class="tip">
-<summary>Pista</summary>
-<p>Ojo a la coma al final de cada línea del <code>match</code>, incluida la del <code>default</code>. Si se te olvida, PHP dará un error de sintaxis.</p>
-</details>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> <strong>Responde en <code>RESPUESTAS.md</code>, sección <code>## Paso 3</code>.</strong></p>
-<blockquote>
-<p>Nombra dos ventajas de <code>match</code> frente a <code>if</code> / <code>elseif</code> / <code>else</code>. Una debe ser de legibilidad y otra de seguridad.</p>
-</blockquote>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m8 3a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3"/></svg></span> <strong>Captura: NO se requiere para este paso.</strong> La salida visual es la misma que en el paso 2.</p>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Verificación.</strong></p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El bloque <code>if</code>/<code>elseif</code>/<code>else</code> de prioridad ha desaparecido.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> La variable <code>$etiqueta_prio</code> se asigna mediante <code>match</code>.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> La página muestra el mismo texto que en el paso 2 para los 4 valores de <code>$prioridad</code>.</li>
-</ul>
-<hr />
-<h2 id="paso-4-leer-un-parametro-de-la-url-con-valor-por-defecto">Paso 4 — <code>??</code>: leer un parámetro de la URL con valor por defecto<a class="headerlink" href="#paso-4-leer-un-parametro-de-la-url-con-valor-por-defecto" title="Permanent link">&para;</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Conceptos</p>
-<ul>
-<li><code>$_GET</code> es un array asociativo con los parámetros que llegan por la URL (tras el <code>?</code>). Por ejemplo, en <code>estado.php?estado=resuelta</code>, <code>$_GET['estado']</code> vale <code>'resuelta'</code>.</li>
+<li><strong>Cliente → servidor</strong>: cuando escribes <code>?estado=resuelta</code> en la URL del navegador, ese texto viaja al servidor. Apache recibe la URL completa, ejecuta <code>estado.php</code> y le pasa los parámetros a PHP. Tu navegador no procesa esa información: solo la envía.</li>
+<li><strong><code>$_GET</code></strong> es un array asociativo donde PHP coloca automáticamente los parámetros que vienen tras el <code>?</code> de la URL para que tú los leas. Por ejemplo, en <code>estado.php?estado=resuelta</code>, <code>$_GET['estado']</code> vale <code>'resuelta'</code>.</li>
 <li>Si la URL no trae ese parámetro, <code>$_GET['estado']</code> no existe y acceder a él da un aviso.</li>
-<li>El operador <code>??</code> (null coalescing) devuelve el valor de la izquierda si existe y no es <code>null</code>, y si no, el de la derecha. Es perfecto para "coge esto, y si no hay nada, pon esto por defecto".</li>
+<li>El operador <strong><code>??</code></strong> (null coalescing) devuelve el valor de la izquierda si existe y no es <code>null</code>, y si no, el de la derecha. Es perfecto para "coge esto, y si no hay nada, pon esto por defecto".</li>
 </ul>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="x">$estado = $_GET[&#39;estado&#39;] ?? &#39;abierta&#39;;</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="x">// Si la URL trae ?estado=X, $estado vale X. Si no, vale &#39;abierta&#39;.</span>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="x">$estado = $_GET[&#39;estado&#39;] ?? &#39;abierta&#39;;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="x">// Si la URL trae ?estado=X, $estado vale X. Si no, vale &#39;abierta&#39;.</span>
 </code></pre></div>
 </div>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Hacer que el estado de la incidencia venga de la URL en lugar de estar fijo en el código.</p>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea.</strong> En el bloque PHP inicial, sustituye:</p>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="x">$estado = &#39;abierta&#39;;</span>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="x">$estado = &#39;abierta&#39;;</span>
 </code></pre></div>
 <p>por:</p>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="x">$estado = $_GET[&#39;estado&#39;] ?? &#39;abierta&#39;;</span>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="x">$estado = $_GET[&#39;estado&#39;] ?? &#39;abierta&#39;;</span>
 </code></pre></div>
 <p>Prueba las tres URLs siguientes y observa cómo cambia la página:</p>
 <ul>
@@ -1556,11 +1503,11 @@
 <summary>Pista</summary>
 <p>No uses comillas al escribir el parámetro en la barra de direcciones del navegador. La URL correcta es <code>estado.php?estado=resuelta</code>, sin comillas ni espacios.</p>
 </details>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> <strong>Responde en <code>RESPUESTAS.md</code>, sección <code>## Paso 4</code>.</strong></p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> <strong>Responde en <code>RESPUESTAS.md</code>, sección <code>## Paso 3</code>.</strong></p>
 <blockquote>
 <p>En tu captura has visitado <code>http://gestor.local/estado.php?estado=resuelta</code>. ¿Qué valor toma <code>$estado</code> en ese caso? ¿Y qué valor tomaría si visitaras la misma página <strong>sin</strong> ningún <code>?estado=...</code> (la URL pelada <code>http://gestor.local/estado.php</code>)? Explica en una frase qué hace el operador <code>??</code>.</p>
 </blockquote>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m8 3a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3"/></svg></span> <strong>Captura requerida.</strong> Guarda en <code>capturas/paso4_url_resuelta.png</code> una captura visitando <code>http://gestor.local/estado.php?estado=resuelta</code>. Debe verse:</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m8 3a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3"/></svg></span> <strong>Captura requerida.</strong> Guarda en <code>capturas/paso3_url_resuelta.png</code> una captura visitando <code>http://gestor.local/estado.php?estado=resuelta</code>. Debe verse:</p>
 <ul>
 <li>La URL completa con <code>?estado=resuelta</code> en la barra de direcciones.</li>
 <li>El texto "Estado actual: resuelta".</li>
@@ -1570,74 +1517,89 @@
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Sin parámetro en la URL, la página muestra el estado por defecto.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Con <code>?estado=resuelta</code>, la página muestra ese estado y el botón deshabilitado.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He guardado <code>capturas/paso4_url_resuelta.png</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He guardado <code>capturas/paso3_url_resuelta.png</code>.</li>
 </ul>
 <hr />
-<h2 id="paso-5-filtrar-dentro-de-un-foreach-lista-de-incidencias-abiertas">Paso 5 — Filtrar dentro de un <code>foreach</code>: lista de incidencias abiertas<a class="headerlink" href="#paso-5-filtrar-dentro-de-un-foreach-lista-de-incidencias-abiertas" title="Permanent link">&para;</a></h2>
+<h2 id="paso-4-filtrar-dentro-de-un-foreach-y-mostrar-mensaje-si-la-lista-esta-vacia">Paso 4 — Filtrar dentro de un <code>foreach</code> y mostrar mensaje si la lista está vacía<a class="headerlink" href="#paso-4-filtrar-dentro-de-un-foreach-y-mostrar-mensaje-si-la-lista-esta-vacia" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Conceptos</p>
 <ul>
-<li><code>foreach</code> recorre un array. Ya lo viste en el Lab 03.</li>
-<li>Si dentro del <code>foreach</code> pones un <code>if</code>, puedes decidir elemento por elemento si lo muestras o no. Es la técnica básica de filtrado al imprimir.</li>
-<li>Paralelismo con bash: es como hacer <code>for x in $lista; do if [ ... ]; then echo "$x"; fi; done</code>.</li>
+<li><strong>Filtrar dentro de un bucle</strong>: si dentro del <code>foreach</code> (que ya viste en el Lab 03) pones un <code>if</code>, decides elemento por elemento si lo muestras o no. Cada vuelta del <code>foreach</code> ejecuta el <code>if</code> con la incidencia actual; si la condición se cumple, se pinta el <code>&lt;li&gt;</code>; si no, la iteración pasa a la siguiente sin imprimir nada. Paralelismo con bash: es como <code>for x in $lista; do if [ ... ]; then echo "$x"; fi; done</code>.</li>
+<li><strong>Comprobar si una lista está vacía con <code>empty()</code></strong>: la función <code>empty($array)</code> devuelve <code>true</code> si el array está vacío o no existe, y <code>false</code> si tiene al menos un elemento. Combinada con <code>if</code>/<code>else</code>, te permite mostrar un mensaje alternativo cuando no hay datos en lugar de una lista vacía sin contexto.</li>
+<li>
+<ul>
+<li><code>$estado</code> (del Paso 3) → viene de la URL (<code>$_GET['estado'] ?? 'abierta'</code>) y controla el botón del Paso 1.</li>
+<li><code>$inc['estado']</code> (de este paso) → es el estado de cada incidencia concreta dentro del <code>foreach</code>.</li>
+</ul>
+<p><strong>Dos variables <code>estado</code> distintas</strong>: en este paso vas a tener dos variables parecidas en el mismo fichero, y es importante no confundirlas:</p>
+<p>En este paso filtramos por el literal <code>'abierta'</code>. En el Paso 5 las combinarás (filtrar <code>$inc['estado']</code> comparándolo con el <code>$estado</code> que viene de la URL).</p>
+</li>
 </ul>
 </div>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Añadir al final de la página una lista solo con las incidencias cuyo estado sea <code>abierta</code>.</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Añadir al final de la página una lista solo con las incidencias <code>'abierta'</code>, y un mensaje alternativo si la lista de incidencias está vacía.</p>
 <div class="admonition note">
 <p class="admonition-title">Ajuste previo del <code>&lt;h1&gt;</code></p>
-<p>Hasta ahora el <code>&lt;h1&gt;</code> del fichero dice <code>Incidencia #1</code>, pero en este paso vamos a mostrar <strong>varias</strong> incidencias. Cambia el <code>&lt;h1&gt;Incidencia #1&lt;/h1&gt;</code> por un título más genérico como:</p>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="x">&lt;h1&gt;Gestor de incidencias&lt;/h1&gt;</span>
+<p>Hasta ahora el <code>&lt;h1&gt;</code> del fichero dice <code>Incidencia #1</code>, pero a partir de aquí vamos a mostrar <strong>varias</strong> incidencias. Antes de empezar las tareas, cambia el <code>&lt;h1&gt;Incidencia #1&lt;/h1&gt;</code> por un título más genérico:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="x">&lt;h1&gt;Gestor de incidencias&lt;/h1&gt;</span>
 </code></pre></div>
+<p>La captura del Paso 3 ya está guardada con el título antiguo: no la rehagas.</p>
 </div>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 1 — Añadir el array de incidencias.</strong> Al inicio del bloque PHP de <code>estado.php</code>, añade un array con 4 incidencias de ejemplo:</p>
-<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
-<span class="normal"><a href="#__codelineno-12-2">2</a></span>
-<span class="normal"><a href="#__codelineno-12-3">3</a></span>
-<span class="normal"><a href="#__codelineno-12-4">4</a></span>
-<span class="normal"><a href="#__codelineno-12-5">5</a></span>
-<span class="normal"><a href="#__codelineno-12-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="x">$incidencias = [</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="x">    [&#39;id&#39; =&gt; 1, &#39;titulo&#39; =&gt; &#39;Impresora sin tóner&#39;,    &#39;estado&#39; =&gt; &#39;abierta&#39;],</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="x">    [&#39;id&#39; =&gt; 2, &#39;titulo&#39; =&gt; &#39;Proyector sin imagen&#39;,   &#39;estado&#39; =&gt; &#39;resuelta&#39;],</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="x">    [&#39;id&#39; =&gt; 3, &#39;titulo&#39; =&gt; &#39;Wifi caído en aula 201&#39;, &#39;estado&#39; =&gt; &#39;abierta&#39;],</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="x">    [&#39;id&#39; =&gt; 4, &#39;titulo&#39; =&gt; &#39;Teclado de recepción&#39;,   &#39;estado&#39; =&gt; &#39;resuelta&#39;],</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="x">];</span>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 1 — Añadir el array de incidencias.</strong> Al inicio del bloque PHP de <code>estado.php</code> (antes de <code>$estado = $_GET['estado'] ?? 'abierta';</code>), añade un array con 4 incidencias de ejemplo:</p>
+<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="x">$incidencias = [</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="x">    [&#39;id&#39; =&gt; 1, &#39;titulo&#39; =&gt; &#39;Impresora sin tóner&#39;,    &#39;estado&#39; =&gt; &#39;abierta&#39;],</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="x">    [&#39;id&#39; =&gt; 2, &#39;titulo&#39; =&gt; &#39;Proyector sin imagen&#39;,   &#39;estado&#39; =&gt; &#39;resuelta&#39;],</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="x">    [&#39;id&#39; =&gt; 3, &#39;titulo&#39; =&gt; &#39;Wifi caído en aula 201&#39;, &#39;estado&#39; =&gt; &#39;abierta&#39;],</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="x">    [&#39;id&#39; =&gt; 4, &#39;titulo&#39; =&gt; &#39;Teclado de recepción&#39;,   &#39;estado&#39; =&gt; &#39;resuelta&#39;],</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="x">];</span>
 </code></pre></div></td></tr></table></div>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 2 — Añadir el bloque HTML con el filtrado.</strong> En el HTML, <strong>justo antes de la etiqueta <code>&lt;/body&gt;</code></strong> (al final del <code>&lt;body&gt;</code>, después del <code>&lt;p&gt;Prioridad: ...&lt;/p&gt;</code> del Paso 3), añade este bloque:</p>
-<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
-<span class="normal"><a href="#__codelineno-13-2">2</a></span>
-<span class="normal"><a href="#__codelineno-13-3">3</a></span>
-<span class="normal"><a href="#__codelineno-13-4">4</a></span>
-<span class="normal"><a href="#__codelineno-13-5">5</a></span>
-<span class="normal"><a href="#__codelineno-13-6">6</a></span>
-<span class="normal"><a href="#__codelineno-13-7">7</a></span>
-<span class="normal"><a href="#__codelineno-13-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="x">&lt;h2&gt;Incidencias abiertas&lt;/h2&gt;</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="x">&lt;ul&gt;</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$incidencias</span> <span class="k">as</span> <span class="nv">$inc</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
-</span><a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="hll"><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;estado&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;abierta&#39;</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
-</span><a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="x">    &lt;li&gt;#</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x"> — </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;titulo&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="x">&lt;/ul&gt;</span>
-</code></pre></div></td></tr></table></div>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 2 — Añadir el bloque HTML con filtrado y mensaje alternativo.</strong> En el HTML, <strong>justo antes de la etiqueta <code>&lt;/body&gt;</code></strong> (al final del <code>&lt;body&gt;</code>, después del <code>&lt;p&gt;Prioridad: ...&lt;/p&gt;</code> del Paso 2), añade este bloque:</p>
+<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="x">&lt;h2&gt;Incidencias abiertas&lt;/h2&gt;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$incidencias</span><span class="p">))</span><span class="o">:</span> <span class="cp">?&gt;</span>
+</span><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="hll"><span class="x">  &lt;p&gt;No hay incidencias registradas.&lt;/p&gt;</span>
+</span><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="cp">&lt;?php</span> <span class="k">else</span><span class="o">:</span> <span class="cp">?&gt;</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="hll"><span class="x">  &lt;ul&gt;</span>
+</span><a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="hll"><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$incidencias</span> <span class="k">as</span> <span class="nv">$inc</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+</span><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="x">    </span><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;estado&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;abierta&#39;</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="x">      &lt;li&gt;#</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x"> — </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;titulo&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="x">    </span><span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="hll"><span class="x">  &lt;/ul&gt;</span>
+</span><a id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Fíjate en la estructura: el <code>if (empty(...)) / else</code> exterior decide entre <strong>mensaje</strong> o <strong>lista</strong>, y el <code>foreach + if</code> interior recorre y filtra.</p>
 <p>Guarda y recarga. Deben aparecer <strong>solo 2 elementos</strong> en la lista (los de estado <code>abierta</code>).</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 3 — Probar el caso de lista vacía.</strong> Cambia temporalmente la línea del array a:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="x">$incidencias = [];</span>
+</code></pre></div>
+<p>Recarga la página: ahora debes ver el mensaje "No hay incidencias registradas." en lugar del <code>&lt;ul&gt;</code>. Vuelve a poner las 4 incidencias originales antes de hacer la captura.</p>
 <details class="tip">
 <summary>Pista</summary>
-<p>Cada <code>foreach</code> necesita su <code>endforeach</code> al final, igual que cada <code>if</code> necesita su <code>endif</code>. Presta atención a cerrar los bloques en el orden correcto: primero el <code>if</code> interno, después el <code>foreach</code> externo.</p>
+<p>Cada <code>foreach</code> necesita su <code>endforeach</code> al final, igual que cada <code>if</code> necesita su <code>endif</code>. Presta atención a cerrar los bloques en el orden correcto: primero el <code>if</code> interior del filtrado, después el <code>foreach</code>, y al final el <code>endif</code> del <code>if (empty(...))</code> exterior.</p>
 </details>
-<div class="admonition note">
-<p class="admonition-title">Sobre <code>$estado</code> y <code>$inc['estado']</code></p>
-<p>Fíjate: en el fichero hay ahora <strong>dos variables parecidas pero distintas</strong>:</p>
-<ul>
-<li><code>$estado</code> (del Paso 4) → viene de la URL (<code>$_GET['estado'] ?? 'abierta'</code>) y controla el botón del Paso 1.</li>
-<li><code>$inc['estado']</code> (de este Paso 5) → es el estado de cada incidencia concreta dentro del <code>foreach</code>.</li>
-</ul>
-<p>En este paso filtramos por el literal <code>'abierta'</code>, pero en la <strong>Ampliación opcional</strong> al final del lab se propone combinar ambas cosas: filtrar las incidencias según el <code>$estado</code> que venga por la URL.</p>
-</div>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> <strong>Responde en <code>RESPUESTAS.md</code>, sección <code>## Paso 5</code>.</strong></p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> <strong>Responde en <code>RESPUESTAS.md</code>, sección <code>## Paso 4</code>.</strong></p>
 <blockquote>
-<p>Si quisieras mostrar todas las incidencias (no solo las abiertas), ¿qué única línea tendrías que cambiar? ¿Y si quisieras mostrar solo las resueltas?</p>
+<ol>
+<li>Si quisieras mostrar todas las incidencias (no solo las abiertas), ¿qué única línea tendrías que cambiar en el bloque HTML? ¿Y para mostrar solo las resueltas?</li>
+<li>Cuando dejaste temporalmente <code>$incidencias = []</code>, ¿qué mostró la página? Explica con tus palabras qué hace <code>empty($incidencias)</code> cuando el array tiene 4 elementos y cuando no tiene ninguno.</li>
+</ol>
 </blockquote>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m8 3a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3"/></svg></span> <strong>Captura requerida.</strong> Guarda en <code>capturas/paso5_lista_filtrada.png</code> una captura con la lista visible. Debe verse:</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m8 3a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3"/></svg></span> <strong>Captura requerida.</strong> Con las 4 incidencias originales en el array, guarda en <code>capturas/paso4_lista_filtrada.png</code> una captura con la lista visible. Debe verse:</p>
 <ul>
 <li>La URL en la barra de direcciones.</li>
 <li>El encabezado "Incidencias abiertas".</li>
@@ -1645,29 +1607,94 @@
 </ul>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Verificación.</strong></p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El array <code>$incidencias</code> está definido al inicio del fichero.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> La lista muestra solo las incidencias con estado <code>abierta</code> (2 elementos).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Si cambias el <code>if</code> interno a <code>=== 'resuelta'</code>, la lista muestra las otras 2.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He guardado <code>capturas/paso5_lista_filtrada.png</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El array <code>$incidencias</code> está definido al inicio del fichero, con las 4 incidencias originales.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El bloque HTML envuelve el <code>&lt;ul&gt;</code> con <code>if (empty($incidencias)) / else</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Con el array lleno, la lista muestra solo las 2 incidencias <code>'abierta'</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Con <code>$incidencias = []</code>, la página muestra "No hay incidencias registradas." y no hay <code>&lt;ul&gt;</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He guardado <code>capturas/paso4_lista_filtrada.png</code> con el array lleno.</li>
 </ul>
 <hr />
-<h2 id="ampliacion-opcional">Ampliación opcional<a class="headerlink" href="#ampliacion-opcional" title="Permanent link">&para;</a></h2>
-<details class="tip">
-<summary>Para alumnos que terminen pronto</summary>
-<p>Si has acabado todo lo anterior y te sobra tiempo, prueba a:</p>
-<ul>
-<li>Añadir un selector <code>&lt;select&gt;</code> con un <code>&lt;form method="get"&gt;</code> que permita elegir el estado (todos / abierta / resuelta) y filtrar la lista según el parámetro <code>?estado=...</code> de la URL.</li>
-<li>Usar <code>array_filter()</code> con una <em>arrow function</em> antes del <code>foreach</code> para separar el filtrado de la presentación: <code>$abiertas = array_filter($incidencias, fn($i) =&gt; $i['estado'] === 'abierta');</code>.</li>
+<h2 id="paso-5-aplica-lo-aprendido-filtrado-interactivo-desde-la-url">Paso 5 — Aplica lo aprendido: filtrado interactivo desde la URL<a class="headerlink" href="#paso-5-aplica-lo-aprendido-filtrado-interactivo-desde-la-url" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Qué es este paso</p>
+<p>Los cuatro pasos anteriores han sido guiados: te he dado el código y tú lo has tecleado, probado y respondido. En este quinto paso <strong>no hay código de referencia</strong>. Lo que hay son <strong>requisitos</strong>, y tú aplicas lo aprendido para cumplirlos.</p>
+<p>Vas a unir las cuatro herramientas vistas: <code>$_GET</code> con <code>??</code> para leer un parámetro, <code>if/elseif/else</code> para decidir, <code>foreach</code> con <code>if</code> para filtrar, y <code>empty()</code> con <code>if/else</code> para mostrar mensaje alternativo. El alumno o alumna que use la página podrá elegir qué incidencias ver con un selector y enviarlo con un botón.</p>
+</div>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Ampliar <code>estado.php</code> con un selector que permita filtrar la lista por estado mediante la URL.</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea.</strong> Modifica <code>~/gestor/public/estado.php</code> cumpliendo los requisitos siguientes.</p>
+<p><strong>Requisitos obligatorios de contenido:</strong></p>
+<ol>
+<li><strong>Renombra</strong> el <code>&lt;h2&gt;Incidencias abiertas&lt;/h2&gt;</code> del Paso 4 a <code>&lt;h2&gt;Incidencias filtradas&lt;/h2&gt;</code> o un texto similar más genérico (la lista ya no es solo de abiertas).</li>
+<li><strong>Añade un formulario</strong> justo encima de ese <code>&lt;h2&gt;</code>. El formulario debe tener:<ul>
+<li>Un <code>&lt;form method="get"&gt;</code>.</li>
+<li>Un <code>&lt;select name="estado"&gt;</code> con tres <code>&lt;option&gt;</code>: <code>todos</code>, <code>abierta</code> y <code>resuelta</code>.</li>
+<li>Un <code>&lt;button type="submit"&gt;</code> con texto <code>"Filtrar"</code> (o similar).</li>
 </ul>
-<p>Estas ampliaciones no se corrigen en este lab; son práctica extra para ir cogiendo soltura.</p>
+</li>
+<li><strong>Conserva el valor seleccionado</strong>: la <code>&lt;option&gt;</code> cuyo <code>value</code> coincide con <code>$estado</code> (la del Paso 3, que viene de la URL) debe llevar el atributo <code>selected</code> para que el desplegable muestre tras filtrar la opción que el usuario eligió.</li>
+<li><strong>Cambia el <code>if</code> del filtrado del Paso 4</strong> para usar el <code>$estado</code> que viene de la URL en lugar del literal <code>'abierta'</code>. La regla es:<ul>
+<li>Si <code>$estado === 'todos'</code>, muestra <strong>todas</strong> las incidencias.</li>
+<li>Si <code>$estado === 'abierta'</code> o <code>'resuelta'</code>, muestra solo las que coinciden.</li>
+</ul>
+</li>
+<li><strong>Mantén el <code>if (empty($incidencias))</code> exterior</strong> del Paso 4 con su mensaje alternativo. La estructura general (mensaje o lista) no cambia.</li>
+<li><strong>Cambia el valor por defecto</strong> de <code>$estado</code>: ahora será <code>'todos'</code> en lugar de <code>'abierta'</code>, para que al entrar sin parámetro se vean todas.</li>
+</ol>
+<p><strong>Requisitos de presentación HTML:</strong></p>
+<ul>
+<li>El <code>&lt;form&gt;</code> aparece visiblemente sobre la lista.</li>
+<li>El <code>&lt;select&gt;</code> muestra las 3 opciones legibles para el usuario.</li>
+<li>El botón "Filtrar" envía el formulario a la misma página.</li>
+</ul>
+<p><strong>Requisitos de calidad del código:</strong></p>
+<ul>
+<li><code>htmlspecialchars()</code> en cualquier valor de texto que vaya al HTML.</li>
+<li>No hardcodear la opción seleccionada (no escribas <code>&lt;option ... selected&gt;</code>): usa una condición sobre <code>$estado</code> para añadirlo dinámicamente solo a la opción que toca.</li>
+</ul>
+<p>Visita <code>http://gestor.local/estado.php</code> y prueba las URL <code>?estado=todos</code>, <code>?estado=abierta</code>, <code>?estado=resuelta</code>, y también con el desplegable + botón.</p>
+<details class="tip">
+<summary>Pista sobre el <code>selected</code> dinámico</summary>
+<p>Una forma compacta dentro de cada <code>&lt;option&gt;</code>:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="x">&lt;option value=&quot;todos&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$estado</span> <span class="o">===</span> <span class="s1">&#39;todos&#39;</span> <span class="o">?</span> <span class="s1">&#39; selected&#39;</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span> <span class="cp">?&gt;</span><span class="x">&gt;todos&lt;/option&gt;</span>
+</code></pre></div>
+<p>El operador ternario <code>condición ? valor_si_true : valor_si_false</code> es una forma corta de un <code>if</code>/<code>else</code> que devuelve un valor. Si la condición es verdadera devuelve la primera parte; si no, la segunda. Aquí lo usamos para añadir o no el atributo <code>selected</code> dentro de la etiqueta.</p>
 </details>
+<details class="tip">
+<summary>Pista sobre el filtrado con condición compuesta</summary>
+<p>Una forma elegante: dentro del <code>foreach</code>, usa una condición con <code>||</code> (o lógico) que diga "muestra si el filtro es 'todos' <strong>o</strong> si el estado de la incidencia coincide con el filtro":</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="x">if ($estado === &#39;todos&#39; || $inc[&#39;estado&#39;] === $estado): ...</span>
+</code></pre></div>
+</details>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> <strong>Responde en <code>RESPUESTAS.md</code>, sección <code>## Paso 5</code>.</strong></p>
+<blockquote>
+<ol>
+<li>¿Cómo conservas el valor seleccionado en el <code>&lt;select&gt;</code> después de pulsar "Filtrar"? Cita la línea o expresión que añade <code>selected</code> dinámicamente y explica en una frase por qué funciona.</li>
+<li>¿Qué ocurre si visitas <code>http://gestor.local/estado.php?estado=imposible</code> (un valor que ningún elemento tiene)? ¿Sale el mensaje "No hay incidencias registradas." o sale otra cosa? Explica por qué (pista: piensa en si el array <code>$incidencias</code> está vacío o no en ese caso).</li>
+</ol>
+</blockquote>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m8 3a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3"/></svg></span> <strong>Captura requerida.</strong> Guarda en <code>capturas/paso5_selector_estado.png</code> una captura del navegador visitando <code>http://gestor.local/estado.php?estado=resuelta</code>. Debe verse:</p>
+<ul>
+<li>La URL con <code>?estado=resuelta</code> en la barra de direcciones.</li>
+<li>El <code>&lt;form&gt;</code> con el <code>&lt;select&gt;</code> mostrando "resuelta" como opción seleccionada.</li>
+<li>La lista filtrada mostrando solo las 2 incidencias resueltas.</li>
+</ul>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Verificación.</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>estado.php</code> tiene un <code>&lt;form method="get"&gt;</code> con un <code>&lt;select name="estado"&gt;</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El <code>&lt;select&gt;</code> tiene 3 <code>&lt;option&gt;</code>: <code>todos</code>, <code>abierta</code>, <code>resuelta</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> La opción seleccionada después del filtrado coincide con <code>$estado</code> (no está hardcoded).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El filtrado usa <code>$estado</code> (de URL) en lugar del literal <code>'abierta'</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El <code>if (empty($incidencias))</code> del Paso 4 sigue presente.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El valor por defecto de <code>$estado</code> es <code>'todos'</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He guardado <code>capturas/paso5_selector_estado.png</code>.</li>
+</ul>
 <hr />
 <h2 id="checklist-final-de-entrega">Checklist final de entrega<a class="headerlink" href="#checklist-final-de-entrega" title="Permanent link">&para;</a></h2>
 <p>Antes de subir el ZIP al Campus, revisa uno a uno:</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He creado la carpeta <code>apellido_nombre_lab04/</code> (con mi apellido y nombre reales).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dentro hay <code>gestor/public/estado.php</code> con el código final del paso 5.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dentro hay <code>capturas/</code> con los 4 PNGs: <code>paso1_boton_abierta.png</code>, <code>paso2_prioridad_alta.png</code>, <code>paso4_url_resuelta.png</code>, <code>paso5_lista_filtrada.png</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dentro hay <code>gestor/public/estado.php</code> con el código final del Paso 5.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dentro hay <code>capturas/</code> con los 5 PNG: <code>paso1_boton_abierta.png</code>, <code>paso2_prioridad_alta.png</code>, <code>paso3_url_resuelta.png</code>, <code>paso4_lista_filtrada.png</code>, <code>paso5_selector_estado.png</code>.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dentro hay <code>RESPUESTAS.md</code> con las 5 secciones rellenas.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El fichero <code>estado.php</code> no tiene errores de sintaxis (compruébalo con <code>php -l ~/gestor/public/estado.php</code>).</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El ZIP se llama <code>apellido_nombre_lab04.zip</code> y al descomprimirlo solo aparece una carpeta raíz con ese nombre.</li>
@@ -1691,15 +1718,17 @@
 <a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
 <a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="gu">## Paso 3</span>
 <a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
-<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>(Tu respuesta: dos ventajas de <span class="sb">`match`</span> frente a <span class="sb">`if`</span>/<span class="sb">`elseif`</span>.)
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>(Tu respuesta: valor de <span class="sb">`$estado`</span> con <span class="sb">`?estado=resuelta`</span> y sin parámetro, y qué hace <span class="sb">`??`</span>.)
 <a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>
 <a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="gu">## Paso 4</span>
 <a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>
-<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>(Tu respuesta: valor de <span class="sb">`$estado`</span> sin parámetro y con <span class="sb">`?estado=abierta`</span>, y qué hace <span class="sb">`??`</span>.)
-<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>
-<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="gu">## Paso 5</span>
-<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>
-<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>(Tu respuesta: qué línea cambiarías para mostrar todas las incidencias, y qué línea para mostrar solo las resueltas.)
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="k">1.</span> (Tu respuesta: qué línea cambiarías para mostrar todas las incidencias, y qué línea para mostrar solo las resueltas.)
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="k">2.</span> (Tu respuesta: qué muestra la página con <span class="sb">`$incidencias = []`</span> y qué hace <span class="sb">`empty()`</span> con array lleno y vacío.)
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="gu">## Paso 5</span>
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>
+<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="k">1.</span> (Tu respuesta: cómo conservas el valor seleccionado en el <span class="sb">`&lt;select&gt;`</span> y por qué funciona.)
+<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="k">2.</span> (Tu respuesta: qué ocurre con <span class="sb">`?estado=imposible`</span> y por qué.)
 </code></pre></div>
 
 
