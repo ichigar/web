@@ -1540,6 +1540,21 @@ Conectando varios con `|`, la salida de uno pasa al siguiente como una tubería:
 <p>Hay muchos más en la documentación de Jinja2.</p>
 </blockquote>
 <hr />
+<h1 id="el-filtro-format-rompe-la-intuicion">El filtro <code>format</code> rompe la intuición<a class="headerlink" href="#el-filtro-format-rompe-la-intuicion" title="Permanent link">&para;</a></h1>
+<p>En la mayoría de filtros, <strong>lo de la izquierda</strong> es el valor que se transforma:</p>
+<ul>
+<li><code>lista|length</code> → "dame el largo de <code>lista</code>"</li>
+<li><code>nombre|upper</code> → "ponme <code>nombre</code> en mayúsculas"</li>
+</ul>
+<p>En <code>"%.2f"|format(precio)</code> <strong>no</strong>:</p>
+<ul>
+<li>A la izquierda hay una <strong>plantilla con un hueco</strong> (<code>%.2f</code>).</li>
+<li>El filtro <code>|format(precio)</code> <strong>rellena el hueco</strong> con <code>precio</code>.</li>
+</ul>
+<blockquote>
+<p>Mismo patrón que <code>"{:.2f}".format(precio)</code> en Python — <strong>plantilla primero, valor como argumento</strong>.</p>
+</blockquote>
+<hr />
 <h1 id="encadenar-filtros">Encadenar filtros<a class="headerlink" href="#encadenar-filtros" title="Permanent link">&para;</a></h1>
 <p><strong>Los filtros se pueden conectar con <code>|</code>:</strong> la salida de uno entra como entrada del siguiente, de izquierda a derecha. Caso típico — un precio con dos decimales y coma:</p>
 <div class="language-html highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Precio: {{ &quot;%.2f&quot;|format(precio)|replace(&quot;.&quot;, &quot;,&quot;) }} EUR<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1558,7 +1573,7 @@ Conectando varios con `|`, la salida de uno pasa al siguiente como una tubería:
 <td><code>1.5</code></td>
 </tr>
 <tr>
-<td>Tras <code>\|format("%.2f")</code></td>
+<td>Tras <code>"%.2f"\|format(...)</code></td>
 <td><code>"1.50"</code></td>
 </tr>
 <tr>

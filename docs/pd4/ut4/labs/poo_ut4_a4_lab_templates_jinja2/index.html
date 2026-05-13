@@ -1857,7 +1857,7 @@ Es la función de Flask que carga una plantilla, la rellena con los datos que le
 <ul>
 <li><code>{% for %}</code> recorre la lista que el route inyecta como variable <code>productos</code>.</li>
 <li>La plantilla no sabe de dónde vienen los datos: SQLite, memoria, JSON. Solo recibe una lista.</li>
-<li>El filtro <code>|format</code> se aplica de derecha a izquierda: el valor pasa por la función de formato antes de imprimirse. El filtro <code>|replace(".", ",")</code> encadena la siguiente transformación sobre el resultado del anterior.</li>
+<li>El filtro <code>|format</code> rompe la intuición: a la izquierda del <code>|</code> no va el valor sino la <strong>plantilla con hueco</strong> (<code>%.2f</code>), y el valor entra como argumento del filtro (mismo patrón que <code>"{:.2f}".format(precio)</code> en Python). El <code>|replace(".", ",")</code> siguiente sí encaja con el modelo normal de filtro: opera <strong>sobre el resultado</strong> que produjo <code>format</code>. Los filtros encadenados se aplican <strong>izquierda → derecha</strong>: la salida de uno es la entrada del siguiente.</li>
 </ul>
 </details>
 <hr />

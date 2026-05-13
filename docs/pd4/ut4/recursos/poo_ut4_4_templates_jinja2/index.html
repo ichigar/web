@@ -1426,7 +1426,12 @@
 <div class="language-html highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Precio: 1.50 EUR<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>El filtro <code>|format</code> con la máscara <code>"%.2f"</code> ha forzado los <strong>dos decimales</strong> (<code>1.5</code> → <code>1.50</code>). Compáralo con <code>{{ producto.precio_final }}</code> sin filtro, que habría imprimido <code>1.5</code>.</p>
-<p>El filtro <code>format</code> aplica una cadena de formato estilo <code>printf</code> al valor de la derecha. Es el equivalente Jinja2 al f-string que ya usabas en routes y en <code>print</code>:</p>
+<p>Cuidado: este filtro <strong>rompe la intuición</strong> de los demás. En <code>lista|length</code> o <code>nombre|upper</code>, lo que está a la izquierda del <code>|</code> es el <strong>valor que se transforma</strong> ("dame el largo de <code>lista</code>", "ponme <code>nombre</code> en mayúsculas"). En <code>"%.2f"|format(precio)</code> no es así:</p>
+<ul>
+<li>A la izquierda del <code>|</code> hay una <strong>plantilla con un hueco</strong> (<code>%.2f</code>).</li>
+<li>El filtro <code>|format(precio)</code> <strong>rellena el hueco</strong> con <code>precio</code>.</li>
+</ul>
+<p>Es el mismo patrón que <code>"{:.2f}".format(precio)</code> en Python — plantilla primero, valor como argumento — por eso la tabla de equivalencias encaja sin sobresaltos:</p>
 <table>
 <thead>
 <tr>
@@ -1451,7 +1456,7 @@
 </table>
 <div class="admonition warning">
 <p class="admonition-title">El filtro no cambia el punto decimal por coma</p>
-<p><code>|format("%.2f")</code> controla cuántos decimales se imprimen, pero <strong>mantiene el punto decimal</strong> de Python: <code>12.5</code> → <code>12.50</code>, nunca <code>12,50</code>. Para mostrar la coma del español hay que <strong>encadenar otro filtro</strong> detrás:</p>
+<p><code>"%.2f"|format(...)</code> controla cuántos decimales se imprimen, pero <strong>mantiene el punto decimal</strong> de Python: <code>12.5</code> → <code>12.50</code>, nunca <code>12,50</code>. Para mostrar la coma del español hay que <strong>encadenar otro filtro</strong> detrás:</p>
 <p><div class="language-html highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Precio: {{ &quot;%.2f&quot;|format(producto.precio_final)|replace(&quot;.&quot;, &quot;,&quot;) }} EUR<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </code></pre></div>
 Con <code>producto.precio_final = 1.5</code> el HTML final es <code>&lt;p&gt;Precio: 1,50 EUR&lt;/p&gt;</code>. El filtro <code>|replace(".", ",")</code> recibe el <code>"1.50"</code> que sale de <code>|format</code> y sustituye el punto por la coma justo antes de imprimir. Para aplicaciones más serias existe la librería <code>flask-babel</code>, que respeta el idioma del navegador, pero queda fuera del alcance de la unidad.</p>
