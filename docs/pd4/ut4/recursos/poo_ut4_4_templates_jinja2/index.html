@@ -1,0 +1,1777 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes y recursos de clase de SMR, ASIR y CE Python">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/pd4/ut4/recursos/poo_ut4_4_templates_jinja2/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>PLANTILLAS JINJA2 EN FLASK - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_ansi.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/footer-contrast.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/blog-terminal.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#plantillas-jinja2-en-flask" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PLANTILLAS JINJA2 EN FLASK
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../smr/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../asir/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../ce-python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../blog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/tutoriales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutoriales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../smr/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../asir/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pni/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../imw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../soj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../ce-python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#el-problema-que-resuelven-las-plantillas" class="md-nav__link">
+    <span class="md-ellipsis">
+      El problema que resuelven las plantillas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jinja2-y-render_template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jinja2 y render_template
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Jinja2 y render_template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#donde-busca-flask-las-plantillas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dónde busca Flask las plantillas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sintaxis-de-jinja2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sintaxis de Jinja2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sintaxis de Jinja2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inyectar-valores-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inyectar valores: {{ variable }}
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iterar-for-endfor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iterar: {% for %} ... {% endfor %}
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condicionar-if-else-endif" class="md-nav__link">
+    <span class="md-ellipsis">
+      Condicionar: {% if %} ... {% else %} ... {% endif %}
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtros-el-operador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtros: el operador |
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#herencia-de-plantillas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Herencia de plantillas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Herencia de plantillas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-problema-paginas-que-comparten-cabecera" class="md-nav__link">
+    <span class="md-ellipsis">
+      El problema: páginas que comparten cabecera
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extends-y-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      {% extends %} y {% block %}
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conversion-tupla-dict-en-el-route" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conversión tupla → dict en el route
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#url_for-en-plantillas" class="md-nav__link">
+    <span class="md-ellipsis">
+      url_for en plantillas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#malas-practicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Malas prácticas
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="plantillas-jinja2-en-flask">PLANTILLAS JINJA2 EN FLASK<a class="headerlink" href="#plantillas-jinja2-en-flask" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Estos apuntes acompañan al lab a4 de UT4. Asumen que ya has hecho los labs a1, a2 y a3.</p>
+</blockquote>
+<h2 id="el-problema-que-resuelven-las-plantillas">El problema que resuelven las plantillas<a class="headerlink" href="#el-problema-que-resuelven-las-plantillas" title="Permanent link">&para;</a></h2>
+<p>Hasta ahora, cada route devolvía la respuesta como un <strong>string de Python</strong>. A veces era texto plano de una línea (<code>f"Saldo actual: {…} EUR"</code>, <code>f"No hay coincidencias para '{texto}'."</code>) y a veces HTML con etiquetas (<code>&lt;h1&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code>...). Flask sirve todo como <code>text/html</code>, así que el navegador lo interpreta como una página en ambos casos — un texto suelto como "Hola" también es un documento HTML válido, simplemente sin formato.</p>
+<p>Mientras las respuestas eran de una línea, esto funcionaba. El problema aparece en cuanto la página crece y hay que mezclar texto, etiquetas y datos en el mismo string:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/productos&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">listar_productos</span><span class="p">():</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&lt;h2&gt;Lista de productos&lt;/h2&gt;&lt;ul&gt;&quot;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">servicio</span><span class="o">.</span><span class="n">listar_productos</span><span class="p">():</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>        <span class="n">html</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;&lt;li&gt;</span><span class="si">{</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> — </span><span class="si">{</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> — </span><span class="si">{</span><span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> EUR&lt;/li&gt;&quot;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="n">html</span> <span class="o">+=</span> <span class="s2">&quot;&lt;/ul&gt;&quot;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>    <span class="k">return</span> <span class="n">html</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition info">
+<p class="admonition-title">No todas las respuestas que hemos visto son tan complejas</p>
+<p>La mayoría de los routes que hemos usado en labs anteriores (<code>/saldo</code>, <code>/insertar</code>, los mensajes de error) devolvían <strong>una sola línea sin etiquetas</strong>. Pero cualquier string que devuelva un route <strong>Flask lo sirve como HTML</strong>, así que el navegador lo trata igual. Lo engorroso de "construir HTML a mano" no se ve al devolver una frase corta — se nota cuando la página tiene un título, una lista, formatos y enlaces, todo concatenado en el mismo string como el ejemplo de arriba.</p>
+</div>
+<p>Aspectos incómodos de ese código:</p>
+<ul>
+<li>El editor en el que estamos desarrollando la aplicación no resalta el HTML porque aparece dentro de un string. Cualquier error de sintaxis (<code>&lt;ul</code> sin cerrar, comillas sueltas) pasa desapercibido.</li>
+<li>Los datos están <strong>acoplados al HTML</strong>: <code>t[0]</code>, <code>t[1]</code>, <code>t[3]</code> no permiten saber directamente de qué dato estamos mostrando.</li>
+<li>Si mañana un diseñador quiere cambiar la tabla a una lista, tiene que tocar Python.</li>
+<li>Si la página crece a 80 líneas de HTML, el route se vuelve ilegible.</li>
+</ul>
+<p>La solución es <strong>separar la estructura HTML de los datos</strong>: el HTML va a un fichero <code>.html</code> con <strong>huecos</strong>, y el route solo se encarga de obtener los datos y rellenar esos huecos. A esos ficheros con huecos los llamamos <strong>plantillas</strong> (en inglés, <em>templates</em> — verás este término en la documentación de Flask y en el nombre de la función <code>render_template</code>).</p>
+<div class="admonition info">
+<p class="admonition-title">La separación que ya conoces</p>
+<p>Es la misma idea que llevamos aplicando en todo el proyecto con la arquitectura por capas: cada cosa en su sitio. El servicio no sabe de HTTP; el route no sabe de SQLite; la plantilla no sabe de Python — solo recibe datos y los muestra.</p>
+</div>
+<hr />
+<h2 id="jinja2-y-render_template">Jinja2 y <code>render_template</code><a class="headerlink" href="#jinja2-y-render_template" title="Permanent link">&para;</a></h2>
+<p><strong>Jinja2</strong> es el motor de plantillas que viene incluido con Flask (no hay que instalarlo aparte). Permite escribir HTML normal con tres añadidos: <code>{{ ... }}</code> para inyectar valores, <code>{% ... %}</code> para estructuras de control (<code>for</code>, <code>if</code>, herencia), y filtros con <code>|</code> para transformar valores antes de imprimirlos.</p>
+<p><strong><code>render_template</code></strong> es la función de Flask que <strong>carga</strong> una plantilla, la <strong>rellena</strong> con los datos que le pases y devuelve el HTML resultante listo para enviar al navegador.</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="hll"><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+</span><a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/saldo&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">saldo</span><span class="p">():</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;saldo.html&#39;</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="n">servicio</span><span class="o">.</span><span class="n">saldo</span><span class="p">())</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Lo que hace Flask al ejecutar <code>render_template('saldo.html', saldo=12.50)</code>:</p>
+<ol>
+<li>Busca el fichero <code>saldo.html</code> en la carpeta <code>templates/</code>.</li>
+<li>Lo lee.</li>
+<li>Sustituye las marcas Jinja2 (<code>{{ saldo }}</code>, <code>{% if %}</code>, etc.) por su valor real.</li>
+<li>Devuelve el HTML resultante como string.</li>
+</ol>
+<h3 id="donde-busca-flask-las-plantillas">Dónde busca Flask las plantillas<a class="headerlink" href="#donde-busca-flask-las-plantillas" title="Permanent link">&para;</a></h3>
+<p>Flask espera encontrar las plantillas en una carpeta llamada <strong>exactamente <code>templates/</code></strong> (en plural, en minúsculas) que cuelga del paquete donde vive <code>app.py</code>. En el proyecto de la expendedora:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>expendedora/
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>└── presentation/
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    ├── app.py
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    └── templates/
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        ├── base.html
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        ├── productos.html
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        └── ...
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Si Flask no encuentra tu plantilla</p>
+<p>El error <code>jinja2.exceptions.TemplateNotFound: productos.html</code> aparece cuando Flask no localiza el fichero. Causa más típica: la carpeta no se llama <code>templates/</code> (en plural y minúsculas) o no cuelga del paquete <code>presentation/</code>. No hay configuración mágica que cambiar — solo seguir las convenciones en cuanto al nombre y la ubicación.</p>
+</div>
+<hr />
+<h2 id="sintaxis-de-jinja2">Sintaxis de Jinja2<a class="headerlink" href="#sintaxis-de-jinja2" title="Permanent link">&para;</a></h2>
+<p>Una plantilla Jinja2 es <strong>HTML normal</strong> con tres añadidos que no existen en HTML puro: una forma de <strong>imprimir valores</strong> que vienen del route, una forma de escribir <strong>estructuras de control</strong> (<code>for</code>, <code>if</code>) dentro del HTML, y una forma de <strong>transformar valores</strong> justo antes de imprimirlos.</p>
+<h3 id="inyectar-valores-variable">Inyectar valores: <code>{{ variable }}</code><a class="headerlink" href="#inyectar-valores-variable" title="Permanent link">&para;</a></h3>
+<p>Las dobles llaves imprimen el valor de una variable o expresión:</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Saldo actual: {{ saldo }} EUR<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Producto: {{ producto.nombre }} (código <span class="p">&lt;</span><span class="nt">code</span><span class="p">&gt;</span>{{ producto.codigo }}<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;</span>)<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Las variables vienen de los argumentos que pasas a <code>render_template</code>. Si el route hace:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;producto.html&#39;</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="mf">12.5</span><span class="p">,</span> <span class="n">producto</span><span class="o">=</span><span class="n">mi_dict</span><span class="p">)</span>
+</code></pre></div>
+<p>dentro de la plantilla existen las variables <code>saldo</code> (con valor <code>12.5</code>) y <code>producto</code> (con el diccionario que le hayas pasado). Puedes pasar tantos argumentos con nombre como variables necesite la plantilla.</p>
+<p>Con ese <code>saldo=12.5</code> y un <code>mi_dict = {'codigo': 'A1', 'nombre': 'Agua'}</code>, el HTML que Jinja2 genera y envía al navegador es:</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Saldo actual: 12.5 EUR<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Producto: Agua (código <span class="p">&lt;</span><span class="nt">code</span><span class="p">&gt;</span>A1<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;</span>)<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+<p><img alt="" src="../img4/saldo_producto.png" /></p>
+<p>Cada <code>{{ ... }}</code> se sustituye por el valor de la variable; el resto del HTML pasa intacto.</p>
+<div class="admonition info">
+<p class="admonition-title">El valor sale tal cual lo entregue el route</p>
+<p>Con <code>{{ saldo }}</code> se imprime el número como Python lo represente: si <code>saldo</code> vale <code>12.5</code>, la plantilla muestra literalmente <code>12.5 EUR</code> — sin los dos decimales que esperaríamos en un precio y con el <strong>punto</strong> decimal de Python en lugar de la <strong>coma</strong> decimal que usamos en español. Para controlar el formato (decimales, separador, signo de moneda) necesitamos un <strong>filtro</strong>, que veremos al final de esta sección.</p>
+</div>
+<h3 id="iterar-for-endfor">Iterar: <code>{% for %}</code> ... <code>{% endfor %}</code><a class="headerlink" href="#iterar-for-endfor" title="Permanent link">&para;</a></h3>
+<p>Recorre una lista, igual que un <code>for</code> de Python pero escrito con <code>{% %}</code>. <strong>Siempre se cierra con <code>{% endfor %}</code></strong> — las plantillas no usan indentación como Python para delimitar bloques, así que cada apertura necesita su cierre explícito.</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>{% for p in productos %}
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>{{ p.codigo }} — {{ p.nombre }} ({{ p.cantidad }} uds.)<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>{% endfor %}
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Si el route pasa <code>productos=[{...A1...}, {...B2...}, {...C3...}]</code>, el HTML que Jinja2 genera y envía al navegador es:</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>A1 — Agua (12 uds.)<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>B2 — Refresco (8 uds.)<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>C3 — Chocolatina (20 uds.)<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</code></pre></div>
+<p><img alt="" src="../img4/lista_productos.png" /></p>
+<p>Cada vuelta del <code>{% for %}</code> reemplaza la línea con <code>{{ p.codigo }}</code>, <code>{{ p.nombre }}</code> y <code>{{ p.cantidad }}</code> por los valores del producto correspondiente. Las marcas <code>{% for %}</code> y <code>{% endfor %}</code> desaparecen del HTML final — son instrucciones para Jinja2, no etiquetas que el navegador deba ver.</p>
+<h3 id="condicionar-if-else-endif">Condicionar: <code>{% if %}</code> ... <code>{% else %}</code> ... <code>{% endif %}</code><a class="headerlink" href="#condicionar-if-else-endif" title="Permanent link">&para;</a></h3>
+<p>Funciona como un <code>if</code> de Python pero escrito con <code>{% %}</code> y cerrado con <code>{% endif %}</code>. Un ejemplo mínimo: mostrar un mensaje distinto según haya o no saldo insertado en la máquina:</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>{% if saldo %}
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Tienes {{ saldo }} EUR insertados.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>{% else %}
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Inserta dinero para comprar.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>{% endif %}
+</code></pre></div>
+<p>Si el route pasa <code>saldo=2.5</code>, llega al navegador <code>&lt;p&gt;Tienes 2.5 EUR insertados.&lt;/p&gt;</code>. Si pasa <code>saldo=0</code> (o no pasa nada), llega <code>&lt;p&gt;Inserta dinero para comprar.&lt;/p&gt;</code>.</p>
+<p>Las condiciones se evalúan como en Python: una lista vacía, <code>None</code>, <code>0</code> o <code>""</code> son <strong>falsos</strong>; el resto, <strong>verdaderos</strong>. Por eso <code>{% if saldo %}</code> ya cubre el caso "no hay saldo" sin tener que escribir <code>saldo &gt; 0</code>, igual que <code>{% if productos %}</code> ya cubre "lista vacía" sin necesitar <code>len(productos) &gt; 0</code>.</p>
+<p><code>{% if %}</code> y <code>{% for %}</code> se pueden <strong>anidar</strong>, como cualquier estructura de control. El patrón típico es decidir qué mostrar según haya elementos en la lista y, si los hay, recorrerlos:</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>{% if productos %}
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    {% for p in productos %}
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>{{ p.nombre }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    {% endfor %}
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>{% else %}
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>No hay productos.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>{% endif %}
+</code></pre></div>
+<p>Si <code>productos</code> viene vacío, el navegador recibe <code>&lt;p&gt;No hay productos.&lt;/p&gt;</code>; si trae elementos, recibe el <code>&lt;ul&gt;</code> con un <code>&lt;li&gt;</code> por producto. Las marcas Jinja2 desaparecen, como siempre.</p>
+<h3 id="filtros-el-operador">Filtros: el operador <code>|</code><a class="headerlink" href="#filtros-el-operador" title="Permanent link">&para;</a></h3>
+<p>Un <strong>filtro</strong> transforma un valor antes de imprimirlo. Se aplica con la barra vertical <code>|</code>, leyéndose <strong>de izquierda a derecha</strong>: el valor de la izquierda pasa al filtro de la derecha.</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Precio: {{ &quot;%.2f&quot;|format(producto.precio_final) }} EUR<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Si <code>producto.precio_final</code> vale <code>1.5</code>, el HTML que se envía al navegador es:</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Precio: 1.50 EUR<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>El filtro <code>|format</code> con la máscara <code>"%.2f"</code> ha forzado los <strong>dos decimales</strong> (<code>1.5</code> → <code>1.50</code>). Compáralo con <code>{{ producto.precio_final }}</code> sin filtro, que habría imprimido <code>1.5</code>.</p>
+<p>El filtro <code>format</code> aplica una cadena de formato estilo <code>printf</code> al valor de la derecha. Es el equivalente Jinja2 al f-string que ya usabas en routes y en <code>print</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Donde</th>
+<th>Sintaxis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python (f-string)</td>
+<td><code>f"{precio:.2f}"</code></td>
+</tr>
+<tr>
+<td>Python (<code>.format</code>)</td>
+<td><code>"{:.2f}".format(precio)</code></td>
+</tr>
+<tr>
+<td>Jinja2 (filtro)</td>
+<td><code>{{ "%.2f"|format(precio) }}</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">El filtro no cambia el punto decimal por coma</p>
+<p><code>|format("%.2f")</code> controla cuántos decimales se imprimen, pero <strong>mantiene el punto decimal</strong> de Python: <code>12.5</code> → <code>12.50</code>, nunca <code>12,50</code>. Para mostrar la coma del español hay que <strong>encadenar otro filtro</strong> detrás:</p>
+<p><div class="language-html highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Precio: {{ &quot;%.2f&quot;|format(producto.precio_final)|replace(&quot;.&quot;, &quot;,&quot;) }} EUR<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+Con <code>producto.precio_final = 1.5</code> el HTML final es <code>&lt;p&gt;Precio: 1,50 EUR&lt;/p&gt;</code>. El filtro <code>|replace(".", ",")</code> recibe el <code>"1.50"</code> que sale de <code>|format</code> y sustituye el punto por la coma justo antes de imprimir. Para aplicaciones más serias existe la librería <code>flask-babel</code>, que respeta el idioma del navegador, pero queda fuera del alcance de la unidad.</p>
+</div>
+<p><img alt="" src="../img4/precio_coma_decimal.png" /></p>
+<p>Volviendo al ejemplo del saldo con el que abrimos la sección: si en lugar de <code>{{ saldo }}</code> escribimos <code>{{ "%.2f"|format(saldo)|replace(".", ",") }}</code>, con <code>saldo=12.5</code> la plantilla ya no muestra <code>12.5 EUR</code> sino <code>12,50 EUR</code> — el formato de precio que esperaríamos en español.</p>
+<blockquote>
+<p>Del formateo de presentación (decimales, mayúsculas, fechas) <strong>se encarga la plantilla</strong>, no el route. El route entrega el valor crudo; la plantilla decide cómo se ve. Esa es justamente la separación que vinimos a buscar.</p>
+</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Conceptos clave de la sintaxis</p>
+<ul>
+<li><code>{{ ... }}</code> <strong>imprime</strong> un valor.</li>
+<li><code>{% ... %}</code> ejecuta una <strong>estructura de control</strong> (<code>for</code>, <code>if</code>, <code>extends</code>, <code>block</code>).</li>
+<li><code>{% block nombre %} ... {% endblock %}</code> define un <strong>hueco con nombre</strong> dentro de una plantilla padre que las plantillas hijas podrán rellenar (lo veremos en la sección de herencia). Aparece en parejas: una <code>base.html</code> declara los bloques (vacíos o con valor por defecto) y las hijas los redefinen con su contenido propio.</li>
+<li>Cada bloque (<code>for</code>, <code>if</code>, <code>block</code>) se <strong>cierra</strong> con su <code>{% end... %}</code> correspondiente.</li>
+<li>Los filtros (<code>|format</code>, <code>|upper</code>, <code>|length</code>, ...) transforman el valor antes de imprimirlo.</li>
+</ul>
+</div>
+<hr />
+<h2 id="herencia-de-plantillas">Herencia de plantillas<a class="headerlink" href="#herencia-de-plantillas" title="Permanent link">&para;</a></h2>
+<h3 id="el-problema-paginas-que-comparten-cabecera">El problema: páginas que comparten cabecera<a class="headerlink" href="#el-problema-paginas-que-comparten-cabecera" title="Permanent link">&para;</a></h3>
+<p>Cada página de la expendedora necesita la misma cabecera (<code>&lt;!doctype html&gt;</code>, navegación, <code>&lt;title&gt;</code>...). Copiarla en cada fichero significa que cualquier cambio (un menú nuevo, un logo) implica tocar todas las plantillas. Lo mismo que copiar código entre clases en POO.</p>
+<h3 id="extends-y-block"><code>{% extends %}</code> y <code>{% block %}</code><a class="headerlink" href="#extends-y-block" title="Permanent link">&para;</a></h3>
+<p>Jinja2 resuelve esto con la <strong>herencia de plantillas</strong>. Defines una plantilla <strong>padre</strong> (típicamente <code>base.html</code>) con el esqueleto común y unos huecos llamados <strong>bloques</strong>:</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="cp">&lt;!doctype html&gt;</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;es&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{% block titulo %}Expendedora{% endblock %}<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>    <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;inicio&#39;) }}&quot;</span><span class="p">&gt;</span>Expendedora<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>        <span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;listar_productos&#39;) }}&quot;</span><span class="p">&gt;</span>Productos<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> ·
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;saldo&#39;) }}&quot;</span><span class="p">&gt;</span>Saldo<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> ·
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;ayuda&#39;) }}&quot;</span><span class="p">&gt;</span>Ayuda<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>        <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>        <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>    <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>    <span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>        {% block contenido %}{% endblock %}
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>    <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Fíjate en que hay <strong>dos formas</strong> de declarar un bloque en el padre:</p>
+<ul>
+<li><strong>Con valor por defecto</strong>: <code>{% block titulo %}Expendedora{% endblock %}</code>. Si la plantilla hija no sobrescribe este bloque, el título seguirá siendo <code>Expendedora</code>. Sirve para poner un contenido razonable que valga "por defecto" para cualquier página.</li>
+<li><strong>Vacío</strong>: <code>{% block contenido %}{% endblock %}</code>. Si la hija no lo rellena, ese hueco quedará en blanco en el HTML final. Se usa cuando no tiene sentido un valor por defecto y cada página debe aportar el suyo (el cuerpo de la página, por ejemplo).</li>
+</ul>
+<p>Ambas formas son válidas y mezclables en la misma plantilla padre, como hacemos aquí.</p>
+<p>Cada <strong>plantilla hija</strong> es un fichero <code>.html</code> muy corto: declara que extiende del padre y rellena los bloques con su propio contenido. Por ejemplo, el fichero <code>saldo.html</code> que renderizamos desde el route <code>/saldo</code>:</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>{% extends &quot;base.html&quot; %}
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>{% block titulo %}Saldo — Expendedora{% endblock %}
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>{% block contenido %}
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Saldo actual<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>{{ &quot;%.2f&quot;|format(saldo)|replace(&quot;.&quot;, &quot;,&quot;) }} EUR<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>{% endblock %}
+</code></pre></div>
+<p>Vamos línea a línea:</p>
+<ul>
+<li>
+<p><code>{% extends "base.html" %}</code> — <strong>debe ser la primera línea</strong>. Le dice a Jinja2: "no soy una página completa, soy un trozo que rellena los huecos de <code>base.html</code>". Una consecuencia importante: una vez extiendes de otra plantilla, <strong>solo el contenido de los bloques entra en el HTML final</strong>. Cualquier cosa que escribas fuera de un <code>{% block %}</code> se ignora silenciosamente. Por ejemplo:</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>{% extends &quot;base.html&quot; %}
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Este párrafo NO aparece en la página.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>{% block contenido %}
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Este sí aparece, porque está dentro de un block.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>{% endblock %}
+</code></pre></div>
+<p>El <code>&lt;p&gt;</code> de fuera no produce error, simplemente no llega al navegador, porque lo que hace la plantilla padre es rellenar los bloques que contiene con los datos que le pasa la plantilla hija.
+- <code>{% block titulo %}Saldo — Expendedora{% endblock %}</code> — <strong>sobrescribe</strong> el bloque <code>titulo</code> que <code>base.html</code> había declarado vacío (con <code>{% block titulo %}Expendedora{% endblock %}</code>). Al combinarse, el <code>&lt;title&gt;</code> final del HTML contendrá <code>"Saldo — Expendedora"</code> en vez del valor por defecto (<code>Expendedora</code>).
+- <code>{% block contenido %}...{% endblock %}</code> — <strong>rellena</strong> el bloque <code>contenido</code> que en <code>base.html</code> estaba vacío (<code>{% block contenido %}{% endblock %}</code>). Aquí va el cuerpo específico de esta página: un <code>&lt;h2&gt;</code> y un <code>&lt;p&gt;</code> con el saldo formateado a dos decimales.</p>
+</li>
+</ul>
+<p>Lo que la hija <strong>no escribe</strong> lo hereda intacto: el <code>&lt;!doctype&gt;</code>, el <code>&lt;head&gt;</code>, la cabecera con navegación, el <code>&lt;main&gt;</code>. Solo rellena los huecos <code>titulo</code> y <code>contenido</code>.</p>
+<p>Cuando el route ejecuta <code>render_template('saldo.html', saldo=12.5)</code>, Jinja2 fusiona <code>base.html</code> con <code>saldo.html</code> y envía al navegador este HTML completo:</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="cp">&lt;!doctype html&gt;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;es&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Saldo — Expendedora<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>    <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/&quot;</span><span class="p">&gt;</span>Expendedora<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>        <span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/productos&quot;</span><span class="p">&gt;</span>Productos<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> ·
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/saldo&quot;</span><span class="p">&gt;</span>Saldo<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> ·
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/ayuda&quot;</span><span class="p">&gt;</span>Ayuda<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>        <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>        <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>    <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>    <span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Saldo actual<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>12,50 EUR<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>    <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Fíjate en tres detalles del resultado:</p>
+<ol>
+<li><strong>El <code>&lt;title&gt;</code></strong> es <code>"Saldo — Expendedora"</code>, no <code>"Expendedora"</code>: la hija ha sobrescrito el valor por defecto del padre.</li>
+<li><strong>El <code>&lt;main&gt;</code></strong> ya no contiene <code>{% block contenido %}{% endblock %}</code> sino el <code>&lt;h2&gt;</code> y el <code>&lt;p&gt;</code> que la hija puso dentro de ese bloque.</li>
+<li><strong>Las marcas Jinja2 desaparecen</strong>. El navegador no recibe ningún <code>{% %}</code> ni <code>{{ }}</code>: son instrucciones para el motor de plantillas, no HTML que el navegador deba interpretar. Lo mismo que pasaba con <code>{% for %}</code> en la sección anterior.</li>
+</ol>
+<p><img alt="" src="../img4/render_plantilla_bloques.png" /></p>
+<div class="admonition info">
+<p class="admonition-title">Relación con POO</p>
+<p>La idea es la misma que cuando una clase hija extiende a una padre y <strong>sobrescribe métodos</strong>: la clase padre define la estructura (los métodos comunes), la hija solo redefine lo que cambia. Aquí <code>base.html</code> es la "clase padre", cada bloque es un "método sobrescribible", y la hija lo redefine con su contenido propio.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Si una página pierde la cabecera común</p>
+<p>Probablemente has olvidado la primera línea de la plantilla hija: <code>{% extends "base.html" %}</code>. Sin ella, la plantilla es un fichero suelto y no hereda nada.</p>
+</div>
+<hr />
+<h2 id="conversion-tupla-dict-en-el-route">Conversión tupla → dict en el route<a class="headerlink" href="#conversion-tupla-dict-en-el-route" title="Permanent link">&para;</a></h2>
+<p>El servicio del proyecto devuelve <strong>tuplas</strong>: <code>listar_productos()</code>, <code>obtener_producto(codigo)</code> y <code>buscar_producto(texto)</code> entregan tuplas con seis campos en este orden:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>(codigo, nombre, precio_base, precio_final, cantidad, descuento)
+</code></pre></div>
+<p>En una plantilla, escribir <code>{{ producto[0] }}</code> y <code>{{ producto[3] }}</code> es ilegible: hay que contar campos a mano para entender qué se está mostrando. Por eso, <strong>antes de pasar los datos a la plantilla</strong>, los convertimos a diccionarios:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/productos&#39;</span><span class="p">)</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">listar_productos</span><span class="p">():</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="hll">    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;codigo&#39;</span><span class="p">,</span> <span class="s1">&#39;nombre&#39;</span><span class="p">,</span> <span class="s1">&#39;precio_base&#39;</span><span class="p">,</span> <span class="s1">&#39;precio_final&#39;</span><span class="p">,</span> <span class="s1">&#39;cantidad&#39;</span><span class="p">,</span> <span class="s1">&#39;descuento&#39;</span><span class="p">]</span>
+</span><a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="hll">    <span class="n">productos</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">servicio</span><span class="o">.</span><span class="n">listar_productos</span><span class="p">()]</span>
+</span><a id="__codelineno-18-5" name="__codelineno-18-5"></a>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;productos.html&#39;</span><span class="p">,</span> <span class="n">productos</span><span class="o">=</span><span class="n">productos</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><code>zip(keys, t)</code> empareja cada nombre con su valor — <code>('codigo', 'A1'), ('nombre', 'Agua')...</code> — y <code>dict(...)</code> lo convierte en un diccionario. La comprensión de lista hace lo mismo para cada tupla. Resultado: una lista de diccionarios con claves nombradas.</p>
+<p>Ahora la plantilla puede escribir lo legible:</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">code</span><span class="p">&gt;</span>{{ p.codigo }}<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ p.nombre }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ &quot;%.2f&quot;|format(p.precio_final)|replace(&quot;.&quot;, &quot;,&quot;) }} EUR<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>En Jinja2, <code>p.codigo</code> y <code>p['codigo']</code> son equivalentes para diccionarios. Se prefiere la notación con punto porque se lee mejor.</p>
+</blockquote>
+<div class="admonition info">
+<p class="admonition-title">¿Por qué la conversión vive en el route y no en el servicio?</p>
+<p>El servicio devuelve tuplas porque viene del dominio, donde la estructura es estable, compacta y suficiente. La conversión a diccionario es <strong>adaptación a la presentación</strong>: solo la necesita la plantilla para ser legible. Por eso vive en el route (capa de presentación), no en el servicio (capa de aplicación). Si mañana añades un cliente CLI o un endpoint JSON, no tienen por qué pasar por la conversión.</p>
+</div>
+<hr />
+<h2 id="url_for-en-plantillas"><code>url_for</code> en plantillas<a class="headerlink" href="#url_for-en-plantillas" title="Permanent link">&para;</a></h2>
+<p><code>url_for</code> es una función de Flask que <strong>genera la URL de un route a partir del nombre de su función Python</strong>. Es decir, si en <code>app.py</code> tienes:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/producto/&lt;codigo&gt;&#39;</span><span class="p">)</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">ver_producto</span><span class="p">(</span><span class="n">codigo</span><span class="p">):</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="o">...</span>
+</code></pre></div>
+<p>entonces <code>url_for('ver_producto', codigo='A1')</code> devuelve la cadena <code>/producto/A1</code>. Lo importante es que el primer argumento es el <strong>nombre de la función Python</strong> (<code>ver_producto</code>), no el patrón del decorador (<code>/producto/&lt;codigo&gt;</code>). En plantillas se usa igual:</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;inicio&#39;) }}&quot;</span><span class="p">&gt;</span>Inicio<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;ver_producto&#39;, codigo=p.codigo) }}&quot;</span><span class="p">&gt;</span>Detalle<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;reponer&#39;, codigo=p.codigo, unidades=5) }}&quot;</span><span class="p">&gt;</span>Reponer 5 unidades<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Para el código anterior en jinja, si la plantilla se renderiza dentro de un <code>{% for p in productos %}</code> y <code>p.codigo</code> vale <code>'A1'</code>, el HTML que llega al navegador es:</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/&quot;</span><span class="p">&gt;</span>Inicio<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/producto/A1&quot;</span><span class="p">&gt;</span>Detalle<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/reponer/A1/5&quot;</span><span class="p">&gt;</span>Reponer 5 unidades<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Cada <code>{{ url_for(...) }}</code> se ha sustituido por la URL real construida a partir del patrón del decorador <code>@app.route(...)</code> y los argumentos que le pasamos. Los argumentos con nombre (<code>codigo=p.codigo</code>, <code>unidades=5</code>) <strong>rellenan los huecos</strong> <code>&lt;codigo&gt;</code> y <code>&lt;unidades&gt;</code> del patrón.</p>
+<p>¿Por qué no escribir directamente <code>"/producto/A1"</code>? Porque si mañana cambias el patrón de la URL (por ejemplo <code>/producto/&lt;codigo&gt;</code> por <code>/item/&lt;codigo&gt;</code> o <code>/v2/producto/&lt;codigo&gt;</code>), <strong>todos los enlaces hechos con <code>url_for</code> se actualizan solos</strong>. Los strings hardcodeados se romperían y tendrías que buscarlos uno a uno por todas las plantillas.</p>
+<table>
+<thead>
+<tr>
+<th>Forma</th>
+<th>Riesgo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;a href="/producto/{{ p.codigo }}"&gt;</code></td>
+<td>Si renombras la URL del route, se rompe sin avisar.</td>
+</tr>
+<tr>
+<td><code>&lt;a href="{{ url_for('ver_producto', codigo=p.codigo) }}"&gt;</code></td>
+<td>Si renombras la URL del route, se actualiza solo.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="malas-practicas">Malas prácticas<a class="headerlink" href="#malas-practicas" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Mala práctica: lógica de negocio dentro de la plantilla</p>
+<p>La plantilla <strong>pinta</strong>, no decide. No debemos incluir cálculos, validaciones ni reglas de negocio.</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="cm">&lt;!-- Incorrecto: la plantilla aplica el descuento --&gt;</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ &quot;%.2f&quot;|format(p.precio_base * (1 - p.descuento / 100))|replace(&quot;.&quot;, &quot;,&quot;) }} EUR<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+</code></pre></div>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="cm">&lt;!-- Correcto: el dominio ya entrega el precio_final calculado --&gt;</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ &quot;%.2f&quot;|format(p.precio_final)|replace(&quot;.&quot;, &quot;,&quot;) }} EUR<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Si la lógica se incluye en la plantilla, no se pueden hacer tests, no se podría tampoco reutilizar desde otra interfaz (CLI, API JSON) y se mezcla con el HTML.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Mala práctica: consultas a la base de datos desde la plantilla</p>
+<p>La plantilla no llama al servicio ni al repositorio. Recibe los datos ya preparados por el route.</p>
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="cm">&lt;!-- Incorrecto: la plantilla consulta --&gt;</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>{% for p in servicio.listar_productos() %}
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>{{ p[1] }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>{% endfor %}
+</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1">## Correcto: el route obtiene los datos y se los pasa a la plantilla</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/productos&#39;</span><span class="p">)</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">listar_productos</span><span class="p">():</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;codigo&#39;</span><span class="p">,</span> <span class="s1">&#39;nombre&#39;</span><span class="p">,</span> <span class="s1">&#39;precio_base&#39;</span><span class="p">,</span> <span class="s1">&#39;precio_final&#39;</span><span class="p">,</span> <span class="s1">&#39;cantidad&#39;</span><span class="p">,</span> <span class="s1">&#39;descuento&#39;</span><span class="p">]</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>    <span class="n">productos</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">servicio</span><span class="o">.</span><span class="n">listar_productos</span><span class="p">()]</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;productos.html&#39;</span><span class="p">,</span> <span class="n">productos</span><span class="o">=</span><span class="n">productos</span><span class="p">)</span>
+</code></pre></div>
+<p>Cada capa hace su trabajo: el servicio entrega los datos, el route los adapta, la plantilla los pinta. La frontera es estricta: <strong>si la plantilla necesita un dato, lo pide como variable, no lo va a buscar ella</strong>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Regla mental rápida</p>
+<p>Si en una plantilla ves un paréntesis con argumentos llamando a algo del dominio (como <code>servicio.algo()</code>), es señal de que la lógica está en el sitio equivocado. Las únicas funciones que se llaman desde la plantilla son las <strong>utilidades de Jinja2/Flask</strong> (<code>url_for</code>, filtros como <code>|format</code>, <code>|length</code>).</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ichigar
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/ichigar/web" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://codeberg.org/ichigar/pages" target="_blank" rel="noopener" title="Codeberg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.999.747A11.974 11.974 0 0 0 0 12.75c0 2.254.635 4.465 1.833 6.376L11.837 6.19c.072-.092.251-.092.323 0l4.178 5.402h-2.992l.065.239h3.113l.882 1.138h-3.674l.103.374h3.86l.777 1.003h-4.358l.135.483h4.593l.695.894h-5.038l.165.589h5.326l.609.785h-5.717l.182.65h6.038l.562.727h-6.397l.183.65h6.717A12 12 0 0 0 24 12.75 11.977 11.977 0 0 0 11.999.747m3.654 19.104.182.65h5.326c.173-.204.353-.433.513-.65zm.385 1.377.18.65h3.563c.233-.198.485-.428.712-.65zm.383 1.377.182.648h1.203c.356-.204.685-.412 1.042-.648z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/feed_rss_created.xml" target="_blank" rel="noopener" title="RSS" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../../assets/_markdown_exec_pyodide.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="../../../../javascripts/blog-class.js"></script>
+      
+    
+  </body>
+</html>
