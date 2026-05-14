@@ -1411,7 +1411,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">HTTP en una frase</p>
-<p>Cuando escribes <code>http://localhost:5000/productos</code> en el navegador, envías una <strong>petición HTTP</strong> al servidor Flask con un método (<code>GET</code>), una URL y unas cabeceras. Flask ejecuta el código asociado a esa URL y te devuelve una <strong>respuesta HTTP</strong> con un código de estado (<code>200 OK</code>, <code>404 Not Found</code>…), unas cabeceras y un cuerpo (el HTML que verás).</p>
+<p>Cuando escribimos <code>http://localhost:5000/productos</code> en el navegador, enviamos una <strong>petición HTTP</strong> al servidor Flask con un método (<code>GET</code>), una URL y unas cabeceras. Flask ejecuta el código asociado a esa URL y nos devuelve una <strong>respuesta HTTP</strong> con un código de estado (<code>200 OK</code>, <code>404 Not Found</code>…), unas cabeceras y un cuerpo (el HTML que veremos).</p>
 </div>
 <h2 id="equivalencia-entre-menupy-y-flask">Equivalencia entre <code>menu.py</code> y Flask<a class="headerlink" href="#equivalencia-entre-menupy-y-flask" title="Permanent link">&para;</a></h2>
 <p>Cambia la interfaz, no la lógica. Todo lo que hacías en <code>menu.py</code> tiene un equivalente directo en Flask.</p>
@@ -1476,7 +1476,7 @@
 </blockquote>
 <div class="admonition tip">
 <p class="admonition-title">Centraliza el <em>bootstrap</em> en una sola función</p>
-<p>Si en el futuro cambias la base de datos, añades caché o introduces logging, solo tendrás que tocar la función de <em>bootstrap</em>. Ningún módulo de presentación se entera.</p>
+<p>Si en el futuro cambiamos la base de datos, añadimos caché o introducimos logging, solo tendremos que tocar la función de <em>bootstrap</em>. Ningún módulo de presentación se entera.</p>
 </div>
 <h2 id="routes-y-funciones-de-vista">Routes y funciones de vista<a class="headerlink" href="#routes-y-funciones-de-vista" title="Permanent link">&para;</a></h2>
 <h3 id="el-decorador-approute">El decorador <code>@app.route()</code><a class="headerlink" href="#el-decorador-approute" title="Permanent link">&para;</a></h3>
@@ -1499,7 +1499,7 @@
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>&lt;h1&gt;Expendedora&lt;/h1&gt;               ← cuerpo (lo que devolviste)
 </code></pre></div>
-<p>Tú escribes solo el cuerpo. Flask construye las otras dos partes automáticamente.</p>
+<p>Nosotros escribimos solo el cuerpo. Flask construye las otras dos partes automáticamente.</p>
 <h3 id="rutas-con-parametro-variable">Rutas con parámetro variable<a class="headerlink" href="#rutas-con-parametro-variable" title="Permanent link">&para;</a></h3>
 <p>A veces la URL tiene partes que cambian: el código del producto, un identificador de usuario, etc. Para capturar esas partes se usa un <strong>parámetro variable</strong> entre <code>&lt;&gt;</code>:</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
@@ -1534,7 +1534,7 @@
 </tbody>
 </table>
 <blockquote>
-<p>El nombre entre <code>&lt;&gt;</code> en la URL <strong>debe coincidir</strong> con el nombre del parámetro en la función. Si escribes <code>/producto/&lt;codigo&gt;</code> la función debe aceptar un parámetro llamado <code>codigo</code>.</p>
+<p>El nombre entre <code>&lt;&gt;</code> en la URL <strong>debe coincidir</strong> con el nombre del parámetro en la función. Si escribimos <code>/producto/&lt;codigo&gt;</code> la función debe aceptar un parámetro llamado <code>codigo</code>.</p>
 </blockquote>
 <h2 id="excepciones-en-la-capa-de-presentacion">Excepciones en la capa de presentación<a class="headerlink" href="#excepciones-en-la-capa-de-presentacion" title="Permanent link">&para;</a></h2>
 <h3 id="donde-capturar-las-excepciones-de-dominio">Dónde capturar las excepciones de dominio<a class="headerlink" href="#donde-capturar-las-excepciones-de-dominio" title="Permanent link">&para;</a></h3>
@@ -1570,10 +1570,10 @@
 </code></pre></div></td></tr></table></div>
 <p>El segundo elemento del <code>return</code> (<code>404</code>) le dice a Flask que el código de estado de la respuesta HTTP no es <code>200 OK</code> sino <code>404 Not Found</code> — el código estándar para "recurso no existe".</p>
 <blockquote>
-<p>La estructura del <code>try/except</code> es <strong>idéntica</strong> a la de <code>menu.py</code>. Solo cambia lo que haces con el error: antes un <code>print</code>, ahora una respuesta HTTP con código 404. Ni el servicio ni el dominio se enteran.</p>
+<p>La estructura del <code>try/except</code> es <strong>idéntica</strong> a la de <code>menu.py</code>. Solo cambia lo que hacemos con el error: antes un <code>print</code>, ahora una respuesta HTTP con código 404. Ni el servicio ni el dominio se enteran.</p>
 </blockquote>
 <div class="admonition warning">
-<p class="admonition-title">Antipatrón: capturar la excepción en <code>servicios.py</code></p>
+<p class="admonition-title">Mala práctica: capturar la excepción en <code>servicios.py</code></p>
 <p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">## Incorrecto: la capa de aplicación se convierte en responsable del formato de error</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">obtener_producto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codigo</span><span class="p">):</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="k">try</span><span class="p">:</span>

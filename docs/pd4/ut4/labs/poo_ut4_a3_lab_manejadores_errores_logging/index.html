@@ -23,7 +23,7 @@
     
     
       
-        <title>UT4e2 — Observabilidad: manejadores de error, introspección y logging - Web personal de ichigar</title>
+        <title>Lab guiado: Manejadores de error, introspección y logging en Flask - Web personal de ichigar</title>
       
     
     
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ut4e2-observabilidad-manejadores-de-error-introspeccion-y-logging" class="md-skip">
+        <a href="#lab-guiado-manejadores-de-error-introspeccion-y-logging-en-flask" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              UT4e2 — Observabilidad: manejadores de error, introspección y logging
+              Lab guiado: Manejadores de error, introspección y logging en Flask
             
           </span>
         </div>
@@ -1126,27 +1126,375 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pasos" class="md-nav__link">
+  <a href="#punto-de-partida" class="md-nav__link">
     <span class="md-ellipsis">
-      Pasos
+      Punto de partida
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#checklist-para-esta-fase" class="md-nav__link">
+  <a href="#paso-1-manejador-de-errores-global-apppy" class="md-nav__link">
     <span class="md-ellipsis">
-      Checklist para esta fase
+      Paso 1 — Manejador de errores global app.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 1 — Manejador de errores global app.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pregunta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion-forzar-un-error-500-reproducible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación — forzar un error 500 reproducible
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-2-route-de-ayuda-con-todas-las-rutas-apppy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2 — Route de ayuda con todas las rutas app.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 2 — Route de ayuda con todas las rutas app.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pregunta_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-3-logging-de-peticiones-apppy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3 — Logging de peticiones app.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 3 — Logging de peticiones app.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pregunta_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-4-comparacion-final-menupy-vs-apppy-apppy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4 — Comparación final menu.py vs app.py app.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 4 — Comparación final menu.py vs app.py app.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pregunta_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pregunta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflexion_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-5-actualizar-la-documentacion-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 5 — Actualizar la documentación del proyecto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 5 — Actualizar la documentación del proyecto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarea_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changelogmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGELOG.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readmemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      README.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docsejecucionmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      docs/EJECUCION.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      .gitignore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checklist-de-entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checklist de entrega
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#entrega" class="md-nav__link">
+  <a href="#problemas-comunes" class="md-nav__link">
     <span class="md-ellipsis">
-      Entrega
+      Problemas comunes
     </span>
   </a>
   
@@ -1168,51 +1516,394 @@
 
 
 
-<h1 id="ut4e2-observabilidad-manejadores-de-error-introspeccion-y-logging">UT4e2 — Observabilidad: manejadores de error, introspección y logging<a class="headerlink" href="#ut4e2-observabilidad-manejadores-de-error-introspeccion-y-logging" title="Permanent link">&para;</a></h1>
-<p>Esta es la segunda actividad de la serie en la que se amplía el <code>app.py</code> del proyecto personal con Flask. En la entrega anterior (<code>ut4e1</code>) se expusieron como rutas todas las operaciones del menú de consola; en esta entrega se añade una <strong>capa de observabilidad global</strong> que no depende del dominio: manejadores de error 404 y 500, una ruta <code>/ayuda</code> que se autoactualiza listando todas las rutas registradas, y registro de cada petición en un fichero <code>.log</code>. Aplica los patrones trabajados en el lab a3 de la expendedora.</p>
-<p>Las siguientes actividades (<code>ut4e3</code>, <code>ut4e4</code>...) irán añadiendo templates Jinja2 para sustituir el HTML inline, formularios POST para las acciones de escritura y validación de campos. En esta entrega los manejadores de error y la página <code>/ayuda</code> siguen devolviendo HTML construido a mano: cuando se introduzcan los templates, se podrán refactorizar.</p>
-<h2 id="pasos">Pasos<a class="headerlink" href="#pasos" title="Permanent link">&para;</a></h2>
+<h1 id="lab-guiado-manejadores-de-error-introspeccion-y-logging-en-flask">Lab guiado: Manejadores de error, introspección y logging en Flask<a class="headerlink" href="#lab-guiado-manejadores-de-error-introspeccion-y-logging-en-flask" title="Permanent link">&para;</a></h1>
+<ul>
+<li><strong>Unidad:</strong> UT4 — Interfaz web con Flask</li>
+<li><strong>Sesión:</strong> 3 — Observabilidad y calidad de la interfaz web (parte 2 de 2, continúa de la sesión 2).</li>
+<li><strong>Agrupamiento:</strong> Individual o en parejas conductor/navegante (igual que los labs anteriores).</li>
+<li><strong>Recursos:</strong><ul>
+<li><a href="https://ichigar.codeberg.page/pd4/ut4/recursos/poo_ut4_3_manejadores_errores_logging/">Apuntes UT4 sesión 3 — Manejadores de error, introspección y logging</a></li>
+<li><a href="https://ichigar.codeberg.page/pd4/ut4/recursos/poo_ut4_2_rutas_dinamicas_excepciones/">Apuntes UT4 sesión 2 — Rutas dinámicas y excepciones</a> (prerrequisito)</li>
+<li><a href="https://flask.palletsprojects.com/en/stable/errorhandling/">Documentación Flask — Error handlers</a></li>
+<li><a href="https://docs.python.org/3/library/logging.html">Documentación Python — módulo logging</a></li>
+</ul>
+</li>
+<li><strong>Ficheros de trabajo:</strong><ul>
+<li><code>expendedora/presentation/app.py</code></li>
+<li><code>expendedora/README.md</code>, <code>expendedora/CHANGELOG.md</code>, <code>expendedora/docs/EJECUCION.md</code>, <code>expendedora/.gitignore</code> (en el paso final de documentación)</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="punto-de-partida">Punto de partida<a class="headerlink" href="#punto-de-partida" title="Permanent link">&para;</a></h2>
+<p>Parte del zip que entregaste al final del lab a2. Antes de empezar:</p>
 <ol>
-<li>Crear en la carpeta de inicio del proyecto (sincronizada en Codeberg/GitHub) una carpeta (o una rama) de nombre <code>05-flask-02</code>, copiando el contenido de <code>05-flask-01</code> (resultado de la entrega <code>ut4e1</code>).</li>
-<li>Estudiar como referencia el <a href="./">lab a3 de la expendedora</a> y los <a href="../recursos/apuntes/poo_ut4_3_manejadores_errores_logging.md">apuntes de la Fase 3</a>. En esta entrega no hay guía personal: los patrones son universales y se aplican igual al dominio que sea.</li>
-<li>Aplicar los cinco patrones del lab a3 sobre <code>presentation/app.py</code>:<ul>
-<li>Manejadores globales <code>@app.errorhandler(404)</code> y <code>@app.errorhandler(500)</code> con respuesta HTML personalizada.</li>
-<li>Ruta <code>/ayuda</code> que itera <code>app.url_map.iter_rules()</code> y devuelve la lista de rutas registradas (filtrando <code>static</code>).</li>
-<li>Hook <code>@app.before_request</code> que registra <code>{request.method} {request.path}</code> con el módulo <code>logging</code> de Python.</li>
-<li>Configuración de <code>logging.basicConfig(filename='{paquete}.log', level=logging.INFO, format=...)</code> al inicio de <code>app.py</code>, donde <code>{paquete}</code> es el nombre del paquete del proyecto.</li>
-<li><code>.gitignore</code> con <code>*.log</code> para no versionar el fichero de log.</li>
-</ul>
-</li>
-<li>Verificar la coexistencia menu↔web: arranca el menú de consola y <code>app.py</code> en terminales distintas, ambos sobre la misma SQLite. Comprueba que un alta hecha desde la web aparece en el menú y viceversa. Anota la verificación en la documentación.</li>
-<li>Hacer commits periódicos y sincronizar en la nube (push) el repositorio para que el profesor pueda revisar esta fase del proyecto.</li>
-<li>
-<p>Actualizar la documentación con los cambios aplicados en esta fase. Al menos los siguientes ficheros se ven afectados:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>├── .gitignore                      ← nuevo: *.log
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── CHANGELOG.md
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── README.md
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>└── docs
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    └── EJECUCION.md                ← nota sobre el fichero .log y la ruta /ayuda
-</code></pre></div>
-</li>
+<li>Activa el entorno virtual del proyecto (<code>source .venv/bin/activate</code> en Linux/Mac, o <code>source .venv/Scripts/activate</code> en Git Bash de Windows).</li>
+<li>Sitúate en la <strong>carpeta padre</strong> de <code>expendedora/</code>.</li>
+<li>Arranca el servidor web: <code>python -m expendedora.presentation.app</code>.</li>
+<li>Comprueba que todas las rutas del a2 funcionan (<code>/productos</code>, <code>/seleccionar/A1</code>, <code>/comprar</code>, etc.). Si alguna falla, revuélvete al a2 antes de seguir.</li>
 </ol>
-<h2 id="checklist-para-esta-fase">Checklist para esta fase<a class="headerlink" href="#checklist-para-esta-fase" title="Permanent link">&para;</a></h2>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Carpeta <code>05-flask-02/</code> creada con el contenido de <code>05-flask-01/</code> como base.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>@app.errorhandler(404)</code> registrado y devuelve HTML personalizado al visitar una URL inexistente.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>@app.errorhandler(500)</code> registrado y devuelve HTML personalizado. Probado provocando una excepción no controlada (puede crearse una ruta temporal <code>/error</code> para la prueba y eliminarla después).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Ruta <code>/ayuda</code> que itera <code>app.url_map.iter_rules()</code>, filtra <code>static</code> y muestra todas las rutas registradas. Al añadir o quitar rutas, <code>/ayuda</code> refleja el cambio sin tocar su código.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>logging.basicConfig(...)</code> configurado al inicio de <code>app.py</code> con un nombre de fichero coherente con el paquete (<code>{paquete}.log</code>).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Hook <code>@app.before_request</code> registra cada petición con método y ruta.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El fichero <code>.log</code> aparece en disco al hacer peticiones, con timestamp y una línea por petición.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>.gitignore</code> incluye <code>*.log</code> y el fichero de log no se versiona.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Coexistencia menu↔web verificada</strong>: un alta hecha desde la web aparece en el menú y viceversa. <code>domain/</code> e <code>infrastructure/</code> sin cambios; <code>application/</code> solo con métodos de delegación pura si los hay.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>presentation/menu.py</code> sigue funcionando sin cambios.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>CHANGELOG.md</code> con entrada nueva siguiendo SemVer (incremento menor: añade observabilidad sin romper la API existente).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>README.md</code> y <code>docs/EJECUCION.md</code> actualizados (mencionan <code>/ayuda</code>, el fichero <code>.log</code> y cómo desactivar o reconfigurar el logging si hace falta).</li>
+<div class="admonition info">
+<p class="admonition-title">Trabajo en parejas</p>
+<p>Si decides trabajar en pareja, sigue el procedimiento conductor/navegante del lab a1.</p>
+</div>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">Antes de empezar: repasemos los conceptos</p>
+<p><strong>Manejadores globales de error</strong><br />
+Hasta ahora cada route captura sus propias excepciones de dominio con <code>try/except</code>. Flask permite registrar funciones que se disparan <strong>ante errores HTTP concretos</strong> (404, 500…), capturen lo que capturen los routes. Sirve de red de seguridad para lo que se escapa.</p>
+<p><strong>Pista recurso</strong><br />
+Flask mantiene internamente un mapa de todas las rutas registradas (<code>app.url_map</code>). Podemos consultarlo en tiempo de ejecución para, por ejemplo, ofrecer una página de ayuda que siempre esté al día.</p>
+<p><strong>Hook</strong><br />
+Un <em>hook</em> (gancho) es un punto del flujo de un programa en el que puedes "enganchar" código propio para que se ejecute automáticamente, sin modificar el flujo original. <code>@app.before_request</code> es el hook que Flask llama <strong>antes de cada petición</strong>, sea la que sea.</p>
+<p><strong>Logging</strong><br />
+El módulo <code>logging</code> de la librería estándar de Python permite registrar mensajes en un fichero, con timestamp y nivel (INFO, WARNING, ERROR…). Útil para auditar a posteriori qué ha pasado sin depender de lo que quede en la consola desde la que se lanza el servidor.</p>
+</div>
+<hr />
+<h2 id="paso-1-manejador-de-errores-global-apppy">Paso 1 — Manejador de errores global  <code>app.py</code><a class="headerlink" href="#paso-1-manejador-de-errores-global-apppy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p>Flask permite registrar funciones que se ejecutan cuando ocurre un error HTTP concreto. <code>@app.errorhandler(404)</code> registra la función que maneja todos los errores 404 de la app; <code>@app.errorhandler(500)</code> hace lo mismo para errores del servidor.</p>
+</div>
+<h3 id="objetivo"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h3>
+<p>Añadir manejadores globales para los errores 404 y 500, de modo que aunque Flask genere el error sin pasar por un route, el usuario vea una página coherente.</p>
+<h3 id="tarea"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">errorhandler</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">no_encontrado</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;h2&gt;404 — No encontrado&lt;/h2&gt;&lt;p&gt;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&lt;/p&gt;&quot;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>            <span class="sa">f</span><span class="s2">&quot;&lt;a href=&#39;/&#39;&gt;Volver&lt;/a&gt;&quot;</span><span class="p">),</span> <span class="mi">404</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="nd">@app</span><span class="o">.</span><span class="n">errorhandler</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">error_servidor</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="k">return</span> <span class="p">(</span><span class="s2">&quot;&lt;h2&gt;500 — Error del servidor&lt;/h2&gt;&quot;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>            <span class="s2">&quot;&lt;p&gt;Algo ha fallado. Prueba más tarde.&lt;/p&gt;&quot;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>            <span class="s2">&quot;&lt;a href=&#39;/&#39;&gt;Volver&lt;/a&gt;&quot;</span><span class="p">),</span> <span class="mi">500</span>
+</code></pre></div></td></tr></table></div>
+<details class="tip">
+<summary>Pista</summary>
+<p>Los manejadores globales no sustituyen a los errores que ya gestionas dentro de una route.
+Si una route captura una excepción con <code>except ... as e</code> y devuelve <code>return str(e), 404</code>, Flask no llama al manejador global de <code>404</code>: la propia route ya ha construido la respuesta.
+El manejador <code>@app.errorhandler(404)</code> se ejecuta cuando Flask genera un <code>404</code> automáticamente, por ejemplo al visitar una URL que no existe o cuando un converter rechaza un valor de la URL antes de entrar en la route.
+Para errores no capturados dentro de una route, Flask generará normalmente un <code>500</code>, que puede gestionarse con <code>@app.errorhandler(500)</code>.</p>
+</details>
+<div class="admonition info">
+<p class="admonition-title">También atrapa los 404 por converter rechazado</p>
+<p>El manejador <code>@app.errorhandler(404)</code> se dispara <strong>también</strong> cuando un converter rechaza el valor de la URL — los casos que viste en el Paso 2 del lab a2 (<code>/reponer/A1/-1</code>, <code>/reponer/A1/tres</code>, <code>/insertar/1</code>…). Flask genera el 404 antes de llamar a tu route, pero el manejador lo captura igual. Pruébalo: visita <code>/reponer/A1/-1</code> y comprueba que ahora sale tu página personalizada en lugar de la página genérica de Flask.</p>
+</div>
+<h4 id="pregunta"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta<a class="headerlink" href="#pregunta" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>Accede a una URL que no existe, por ejemplo <code>http://localhost:5000/noexiste</code>. ¿Qué muestra ahora? ¿Qué mostraba antes de añadir el manejador? Prueba también con <code>/reponer/A1/-1</code> (converter rechazando un valor).</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Antes: la página de error por defecto de Flask (HTML genérico). Ahora: tu manejador personalizado. En ambos casos el código HTTP es 404 — solo cambia la presentación del error. El manejador trata igual los dos tipos de 404: URL inexistente y converter rechazado.</p>
+</details>
+<h4 id="comprobacion-forzar-un-error-500-reproducible"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación — forzar un error 500 reproducible<a class="headerlink" href="#comprobacion-forzar-un-error-500-reproducible" title="Permanent link">&para;</a></h4>
+<p>Para verificar que el manejador 500 funciona, añade <strong>temporalmente</strong> este route de prueba, visítalo, comprueba que el manejador lo captura, y <strong>bórralo</strong> cuando termines:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/error&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">forzar_error</span><span class="p">():</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;error forzado para probar el manejador 500&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Con <code>debug=True</code> verás el traceback técnico; en producción (sin debug) se mostraría tu manejador 500.</p>
+<h3 id="reflexion"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li>Los manejadores de error son routes especiales que capturan códigos HTTP globales.</li>
+<li>Permiten dar una experiencia coherente al usuario en cualquier error (incluso en los que no tienen route propio).</li>
+<li>No sustituyen al try/except en los routes — son una red de seguridad adicional para los errores que se "escapan".</li>
 </ul>
-<h2 id="entrega">Entrega<a class="headerlink" href="#entrega" title="Permanent link">&para;</a></h2>
-<p>Cuando se haya terminado, entregar aquí un enlace a la carpeta <code>05-flask-02</code> en el repositorio del proyecto.
-Z</p>
+</details>
+<hr />
+<h2 id="paso-2-route-de-ayuda-con-todas-las-rutas-apppy">Paso 2 — Route de ayuda con todas las rutas  <code>app.py</code><a class="headerlink" href="#paso-2-route-de-ayuda-con-todas-las-rutas-apppy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p>Flask mantiene un mapa de todas las rutas registradas accesible desde <code>app.url_map</code>. Esto es útil para depurar, para documentar la API, y para ofrecer al usuario una página índice con todo lo que la app puede hacer.</p>
+</div>
+<h3 id="objetivo_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_1" title="Permanent link">&para;</a></h3>
+<p>Crear un route <code>/ayuda</code> que liste todas las rutas registradas.</p>
+<h3 id="tarea_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_1" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/ayuda&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">ayuda</span><span class="p">():</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="n">lineas</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;h2&gt;Rutas disponibles&lt;/h2&gt;&lt;ul&gt;&#39;</span><span class="p">]</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>    <span class="k">for</span> <span class="n">regla</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">url_map</span><span class="o">.</span><span class="n">iter_rules</span><span class="p">():</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>        <span class="k">if</span> <span class="n">regla</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">!=</span> <span class="s1">&#39;static&#39;</span><span class="p">:</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>            <span class="n">lineas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>                <span class="sa">f</span><span class="s2">&quot;&lt;li&gt;&lt;code&gt;</span><span class="si">{</span><span class="n">regla</span><span class="o">.</span><span class="n">rule</span><span class="si">}</span><span class="s2">&lt;/code&gt; — </span><span class="si">{</span><span class="n">regla</span><span class="o">.</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&lt;/li&gt;&quot;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>            <span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>    <span class="n">lineas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&lt;/ul&gt;&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lineas</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<details class="tip">
+<summary>Pista</summary>
+<p><code>app.url_map.iter_rules()</code> devuelve todas las reglas registradas. Incluye una regla especial, <code>static</code>, que Flask usa internamente para servir ficheros estáticos (CSS, imágenes…); la filtramos porque no es una ruta de nuestra app.</p>
+</details>
+<h4 id="comprobacion"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion" title="Permanent link">&para;</a></h4>
+<p>Visita <code>http://localhost:5000/ayuda</code>. Debe aparecer una lista completa con todas las rutas que has creado.</p>
+<h4 id="pregunta_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta<a class="headerlink" href="#pregunta_1" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>¿Por qué <code>/ayuda</code> muestra rutas como <code>/producto/&lt;codigo&gt;</code> con los placeholders <code>&lt;codigo&gt;</code> literales en vez de URLs concretas?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p>Porque <code>url_map</code> contiene el <strong>patrón</strong> de cada ruta, no las URLs concretas. Para generar una URL concreta haría falta pasar valores con <code>url_for</code>, pero <code>iter_rules</code> solo conoce las plantillas.</p>
+</details>
+<h3 id="reflexion_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_1" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li><code>app.url_map</code> es la "tabla de routing" interna de Flask, accesible en tiempo de ejecución.</li>
+<li>Una página <code>/ayuda</code> generada automáticamente siempre está al día: si añades un route, aparece solo.</li>
+<li>En labs posteriores, cuando uses templates, esta información aparecerá más bonita con Jinja2.</li>
+</ul>
+</details>
+<hr />
+<h2 id="paso-3-logging-de-peticiones-apppy">Paso 3 — Logging de peticiones  <code>app.py</code><a class="headerlink" href="#paso-3-logging-de-peticiones-apppy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p>Registrar cada petición en un fichero permite auditar la actividad de la app sin depender de lo que aparezca en el traceback del navegador. El módulo <code>logging</code> de la librería estándar de Python ya lo tienes; Flask lo integra de forma natural.</p>
+</div>
+<h3 id="objetivo_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_2" title="Permanent link">&para;</a></h3>
+<p>Configurar un log de peticiones que escriba en un fichero <code>expendedora.log</code>.</p>
+<h3 id="tarea_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_2" title="Permanent link">&para;</a></h3>
+<p>Al inicio de <code>app.py</code>, <strong>después de los imports</strong> y <strong>antes de crear la app</strong>, añade la configuración:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>    <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;expendedora.log&#39;</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> [</span><span class="si">%(levelname)s</span><span class="s1">] </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Y después de crear <code>app = Flask(__name__)</code>, añade el "gancho" que se ejecuta antes de cada petición:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">request</span>   <span class="c1"># junto a los demás imports</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="nd">@app</span><span class="o">.</span><span class="n">before_request</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">log_peticion</span><span class="p">():</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>    <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="comprobacion_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Visita varias URLs en el navegador.</li>
+<li>En otra terminal, ejecuta <code>tail -f expendedora.log</code> (o abre el fichero con tu editor).</li>
+<li>Cada petición debe aparecer con timestamp, nivel y método + ruta.</li>
+</ul>
+<h4 id="pregunta_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta<a class="headerlink" href="#pregunta_2" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>El log se escribe en <code>expendedora.log</code>. ¿Conviene incluir ese fichero en el zip de entrega? ¿Y en un <code>.gitignore</code> si fuera un repositorio Git?</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<ul>
+<li><strong>En la entrega: no.</strong> Es ruido generado por las pruebas que tú mismo hiciste; no es parte del código ni del resultado del lab.</li>
+<li><strong>En <code>.gitignore</code>: sí.</strong> Es un fichero generado en ejecución. Los ficheros generados (logs, bases de datos de desarrollo, caches) no se versionan; solo se versiona el código que los genera.</li>
+</ul>
+</details>
+<h3 id="reflexion_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_2" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li><code>@app.before_request</code> es un "hook" que Flask llama antes de ejecutar cualquier route.</li>
+<li>El log es una herramienta transversal: no pertenece a ningún route concreto pero los observa a todos.</li>
+<li>En producción, el nivel del log y el destino (fichero, syslog, servicio externo) se ajustan. <code>logging.INFO</code> es un nivel moderadamente verboso, útil para desarrollo.</li>
+</ul>
+</details>
+<hr />
+<h2 id="paso-4-comparacion-final-menupy-vs-apppy-apppy">Paso 4 — Comparación final <code>menu.py</code> vs <code>app.py</code>  <code>app.py</code><a class="headerlink" href="#paso-4-comparacion-final-menupy-vs-apppy-apppy" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p>Ahora que la interfaz web cubre toda la funcionalidad del menú <strong>y</strong> tiene observabilidad propia, es momento de consolidar la equivalencia entre ambas capas de presentación y verificar que la arquitectura se ha respetado.</p>
+</div>
+<h3 id="objetivo_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_3" title="Permanent link">&para;</a></h3>
+<p>Documentar explícitamente la equivalencia entre <code>menu.py</code> y <code>app.py</code> para confirmar que la web cubre exactamente las mismas operaciones que la consola.</p>
+<h3 id="tarea_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_3" title="Permanent link">&para;</a></h3>
+<p>Añade esta tabla como comentario al inicio de <code>app.py</code>:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span>
+<span class="normal"><a href="#__codelineno-5-22">22</a></span>
+<span class="normal"><a href="#__codelineno-5-23">23</a></span>
+<span class="normal"><a href="#__codelineno-5-24">24</a></span>
+<span class="normal"><a href="#__codelineno-5-25">25</a></span>
+<span class="normal"><a href="#__codelineno-5-26">26</a></span>
+<span class="normal"><a href="#__codelineno-5-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># EQUIVALENCIA menu.py &lt;-&gt; app.py</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="c1">#</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="c1"># | menu.py                                | app.py (Flask)                                 |</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># |----------------------------------------|------------------------------------------------|</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="c1"># | if opcion == &quot;1&quot;: opcion_mostrar()     | @app.route(&#39;/productos&#39;)                       |</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="c1"># | if opcion == &quot;2&quot;: opcion_seleccionar() | @app.route(&#39;/seleccionar/&lt;codigo&gt;&#39;)            |</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="c1"># | if opcion == &quot;3&quot;: opcion_insertar()    | @app.route(&#39;/insertar/&lt;float:cantidad&gt;&#39;)       |</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="c1"># | if opcion == &quot;4&quot;: opcion_comprar()     | @app.route(&#39;/comprar&#39;)                         |</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1"># | if opcion == &quot;5&quot;: opcion_cancelar()    | @app.route(&#39;/cancelar&#39;)                        |</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="c1"># | if opcion == &quot;6&quot;: opcion_reponer()     | @app.route(&#39;/reponer/&lt;codigo&gt;/&lt;int:unidades&gt;&#39;) |</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="c1"># | if opcion == &quot;7&quot;: opcion_agregar()     | @app.route(&#39;/agregar/&lt;codigo&gt;/...&#39;)            |</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="c1"># | if opcion == &quot;8&quot;: opcion_agregar_desc()| @app.route(&#39;/agregar_descuento/&lt;codigo&gt;/...&#39;)  |</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="c1"># | if opcion == &quot;9&quot;: opcion_eliminar()    | @app.route(&#39;/eliminar/&lt;codigo&gt;&#39;)               |</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="c1"># | if opcion == &quot;10&quot;: opcion_buscar()     | @app.route(&#39;/buscar/&lt;texto&gt;&#39;)                  |</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="c1"># | input(&quot;Código: &quot;)                      | &lt;codigo&gt; en la URL                             |</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="c1"># | print(&quot;X &quot; + str(e))                   | return str(e), 4xx                             |</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a><span class="c1"># | servicio.listar_productos()            | (igual, sin cambios)                           |</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a><span class="c1"># | servicio.obtener_producto(codigo)      | (igual, sin cambios)                           |</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="c1"># | ServicioExpendedora(repo)              | (igual, via crear_servicio_sqlite)             |</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a><span class="c1">#</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="c1"># Unico cambio en application/servicios.py: anadido el metodo saldo()</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22"></a><span class="c1"># que delega en MaquinaExpendedora.saldo (no habia forma de leerlo desde fuera).</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23"></a><span class="c1">#</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24"></a><span class="c1"># Archivos NO modificados:</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25"></a><span class="c1"># - domain/         sin cambios</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26"></a><span class="c1"># - infrastructure/ sin cambios</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27"></a><span class="c1"># - presentation/menu.py   sin cambios (sigue funcionando igual)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="pregunta_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Pregunta<a class="headerlink" href="#pregunta_3" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>¿Qué línea de <code>servicios.py</code> ejecuta el route <code>/comprar</code>? Localízala exactamente.</p>
+</blockquote>
+<details class="success">
+<summary>Respuesta</summary>
+<p><code>return self._maquina.comprar()</code> dentro del método <code>comprar</code> de <code>ServicioExpendedora</code>. Es exactamente la misma línea que ejecuta <code>opcion_comprar(servicio)</code> desde <code>menu.py</code>. La capa de aplicación no ha cambiado — solo le hemos construido una nueva puerta de entrada.</p>
+</details>
+<h4 id="comprobacion_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion_2" title="Permanent link">&para;</a></h4>
+<p>Abre <code>servicios.py</code>, <code>maquina.py</code> y <code>menu.py</code>. Confirma visualmente que:</p>
+<ul>
+<li><code>maquina.py</code> no se ha tocado.</li>
+<li><code>servicios.py</code> solo ha crecido en un método (<code>saldo</code>), y es delegación pura.</li>
+<li><code>menu.py</code> no se ha tocado.</li>
+</ul>
+<p>Arranca el menú en una terminal (<code>python -m expendedora.presentation.menu</code>) y el servidor web en otra (<code>python -m expendedora.presentation.app</code>). Agrega un producto por la web, refresca la lista en el menú: el producto aparece. Ambas presentaciones comparten el mismo repositorio SQLite.</p>
+<h3 id="reflexion_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Reflexión<a class="headerlink" href="#reflexion_3" title="Permanent link">&para;</a></h3>
+<details class="success">
+<summary>Respuestas</summary>
+<ul>
+<li><code>app.py</code> y <code>menu.py</code> son dos presentaciones distintas del <strong>mismo</strong> sistema.</li>
+<li>Coexisten: la expendedora funciona por consola y por web simultáneamente sobre la misma base de datos.</li>
+<li>La arquitectura por capas ha cumplido su promesa: <strong>cambiar la presentación no rompe nada</strong>.</li>
+</ul>
+</details>
+<hr />
+<h2 id="paso-5-actualizar-la-documentacion-del-proyecto">Paso 5 — Actualizar la documentación del proyecto<a class="headerlink" href="#paso-5-actualizar-la-documentacion-del-proyecto" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Conceptos</p>
+<p>Un proyecto bien mantenido tiene su documentación sincronizada con el código. Igual que en el lab a1, terminamos el trabajo actualizando los ficheros que han cambiado por culpa de este lab.</p>
+</div>
+<h3 id="objetivo_4"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Objetivo<a class="headerlink" href="#objetivo_4" title="Permanent link">&para;</a></h3>
+<p>Dejar <code>README.md</code>, <code>CHANGELOG.md</code>, <code>docs/EJECUCION.md</code> y <code>.gitignore</code> en sintonía con la nueva capa de observabilidad.</p>
+<h3 id="tarea_4"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Tarea<a class="headerlink" href="#tarea_4" title="Permanent link">&para;</a></h3>
+<h4 id="changelogmd"><code>CHANGELOG.md</code><a class="headerlink" href="#changelogmd" title="Permanent link">&para;</a></h4>
+<p>Añade una entrada nueva al inicio del fichero:</p>
+<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gu">## [0.7.0] - (Fase 07: observabilidad y manejadores globales)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="gu">### Added</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">-</span><span class="w"> </span><span class="sb">`presentation/app.py`</span>: manejadores globales <span class="sb">`@app.errorhandler(404)`</span> y <span class="sb">`@app.errorhandler(500)`</span>.
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">-</span><span class="w"> </span><span class="sb">`presentation/app.py`</span>: route <span class="sb">`/ayuda`</span> que lista todas las rutas registradas mediante <span class="sb">`app.url_map`</span>.
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">-</span><span class="w"> </span><span class="sb">`presentation/app.py`</span>: logging de peticiones con <span class="sb">`@app.before_request`</span>; se genera <span class="sb">`expendedora.log`</span> al arrancar.
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">-</span><span class="w"> </span><span class="sb">`presentation/app.py`</span>: tabla de equivalencia <span class="sb">`menu.py`</span> ↔ <span class="sb">`app.py`</span> como comentario inicial.
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">-</span><span class="w"> </span><span class="sb">`.gitignore`</span>: entrada <span class="sb">`*.log`</span> para no versionar ficheros de log.
+</code></pre></div>
+<h4 id="readmemd"><code>README.md</code><a class="headerlink" href="#readmemd" title="Permanent link">&para;</a></h4>
+<ol>
+<li>En la sección <strong>Uso (interfaz web)</strong>, añade <code>/ayuda</code> a la lista de rutas disponibles:</li>
+</ol>
+<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">-</span><span class="w"> </span><span class="sb">`/ayuda`</span> — lista todas las rutas registradas.
+</code></pre></div>
+<ol>
+<li>Añade al final de esa misma sección una nota:</li>
+</ol>
+<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Al arrancar el servidor se crea automáticamente <span class="sb">`expendedora.log`</span> en la carpeta desde la que lances el comando. Contiene una línea por cada petición HTTP recibida.
+</code></pre></div>
+<h4 id="docsejecucionmd"><code>docs/EJECUCION.md</code><a class="headerlink" href="#docsejecucionmd" title="Permanent link">&para;</a></h4>
+<p>Añade al final de la sección <strong>Ejecutar interfaz web</strong>:</p>
+<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>El fichero <span class="sb">`expendedora.log`</span> se genera junto al comando que lanza el servidor (nivel INFO, formato timestamp + método + ruta). No se incluye en la entrega — es ruido generado por tus pruebas.
+</code></pre></div>
+<h4 id="gitignore"><code>.gitignore</code><a class="headerlink" href="#gitignore" title="Permanent link">&para;</a></h4>
+<p>Si existe, añade la línea <code>*.log</code>. Si no existe, créalo con este contenido:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>.venv/
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>__pycache__/
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>*.log
+</code></pre></div>
+<h4 id="comprobacion_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Comprobación<a class="headerlink" href="#comprobacion_3" title="Permanent link">&para;</a></h4>
+<p>Abre <code>README.md</code> y comprueba que alguien que no conozca el proyecto puede saber, solo leyéndolo, que ahora tiene manejadores globales, route de ayuda y logging. Arranca el servidor, visita una URL inexistente, comprueba que el <code>expendedora.log</code> ha registrado la petición.</p>
+<hr />
+<h2 id="checklist-de-entrega">Checklist de entrega<a class="headerlink" href="#checklist-de-entrega" title="Permanent link">&para;</a></h2>
+<ul>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> Manejadores globales <code>@app.errorhandler(404)</code> y <code>@app.errorhandler(500)</code> en <code>app.py</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> Route <code>/ayuda</code> con lista de rutas registradas mediante <code>app.url_map</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> Logging configurado con <code>logging.basicConfig</code> y hook <code>@app.before_request</code>. <code>expendedora.log</code> se genera al recibir peticiones.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> Tabla de equivalencia <code>menu.py</code> ↔ <code>app.py</code> escrita como comentario al inicio de <code>app.py</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> <code>CHANGELOG.md</code> con entrada <code>[0.7.0]</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> <code>README.md</code> actualizado con <code>/ayuda</code> y la nota sobre <code>expendedora.log</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> <code>docs/EJECUCION.md</code> actualizado con la nota de log.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> <code>.gitignore</code> incluye <code>*.log</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> Ningún cambio en <code>domain/</code>, <code>application/</code>, <code>infrastructure/</code> ni <code>presentation/menu.py</code>. Toda la observabilidad vive en <code>presentation/app.py</code>.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> Entregado un <strong>zip con todo el proyecto</strong> — será la base del siguiente lab.</li>
+</ul>
+<hr />
+<h2 id="problemas-comunes">Problemas comunes<a class="headerlink" href="#problemas-comunes" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title"><code>NameError: name 'request' is not defined</code></p>
+<p>Falta <code>from flask import request</code> al inicio de <code>app.py</code>. Revisa el Paso 3.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title"><code>expendedora.log</code> no se crea</p>
+<p><code>logging.basicConfig</code> tiene que llamarse <strong>antes</strong> de que Flask arranque (por eso va al inicio del fichero, no dentro de una función). Asegúrate de que el orden es: <code>import logging</code> → <code>logging.basicConfig(...)</code> → <code>app = Flask(__name__)</code> → hooks y routes.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">El manejador 500 no se muestra (veo el traceback técnico)</p>
+<p>Con <code>debug=True</code> Flask muestra su traceback interactivo en lugar de tu manejador. Es normal y útil en desarrollo. Para ver el manejador real, cambia temporalmente <code>app.run(debug=True)</code> por <code>app.run(debug=False)</code>, vuelve a probar <code>/error</code>, y luego restaura <code>debug=True</code>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title"><code>/ayuda</code> no aparece en su propia lista</p>
+<p>Si tu <code>/ayuda</code> no aparece en la propia lista, asegúrate de que el <code>@app.route('/ayuda')</code> está registrado <strong>antes</strong> de leer <code>app.url_map</code> — es decir, que la declaración del decorador se ha ejecutado ya. Si pones el route en un fichero aparte que no se importa, la regla no se añade al mapa.</p>
+</div>
 
 
 

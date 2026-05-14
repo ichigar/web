@@ -1423,7 +1423,7 @@
 <h1 id="rutas-dinamicas-y-excepciones-en-flask">RUTAS DINÁMICAS Y EXCEPCIONES EN FLASK<a class="headerlink" href="#rutas-dinamicas-y-excepciones-en-flask" title="Permanent link">&para;</a></h1>
 <h2 id="tipos-en-los-parametros-de-url">Tipos en los parámetros de URL<a class="headerlink" href="#tipos-en-los-parametros-de-url" title="Permanent link">&para;</a></h2>
 <h3 id="recordatorio-parametros-variables">Recordatorio: parámetros variables<a class="headerlink" href="#recordatorio-parametros-variables" title="Permanent link">&para;</a></h3>
-<p>Una URL puede contener partes que cambian: el código de un producto, una cantidad, un identificador. En los apuntes anteriores viste que Flask captura esas partes con la notación <code>&lt;nombre&gt;</code>:</p>
+<p>Una URL puede contener partes que cambian: el código de un producto, una cantidad, un identificador. En los apuntes anteriores vimos que Flask captura esas partes con la notación <code>&lt;nombre&gt;</code>:</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
 <span class="normal"><a href="#__codelineno-0-2">2</a></span>
 <span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/producto/&lt;codigo&gt;&quot;</span><span class="p">)</span>
@@ -1526,7 +1526,7 @@
 <tr>
 <td><code>/comprar/3</code></td>
 <td>Llega al route con <code>cantidad=3</code></td>
-<td>Verifica <code>\d+</code></td>
+<td>Matchea <code>\d+</code></td>
 </tr>
 <tr>
 <td><code>/comprar/tres</code></td>
@@ -1541,7 +1541,7 @@
 <tr>
 <td><code>/insertar/1.5</code></td>
 <td>Llega con <code>cantidad=1.5</code></td>
-<td>Verifica <code>\d+\.\d+</code></td>
+<td>Matchea <code>\d+\.\d+</code></td>
 </tr>
 <tr>
 <td><code>/insertar/1</code></td>
@@ -1576,7 +1576,7 @@
 <a id="__codelineno-2-7" name="__codelineno-2-7"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="mi">400</span>
 </code></pre></div></td></tr></table></div>
 <blockquote>
-<p>En este ejemplo, <code>cantidad=0.0</code> sí llega al dominio (verifica <code>\d+\.\d+</code>). El <code>try/except</code> captura el <code>ValueError</code> que lanza <code>insertar_dinero</code> porque la cantidad no es positiva. En cambio, <code>cantidad=-1.5</code> nunca llega — Flask responde 404 antes.</p>
+<p>En este ejemplo, <code>cantidad=0.0</code> sí llega al dominio (matchea <code>\d+\.\d+</code>). El <code>try/except</code> captura el <code>ValueError</code> que lanza <code>insertar_dinero</code> porque la cantidad no es positiva. En cambio, <code>cantidad=-1.5</code> nunca llega — Flask responde 404 antes.</p>
 </blockquote>
 <div class="admonition warning">
 <p class="admonition-title">Mala práctica: validar el tipo en el dominio</p>
@@ -1647,7 +1647,7 @@ Delegar la conversión de tipo a Flask mantiene el route más limpio y el domini
 <tr>
 <th style="text-align: center;">Código</th>
 <th>Nombre</th>
-<th>Cuándo lo devuelves</th>
+<th>Cuándo lo devolvemos</th>
 </tr>
 </thead>
 <tbody>
@@ -1761,7 +1761,7 @@ Delegar la conversión de tipo a Flask mantiene el route más limpio y el domini
 </span><a id="__codelineno-7-6" name="__codelineno-7-6"></a>    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/productos&quot;</span><span class="p">)</span>   <span class="c1">## el navegador carga /productos</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="el-problema-de-los-strings-hardcodeados">El problema de los strings hardcodeados<a class="headerlink" href="#el-problema-de-los-strings-hardcodeados" title="Permanent link">&para;</a></h3>
-<p>Escribir la URL a mano (como <code>"/productos"</code> arriba) funciona, pero <strong>se rompe</strong> en cuanto cambias la ruta. Imagina que decides renombrar <code>/productos</code> a <code>/catalogo</code>: tendrías que buscar y sustituir cada <code>redirect("/productos")</code> repartido por el código. Es error-prono y fácil de olvidar.</p>
+<p>Escribir la URL a mano (como <code>"/productos"</code> arriba) funciona, pero <strong>se rompe</strong> en cuanto cambiamos la ruta. Imagina que decidimos renombrar <code>/productos</code> a <code>/catalogo</code>: tendríamos que buscar y sustituir cada <code>redirect("/productos")</code> repartido por el código. Es error-prono y fácil de olvidar.</p>
 <h3 id="url_for-y-el-desacoplamiento"><code>url_for</code> y el desacoplamiento<a class="headerlink" href="#url_for-y-el-desacoplamiento" title="Permanent link">&para;</a></h3>
 <p><code>url_for()</code> <strong>construye una URL a partir del nombre de la función de vista</strong>, no del string de la URL. Si cambias la ruta del decorador, <code>url_for</code> sigue devolviendo la URL correcta.</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
@@ -1882,7 +1882,7 @@ Delegar la conversión de tipo a Flask mantiene el route más limpio y el domini
 <h4 id="el-problema-del-separador-decimal">El problema del separador decimal<a class="headerlink" href="#el-problema-del-separador-decimal" title="Permanent link">&para;</a></h4>
 <p>Aquí entra un concepto del sistema operativo llamado <strong>locale</strong>. El <em>locale</em> es el conjunto de <strong>convenciones culturales</strong> que un sistema aplica: idioma de los mensajes, formato de las fechas, separador decimal, símbolo de moneda. Los <em>locales</em> se nombran con códigos como <code>es_ES</code> (español de España), <code>en_US</code> (inglés de EE. UU.) o <code>fr_FR</code> (francés de Francia).</p>
 <p>El detalle que nos afecta: en <code>es_ES</code> el separador decimal es la coma (<code>1,5</code>), mientras que en <code>en_US</code> y en la mayoría de lenguajes de programación es el punto (<code>1.5</code>). Flask —como todo Python— espera <strong>siempre el punto</strong> porque es la convención del código, independientemente del idioma del sistema operativo.</p>
-<p>Resultado: un usuario español que teclee <code>/agregar/X1/Zumo/1,5/10</code> obtendrá un 404 misterioso. Desde su punto de vista, "1,5" es un número válido; desde el punto de vista del converter de Flask, no Verifica <code>\d+\.\d+</code>.</p>
+<p>Resultado: un usuario español que teclee <code>/agregar/X1/Zumo/1,5/10</code> obtendrá un 404 misterioso. Desde su punto de vista, "1,5" es un número válido; desde el punto de vista del converter de Flask, no matchea <code>\d+\.\d+</code>.</p>
 <h3 id="hacia-los-formularios-html">Hacia los formularios HTML<a class="headerlink" href="#hacia-los-formularios-html" title="Permanent link">&para;</a></h3>
 <p>En un próximo lab pasaremos a recoger los datos con <strong>formularios HTML</strong> (<code>&lt;form&gt;</code>). Cada campo del formulario tiene su propia casilla etiquetada, el navegador se encarga del encoding y los datos viajan en el cuerpo de la petición, no en la URL. Además, los formularios permiten validación en el cliente y una experiencia de usuario mucho más natural.</p>
 <table>

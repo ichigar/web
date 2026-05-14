@@ -1604,7 +1604,7 @@ Con <code>producto.precio_final = 1.5</code> el HTML final es <code>&lt;p&gt;Pre
 </blockquote>
 <div class="admonition info">
 <p class="admonition-title">¿Por qué la conversión vive en el route y no en el servicio?</p>
-<p>El servicio devuelve tuplas porque viene del dominio, donde la estructura es estable, compacta y suficiente. La conversión a diccionario es <strong>adaptación a la presentación</strong>: solo la necesita la plantilla para ser legible. Por eso vive en el route (capa de presentación), no en el servicio (capa de aplicación). Si mañana añades un cliente CLI o un endpoint JSON, no tienen por qué pasar por la conversión.</p>
+<p>El servicio devuelve tuplas porque viene del dominio, donde la estructura es estable, compacta y suficiente. La conversión a diccionario es <strong>adaptación a la presentación</strong>: solo la necesita la plantilla para ser legible. Por eso vive en el route (capa de presentación), no en el servicio (capa de aplicación). Si mañana añadimos un cliente CLI o un endpoint JSON, no tienen por qué pasar por la conversión.</p>
 </div>
 <hr />
 <h2 id="url_for-en-plantillas"><code>url_for</code> en plantillas<a class="headerlink" href="#url_for-en-plantillas" title="Permanent link">&para;</a></h2>
@@ -1624,7 +1624,7 @@ Con <code>producto.precio_final = 1.5</code> el HTML final es <code>&lt;p&gt;Pre
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/reponer/A1/5&quot;</span><span class="p">&gt;</span>Reponer 5 unidades<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>Cada <code>{{ url_for(...) }}</code> se ha sustituido por la URL real construida a partir del patrón del decorador <code>@app.route(...)</code> y los argumentos que le pasamos. Los argumentos con nombre (<code>codigo=p.codigo</code>, <code>unidades=5</code>) <strong>rellenan los huecos</strong> <code>&lt;codigo&gt;</code> y <code>&lt;unidades&gt;</code> del patrón.</p>
-<p>¿Por qué no escribir directamente <code>"/producto/A1"</code>? Porque si mañana cambias el patrón de la URL (por ejemplo <code>/producto/&lt;codigo&gt;</code> por <code>/item/&lt;codigo&gt;</code> o <code>/v2/producto/&lt;codigo&gt;</code>), <strong>todos los enlaces hechos con <code>url_for</code> se actualizan solos</strong>. Los strings hardcodeados se romperían y tendrías que buscarlos uno a uno por todas las plantillas.</p>
+<p>¿Por qué no escribir directamente <code>"/producto/A1"</code>? Porque si mañana cambiamos el patrón de la URL (por ejemplo <code>/producto/&lt;codigo&gt;</code> por <code>/item/&lt;codigo&gt;</code> o <code>/v2/producto/&lt;codigo&gt;</code>), <strong>todos los enlaces hechos con <code>url_for</code> se actualizan solos</strong>. Los strings hardcodeados se romperían y tendríamos que buscarlos uno a uno por todas las plantillas.</p>
 <table>
 <thead>
 <tr>
