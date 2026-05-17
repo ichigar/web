@@ -1344,7 +1344,7 @@
 <p>A diferencia de bash, en PHP los <strong>espacios alrededor del <code>=</code> son opcionales</strong>, pero se ponen siempre por legibilidad. El <code>;</code> al final de cada sentencia es <strong>obligatorio</strong>.</p>
 </blockquote>
 <h2 id="tipos-basicos">Tipos básicos<a class="headerlink" href="#tipos-basicos" title="Permanent link">&para;</a></h2>
-<p>PHP tiene cuatro tipos escalares que cubren prácticamente todo lo que necesitas en el Lab 02:</p>
+<p>PHP tiene cuatro tipos escalares que cubren prácticamente todo lo que vas a necesitar al empezar a trabajar con PHP:</p>
 <table>
 <thead>
 <tr>
@@ -1602,7 +1602,7 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Forma corta vs forma larga</p>
-<p>En esta unidad usamos la <strong>forma corta</strong> <code>htmlspecialchars($var)</code>. En PHP 8+ es equivalente a la forma larga <code>htmlspecialchars($var, ENT_QUOTES, 'UTF-8')</code>, que es la versión explícita que verás en proyectos profesionales. Esa forma larga la envolveremos en un helper <code>e()</code> en el Lab 07, de modo que escribirás <code>&lt;?= e($titulo) ?&gt;</code>. Hasta entonces, la forma corta es suficiente y segura.</p>
+<p>En esta unidad usamos la <strong>forma corta</strong> <code>htmlspecialchars($var)</code>. En PHP 8+ es equivalente a la forma larga <code>htmlspecialchars($var, ENT_QUOTES, 'UTF-8')</code>, que es la versión explícita que verás en proyectos profesionales. En proyectos más grandes, esa forma larga se suele envolver en un <em>helper</em> corto (<code>e($var)</code>) para no repetirla en cada plantilla. Para empezar, la forma corta es suficiente y segura.</p>
 </div>
 
 

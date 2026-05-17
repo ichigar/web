@@ -1607,7 +1607,7 @@
 </tr>
 </tbody>
 </table>
-<p>En esta unidad usamos la <strong>forma corta</strong> <code>htmlspecialchars($valor)</code>. En PHP 8+ es equivalente a la forma larga <code>htmlspecialchars($valor, ENT_QUOTES, 'UTF-8')</code>, que es la versión explícita que verás en proyectos profesionales (escapa también las comillas simples y fija la codificación). En el Lab 07 envolveremos esa forma larga en un helper <code>e()</code>, de modo que escribirás <code>&lt;?= e($titulo) ?&gt;</code>.</p>
+<p>En esta unidad usamos la <strong>forma corta</strong> <code>htmlspecialchars($valor)</code>. En PHP 8+ es equivalente a la forma larga <code>htmlspecialchars($valor, ENT_QUOTES, 'UTF-8')</code>, que es la versión explícita que verás en proyectos profesionales (escapa también las comillas simples y fija la codificación). En proyectos más grandes, esta llamada se suele envolver en un <em>helper</em> corto (<code>e($titulo)</code>) para no repetirla en cada plantilla.</p>
 <div class="admonition warning">
 <p class="admonition-title">Mala práctica: imprimir variables sin escapar</p>
 <p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="x">## Incorrecto: cualquier &lt; o &gt; del usuario se interpreta como HTML</span>
@@ -1623,7 +1623,7 @@
 <li><strong>Sí escapa</strong>: cualquier cadena que vayas a imprimir dentro de HTML (valores de formularios, campos de una ficha, URLs de usuario…).</li>
 <li><strong>No hace falta escapar</strong>: números enteros y decimales que controles tú mismo, pues no pueden contener caracteres HTML peligrosos.</li>
 </ul>
-<p>En el Lab 07 crearás un helper <code>e()</code> que encapsula la llamada para no repetirla en cada plantilla.</p>
+<p>Una práctica común es encapsular esta llamada en un helper corto (por ejemplo <code>e($var)</code>) y reutilizarlo en todas las plantillas.</p>
 </div>
 <h2 id="depuracion-y-logs">Depuración y logs<a class="headerlink" href="#depuracion-y-logs" title="Permanent link">&para;</a></h2>
 <h3 id="errores-de-php-durante-el-desarrollo">Errores de PHP durante el desarrollo<a class="headerlink" href="#errores-de-php-durante-el-desarrollo" title="Permanent link">&para;</a></h3>
@@ -1657,7 +1657,7 @@
 <h3 id="leer-un-error-de-php">Leer un error de PHP<a class="headerlink" href="#leer-un-error-de-php" title="Permanent link">&para;</a></h3>
 <p>Un mensaje típico tiene la forma:</p>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Parse error: syntax error, unexpected token &quot;$alumno&quot;, expecting &quot;,&quot; or &quot;;&quot;
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>in /home/tuusuario/gestor/public/index.php on line 6
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>in /var/www/miapp/public/index.php on line 6
 </code></pre></div>
 <p>Te indica <strong>qué</strong> falla (token inesperado), <strong>dónde</strong> (ruta completa del fichero) y <strong>en qué línea</strong>. Leer el mensaje entero resuelve el 80 % de los errores antes de tener que buscar en Google.</p>
 <h3 id="log-de-apache">Log de Apache<a class="headerlink" href="#log-de-apache" title="Permanent link">&para;</a></h3>

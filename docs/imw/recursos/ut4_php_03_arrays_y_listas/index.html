@@ -1358,7 +1358,7 @@
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>)
 </code></pre></div>
 <blockquote>
-<p><code>print_r()</code> muestra la estructura completa de un array de forma legible. Es útil para depurar cuando quieres ver rápidamente el contenido. Para ver <strong>también los tipos</strong>, usa <code>var_dump()</code> (del Lab 02).</p>
+<p><code>print_r()</code> muestra la estructura completa de un array de forma legible. Es útil para depurar cuando quieres ver rápidamente el contenido. Para ver <strong>también los tipos</strong>, usa <code>var_dump()</code> (visto en el apunte anterior).</p>
 </blockquote>
 <h2 id="arrays-asociativos">Arrays asociativos<a class="headerlink" href="#arrays-asociativos" title="Permanent link">&para;</a></h2>
 <p>Los arrays asociativos usan <strong>claves de texto</strong> en lugar de índices numéricos. Son el equivalente PHP de los diccionarios de Python o los objetos JSON, y son la forma natural de representar "una cosa con sus campos" — por ejemplo, una incidencia:</p>
@@ -1402,7 +1402,7 @@
 <p><code>$incidencia['titulo']</code> y <code>$incidencia['Titulo']</code> son claves distintas. Por convención, en este proyecto todas las claves van en minúsculas y sin tildes.</p>
 </div>
 <h2 id="arrays-de-arrays">Arrays de arrays<a class="headerlink" href="#arrays-de-arrays" title="Permanent link">&para;</a></h2>
-<p>La mayoría de listas reales de una aplicación son <strong>arrays de arrays asociativos</strong>: una lista en la que cada elemento es, a su vez, un array con sus campos. Por ejemplo, un listado de incidencias:</p>
+<p>La mayoría de listas reales de una aplicación son <strong>arrays de arrays asociativos</strong>: una lista en la que cada elemento es, a su vez, un array con sus campos. Por ejemplo, un catálogo de libros:</p>
 <div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
@@ -1416,29 +1416,25 @@
 <span class="normal"><a href="#__codelineno-6-11">11</a></span>
 <span class="normal"><a href="#__codelineno-6-12">12</a></span>
 <span class="normal"><a href="#__codelineno-6-13">13</a></span>
-<span class="normal"><a href="#__codelineno-6-14">14</a></span>
-<span class="normal"><a href="#__codelineno-6-15">15</a></span>
-<span class="normal"><a href="#__codelineno-6-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="hll"><span class="x">$incidencias = [</span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="hll"><span class="x">$libros = [</span>
 </span><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="hll"><span class="x">    [</span>
-</span><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="x">        &#39;id&#39;        =&gt; &#39;inc001&#39;,</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="x">        &#39;titulo&#39;    =&gt; &#39;Impresora sin papel&#39;,</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="x">        &#39;prioridad&#39; =&gt; &#39;alta&#39;,</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="x">        &#39;estado&#39;    =&gt; &#39;pendiente&#39;,</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="x">        &#39;fecha&#39;     =&gt; &#39;2025-01-15&#39;,</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="x">    ],</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="hll"><span class="x">    [</span>
-</span><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="x">        &#39;id&#39;        =&gt; &#39;inc002&#39;,</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="x">        &#39;titulo&#39;    =&gt; &#39;Proyector sin imagen&#39;,</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="x">        &#39;prioridad&#39; =&gt; &#39;media&#39;,</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="x">        &#39;estado&#39;    =&gt; &#39;en_proceso&#39;,</span>
-<a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="x">        &#39;fecha&#39;     =&gt; &#39;2025-01-16&#39;,</span>
-<a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="x">    ],</span>
-<a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="x">];</span>
+</span><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="x">        &#39;isbn&#39;   =&gt; &#39;978-84-376-0494-7&#39;,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="x">        &#39;titulo&#39; =&gt; &#39;Cien años de soledad&#39;,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="x">        &#39;autor&#39;  =&gt; &#39;Gabriel García Márquez&#39;,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="x">        &#39;anio&#39;   =&gt; 1967,</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="x">    ],</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="x">    [</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="hll"><span class="x">        &#39;isbn&#39;   =&gt; &#39;978-84-204-8305-3&#39;,</span>
+</span><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="x">        &#39;titulo&#39; =&gt; &#39;La sombra del viento&#39;,</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="x">        &#39;autor&#39;  =&gt; &#39;Carlos Ruiz Zafón&#39;,</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="x">        &#39;anio&#39;   =&gt; 2001,</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="x">    ],</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="x">];</span>
 </code></pre></div></td></tr></table></div>
 <p>Para acceder a un campo concreto de un elemento concreto, combinas los dos tipos de acceso:</p>
 <div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
-<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="hll"><span class="x">echo $incidencias[0][&#39;titulo&#39;];   ## → Impresora sin papel</span>
-</span><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="hll"><span class="x">echo $incidencias[1][&#39;estado&#39;];   ## → en_proceso</span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="hll"><span class="x">echo $libros[0][&#39;titulo&#39;];   ## → Cien años de soledad</span>
+</span><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="hll"><span class="x">echo $libros[1][&#39;autor&#39;];    ## → Carlos Ruiz Zafón</span>
 </span></code></pre></div></td></tr></table></div>
 <p>La estructura HTML natural para presentar un array de arrays es una <strong>tabla</strong>: cada elemento del array exterior se convierte en una fila <code>&lt;tr&gt;</code>, y cada campo del array asociativo interior en una celda <code>&lt;td&gt;</code>.</p>
 <h2 id="recorrer-arrays-con-foreach">Recorrer arrays con <code>foreach</code><a class="headerlink" href="#recorrer-arrays-con-foreach" title="Permanent link">&para;</a></h2>
@@ -1486,15 +1482,15 @@
 <span class="normal"><a href="#__codelineno-11-14">14</a></span>
 <span class="normal"><a href="#__codelineno-11-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="x">&lt;table&gt;</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="hll"><span class="x">  &lt;thead&gt;</span>
-</span><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="x">    &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Título&lt;/th&gt;&lt;th&gt;Prioridad&lt;/th&gt;&lt;th&gt;Estado&lt;/th&gt;&lt;/tr&gt;</span>
+</span><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="x">    &lt;tr&gt;&lt;th&gt;ISBN&lt;/th&gt;&lt;th&gt;Título&lt;/th&gt;&lt;th&gt;Autor&lt;/th&gt;&lt;th&gt;Año&lt;/th&gt;&lt;/tr&gt;</span>
 <a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="x">  &lt;/thead&gt;</span>
 <a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="x">  &lt;tbody&gt;</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$incidencias</span> <span class="k">as</span> <span class="nv">$inc</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$libros</span> <span class="k">as</span> <span class="nv">$libro</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
 <a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="x">    &lt;tr&gt;</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="hll"><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;titulo&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
-</span><a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;prioridad&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;estado&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$libro</span><span class="p">[</span><span class="s1">&#39;isbn&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="hll"><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$libro</span><span class="p">[</span><span class="s1">&#39;titulo&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+</span><a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$libro</span><span class="p">[</span><span class="s1">&#39;autor&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="x">      &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$libro</span><span class="p">[</span><span class="s1">&#39;anio&#39;</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
 <a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="x">    &lt;/tr&gt;</span>
 <a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
 <a id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="x">  &lt;/tbody&gt;</span>
@@ -1502,18 +1498,18 @@
 </code></pre></div></td></tr></table></div>
 <p>Observa dónde están el <code>foreach</code> y el <code>endforeach</code>: <strong>fuera</strong> de <code>&lt;tr&gt;</code>, no dentro. Por cada iteración del bucle se genera una fila completa. Meter el <code>foreach</code> dentro de <code>&lt;tr&gt;</code> es un error habitual que produce tablas rotas.</p>
 <h3 id="recorrer-con-clave-y-valor">Recorrer con clave y valor<a class="headerlink" href="#recorrer-con-clave-y-valor" title="Permanent link">&para;</a></h3>
-<p>La segunda forma (<code>$clave =&gt; $valor</code>) es útil cuando quieres mostrar también la clave. Por ejemplo, para listar todos los campos de una incidencia sin nombrarlos uno a uno:</p>
+<p>La segunda forma (<code>$clave =&gt; $valor</code>) es útil cuando quieres mostrar también la clave. Por ejemplo, para listar todos los campos de un libro sin nombrarlos uno a uno:</p>
 <div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
 <span class="normal"><a href="#__codelineno-12-2">2</a></span>
 <span class="normal"><a href="#__codelineno-12-3">3</a></span>
-<span class="normal"><a href="#__codelineno-12-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$incidencia</span> <span class="k">as</span> <span class="nv">$campo</span> <span class="o">=&gt;</span> <span class="nv">$valor</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$libro</span> <span class="k">as</span> <span class="nv">$campo</span> <span class="o">=&gt;</span> <span class="nv">$valor</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
 </span><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="x">  &lt;li&gt;&lt;strong&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$campo</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">:&lt;/strong&gt;</span>
 <a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="x">      </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$valor</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
 <a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition warning">
 <p class="admonition-title">Cada <code>foreach</code> necesita su <code>endforeach</code></p>
-<p>Si te saltas un <code>endforeach</code>, la página entera deja de funcionar: PHP intentará seguir interpretando el resto del fichero como parte del bucle. Lo mismo pasará con <code>endif</code>, <code>endwhile</code>, etc., que verás en los próximos labs.</p>
+<p>Si te saltas un <code>endforeach</code>, la página entera deja de funcionar: PHP intentará seguir interpretando el resto del fichero como parte del bucle. Lo mismo pasará con otros bloques de sintaxis alternativa como <code>endif</code>, <code>endwhile</code>, etc.</p>
 </div>
 <h2 id="contar-elementos-count">Contar elementos: <code>count()</code><a class="headerlink" href="#contar-elementos-count" title="Permanent link">&para;</a></h2>
 <p><code>count($array)</code> devuelve el número de elementos del array (entero):</p>
@@ -1521,8 +1517,8 @@
 <span class="normal"><a href="#__codelineno-13-2">2</a></span>
 <span class="normal"><a href="#__codelineno-13-3">3</a></span>
 <span class="normal"><a href="#__codelineno-13-4">4</a></span>
-<span class="normal"><a href="#__codelineno-13-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="x">$incidencias = [/* ... tres elementos ... */];</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="x">$total       = count($incidencias);   ## 3</span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="x">$libros = [/* ... tres elementos ... */];</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="x">$total  = count($libros);              ## 3</span>
 <a id="__codelineno-13-3" name="__codelineno-13-3"></a>
 <a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="x">$ejemplo_vacio = [];</span>
 <a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="x">count($ejemplo_vacio);                 ## 0</span>
@@ -1538,25 +1534,25 @@
 <span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
 <span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-14-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="hll"><span class="x">$total_incidencias = count($incidencias);</span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="hll"><span class="x">$total_libros = count($libros);</span>
 </span><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="x">?&gt;</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="x">&lt;h1&gt;Listado de incidencias&lt;/h1&gt;</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="x">&lt;h1&gt;Catálogo&lt;/h1&gt;</span>
 <a id="__codelineno-14-4" name="__codelineno-14-4"></a>
-<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="hll"><span class="x">&lt;p&gt;Total: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$total_incidencias</span> <span class="cp">?&gt;</span><span class="x"> incidencias.&lt;/p&gt;</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="hll"><span class="x">&lt;p&gt;Total: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$total_libros</span> <span class="cp">?&gt;</span><span class="x"> libros.&lt;/p&gt;</span>
 </span><a id="__codelineno-14-6" name="__codelineno-14-6"></a>
 <a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="x">&lt;table&gt;</span>
 <a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="x">  &lt;!-- ... --&gt;</span>
 <a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="hll"><span class="x">&lt;/table&gt;</span>
-</span><a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="x">&lt;p&gt;Fin del listado (</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$total_incidencias</span> <span class="cp">?&gt;</span><span class="x">).&lt;/p&gt;</span>
+</span><a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="x">&lt;p&gt;Fin del catálogo (</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$total_libros</span> <span class="cp">?&gt;</span><span class="x">).&lt;/p&gt;</span>
 </code></pre></div></td></tr></table></div>
-<p>Así el código queda más claro: si mañana cambias el cálculo del total (por ejemplo, para contar solo las abiertas), solo tocas una línea.</p>
+<p>Así el código queda más claro: si mañana cambias el cálculo del total (por ejemplo, para contar solo los libros publicados después de 2000), solo tocas una línea.</p>
 <div class="admonition tip">
 <p class="admonition-title">Función <code>count</code> en bash vs en PHP</p>
 <p>En bash cuentas elementos de un array con <code>${#arr[@]}</code>. En PHP, <code>count($arr)</code> hace exactamente lo mismo, pero con una sintaxis mucho más cómoda: una función normal a la que le pasas el array como argumento.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title"><code>empty()</code> viene en el Lab 04</p>
-<p>Para distinguir si una lista tiene contenido o está vacía existe la función <code>empty()</code>, pero la veremos en el Lab 04 junto con <code>if</code>, donde la usarás de verdad para decidir qué mostrar en la página.</p>
+<p class="admonition-title">Para detectar listas vacías existe <code>empty()</code></p>
+<p>Para distinguir si una lista tiene contenido o está vacía existe la función <code>empty($array)</code>, que devuelve <code>true</code> cuando el array no tiene elementos (o cuando la variable no existe). Suele combinarse con <code>if</code> para mostrar un mensaje alternativo cuando no hay datos que listar.</p>
 </div>
 
 

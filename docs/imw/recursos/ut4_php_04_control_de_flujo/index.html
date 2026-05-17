@@ -1220,9 +1220,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dos-variables-con-el-mismo-nombre" class="md-nav__link">
+  <a href="#colision-de-nombres-entre-variable-de-filtro-y-campo-iterado" class="md-nav__link">
     <span class="md-ellipsis">
-      Dos variables con el mismo nombre
+      Colisión de nombres entre variable de filtro y campo iterado
     </span>
   </a>
   
@@ -1259,7 +1259,7 @@
 
 
 <h1 id="control-de-flujo-en-php">CONTROL DE FLUJO EN PHP<a class="headerlink" href="#control-de-flujo-en-php" title="Permanent link">&para;</a></h1>
-<p>Estos apuntes son material de consulta para el Lab 04. Cubren los conceptos que vas a aplicar allí: condicionales <code>if</code> / <code>elseif</code> / <code>else</code>, operadores de comparación y lógicos, el operador <code>??</code> para leer parámetros de la URL con valor por defecto, el patrón de filtrar con <code>if</code> dentro de un <code>foreach</code>, y la función <code>empty()</code> para detectar listas vacías.</p>
+<p>Estos apuntes son material de consulta para el Lab 04. Cubren los conceptos que se van a aplicar en el mismo: condicionales <code>if</code> / <code>elseif</code> / <code>else</code>, operadores de comparación y lógicos, el operador <code>??</code> para leer parámetros de la URL con valor por defecto, el patrón de filtrar con <code>if</code> dentro de un <code>foreach</code>, y la función <code>empty()</code> para detectar listas vacías.</p>
 <h2 id="condicionales-con-if">Condicionales con <code>if</code><a class="headerlink" href="#condicionales-con-if" title="Permanent link">&para;</a></h2>
 <h3 id="sintaxis-basica">Sintaxis básica<a class="headerlink" href="#sintaxis-basica" title="Permanent link">&para;</a></h3>
 <p>Un <code>if</code> ejecuta un bloque de código solo si una condición se cumple:</p>
@@ -1369,7 +1369,7 @@
 </tbody>
 </table>
 <h3 id="sintaxis-alternativa-dentro-de-html">Sintaxis alternativa dentro de HTML<a class="headerlink" href="#sintaxis-alternativa-dentro-de-html" title="Permanent link">&para;</a></h3>
-<p>Igual que con <code>foreach</code> del Lab 03, dentro de plantillas HTML usamos la forma con <code>:</code> / <code>endif</code> en lugar de llaves. Se lee mucho mejor cuando el cuerpo contiene HTML:</p>
+<p>Igual que con <code>foreach</code> (apuntes anteriores), dentro de plantillas HTML usamos la forma con <code>:</code> / <code>endif</code> en lugar de llaves. Se lee mucho mejor cuando el cuerpo contiene HTML:</p>
 <div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
 <span class="normal"><a href="#__codelineno-2-2">2</a></span>
 <span class="normal"><a href="#__codelineno-2-3">3</a></span>
@@ -1413,41 +1413,25 @@
 </thead>
 <tbody>
 <tr>
-<td><code>http://gestor.local/estado.php</code></td>
+<td><code>http://ejemplo.local/pagina.php</code></td>
 <td><code>'abierta'</code> (por defecto, no hay parámetro)</td>
 </tr>
 <tr>
-<td><code>http://gestor.local/estado.php?estado=resuelta</code></td>
+<td><code>http://ejemplo.local/pagina.php?estado=resuelta</code></td>
 <td><code>'resuelta'</code></td>
 </tr>
 <tr>
-<td><code>http://gestor.local/estado.php?estado=</code></td>
+<td><code>http://ejemplo.local/pagina.php?estado=</code></td>
 <td><code>''</code> (cadena vacía, pero la clave existe: <code>??</code> <strong>no</strong> la sustituye)</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p><code>??</code> solo actúa cuando el valor es <code>null</code> o la clave no existe. Una cadena vacía <code>''</code> <strong>no</strong> la reemplaza. Para tu Lab 04 esto es suficiente; el matiz se profundiza en el apunte de formularios.</p>
+<p><code>??</code> solo actúa cuando el valor es <code>null</code> o la clave no existe. Una cadena vacía <code>''</code> <strong>no</strong> la reemplaza. Para listados básicos esto es suficiente; con formularios conviene una validación más estricta.</p>
 </blockquote>
-<p>Comparación con bash:</p>
-<table>
-<thead>
-<tr>
-<th>Bash</th>
-<th>PHP</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>${VAR:-valor_por_defecto}</code></td>
-<td><code>$var ?? 'valor_por_defecto'</code></td>
-</tr>
-</tbody>
-</table>
-<p>El paralelismo es casi exacto: en los dos lenguajes existe un operador corto para "usa esto, o este valor por defecto si no hay nada".</p>
 <h3 id="_get-que-es-y-de-donde-viene"><code>$_GET</code>: qué es y de dónde viene<a class="headerlink" href="#_get-que-es-y-de-donde-viene" title="Permanent link">&para;</a></h3>
 <p><code>$_GET</code> es una variable especial de PHP: un array asociativo donde PHP pone automáticamente los parámetros que lleguen por la <strong>query string</strong> de la URL (todo lo que va después del <code>?</code>).</p>
-<p>Para una URL como <code>http://gestor.local/estado.php?estado=resuelta&amp;prio=alta</code>, PHP crea:</p>
+<p>Para una URL como <code>http://ejemplo.local/pagina.php?estado=resuelta&amp;prio=alta</code>, PHP crea:</p>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="x">$_GET = [</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="x">    &#39;estado&#39; =&gt; &#39;resuelta&#39;,</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="x">    &#39;prio&#39;   =&gt; &#39;alta&#39;,</span>
@@ -1467,8 +1451,8 @@
 </span><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="hll"><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;estado&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;abierta&#39;</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
 </span><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="x">    &lt;li&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;titulo&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
 <a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="hll"><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
-</span><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="x">&lt;/ul&gt;</span>
+</span><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
+</span><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="x">&lt;/ul&gt;</span>
 </code></pre></div></td></tr></table></div>
 <p>Cómo funciona, paso a paso:</p>
 <ol>
@@ -1485,32 +1469,79 @@
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span><span class="x">             ## se cierra foreach (después)</span>
 </code></pre></div>
 <p>Un error común es cerrar primero el <code>endforeach</code> y después el <code>endif</code>. Si lo haces, PHP entiende que estás cerrando bloques que no existen y rompe la página.</p>
-<h3 id="dos-variables-con-el-mismo-nombre">Dos variables con el mismo nombre<a class="headerlink" href="#dos-variables-con-el-mismo-nombre" title="Permanent link">&para;</a></h3>
-<p>En el Lab 04 vas a tener <strong>dos variables <code>estado</code> distintas</strong> en el mismo fichero, y es importante no confundirlas:</p>
-<ul>
-<li><code>$estado</code> del Paso 3 → viene de la URL (<code>$_GET['estado'] ?? 'todos'</code>). Es el estado "del filtro".</li>
-<li><code>$inc['estado']</code> del Paso 4 → es el estado <strong>de cada incidencia</strong> dentro del <code>foreach</code>.</li>
-</ul>
-<p>La primera la lee PHP antes de empezar el bucle; la segunda cambia en cada iteración. En el Paso 5 las combinarás (filtrar cada <code>$inc['estado']</code> comparándolo con el <code>$estado</code> que viene de la URL).</p>
-<h2 id="detectar-listas-vacias-con-empty">Detectar listas vacías con <code>empty()</code><a class="headerlink" href="#detectar-listas-vacias-con-empty" title="Permanent link">&para;</a></h2>
-<p><code>empty($array)</code> devuelve <code>true</code> si el array está vacío o no existe, y <code>false</code> si tiene al menos un elemento. Es la forma habitual de decidir si pintar la lista o un mensaje alternativo:</p>
+<h3 id="colision-de-nombres-entre-variable-de-filtro-y-campo-iterado">Colisión de nombres entre variable de filtro y campo iterado<a class="headerlink" href="#colision-de-nombres-entre-variable-de-filtro-y-campo-iterado" title="Permanent link">&para;</a></h3>
+<p>A veces un mismo fichero define una variable "global" (por ejemplo, leída de la URL) y dentro de un <code>foreach</code> aparece una clave de array <strong>con el mismo nombre</strong>. Ejemplo típico: filtrar una lista de elementos por un valor que viene de la URL.</p>
 <div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
 <span class="normal"><a href="#__codelineno-8-2">2</a></span>
 <span class="normal"><a href="#__codelineno-8-3">3</a></span>
 <span class="normal"><a href="#__codelineno-8-4">4</a></span>
 <span class="normal"><a href="#__codelineno-8-5">5</a></span>
 <span class="normal"><a href="#__codelineno-8-6">6</a></span>
-<span class="normal"><a href="#__codelineno-8-7">7</a></span>
-<span class="normal"><a href="#__codelineno-8-8">8</a></span>
-<span class="normal"><a href="#__codelineno-8-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$incidencias</span><span class="p">))</span><span class="o">:</span> <span class="cp">?&gt;</span>
-</span><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="x">  &lt;p&gt;No hay incidencias registradas.&lt;/p&gt;</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">else</span><span class="o">:</span> <span class="cp">?&gt;</span>
-</span><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="x">  &lt;ul&gt;</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="hll"><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$incidencias</span> <span class="k">as</span> <span class="nv">$inc</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
-</span><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="x">    &lt;li&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;titulo&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="x">  &lt;/ul&gt;</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
+<span class="normal"><a href="#__codelineno-8-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="x">$estado = $_GET[&#39;estado&#39;] ?? &#39;todos&#39;;   ## valor del filtro (una vez)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="x">foreach ($incidencias as $inc) {</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="x">    if ($inc[&#39;estado&#39;] === $estado) {   ## ¿cuál es cuál?</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="x">        echo $inc[&#39;titulo&#39;];</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="x">    }</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="x">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Aquí conviven dos cosas distintas que comparten el nombre <code>estado</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Expresión</th>
+<th>Qué es</th>
+<th>Cuándo se calcula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$estado</code></td>
+<td>El valor del filtro que llega por URL.</td>
+<td>Una sola vez, antes del bucle.</td>
+</tr>
+<tr>
+<td><code>$inc['estado']</code></td>
+<td>El campo <code>estado</code> del elemento actual del bucle.</td>
+<td>En cada iteración, con un valor distinto.</td>
+</tr>
+</tbody>
+</table>
+<p>PHP las distingue sin problema, pero quien <strong>lee</strong> el código tiene que recordar cuál es cuál. Para ahorrarte sustos, <strong>renombra la variable del filtro</strong> para que se vea de un vistazo que no es lo mismo:</p>
+<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="hll"><span class="x">$filtro_estado = $_GET[&#39;estado&#39;] ?? &#39;todos&#39;;</span>
+</span><a id="__codelineno-9-2" name="__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="x">foreach ($incidencias as $inc) {</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="hll"><span class="x">    if ($inc[&#39;estado&#39;] === $filtro_estado) {</span>
+</span><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="x">        echo $inc[&#39;titulo&#39;];</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="x">    }</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="x">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Es un poco más largo, pero a cambio el código se lee solo.</p>
+<h2 id="detectar-listas-vacias-con-empty">Detectar listas vacías con <code>empty()</code><a class="headerlink" href="#detectar-listas-vacias-con-empty" title="Permanent link">&para;</a></h2>
+<p><code>empty($array)</code> devuelve <code>true</code> si el array está vacío o no existe, y <code>false</code> si tiene al menos un elemento. Es la forma habitual de decidir si mostrar la lista o un mensaje alternativo:</p>
+<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">6</a></span>
+<span class="normal"><a href="#__codelineno-10-7">7</a></span>
+<span class="normal"><a href="#__codelineno-10-8">8</a></span>
+<span class="normal"><a href="#__codelineno-10-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$incidencias</span><span class="p">))</span><span class="o">:</span> <span class="cp">?&gt;</span>
+</span><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="x">  &lt;p&gt;No hay incidencias registradas.&lt;/p&gt;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">else</span><span class="o">:</span> <span class="cp">?&gt;</span>
+</span><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="x">  &lt;ul&gt;</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="hll"><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$incidencias</span> <span class="k">as</span> <span class="nv">$inc</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+</span><a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="x">    &lt;li&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$inc</span><span class="p">[</span><span class="s1">&#39;titulo&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/li&gt;</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="x">  </span><span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="x">  &lt;/ul&gt;</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="hll"><span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
 </span></code></pre></div></td></tr></table></div>
 <p>La estructura tiene dos niveles:</p>
 <ol>
