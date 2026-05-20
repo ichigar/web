@@ -1738,48 +1738,70 @@
 <p class="admonition-title">Conceptos</p>
 <ul>
 <li>Por defecto PHP <strong>oculta los errores</strong> (configuración pensada para producción). Durante el desarrollo necesitamos verlos.</li>
-<li><code>error_reporting(E_ALL)</code> activa todos los avisos.</li>
-<li><code>ini_set('display_errors', '1')</code> los muestra en pantalla.</li>
-<li>Estas dos líneas van <strong>al principio</strong> del fichero PHP <strong>solo durante el desarrollo</strong>.</li>
-<li>En un servidor real (producción), <strong>nunca</strong> se muestran errores al usuario: se guardan en logs y el usuario ve una página genérica. El log de Apache está en <code>/var/log/apache2/error.log</code>.</li>
+<li>Hay dos niveles donde se controla esto:<ul>
+<li><strong>A nivel global del servidor</strong>: en el fichero <code>php.ini</code> de Apache, con la directiva <code>display_errors</code>. Es la única forma de ver los <strong>errores de parseo</strong> (<code>Parse error</code>), porque ocurren antes de que PHP llegue a ejecutar ninguna línea de tu script.</li>
+<li><strong>A nivel de script</strong>: con <code>error_reporting(E_ALL)</code> y <code>ini_set('display_errors', '1')</code> al principio del fichero. Solo afectan a errores <strong>en tiempo de ejecución</strong> (variables no definidas, divisiones por cero, etc.).</li>
+</ul>
+</li>
+<li>Para el desarrollo necesitamos <strong>ambos</strong> activos. En un servidor real (producción), <strong>ninguno</strong> se muestra al usuario: los errores se guardan en logs y el usuario ve una página genérica. El log de Apache está en <code>/var/log/apache2/error.log</code>.</li>
 </ul>
 </div>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Configurar PHP para mostrar errores durante el desarrollo, provocar un error a propósito para ver cómo aparece, y aprender a leerlo.</p>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 1 — Activar errores.</strong> Edita <code>~/gestor/public/index.php</code> y añade estas dos líneas justo después de <code>&lt;?php</code>:</p>
-<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
-<span class="normal"><a href="#__codelineno-16-2">2</a></span>
-<span class="normal"><a href="#__codelineno-16-3">3</a></span>
-<span class="normal"><a href="#__codelineno-16-4">4</a></span>
-<span class="normal"><a href="#__codelineno-16-5">5</a></span>
-<span class="normal"><a href="#__codelineno-16-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="cp">&lt;?php</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="hll"><span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
-</span><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="hll"><span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
-</span><a id="__codelineno-16-4" name="__codelineno-16-4"></a>
-<a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="nv">$titulo</span> <span class="o">=</span> <span class="s2">&quot;Mi gestor de incidencias&quot;</span><span class="p">;</span>
-<a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="c1">// ... resto del código ...</span>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Objetivo.</strong> Configurar PHP para mostrar errores durante el desarrollo (a nivel global y a nivel de script), provocar un error a propósito para ver cómo aparece, y aprender a leerlo.</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 1 — Activar <code>display_errors</code> en <code>php.ini</code> (en el servidor).</strong> Esta es la configuración global que permite ver los errores de parseo en el navegador.</p>
+<p>Primero, localiza el fichero <code>php.ini</code> que usa Apache (la versión exacta puede variar):</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ls<span class="w"> </span>/etc/php/*/apache2/php.ini
+</code></pre></div>
+<p>Te devolverá algo como <code>/etc/php/8.3/apache2/php.ini</code>. Edítalo con <code>sudo nano</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/php/8.3/apache2/php.ini
+</code></pre></div>
+<p>Dentro del editor pulsa <code>Ctrl+W</code> para buscar y escribe <code>display_errors</code>. Busca la línea (no comentada) que pone:</p>
+<div class="language-ini highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="na">display_errors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Off</span>
+</code></pre></div>
+<p>Cámbiala a:</p>
+<div class="language-ini highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="na">display_errors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">On</span>
+</code></pre></div>
+<p>Guarda (Ctrl+O, Enter) y sal (Ctrl+X). Recarga Apache para que aplique el cambio:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>apache2
+</code></pre></div>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 2 — Activar errores también a nivel de script.</strong> Edita <code>~/gestor/public/index.php</code> y añade estas dos líneas justo después de <code>&lt;?php</code>:</p>
+<div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span>
+<span class="normal"><a href="#__codelineno-21-4">4</a></span>
+<span class="normal"><a href="#__codelineno-21-5">5</a></span>
+<span class="normal"><a href="#__codelineno-21-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="cp">&lt;?php</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="hll"><span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
+</span><a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="hll"><span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
+</span><a id="__codelineno-21-4" name="__codelineno-21-4"></a>
+<a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="nv">$titulo</span> <span class="o">=</span> <span class="s2">&quot;Mi gestor de incidencias&quot;</span><span class="p">;</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="c1">// ... resto del código ...</span>
 </code></pre></div></td></tr></table></div>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 2 — Provocar un error.</strong> Borra el punto y coma del final de una línea, por ejemplo:</p>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="x">$titulo = &quot;Mi gestor de incidencias&quot;   // &lt;-- sin ;</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="x">$alumno = &quot;Tu nombre&quot;;</span>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 3 — Provocar un error de parseo.</strong> Borra el punto y coma del final de una línea, por ejemplo:</p>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="x">$titulo = &quot;Mi gestor de incidencias&quot;   // &lt;-- sin ;</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="x">$alumno = &quot;Tu nombre&quot;;</span>
 </code></pre></div>
 <p>Recarga <code>http://gestor.local</code>. Debes ver un mensaje de error que indica el fichero, la línea y el tipo de error (<code>Parse error</code> o <code>syntax error</code>).</p>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 3 — Ver el log de Apache.</strong> En otra terminal, lanza:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/apache2/error.log
+<div class="admonition note">
+<p class="admonition-title">¿Por qué hizo falta tocar <code>php.ini</code> para este error?</p>
+<p>Las dos líneas que añadiste en la Tarea 2 (<code>error_reporting</code> e <code>ini_set</code>) están <strong>dentro</strong> del script. Pero un <code>Parse error</code> se detecta antes de ejecutar nada: PHP no llega a leer esas dos líneas. Por eso necesitas <code>display_errors = On</code> en <code>php.ini</code>, que se aplica antes de cualquier script. Si no lo activas, en su lugar verás un error 500 genérico ("HTTP ERROR 500" o página en blanco).</p>
+</div>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 4 — Ver el log de Apache.</strong> En otra terminal, lanza:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/apache2/error.log
 </code></pre></div>
 <p>Recarga la página del navegador y observa qué aparece en la terminal. Sal del <code>tail</code> con Ctrl+C.</p>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 4 — Corregir el error.</strong> Devuelve el <code>;</code> a su sitio y confirma que la página vuelve a funcionar.</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 5 — Corregir el error.</strong> Devuelve el <code>;</code> a su sitio y confirma que la página vuelve a funcionar.</p>
 <div class="admonition warning">
 <p class="admonition-title">Checkpoint obligatorio antes de seguir</p>
 <p>Antes de pasar al Paso 6, ejecuta en el servidor:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>php<span class="w"> </span>-l<span class="w"> </span>~/gestor/public/index.php
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>php<span class="w"> </span>-l<span class="w"> </span>~/gestor/public/index.php
 </code></pre></div>
 <p>Debe responder <code>No syntax errors detected in ...</code>. Si da cualquier otro mensaje, <strong>no continúes</strong>: tu fichero tiene un error de sintaxis que hará fallar la corrección automática de este lab. Corrige el error y vuelve a lanzar <code>php -l</code> hasta que salga limpio.</p>
 </div>
 <details class="tip">
 <summary>Pista sobre leer errores de PHP</summary>
 <p>El mensaje típico tiene esta forma:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Parse error: syntax error, unexpected token &quot;$alumno&quot;, expecting &quot;,&quot; or &quot;;&quot;
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>in /home/tuusuario/gestor/public/index.php on line 6
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Parse error: syntax error, unexpected token &quot;$alumno&quot;, expecting &quot;,&quot; or &quot;;&quot;
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>in /home/tuusuario/gestor/public/index.php on line 6
 </code></pre></div>
 <p>Te dice <strong>qué</strong> ha pasado, <strong>dónde</strong> (fichero) y <strong>en qué línea</strong>. Siempre que veas un error, léelo entero antes de buscar en Google: el 80 % de las veces el error ya te dice cómo arreglarlo.</p>
 </details>
@@ -1787,7 +1809,8 @@
 <blockquote>
 <ol>
 <li>¿Qué información te da el mensaje de error de PHP? ¿Indica el fichero y la línea donde está el error?</li>
-<li>¿Por qué NO debemos dejar <code>error_reporting(E_ALL)</code> e <code>ini_set('display_errors', '1')</code> en un servidor de producción?</li>
+<li>¿Por qué las dos líneas que añadiste al script (<code>error_reporting</code> e <code>ini_set</code>) no bastaban para ver el <code>Parse error</code>, y fue necesario tocar <code>php.ini</code>?</li>
+<li>¿Por qué NO debemos dejar <code>display_errors = On</code> ni <code>error_reporting(E_ALL)</code> activos en un servidor de producción?</li>
 </ol>
 </blockquote>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m8 3a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3"/></svg></span> <strong>Captura requerida.</strong> Guarda en <code>capturas/paso5_error_php.png</code> una captura del navegador mostrando el mensaje de error <strong>antes</strong> de corregirlo. Debe verse:</p>
@@ -1797,7 +1820,8 @@
 </ul>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Verificación.</strong></p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Con el <code>;</code> eliminado, el navegador muestra un mensaje de error detallado.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>display_errors = On</code> está activo en <code>/etc/php/*/apache2/php.ini</code> y Apache se ha recargado.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Con el <code>;</code> eliminado, el navegador muestra un mensaje de error detallado (no un 500 genérico).</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El mismo error aparece en <code>/var/log/apache2/error.log</code>.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> He corregido el error y la página vuelve a funcionar.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>error_reporting(E_ALL)</code> e <code>ini_set('display_errors', '1')</code> están al inicio del fichero final.</li>
@@ -1849,26 +1873,26 @@
 <details class="tip">
 <summary>Pista: cómo usar funciones de PHP</summary>
 <p>Las funciones se llaman con paréntesis, igual que en el Paso 4 usaste <code>date("d/m/Y")</code>. Por ejemplo:</p>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="x">$php_version = phpversion();</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="x">$hostname    = gethostname();</span>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="x">$fecha_hora  = date(&#39;Y-m-d H:i:s&#39;);</span>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="x">$php_version = phpversion();</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="x">$hostname    = gethostname();</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="x">$fecha_hora  = date(&#39;Y-m-d H:i:s&#39;);</span>
 </code></pre></div>
 <p>Las <strong>constantes</strong> van sin paréntesis ni <code>$</code>:</p>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="x">$sistema_operativo = PHP_OS;</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="x">$directorio_actual = __DIR__;</span>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="x">$sistema_operativo = PHP_OS;</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="x">$directorio_actual = __DIR__;</span>
 </code></pre></div>
 </details>
 <details class="tip">
 <summary>Pista: cómo obtener el valor de <code>df -h</code> y <code>uptime</code></summary>
 <p>En una terminal de la VM, ejecuta:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>df<span class="w"> </span>-h<span class="w"> </span>/
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>df<span class="w"> </span>-h<span class="w"> </span>/
 </code></pre></div>
 <p>La salida tendrá varias columnas; copia el valor de la columna "Avail" (espacio disponible) de la línea que corresponde a <code>/</code>. Luego:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>uptime<span class="w"> </span>-p
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>uptime<span class="w"> </span>-p
 </code></pre></div>
 <p>Copia la cadena completa que devuelve. Mete ambos valores como cadenas literales en el PHP:</p>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="x">$espacio_libre = &#39;12G&#39;;                        // lo que te devolvió df</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="x">$uptime        = &#39;up 3 hours, 14 minutes&#39;;     // lo que te devolvió uptime -p</span>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="x">$espacio_libre = &#39;12G&#39;;                        // lo que te devolvió df</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="x">$uptime        = &#39;up 3 hours, 14 minutes&#39;;     // lo que te devolvió uptime -p</span>
 </code></pre></div>
 <p>Nota: PHP tiene funciones para ejecutar comandos del sistema directamente (<code>shell_exec()</code>), pero son peligrosas si se usan con datos del usuario y las veremos más adelante. De momento, copiar el valor a mano es la opción segura y didáctica.</p>
 </details>
@@ -1905,27 +1929,27 @@
 <details class="tip">
 <summary>Para alumnos que terminen pronto</summary>
 <p>Apache puede servir HTTPS incluso en local usando certificados autofirmados. Esto simula mejor un entorno real.</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Activar el módulo SSL de Apache</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>sudo<span class="w"> </span>a2enmod<span class="w"> </span>ssl
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="c1"># Generar certificado autofirmado (válido 365 días)</span>
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>sudo<span class="w"> </span>openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> </span>-nodes<span class="w"> </span>-days<span class="w"> </span><span class="m">365</span><span class="w"> </span>-newkey<span class="w"> </span>rsa:2048<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="w">  </span>-keyout<span class="w"> </span>/etc/ssl/private/gestor.key<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">  </span>-out<span class="w"> </span>/etc/ssl/certs/gestor.crt
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># Activar el módulo SSL de Apache</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>sudo<span class="w"> </span>a2enmod<span class="w"> </span>ssl
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="c1"># Generar certificado autofirmado (válido 365 días)</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>sudo<span class="w"> </span>openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> </span>-nodes<span class="w"> </span>-days<span class="w"> </span><span class="m">365</span><span class="w"> </span>-newkey<span class="w"> </span>rsa:2048<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="w">  </span>-keyout<span class="w"> </span>/etc/ssl/private/gestor.key<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="w">  </span>-out<span class="w"> </span>/etc/ssl/certs/gestor.crt
 </code></pre></div>
 <p>Añade al final de <code>/etc/apache2/sites-available/gestor.conf</code>:</p>
-<div class="language-apache highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:443</span><span class="nt">&gt;</span>
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="nb">ServerName</span><span class="w"> </span>gestor.local
-<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/home/TU_USUARIO/gestor/public</span>
-<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">    </span><span class="nb">SSLEngine</span><span class="w"> </span><span class="k">on</span>
-<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="w">    </span><span class="nb">SSLCertificateFile</span><span class="w"> </span><span class="sx">/etc/ssl/certs/gestor.crt</span>
-<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">    </span><span class="nb">SSLCertificateKeyFile</span><span class="w"> </span><span class="sx">/etc/ssl/private/gestor.key</span>
-<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>
-<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/home/TU_USUARIO/gestor/public</span><span class="nt">&gt;</span>
-<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="w">        </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">All</span>
-<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
-<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a><span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
-<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a><span class="nt">&lt;/VirtualHost&gt;</span>
+<div class="language-apache highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:443</span><span class="nt">&gt;</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="nb">ServerName</span><span class="w"> </span>gestor.local
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/home/TU_USUARIO/gestor/public</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">    </span><span class="nb">SSLEngine</span><span class="w"> </span><span class="k">on</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="w">    </span><span class="nb">SSLCertificateFile</span><span class="w"> </span><span class="sx">/etc/ssl/certs/gestor.crt</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w">    </span><span class="nb">SSLCertificateKeyFile</span><span class="w"> </span><span class="sx">/etc/ssl/private/gestor.key</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/home/TU_USUARIO/gestor/public</span><span class="nt">&gt;</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="w">        </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">All</span>
+<a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
+<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
+<a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="nt">&lt;/VirtualHost&gt;</span>
 </code></pre></div>
 <p>Recarga Apache (<code>sudo systemctl reload apache2</code>) y visita <code>https://gestor.local</code>. El navegador avisará de que el certificado no es de confianza (normal, es autofirmado), pero puedes seguir. Esta ampliación no se corrige.</p>
 </details>
@@ -1945,36 +1969,36 @@
 <hr />
 <h2 id="anexo-plantilla-de-respuestasmd">Anexo — Plantilla de <code>RESPUESTAS.md</code><a class="headerlink" href="#anexo-plantilla-de-respuestasmd" title="Permanent link">&para;</a></h2>
 <p>Crea un fichero llamado <code>RESPUESTAS.md</code> dentro de <code>apellido_nombre_lab01/</code> con esta plantilla:</p>
-<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="gh"># Respuestas — Lab 01 Entorno y primer script PHP</span>
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="gs">**Nombre:**</span> Apellido, Nombre
-<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="gs">**Fecha:**</span> YYYY-MM-DD
-<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>
-<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="gu">## Paso 1</span>
-<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>
-<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>(Tu respuesta: versión de Apache instalada — línea &quot;Server version&quot; de <span class="sb">`apache2 -v`</span>.)
-<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>
-<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="gu">## Paso 2</span>
-<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>
-<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>(Tu respuesta: versión de PHP y valor por defecto de <span class="sb">`display_errors`</span>.)
-<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>
-<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="gu">## Paso 3</span>
-<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>
-<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>(Tu respuesta: por qué es problema de seguridad tener datos o lógica dentro de <span class="sb">`public/`</span>, con un ejemplo concreto.)
-<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>
-<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a><span class="gu">## Paso 4</span>
-<a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a>
-<a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a>(Tu respuesta: diferencia entre el código PHP escrito y el HTML que recibe el navegador; qué ves en &quot;Ver código fuente&quot;.)
-<a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a>
-<a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a><span class="gu">## Paso 5</span>
-<a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a>
-<a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a><span class="k">1.</span> (Tu respuesta: qué información da el mensaje de error de PHP.)
-<a id="__codelineno-28-25" name="__codelineno-28-25" href="#__codelineno-28-25"></a><span class="k">2.</span> (Tu respuesta: por qué no dejar <span class="sb">`display_errors`</span> activo en producción.)
-<a id="__codelineno-28-26" name="__codelineno-28-26" href="#__codelineno-28-26"></a>
-<a id="__codelineno-28-27" name="__codelineno-28-27" href="#__codelineno-28-27"></a><span class="gu">## Paso 6</span>
-<a id="__codelineno-28-28" name="__codelineno-28-28" href="#__codelineno-28-28"></a>
-<a id="__codelineno-28-29" name="__codelineno-28-29" href="#__codelineno-28-29"></a><span class="k">1.</span> (Tu respuesta: lista de las 8+ variables de <span class="sb">`info_servidor.php`</span> con su origen — función PHP, constante PHP o copiado de la terminal.)
-<a id="__codelineno-28-30" name="__codelineno-28-30" href="#__codelineno-28-30"></a><span class="k">2.</span> (Tu respuesta: comparación con <span class="sb">`phpinfo.php`</span> del Paso 2 — cuál es más peligroso dejar accesible y dos tipos concretos de información que expone <span class="sb">`phpinfo()`</span> y no expone tu <span class="sb">`info_servidor.php`</span>.)
+<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="gh"># Respuestas — Lab 01 Entorno y primer script PHP</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="gs">**Nombre:**</span> Apellido, Nombre
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="gs">**Fecha:**</span> YYYY-MM-DD
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="gu">## Paso 1</span>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>(Tu respuesta: versión de Apache instalada — línea &quot;Server version&quot; de <span class="sb">`apache2 -v`</span>.)
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a>
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="gu">## Paso 2</span>
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a>
+<a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a>(Tu respuesta: versión de PHP y valor por defecto de <span class="sb">`display_errors`</span>.)
+<a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a>
+<a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a><span class="gu">## Paso 3</span>
+<a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a>
+<a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a>(Tu respuesta: por qué es problema de seguridad tener datos o lógica dentro de <span class="sb">`public/`</span>, con un ejemplo concreto.)
+<a id="__codelineno-33-17" name="__codelineno-33-17" href="#__codelineno-33-17"></a>
+<a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a><span class="gu">## Paso 4</span>
+<a id="__codelineno-33-19" name="__codelineno-33-19" href="#__codelineno-33-19"></a>
+<a id="__codelineno-33-20" name="__codelineno-33-20" href="#__codelineno-33-20"></a>(Tu respuesta: diferencia entre el código PHP escrito y el HTML que recibe el navegador; qué ves en &quot;Ver código fuente&quot;.)
+<a id="__codelineno-33-21" name="__codelineno-33-21" href="#__codelineno-33-21"></a>
+<a id="__codelineno-33-22" name="__codelineno-33-22" href="#__codelineno-33-22"></a><span class="gu">## Paso 5</span>
+<a id="__codelineno-33-23" name="__codelineno-33-23" href="#__codelineno-33-23"></a>
+<a id="__codelineno-33-24" name="__codelineno-33-24" href="#__codelineno-33-24"></a><span class="k">1.</span> (Tu respuesta: qué información da el mensaje de error de PHP.)
+<a id="__codelineno-33-25" name="__codelineno-33-25" href="#__codelineno-33-25"></a><span class="k">2.</span> (Tu respuesta: por qué no dejar <span class="sb">`display_errors`</span> activo en producción.)
+<a id="__codelineno-33-26" name="__codelineno-33-26" href="#__codelineno-33-26"></a>
+<a id="__codelineno-33-27" name="__codelineno-33-27" href="#__codelineno-33-27"></a><span class="gu">## Paso 6</span>
+<a id="__codelineno-33-28" name="__codelineno-33-28" href="#__codelineno-33-28"></a>
+<a id="__codelineno-33-29" name="__codelineno-33-29" href="#__codelineno-33-29"></a><span class="k">1.</span> (Tu respuesta: lista de las 8+ variables de <span class="sb">`info_servidor.php`</span> con su origen — función PHP, constante PHP o copiado de la terminal.)
+<a id="__codelineno-33-30" name="__codelineno-33-30" href="#__codelineno-33-30"></a><span class="k">2.</span> (Tu respuesta: comparación con <span class="sb">`phpinfo.php`</span> del Paso 2 — cuál es más peligroso dejar accesible y dos tipos concretos de información que expone <span class="sb">`phpinfo()`</span> y no expone tu <span class="sb">`info_servidor.php`</span>.)
 </code></pre></div>
 
 
