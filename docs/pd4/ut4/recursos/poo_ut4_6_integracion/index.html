@@ -1,0 +1,1741 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes y recursos de clase de SMR, ASIR y CE Python">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/pd4/ut4/recursos/poo_ut4_6_integracion/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>INTEGRACIÓN: MENSAJES FLASH Y API REST - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_ansi.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/footer-contrast.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/blog-terminal.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#integracion-mensajes-flash-y-api-rest" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              INTEGRACIÓN: MENSAJES FLASH Y API REST
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../smr/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../asir/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../ce-python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../blog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/tutoriales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutoriales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../smr/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../asir/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pni/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../imw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../soj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../ce-python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mensajes-flash" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mensajes flash
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mensajes flash">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-problema-resuelven" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué problema resuelven
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-es-un-mensaje-flash" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué es un mensaje flash
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-cookie-de-sesion-y-appsecret_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      La cookie de sesión y app.secret_key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guardar-mensajes-flash-en-el-route" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guardar mensajes flash en el route
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leer-mensajes-flash-en-la-plantilla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leer mensajes flash en la plantilla
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#categorias-y-estilos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Categorías y estilos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-rest-minima-en-flask" class="md-nav__link">
+    <span class="md-ellipsis">
+      API REST mínima en Flask
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API REST mínima en Flask">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#de-html-a-json-el-mismo-dominio-otro-canal" class="md-nav__link">
+    <span class="md-ellipsis">
+      De HTML a JSON: el mismo dominio, otro canal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-es-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué es JSON
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jsonify" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsonify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serializacion-lo-que-jsonify-espera-recibir" class="md-nav__link">
+    <span class="md-ellipsis">
+      Serialización: lo que jsonify espera recibir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routes-api-misma-capa-de-aplicacion-distinta-presentacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Routes API: misma capa de aplicación, distinta presentación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errores-en-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Errores en JSON
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuando-html-cuando-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuándo HTML, cuándo JSON
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-cierra-esta-fase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué cierra esta fase
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="integracion-mensajes-flash-y-api-rest">INTEGRACIÓN: MENSAJES FLASH Y API REST<a class="headerlink" href="#integracion-mensajes-flash-y-api-rest" title="Permanent link">&para;</a></h1>
+<p>Estas notas cubren dos piezas con las que se cierra la integración funcional de una app Flask: <strong>los mensajes flash</strong>, que permiten dar feedback al usuario tras una redirección, y la <strong>API REST mínima</strong>, que expone el mismo dominio en JSON sin reescribir nada por debajo.</p>
+<p>Conceptos previos trabajados:</p>
+<ul>
+<li>Una <strong>app Flask</strong> se construye con <code>app = Flask(__name__)</code> y registra rutas con decoradores <code>@app.route('/url')</code>. Cada decorador asocia una URL a una función que devuelve la respuesta.</li>
+<li>El patrón <strong>Post/Redirect/Get (PRG)</strong>: tras un POST con éxito, en lugar de devolver HTML directamente, se devuelve un <code>redirect(url_for('ruta'))</code> que provoca un GET a una URL distinta. Recargar esa URL final no reejecuta la operación. Es la forma estándar de evitar que pulsar F5 tras una operación en la que se cambia el estado del servidor se vuelva a ejecutar y deje el servidor en estado inconsistente.</li>
+<li>Cuando se sigue PRG, el dato que produce el POST (el cambio devuelto por una compra, el id del recurso recién creado…) no llega al GET que ve el usuario, porque son dos peticiones distintas. Es el problema que vienen a resolver los mensajes flash.</li>
+</ul>
+<hr />
+<h2 id="mensajes-flash">Mensajes flash<a class="headerlink" href="#mensajes-flash" title="Permanent link">&para;</a></h2>
+<h3 id="que-problema-resuelven">Qué problema resuelven<a class="headerlink" href="#que-problema-resuelven" title="Permanent link">&para;</a></h3>
+<p>Cuando aplicas PRG a una acción que produce un dato útil para el usuario, ese dato se pierde entre dos peticiones: el route que procesa el POST conoce el resultado, pero la respuesta que ve el usuario la genera otro route distinto tras el redirect.</p>
+<p>Ejemplo concreto: una operación de compra que devuelve la <em>vuelta del dinero</em> (el cambio sobrante). El route del POST tiene el cambio en una variable local; el route al que redirige —pongamos la página de inicio— no lo conoce. Necesitamos un canal que <strong>sobreviva al redirect</strong> y permita al primer route dejarle un mensaje al segundo.</p>
+<h3 id="que-es-un-mensaje-flash">Qué es un mensaje flash<a class="headerlink" href="#que-es-un-mensaje-flash" title="Permanent link">&para;</a></h3>
+<p>Un <strong>mensaje flash</strong> es una cadena de texto que un route guarda y otro route distinto lee, <strong>una sola vez</strong>, en la siguiente petición del mismo navegador.</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">flash</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">flash</span><span class="p">(</span><span class="n">mensaje</span><span class="p">,</span> <span class="n">categoria</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Comportamiento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ámbito</td>
+<td>Por navegador (cookie de sesión). Otro usuario no los ve.</td>
+</tr>
+<tr>
+<td>Persistencia</td>
+<td>De un solo uso. Se vacían al leerlos.</td>
+</tr>
+<tr>
+<td>Tamaño</td>
+<td>Pequeño (van en una cookie HTTP). No metas párrafos largos.</td>
+</tr>
+<tr>
+<td>Tipado</td>
+<td>Texto + una <strong>categoría libre</strong> (<code>'exito'</code>, <code>'info'</code>, <code>'error'</code>, o lo que decidas tú).</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Los flash no son persistencia de datos. No los uses para guardar estado del dominio: para eso está la base de datos. Son un <strong>canal de comunicación efímero</strong> entre dos peticiones consecutivas del mismo navegador.</p>
+</blockquote>
+<h3 id="la-cookie-de-sesion-y-appsecret_key">La cookie de sesión y <code>app.secret_key</code><a class="headerlink" href="#la-cookie-de-sesion-y-appsecret_key" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Qué es una cookie</p>
+<p>Una <strong>cookie</strong> es un pequeño fragmento de datos que el servidor le envía al navegador la primera vez que se comunica con él, el navegador lo guarda asociado a ese dominio, y se lo devuelve al servidor en cada petición posterior. Sirve para que el servidor pueda <strong>recordar algo entre peticiones distintas</strong> del cliente sin pedírselo otra vez al usuario: tu idioma preferido, el contenido del carrito, si ya estás logueado, o —como en estos apuntes— los mensajes flash pendientes de leer. La cookie tiene un tamaño máximo pequeño (unos pocos KB) y vive en el navegador del cliente, no en el servidor.</p>
+</div>
+<p>La <strong>cookie de sesión</strong> es la cookie concreta que Flask usa para guardar información de la sesión actual del usuario, incluidos los mensajes flash pendientes de leer. Flask <strong>firma</strong> esa cookie con una clave secreta que tú declaras al crear la app. La declaración va en el <strong>módulo donde creas la instancia <code>Flask</code></strong> (típicamente <code>app.py</code>, el fichero que arranca el servidor), justo después de <code>app = Flask(__name__)</code>:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="hll"><span class="n">app</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="s1">&#39;cambiar-esto-en-produccion&#39;</span>  <span class="c1">## solo para desarrollo</span>
+</span></code></pre></div></td></tr></table></div>
+<p>La firma garantiza que el contenido de la cookie no se ha manipulado desde el navegador: si alguien edita la cookie a mano para inyectar un mensaje falso, la firma deja de cuadrar y Flask la rechaza.</p>
+<div class="admonition warning">
+<p class="admonition-title">Firma ≠ cifrado</p>
+<p>Firmada <strong>no significa cifrada</strong>: el contenido viaja en claro y cualquiera con acceso al navegador (o las herramientas de desarrollador) puede leerlo. Lo que la firma impide es que el navegador lo modifique sin que Flask se entere. <strong>No metas datos sensibles en <code>flash</code> ni en <code>session</code></strong>: contraseñas, tokens privados, datos personales — nada de eso.</p>
+</div>
+<p>Sin <code>secret_key</code>, llamar a <code>flash(...)</code> lanza <code>RuntimeError: The session is unavailable because no secret key was set</code>: la sesión no funciona porque no hay con qué firmarla.</p>
+<div class="admonition warning">
+<p class="admonition-title">Mala práctica: dejar la clave secreta escrita en el código en producción</p>
+<p><div class="language-python highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">## Incorrecto: si el repositorio es público, cualquiera puede falsificar sesiones</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">app</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="s1">&#39;cambiar-esto-en-produccion&#39;</span>
+</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">## Correcto</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">app</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;FLASK_SECRET_KEY&#39;</span><span class="p">]</span>
+</code></pre></div></p>
+<p>El literal en código solo vale para desarrollo local, donde la clave nunca sale de tu máquina. En producción la clave se carga desde una variable de entorno o un fichero <code>.env</code> que va al <code>.gitignore</code>. La gestión de secretos en producción la verás en detalle en el módulo de despliegue; aquí basta con saber que <strong>el literal es solo para desarrollo</strong>.</p>
+</div>
+<h3 id="guardar-mensajes-flash-en-el-route">Guardar mensajes flash en el route<a class="headerlink" href="#guardar-mensajes-flash-en-el-route" title="Permanent link">&para;</a></h3>
+<p>En el route que procesa la acción, llama a <code>flash(...)</code> antes del <code>redirect</code>:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/comprar&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">comprar</span><span class="p">():</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="hll">            <span class="n">cambio</span> <span class="o">=</span> <span class="n">servicio</span><span class="o">.</span><span class="n">comprar</span><span class="p">()</span>
+</span><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="hll">            <span class="n">importe</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cambio</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;,&quot;</span><span class="p">)</span>
+</span><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="hll">            <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Compra realizada. Cambio: </span><span class="si">{</span><span class="n">importe</span><span class="si">}</span><span class="s2"> EUR.&quot;</span><span class="p">,</span> <span class="s1">&#39;exito&#39;</span><span class="p">)</span>
+</span><a id="__codelineno-4-8" name="__codelineno-4-8"></a>            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;inicio&#39;</span><span class="p">))</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a>        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a>            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;comprar.html&#39;</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="n">servicio</span><span class="o">.</span><span class="n">saldo</span><span class="p">(),</span> <span class="n">error</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)),</span> <span class="mi">400</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;comprar.html&#39;</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="n">servicio</span><span class="o">.</span><span class="n">saldo</span><span class="p">(),</span> <span class="n">error</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Fíjate en el patrón canónico de coma decimal española: el importe se extrae a una variable y se embebe en la frase. <strong>No</strong> aplicar <code>.replace(".", ",")</code> al string completo, porque convertiría también el punto final de la frase en coma.</p>
+<h3 id="leer-mensajes-flash-en-la-plantilla">Leer mensajes flash en la plantilla<a class="headerlink" href="#leer-mensajes-flash-en-la-plantilla" title="Permanent link">&para;</a></h3>
+<p>Los mensajes se leen con <code>get_flashed_messages(with_categories=true)</code> desde la plantilla. Lo natural es ponerlo en la plantilla base de la que heredan todas las páginas, para que aparezcan en cualquier destino del redirect:</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="hll">    {% with mensajes = get_flashed_messages(with_categories=true) %}
+</span><a id="__codelineno-5-3" name="__codelineno-5-3"></a>        {% if mensajes %}
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="hll">            <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;flashes&quot;</span><span class="p">&gt;</span>
+</span><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="hll">            {% for categoria, msg in mensajes %}
+</span><a id="__codelineno-5-6" name="__codelineno-5-6"></a>                <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;flash flash-{{ categoria }}&quot;</span><span class="p">&gt;</span>{{ msg }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>            {% endfor %}
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>            <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>        {% endif %}
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>    {% endwith %}
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>    {% block contenido %}{% endblock %}
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title"><code>{% with %}</code> en Jinja2</p>
+<p><code>{% with nombre = expresión %}…{% endwith %}</code> crea una <strong>variable local</strong> del bloque: solo existe entre las dos etiquetas, y sirve para no repetir la misma expresión varias veces. Aquí guardamos en <code>mensajes</code> el resultado de <code>get_flashed_messages(with_categories=true)</code> para usarlo en el <code>{% if %}</code> y en el <code>{% for %}</code> sin tener que volver a invocar la función. Es una de las pocas etiquetas de Jinja2 que no aparecen en plantillas simples: las habituales son <code>{% for %}</code>, <code>{% if %}</code>, <code>{% block %}</code> y <code>{% extends %}</code>.</p>
+<p><strong>No confundir con el <code>with</code> de Python.</strong> Aunque la palabra clave es la misma, son mecanismos distintos: el <code>with</code> de Python gestiona <strong>recursos</strong> (abre y cierra ficheros, conexiones, locks…) mediante el protocolo de context manager (<code>__enter__</code>/<code>__exit__</code>). El <code>{% with %}</code> de Jinja2 solo limita el ámbito de una variable local; no libera nada al cerrarse.</p>
+</div>
+<p>El parámetro <code>with_categories=true</code> cambia lo que devuelve la función:</p>
+<ul>
+<li><code>get_flashed_messages()</code> → lista de cadenas: <code>["Compra realizada...", "Sesión cerrada"]</code>.</li>
+<li><code>get_flashed_messages(with_categories=true)</code> → lista de pares <code>(categoría, mensaje)</code>: <code>[("exito", "Compra realizada..."), ("info", "Sesión cerrada")]</code>.</li>
+</ul>
+<p>Por eso desempaquetamos <code>for categoria, msg in mensajes</code>: porque pedimos las categorías, los elementos son pares.</p>
+<p><img alt="" src="../img6/flash_compra_realizada_sin_estilo.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Ojo al orden: <code>flash</code> guarda <code>(mensaje, categoría)</code>, <code>get_flashed_messages</code> devuelve <code>(categoría, mensaje)</code></p>
+<p>Las dos funciones tratan el par en <strong>orden inverso</strong>:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">flash</span><span class="p">(</span><span class="s2">&quot;Compra realizada...&quot;</span><span class="p">,</span> <span class="s2">&quot;exito&quot;</span><span class="p">)</span>          <span class="c1">## (mensaje, categoría)</span>
+</code></pre></div>
+<div class="language-jinja highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cp">{%</span> <span class="k">for</span> <span class="nv">categoria</span><span class="o">,</span> <span class="nv">msg</span> <span class="k">in</span> <span class="nv">get_flashed_messages</span><span class="o">(</span><span class="nv">with_categories</span><span class="o">=</span><span class="kp">true</span><span class="o">)</span> <span class="cp">%}</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="x">                                               </span><span class="c">{# (categoría, mensaje) #}</span>
+</code></pre></div>
+<p>Es un detalle de la API de Flask, no una errata. Si por costumbre lees el par como "primero el mensaje, después la categoría" en la plantilla, terminarás mostrando el texto del mensaje como clase CSS y el nombre de la categoría como contenido de la lista.</p>
+</div>
+<h3 id="categorias-y-estilos">Categorías y estilos<a class="headerlink" href="#categorias-y-estilos" title="Permanent link">&para;</a></h3>
+<p>La categoría es <strong>una etiqueta tuya, libre</strong>: <code>'exito'</code>, <code>'info'</code>, <code>'error'</code>, <code>'success'</code> en inglés, o cualquier otra que decidas. Flask no la interpreta: simplemente la guarda y la devuelve. En la plantilla la usamos como sufijo de la clase CSS (<code>flash-exito</code>, <code>flash-info</code>, <code>flash-error</code>), de modo que cada categoría se vea distinta.</p>
+<p>Para que esa diferenciación visual se note, <strong>tú defines las reglas CSS</strong> en tu hoja de estilos:</p>
+<div class="language-css highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">.</span><span class="nc">flash-exito</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#d4edda</span><span class="p">;</span><span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#155724</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="p">.</span><span class="nc">flash-info</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#d1ecf1</span><span class="p">;</span><span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#0c5460</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">.</span><span class="nc">flash-error</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#f8d7da</span><span class="p">;</span><span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#721c24</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Si no defines estilos, los mensajes aparecerán igual sin importar la categoría — funciona, pero pierde la referencia visual.</p>
+<p>Ejemplo con estilo de categoría "exito"</p>
+<p><img alt="" src="../img6/flash_compra_realizada.png" /></p>
+<p>Ejemplo con estilo de categoría "error"</p>
+<p><img alt="" src="../img6/flash_producto_no_seleccionado.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">El bloque va en la plantilla base, no en una página concreta</p>
+<p>Si pones el bloque flash solo en una plantilla concreta (digamos la del inicio), los mensajes que aparezcan tras un redirect a cualquier otra página no se verán. Colócalo en la plantilla base, dentro de <code>&lt;main&gt;</code> y antes del <code>{% block contenido %}</code>, para que cualquier página que herede del layout los muestre.</p>
+</div>
+<hr />
+<h2 id="api-rest-minima-en-flask">API REST mínima en Flask<a class="headerlink" href="#api-rest-minima-en-flask" title="Permanent link">&para;</a></h2>
+<h3 id="de-html-a-json-el-mismo-dominio-otro-canal">De HTML a JSON: el mismo dominio, otro canal<a class="headerlink" href="#de-html-a-json-el-mismo-dominio-otro-canal" title="Permanent link">&para;</a></h3>
+<p>La idea central de la arquitectura por capas en una app web es que la capa de aplicación (los servicios) y la de dominio (los modelos) no saben quién las llama. Si eso es cierto, debería ser posible añadir una <strong>segunda interfaz</strong> que hable un formato distinto —no HTML— sin tocar nada por debajo de la capa de presentación. Una <strong>API REST</strong> que devuelve datos en JSON es exactamente esa segunda interfaz.</p>
+<h3 id="que-es-json">Qué es JSON<a class="headerlink" href="#que-es-json" title="Permanent link">&para;</a></h3>
+<p><strong>JSON</strong> (<em>JavaScript Object Notation</em>) es un formato de texto para intercambiar datos estructurados entre programas. Su gracia: una lista de Python se serializa a un array JSON, un diccionario a un objeto JSON, y los tipos básicos (<code>str</code>, <code>int</code>, <code>float</code>, <code>bool</code>, <code>None</code>) tienen equivalente directo. Cualquier lenguaje moderno trae un parser JSON en su librería estándar.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>[
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    {&quot;codigo&quot;: &quot;A1&quot;, &quot;nombre&quot;: &quot;Agua&quot;, &quot;precio_final&quot;: 1.0, &quot;cantidad&quot;: 5},
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    {&quot;codigo&quot;: &quot;B2&quot;, &quot;nombre&quot;: &quot;Refresco&quot;, &quot;precio_final&quot;: 1.5, &quot;cantidad&quot;: 3}
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>]
+</code></pre></div>
+<blockquote>
+<p>JSON es <strong>datos</strong>, no presentación. No tiene estilos, ni botones, ni enlaces. Quien lo recibe decide qué hacer con él: pintarlo en una tabla HTML, consumirlo desde una app móvil que lo represente con sus propios componentes nativos, guardarlo en un fichero, mostrarlo por terminal, o ignorarlo.</p>
+</blockquote>
+<h3 id="jsonify"><code>jsonify</code><a class="headerlink" href="#jsonify" title="Permanent link">&para;</a></h3>
+<p><code>jsonify</code> es la <strong>función de Flask</strong> que convierte un diccionario o lista de Python en una respuesta HTTP con cabecera <code>Content-Type: application/json</code> y el cuerpo serializado a JSON.</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">jsonify</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">productos</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th><code>jsonify(...)</code></th>
+<th><code>json.dumps(...)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Devuelve</td>
+<td>Objeto <code>Response</code> de Flask</td>
+<td>Cadena de texto</td>
+</tr>
+<tr>
+<td>Cabecera <code>Content-Type</code></td>
+<td><code>application/json</code></td>
+<td>— (la pondrías tú)</td>
+</tr>
+<tr>
+<td>Listo para <code>return</code> en route</td>
+<td>Sí</td>
+<td>No (Flask lo trataría como HTML)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Usa siempre <code>jsonify</code> en routes Flask</p>
+<p><code>json.dumps</code> está pensado para serializar a un fichero o a una variable. <code>jsonify</code> está pensado para responder a una petición HTTP. La diferencia que más nota el cliente es la cabecera: con <code>jsonify</code>, herramientas como <code>curl</code>, navegadores y librerías cliente reconocen la respuesta como JSON y la muestran/parsean en consecuencia.</p>
+</div>
+<h3 id="serializacion-lo-que-jsonify-espera-recibir">Serialización: lo que <code>jsonify</code> espera recibir<a class="headerlink" href="#serializacion-lo-que-jsonify-espera-recibir" title="Permanent link">&para;</a></h3>
+<p><code>jsonify</code> serializa de forma directa los tipos JSON-nativos de Python (<code>str</code>, <code>int</code>, <code>float</code>, <code>bool</code>, <code>None</code>, <code>list</code>, <code>dict</code>), pero <strong>no sabe qué hacer con instancias de tus clases</strong>. Si tu servicio devuelve objetos del dominio, <code>jsonify(producto)</code> lanzará <code>TypeError: Object of type Producto is not JSON serializable</code>. Hay dos patrones habituales para convertir antes de pasar a <code>jsonify</code>, según lo que devuelva tu servicio:</p>
+<p><strong>Si devuelve tuplas posicionales</strong>, conviértelas a <code>dict</code> con <code>dict(zip(keys, tupla))</code>:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;codigo&#39;</span><span class="p">,</span> <span class="s1">&#39;nombre&#39;</span><span class="p">,</span> <span class="s1">&#39;precio_base&#39;</span><span class="p">,</span> <span class="s1">&#39;precio_final&#39;</span><span class="p">,</span> <span class="s1">&#39;cantidad&#39;</span><span class="p">,</span> <span class="s1">&#39;descuento&#39;</span><span class="p">]</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="n">productos</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">servicio</span><span class="o">.</span><span class="n">listar_productos</span><span class="p">()]</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">productos</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Aquí combinamos tres ideas de Python: una <strong>comprensión de lista</strong> (<code>[expr for t in iterable]</code>) que aplica la conversión a cada elemento, <code>zip(keys, t)</code> que empareja claves y valores por posición, y <code>dict(...)</code> que construye el diccionario a partir de esos pares. Este patrón existe porque el servicio devuelve datos compactos (tuplas) pero los consumidores —plantillas HTML, clientes JSON— prefieren nombres explícitos.</p>
+<p><strong>Si devuelve instancias de clases</strong>, añade un método <code>to_dict()</code> en la clase y úsalo:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span>
+<span class="normal"><a href="#__codelineno-12-7">7</a></span>
+<span class="normal"><a href="#__codelineno-12-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1">## En la capa de dominio — la responsabilidad de &quot;saber convertirme a dict&quot; la tiene el objeto</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">Producto</span><span class="p">:</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;codigo&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">codigo</span><span class="p">,</span> <span class="s1">&#39;nombre&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="o">...</span><span class="p">}</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="c1">## En la capa de presentación</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="n">productos</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">servicio</span><span class="o">.</span><span class="n">listar_productos</span><span class="p">()]</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">productos</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>Dos caminos distintos —<code>dict(zip(...))</code>, <code>to_dict()</code>— para una misma necesidad: que lo que llega a <code>jsonify</code> sea ya un <code>dict</code> (o una lista de <code>dict</code>).</p>
+</blockquote>
+<h3 id="routes-api-misma-capa-de-aplicacion-distinta-presentacion">Routes API: misma capa de aplicación, distinta presentación<a class="headerlink" href="#routes-api-misma-capa-de-aplicacion-distinta-presentacion" title="Permanent link">&para;</a></h3>
+<p>Compara un route que devuelve HTML con su gemelo API que devuelve JSON. Sirviendo la misma lista de productos:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/productos&#39;</span><span class="p">)</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">listar_productos</span><span class="p">():</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;codigo&#39;</span><span class="p">,</span> <span class="s1">&#39;nombre&#39;</span><span class="p">,</span> <span class="s1">&#39;precio_base&#39;</span><span class="p">,</span> <span class="s1">&#39;precio_final&#39;</span><span class="p">,</span> <span class="s1">&#39;cantidad&#39;</span><span class="p">,</span> <span class="s1">&#39;descuento&#39;</span><span class="p">]</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="hll">    <span class="n">productos</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">servicio</span><span class="o">.</span><span class="n">listar_productos</span><span class="p">()]</span>
+</span><a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;productos.html&#39;</span><span class="p">,</span> <span class="n">productos</span><span class="o">=</span><span class="n">productos</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span>
+<span class="normal"><a href="#__codelineno-14-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/productos&#39;</span><span class="p">)</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">api_productos</span><span class="p">():</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a>    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;codigo&#39;</span><span class="p">,</span> <span class="s1">&#39;nombre&#39;</span><span class="p">,</span> <span class="s1">&#39;precio_base&#39;</span><span class="p">,</span> <span class="s1">&#39;precio_final&#39;</span><span class="p">,</span> <span class="s1">&#39;cantidad&#39;</span><span class="p">,</span> <span class="s1">&#39;descuento&#39;</span><span class="p">]</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="hll">    <span class="n">productos</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">servicio</span><span class="o">.</span><span class="n">listar_productos</span><span class="p">()]</span>
+</span><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="hll">    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">productos</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Las dos primeras líneas que hacen la llamada al dominio son <strong>idénticas</strong>. La diferencia vive en la última línea: una renderiza HTML, la otra serializa JSON. El servicio no sabe —ni le importa— a cuál de los dos sirve en cada momento. Esta es la respuesta que el cliente recibe al pedir <code>/api/productos</code> (formateada con <code>python -m json.tool</code> para legibilidad):</p>
+<p><img alt="" src="../img6/curl_api_productos.png" /></p>
+<blockquote>
+<p>El convenio de nombrar las rutas API con el prefijo <code>/api/</code> no es obligatorio, pero es estándar de facto: separa visualmente las rutas pensadas para humanos de las pensadas para máquinas. En proyectos grandes los routes API se agrupan en un fichero aparte usando un mecanismo llamado <em>blueprint</em> que Flask trae de serie; en proyectos pequeños como el nuestro, dejarlos en el mismo fichero que las rutas HTML es perfectamente legítimo.</p>
+</blockquote>
+<h3 id="errores-en-json">Errores en JSON<a class="headerlink" href="#errores-en-json" title="Permanent link">&para;</a></h3>
+<p>Cuando un route HTML captura una excepción de dominio, devuelve HTML con código de error. El equivalente JSON devuelve un objeto JSON con la clave <code>error</code> y el mismo código HTTP:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span>
+<span class="normal"><a href="#__codelineno-15-7">7</a></span>
+<span class="normal"><a href="#__codelineno-15-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/producto/&lt;codigo&gt;&#39;</span><span class="p">)</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">api_producto</span><span class="p">(</span><span class="n">codigo</span><span class="p">):</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a>        <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;codigo&#39;</span><span class="p">,</span> <span class="s1">&#39;nombre&#39;</span><span class="p">,</span> <span class="s1">&#39;precio_base&#39;</span><span class="p">,</span> <span class="s1">&#39;precio_final&#39;</span><span class="p">,</span> <span class="s1">&#39;cantidad&#39;</span><span class="p">,</span> <span class="s1">&#39;descuento&#39;</span><span class="p">]</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a>        <span class="n">producto</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">servicio</span><span class="o">.</span><span class="n">obtener_producto</span><span class="p">(</span><span class="n">codigo</span><span class="p">)))</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="hll">        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">producto</span><span class="p">)</span>
+</span><a id="__codelineno-15-7" name="__codelineno-15-7"></a>    <span class="k">except</span> <span class="n">ProductoNoEncontradoError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8"></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">404</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>El código HTTP sigue siendo el mismo que en HTML (404 para no encontrado, 409 para conflicto, 400 para entrada inválida). Solo cambia el cuerpo: en vez de una página HTML con el mensaje, un JSON con la clave <code>error</code>. El cliente decide qué hacer con ese mensaje según su naturaleza —mostrarlo en pantalla, registrarlo en un log, reintentar…</p>
+</blockquote>
+<p>Con <code>curl -i</code> se ven a la vez el código de estado, las cabeceras (<code>Content-Type: application/json</code> confirma que la respuesta es JSON, no una página HTML de error) y el cuerpo del JSON:</p>
+<p><img alt="" src="../img6/curl_api_producto_noencontrado.png" /></p>
+<h3 id="cuando-html-cuando-json">Cuándo HTML, cuándo JSON<a class="headerlink" href="#cuando-html-cuando-json" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Canal</th>
+<th>Para quién</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML</td>
+<td>Humanos con navegador</td>
+<td><code>/productos</code> muestra una tabla con enlaces.</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>Programas (scripts, apps móviles, frontends SPA, otros servicios)</td>
+<td><code>/api/productos</code> devuelve datos parseables.</td>
+</tr>
+</tbody>
+</table>
+<p>La pregunta no es <em>"¿cuál es mejor?"</em> sino <em>"¿quién es el cliente?"</em>. Una app web tradicional sirve HTML porque su cliente es un navegador. Una app móvil consume JSON porque internamente lo pinta con sus propios componentes. Un script de monitorización pide JSON porque solo quiere los datos. La misma capa de aplicación puede alimentar a los tres a la vez.</p>
+<div class="admonition tip">
+<p class="admonition-title">Probar la API con <code>curl</code></p>
+<p>No necesitas un cliente especial para probar una API JSON: <code>curl</code> llega:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>curl<span class="w"> </span>http://localhost:5000/api/productos
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>curl<span class="w"> </span>http://localhost:5000/api/producto/A1
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>curl<span class="w"> </span>-i<span class="w"> </span>http://localhost:5000/api/producto/ZZ<span class="w">   </span><span class="c1">## -i muestra cabeceras + código</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>curl<span class="w"> </span>http://localhost:5000/api/productos<span class="w"> </span><span class="p">|</span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>json.tool<span class="w">   </span><span class="c1">## formateado</span>
+</code></pre></div>
+<p>Si arrancas el servidor en una terminal y lanzas estos comandos en otra, ves la API funcionando sin abrir el navegador. <code>python -m json.tool</code> toma JSON por entrada estándar y lo imprime indentado, útil para inspeccionar respuestas largas.</p>
+<p>Sin <code>json.tool</code>, la respuesta sale en una sola línea —válida igualmente, pero menos legible para inspección manual:</p>
+<p><img alt="" src="../img6/curl_api_producto_a1.png" /></p>
+</div>
+<hr />
+<h2 id="que-cierra-esta-fase">Qué cierra esta fase<a class="headerlink" href="#que-cierra-esta-fase" title="Permanent link">&para;</a></h2>
+<p>Con los mensajes flash queda cerrado el patrón Post/Redirect/Get: una acción de escritura ahora puede redirigir a una URL segura y mostrar feedback al usuario como mensaje efímero en la siguiente página, sin tocar el dominio ni la persistencia. Con la API REST mínima queda demostrado en código que la capa de presentación es <strong>realmente</strong> intercambiable: el mismo método del servicio alimenta dos canales distintos (HTML para humanos, JSON para máquinas) sin que el dominio se entere.</p>
+<p>En la unidad quedan dos fases más:</p>
+<ul>
+<li><strong>Autenticación y autorización.</strong> Hasta ahora cualquiera con acceso a la URL puede dar de alta, eliminar o reponer recursos. Añadir login + un decorador <code>@login_required</code> protegerá las rutas de escritura. Es el último cambio funcional de la app web.</li>
+<li><strong>Auditoría arquitectónica.</strong> Recorrer el proyecto fichero a fichero, comparar el estado al iniciar la unidad con el estado final, y comprobar capa por capa si la promesa de la arquitectura por capas se ha cumplido. Es el cierre real de la unidad: deja constancia escrita del veredicto.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ichigar
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/ichigar/web" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://codeberg.org/ichigar/pages" target="_blank" rel="noopener" title="Codeberg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.999.747A11.974 11.974 0 0 0 0 12.75c0 2.254.635 4.465 1.833 6.376L11.837 6.19c.072-.092.251-.092.323 0l4.178 5.402h-2.992l.065.239h3.113l.882 1.138h-3.674l.103.374h3.86l.777 1.003h-4.358l.135.483h4.593l.695.894h-5.038l.165.589h5.326l.609.785h-5.717l.182.65h6.038l.562.727h-6.397l.183.65h6.717A12 12 0 0 0 24 12.75 11.977 11.977 0 0 0 11.999.747m3.654 19.104.182.65h5.326c.173-.204.353-.433.513-.65zm.385 1.377.18.65h3.563c.233-.198.485-.428.712-.65zm.383 1.377.182.648h1.203c.356-.204.685-.412 1.042-.648z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/feed_rss_created.xml" target="_blank" rel="noopener" title="RSS" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../../assets/_markdown_exec_pyodide.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="../../../../javascripts/blog-class.js"></script>
+      
+    
+  </body>
+</html>
