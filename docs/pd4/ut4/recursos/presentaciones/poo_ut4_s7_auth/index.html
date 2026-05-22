@@ -1,0 +1,1878 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes y recursos de clase de SMR, ASIR y CE Python">
+      
+      
+      
+        <link rel="canonical" href="https://ichigar.codeberg.page/pd4/ut4/recursos/presentaciones/poo_ut4_s7_auth/">
+      
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS" href="../../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="Fuente RSS de contenido actualizado" href="../../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Poo ut4 s7 auth - Web personal de ichigar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/_markdown_exec_ansi.css">
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/footer-contrast.css">
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/blog-terminal.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#autenticacion-y-autorizacion" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../../.." title="Web personal de ichigar" class="md-header__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web personal de ichigar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Poo ut4 s7 auth
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../blog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../smr/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../asir/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ASIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../ce-python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CE Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../misc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Misc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../feed_rss_created.xml" class="md-tabs__link">
+        
+  
+  
+    
+  
+  RSS
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Web personal de ichigar" class="md-nav__button md-logo" aria-label="Web personal de ichigar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    Web personal de ichigar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../../blog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archivo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archivo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../blog/archive/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categorías
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categorías
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../blog/category/novedades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Novedades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../blog/category/tutoriales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutoriales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../../smr/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    SMR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SMR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../rde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../src/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../../asir/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    ASIR
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ASIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../lnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LND
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../pni/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PNI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../imw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IMW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../soj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../../ce-python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    CE Python
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            CE Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PD4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Misc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../feed_rss_created.xml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#login-sesion-flask-y-login_required-sin-tocar-el-dominio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Login, sesión Flask y @login_required sin tocar el dominio
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<!-- _class: title -->
+<!-- _paginate: false -->
+
+<p><span class="badge">POO · CEPY · UT4 · Fase 7</span></p>
+<h1 id="autenticacion-y-autorizacion">Autenticación y autorización<a class="headerlink" href="#autenticacion-y-autorizacion" title="Permanent link">&para;</a></h1>
+<h2 id="login-sesion-flask-y-login_required-sin-tocar-el-dominio">Login, sesión Flask y <code>@login_required</code> sin tocar el dominio<a class="headerlink" href="#login-sesion-flask-y-login_required-sin-tocar-el-dominio" title="Permanent link">&para;</a></h2>
+<p>Curso de Especialización — Desarrollo de Aplicaciones con Python</p>
+<hr />
+<h1 id="indice">Índice<a class="headerlink" href="#indice" title="Permanent link">&para;</a></h1>
+<ol>
+<li><strong>Autenticación vs autorización</strong> — los dos conceptos clave</li>
+<li><strong>Hash de contraseñas</strong> — <code>werkzeug.security</code> en dos llamadas</li>
+<li><strong>Repositorio de usuarios paralelo</strong> — la decisión arquitectónica</li>
+<li><strong>Sesión Flask</strong> — memoria entre peticiones</li>
+<li><strong>El decorador <code>@login_required</code></strong> — anatomía y <code>@wraps</code></li>
+<li><strong>Orden de los decoradores</strong> — <code>@app.route</code> encima</li>
+<li><strong>Autorización por rol funcional</strong> — cliente vs operario</li>
+<li><strong>El flujo completo</strong> — login, logout, paso a paso con capturas</li>
+</ol>
+<hr />
+<h1 id="donde-estamos">Dónde estamos<a class="headerlink" href="#donde-estamos" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Tema</th>
+<th style="text-align: center;">Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1-5</td>
+<td>Flask, rutas, errores, plantillas, formularios</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Mensajes flash + API REST</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>7</strong></td>
+<td><strong>Autenticación y autorización</strong></td>
+<td style="text-align: center;"><strong>← AQUÍ</strong></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Auditoría arquitectónica</td>
+<td style="text-align: center;">—</td>
+</tr>
+</tbody>
+</table>
+<div class="box-blue">
+
+🎯 **Promesa de esta fase.** Añadir login sin tocar `domain/` ni `ServicioExpendedora`. Otra vez la arquitectura por capas demuestra que las preocupaciones transversales caben sin reabrir el código del dominio.
+
+</div>
+
+<hr />
+<!-- _class: section -->
+
+<h1 id="1-autenticacion-vs-autorizacion">1. Autenticación vs autorización<a class="headerlink" href="#1-autenticacion-vs-autorizacion" title="Permanent link">&para;</a></h1>
+<p>Dos preguntas que se encadenan pero son mecanismos independientes.</p>
+<hr />
+<h1 id="las-dos-preguntas">Las dos preguntas<a class="headerlink" href="#las-dos-preguntas" title="Permanent link">&para;</a></h1>
+<div class="cols">
+<div class="box-blue">
+
+### 🔑 Autenticación (AuthN)
+
+**"¿Quién eres?"**
+
+- Usuario presenta credenciales (nombre + contraseña)
+- Servidor verifica contra la BD
+- Pasa **una vez** al inicio
+- Implementación: ruta `/login` + `check_password_hash`
+
+</div>
+<div class="box-green">
+
+### 🚦 Autorización (AuthZ)
+
+**"¿Puedes hacer esto?"**
+
+- Servidor mira si el usuario actual tiene permiso
+- Pasa **en cada petición** a ruta protegida
+- Implementación: decorador `@login_required` que consulta la sesión
+
+</div>
+</div>
+
+<div class="box-yellow">
+
+⚠️ Se confunden porque el flujo típico **encadena** las dos. Pero son independientes: puedes autenticarte sin que ninguna ruta esté protegida, y proteger rutas sin distinguir usuarios.
+
+</div>
+
+<hr />
+<!-- _class: section -->
+
+<h1 id="2-hash-de-contrasenas">2. Hash de contraseñas<a class="headerlink" href="#2-hash-de-contrasenas" title="Permanent link">&para;</a></h1>
+<p>Por qué no se guardan en claro y cómo se hashean con <code>werkzeug.security</code>.</p>
+<hr />
+<h1 id="werkzeugsecurity-en-dos-llamadas"><code>werkzeug.security</code> en dos llamadas<a class="headerlink" href="#werkzeugsecurity-en-dos-llamadas" title="Permanent link">&para;</a></h1>
+<p>Las contraseñas <strong>no se guardan nunca en claro</strong>. Se guarda un <strong>hash</strong> unidireccional. Verificar consiste en volver a hashear lo que teclea el usuario y comparar.</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">werkzeug.security</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_password_hash</span><span class="p">,</span> <span class="n">check_password_hash</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">password_hash</span> <span class="o">=</span> <span class="n">generate_password_hash</span><span class="p">(</span><span class="s1">&#39;admin1234&#39;</span><span class="p">)</span>     <span class="c1"># al crear/cambiar</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">ok</span> <span class="o">=</span> <span class="n">check_password_hash</span><span class="p">(</span><span class="n">password_hash</span><span class="p">,</span> <span class="s1">&#39;admin1234&#39;</span><span class="p">)</span>    <span class="c1"># al verificar en /login</span>
+</code></pre></div>
+<div class="cols">
+<div class="box-green">
+
+✅ **Viene con Flask.** Sin dependencia extra. `generate_password_hash` aplica salt aleatorio + algoritmo costoso por diseño.
+
+</div>
+<div class="box-red">
+
+🚫 **Mala práctica.** No uses `hash()` de Python (no es criptográfico) ni compares hashes con `==`. Toda la lógica criptográfica vive **dentro** de estas dos funciones.
+
+</div>
+</div>
+
+<hr />
+<!-- _class: section -->
+
+<h1 id="3-repositorio-de-usuarios-paralelo">3. Repositorio de usuarios paralelo<a class="headerlink" href="#3-repositorio-de-usuarios-paralelo" title="Permanent link">&para;</a></h1>
+<p>La decisión arquitectónica clave de la fase.</p>
+<hr />
+<h1 id="por-que-un-repositorio-nuevo">Por qué un repositorio nuevo<a class="headerlink" href="#por-que-un-repositorio-nuevo" title="Permanent link">&para;</a></h1>
+<p>Los usuarios son <strong>persistencia</strong> pero <strong>no son dominio</strong>. La expendedora no sabe quién es su operario, igual que un microondas no sabe quién cocina.</p>
+<div class="diagram">
+
+  domain/                                       intacto ✓
+  application/                                  intacto ✓
+  infrastructure/
+    ├── repositorio_sqlite.py             ← productos (ya existía)
+    └── repositorio_usuarios_sqlite.py    ← NUEVO en a7
+  presentation/
+    └── app.py                            ← rutas /login,/logout + decorador
+
+</div>
+
+<div class="box-red">
+
+🚫 **Nunca** se añaden métodos de auth a `ServicioExpendedora`. La auth no es un caso de uso del dominio de venta. Indicador definitivo: `menu.py` (consola) sigue funcionando sin login y usa el mismo servicio.
+
+</div>
+
+<blockquote>
+<p>Misma BD <code>expendedora.db</code>, tabla nueva <code>usuarios</code>, fichero distinto.</p>
+</blockquote>
+<hr />
+<h1 id="schema-repositorio">Schema + repositorio<a class="headerlink" href="#schema-repositorio" title="Permanent link">&para;</a></h1>
+<div class="cols">
+<div>
+
+<div class="language-sql highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">-- expendedora/crear_bd.py</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">usuarios</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTOINCREMENT</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="n">password_hash</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">rol</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;admin&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="n">activo</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div>
+
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">## expendedora/infrastructure/</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1">##   repositorio_usuarios_sqlite.py</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">RepositorioUsuariosSQLite</span><span class="p">:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ruta_bd</span><span class="p">):</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_ruta_bd</span> <span class="o">=</span> <span class="n">ruta_bd</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">buscar_por_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="c1"># SELECT ... WHERE nombre = ?</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="c1"># devuelve tupla o None</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">existe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">buscar_por_nombre</span><span class="p">(</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>            <span class="n">nombre</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</code></pre></div>
+
+</div>
+</div>
+
+<div class="box-blue">
+
+💡 `rol` y `activo` son **dato dormido** en esta fase. No se usan en el login, pero dejan el esquema preparado por si más adelante distingues admin/cliente o desactivas cuentas sin borrarlas.
+
+</div>
+
+<hr />
+<!-- _class: section -->
+
+<h1 id="4-sesion-flask">4. Sesión Flask<a class="headerlink" href="#4-sesion-flask" title="Permanent link">&para;</a></h1>
+<p>Memoria entre peticiones del mismo navegador.</p>
+<hr />
+<h1 id="session-vs-flash"><code>session</code> vs <code>flash</code><a class="headerlink" href="#session-vs-flash" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Mecanismo</th>
+<th>Persistencia</th>
+<th>Caso típico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flash(mensaje)</code></td>
+<td><strong>De un uso</strong> (se vacía al leer)</td>
+<td>Feedback tras un POST con redirect</td>
+</tr>
+<tr>
+<td><code>session['clave']</code></td>
+<td><strong>Hasta <code>pop</code> o caducidad</strong></td>
+<td>Recordar que el usuario está logueado</td>
+</tr>
+</tbody>
+</table>
+<p>Las dos comparten infraestructura: la misma <strong>cookie firmada</strong> con <code>app.secret_key</code>. Si ya declaraste <code>app.secret_key</code> para los flashes en a6, no hay nada nuevo que configurar.</p>
+<div class="box-yellow">
+
+⚠️ **Firmada, no cifrada.** El contenido de la cookie viaja **legible** — cualquiera con DevTools del navegador puede leerlo. En `session` va solo el **identificador** del usuario, nunca contraseñas o datos sensibles.
+
+</div>
+
+<hr />
+<h1 id="api-de-session">API de <code>session</code><a class="headerlink" href="#api-de-session" title="Permanent link">&para;</a></h1>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">session</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">session</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;admin&#39;</span>           <span class="c1"># guardar (login)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">nombre</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)</span>        <span class="c1"># leer (devuelve None si no existe)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s1">&#39;user&#39;</span> <span class="ow">in</span> <span class="n">session</span>                   <span class="c1"># comprobar</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">session</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>           <span class="c1"># eliminar (logout) — None evita KeyError</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">session</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>                     <span class="c1"># vaciar todo</span>
+</code></pre></div>
+<div class="cols">
+<div class="box-blue">
+
+💡 `session` se comporta como un **diccionario normal** en Python — `get`, `pop`, `clear`, `in` funcionan igual.
+
+</div>
+<div class="box-green">
+
+✅ En plantillas Jinja, `session` ya está disponible. `{% if session['user'] %}` **no levanta KeyError** — devuelve `Undefined` (falso) si la clave no está.
+
+</div>
+</div>
+
+<hr />
+<!-- _class: section -->
+
+<h1 id="5-el-decorador-login_required">5. El decorador <code>@login_required</code><a class="headerlink" href="#5-el-decorador-login_required" title="Permanent link">&para;</a></h1>
+<p>Decoradores Python aplicados a protección de rutas.</p>
+<hr />
+<h1 id="decoradores-python-repaso-visual">Decoradores Python — repaso visual<a class="headerlink" href="#decoradores-python-repaso-visual" title="Permanent link">&para;</a></h1>
+<div class="cols">
+<div>
+
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">mi_decorador</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">envoltorio</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Antes de </span><span class="si">{</span><span class="n">f</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        <span class="n">resultado</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Después de </span><span class="si">{</span><span class="n">f</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="k">return</span> <span class="n">resultado</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="k">return</span> <span class="n">envoltorio</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="nd">@mi_decorador</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">saludar</span><span class="p">(</span><span class="n">nombre</span><span class="p">):</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="n">saludar</span><span class="p">(</span><span class="s1">&#39;Ana&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div>
+
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Antes de saludar
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Hola, Ana
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Después de saludar
+</code></pre></div>
+
+</div>
+</div>
+
+<blockquote>
+<p><code>@mi_decorador</code> encima de <code>def saludar</code> es la forma corta de <code>saludar = mi_decorador(saludar)</code>. Después de esa línea, <code>saludar</code> <strong>ya no es</strong> la función original — es el <code>envoltorio</code> devuelto por el decorador.</p>
+</blockquote>
+<hr />
+<h1 id="anatomia-de-login_required">Anatomía de <code>@login_required</code><a class="headerlink" href="#anatomia-de-login_required" title="Permanent link">&para;</a></h1>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">## expendedora/presentation/app.py</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">wraps</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">login_required</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">envoltorio</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        <span class="k">if</span> <span class="s1">&#39;user&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">session</span><span class="p">:</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>            <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Necesitas iniciar sesión para esa acción.&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="n">siguiente</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="k">return</span> <span class="n">envoltorio</span>
+</code></pre></div>
+<div class="box-yellow">
+
+⚠️ **`@wraps(f)` es obligatorio.** Copia el nombre de `f` al envoltorio. Sin él, Flask vería que todas las vistas decoradas se llaman `envoltorio`, colisionarían en el `url_map`, y `url_for('agregar')` daría `BuildError`.
+
+</div>
+
+<hr />
+<h1 id="el-parametro-siguiente">El parámetro <code>siguiente</code><a class="headerlink" href="#el-parametro-siguiente" title="Permanent link">&para;</a></h1>
+<div class="diagram">
+
+  GET /agregar (sin sesión)
+      └─→ @login_required → redirect(/login?siguiente=/agregar)
+              └─→ GET /login?siguiente=/agregar  (formulario)
+                      └─→ POST /login?siguiente=/agregar  (admin/admin OK)
+                              └─→ redirect(/agregar)  ← respeta siguiente
+
+</div>
+
+<p>El decorador <strong>pone</strong> <code>siguiente=request.path</code> al redirigir. La rama POST de <code>/login</code> lo <strong>lee</strong> con <code>request.args.get('siguiente')</code> y redirige ahí en lugar de a inicio.</p>
+<div class="box-red">
+
+🚫 El `<form method="POST">` de `login.html` **no lleva** atributo `action`. Si lo tuviera (`action="/login"`), el querystring `?siguiente=...` se perdería al enviar y el usuario aterrizaría siempre en la raíz, ignorando el destino original.
+
+</div>
+
+<hr />
+<!-- _class: section -->
+
+<h1 id="6-orden-de-los-decoradores">6. Orden de los decoradores<a class="headerlink" href="#6-orden-de-los-decoradores" title="Permanent link">&para;</a></h1>
+<p>Una regla técnica que evita un fallo oculto de seguridad.</p>
+<hr />
+<h1 id="correcto-vs-incorrecto">Correcto vs incorrecto<a class="headerlink" href="#correcto-vs-incorrecto" title="Permanent link">&para;</a></h1>
+<p>Los decoradores se aplican <strong>de abajo arriba</strong>: <code>@app.route</code> registra lo que tiene <strong>debajo</strong> en ese momento — la función pelada o un envoltorio ya creado.</p>
+<div class="cols">
+<div class="box-green">
+
+### ✅ Correcto
+
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/agregar&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nd">@login_required</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">agregar</span><span class="p">():</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="o">...</span>
+</code></pre></div>
+
+1. `@login_required` envuelve `agregar` → `envoltorio`; `@app.route` registra **`envoltorio`** en el `url_map`
+2. Flask llama a `envoltorio`, que comprueba sesión ✓
+
+</div>
+<div class="box-red">
+
+### 🚫 Incorrecto
+
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nd">@login_required</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/agregar&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">agregar</span><span class="p">():</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="o">...</span>
+</code></pre></div>
+
+1. `@app.route` registra **`agregar` pelada**; luego `@login_required` envuelve, pero Flask ya guardó la versión sin proteger
+2. **Decorador colgado.** Ruta accesible sin sesión. **Fallo silencioso.**
+
+</div>
+</div>
+
+<hr />
+<!-- _class: section -->
+
+<h1 id="7-autorizacion-por-rol-funcional">7. Autorización por rol funcional<a class="headerlink" href="#7-autorizacion-por-rol-funcional" title="Permanent link">&para;</a></h1>
+<p>Qué proteger no es una decisión de HTTP. Es una decisión de dominio.</p>
+<hr />
+<h1 id="cliente-vs-operario">Cliente vs operario<a class="headerlink" href="#cliente-vs-operario" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Tipo de actor</th>
+<th>Rutas</th>
+<th style="text-align: center;">Protección</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cliente</strong> (uso normal de la máquina)</td>
+<td><code>/</code>, <code>/productos</code>, <code>/producto/&lt;codigo&gt;</code>, <code>/buscar</code>, <code>/saldo</code>, <code>/insertar</code>, <code>/seleccionar</code>, <code>/comprar</code>, <code>/cancelar</code>, <code>/api/*</code></td>
+<td style="text-align: center;">⭕ libre</td>
+</tr>
+<tr>
+<td><strong>Operario</strong> (mantenimiento del catálogo)</td>
+<td><code>/agregar</code>, <code>/eliminar/&lt;codigo&gt;</code>, <code>/reponer/&lt;codigo&gt;/&lt;int:unidades&gt;</code></td>
+<td style="text-align: center;">🔒 <code>@login_required</code></td>
+</tr>
+</tbody>
+</table>
+<div class="box-red">
+
+🚫 **Mala práctica: proteger por verbo HTTP.** Tanto `/comprar` (cliente) como `/agregar` (operario) son POSTs que mutan estado. Si decidieras "todo lo que muta lleva login", bloquearías `/comprar` que es legítimamente anónima.
+
+</div>
+
+<blockquote>
+<p>Si exigieras login para comprar, la máquina dejaría de ser una <strong>expendedora</strong> y se convertiría en una <strong>tienda online</strong> — un producto distinto, con casos de uso distintos. La pregunta es siempre <em>¿quién es el actor legítimo de esta acción?</em></p>
+</blockquote>
+<hr />
+<!-- _class: section -->
+
+<h1 id="8-el-flujo-completo">8. El flujo completo<a class="headerlink" href="#8-el-flujo-completo" title="Permanent link">&para;</a></h1>
+<p>Login + acceso protegido + logout, paso a paso con capturas reales.</p>
+<hr />
+<h1 id="login-paso-1-2-redirect-al-login">Login — paso 1-2: redirect al login<a class="headerlink" href="#login-paso-1-2-redirect-al-login" title="Permanent link">&para;</a></h1>
+<div class="cols-wide">
+<div>
+
+El usuario sin sesión intenta acceder a una ruta protegida:
+
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">GET</span> <span class="o">/</span><span class="n">agregar</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>   <span class="err">↓</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nd">@login_required</span> <span class="n">detecta</span> <span class="n">no</span><span class="o">-</span><span class="n">sesión</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>   <span class="err">↓</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Necesitas iniciar sesión...&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>   <span class="err">↓</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/login?siguiente=/agregar&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="box-blue">
+
+💡 El parámetro `siguiente` se mete en la URL **aquí**, en el redirect del decorador. Es lo que permitirá volver a `/agregar` tras autenticarse.
+
+</div>
+
+</div>
+<div>
+
+![](img7/redirect_a_login.png)
+
+</div>
+</div>
+
+<hr />
+<h1 id="login-paso-3-4-formulario-vacio">Login — paso 3-4: formulario vacío<a class="headerlink" href="#login-paso-3-4-formulario-vacio" title="Permanent link">&para;</a></h1>
+<div class="cols-wide">
+<div>
+
+El navegador sigue el redirect. La rama GET de `/login` renderiza el formulario:
+
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">login</span><span class="p">():</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>        <span class="o">...</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>        <span class="s1">&#39;login.html&#39;</span><span class="p">,</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>        <span class="n">error</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>        <span class="n">nombre</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="p">)</span>
+</code></pre></div>
+
+<div class="box-yellow">
+
+⚠️ El `<form method="POST">` de `login.html` **NO lleva `action`**. Al enviar, el navegador usa la URL actual y conserva el `?siguiente=...`.
+
+</div>
+
+</div>
+<div>
+
+![](img7/login_vacio.png)
+
+</div>
+</div>
+
+<hr />
+<h1 id="login-paso-5-credenciales-no-validas">Login — paso 5: credenciales no válidas<a class="headerlink" href="#login-paso-5-credenciales-no-validas" title="Permanent link">&para;</a></h1>
+<div class="cols-wide">
+<div>
+
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="n">nombre</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nombre&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="c1"># fila: (id, nombre, password_hash, rol, activo)</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="n">fila</span> <span class="o">=</span> <span class="n">repositorio_usuarios</span><span class="o">.</span><span class="n">buscar_por_nombre</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="k">if</span> <span class="n">fila</span> <span class="ow">and</span> <span class="n">fila</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> \
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>       <span class="ow">and</span> <span class="n">check_password_hash</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">password</span><span class="p">):</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>        <span class="n">session</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fila</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>        <span class="s1">&#39;login.html&#39;</span><span class="p">,</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>        <span class="n">error</span><span class="o">=</span><span class="s1">&#39;Credenciales no válidas.&#39;</span><span class="p">,</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>        <span class="n">nombre</span><span class="o">=</span><span class="n">nombre</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>    <span class="p">),</span> <span class="mi">401</span>
+</code></pre></div>
+
+</div>
+<div>
+
+![](img7/login_credenciales_no_validas.png)
+
+<div class="box-yellow">
+
+⚠️ Mensaje **idéntico** tanto si el usuario no existe como si la contraseña falla. No revela qué cuentas son válidas.
+
+</div>
+
+</div>
+</div>
+
+<hr />
+<h1 id="login-paso-5-ok-paso-7-sesion-activa">Login — paso 5 OK + paso 7: sesión activa<a class="headerlink" href="#login-paso-5-ok-paso-7-sesion-activa" title="Permanent link">&para;</a></h1>
+<div class="cols-wide">
+<div>
+
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">if</span> <span class="n">fila</span> <span class="ow">and</span> <span class="n">fila</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> \
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>   <span class="ow">and</span> <span class="n">check_password_hash</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">password</span><span class="p">):</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="n">session</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fila</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bienvenido, </span><span class="si">{</span><span class="n">fila</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="s1">&#39;exito&#39;</span><span class="p">)</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="n">destino</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;siguiente&#39;</span><span class="p">)</span> \
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>              <span class="ow">or</span> <span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;inicio&#39;</span><span class="p">)</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">destino</span><span class="p">)</span>
+</code></pre></div>
+
+Lo importante:
+- `session['user']` guarda el identificador
+- `request.args.get('siguiente')` lee el destino original
+- `redirect(destino)` cierra el ciclo
+
+</div>
+<div>
+
+![](img7/inicio_con_sesion.png)
+
+<div class="box-green">
+
+✅ Aquí termina la autenticación. La sesión vive en la cookie hasta `pop` o caducidad.
+
+</div>
+
+</div>
+</div>
+
+<hr />
+<h1 id="logout-paso-1-boton-visible-en-la-nav">Logout — paso 1: botón visible en la nav<a class="headerlink" href="#logout-paso-1-boton-visible-en-la-nav" title="Permanent link">&para;</a></h1>
+<div class="cols-wide">
+<div>
+
+<div class="language-html highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="cm">&lt;!-- expendedora/presentation/templates/base.html --&gt;</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;listar_productos&#39;) }}&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    Productos<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> ·
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>  ...
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>  {% if session[&#39;user&#39;] %}
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    · <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;agregar&#39;) }}&quot;</span><span class="p">&gt;</span>Agregar<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>    · <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Sesión: {{ session[&#39;user&#39;] }}<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>    · <span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>            <span class="na">action</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;logout&#39;) }}&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>        <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Cerrar sesión<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>      <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>  {% else %}
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>    · <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;login&#39;) }}&quot;</span><span class="p">&gt;</span>Iniciar sesión<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>  {% endif %}
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+</code></pre></div>
+
+</div>
+<div>
+
+![](img7/productos_con_sesion.png)
+
+<div class="box-red">
+
+🚫 **Logout va por POST, no por enlace `<a>`.** GET no muta. Un enlace lo dispararía cualquier prefetch del navegador o un `<img src="/logout">` malicioso.
+
+</div>
+
+</div>
+</div>
+
+<hr />
+<h1 id="logout-paso-2-4-sesion-cerrada">Logout — paso 2-4: sesión cerrada<a class="headerlink" href="#logout-paso-2-4-sesion-cerrada" title="Permanent link">&para;</a></h1>
+<div class="cols-wide">
+<div>
+
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">## expendedora/presentation/app.py</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/logout&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">logout</span><span class="p">():</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="n">session</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Sesión cerrada.&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">)</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;inicio&#39;</span><span class="p">))</span>
+</code></pre></div>
+
+Tres líneas que cierran el ciclo:
+
+- `session.pop('user', None)` — elimina la clave (con `None` evita `KeyError` si la cookie ya no tenía sesión)
+- `flash(...)` — mensaje de despedida en la siguiente página
+- `redirect(...)` — fuerza un GET nuevo; la nav se renderiza ya sin sesión
+
+</div>
+<div>
+
+![](img7/inicio_tras_logout.png)
+
+</div>
+</div>
+
+<hr />
+<!-- _class: lead -->
+
+<h1 id="preguntas">¿Preguntas?<a class="headerlink" href="#preguntas" title="Permanent link">&para;</a></h1>
+<p><br></p>
+<p><span class="pill pill-dark">Hash con werkzeug</span>
+<span class="pill pill-blue">Sesión Flask</span>
+<span class="pill pill-green">@login_required</span>
+<span class="pill pill-red">@app.route encima</span>
+<span class="pill pill-yellow">Rol funcional</span></p>
+<p><br><br></p>
+<p><strong>Entregable:</strong> <code>e_6</code> → carpeta <code>05-flask-06</code>, versión <code>0.11.0</code></p>
+<p><em>Próxima fase: auditoría arquitectónica del proyecto completo</em></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ichigar
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/ichigar/web" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://codeberg.org/ichigar/pages" target="_blank" rel="noopener" title="Codeberg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.999.747A11.974 11.974 0 0 0 0 12.75c0 2.254.635 4.465 1.833 6.376L11.837 6.19c.072-.092.251-.092.323 0l4.178 5.402h-2.992l.065.239h3.113l.882 1.138h-3.674l.103.374h3.86l.777 1.003h-4.358l.135.483h4.593l.695.894h-5.038l.165.589h5.326l.609.785h-5.717l.182.65h6.038l.562.727h-6.397l.183.65h6.717A12 12 0 0 0 24 12.75 11.977 11.977 0 0 0 11.999.747m3.654 19.104.182.65h5.326c.173-.204.353-.433.513-.65zm.385 1.377.18.65h3.563c.233-.198.485-.428.712-.65zm.383 1.377.182.648h1.203c.356-.204.685-.412 1.042-.648z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/feed_rss_created.xml" target="_blank" rel="noopener" title="RSS" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.instant", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../../../assets/_markdown_exec_pyodide.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="../../../../../javascripts/blog-class.js"></script>
+      
+    
+  </body>
+</html>
