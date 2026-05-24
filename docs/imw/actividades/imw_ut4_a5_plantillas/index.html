@@ -1647,6 +1647,7 @@
 <details class="tip">
 <summary>Pista si ves los <code>require</code> literales en la página</summary>
 <p>Si en el navegador aparece texto como <code>&lt;?php require __DIR__ ...</code> en lugar de la página renderizada, Apache no está interpretando PHP en <code>listado.php</code>. Eso suele significar que el módulo PHP está deshabilitado: <code>sudo a2enmod php8.3 &amp;&amp; sudo systemctl reload apache2</code>. Si ves una página en blanco o un error 500, mira el log con <code>sudo tail /var/log/apache2/error.log</code>: ahí aparecerá si la ruta del <code>require</code> está mal.</p>
+<p>Si la pantalla en blanco / HTTP 500 son habituales en este lab y te toca abrir el log cada vez, comprueba que activaste <code>display_errors = On</code> en el Paso 5 del lab A1 — <a href="../imw_ut4_a1_entorno_php/#paso-5-depuracion-ver-los-errores-de-php">Depuración: ver los errores de PHP</a>. Con esa directiva activa, los errores fatales tipo "Failed opening required" aparecen directamente en el navegador y no necesitas mirar el log para verlos. Una vez activado, sirve para el resto de los labs.</p>
 </details>
 <details class="tip">
 <summary>Pista si la página dice 'Failed opening required ...'</summary>
@@ -1737,9 +1738,9 @@
 <a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="x">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="x">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="x">  &lt;title&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$titulo_pagina</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x"> — Gestor&lt;/title&gt;</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="x">  &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/estilos.css&quot;&gt;</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="hll"><span class="x">&lt;/head&gt;</span>
-</span></code></pre></div></td></tr></table></div>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="hll"><span class="x">  &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/estilos.css&quot;&gt;</span>
+</span><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="x">&lt;/head&gt;</span>
+</code></pre></div></td></tr></table></div>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 9H7V7h10m0 6H7v-2h10m-3 6H7v-2h7M12 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> <strong>Tarea 3 — Quitar los estilos inline de <code>listado.php</code>.</strong> En <code>listado.php</code>, los <code>style="..."</code> que pusimos en el <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;th&gt;</code> y <code>&lt;td&gt;</code> ya están cubiertos por el CSS externo: bórralos. La tabla queda así de limpia:</p>
 <div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-10-2"> 2</a></span>

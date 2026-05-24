@@ -1449,6 +1449,11 @@
 <summary>Pista si ves código PHP en la página</summary>
 <p>Si el navegador muestra literalmente <code>&lt;?php ... ?&gt;</code>, es que Apache no está interpretando el fichero. Revisa que lo has guardado con extensión <code>.php</code> y dentro de <code>~/gestor/public/</code>.</p>
 </details>
+<details class="tip">
+<summary>Pista si la página sale en blanco o con HTTP ERROR 500</summary>
+<p>Si al recargar <code>variables.php</code> ves la pestaña <strong>completamente en blanco</strong> o un genérico <strong>HTTP ERROR 500</strong>, lo más probable es que tengas una errata de sintaxis en el PHP (un <code>;</code> que falta, una comilla sin cerrar, un <code>&lt;?php</code> mal escrito...) y que <code>display_errors</code> no esté activado en <code>php.ini</code>, así que PHP no te muestra el mensaje de error.</p>
+<p>Vuelve al Paso 5 del lab A1 — <a href="../imw_ut4_a1_entorno_php/#paso-5-depuracion-ver-los-errores-de-php">Depuración: ver los errores de PHP</a> — y comprueba que activaste <code>display_errors = On</code> en <code>/etc/php/*/apache2/php.ini</code> y recargaste Apache. Una vez hecho, recarga <code>variables.php</code>: en lugar de la pantalla en blanco aparecerá el mensaje de error con la línea exacta donde está el problema. No tendrás que volver a tocar <code>php.ini</code> para los próximos labs.</p>
+</details>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> <strong>Responde en <code>RESPUESTAS.md</code>, sección <code>## Paso 1</code>.</strong></p>
 <blockquote>
 <p>¿Qué ocurrió al recargar la página durante el experimento (paso con <code>&lt;script&gt;</code> y sin <code>htmlspecialchars()</code>)? ¿Qué cambió al poner <code>htmlspecialchars()</code> de nuevo? Explícalo con tus palabras en dos o tres líneas.</p>
