@@ -1283,6 +1283,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Errores de PHP durante el desarrollo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-a-nivel-del-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. A nivel del script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-a-nivel-del-servidor-phpini" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. A nivel del servidor (php.ini)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1628,7 +1652,9 @@
 <h2 id="depuracion-y-logs">Depuración y logs<a class="headerlink" href="#depuracion-y-logs" title="Permanent link">&para;</a></h2>
 <h3 id="errores-de-php-durante-el-desarrollo">Errores de PHP durante el desarrollo<a class="headerlink" href="#errores-de-php-durante-el-desarrollo" title="Permanent link">&para;</a></h3>
 <p>Por defecto, PHP <strong>no muestra errores en el navegador</strong> (configuración pensada para producción): los escribe silenciosamente en el log y al usuario le devuelve una página genérica o en blanco. Durante el desarrollo necesitas verlos para poder corregirlos.</p>
-<p>Activa los errores al inicio del script:</p>
+<p>Hay <strong>dos capas</strong> de configuración que controlan si los errores aparecen en la respuesta HTML, y necesitas las dos.</p>
+<h4 id="1-a-nivel-del-script">1. A nivel del script<a class="headerlink" href="#1-a-nivel-del-script" title="Permanent link">&para;</a></h4>
+<p>Activa los errores al inicio de cada fichero PHP:</p>
 <div class="language-php highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
 <span class="normal"><a href="#__codelineno-11-2">2</a></span>
 <span class="normal"><a href="#__codelineno-11-3">3</a></span>
@@ -1643,34 +1669,67 @@
 <li><code>error_reporting(E_ALL)</code> activa todos los niveles de aviso (avisos, advertencias, errores).</li>
 <li><code>ini_set('display_errors', '1')</code> los muestra en la respuesta HTML.</li>
 </ul>
+<p>Estas dos líneas cubren los errores <strong>en tiempo de ejecución</strong>: variables no definidas, divisiones por cero, llamadas a funciones inexistentes, etc. Todo lo que falla <strong>mientras</strong> el script se está ejecutando.</p>
+<h4 id="2-a-nivel-del-servidor-phpini">2. A nivel del servidor (<code>php.ini</code>)<a class="headerlink" href="#2-a-nivel-del-servidor-phpini" title="Permanent link">&para;</a></h4>
+<p>Las dos líneas anteriores <strong>no son suficientes</strong> para un tipo concreto de errores: los <strong>errores de parseo</strong> (<code>Parse error</code>). Estos se detectan <strong>antes</strong> de ejecutar el script, así que PHP no llega a leer el <code>error_reporting</code> ni el <code>ini_set</code> del fichero. Síntoma típico: el navegador muestra una página en blanco o <code>HTTP ERROR 500</code>, sin ningún mensaje.</p>
+<p>Para que los errores de parseo se vean en el navegador hay que activar <code>display_errors</code> también en la configuración global del servidor, en el fichero <code>php.ini</code> correspondiente al SAPI de Apache:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/php/8.3/apache2/php.ini
+</code></pre></div>
+<p>Busca la directiva y cámbiala:</p>
+<div class="language-ini highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="na">display_errors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">On</span>
+</code></pre></div>
+<p>Tras editar <code>php.ini</code>, recarga Apache para que la configuración entre en vigor:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>apache2
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Capa</th>
+<th>Cubre</th>
+<th>Cuándo aplicar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ini_set</code> en el script</td>
+<td>Errores de <strong>tiempo de ejecución</strong> (variables, división por cero, llamadas...)</td>
+<td>Al principio de cada fichero <code>.php</code> durante el desarrollo</td>
+</tr>
+<tr>
+<td><code>display_errors = On</code> en <code>php.ini</code></td>
+<td><strong>Además</strong>, errores de <strong>parseo</strong> (sintaxis rota)</td>
+<td>Una vez, en la VM de desarrollo, tras recargar Apache</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition warning">
 <p class="admonition-title">Mala práctica: <code>display_errors</code> en producción</p>
-<p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="x">## Incorrecto: cualquier error expone rutas internas, nombres de variables, SQL...</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="x">ini_set(&#39;display_errors&#39;, &#39;1&#39;);   // en un servidor público</span>
+<p><div class="language-php highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="x">## Incorrecto: cualquier error expone rutas internas, nombres de variables, SQL...</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="x">ini_set(&#39;display_errors&#39;, &#39;1&#39;);   // en un servidor público</span>
 </code></pre></div>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="x">## Correcto: en producción, solo logs</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="x">ini_set(&#39;display_errors&#39;, &#39;0&#39;);</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="x">ini_set(&#39;log_errors&#39;, &#39;1&#39;);</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="x">// los errores quedan en /var/log/apache2/error.log</span>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="x">## Correcto: en producción, solo logs</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="x">ini_set(&#39;display_errors&#39;, &#39;0&#39;);</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="x">ini_set(&#39;log_errors&#39;, &#39;1&#39;);</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="x">// los errores quedan en /var/log/apache2/error.log</span>
 </code></pre></div></p>
 </div>
 <h3 id="leer-un-error-de-php">Leer un error de PHP<a class="headerlink" href="#leer-un-error-de-php" title="Permanent link">&para;</a></h3>
 <p>Un mensaje típico tiene la forma:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Parse error: syntax error, unexpected token &quot;$alumno&quot;, expecting &quot;,&quot; or &quot;;&quot;
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>in /var/www/miapp/public/index.php on line 6
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Parse error: syntax error, unexpected token &quot;$alumno&quot;, expecting &quot;,&quot; or &quot;;&quot;
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>in /var/www/miapp/public/index.php on line 6
 </code></pre></div>
 <p>Te indica <strong>qué</strong> falla (token inesperado), <strong>dónde</strong> (ruta completa del fichero) y <strong>en qué línea</strong>. Leer el mensaje entero resuelve el 80 % de los errores antes de tener que buscar en Google.</p>
 <h3 id="log-de-apache">Log de Apache<a class="headerlink" href="#log-de-apache" title="Permanent link">&para;</a></h3>
 <p>Los errores de PHP y los errores del propio Apache se escriben en:</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>/var/log/apache2/error.log
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>/var/log/apache2/error.log
 </code></pre></div>
 <p>Durante el desarrollo es útil seguir el log en tiempo real mientras trabajas en otra terminal:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/apache2/error.log
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/apache2/error.log
 </code></pre></div>
 <p>Cada recarga de una página con error añade una línea nueva al final del fichero.</p>
 <h3 id="validacion-sintactica-con-php-l">Validación sintáctica con <code>php -l</code><a class="headerlink" href="#validacion-sintactica-con-php-l" title="Permanent link">&para;</a></h3>
 <p>Antes de probar un fichero en el navegador puedes comprobar que al menos no tiene errores de sintaxis:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>php<span class="w"> </span>-l<span class="w"> </span>public/index.php
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>php<span class="w"> </span>-l<span class="w"> </span>public/index.php
 </code></pre></div>
 <ul>
 <li>Si la sintaxis es correcta: <code>No syntax errors detected in public/index.php</code>.</li>
