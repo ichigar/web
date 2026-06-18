@@ -19,7 +19,7 @@
  * borran las cachés con versión antigua.
  */
 
-const CACHE = "recetario-v23";
+const CACHE = "recetario-v24";
 const CACHE_IMG = "recetario-img-v1";
 
 // Rutas relativas al scope del SW (funciona bajo cualquier subdirectorio).

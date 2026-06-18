@@ -240,8 +240,10 @@ import {
   }
 
   function vaciarSeleccion() {
-    // Si el menú semanal tiene recetas, ofrecer vaciarlo también (si no, quedaría
-    // descolgado y se volvería a volcar a la cesta al recargar). L237.
+    // 1) Confirmar siempre el vaciado de la cesta (acción potencialmente accidental).
+    if (!confirm("¿Vaciar la lista de recetas seleccionadas?")) return;
+    // 2) Si el menú semanal tiene recetas, preguntar si vaciarlo también (si no, quedaría
+    //    descolgado y se volvería a volcar a la cesta al recargar). L237.
     if (idsEnMenu().length && confirm("¿Vaciar también el menú semanal?")) {
       DIAS.forEach((d) => COMIDAS.forEach((c) => (S.menuSemanal[d][c] = [])));
       guardarMenu(S.menuSemanal);
