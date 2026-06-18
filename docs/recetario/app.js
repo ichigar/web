@@ -14,6 +14,9 @@
   // varias celdas); las celdas vacías son null.
   const DIAS = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo"];
   const COMIDAS = ["desayuno", "almuerzo", "merienda", "cena"];
+  // Nº máximo de platos por comida: almuerzo y cena admiten hasta 3; desayuno y
+  // merienda, 1. Cada celda del menú es un array de ids (longitud ≤ este máximo).
+  const MAX_PLATOS = { desayuno: 1, almuerzo: 3, merienda: 1, cena: 3 };
   const DIAS_NOMBRE = {
     lunes: "Lunes", martes: "Martes", miercoles: "Miércoles", jueves: "Jueves",
     viernes: "Viernes", sabado: "Sábado", domingo: "Domingo",
@@ -121,8 +124,11 @@
     DIAS.forEach((d) => {
       menu[d] = {};
       COMIDAS.forEach((c) => {
-        const id = guardado[d] && guardado[d][c];
-        menu[d][c] = id || null;
+        const v = guardado[d] && guardado[d][c];
+        // Cada celda es un array de ids. Migra el formato viejo (id|null → [id]|[])
+        // y recorta al máximo de platos de esa comida.
+        let platos = Array.isArray(v) ? v.filter(Boolean) : (v ? [v] : []);
+        menu[d][c] = platos.slice(0, MAX_PLATOS[c]);
       });
     });
     return menu;
@@ -1071,7 +1077,8 @@
           <ul>
             <li>Desde el menú <strong>☰ → «Menú semanal»</strong> tienes una rejilla de lunes a domingo
               con desayuno, almuerzo, merienda y cena. Pulsa <strong>«+ Añadir»</strong> en cualquier
-              comida para elegir una receta (puedes dejar comidas en blanco).</li>
+              comida para elegir una receta (puedes dejar comidas en blanco). El <strong>almuerzo y la
+              cena admiten hasta 3 platos</strong>; el desayuno y la merienda, uno.</li>
             <li>También puedes asignar una receta al menú desde su ficha, con el botón
               <strong>«Añadir al menú semanal»</strong>.</li>
             <li>Las recetas del menú se <strong>añaden automáticamente a la lista de la compra</strong>.
@@ -1098,22 +1105,28 @@
   }
 
   // --- Vista: menú semanal ---
-  // HTML de una celda (día × comida): la receta asignada o un botón "+ Añadir".
+  // HTML de una celda (día × comida): lista de platos (cada uno con ✕) y, si caben
+  // más (almuerzo/cena admiten hasta 3), un botón "+ Añadir".
   function celdaMenuHtml(dia, comida) {
-    const id = menuSemanal[dia] && menuSemanal[dia][comida];
-    const r = id ? porId[id] : null;
-    if (!r) {
-      return `<button class="celda-menu vacia" data-dia="${dia}" data-comida="${comida}">
-                ${ico("plus")}<span>Añadir</span>
-              </button>`;
-    }
-    return `<div class="celda-menu llena" data-dia="${dia}" data-comida="${comida}">
-              <button class="celda-receta" data-id="${escapar(r.id)}">
-                ${mediaHtml(r, "celda-img", "celda-img celda-ph")}
-                <span class="celda-nombre">${escapar(r.nombre)}</span>
-              </button>
-              <button class="celda-quitar" data-dia="${dia}" data-comida="${comida}" aria-label="Quitar del menú">${ico("x")}</button>
-            </div>`;
+    const platos = (menuSemanal[dia] && menuSemanal[dia][comida]) || [];
+    const filas = platos.map((id, n) => {
+      const r = porId[id];
+      const nombre = r ? r.nombre : "(receta no encontrada)";
+      return `<div class="celda-plato">
+                <button class="celda-receta" data-id="${escapar(id)}">
+                  ${r ? mediaHtml(r, "celda-img", "celda-img celda-ph") : ""}
+                  <span class="celda-nombre">${escapar(nombre)}</span>
+                </button>
+                <button class="celda-quitar" data-dia="${dia}" data-comida="${comida}" data-plato="${n}" aria-label="Quitar del menú">${ico("x")}</button>
+              </div>`;
+    }).join("");
+    const puedeMas = platos.length < MAX_PLATOS[comida];
+    const botonAnadir = puedeMas
+      ? `<button class="celda-anadir" data-dia="${dia}" data-comida="${comida}">
+           ${ico("plus")}<span>${platos.length ? "Añadir plato" : "Añadir"}</span>
+         </button>`
+      : "";
+    return `<div class="celda-menu ${platos.length ? "llena" : "vacia"}">${filas}${botonAnadir}</div>`;
   }
 
   function verMenuSemanal() {
@@ -1141,13 +1154,13 @@
 
     // Delegación de eventos en la rejilla.
     vistaMenu.querySelector(".semana").addEventListener("click", (e) => {
-      const vacia = e.target.closest(".celda-menu.vacia");
+      const anadir = e.target.closest(".celda-anadir");
       const quitar = e.target.closest(".celda-quitar");
       const receta = e.target.closest(".celda-receta");
-      if (vacia) {
-        elegirRecetaParaCelda(vacia.dataset.dia, vacia.dataset.comida);
+      if (anadir) {
+        elegirRecetaParaCelda(anadir.dataset.dia, anadir.dataset.comida);
       } else if (quitar) {
-        quitarDeMenu(quitar.dataset.dia, quitar.dataset.comida);
+        quitarDeMenu(quitar.dataset.dia, quitar.dataset.comida, +quitar.dataset.plato);
       } else if (receta) {
         verDetalle(receta.dataset.id);
       }
@@ -1158,17 +1171,23 @@
     cambiarVista(vistaMenu);
   }
 
-  // Asigna una receta a una celda del menú (y la vuelca a la selección).
+  // Añade un plato a una celda (sin pasarse del máximo) y lo vuelca a la selección.
   function asignarAMenu(dia, comida, id) {
-    menuSemanal[dia][comida] = id;
+    const platos = menuSemanal[dia][comida];
+    if (platos.length >= MAX_PLATOS[comida]) {
+      alert(`Esta comida admite como máximo ${MAX_PLATOS[comida]} plato${MAX_PLATOS[comida] > 1 ? "s" : ""}.`);
+      return false;
+    }
+    platos.push(id);
     guardarMenu(menuSemanal);
     seleccion.add(id);
     guardarSeleccion();
     actualizarBarra();
+    return true;
   }
 
-  function quitarDeMenu(dia, comida) {
-    menuSemanal[dia][comida] = null;
+  function quitarDeMenu(dia, comida, indice) {
+    menuSemanal[dia][comida].splice(indice, 1);
     guardarMenu(menuSemanal);
     // No se quita de la selección automáticamente (el usuario la gestiona en la cesta).
     if (!vistaMenu.hidden) verMenuSemanal();
@@ -1178,7 +1197,7 @@
     const ids = idsEnMenu();
     if (!ids.length) { alert("El menú ya está vacío."); return; }
     if (!confirm("¿Vaciar todo el menú semanal?")) return;
-    DIAS.forEach((d) => COMIDAS.forEach((c) => (menuSemanal[d][c] = null)));
+    DIAS.forEach((d) => COMIDAS.forEach((c) => (menuSemanal[d][c] = [])));
     guardarMenu(menuSemanal);
     if (confirm("¿Quitar también esas recetas de la lista de la compra?")) {
       ids.forEach((id) => seleccion.delete(id));
@@ -1188,12 +1207,11 @@
     if (!vistaMenu.hidden) verMenuSemanal();
   }
 
-  // Ids únicos presentes en el menú (una receta puede estar en varias celdas).
+  // Ids únicos presentes en el menú (una receta puede estar en varias celdas/platos).
   function idsEnMenu() {
     const set = new Set();
     DIAS.forEach((d) => COMIDAS.forEach((c) => {
-      const id = menuSemanal[d][c];
-      if (id) set.add(id);
+      (menuSemanal[d][c] || []).forEach((id) => { if (id) set.add(id); });
     }));
     return [...set];
   }
@@ -1282,8 +1300,7 @@
     modal.querySelector("#md-aceptar").onclick = () => {
       const dia = modal.querySelector("#md-dia").value;
       const comida = modal.querySelector("#md-comida").value;
-      asignarAMenu(dia, comida, id);
-      cerrarModal();
+      if (asignarAMenu(dia, comida, id)) cerrarModal();   // si la comida está llena, sigue abierto
     };
   }
 
