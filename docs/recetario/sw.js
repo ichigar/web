@@ -19,7 +19,7 @@
  * borran las cachés con versión antigua.
  */
 
-const CACHE = "recetario-v20";
+const CACHE = "recetario-v21";
 const CACHE_IMG = "recetario-img-v1";
 
 // Rutas relativas al scope del SW (funciona bajo cualquier subdirectorio).
@@ -27,6 +27,12 @@ const PRECACHE = [
   "./",
   "./index.html",
   "./app.js",
+  // Módulos ES (app.js los importa; deben precachearse para funcionar offline).
+  "./js/estado.js",
+  "./js/iconos.js",
+  "./js/formato.js",
+  "./js/compra-utils.js",
+  "./js/persistencia.js",
   "./styles.css",
   "./manifest.webmanifest",
   "./recetas.json",

@@ -1,83 +1,30 @@
-/* ===== Recetario — lógica de la app (vanilla JS) ===== */
-(() => {
-  "use strict";
+/* ===== «Recetas a la Compra» — orquestador principal (ES Module) ===== */
+import {
+  S, LS_KEY, LS_EXTRAS, LS_EDICIONES, LS_TEMA, LS_MENU, LS_SEL_MENU,
+  DIAS, COMIDAS, MAX_PLATOS, DIAS_NOMBRE, COMIDAS_NOMBRE,
+} from "./js/estado.js";
+import {
+  ICON_PATHS, ico, ICONO_WHATSAPP, emojiReceta, placeholderHtml, mediaHtml, activarMedia,
+} from "./js/iconos.js";
+import {
+  formatoCantidad, tiempoTexto, escapar, normalizarBusqueda, categoriasDe,
+} from "./js/formato.js";
+import {
+  esDespensa, esUnidadSimbolica, nombreCompra,
+} from "./js/compra-utils.js";
+import {
+  cargarSeleccion, guardarSeleccion, cargarSeleccionMenu, guardarSeleccionMenu,
+  cargarExtras, guardarExtras, cargarEdiciones, guardarEdiciones,
+  cargarMenu, guardarMenu, aplicarEdiciones,
+} from "./js/persistencia.js";
 
-  const LS_KEY = "recetario.seleccion";
-  const LS_EXTRAS = "recetario.extras";
-  // Ediciones hechas en este dispositivo cuando no hay servidor (móvil/PWA).
-  // Objeto { [id]: receta }, se superpone sobre recetas.json al cargar.
-  const LS_EDICIONES = "recetario.ediciones";
-  const LS_TEMA = "recetario.tema";   // "auto" | "claro" | "oscuro"
-  const LS_MENU = "recetario.menu";   // menú semanal { dia: { comida: [idReceta] } }
-  // Ids que entraron en la cesta por el menú semanal (para poder quitarlos de la
-  // cesta al quitarlos del menú, sin tocar los que el usuario seleccionó a mano).
-  const LS_SEL_MENU = "recetario.seleccion_menu";
 
-  // Menú semanal: 7 días × 4 comidas. Una receta por celda (puede repetirse en
-  // varias celdas); las celdas vacías son null.
-  const DIAS = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo"];
-  const COMIDAS = ["desayuno", "almuerzo", "merienda", "cena"];
-  // Nº máximo de platos por comida: almuerzo y cena admiten hasta 3; desayuno y
-  // merienda, 1. Cada celda del menú es un array de ids (longitud ≤ este máximo).
-  const MAX_PLATOS = { desayuno: 1, almuerzo: 3, merienda: 1, cena: 3 };
-  const DIAS_NOMBRE = {
-    lunes: "Lunes", martes: "Martes", miercoles: "Miércoles", jueves: "Jueves",
-    viernes: "Viernes", sabado: "Sábado", domingo: "Domingo",
-  };
-  const COMIDAS_NOMBRE = {
-    desayuno: "Desayuno", almuerzo: "Almuerzo", merienda: "Merienda", cena: "Cena",
-  };
-
-  // --- Iconos SVG (estilo línea, tipo Lucide; heredan el color con currentColor) ---
-  // Cada entrada es el contenido interior de un <svg> 24x24 con stroke.
-  const ICON_PATHS = {
-    home: `<path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/>`,
-    list: `<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/>`,
-    cart: `<circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2l2.4 12.2a1 1 0 0 0 1 .8h9.3a1 1 0 0 0 1-.8L20 7H6"/>`,
-    trash: `<path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m2 0v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7"/><path d="M10 11v6M14 11v6"/>`,
-    download: `<path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/>`,
-    edit: `<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>`,
-    plus: `<path d="M12 5v14M5 12h14"/>`,
-    save: `<path d="M5 3h11l3 3v15H5Z"/><path d="M8 3v6h7V3M8 21v-6h8v6"/>`,
-    printer: `<path d="M6 9V3h12v6"/><path d="M6 18H4a1 1 0 0 1-1-1v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a1 1 0 0 1-1 1h-2"/><path d="M6 14h12v7H6Z"/>`,
-    copy: `<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/>`,
-    x: `<path d="M18 6 6 18M6 6l12 12"/>`,
-    check: `<path d="M20 6 9 17l-5-5"/>`,
-    menu: `<path d="M3 6h18M3 12h18M3 18h18"/>`,
-    smartphone: `<rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/>`,
-    apple: `<path d="M16 13c0 3-2 6-3.5 6S11 18 10 18s-1.5 1-2.5 1S4 16 4 13s2-5 4-5c1 0 1.6.6 2.5.6S13 8 14 8s2 .8 2.6 1.8c-1 .6-1.6 1.6-1.6 3.2Z"/><path d="M13 5c.5-1 1.6-1.8 2.6-1.8 0 1-.5 2-1 2.6"/>`,
-    share: `<path d="M12 3v12"/><path d="m8 7 4-4 4 4"/><path d="M6 12H5a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1h-1"/>`,
-    camera: `<path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6h0a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.5"/>`,
-    plus_circle: `<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>`,
-    help: `<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 3.5"/><path d="M12 17h.01"/>`,
-    calendario: `<rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/>`,
-    sol: `<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>`,
-    luna: `<path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z"/>`,
-    auto: `<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18Z" fill="currentColor" stroke="none"/>`,
-    // Logo: carrito de la compra con una hoja (recetas saludables → compra).
-    logo: `<circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/><path d="M2 3h2l2.2 11a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L19.5 8H6.2"/><path d="M13 7.5c0-2 1.6-3.5 3.6-3.5-.2 2-1.6 3.5-3.6 3.5Z"/><path d="M13 7.5C13 5.6 11.4 4 9.5 4"/>`,
-  };
-  function ico(nombre, cls = "ico") {
-    return `<svg class="${cls}" viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none"`
-      + ` stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"`
-      + ` aria-hidden="true">${ICON_PATHS[nombre] || ""}</svg>`;
-  }
-
-  // Logo de WhatsApp (relleno, color de marca; hereda el blanco del texto del botón).
-  const ICONO_WHATSAPP =
-    `<svg class="icono-wa" viewBox="0 0 24 24" width="1.15em" height="1.15em" fill="currentColor" aria-hidden="true">`
-    + `<path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.515 5.26l-.999 3.648 3.973-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>`
-    + `</svg>`;
-
-  let RECETAS = [];
-  let porId = {};
-  let seleccion = new Set(cargarSeleccion());
-  let seleccionMenu = new Set(cargarSeleccionMenu());   // ids que entraron por el menú
-  let extras = cargarExtras();   // ingredientes añadidos a mano [{nombre, cantidad}]
-  let menuSemanal = cargarMenu();   // menú semanal { dia: { comida: [idReceta] } }
-  // Ingredientes generados que el usuario ha quitado de la lista de la compra
-  // (por clave en minúsculas). Solo en memoria: se descarta al cambiar la selección.
-  let excluidos = new Set();
+  // El estado vive en S (estado.js). Se inicializa desde localStorage.
+  S.seleccion = new Set(cargarSeleccion());
+  S.seleccionMenu = new Set(cargarSeleccionMenu());   // ids que entraron por el menú
+  S.extras = cargarExtras();   // ingredientes añadidos a mano [{nombre, cantidad}]
+  S.menuSemanal = cargarMenu();   // menú semanal { dia: { comida: [idReceta] } }
+  // S.RECETAS, S.porId, S.excluidos ya tienen valor inicial en estado.js.
 
   // --- Referencias DOM ---
   const $ = (sel) => document.querySelector(sel);
@@ -97,144 +44,24 @@
   const barraSel = $("#barra-seleccion");
   const resumenSel = $("#resumen-seleccion");
 
-  // --- Utilidades ---
-  function cargarSeleccion() {
-    try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; }
-    catch { return []; }
-  }
-  function guardarSeleccion() {
-    localStorage.setItem(LS_KEY, JSON.stringify([...seleccion]));
-  }
-  function cargarSeleccionMenu() {
-    try { return JSON.parse(localStorage.getItem(LS_SEL_MENU)) || []; }
-    catch { return []; }
-  }
-  function guardarSeleccionMenu() {
-    localStorage.setItem(LS_SEL_MENU, JSON.stringify([...seleccionMenu]));
-  }
-  function cargarExtras() {
-    try { return JSON.parse(localStorage.getItem(LS_EXTRAS)) || []; }
-    catch { return []; }
-  }
-  function guardarExtras() {
-    localStorage.setItem(LS_EXTRAS, JSON.stringify(extras));
-  }
-  function cargarEdiciones() {
-    try { return JSON.parse(localStorage.getItem(LS_EDICIONES)) || {}; }
-    catch { return {}; }
-  }
-  function guardarEdiciones(ed) {
-    localStorage.setItem(LS_EDICIONES, JSON.stringify(ed));
-  }
-  // Menú semanal normalizado: siempre los 7 días con sus 4 comidas (null si vacío).
-  function cargarMenu() {
-    let guardado = {};
-    try { guardado = JSON.parse(localStorage.getItem(LS_MENU)) || {}; }
-    catch { guardado = {}; }
-    const menu = {};
-    DIAS.forEach((d) => {
-      menu[d] = {};
-      COMIDAS.forEach((c) => {
-        const v = guardado[d] && guardado[d][c];
-        // Cada celda es un array de ids. Migra el formato viejo (id|null → [id]|[])
-        // y recorta al máximo de platos de esa comida.
-        let platos = Array.isArray(v) ? v.filter(Boolean) : (v ? [v] : []);
-        menu[d][c] = platos.slice(0, MAX_PLATOS[c]);
-      });
-    });
-    return menu;
-  }
-  function guardarMenu(m) {
-    localStorage.setItem(LS_MENU, JSON.stringify(m));
-  }
-  // Superpone las ediciones locales (por id) sobre la lista cargada del JSON.
-  // Las ediciones de recetas existentes se fusionan; las de ids que no están en
-  // el JSON base son recetas NUEVAS añadidas a mano en este dispositivo → se anexan.
-  function aplicarEdiciones(lista, ed) {
-    const ids = new Set(lista.map((r) => r.id));
-    const fusionada = lista.map((r) => (ed[r.id] ? { ...r, ...ed[r.id] } : r));
-    const nuevas = Object.keys(ed).filter((id) => !ids.has(id)).map((id) => ed[id]);
-    return fusionada.concat(nuevas);
-  }
-  function formatoCantidad(n) {
-    if (n == null) return "";
-    // entero exacto sin decimales; si no, redondea a 2.
-    return Number.isInteger(n) ? String(n) : String(Math.round(n * 100) / 100);
-  }
-  function tiempoTexto(r) {
-    const t = r.tiempo_total_min;
-    return t ? `⏱️ ${t} min` : "";
-  }
-  function escapar(s) {
-    const d = document.createElement("div");
-    d.textContent = s == null ? "" : String(s);
-    return d.innerHTML;
-  }
 
-  // Emoji representativo para recetas sin imagen (por palabras clave del título/categoría).
-  function emojiReceta(r) {
-    const t = [r.nombre, ...(r.categoria || []), ...(r.keywords || [])]
-      .join(" ").toLowerCase();
-    const reglas = [
-      [/smoothie|batido|licuado|jugo|zumo|bebida/, "🥤"],
-      [/leche|latte|café/, "🥛"],
-      [/helado/, "🍨"],
-      [/sopa|crema|caldo/, "🍲"],
-      [/ensalada/, "🥗"],
-      [/pasta|boloñesa|espagueti|fideos/, "🍝"],
-      [/taco|burrito/, "🌮"],
-      [/hamburguesa/, "🍔"],
-      [/salmón|merluza|pescado|atún|sardina|caballa|bacalao/, "🐟"],
-      [/pollo|pavo/, "🍗"],
-      [/huevo|tortilla|revuelto/, "🍳"],
-      [/tostada|pan/, "🍞"],
-      [/avena|granola|parfait|yogur|desayuno/, "🥣"],
-      [/curry|kitchari|arroz|bowl/, "🍚"],
-      [/lenteja|garbanzo|frijol|judía|legumbre/, "🫘"],
-      [/manzana|fruta|plátano/, "🍎"],
-      [/berenjena|calabaza|verdura|ratatouille|escalivada/, "🍆"],
-    ];
-    for (const [re, em] of reglas) if (re.test(t)) return em;
-    return "🍽️";
-  }
 
-  // HTML del placeholder con emoji (cuando no hay imagen o falla la carga).
-  function placeholderHtml(r, clasePh) {
-    return `<div class="${clasePh}" aria-label="${escapar(r.nombre)}">${emojiReceta(r)}</div>`;
-  }
 
-  // Imagen de la receta o, si no hay, el placeholder con emoji.
-  // El fallback ante error de carga se ata con JS en activarMedia().
-  function mediaHtml(r, claseImg, clasePh) {
-    if (!r.imagen) return placeholderHtml(r, clasePh);
-    return `<img class="${claseImg}" loading="lazy" data-ph="${escapar(clasePh)}"
-              src="${escapar(r.imagen)}" alt="${escapar(r.nombre)}">`;
-  }
 
-  // Sustituye por el placeholder cualquier imagen que no cargue, dentro de `raiz`.
-  function activarMedia(raiz, r) {
-    raiz.querySelectorAll("img[data-ph]").forEach((img) => {
-      img.addEventListener("error", () => {
-        const tmp = document.createElement("div");
-        tmp.innerHTML = placeholderHtml(r, img.dataset.ph);
-        img.replaceWith(tmp.firstElementChild);
-      });
-    });
-  }
 
   // --- Inicio / carga de datos ---
   async function init() {
     try {
       const resp = await fetch("recetas.json", { cache: "no-cache" });
-      RECETAS = await resp.json();
+      S.RECETAS = await resp.json();
     } catch (e) {
       grid.innerHTML = `<p class="aviso">No se pudo cargar recetas.json.<br>Sirve la web con un servidor (no abras el archivo directamente).</p>`;
       return;
     }
     // Superpone las ediciones guardadas en este dispositivo (móvil/PWA offline).
-    RECETAS = aplicarEdiciones(RECETAS, cargarEdiciones());
-    RECETAS.sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
-    porId = Object.fromEntries(RECETAS.map((r) => [r.id, r]));
+    S.RECETAS = aplicarEdiciones(S.RECETAS, cargarEdiciones());
+    S.RECETAS.sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
+    S.porId = Object.fromEntries(S.RECETAS.map((r) => [r.id, r]));
     volcarMenuASeleccion();   // las recetas del menú semanal alimentan la cesta
     actualizarSelectoresCategoria();
     renderListado();
@@ -242,19 +69,13 @@
     history.replaceState({ vista: "listado", id: null }, "");  // estado base
   }
 
-  // Categorías disponibles en un conjunto de recetas (ordenadas).
-  function categoriasDe(recetas) {
-    const set = new Set();
-    recetas.forEach((r) => (r.categoria || []).forEach((c) => c && set.add(c)));
-    return [...set].sort((a, b) => a.localeCompare(b, "es"));
-  }
 
   // Nombres de ingredientes ya usados en el catálogo, limpios (sin cantidades ni
   // medidas pegadas), únicos y ordenados. Para autocompletar (datalist) al
   // añadir/editar una receta. Reutiliza nombreCompra() (hoisted).
   function nombresIngredientes() {
     const set = new Set();
-    RECETAS.forEach((r) => (r.ingredientes || []).forEach((i) => {
+    S.RECETAS.forEach((r) => (r.ingredientes || []).forEach((i) => {
       let limpio = nombreCompra((i.nombre || "").trim())
         .replace(/^[:;.\s]+/, "");                    // restos de scraping al inicio
       // Descarta lo que aún arrastra cantidad/medida (pocos casos residuales).
@@ -272,7 +93,7 @@
     selectsCat.forEach((sel, idx) => {
       // Recetas que ya cumplen las categorías elegidas en los selects ANTERIORES.
       const previas = selectsCat.slice(0, idx).map((s) => s.value).filter(Boolean);
-      const base = RECETAS.filter((r) =>
+      const base = S.RECETAS.filter((r) =>
         previas.every((c) => (r.categoria || []).includes(c)));
       // Opciones: categorías de esas recetas, excluyendo las ya elegidas antes.
       const opciones = categoriasDe(base).filter((c) => !previas.includes(c));
@@ -284,10 +105,6 @@
     });
   }
 
-  // Normaliza texto para buscar: minúsculas y sin acentos ("plátano" → "platano").
-  function normalizarBusqueda(s) {
-    return (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
-  }
 
   // --- Vista: listado ---
   function recetasFiltradas() {
@@ -296,7 +113,7 @@
     const terminos = normalizarBusqueda(inputBuscar.value.trim()).split(/\s+/).filter(Boolean);
     // Categorías seleccionadas (hasta 3) — la receta debe tenerlas TODAS (AND).
     const cats = selectsCat.map((s) => s.value).filter(Boolean);
-    return RECETAS.filter((r) => {
+    return S.RECETAS.filter((r) => {
       const suyas = r.categoria || [];
       if (!cats.every((c) => suyas.includes(c))) return false;
       if (!terminos.length) return true;
@@ -319,7 +136,7 @@
   function tarjeta(r) {
     const el = document.createElement("article");
     el.className = "tarjeta";
-    const checked = seleccion.has(r.id) ? "checked" : "";
+    const checked = S.seleccion.has(r.id) ? "checked" : "";
     const tags = (r.categoria || []).map((c) => `<span class="tag">${escapar(c)}</span>`).join("");
     el.innerHTML = `
       ${mediaHtml(r, "tarjeta-img", "tarjeta-img tarjeta-ph")}
@@ -346,13 +163,13 @@
 
   // --- Selección ---
   function toggleSeleccion(id, on) {
-    if (on) seleccion.add(id); else seleccion.delete(id);
+    if (on) S.seleccion.add(id); else S.seleccion.delete(id);
     // Tocar la cesta a mano "desvincula" el id del menú: ya no se auto-quitará al
     // quitarlo del menú (lo gestiona el usuario), ni se reañadirá solo.
-    seleccionMenu.delete(id);
-    guardarSeleccionMenu();
-    excluidos.clear();   // cambiar la selección reinicia los ingredientes quitados
-    guardarSeleccion();
+    S.seleccionMenu.delete(id);
+    guardarSeleccionMenu(S.seleccionMenu);
+    S.excluidos.clear();   // cambiar la selección reinicia los ingredientes quitados
+    guardarSeleccion(S.seleccion);
     actualizarBarra();
     // sincroniza checkboxes con el mismo id en otras vistas
     document.querySelectorAll(`input[data-id="${CSS.escape(id)}"]`)
@@ -360,7 +177,7 @@
   }
 
   function actualizarBarra() {
-    const n = seleccion.size;
+    const n = S.seleccion.size;
     resumenSel.innerHTML =
       `<span class="sel-num">${n}</span>`
       + `<span class="sel-txt">seleccionada${n === 1 ? "" : "s"}</span>`
@@ -375,7 +192,7 @@
 
   // --- Vista: recetas seleccionadas ---
   function verSeleccion() {
-    const recetasSel = [...seleccion].map((id) => porId[id]).filter(Boolean);
+    const recetasSel = [...S.seleccion].map((id) => S.porId[id]).filter(Boolean);
     if (!recetasSel.length) { mostrarListado(); return; }
     recetasSel.sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
 
@@ -423,11 +240,11 @@
   }
 
   function vaciarSeleccion() {
-    seleccion.clear();
-    seleccionMenu.clear();
-    excluidos.clear();
-    guardarSeleccion();
-    guardarSeleccionMenu();
+    S.seleccion.clear();
+    S.seleccionMenu.clear();
+    S.excluidos.clear();
+    guardarSeleccion(S.seleccion);
+    guardarSeleccionMenu(S.seleccionMenu);
     document.querySelectorAll('input[type="checkbox"][data-id]').forEach((c) => (c.checked = false));
     actualizarBarra();
     mostrarListado();
@@ -435,9 +252,9 @@
 
   // --- Vista: detalle ---
   function verDetalle(id) {
-    const r = porId[id];
+    const r = S.porId[id];
     if (!r) return;
-    const checked = seleccion.has(id) ? "checked" : "";
+    const checked = S.seleccion.has(id) ? "checked" : "";
     const ingHtml = (r.ingredientes || []).map((i) => `
       <li>
         ${i.cantidad != null ? `<span class="cant">${formatoCantidad(i.cantidad)} ${escapar(i.unidad || "")}</span> ` : ""}
@@ -493,7 +310,7 @@
       .normalize("NFD").replace(/[̀-ͯ]/g, "")   // quita acentos
       .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);
     let id = base, n = 2;
-    while (porId[id]) id = `${base}-${n++}`;   // evita colisiones
+    while (S.porId[id]) id = `${base}-${n++}`;   // evita colisiones
     return {
       id, url: "", nombre: "", descripcion: "", imagen: null,
       categoria: [], cocina: [], keywords: [], dieta: [],
@@ -524,7 +341,7 @@
   // id == null  → alta de receta nueva.  id != null → edición de la existente.
   function editarReceta(id) {
     const nueva = id == null;
-    const r = nueva ? null : porId[id];
+    const r = nueva ? null : S.porId[id];
     if (!nueva && !r) return;
     // Estado de trabajo (copias para no mutar hasta guardar).
     let cats = nueva ? [] : [...(r.categoria || [])];
@@ -533,7 +350,7 @@
     let nombre = nueva ? "" : (r.nombre || "");
     let pasosTexto = nueva ? "" : (r.pasos || []).join("\n");
     let imagen = nueva ? null : (r.imagen || null);   // ruta o data-URL base64
-    const todasCats = categoriasDe(RECETAS);
+    const todasCats = categoriasDe(S.RECETAS);
 
     // Vuelca lo que hay en los inputs al estado, para no perderlo al re-renderizar.
     function leerCampos() {
@@ -660,7 +477,7 @@
         destino.ingredientes = ingredientes;
         destino.pasos = pasos;
         destino.imagen = imagen;
-        if (nueva) { RECETAS.push(destino); porId[destino.id] = destino; }
+        if (nueva) { S.RECETAS.push(destino); S.porId[destino.id] = destino; }
 
         const estado = vistaEdicion.querySelector("#ed-estado");
         estado.textContent = "Guardando…";
@@ -680,7 +497,7 @@
     try {
       // Con servidor, si la foto es una data-URL (recién hecha), la subimos como
       // archivo a web/img/ y dejamos en la receta la ruta, no el base64.
-      const r = idEditado ? porId[idEditado] : null;
+      const r = idEditado ? S.porId[idEditado] : null;
       if (r && typeof r.imagen === "string" && r.imagen.startsWith("data:")) {
         const ruta = await subirImagen(idEditado, r.imagen);
         if (ruta) r.imagen = ruta;   // si falla, se queda el base64 (también válido)
@@ -688,7 +505,7 @@
       const resp = await fetch("/api/guardar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(RECETAS),
+        body: JSON.stringify(S.RECETAS),
       });
       if (resp.ok) {
         // El servidor es la fuente de verdad: limpiamos el override local de
@@ -704,7 +521,7 @@
     // (la foto queda como data-URL base64 dentro de la receta).
     if (idEditado) {
       const ed = cargarEdiciones();
-      ed[idEditado] = porId[idEditado];
+      ed[idEditado] = S.porId[idEditado];
       try {
         guardarEdiciones(ed);
       } catch (e) {   // QuotaExceededError: localStorage lleno (fotos pesadas)
@@ -734,83 +551,16 @@
 
   // --- Lista de la compra (agregación) ---
 
-  // Básicos de despensa que no se compran (se omiten de la lista, como el agua).
-  const DESPENSA = [
-    /\bagua\b/, /\bsal\b/, /\bpimienta\b/, /\baceite\b/, /\bvinagre\b/,
-    /\bc[úu]rcuma\b/, /\bcomino\b/, /\bpiment[óo]n\b/, /\bcanela\b/, /\bor[ée]gano\b/,
-    /\btomillo\b/, /\bromero\b/, /\bnuez moscada\b/, /\bclavo\b/, /\bcayena\b/,
-    /\bjengibre en polvo\b/, /\bajo en polvo\b/, /\bcebolla en polvo\b/,
-    /\bcardamomo\b/, /\bcurry en polvo\b/, /\bbicarbonato\b/, /\blevadura\b/,
-    /\bcopos de chile\b/, /\bsazonador\b/, /\bespecias\b/, /\bhierbas\b/,
-    /\bedulcorante\b/, /\bestevia\b/,
-  ];
-  // Variantes "comprables" que NO deben filtrarse aunque casen con DESPENSA.
-  const NO_DESPENSA = /\b(coco|gas|mineral|t[óo]nica|de mar|azahar)\b/;
 
-  function esDespensa(nombre) {
-    const n = nombre.toLowerCase().trim();
-    if (NO_DESPENSA.test(n)) return false;
-    return DESPENSA.some((re) => re.test(n));
-  }
 
-  // Unidades simbólicas: para ellas no tiene sentido sumar, se muestra solo nombre.
-  function esUnidadSimbolica(unidad) {
-    const u = (unidad || "").toLowerCase().replace(/\.$/, "");
-    return ["pizca", "pizcas", "cda", "cdas", "cdta", "cdtas", "cucharada",
-            "cucharadas", "cucharadita", "cucharaditas", "rama", "ramas",
-            "ramita", "ramitas", "diente", "dientes", "hoja", "hojas",
-            "puñado", "puñados", "chorrito", "chorro", "manojo"].includes(u);
-  }
 
-  // Normaliza el nombre para comprar quitando el TRATAMIENTO que se hace en casa
-  // (picar, rallar, cortar, exprimir, pelar...) y los adjetivos de tamaño/estado.
-  // NO quita lo que define el producto a comprar (triturado, concentrado, lata,
-  // de coco...), que se conserva porque cambia lo que compras.
-  const PREP = new RegExp(
-    "\\b(" + [
-      // cortes y troceados
-      "picad[oa]s?", "rallad[oa]s?", "cortad[oa]s?", "laminad[oa]s?",
-      "trocead[oa]s?", "rebanad[oa]s?", "en\\s+(rodajas?|cubos?|dados?|tiras?|" +
-      "juliana|l[áa]minas?|trozos?|gajos?|cuartos?|mitades?|floretes?|bastones?|aros?)",
-      "partid[oa]s?(\\s+por\\s+la\\s+mitad)?", "en\\s+mitades?", "desmenuzad[oa]s?",
-      // limpieza y preparado manual
-      "pelad[oa]s?", "escurrid[oa]s?", "lavad[oa]s?", "enjuagad[oa]s?",
-      "exprimid[oa]s?", "deshuesad[oa]s?", "desgranad[oa]s?", "descorazonad[oa]s?",
-      "sin\\s+(rabito|tallo|hueso|piel|pepitas?|semillas?)", "con\\s+piel",
-      "deveinad[oa]s?", "tamizad[oa]s?", "derretid[oa]s?", "ablandad[oa]s?",
-      // estado / madurez / temperatura (no afecta a la compra)
-      "fresc[oa]s?", "crud[oa]s?", "cocid[oa]s?", "maduro?s?", "templad[oa]s?",
-      "fr[íi][oa]s?", "calient[ea]s?", "ti?bi[oa]s?",
-      // tamaño y cantidad descriptiva
-      "grandes?", "peque[ñn][oa]s?", "median[oa]s?", "grues[oa]s?",
-      // modificadores de corte
-      "finamente", "muy\\s+fin[oa]s?", "fin[oa]s?", "grues[oa]s?",
-      // coletillas de uso
-      "opcional", "al\\s+gusto", "al\\s+servir", "para\\s+servir",
-      "para\\s+decorar", "para\\s+garnish", "extra",
-    ].join("|") + ")\\b",
-    "gi"
-  );
 
-  function nombreCompra(nombre) {
-    let n = nombre.replace(/\([^)]*\)/g, "");        // quita paréntesis (notas)
-    n = n.replace(/,.*$/, "");                       // quita lo que va tras una coma
-    // Quita prefijos de medida que quedaron pegados al nombre
-    // ("cda. de aceite", "1/2 cdta. de sal", "Jugo de ½ limón", "1 taza de X").
-    n = n.replace(/^\s*[\d¼-¾⅐-⅞.,/\s]*\b(cdas?|cdtas?|cucharad(?:a|ita)s?|tazas?|vasos?|pizcas?|g|kg|ml|l|gr|oz|libras?)\.?\s+de\s+/i, "");
-    n = n.replace(/^\s*(jugo|zumo|ralladura|el jugo|el zumo)\s+de\s+(½|¼|¾|\d+\s*)?/i, "");
-    n = n.replace(PREP, "").replace(PREP, ""); // dos pasadas: limpia coletillas encadenadas
-    n = n.replace(/\s+/g, " ").replace(/\s+(y|o|e)\s*$/, "").trim();
-    n = n.replace(/^de\s+/i, "");
-    n = n.replace(/^[½¼¾⅐-⅞\d.,/\s]+/, "").trim();    // restos numéricos al inicio
-    return n || nombre.trim();
-  }
 
   function generarListaCompra(ids) {
     const agregados = new Map();   // clave: nombreNorm|unidad  (con cantidad sumable)
     const soloNombre = new Map();  // clave: nombreNorm          (sin cantidad / simbólica)
     ids.forEach((id) => {
-      const r = porId[id];
+      const r = S.porId[id];
       if (!r) return;
       (r.ingredientes || []).forEach((i) => {
         const original = (i.nombre || "").trim();
@@ -833,19 +583,19 @@
     // Si un ingrediente ya está cuantificado, no lo dupliques en "solo nombre".
     const cuantificados = new Set([...agregados.values()].map((x) => x.clave));
     const lista = [...agregados.values()]
-      .filter((x) => !excluidos.has(x.clave))
+      .filter((x) => !S.excluidos.has(x.clave))
       .sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
     const sinCantidad = [...soloNombre.values()]
       .filter((x) => !cuantificados.has(x.nombre.toLowerCase()))
-      .filter((x) => !excluidos.has(x.nombre.toLowerCase()))
+      .filter((x) => !S.excluidos.has(x.nombre.toLowerCase()))
       .sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
     return { lista, sinCantidad };
   }
 
   function verListaCompra() {
-    const ids = [...seleccion];
+    const ids = [...S.seleccion];
     if (!ids.length) return;
-    const recetasSel = ids.map((id) => porId[id]).filter(Boolean);
+    const recetasSel = ids.map((id) => S.porId[id]).filter(Boolean);
     const { lista, sinCantidad } = generarListaCompra(ids);
 
     const incluidas = recetasSel.map((r) =>
@@ -869,9 +619,9 @@
       </ul>` : "";
 
     // Ingredientes añadidos a mano por el usuario.
-    const extrasHtml = extras.length ? `
+    const extrasHtml = S.extras.length ? `
       <ul class="lista-compra">
-        ${extras.map((e, n) => `
+        ${S.extras.map((e, n) => `
           <li><span class="casilla" aria-hidden="true"></span>
           ${e.cantidad ? `<span class="cant">${escapar(e.cantidad)}</span>` : ""}
           <span class="nombre-ing">${escapar(e.nombre)}</span>
@@ -898,7 +648,7 @@
         ${acciones}
         <ul class="lista-compra">${itemsHtml}</ul>
         ${sinHtml}
-        ${extras.length ? `<p class="subtitulo-sin">Añadidos a mano:</p>` : ""}
+        ${S.extras.length ? `<p class="subtitulo-sin">Añadidos a mano:</p>` : ""}
         ${extrasHtml}
         <form class="form-extra" id="form-extra" autocomplete="off">
           <input type="text" id="extra-cant" class="extra-cant" placeholder="Cant." aria-label="Cantidad">
@@ -917,18 +667,18 @@
       b.onclick = accion[b.dataset.accion];
     });
     vistaCompra.querySelectorAll("[data-extra]").forEach((b) => {
-      b.onclick = () => { extras.splice(+b.dataset.extra, 1); guardarExtras(); verListaCompra(); };
+      b.onclick = () => { S.extras.splice(+b.dataset.extra, 1); guardarExtras(S.extras); verListaCompra(); };
     });
     vistaCompra.querySelectorAll("[data-quitar]").forEach((b) => {
-      b.onclick = () => { excluidos.add(b.dataset.quitar); verListaCompra(); };
+      b.onclick = () => { S.excluidos.add(b.dataset.quitar); verListaCompra(); };
     });
     vistaCompra.querySelector("#form-extra").onsubmit = (ev) => {
       ev.preventDefault();
       const nombre = vistaCompra.querySelector("#extra-nombre").value.trim();
       const cantidad = vistaCompra.querySelector("#extra-cant").value.trim();
       if (!nombre) return;
-      extras.push({ nombre, cantidad });
-      guardarExtras();
+      S.extras.push({ nombre, cantidad });
+      guardarExtras(S.extras);
       verListaCompra();
     };
     registrarVista("compra");
@@ -947,8 +697,8 @@
     if (sinCantidad.length) {
       txt += "\n\n➕ Otros:\n" + sinCantidad.map((i) => `• ${i.nombre}`).join("\n");
     }
-    if (extras.length) {
-      txt += "\n\n✍️ Añadidos a mano:\n" + extras.map((e) =>
+    if (S.extras.length) {
+      txt += "\n\n✍️ Añadidos a mano:\n" + S.extras.map((e) =>
         `• ${(e.cantidad ? e.cantidad + " " : "") + e.nombre}`.trim()).join("\n");
     }
     return txt;
@@ -975,8 +725,8 @@
       if (!diaTienePlatos(dia)) return;
       txt += `\n*${DIAS_NOMBRE[dia]}*\n`;
       COMIDAS.forEach((comida) => {
-        const platos = (menuSemanal[dia][comida] || [])
-          .map((id) => porId[id] && porId[id].nombre).filter(Boolean);
+        const platos = (S.menuSemanal[dia][comida] || [])
+          .map((id) => S.porId[id] && S.porId[id].nombre).filter(Boolean);
         if (platos.length) txt += `• ${COMIDAS_NOMBRE[comida]}: ${platos.join(", ")}\n`;
       });
     });
@@ -1181,9 +931,9 @@
   // HTML de una celda (día × comida): lista de platos (cada uno con ✕) y, si caben
   // más (almuerzo/cena admiten hasta 3), un botón "+ Añadir".
   function celdaMenuHtml(dia, comida) {
-    const platos = (menuSemanal[dia] && menuSemanal[dia][comida]) || [];
+    const platos = (S.menuSemanal[dia] && S.menuSemanal[dia][comida]) || [];
     const filas = platos.map((id, n) => {
-      const r = porId[id];
+      const r = S.porId[id];
       const nombre = r ? r.nombre : "(receta no encontrada)";
       return `<div class="celda-plato">
                 <button class="celda-receta" data-id="${escapar(id)}">
@@ -1204,7 +954,7 @@
 
   // ¿el día tiene algún plato en alguna comida?
   function diaTienePlatos(dia) {
-    return COMIDAS.some((c) => (menuSemanal[dia][c] || []).length);
+    return COMIDAS.some((c) => (S.menuSemanal[dia][c] || []).length);
   }
 
   function verMenuSemanal() {
@@ -1272,18 +1022,18 @@
 
   // Añade un plato a una celda (sin pasarse del máximo) y lo vuelca a la selección.
   function asignarAMenu(dia, comida, id) {
-    const platos = menuSemanal[dia][comida];
+    const platos = S.menuSemanal[dia][comida];
     if (platos.length >= MAX_PLATOS[comida]) {
       alert(`Esta comida admite como máximo ${MAX_PLATOS[comida]} plato${MAX_PLATOS[comida] > 1 ? "s" : ""}.`);
       return false;
     }
     platos.push(id);
-    guardarMenu(menuSemanal);
+    guardarMenu(S.menuSemanal);
     // Marca el id como "venido del menú" salvo que ya estuviera seleccionado a mano.
-    if (!seleccion.has(id)) seleccionMenu.add(id);
-    guardarSeleccionMenu();
-    seleccion.add(id);
-    guardarSeleccion();
+    if (!S.seleccion.has(id)) S.seleccionMenu.add(id);
+    guardarSeleccionMenu(S.seleccionMenu);
+    S.seleccion.add(id);
+    guardarSeleccion(S.seleccion);
     actualizarBarra();
     return true;
   }
@@ -1291,16 +1041,16 @@
   // Quita un plato. Si esa receta ya no queda en ninguna celda y SOLO estaba en la
   // cesta por el menú (no la seleccionó el usuario a mano), también se quita de la cesta.
   function quitarDeMenu(dia, comida, indice) {
-    const id = menuSemanal[dia][comida][indice];
-    menuSemanal[dia][comida].splice(indice, 1);
-    guardarMenu(menuSemanal);
+    const id = S.menuSemanal[dia][comida][indice];
+    S.menuSemanal[dia][comida].splice(indice, 1);
+    guardarMenu(S.menuSemanal);
     // Si la receta ya no está en ninguna celda y estaba en la cesta SOLO por el menú
     // (no la añadió el usuario a mano), se quita también de la cesta.
-    if (id && !idsEnMenu().includes(id) && seleccionMenu.has(id)) {
-      seleccionMenu.delete(id);
-      guardarSeleccionMenu();
-      seleccion.delete(id);
-      guardarSeleccion();
+    if (id && !idsEnMenu().includes(id) && S.seleccionMenu.has(id)) {
+      S.seleccionMenu.delete(id);
+      guardarSeleccionMenu(S.seleccionMenu);
+      S.seleccion.delete(id);
+      guardarSeleccion(S.seleccion);
       actualizarBarra();
     }
     if (!vistaMenu.hidden) verMenuSemanal();
@@ -1310,15 +1060,15 @@
     const ids = idsEnMenu();
     if (!ids.length) { alert("El menú ya está vacío."); return; }
     if (!confirm("¿Vaciar todo el menú semanal?")) return;
-    DIAS.forEach((d) => COMIDAS.forEach((c) => (menuSemanal[d][c] = [])));
-    guardarMenu(menuSemanal);
+    DIAS.forEach((d) => COMIDAS.forEach((c) => (S.menuSemanal[d][c] = [])));
+    guardarMenu(S.menuSemanal);
     if (confirm("¿Quitar también esas recetas de la lista de la compra?")) {
-      ids.forEach((id) => seleccion.delete(id));
-      guardarSeleccion();
+      ids.forEach((id) => S.seleccion.delete(id));
+      guardarSeleccion(S.seleccion);
       actualizarBarra();
     }
-    ids.forEach((id) => seleccionMenu.delete(id));
-    guardarSeleccionMenu();
+    ids.forEach((id) => S.seleccionMenu.delete(id));
+    guardarSeleccionMenu(S.seleccionMenu);
     if (!vistaMenu.hidden) verMenuSemanal();
   }
 
@@ -1328,18 +1078,18 @@
     if (!diaTienePlatos(dia)) return;
     if (!confirm(`¿Vaciar el ${DIAS_NOMBRE[dia]}?`)) return;
     const antes = idsEnMenu();
-    COMIDAS.forEach((c) => (menuSemanal[dia][c] = []));
-    guardarMenu(menuSemanal);
+    COMIDAS.forEach((c) => (S.menuSemanal[dia][c] = []));
+    guardarMenu(S.menuSemanal);
     const quedan = new Set(idsEnMenu());
     let cambió = false;
     antes.forEach((id) => {
-      if (!quedan.has(id) && seleccionMenu.has(id)) {   // ya no en menú y vino del menú
-        seleccionMenu.delete(id);
-        if (seleccion.has(id)) { seleccion.delete(id); cambió = true; }
+      if (!quedan.has(id) && S.seleccionMenu.has(id)) {   // ya no en menú y vino del menú
+        S.seleccionMenu.delete(id);
+        if (S.seleccion.has(id)) { S.seleccion.delete(id); cambió = true; }
       }
     });
-    guardarSeleccionMenu();
-    if (cambió) { guardarSeleccion(); actualizarBarra(); }
+    guardarSeleccionMenu(S.seleccionMenu);
+    if (cambió) { guardarSeleccion(S.seleccion); actualizarBarra(); }
     if (!vistaMenu.hidden) verMenuSemanal();
   }
 
@@ -1347,7 +1097,7 @@
   function idsEnMenu() {
     const set = new Set();
     DIAS.forEach((d) => COMIDAS.forEach((c) => {
-      (menuSemanal[d][c] || []).forEach((id) => { if (id) set.add(id); });
+      (S.menuSemanal[d][c] || []).forEach((id) => { if (id) set.add(id); });
     }));
     return [...set];
   }
@@ -1356,12 +1106,12 @@
   // por receta aunque esté en varias celdas). No quita nada de la selección.
   // Los ids que añade (no estaban ya seleccionados a mano) se marcan como "de menú".
   function volcarMenuASeleccion() {
-    const ids = idsEnMenu().filter((id) => porId[id]);   // ignora ids ya inexistentes
+    const ids = idsEnMenu().filter((id) => S.porId[id]);   // ignora ids ya inexistentes
     let cambió = false;
     ids.forEach((id) => {
-      if (!seleccion.has(id)) { seleccion.add(id); seleccionMenu.add(id); cambió = true; }
+      if (!S.seleccion.has(id)) { S.seleccion.add(id); S.seleccionMenu.add(id); cambió = true; }
     });
-    if (cambió) { guardarSeleccion(); guardarSeleccionMenu(); actualizarBarra(); }
+    if (cambió) { guardarSeleccion(S.seleccion); guardarSeleccionMenu(S.seleccionMenu); actualizarBarra(); }
   }
 
   // --- Modal reutilizable ---
@@ -1399,7 +1149,7 @@
     const esDeComida = (r) => (r.categoria || []).includes(catComida);
     function pintar(filtro) {
       const q = normalizarBusqueda(filtro);
-      const recetas = RECETAS
+      const recetas = S.RECETAS
         // Busca por nombre, categoría (L191) o ingrediente (L207).
         .filter((r) => !q
           || normalizarBusqueda(r.nombre).includes(q)
@@ -1435,7 +1185,7 @@
 
   // Selector de día + comida para asignar una receta concreta al menú (desde el detalle).
   function elegirDiaComidaParaReceta(id) {
-    const r = porId[id];
+    const r = S.porId[id];
     if (!r) return;
     const opcDia = DIAS.map((d) => `<option value="${d}">${DIAS_NOMBRE[d]}</option>`).join("");
     const opcCom = COMIDAS.map((c) => `<option value="${c}">${COMIDAS_NOMBRE[c]}</option>`).join("");
@@ -1460,11 +1210,11 @@
   // --- Historial del navegador (botón Atrás navega entre vistas) ---
   // Estado actual: {vista, id}. Se sincroniza con history para que "Atrás"
   // vuelva a la vista anterior de la app en lugar de salir de ella.
-  let restaurando = false;   // evita re-pushear durante popstate
+  S.restaurando = false;   // evita re-pushear durante popstate
 
   // Reconstruye una vista a partir de su estado guardado, sin tocar el historial.
   function restaurarVista(estado) {
-    restaurando = true;
+    S.restaurando = true;
     try {
       switch (estado && estado.vista) {
         case "detalle": verDetalle(estado.id); break;
@@ -1477,13 +1227,13 @@
         default: mostrarListado();
       }
     } finally {
-      restaurando = false;
+      S.restaurando = false;
     }
   }
 
   // Registra un cambio de vista en el historial (salvo si venimos de popstate).
   function registrarVista(vista, id) {
-    if (restaurando) return;
+    if (S.restaurando) return;
     const estado = { vista, id: id || null };
     // El listado es el estado base (replace); el resto se apila (push).
     if (vista === "listado") history.replaceState(estado, "");
@@ -1538,12 +1288,12 @@
     const t = localStorage.getItem(LS_TEMA);
     return TEMAS.includes(t) ? t : "auto";
   }
-  let temaActual = cargarTema();
-  aplicarTema(temaActual);
+  S.temaActual = cargarTema();
+  aplicarTema(S.temaActual);
   btnTema.addEventListener("click", () => {
-    temaActual = TEMAS[(TEMAS.indexOf(temaActual) + 1) % TEMAS.length];
-    localStorage.setItem(LS_TEMA, temaActual);
-    aplicarTema(temaActual);
+    S.temaActual = TEMAS[(TEMAS.indexOf(S.temaActual) + 1) % TEMAS.length];
+    localStorage.setItem(LS_TEMA, S.temaActual);
+    aplicarTema(S.temaActual);
   });
 
   // --- Menú hamburguesa (navegación global en móvil/escritorio) ---
@@ -1569,10 +1319,10 @@
       case "seleccion": verSeleccion(); break;   // vacía → vuelve al listado
       case "compra":
         // Si no hay recetas seleccionadas, no hay lista que mostrar: ve a la selección.
-        if (seleccion.size) verListaCompra(); else verSeleccion();
+        if (S.seleccion.size) verListaCompra(); else verSeleccion();
         break;
       case "vaciar":
-        if (!seleccion.size) { alert("No hay recetas seleccionadas."); break; }
+        if (!S.seleccion.size) { alert("No hay recetas seleccionadas."); break; }
         if (confirm("¿Vaciar la selección de recetas?")) vaciarSeleccion();
         break;
       case "menu": verMenuSemanal(); break;
@@ -1589,4 +1339,3 @@
   $("#vaciar-seleccion").addEventListener("click", vaciarSeleccion);
 
   init();
-})();
