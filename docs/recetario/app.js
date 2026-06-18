@@ -8,7 +8,10 @@
   // Objeto { [id]: receta }, se superpone sobre recetas.json al cargar.
   const LS_EDICIONES = "recetario.ediciones";
   const LS_TEMA = "recetario.tema";   // "auto" | "claro" | "oscuro"
-  const LS_MENU = "recetario.menu";   // menú semanal { dia: { comida: idReceta|null } }
+  const LS_MENU = "recetario.menu";   // menú semanal { dia: { comida: [idReceta] } }
+  // Ids que entraron en la cesta por el menú semanal (para poder quitarlos de la
+  // cesta al quitarlos del menú, sin tocar los que el usuario seleccionó a mano).
+  const LS_SEL_MENU = "recetario.seleccion_menu";
 
   // Menú semanal: 7 días × 4 comidas. Una receta por celda (puede repetirse en
   // varias celdas); las celdas vacías son null.
@@ -69,8 +72,9 @@
   let RECETAS = [];
   let porId = {};
   let seleccion = new Set(cargarSeleccion());
+  let seleccionMenu = new Set(cargarSeleccionMenu());   // ids que entraron por el menú
   let extras = cargarExtras();   // ingredientes añadidos a mano [{nombre, cantidad}]
-  let menuSemanal = cargarMenu();   // menú semanal { dia: { comida: idReceta|null } }
+  let menuSemanal = cargarMenu();   // menú semanal { dia: { comida: [idReceta] } }
   // Ingredientes generados que el usuario ha quitado de la lista de la compra
   // (por clave en minúsculas). Solo en memoria: se descarta al cambiar la selección.
   let excluidos = new Set();
@@ -100,6 +104,13 @@
   }
   function guardarSeleccion() {
     localStorage.setItem(LS_KEY, JSON.stringify([...seleccion]));
+  }
+  function cargarSeleccionMenu() {
+    try { return JSON.parse(localStorage.getItem(LS_SEL_MENU)) || []; }
+    catch { return []; }
+  }
+  function guardarSeleccionMenu() {
+    localStorage.setItem(LS_SEL_MENU, JSON.stringify([...seleccionMenu]));
   }
   function cargarExtras() {
     try { return JSON.parse(localStorage.getItem(LS_EXTRAS)) || []; }
@@ -323,10 +334,12 @@
           <input type="checkbox" data-id="${escapar(r.id)}" ${checked}>
           Añadir a la lista
         </label>
+        <button class="tarjeta-al-menu btn-ico" data-id="${escapar(r.id)}">${ico("calendario")} Añadir al menú</button>
       </div>`;
     el.querySelector(".tarjeta-img").onclick = () => verDetalle(r.id);
     el.querySelector(".tarjeta-titulo").onclick = () => verDetalle(r.id);
     el.querySelector("input").onchange = (e) => toggleSeleccion(r.id, e.target.checked);
+    el.querySelector(".tarjeta-al-menu").onclick = () => elegirDiaComidaParaReceta(r.id);
     activarMedia(el, r);
     return el;
   }
@@ -334,6 +347,10 @@
   // --- Selección ---
   function toggleSeleccion(id, on) {
     if (on) seleccion.add(id); else seleccion.delete(id);
+    // Tocar la cesta a mano "desvincula" el id del menú: ya no se auto-quitará al
+    // quitarlo del menú (lo gestiona el usuario), ni se reañadirá solo.
+    seleccionMenu.delete(id);
+    guardarSeleccionMenu();
     excluidos.clear();   // cambiar la selección reinicia los ingredientes quitados
     guardarSeleccion();
     actualizarBarra();
@@ -407,8 +424,10 @@
 
   function vaciarSeleccion() {
     seleccion.clear();
+    seleccionMenu.clear();
     excluidos.clear();
     guardarSeleccion();
+    guardarSeleccionMenu();
     document.querySelectorAll('input[type="checkbox"][data-id]').forEach((c) => (c.checked = false));
     actualizarBarra();
     mostrarListado();
@@ -1079,11 +1098,14 @@
               con desayuno, almuerzo, merienda y cena. Pulsa <strong>«+ Añadir»</strong> en cualquier
               comida para elegir una receta (puedes dejar comidas en blanco). El <strong>almuerzo y la
               cena admiten hasta 3 platos</strong>; el desayuno y la merienda, uno.</li>
-            <li>También puedes asignar una receta al menú desde su ficha, con el botón
-              <strong>«Añadir al menú semanal»</strong>.</li>
+            <li>El selector de receta muestra <strong>primero las de esa comida</strong> (en el
+              almuerzo, primero los almuerzos…) y puedes <strong>buscar por nombre o por categoría</strong>.</li>
+            <li>También puedes añadir una receta al menú <strong>desde su ficha</strong> o desde el
+              <strong>botón «Añadir al menú»</strong> de cada tarjeta del listado.</li>
             <li>Las recetas del menú se <strong>añaden automáticamente a la lista de la compra</strong>.
-              Quitar una receta de una comida (con la ✕) no la quita de la lista; eso se hace en
-              «Recetas seleccionadas». «Vaciar menú» te pregunta si quitarlas también de la lista.</li>
+              Si quitas una receta del menú (con la ✕) y solo estaba ahí, también se quita de la lista
+              (si la habías marcado tú a mano, se conserva). Puedes <strong>vaciar un día</strong> con
+              el icono de papelera de su cabecera, o todo el menú con «Vaciar menú».</li>
           </ul>
           <img class="guia-img" loading="lazy" src="img/ayuda/menu.jpg"
                alt="Vista del menú semanal">
@@ -1129,10 +1151,20 @@
     return `<div class="celda-menu ${platos.length ? "llena" : "vacia"}">${filas}${botonAnadir}</div>`;
   }
 
+  // ¿el día tiene algún plato en alguna comida?
+  function diaTienePlatos(dia) {
+    return COMIDAS.some((c) => (menuSemanal[dia][c] || []).length);
+  }
+
   function verMenuSemanal() {
     const dias = DIAS.map((dia) => `
       <section class="dia-menu">
-        <h3 class="dia-titulo">${DIAS_NOMBRE[dia]}</h3>
+        <div class="dia-titulo">
+          <h3>${DIAS_NOMBRE[dia]}</h3>
+          ${diaTienePlatos(dia)
+            ? `<button class="dia-vaciar" data-dia="${dia}" aria-label="Vaciar ${DIAS_NOMBRE[dia]}" title="Vaciar este día">${ico("trash")}</button>`
+            : ""}
+        </div>
         <div class="comidas">
           ${COMIDAS.map((comida) => `
             <div class="comida" data-comida="${comida}">
@@ -1157,7 +1189,10 @@
       const anadir = e.target.closest(".celda-anadir");
       const quitar = e.target.closest(".celda-quitar");
       const receta = e.target.closest(".celda-receta");
-      if (anadir) {
+      const vaciarD = e.target.closest(".dia-vaciar");
+      if (vaciarD) {
+        vaciarDia(vaciarD.dataset.dia);
+      } else if (anadir) {
         elegirRecetaParaCelda(anadir.dataset.dia, anadir.dataset.comida);
       } else if (quitar) {
         quitarDeMenu(quitar.dataset.dia, quitar.dataset.comida, +quitar.dataset.plato);
@@ -1180,16 +1215,30 @@
     }
     platos.push(id);
     guardarMenu(menuSemanal);
+    // Marca el id como "venido del menú" salvo que ya estuviera seleccionado a mano.
+    if (!seleccion.has(id)) seleccionMenu.add(id);
+    guardarSeleccionMenu();
     seleccion.add(id);
     guardarSeleccion();
     actualizarBarra();
     return true;
   }
 
+  // Quita un plato. Si esa receta ya no queda en ninguna celda y SOLO estaba en la
+  // cesta por el menú (no la seleccionó el usuario a mano), también se quita de la cesta.
   function quitarDeMenu(dia, comida, indice) {
+    const id = menuSemanal[dia][comida][indice];
     menuSemanal[dia][comida].splice(indice, 1);
     guardarMenu(menuSemanal);
-    // No se quita de la selección automáticamente (el usuario la gestiona en la cesta).
+    // Si la receta ya no está en ninguna celda y estaba en la cesta SOLO por el menú
+    // (no la añadió el usuario a mano), se quita también de la cesta.
+    if (id && !idsEnMenu().includes(id) && seleccionMenu.has(id)) {
+      seleccionMenu.delete(id);
+      guardarSeleccionMenu();
+      seleccion.delete(id);
+      guardarSeleccion();
+      actualizarBarra();
+    }
     if (!vistaMenu.hidden) verMenuSemanal();
   }
 
@@ -1204,6 +1253,29 @@
       guardarSeleccion();
       actualizarBarra();
     }
+    ids.forEach((id) => seleccionMenu.delete(id));
+    guardarSeleccionMenu();
+    if (!vistaMenu.hidden) verMenuSemanal();
+  }
+
+  // Vacía todas las comidas de un día. Las recetas que dejan de estar en el menú y
+  // que solo estaban en la cesta por el menú se quitan también de la cesta (L189).
+  function vaciarDia(dia) {
+    if (!diaTienePlatos(dia)) return;
+    if (!confirm(`¿Vaciar el ${DIAS_NOMBRE[dia]}?`)) return;
+    const antes = idsEnMenu();
+    COMIDAS.forEach((c) => (menuSemanal[dia][c] = []));
+    guardarMenu(menuSemanal);
+    const quedan = new Set(idsEnMenu());
+    let cambió = false;
+    antes.forEach((id) => {
+      if (!quedan.has(id) && seleccionMenu.has(id)) {   // ya no en menú y vino del menú
+        seleccionMenu.delete(id);
+        if (seleccion.has(id)) { seleccion.delete(id); cambió = true; }
+      }
+    });
+    guardarSeleccionMenu();
+    if (cambió) { guardarSeleccion(); actualizarBarra(); }
     if (!vistaMenu.hidden) verMenuSemanal();
   }
 
@@ -1218,11 +1290,14 @@
 
   // Asegura que toda receta del menú esté en la selección (la cesta cuenta 1 vez
   // por receta aunque esté en varias celdas). No quita nada de la selección.
+  // Los ids que añade (no estaban ya seleccionados a mano) se marcan como "de menú".
   function volcarMenuASeleccion() {
     const ids = idsEnMenu().filter((id) => porId[id]);   // ignora ids ya inexistentes
     let cambió = false;
-    ids.forEach((id) => { if (!seleccion.has(id)) { seleccion.add(id); cambió = true; } });
-    if (cambió) { guardarSeleccion(); actualizarBarra(); }
+    ids.forEach((id) => {
+      if (!seleccion.has(id)) { seleccion.add(id); seleccionMenu.add(id); cambió = true; }
+    });
+    if (cambió) { guardarSeleccion(); guardarSeleccionMenu(); actualizarBarra(); }
   }
 
   // --- Modal reutilizable ---
@@ -1250,20 +1325,33 @@
         <h3>Elegir receta<br><small>${escapar(titulo)}</small></h3>
         <button class="modal-cerrar" aria-label="Cerrar">${ico("x")}</button>
       </div>
-      <input type="search" id="modal-buscar" class="modal-buscar" placeholder="Buscar receta…" autocomplete="off">
+      <input type="search" id="modal-buscar" class="modal-buscar" placeholder="Buscar por nombre o categoría…" autocomplete="off">
       <ul class="modal-lista" id="modal-lista"></ul>`);
 
     const input = modal.querySelector("#modal-buscar");
     const lista = modal.querySelector("#modal-lista");
+    // Categoría asociada a la comida (Desayuno/Almuerzo/Merienda/Cena) para priorizar.
+    const catComida = COMIDAS_NOMBRE[comida];
+    const esDeComida = (r) => (r.categoria || []).includes(catComida);
     function pintar(filtro) {
       const q = normalizarBusqueda(filtro);
       const recetas = RECETAS
-        .filter((r) => !q || normalizarBusqueda(r.nombre).includes(q))
+        // Busca por nombre O por categoría (L191).
+        .filter((r) => !q
+          || normalizarBusqueda(r.nombre).includes(q)
+          || (r.categoria || []).some((c) => normalizarBusqueda(c).includes(q)))
+        // Primero las de la categoría de la comida; dentro, orden alfabético (L190).
+        .sort((a, b) => {
+          const da = esDeComida(a), db = esDeComida(b);
+          if (da !== db) return da ? -1 : 1;
+          return a.nombre.localeCompare(b.nombre, "es");
+        })
         .slice(0, 60);
       lista.innerHTML = recetas.map((r) => `
         <li><button class="modal-item" data-id="${escapar(r.id)}">
           ${mediaHtml(r, "modal-item-img", "modal-item-img modal-item-ph")}
           <span class="modal-item-nombre">${escapar(r.nombre)}</span>
+          ${esDeComida(r) ? `<span class="modal-item-tag">${escapar(catComida)}</span>` : ""}
         </button></li>`).join("")
         || `<li class="modal-vacio">Sin resultados</li>`;
     }
