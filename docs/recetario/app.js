@@ -758,12 +758,14 @@ import {
   }
 
   // --- Navegación entre vistas ---
-  function cambiarVista(activa) {
+  function cambiarVista(activa, conservarScroll = false) {
     [vistaListado, vistaDetalle, vistaEdicion, vistaSeleccion, vistaCompra, vistaAyuda, vistaGuia, vistaMenu]
       .forEach((v) => (v.hidden = v !== activa));
     // El buscador y el filtro solo tienen función en el listado.
     zonaBuscador.hidden = activa !== vistaListado;
-    window.scrollTo(0, 0);
+    // Al cambiar de vista subimos arriba; en un re-render de la misma vista NO,
+    // para que el menú no salte al modificar una celda (L228).
+    if (!conservarScroll) window.scrollTo(0, 0);
   }
   function mostrarListado() {
     renderListado();
@@ -834,8 +836,10 @@ import {
           antiinflamatorias y, sobre todo, te ayuda a <strong>generar la lista de la compra</strong>:
           seleccionas las recetas que vas a cocinar y la app crea una lista unificada (suma
           cantidades y omite los básicos de despensa) que puedes <strong>compartir o imprimir</strong>.
-          Además puedes <strong>buscar y filtrar</strong> recetas, <strong>añadir las tuyas</strong>
-          con foto, e <strong>instalar la app</strong> en el móvil para usarla sin conexión.</p>
+          También puedes planificar la semana con el <strong>menú semanal</strong> (sus recetas se
+          añaden solas a la lista). Además puedes <strong>buscar y filtrar</strong> recetas,
+          <strong>añadir las tuyas</strong> con foto, e <strong>instalar la app</strong> en el móvil
+          para usarla sin conexión.</p>
 
         <section class="guia-seccion">
           <h3 class="titulo-ico">${ico("home")} Buscar y filtrar recetas</h3>
@@ -958,6 +962,8 @@ import {
   }
 
   function verMenuSemanal() {
+    // Si ya estamos en el menú, es un re-render (añadir/quitar): conservar el scroll.
+    const reRender = !vistaMenu.hidden;
     const dias = DIAS.map((dia) => `
       <section class="dia-menu">
         <div class="dia-titulo">
@@ -1017,7 +1023,7 @@ import {
     });
 
     registrarVista("menu");
-    cambiarVista(vistaMenu);
+    cambiarVista(vistaMenu, reRender);
   }
 
   // Añade un plato a una celda (sin pasarse del máximo) y lo vuelca a la selección.
@@ -1147,6 +1153,16 @@ import {
     // Categoría asociada a la comida (Desayuno/Almuerzo/Merienda/Cena) para priorizar.
     const catComida = COMIDAS_NOMBRE[comida];
     const esDeComida = (r) => (r.categoria || []).includes(catComida);
+    // Comida "afín" que va detrás de la propia (almuerzo↔cena, desayuno↔merienda).
+    const AFIN = { Almuerzo: "Cena", Cena: "Almuerzo", Desayuno: "Merienda", Merienda: "Desayuno" };
+    const catAfin = AFIN[catComida];
+    // Rango de prioridad: 0 = esta comida, 1 = comida afín, 2 = el resto (L226).
+    const rango = (r) => {
+      const cats = r.categoria || [];
+      if (cats.includes(catComida)) return 0;
+      if (catAfin && cats.includes(catAfin)) return 1;
+      return 2;
+    };
     function pintar(filtro) {
       const q = normalizarBusqueda(filtro);
       const recetas = S.RECETAS
@@ -1155,11 +1171,11 @@ import {
           || normalizarBusqueda(r.nombre).includes(q)
           || (r.categoria || []).some((c) => normalizarBusqueda(c).includes(q))
           || (r.ingredientes || []).some((i) => normalizarBusqueda(i.nombre).includes(q)))
-        // Primero las de la categoría de la comida; dentro, orden alfabético (L190).
-        // NO se restringe la lista: tras las de la comida aparecen TODAS las demás (L221).
+        // Orden: primero esta comida, luego la afín, luego el resto; alfabético dentro (L226).
+        // NO se restringe la lista: aparecen TODAS las recetas (L221).
         .sort((a, b) => {
-          const da = esDeComida(a), db = esDeComida(b);
-          if (da !== db) return da ? -1 : 1;
+          const ra = rango(a), rb = rango(b);
+          if (ra !== rb) return ra - rb;
           return a.nombre.localeCompare(b.nombre, "es");
         });
       lista.innerHTML = recetas.map((r) => `
