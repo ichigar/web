@@ -7,6 +7,7 @@
   // Ediciones hechas en este dispositivo cuando no hay servidor (móvil/PWA).
   // Objeto { [id]: receta }, se superpone sobre recetas.json al cargar.
   const LS_EDICIONES = "recetario.ediciones";
+  const LS_TEMA = "recetario.tema";   // "auto" | "claro" | "oscuro"
 
   // --- Iconos SVG (estilo línea, tipo Lucide; heredan el color con currentColor) ---
   // Cada entrada es el contenido interior de un <svg> 24x24 con stroke.
@@ -29,6 +30,12 @@
     share: `<path d="M12 3v12"/><path d="m8 7 4-4 4 4"/><path d="M6 12H5a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1h-1"/>`,
     camera: `<path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6h0a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.5"/>`,
     plus_circle: `<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>`,
+    help: `<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 3.5"/><path d="M12 17h.01"/>`,
+    sol: `<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>`,
+    luna: `<path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z"/>`,
+    auto: `<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18Z" fill="currentColor" stroke="none"/>`,
+    // Logo: carrito de la compra con una hoja (recetas saludables → compra).
+    logo: `<circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/><path d="M2 3h2l2.2 11a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L19.5 8H6.2"/><path d="M13 7.5c0-2 1.6-3.5 3.6-3.5-.2 2-1.6 3.5-3.6 3.5Z"/><path d="M13 7.5C13 5.6 11.4 4 9.5 4"/>`,
   };
   function ico(nombre, cls = "ico") {
     return `<svg class="${cls}" viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none"`
@@ -58,6 +65,7 @@
   const vistaSeleccion = $("#vista-seleccion");
   const vistaCompra = $("#vista-compra");
   const vistaAyuda = $("#vista-ayuda");
+  const vistaGuia = $("#vista-guia");
   const grid = $("#grid");
   const contador = $("#contador");
   const inputBuscar = $("#buscar");
@@ -125,7 +133,7 @@
       [/pasta|boloñesa|espagueti|fideos/, "🍝"],
       [/taco|burrito/, "🌮"],
       [/hamburguesa/, "🍔"],
-      [/salmón|merluza|pescado|atún/, "🐟"],
+      [/salmón|merluza|pescado|atún|sardina|caballa|bacalao/, "🐟"],
       [/pollo|pavo/, "🍗"],
       [/huevo|tortilla|revuelto/, "🍳"],
       [/tostada|pan/, "🍞"],
@@ -897,7 +905,7 @@
 
   // --- Navegación entre vistas ---
   function cambiarVista(activa) {
-    [vistaListado, vistaDetalle, vistaEdicion, vistaSeleccion, vistaCompra, vistaAyuda]
+    [vistaListado, vistaDetalle, vistaEdicion, vistaSeleccion, vistaCompra, vistaAyuda, vistaGuia]
       .forEach((v) => (v.hidden = v !== activa));
     // El buscador y el filtro solo tienen función en el listado.
     zonaBuscador.hidden = activa !== vistaListado;
@@ -947,7 +955,7 @@
     vistaAyuda.innerHTML = `
       <div class="ayuda">
         <button class="volver" id="ayuda-volver">← Volver</button>
-        <h2 class="titulo-ico">${ico("download")} Instalar el Recetario como app</h2>
+        <h2 class="titulo-ico">${ico("download")} Instalar la app en tu móvil</h2>
         <p>Instálalo como una <strong>app</strong>: tendrás un icono en la pantalla de inicio,
            se abre a pantalla completa y funciona <strong>sin conexión a internet</strong>.</p>
         ${aviso}
@@ -959,6 +967,78 @@
     vistaAyuda.querySelector("#ayuda-volver").onclick = () => history.back();
     registrarVista("ayuda");
     cambiarVista(vistaAyuda);
+  }
+
+  // --- Vista: guía de uso de la app ---
+  function verGuia() {
+    vistaGuia.innerHTML = `
+      <div class="guia">
+        <button class="volver" id="guia-volver">← Volver</button>
+        <h2 class="titulo-ico">${ico("help")} Cómo usar la app</h2>
+
+        <p class="guia-intro"><strong>Recetas a la Compra</strong> reúne recetas
+          antiinflamatorias y, sobre todo, te ayuda a <strong>generar la lista de la compra</strong>:
+          seleccionas las recetas que vas a cocinar y la app crea una lista unificada (suma
+          cantidades y omite los básicos de despensa) que puedes <strong>compartir o imprimir</strong>.
+          Además puedes <strong>buscar y filtrar</strong> recetas, <strong>añadir las tuyas</strong>
+          con foto, e <strong>instalar la app</strong> en el móvil para usarla sin conexión.</p>
+
+        <section class="guia-seccion">
+          <h3 class="titulo-ico">${ico("home")} Buscar y filtrar recetas</h3>
+          <ul>
+            <li>Escribe en el <strong>buscador</strong> por nombre o por ingredientes. Puedes poner
+              <strong>varios ingredientes separados por espacios</strong> (p. ej. «salmón aguacate»)
+              y verás solo las recetas que tengan <strong>todos</strong>. No hace falta poner tildes.</li>
+            <li>Usa los <strong>tres selectores de categoría</strong> para afinar: se combinan entre sí
+              (la receta debe tener todas las elegidas) y se encadenan (el segundo solo ofrece
+              categorías compatibles con el primero).</li>
+          </ul>
+          <img class="guia-img" loading="lazy" src="img/ayuda/buscar.jpg"
+               alt="Buscador e selectores de categoría">
+        </section>
+
+        <section class="guia-seccion">
+          <h3 class="titulo-ico">${ico("cart")} Lista de la compra</h3>
+          <ul>
+            <li>Marca la <strong>casilla</strong> de las recetas que quieras cocinar; abajo aparece una
+              barra con el total seleccionado.</li>
+            <li>Pulsa <strong>«Generar lista»</strong>: los ingredientes se <strong>unifican</strong>
+              (se suman cantidades) y se omiten los básicos de despensa y el agua.</li>
+            <li>Puedes <strong>quitar</strong> ingredientes con la ✕, <strong>añadir</strong> los tuyos a
+              mano, y <strong>compartir</strong> la lista por WhatsApp, copiarla o exportarla a PDF.</li>
+          </ul>
+          <img class="guia-img" loading="lazy" src="img/ayuda/compra.jpg"
+               alt="Vista de la lista de la compra">
+        </section>
+
+        <section class="guia-seccion">
+          <h3 class="titulo-ico">${ico("plus")} Añadir y editar recetas</h3>
+          <ul>
+            <li>Desde el menú <strong>☰ → «Nueva receta»</strong> puedes crear una receta con nombre,
+              <strong>foto</strong> (en el móvil se abre la cámara), categorías, ingredientes (con
+              autocompletado) y preparación.</li>
+            <li>En cualquier receta, el botón <strong>«Editar»</strong> permite modificarla.</li>
+            <li class="guia-nota">En el móvil, las recetas que añadas se guardan <strong>en ese
+              dispositivo</strong>. Para incorporarlas al recetario común hay que añadirlas desde el
+              ordenador.</li>
+          </ul>
+          <img class="guia-img" loading="lazy" src="img/ayuda/nueva.jpg"
+               alt="Formulario de nueva receta">
+        </section>
+
+        <section class="guia-seccion">
+          <h3 class="titulo-ico">${ico("download")} Instalar como app</h3>
+          <p>Puedes instalar «Recetas a la Compra» en tu móvil para tenerlo como una app y usarlo
+            <strong>sin conexión</strong>. Encontrarás las instrucciones paso a paso en el menú
+            <strong>☰ → «Instalar como app»</strong>.</p>
+          <button class="btn-secundario btn-ico" id="guia-a-instalar">${ico("download")} Ver cómo instalar</button>
+        </section>
+      </div>`;
+
+    vistaGuia.querySelector("#guia-volver").onclick = () => history.back();
+    vistaGuia.querySelector("#guia-a-instalar").onclick = verAyuda;
+    registrarVista("guia");
+    cambiarVista(vistaGuia);
   }
 
   // --- Historial del navegador (botón Atrás navega entre vistas) ---
@@ -976,6 +1056,7 @@
         case "seleccion": verSeleccion(); break;
         case "compra": verListaCompra(); break;
         case "ayuda": verAyuda(); break;
+        case "guia": verGuia(); break;
         default: mostrarListado();
       }
     } finally {
@@ -1016,6 +1097,32 @@
   }
   pintarIconos();
 
+  // --- Tema claro/oscuro (auto → claro → oscuro) ---
+  const TEMAS = ["auto", "claro", "oscuro"];
+  const TEMA_ICONO = { auto: "auto", claro: "sol", oscuro: "luna" };
+  const TEMA_NOMBRE = { auto: "Tema: automático", claro: "Tema: claro", oscuro: "Tema: oscuro" };
+  const btnTema = $("#btn-tema");
+
+  function aplicarTema(tema) {
+    // "auto" no pone atributo: dejamos que mande prefers-color-scheme del CSS.
+    if (tema === "auto") document.documentElement.removeAttribute("data-tema");
+    else document.documentElement.setAttribute("data-tema", tema);
+    btnTema.innerHTML = ico(TEMA_ICONO[tema]);
+    btnTema.title = TEMA_NOMBRE[tema];
+    btnTema.setAttribute("aria-label", TEMA_NOMBRE[tema]);
+  }
+  function cargarTema() {
+    const t = localStorage.getItem(LS_TEMA);
+    return TEMAS.includes(t) ? t : "auto";
+  }
+  let temaActual = cargarTema();
+  aplicarTema(temaActual);
+  btnTema.addEventListener("click", () => {
+    temaActual = TEMAS[(TEMAS.indexOf(temaActual) + 1) % TEMAS.length];
+    localStorage.setItem(LS_TEMA, temaActual);
+    aplicarTema(temaActual);
+  });
+
   // --- Menú hamburguesa (navegación global en móvil/escritorio) ---
   const btnMenu = $("#abrir-menu");
   const menu = $("#menu");
@@ -1045,6 +1152,7 @@
         if (!seleccion.size) { alert("No hay recetas seleccionadas."); break; }
         if (confirm("¿Vaciar la selección de recetas?")) vaciarSeleccion();
         break;
+      case "guia": verGuia(); break;
       case "instalar": verAyuda(); break;
     }
   });

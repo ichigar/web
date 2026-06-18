@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recetario antiinflamatorio · Lista de la compra</title>
-  <meta name="description" content="Recetario antiinflamatorio con generador de lista de la compra.">
+  <title>Recetas a la Compra · recetas antiinflamatorias y lista de la compra</title>
+  <meta name="description" content="Recetas a la Compra: recetas antiinflamatorias con generador de lista de la compra.">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="180x180" href="favicon.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -13,13 +13,23 @@
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Recetario">
+  <meta name="apple-mobile-web-app-title" content="Recetas a la Compra">
   <link rel="stylesheet" href="styles.css">
+  <!-- Aplica el tema guardado antes de pintar, para evitar el parpadeo claro→oscuro. -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("recetario.tema");
+        if (t === "claro" || t === "oscuro") document.documentElement.setAttribute("data-tema", t);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <header class="cabecera">
     <div class="cabecera-inner">
-      <h1 class="logo" id="ir-inicio">🥗 Recetario</h1>
+      <h1 class="logo" id="ir-inicio" data-ico="logo">Recetas a la Compra</h1>
+      <button class="btn-tema" id="btn-tema" aria-label="Cambiar tema"></button>
       <div class="menu-wrap">
         <button class="btn-menu" id="abrir-menu" aria-label="Menú" aria-haspopup="true" aria-expanded="false" data-ico="menu"></button>
         <nav class="menu" id="menu" hidden>
@@ -29,6 +39,7 @@
           <button class="menu-item" data-menu="compra" data-ico="cart">Lista de la compra</button>
           <button class="menu-item" data-menu="vaciar" data-ico="trash">Vaciar selección</button>
           <hr class="menu-sep">
+          <button class="menu-item" data-menu="guia" data-ico="help">Cómo usar la app</button>
           <button class="menu-item" data-menu="instalar" data-ico="download">Instalar como app</button>
         </nav>
       </div>
@@ -70,6 +81,9 @@
 
     <!-- Vista: ayuda / cómo instalar la PWA -->
     <section id="vista-ayuda" hidden></section>
+
+    <!-- Vista: guía de uso de la app -->
+    <section id="vista-guia" hidden></section>
   </main>
 
   <!-- Barra inferior con la selección -->

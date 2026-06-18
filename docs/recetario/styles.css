@@ -5,12 +5,43 @@
   --verde-osc: #2c5a38;
   --texto: #232826;
   --gris: #6b746e;
+  --texto-suave: #555;     /* notas y descripciones (gris de texto) */
   --borde: #e2e6e3;
   --fondo: #fafbfa;
-  --blanco: #fff;
+  --blanco: #fff;          /* superficies (tarjetas, cabecera, menú) */
   --sombra: 0 1px 3px rgba(0, 0, 0, .08), 0 1px 2px rgba(0, 0, 0, .06);
   --radio: 14px;
   --max: 1100px;
+}
+
+/* Paleta oscura: se aplica cuando el usuario elige "oscuro" explícitamente, o
+   cuando está en "auto" y el sistema está en oscuro. (mismas variables, así el
+   resto del CSS no cambia). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="claro"]) {
+    --verde: #5aa66c;
+    --verde-claro: #1e2a22;
+    --verde-osc: #8fd7a0;
+    --texto: #e7ebe8;
+    --gris: #9aa39d;
+    --texto-suave: #b3bbb5;
+    --borde: #313a34;
+    --fondo: #141815;
+    --blanco: #1c211e;
+    --sombra: 0 1px 3px rgba(0, 0, 0, .4), 0 1px 2px rgba(0, 0, 0, .3);
+  }
+}
+:root[data-tema="oscuro"] {
+  --verde: #5aa66c;
+  --verde-claro: #1e2a22;
+  --verde-osc: #8fd7a0;
+  --texto: #e7ebe8;
+  --gris: #9aa39d;
+  --texto-suave: #b3bbb5;
+  --borde: #313a34;
+  --fondo: #141815;
+  --blanco: #1c211e;
+  --sombra: 0 1px 3px rgba(0, 0, 0, .4), 0 1px 2px rgba(0, 0, 0, .3);
 }
 
 * { box-sizing: border-box; }
@@ -25,6 +56,18 @@ body {
   line-height: 1.5;
   padding-bottom: 88px; /* hueco para la barra inferior */
 }
+
+/* Botones y controles de formulario NO heredan color por defecto: lo forzamos
+   para que el modo oscuro afecte también al logo, menú, buscador y selectores. */
+button, input, select, textarea { color: inherit; }
+/* Enlaces: en verde del tema (el azul por defecto no se ve en modo oscuro). */
+a { color: var(--verde); }
+a:hover { color: var(--verde-osc); }
+/* Pista al navegador para que pinte los controles nativos en el esquema actual.
+   Por defecto "light dark" → en auto sigue al sistema; los temas forzados mandan. */
+:root { color-scheme: light dark; }
+:root[data-tema="oscuro"] { color-scheme: dark; }
+:root[data-tema="claro"] { color-scheme: light; }
 
 /* ---------- Cabecera ---------- */
 .cabecera {
@@ -44,10 +87,29 @@ body {
   font-size: 1.35rem;
   cursor: pointer;
   user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
 }
+.logo .ico { color: var(--verde); width: 1.5rem; height: 1.5rem; flex: none; }
 /* Fila superior del header: logo a la izquierda, menú a la derecha. */
 .cabecera-inner { display: flex; flex-wrap: wrap; align-items: center; column-gap: .6rem; }
 .logo { flex: 1 1 auto; }
+
+/* Botón de tema (sol/luna/auto) */
+.btn-tema {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 .6rem;
+  padding: .4rem .55rem;
+  background: none;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  color: var(--verde-osc);
+  cursor: pointer;
+}
+.btn-tema:hover { background: var(--verde-claro); }
 
 /* Menú hamburguesa */
 .menu-wrap { position: relative; margin: 0 0 .6rem; }
@@ -102,15 +164,18 @@ body {
 /* En pantallas anchas (PC/tablet): barra de navegación horizontal en lugar de
    menú hamburguesa. Todo con CSS; el JS del toggle solo actúa en móvil. */
 @media (min-width: 768px) {
-  .menu-wrap { position: static; margin: 0; }
+  .menu-wrap { position: static; margin: 0; flex: 1 1 100%; }  /* barra en su propia fila */
+  .logo { flex: 0 0 auto; }                    /* el logo no se estira: deja sitio a la barra */
   .btn-menu { display: none; }                 /* sin hamburguesa */
-  .menu, .menu[hidden] {                        /* siempre visible, en línea */
+  .menu, .menu[hidden] {                        /* siempre visible, en línea y con wrap */
     display: flex;
     position: static;
     flex-direction: row;
+    flex-wrap: wrap;                            /* si no caben, pasan a otra fila */
     align-items: center;
-    gap: .2rem;
+    gap: .2rem .3rem;
     min-width: 0;
+    margin-top: .4rem;
     padding: 0;
     background: none;
     border: none;
@@ -180,7 +245,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--verde-claro), #d9ebdd);
+  background: linear-gradient(135deg, var(--verde-claro), var(--borde));
   color: var(--verde-osc);
 }
 .tarjeta-ph { font-size: 3.2rem; }
@@ -335,7 +400,7 @@ body {
 .detalle-top { display: flex; justify-content: space-between; align-items: center; }
 .volver { background: none; border: none; color: var(--verde); font: inherit; cursor: pointer; padding: .4rem 0; }
 .btn-editar { background: var(--verde-claro); color: var(--verde-osc); border: none; border-radius: 10px; padding: .5rem .9rem; font: inherit; font-weight: 600; cursor: pointer; }
-.btn-editar:hover { background: #d9ebdd; }
+.btn-editar:hover { background: var(--verde-claro); }
 
 /* ---------- Ayuda: cómo instalar la PWA ---------- */
 .ayuda { max-width: 680px; margin: 0 auto; }
@@ -352,7 +417,24 @@ body {
 .ayuda-paso ol { margin: 0; padding-left: 1.3rem; line-height: 1.7; }
 .ayuda-paso li { margin: .25rem 0; }
 .ayuda-icono { display: inline-flex; vertical-align: -.25em; color: #007aff; }   /* azul iOS */
-.ayuda-nota { color: #555; font-size: .92rem; margin-top: 1rem; }
+.ayuda-nota { color: var(--texto-suave); font-size: .92rem; margin-top: 1rem; }
+
+/* ---------- Guía de uso ---------- */
+.guia { max-width: 720px; margin: 0 auto; }
+.guia h2 { margin: .4rem 0 .8rem; }
+.guia-intro {
+  background: var(--verde-claro); color: var(--verde-osc);
+  padding: .9rem 1rem; border-radius: 12px; line-height: 1.6;
+}
+.guia-seccion { margin: 1.6rem 0; }
+.guia-seccion h3 { margin: 0 0 .5rem; }
+.guia-seccion ul { margin: 0 0 .8rem; padding-left: 1.2rem; line-height: 1.7; }
+.guia-seccion li { margin: .35rem 0; }
+.guia-nota { color: var(--texto-suave); font-size: .93rem; }
+.guia-img {
+  display: block; width: 100%; max-width: 320px; height: auto;
+  border: 1px solid var(--borde); border-radius: 12px; margin-top: .4rem;
+}
 
 /* ---------- Edición de receta ---------- */
 .edicion .campo { display: block; margin: 1rem 0; }
@@ -395,7 +477,7 @@ body {
 .detalle-img { width: 100%; border-radius: var(--radio); aspect-ratio: 16/9; object-fit: cover; margin: .5rem 0 1rem; }
 .detalle h2 { margin: .2rem 0; }
 .detalle-meta { display: flex; flex-wrap: wrap; gap: .5rem 1rem; color: var(--gris); font-size: .9rem; margin-bottom: 1rem; }
-.detalle-desc { color: #444; }
+.detalle-desc { color: var(--texto-suave); }
 .bloque { margin-top: 1.6rem; }
 .bloque h3 { border-bottom: 2px solid var(--verde-claro); padding-bottom: .3rem; }
 .lista-ing { list-style: none; padding: 0; margin: 0; }

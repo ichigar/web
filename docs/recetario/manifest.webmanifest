@@ -1,7 +1,7 @@
 {
-  "name": "Recetario antiinflamatorio",
-  "short_name": "Recetario",
-  "description": "Recetario antiinflamatorio con generador de lista de la compra.",
+  "name": "Recetas a la Compra",
+  "short_name": "Recetas Compra",
+  "description": "Recetas antiinflamatorias con generador de lista de la compra.",
   "lang": "es",
   "start_url": "./index.html",
   "scope": "./",
