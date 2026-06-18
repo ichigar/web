@@ -705,13 +705,17 @@ ol.pasos li { padding: .35rem 0; }
 /* ---------- Impresión / PDF (compacto) ---------- */
 @media print {
   @page { margin: 1cm; }
+  html, body { height: auto !important; }
   body { padding: 0; background: #fff; font-size: 10pt; }
   .cabecera, .barra-seleccion, .acciones-compra, .volver,
   .form-extra, .btn-quitar-extra,
   #vista-listado, #vista-detalle, #vista-seleccion { display: none !important; }
-  /* Al imprimir el menú, oculta la vista de compra; el resto del tiempo, el menú. */
+  /* Al imprimir el menú, deja SOLO el menú en el flujo (evita una página en blanco
+     extra por otras vistas/altura residual); el resto del tiempo, oculta el menú. */
   body:not(.print-menu) #vista-menu { display: none !important; }
-  body.print-menu #vista-compra { display: none !important; }
+  body.print-menu > *:not(.contenido),
+  body.print-menu .contenido > *:not(#vista-menu) { display: none !important; }
+  body.print-menu #vista-menu { display: block !important; }
   .contenido { max-width: none; padding: 0; }
   .compra { max-width: none; }
   .compra h2 { font-size: 13pt; margin: 0 0 .3rem; }
@@ -782,6 +786,3 @@ ol.pasos li { padding: .35rem 0; }
   body.print-menu .comida:has(.celda-menu.vacia) { display: none; }
   body.print-menu .dia-menu:not(:has(.celda-menu.llena)) { display: none; }
 }
-/* Página horizontal solo al imprimir el menú. */
-@page menu-horizontal { size: A4 landscape; margin: 8mm; }
-body.print-menu .menu-semanal { page: menu-horizontal; }

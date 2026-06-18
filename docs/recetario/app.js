@@ -993,6 +993,19 @@
     if (!idsEnMenu().length) { alert("El menú está vacío."); return; }
     window.open("https://wa.me/?text=" + encodeURIComponent(textoMenu()), "_blank", "noopener");
   }
+  // Imprime el menú en horizontal. Inyecta un @page landscape ÚNICO durante la
+  // impresión (evita la página en blanco que causa mezclar orientaciones de @page).
+  function imprimirMenu() {
+    if (!idsEnMenu().length) { alert("El menú está vacío."); return; }
+    const st = document.createElement("style");
+    st.id = "print-page-landscape";
+    st.textContent = "@page { size: A4 landscape; margin: 8mm; }";
+    document.head.appendChild(st);
+    document.body.classList.add("print-menu");
+    window.print();
+    // afterprint quita la clase; aquí quitamos el estilo de página (con respaldo).
+    setTimeout(() => st.remove(), 0);
+  }
 
   // --- Navegación entre vistas ---
   function cambiarVista(activa) {
@@ -1245,7 +1258,7 @@
     });
     vistaMenu.querySelector("#menu-vaciar").onclick = vaciarMenu;
     const accionMenu = {
-      pdf: () => { document.body.classList.add("print-menu"); window.print(); },
+      pdf: imprimirMenu,
       whatsapp: compartirMenuWhatsApp,
       copiar: copiarMenu,
     };
@@ -1482,8 +1495,11 @@
   });
 
   // --- Eventos globales ---
-  // Al terminar de imprimir, quita la marca de "imprimir solo el menú".
-  window.addEventListener("afterprint", () => document.body.classList.remove("print-menu"));
+  // Al terminar de imprimir, quita la marca de "imprimir solo el menú" y el @page.
+  window.addEventListener("afterprint", () => {
+    document.body.classList.remove("print-menu");
+    document.getElementById("print-page-landscape")?.remove();
+  });
 
   inputBuscar.addEventListener("input", renderListado);
   selectsCat.forEach((s) => s.addEventListener("change", () => {
