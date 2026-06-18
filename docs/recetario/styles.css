@@ -369,6 +369,24 @@ body {
 .add-cat { display: flex; gap: .4rem; flex-wrap: wrap; }
 .add-cat select, .add-cat input { flex: 1 1 130px; }
 .add-cat button { flex-shrink: 0; }
+
+/* Foto de la receta (alta/edición) */
+.edicion input[type="file"][hidden] { display: none; }   /* el input real va oculto */
+.ed-foto { margin-bottom: .6rem; }
+.ed-foto-preview {
+  width: 100%; max-width: 320px; aspect-ratio: 4 / 3;
+  object-fit: cover; border-radius: 12px; border: 1px solid var(--borde);
+  display: block;
+}
+.ed-foto-vacia {
+  width: 100%; max-width: 320px; aspect-ratio: 4 / 3;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gris); background: var(--verde-claro);
+  border: 1px dashed var(--borde); border-radius: 12px;
+}
+.ed-foto-acciones { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+.ed-foto-btn { cursor: pointer; display: inline-flex; align-items: center; gap: .45rem; }
+.ed-foto-btn input { width: auto; }   /* anula el width:100% de .edicion input */
 .fila-ing { display: flex; gap: .4rem; margin-bottom: .4rem; align-items: center; }
 .fila-ing .ed-cant { flex: 0 0 64px; }
 .fila-ing .ed-uni { flex: 0 0 80px; }

@@ -27,6 +27,8 @@
     smartphone: `<rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/>`,
     apple: `<path d="M16 13c0 3-2 6-3.5 6S11 18 10 18s-1.5 1-2.5 1S4 16 4 13s2-5 4-5c1 0 1.6.6 2.5.6S13 8 14 8s2 .8 2.6 1.8c-1 .6-1.6 1.6-1.6 3.2Z"/><path d="M13 5c.5-1 1.6-1.8 2.6-1.8 0 1-.5 2-1 2.6"/>`,
     share: `<path d="M12 3v12"/><path d="m8 7 4-4 4 4"/><path d="M6 12H5a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1h-1"/>`,
+    camera: `<path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6h0a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.5"/>`,
+    plus_circle: `<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>`,
   };
   function ico(nombre, cls = "ico") {
     return `<svg class="${cls}" viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none"`
@@ -87,8 +89,13 @@
     localStorage.setItem(LS_EDICIONES, JSON.stringify(ed));
   }
   // Superpone las ediciones locales (por id) sobre la lista cargada del JSON.
+  // Las ediciones de recetas existentes se fusionan; las de ids que no están en
+  // el JSON base son recetas NUEVAS añadidas a mano en este dispositivo → se anexan.
   function aplicarEdiciones(lista, ed) {
-    return lista.map((r) => (ed[r.id] ? { ...r, ...ed[r.id] } : r));
+    const ids = new Set(lista.map((r) => r.id));
+    const fusionada = lista.map((r) => (ed[r.id] ? { ...r, ...ed[r.id] } : r));
+    const nuevas = Object.keys(ed).filter((id) => !ids.has(id)).map((id) => ed[id]);
+    return fusionada.concat(nuevas);
   }
   function formatoCantidad(n) {
     if (n == null) return "";
@@ -385,15 +392,52 @@
     cambiarVista(vistaDetalle);
   }
 
-  // --- Edición de receta (persiste en el JSON vía el servidor) ---
+  // Genera un id único tipo slug a partir del nombre (prefijo "mia-" = añadida a mano).
+  function crearRecetaVacia(nombre) {
+    const base = "mia-" + (nombre || "receta").toLowerCase()
+      .normalize("NFD").replace(/[̀-ͯ]/g, "")   // quita acentos
+      .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);
+    let id = base, n = 2;
+    while (porId[id]) id = `${base}-${n++}`;   // evita colisiones
+    return {
+      id, url: "", nombre: "", descripcion: "", imagen: null,
+      categoria: [], cocina: [], keywords: [], dieta: [],
+      raciones: null, tiempo_prep_min: null, tiempo_coccion_min: null, tiempo_total_min: null,
+      ingredientes: [], pasos: [],
+    };
+  }
+
+  // Redimensiona y comprime una imagen a una data-URL JPEG (lado máx 800px).
+  // Mantiene el peso bajo para que quepa en localStorage en el móvil.
+  function comprimirImagen(file, maxLado = 800, calidad = 0.78) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const escala = Math.min(1, maxLado / Math.max(img.width, img.height));
+        const w = Math.round(img.width * escala), h = Math.round(img.height * escala);
+        const c = document.createElement("canvas");
+        c.width = w; c.height = h;
+        c.getContext("2d").drawImage(img, 0, 0, w, h);
+        resolve(c.toDataURL("image/jpeg", calidad));
+      };
+      img.onerror = reject;
+      img.src = URL.createObjectURL(file);
+    });
+  }
+
+  // --- Edición / alta de receta (persiste en el JSON vía el servidor) ---
+  // id == null  → alta de receta nueva.  id != null → edición de la existente.
   function editarReceta(id) {
-    const r = porId[id];
-    if (!r) return;
+    const nueva = id == null;
+    const r = nueva ? null : porId[id];
+    if (!nueva && !r) return;
     // Estado de trabajo (copias para no mutar hasta guardar).
-    let cats = [...(r.categoria || [])];
-    let ings = (r.ingredientes || []).map((i) => ({ ...i }));
-    let nombre = r.nombre || "";
-    let pasosTexto = (r.pasos || []).join("\n");
+    let cats = nueva ? [] : [...(r.categoria || [])];
+    let ings = nueva ? [{ cantidad: null, unidad: null, nombre: "", nota: null, texto: "" }]
+                     : (r.ingredientes || []).map((i) => ({ ...i }));
+    let nombre = nueva ? "" : (r.nombre || "");
+    let pasosTexto = nueva ? "" : (r.pasos || []).join("\n");
+    let imagen = nueva ? null : (r.imagen || null);   // ruta o data-URL base64
     const todasCats = categoriasDe(RECETAS);
 
     // Vuelca lo que hay en los inputs al estado, para no perderlo al re-renderizar.
@@ -427,11 +471,26 @@
           <button class="btn-quitar" data-quitar-ing="${n}" aria-label="Quitar">${ico("x")}</button>
         </div>`).join("");
 
+      const fotoHtml = imagen
+        ? `<img class="ed-foto-preview" src="${escapar(imagen)}" alt="Foto de la receta">`
+        : `<div class="ed-foto-vacia">Sin foto</div>`;
+
       vistaEdicion.innerHTML = `
         <div class="detalle edicion">
-          <h2 class="titulo-ico">${ico("edit")} Editar receta</h2>
+          <h2 class="titulo-ico">${ico(nueva ? "plus" : "edit")} ${nueva ? "Nueva receta" : "Editar receta"}</h2>
           <label class="campo"><span>Nombre</span>
             <input id="ed-nombre" value="${escapar(nombre)}"></label>
+
+          <div class="campo"><span>Foto</span>
+            <div class="ed-foto">${fotoHtml}</div>
+            <div class="ed-foto-acciones">
+              <label class="btn-secundario btn-ico ed-foto-btn">
+                ${ico("camera")} ${imagen ? "Cambiar foto" : "Añadir foto"}
+                <input type="file" id="ed-foto-input" accept="image/*" hidden>
+              </label>
+              ${imagen ? `<button type="button" class="btn-secundario" id="ed-foto-quitar">Quitar foto</button>` : ""}
+            </div>
+          </div>
 
           <div class="campo"><span>Categorías</span>
             <div class="chips-edit">${chips}</div>
@@ -473,24 +532,42 @@
       vistaEdicion.querySelector("#ed-ing-add").onclick = () => {
         leerCampos(); ings.push({ cantidad: null, unidad: null, nombre: "", nota: null, texto: "" }); render();
       };
-      vistaEdicion.querySelector("#ed-cancelar").onclick = () => verDetalle(id);
+
+      // Foto: comprime la imagen elegida a una data-URL (máx 800px) y previsualiza.
+      vistaEdicion.querySelector("#ed-foto-input").onchange = async (ev) => {
+        const file = ev.target.files && ev.target.files[0];
+        if (!file) return;
+        leerCampos();
+        try { imagen = await comprimirImagen(file); }
+        catch { alert("No se pudo procesar la imagen."); return; }
+        render();
+      };
+      const btnQuitarFoto = vistaEdicion.querySelector("#ed-foto-quitar");
+      if (btnQuitarFoto) btnQuitarFoto.onclick = () => { leerCampos(); imagen = null; render(); };
+
+      vistaEdicion.querySelector("#ed-cancelar").onclick = () => (nueva ? mostrarListado() : verDetalle(id));
       vistaEdicion.querySelector("#ed-guardar").onclick = async () => {
         leerCampos();
         if (!nombre.trim()) { alert("El nombre no puede estar vacío."); return; }
         const pasos = pasosTexto.split("\n").map((p) => p.trim()).filter(Boolean);
-        // Aplica los cambios a la receta y reconstruye el campo `texto` de ingredientes.
-        r.nombre = nombre.trim();
-        r.categoria = cats;
-        r.ingredientes = ings.filter((i) => i.nombre).map((i) => ({
+        const ingredientes = ings.filter((i) => i.nombre).map((i) => ({
           ...i,
           texto: [i.cantidad != null ? formatoCantidad(i.cantidad) : "", i.unidad || "", i.nombre]
             .filter(Boolean).join(" "),
         }));
-        r.pasos = pasos;
+        // Receta destino: la existente (edición) o una nueva con id generado (alta).
+        const destino = nueva ? crearRecetaVacia(nombre) : r;
+        destino.nombre = nombre.trim();
+        destino.categoria = cats;
+        destino.ingredientes = ingredientes;
+        destino.pasos = pasos;
+        destino.imagen = imagen;
+        if (nueva) { RECETAS.push(destino); porId[destino.id] = destino; }
+
         const estado = vistaEdicion.querySelector("#ed-estado");
         estado.textContent = "Guardando…";
-        const ok = await guardarRecetas(id);
-        if (ok) verDetalle(id);
+        const ok = await guardarRecetas(destino.id);
+        if (ok) verDetalle(destino.id);
         else estado.textContent = "⚠️ No se pudo guardar. Los cambios siguen en pantalla.";
       };
     }
@@ -499,10 +576,17 @@
     cambiarVista(vistaEdicion);
   }
 
-  // Persiste la edición. Con servidor (PC) escribe recetas.json vía POST; sin
+  // Persiste la edición/alta. Con servidor (PC) escribe recetas.json vía POST; sin
   // servidor (móvil/PWA offline) cae a localStorage, superpuesto al cargar.
   async function guardarRecetas(idEditado) {
     try {
+      // Con servidor, si la foto es una data-URL (recién hecha), la subimos como
+      // archivo a web/img/ y dejamos en la receta la ruta, no el base64.
+      const r = idEditado ? porId[idEditado] : null;
+      if (r && typeof r.imagen === "string" && r.imagen.startsWith("data:")) {
+        const ruta = await subirImagen(idEditado, r.imagen);
+        if (ruta) r.imagen = ruta;   // si falla, se queda el base64 (también válido)
+      }
       const resp = await fetch("/api/guardar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -518,14 +602,36 @@
     } catch {
       /* sin servidor: caemos a localStorage */
     }
-    // Fallback PWA/offline: guardamos solo la receta editada en este dispositivo.
+    // Fallback PWA/offline: guardamos solo la receta editada/nueva en este dispositivo
+    // (la foto queda como data-URL base64 dentro de la receta).
     if (idEditado) {
       const ed = cargarEdiciones();
       ed[idEditado] = porId[idEditado];
-      guardarEdiciones(ed);
+      try {
+        guardarEdiciones(ed);
+      } catch (e) {   // QuotaExceededError: localStorage lleno (fotos pesadas)
+        alert("No hay espacio para guardar la foto en este dispositivo. "
+            + "Prueba con una imagen más pequeña o guarda la receta sin foto.");
+        return false;
+      }
       return true;
     }
     return false;
+  }
+
+  // Sube una foto (data-URL) al servidor; devuelve la ruta relativa (img/<id>.jpg)
+  // o null si no hay servidor / falla.
+  async function subirImagen(id, dataUrl) {
+    try {
+      const resp = await fetch("/api/imagen", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, dataUrl }),
+      });
+      if (!resp.ok) return null;
+      const j = await resp.json();
+      return j.ruta || null;
+    } catch { return null; }
   }
 
   // --- Lista de la compra (agregación) ---
@@ -904,6 +1010,7 @@
     cerrarMenu();
     switch (item.dataset.menu) {
       case "inicio": mostrarListado(); break;
+      case "nueva": editarReceta(null); break;   // alta de receta nueva
       case "seleccion": verSeleccion(); break;   // vacía → vuelve al listado
       case "compra":
         // Si no hay recetas seleccionadas, no hay lista que mostrar: ve a la selección.
