@@ -968,6 +968,32 @@
     window.open("https://wa.me/?text=" + encodeURIComponent(txt), "_blank", "noopener");
   }
 
+  // --- Exportar el menú semanal (texto / WhatsApp / copiar) ---
+  function textoMenu() {
+    let txt = "🗓️ *MENÚ SEMANAL*\n";
+    DIAS.forEach((dia) => {
+      if (!diaTienePlatos(dia)) return;
+      txt += `\n*${DIAS_NOMBRE[dia]}*\n`;
+      COMIDAS.forEach((comida) => {
+        const platos = (menuSemanal[dia][comida] || [])
+          .map((id) => porId[id] && porId[id].nombre).filter(Boolean);
+        if (platos.length) txt += `• ${COMIDAS_NOMBRE[comida]}: ${platos.join(", ")}\n`;
+      });
+    });
+    return txt.trim();
+  }
+  function copiarMenu() {
+    if (!idsEnMenu().length) { alert("El menú está vacío."); return; }
+    navigator.clipboard?.writeText(textoMenu()).then(
+      () => alert("Menú copiado al portapapeles."),
+      () => alert("No se pudo copiar.")
+    );
+  }
+  function compartirMenuWhatsApp() {
+    if (!idsEnMenu().length) { alert("El menú está vacío."); return; }
+    window.open("https://wa.me/?text=" + encodeURIComponent(textoMenu()), "_blank", "noopener");
+  }
+
   // --- Navegación entre vistas ---
   function cambiarVista(activa) {
     [vistaListado, vistaDetalle, vistaEdicion, vistaSeleccion, vistaCompra, vistaAyuda, vistaGuia, vistaMenu]
@@ -1106,6 +1132,8 @@
               Si quitas una receta del menú (con la ✕) y solo estaba ahí, también se quita de la lista
               (si la habías marcado tú a mano, se conserva). Puedes <strong>vaciar un día</strong> con
               el icono de papelera de su cabecera, o todo el menú con «Vaciar menú».</li>
+            <li>Puedes <strong>exportar el menú</strong> a PDF (apaisado, en una hoja), compartirlo por
+              <strong>WhatsApp</strong> o copiarlo al portapapeles.</li>
           </ul>
           <img class="guia-img" loading="lazy" src="img/ayuda/menu.jpg"
                alt="Vista del menú semanal">
@@ -1181,6 +1209,11 @@
           <button class="btn-secundario" id="menu-vaciar">Vaciar menú</button>
         </div>
         <p class="menu-ayuda">Coloca recetas en cada comida. Se añaden automáticamente a la lista de la compra.</p>
+        <div class="acciones-compra" id="menu-acciones">
+          <button class="btn-primario btn-ico" data-accion="pdf">${ico("printer")} Exportar a PDF</button>
+          <button class="btn-whatsapp" data-accion="whatsapp">${ICONO_WHATSAPP} WhatsApp</button>
+          <button class="btn-secundario btn-ico" data-accion="copiar">${ico("copy")} Copiar menú</button>
+        </div>
         <div class="semana">${dias}</div>
       </div>`;
 
@@ -1201,6 +1234,14 @@
       }
     });
     vistaMenu.querySelector("#menu-vaciar").onclick = vaciarMenu;
+    const accionMenu = {
+      pdf: () => { document.body.classList.add("print-menu"); window.print(); },
+      whatsapp: compartirMenuWhatsApp,
+      copiar: copiarMenu,
+    };
+    vistaMenu.querySelectorAll("#menu-acciones [data-accion]").forEach((b) => {
+      b.onclick = accionMenu[b.dataset.accion];
+    });
 
     registrarVista("menu");
     cambiarVista(vistaMenu);
@@ -1430,6 +1471,9 @@
   });
 
   // --- Eventos globales ---
+  // Al terminar de imprimir, quita la marca de "imprimir solo el menú".
+  window.addEventListener("afterprint", () => document.body.classList.remove("print-menu"));
+
   inputBuscar.addEventListener("input", renderListado);
   selectsCat.forEach((s) => s.addEventListener("change", () => {
     actualizarSelectoresCategoria();  // repuebla los dependientes (encadenado)

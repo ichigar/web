@@ -709,6 +709,9 @@ ol.pasos li { padding: .35rem 0; }
   .cabecera, .barra-seleccion, .acciones-compra, .volver,
   .form-extra, .btn-quitar-extra,
   #vista-listado, #vista-detalle, #vista-seleccion { display: none !important; }
+  /* Al imprimir el menú, oculta la vista de compra; el resto del tiempo, el menú. */
+  body:not(.print-menu) #vista-menu { display: none !important; }
+  body.print-menu #vista-compra { display: none !important; }
   .contenido { max-width: none; padding: 0; }
   .compra { max-width: none; }
   .compra h2 { font-size: 13pt; margin: 0 0 .3rem; }
@@ -748,4 +751,37 @@ ol.pasos li { padding: .35rem 0; }
   .lista-compra .cant { min-width: 0; margin-right: .2rem; }
   .subtitulo-sin { margin: .6rem 0 .2rem; font-size: 9pt; }
   a[href]::after { content: ""; }
+
+  /* ----- Impresión del MENÚ SEMANAL (body.print-menu) ----- */
+  /* Horizontal y compacto para que la semana entera quepa en una hoja. */
+  body.print-menu .menu-cabecera,
+  body.print-menu .menu-ayuda,
+  body.print-menu #menu-acciones,
+  body.print-menu .celda-anadir,
+  body.print-menu .celda-quitar,
+  body.print-menu .dia-vaciar { display: none !important; }
+  body.print-menu .menu-semanal::before {
+    content: "Menú semanal"; display: block;
+    font-size: 12pt; font-weight: 700; margin: 0 0 .25rem;
+  }
+  /* Rejilla de 7 columnas (una por día); cada día se apila en vertical. */
+  body.print-menu .semana { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3pt; }
+  body.print-menu .dia-menu { border: 1px solid #333; border-radius: 0; break-inside: avoid; }
+  body.print-menu .dia-titulo { background: none; border-bottom: 1px solid #333; padding: 2pt 3pt; }
+  body.print-menu .dia-titulo h3 { font-size: 8pt; }
+  /* Cada comida en bloque vertical (etiqueta encima del plato) para columnas estrechas. */
+  body.print-menu .comida { flex-direction: column; padding: 2pt 3pt; border-top: none; gap: 0; align-items: stretch; }
+  body.print-menu .comida-etiqueta { flex: none; font-size: 6.5pt; text-transform: uppercase; color: #555; }
+  body.print-menu .celda-menu { gap: 0; }
+  body.print-menu .celda-img { display: none; }   /* sin miniaturas al imprimir */
+  body.print-menu .celda-receta { display: block; }
+  body.print-menu .celda-nombre { white-space: normal; font-size: 7.5pt; line-height: 1.15; }
+  body.print-menu .celda-plato { display: block; margin-bottom: 1pt; }
+  /* las celdas/comidas/días vacíos no ocupan en el PDF */
+  body.print-menu .celda-menu.vacia { display: none; }
+  body.print-menu .comida:has(.celda-menu.vacia) { display: none; }
+  body.print-menu .dia-menu:not(:has(.celda-menu.llena)) { display: none; }
 }
+/* Página horizontal solo al imprimir el menú. */
+@page menu-horizontal { size: A4 landscape; margin: 8mm; }
+body.print-menu .menu-semanal { page: menu-horizontal; }
