@@ -1406,12 +1406,12 @@
           || (r.categoria || []).some((c) => normalizarBusqueda(c).includes(q))
           || (r.ingredientes || []).some((i) => normalizarBusqueda(i.nombre).includes(q)))
         // Primero las de la categoría de la comida; dentro, orden alfabético (L190).
+        // NO se restringe la lista: tras las de la comida aparecen TODAS las demás (L221).
         .sort((a, b) => {
           const da = esDeComida(a), db = esDeComida(b);
           if (da !== db) return da ? -1 : 1;
           return a.nombre.localeCompare(b.nombre, "es");
-        })
-        .slice(0, 60);
+        });
       lista.innerHTML = recetas.map((r) => `
         <li><button class="modal-item" data-id="${escapar(r.id)}">
           ${mediaHtml(r, "modal-item-img", "modal-item-img modal-item-ph")}
