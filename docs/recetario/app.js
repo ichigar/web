@@ -303,7 +303,10 @@
 
   function actualizarBarra() {
     const n = seleccion.size;
-    resumenSel.textContent = `${n} seleccionada${n === 1 ? "" : "s"} ›`;
+    resumenSel.innerHTML =
+      `<span class="sel-num">${n}</span>`
+      + `<span class="sel-txt">seleccionada${n === 1 ? "" : "s"}</span>`
+      + `<span class="sel-chevron" aria-hidden="true">›</span>`;
     barraSel.hidden = n === 0;
     // Si la vista de selección está abierta, refréscala al cambiar la selección.
     if (!vistaSeleccion.hidden) {

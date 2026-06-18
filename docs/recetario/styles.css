@@ -92,9 +92,21 @@ a:hover { color: var(--verde-osc); }
   gap: .5rem;
 }
 .logo .ico { color: var(--verde); width: 1.5rem; height: 1.5rem; flex: none; }
-/* Fila superior del header: logo a la izquierda, menú a la derecha. */
+/* Cabecera: fila superior (logo + tema + menú) y, debajo, el buscador. */
 .cabecera-inner { display: flex; flex-wrap: wrap; align-items: center; column-gap: .6rem; }
-.logo { flex: 1 1 auto; }
+/* La fila superior NO envuelve: el logo se encoge (texto con elipsis) para que
+   los botones de tema y menú queden siempre a la derecha, en la misma línea. */
+.cab-fila {
+  flex: 1 1 100%;
+  min-width: 0;          /* permite que el logo interior se encoja */
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  position: relative;   /* ancla del menú desplegable */
+}
+.logo { flex: 1 1 auto; min-width: 0; }
+.logo-txt { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.btn-tema, .menu-wrap { flex: 0 0 auto; }   /* nunca se encogen */
 
 /* Botón de tema (sol/luna/auto) */
 .btn-tema {
@@ -133,6 +145,7 @@ a:hover { color: var(--verde-osc); }
   right: 0;
   z-index: 30;
   min-width: 220px;
+  max-width: calc(100vw - 1.5rem);   /* nunca más ancho que el viewport */
   background: var(--blanco);
   border: 1px solid var(--borde);
   border-radius: 12px;
@@ -325,11 +338,11 @@ a:hover { color: var(--verde-osc); }
   box-shadow: 0 -2px 10px rgba(0, 0, 0, .06);
   display: flex;
   align-items: center;
-  gap: .8rem;
+  gap: .6rem;
   /* contenido alineado con el resto de la web; el fondo ocupa todo el ancho */
   max-width: var(--max);
   margin: 0 auto;
-  padding: .7rem 1rem calc(.7rem + env(safe-area-inset-bottom, 0));
+  padding: .6rem .9rem calc(.6rem + env(safe-area-inset-bottom, 0));
 }
 /* En pantallas anchas, recuadra la barra centrada en lugar de pegarla a los bordes */
 @media (min-width: 1140px) {
@@ -342,10 +355,16 @@ a:hover { color: var(--verde-osc); }
     border-radius: 14px 14px 0 0;
   }
 }
+.barra-seleccion .enlace-clear { flex: none; font-size: .9rem; }
+/* Resumen: ocupa el espacio central, en una sola línea, con el nº destacado. */
 .barra-seleccion .resumen-btn {
   flex: 1;
+  min-width: 0;
+  display: inline-flex;
+  align-items: baseline;
+  gap: .3rem;
   font: inherit;
-  font-size: .92rem;
+  font-size: .95rem;
   text-align: left;
   background: none;
   border: none;
@@ -353,8 +372,29 @@ a:hover { color: var(--verde-osc); }
   cursor: pointer;
   font-weight: 600;
   padding: .3rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.barra-seleccion .resumen-btn:hover { text-decoration: underline; }
+.barra-seleccion .resumen-btn .sel-num { font-size: 1.15rem; font-weight: 700; }
+.barra-seleccion .resumen-btn .sel-txt {
+  font-weight: 500; color: var(--gris); min-width: 0;
+  overflow: hidden; text-overflow: ellipsis;
+}
+.barra-seleccion .resumen-btn .sel-chevron { flex: none; color: var(--gris); font-size: 1.1rem; }
+.barra-seleccion .resumen-btn:hover .sel-txt { text-decoration: underline; }
+/* En pantallas muy estrechas, deja solo "N ›" para que el texto no se trunque feo. */
+@media (max-width: 380px) {
+  .barra-seleccion .resumen-btn .sel-txt { display: none; }
+}
+/* Botón "Generar lista": no se encoge, icono separado del texto. */
+.barra-seleccion .btn-primario {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  white-space: nowrap;
+}
 
 /* ---------- Vista: recetas seleccionadas ---------- */
 .seleccion { max-width: 760px; margin: 0 auto; }
