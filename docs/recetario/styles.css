@@ -476,6 +476,105 @@ a:hover { color: var(--verde-osc); }
   border: 1px solid var(--borde); border-radius: 12px; margin-top: .4rem;
 }
 
+/* ---------- Menú semanal ---------- */
+.menu-semanal { max-width: var(--max); margin: 0 auto; }
+.menu-cabecera { display: flex; align-items: center; justify-content: space-between; gap: .6rem; flex-wrap: wrap; }
+.menu-cabecera h2 { margin: .4rem 0; }
+.menu-ayuda { color: var(--texto-suave); font-size: .92rem; margin: 0 0 1rem; }
+/* Móvil: cada día apilado, con sus 4 comidas en filas. */
+.semana { display: flex; flex-direction: column; gap: 1rem; }
+.dia-menu { border: 1px solid var(--borde); border-radius: 14px; overflow: hidden; }
+.dia-titulo {
+  margin: 0; padding: .5rem .8rem; font-size: 1rem;
+  background: var(--verde-claro); color: var(--verde-osc);
+}
+.comidas { display: flex; flex-direction: column; }
+.comida { display: flex; align-items: stretch; gap: .6rem; padding: .5rem .8rem; border-top: 1px solid var(--borde); }
+.comida-etiqueta {
+  flex: 0 0 5.5rem; align-self: center;
+  font-size: .85rem; font-weight: 600; color: var(--gris);
+}
+/* Celda: receta asignada o botón "+ Añadir". */
+.celda-menu { flex: 1; min-width: 0; }
+.celda-menu.vacia {
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .55rem .7rem; width: 100%;
+  background: none; border: 1px dashed var(--borde); border-radius: 10px;
+  color: var(--gris); font: inherit; cursor: pointer;
+}
+.celda-menu.vacia:hover { border-color: var(--verde); color: var(--verde-osc); }
+.celda-menu.llena { display: flex; align-items: center; gap: .5rem; }
+.celda-receta {
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: .6rem;
+  background: none; border: none; padding: 0; font: inherit; cursor: pointer; text-align: left;
+}
+.celda-img { width: 44px; height: 44px; border-radius: 9px; object-fit: cover; flex: none; }
+.celda-img.celda-ph { display: flex; align-items: center; justify-content: center; font-size: 1.4rem; background: var(--verde-claro); }
+.celda-nombre { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--texto); }
+.celda-quitar {
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border: none; border-radius: 50%;
+  background: var(--verde-claro); color: var(--verde-osc); cursor: pointer;
+}
+.celda-quitar:hover { background: #f3d6d6; color: #a33; }
+
+/* Ancho (tablet/PC): los días en rejilla de columnas. */
+@media (min-width: 768px) {
+  .semana { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; align-items: start; }
+}
+@media (min-width: 1100px) {
+  .semana { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ---------- Modal (selector de receta / día-comida) ---------- */
+body.modal-abierto { overflow: hidden; }
+.modal-fondo {
+  position: fixed; inset: 0; z-index: 50;
+  background: rgba(0, 0, 0, .45);
+  display: flex; align-items: flex-end; justify-content: center;
+  padding: 0;
+}
+.modal-fondo[hidden] { display: none; }
+.modal-caja {
+  background: var(--blanco); color: var(--texto);
+  width: 100%; max-width: 540px; max-height: 85vh;
+  border-radius: 16px 16px 0 0;
+  padding: 1rem 1rem calc(1rem + env(safe-area-inset-bottom, 0));
+  display: flex; flex-direction: column; gap: .7rem;
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, .25);
+}
+@media (min-width: 560px) {
+  .modal-fondo { align-items: center; padding: 1rem; }
+  .modal-caja { border-radius: 16px; }
+}
+.modal-cab { display: flex; align-items: flex-start; justify-content: space-between; gap: .6rem; }
+.modal-cab h3 { margin: 0; font-size: 1.1rem; }
+.modal-cab small { color: var(--texto-suave); font-weight: 400; }
+.modal-cerrar {
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border: none; border-radius: 50%;
+  background: var(--verde-claro); color: var(--verde-osc); cursor: pointer;
+}
+.modal-buscar {
+  width: 100%; padding: .6rem .7rem; font: inherit;
+  border: 1px solid var(--borde); border-radius: 10px; background: var(--blanco);
+}
+.modal-buscar:focus { outline: 2px solid var(--verde); }
+.modal-lista { list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1; }
+.modal-item {
+  width: 100%; display: flex; align-items: center; gap: .7rem;
+  padding: .5rem; background: none; border: none; border-radius: 10px;
+  font: inherit; color: var(--texto); cursor: pointer; text-align: left;
+}
+.modal-item:hover { background: var(--verde-claro); }
+.modal-item-img { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; flex: none; }
+.modal-item-img.modal-item-ph { display: flex; align-items: center; justify-content: center; font-size: 1.4rem; background: var(--verde-claro); }
+.modal-item-nombre { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.modal-vacio { color: var(--gris); padding: 1rem; text-align: center; }
+.modal-campos { display: flex; flex-direction: column; gap: .6rem; }
+.modal-campos label { display: flex; flex-direction: column; gap: .25rem; font-weight: 600; color: var(--verde-osc); }
+.modal-campos select { padding: .6rem .7rem; font: inherit; border: 1px solid var(--borde); border-radius: 10px; background: var(--blanco); color: inherit; }
+
 /* ---------- Edición de receta ---------- */
 .edicion .campo { display: block; margin: 1rem 0; }
 .edicion .campo > span { display: block; font-weight: 600; margin-bottom: .3rem; color: var(--verde-osc); }

@@ -36,6 +36,7 @@
           <nav class="menu" id="menu" hidden>
           <button class="menu-item" data-menu="inicio" data-ico="home">Inicio</button>
           <button class="menu-item" data-menu="nueva" data-ico="plus_circle">Nueva receta</button>
+          <button class="menu-item" data-menu="menu" data-ico="calendario">Menú semanal</button>
           <button class="menu-item" data-menu="seleccion" data-ico="list">Recetas seleccionadas</button>
           <button class="menu-item" data-menu="compra" data-ico="cart">Lista de la compra</button>
           <button class="menu-item" data-menu="vaciar" data-ico="trash">Vaciar selección</button>
@@ -86,6 +87,9 @@
 
     <!-- Vista: guía de uso de la app -->
     <section id="vista-guia" hidden></section>
+
+    <!-- Vista: menú semanal -->
+    <section id="vista-menu" hidden></section>
   </main>
 
   <!-- Barra inferior con la selección -->
@@ -94,6 +98,9 @@
     <button class="resumen-btn" id="resumen-seleccion" aria-label="Ver recetas seleccionadas">0 seleccionadas</button>
     <button class="btn-primario" id="ver-lista" data-ico="cart" data-ico-side="end">Generar lista</button>
   </div>
+
+  <!-- Modal reutilizable (selector de receta, selector de día/comida, etc.) -->
+  <div class="modal-fondo" id="modal" hidden></div>
 
   <script src="app.js"></script>
   <script>

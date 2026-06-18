@@ -19,7 +19,7 @@
  * borran las cachés con versión antigua.
  */
 
-const CACHE = "recetario-v13";
+const CACHE = "recetario-v14";
 const CACHE_IMG = "recetario-img-v1";
 
 // Rutas relativas al scope del SW (funciona bajo cualquier subdirectorio).
@@ -40,6 +40,7 @@ const PRECACHE = [
   "./img/ayuda/buscar.jpg",
   "./img/ayuda/compra.jpg",
   "./img/ayuda/nueva.jpg",
+  "./img/ayuda/menu.jpg",
 ];
 
 self.addEventListener("install", (event) => {
