@@ -1125,7 +1125,8 @@
               comida para elegir una receta (puedes dejar comidas en blanco). El <strong>almuerzo y la
               cena admiten hasta 3 platos</strong>; el desayuno y la merienda, uno.</li>
             <li>El selector de receta muestra <strong>primero las de esa comida</strong> (en el
-              almuerzo, primero los almuerzos…) y puedes <strong>buscar por nombre o por categoría</strong>.</li>
+              almuerzo, primero los almuerzos…) y puedes <strong>buscar por nombre, categoría o
+              ingrediente</strong>.</li>
             <li>También puedes añadir una receta al menú <strong>desde su ficha</strong> o desde el
               <strong>botón «Añadir al menú»</strong> de cada tarjeta del listado.</li>
             <li>Las recetas del menú se <strong>añaden automáticamente a la lista de la compra</strong>.
@@ -1137,6 +1138,15 @@
           </ul>
           <img class="guia-img" loading="lazy" src="img/ayuda/menu.jpg"
                alt="Vista del menú semanal">
+        </section>
+
+        <section class="guia-seccion">
+          <h3 class="titulo-ico">${ico("sol")} Tema claro u oscuro</h3>
+          <ul>
+            <li>El botón <strong>☀️/🌙</strong> de la cabecera cambia el tema: <strong>Automático</strong>
+              (sigue el ajuste de tu móvil) → <strong>Claro</strong> → <strong>Oscuro</strong>. Tu
+              elección se recuerda.</li>
+          </ul>
         </section>
 
         <section class="guia-seccion">
@@ -1366,7 +1376,7 @@
         <h3>Elegir receta<br><small>${escapar(titulo)}</small></h3>
         <button class="modal-cerrar" aria-label="Cerrar">${ico("x")}</button>
       </div>
-      <input type="search" id="modal-buscar" class="modal-buscar" placeholder="Buscar por nombre o categoría…" autocomplete="off">
+      <input type="search" id="modal-buscar" class="modal-buscar" placeholder="Buscar por nombre, categoría o ingrediente…" autocomplete="off">
       <ul class="modal-lista" id="modal-lista"></ul>`);
 
     const input = modal.querySelector("#modal-buscar");
@@ -1377,10 +1387,11 @@
     function pintar(filtro) {
       const q = normalizarBusqueda(filtro);
       const recetas = RECETAS
-        // Busca por nombre O por categoría (L191).
+        // Busca por nombre, categoría (L191) o ingrediente (L207).
         .filter((r) => !q
           || normalizarBusqueda(r.nombre).includes(q)
-          || (r.categoria || []).some((c) => normalizarBusqueda(c).includes(q)))
+          || (r.categoria || []).some((c) => normalizarBusqueda(c).includes(q))
+          || (r.ingredientes || []).some((i) => normalizarBusqueda(i.nombre).includes(q)))
         // Primero las de la categoría de la comida; dentro, orden alfabético (L190).
         .sort((a, b) => {
           const da = esDeComida(a), db = esDeComida(b);
