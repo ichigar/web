@@ -189,6 +189,21 @@
     return [...set].sort((a, b) => a.localeCompare(b, "es"));
   }
 
+  // Nombres de ingredientes ya usados en el catálogo, limpios (sin cantidades ni
+  // medidas pegadas), únicos y ordenados. Para autocompletar (datalist) al
+  // añadir/editar una receta. Reutiliza nombreCompra() (hoisted).
+  function nombresIngredientes() {
+    const set = new Set();
+    RECETAS.forEach((r) => (r.ingredientes || []).forEach((i) => {
+      let limpio = nombreCompra((i.nombre || "").trim())
+        .replace(/^[:;.\s]+/, "");                    // restos de scraping al inicio
+      // Descarta lo que aún arrastra cantidad/medida (pocos casos residuales).
+      if (!limpio || /^[\d½¼¾⅐-⅞]/.test(limpio) || /\bcdas?\.|cdtas?\.|cucharad/i.test(limpio)) return;
+      set.add(limpio.charAt(0).toUpperCase() + limpio.slice(1));
+    }));
+    return [...set].sort((a, b) => a.localeCompare(b, "es"));
+  }
+
   // Rellena los selectores de categoría de forma ENCADENADA: el 2º solo ofrece
   // categorías de recetas que tienen la del 1º, y el 3º las que tienen 1º y 2º.
   // Conserva la selección de cada uno si sigue siendo válida; si no, la limpia.
@@ -209,21 +224,28 @@
     });
   }
 
+  // Normaliza texto para buscar: minúsculas y sin acentos ("plátano" → "platano").
+  function normalizarBusqueda(s) {
+    return (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  }
+
   // --- Vista: listado ---
   function recetasFiltradas() {
-    const q = inputBuscar.value.trim().toLowerCase();
+    // Cada término separado por espacios debe aparecer (AND): "salmon aguacate"
+    // encuentra recetas que contengan ambos, no la frase literal.
+    const terminos = normalizarBusqueda(inputBuscar.value.trim()).split(/\s+/).filter(Boolean);
     // Categorías seleccionadas (hasta 3) — la receta debe tenerlas TODAS (AND).
     const cats = selectsCat.map((s) => s.value).filter(Boolean);
     return RECETAS.filter((r) => {
       const suyas = r.categoria || [];
       if (!cats.every((c) => suyas.includes(c))) return false;
-      if (!q) return true;
-      const heno = [
+      if (!terminos.length) return true;
+      const heno = normalizarBusqueda([
         r.nombre, r.descripcion,
         ...(r.keywords || []),
         ...(r.ingredientes || []).map((i) => i.nombre),
-      ].join(" ").toLowerCase();
-      return heno.includes(q);
+      ].join(" "));
+      return terminos.every((t) => heno.includes(t));
     });
   }
 
@@ -461,13 +483,15 @@
       const optsCat = todasCats
         .filter((c) => !cats.includes(c))
         .map((c) => `<option value="${escapar(c)}">${escapar(c)}</option>`).join("");
+      const optsIng = nombresIngredientes()
+        .map((nom) => `<option value="${escapar(nom)}"></option>`).join("");
       const chips = cats.map((c, n) =>
         `<span class="chip-edit">${escapar(c)} <button data-quitar-cat="${n}" aria-label="Quitar">${ico("x")}</button></span>`).join("");
       const filasIng = ings.map((i, n) => `
         <div class="fila-ing" data-ing="${n}">
           <input class="ed-cant" value="${escapar(i.cantidad != null ? formatoCantidad(i.cantidad) : "")}" placeholder="Cant.">
           <input class="ed-uni" value="${escapar(i.unidad || "")}" placeholder="Unidad">
-          <input class="ed-nom" value="${escapar(i.nombre || "")}" placeholder="Ingrediente">
+          <input class="ed-nom" value="${escapar(i.nombre || "")}" placeholder="Ingrediente" list="lista-ingredientes" autocomplete="off">
           <button class="btn-quitar" data-quitar-ing="${n}" aria-label="Quitar">${ico("x")}</button>
         </div>`).join("");
 
@@ -503,6 +527,7 @@
 
           <div class="campo"><span>Ingredientes</span>
             <div id="ed-ings">${filasIng}</div>
+            <datalist id="lista-ingredientes">${optsIng}</datalist>
             <button class="btn-secundario btn-ico" id="ed-ing-add">${ico("plus")} Añadir ingrediente</button>
           </div>
 
