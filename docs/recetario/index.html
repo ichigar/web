@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recetario antiinflamatorio · Lista de la compra</title>
+  <meta name="description" content="Recetario antiinflamatorio con generador de lista de la compra.">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="180x180" href="favicon.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="theme-color" content="#3f7d4e">
+  <!-- PWA: instalable y offline (se sirve por HTTPS, p. ej. en Codeberg Pages). -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Recetario">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="cabecera-inner">
+      <h1 class="logo" id="ir-inicio">🥗 Recetario</h1>
+      <div class="menu-wrap">
+        <button class="btn-menu" id="abrir-menu" aria-label="Menú" aria-haspopup="true" aria-expanded="false" data-ico="menu"></button>
+        <nav class="menu" id="menu" hidden>
+          <button class="menu-item" data-menu="inicio" data-ico="home">Inicio</button>
+          <button class="menu-item" data-menu="seleccion" data-ico="list">Recetas seleccionadas</button>
+          <button class="menu-item" data-menu="compra" data-ico="cart">Lista de la compra</button>
+          <button class="menu-item" data-menu="vaciar" data-ico="trash">Vaciar selección</button>
+          <hr class="menu-sep">
+          <button class="menu-item" data-menu="instalar" data-ico="download">Instalar como app</button>
+        </nav>
+      </div>
+      <div class="buscador zona-buscador-full" id="zona-buscador">
+        <input type="search" id="buscar" placeholder="Buscar receta…" autocomplete="off">
+        <div class="filtros-cat">
+          <select class="filtro-categoria" aria-label="Filtrar por categoría 1">
+            <option value="">Categoría…</option>
+          </select>
+          <select class="filtro-categoria" aria-label="Filtrar por categoría 2">
+            <option value="">+ Categoría…</option>
+          </select>
+          <select class="filtro-categoria" aria-label="Filtrar por categoría 3">
+            <option value="">+ Categoría…</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenido">
+    <!-- Vista: listado -->
+    <section id="vista-listado">
+      <p class="contador" id="contador"></p>
+      <div class="grid-recetas" id="grid"></div>
+    </section>
+
+    <!-- Vista: detalle -->
+    <section id="vista-detalle" hidden></section>
+
+    <!-- Vista: edición de receta -->
+    <section id="vista-edicion" hidden></section>
+
+    <!-- Vista: recetas seleccionadas -->
+    <section id="vista-seleccion" hidden></section>
+
+    <!-- Vista: lista de la compra -->
+    <section id="vista-compra" hidden></section>
+
+    <!-- Vista: ayuda / cómo instalar la PWA -->
+    <section id="vista-ayuda" hidden></section>
+  </main>
+
+  <!-- Barra inferior con la selección -->
+  <div class="barra-seleccion" id="barra-seleccion" hidden>
+    <button class="enlace-clear" id="vaciar-seleccion">Vaciar</button>
+    <button class="resumen-btn" id="resumen-seleccion" aria-label="Ver recetas seleccionadas">0 seleccionadas</button>
+    <button class="btn-primario" id="ver-lista" data-ico="cart" data-ico-side="end">Generar lista</button>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Registro del service worker (PWA). Solo bajo HTTPS, así no se activa al
+    // servir en local con servidor.py (http) ni durante los tests E2E.
+    if ("serviceWorker" in navigator && location.protocol === "https:") {
+      window.addEventListener("load", () =>
+        navigator.serviceWorker.register("sw.js").catch(() => {})
+      );
+    }
+  </script>
+</body>
+</html>
